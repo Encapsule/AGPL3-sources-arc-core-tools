@@ -29,4 +29,7 @@ node_modules
 DISTS/*
 !DISTS/README.md
 
+BUILD/*
+!BUILD/.gitkeep
+
 *~
