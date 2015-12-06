@@ -23,10 +23,9 @@ Licensing:     https://encapsule.io/licening
 #
 #
 
-typeCodes = require './jbus-common-types-codes'
-typeLUTS = require './jbus-common-types-luts'
-typeConvert = require './jbus-common-types-convert'
-
+typeCodes = require './arc_core_types_codes'
+typeLUTS = require './arc_core_types_luts'
+typeConvert = require './arc_core_types_convert'
 
 MODULE = {}
 

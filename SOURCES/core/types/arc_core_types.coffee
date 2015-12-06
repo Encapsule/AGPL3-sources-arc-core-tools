@@ -33,15 +33,9 @@ jbus.common.types.__meta =
     author:   'Encapsule.io'
     license:  'AGPL-3.0'
 
-jbus.common.types.codes = require './jbus-common-types-codes'
-
-jbus.common.types.convert = require './jbus-common-types-convert'
-
-jbus.common.types.check = require './jbus-common-types-check'
-
-
-
-
+jbus.common.types.codes = require './arc_core_types_codes'
+jbus.common.types.convert = require './arc_core_types_convert'
+jbus.common.types.check = require './arc_core_types_check'
 
 
 

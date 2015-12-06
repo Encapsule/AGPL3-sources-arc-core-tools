@@ -23,8 +23,8 @@ Licensing:     https://encapsule.io/licening
 #
 #
 
-typeCodes = require './jbus-common-types-codes'
-typeLUTS = require './jbus-common-types-luts'
+typeCodes = require './arc_core_types_codes'
+typeLUTS = require './arc_core_types_luts'
 
 ###
     request = {

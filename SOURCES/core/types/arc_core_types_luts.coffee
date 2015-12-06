@@ -25,7 +25,7 @@ Licensing:     https://encapsule.io/licening
 
 'use strict'
 
-typeCodes = require './jbus-common-types-codes'
+typeCodes = require './arc_core_types_codes'
 
 MODULE = {}
 
