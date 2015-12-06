@@ -22,6 +22,8 @@
   "homepage": "https://github.com/Encapsule/ARC_master#readme",
   "devDependencies": {
     "chai": "^3.4.1",
-    "mocha": "^2.3.4"
+    "gulp": "^3.9.0",
+    "mocha": "^2.3.4",
+    "node-uuid": "^1.4.7"
   }
 }

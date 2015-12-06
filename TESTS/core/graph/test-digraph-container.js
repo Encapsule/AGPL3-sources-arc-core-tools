@@ -2,7 +2,10 @@
 
 var assert = require('chai').assert;
 var uuid = require('node-uuid');
-var DirectedGraphContainer = require('../src/digraph');
+
+var testModule = require('./module-under-test');
+
+var DirectedGraphContainer = testModule('arc_core_digraph');
 var DirectedGraph = DirectedGraphContainer.DirectedGraph;
 
 describe("DirectedGraph container object tests", function() {

@@ -12,7 +12,8 @@
 */
 
 var assert = require('chai').assert;
-var DirectedGraphContainer = require('../../src/digraph');
+var testModule = require('../module-under-test');
+var DirectedGraphContainer = testModule('arc_core_digraph');
 var createDirectedGraph = DirectedGraphContainer.createDirectedGraph;
 var DirectedGraph = DirectedGraphContainer.DirectedGraph;
 assert.isDefined(createDirectedGraph);
