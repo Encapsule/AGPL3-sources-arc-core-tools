@@ -23,23 +23,25 @@ Licensing:     https://encapsule.io/licening
 #
 #
 
-FILTER = require 'jbus-common-filter'
+jbus = {}
+jbus.common = {}
+jbus.common.types = module.exports = {}
 
-COMMON = module.exports =
+jbus.common.types.__meta =
+    name:     'jbus-common-types'
+    version:  '0.0.2'
+    author:   'Encapsule.io'
+    license:  'AGPL-3.0'
 
-    __meta:
-        name:        'jbus-common'
-        version:     '0.1.13'
-        author:      'Encapsule.io'
-        license:     'AGPL-3.0'
+jbus.common.types.codes = require './jbus-common-types-codes'
 
-    __bundle:
-        murmurhash:  FILTER.__bundle.murmurhashjs
-        nodeuuid:    FILTER.__bundle.nodeuuid
+jbus.common.types.convert = require './jbus-common-types-convert'
 
-    util:            require('jbus-common-util')
-    graph:           require('jsgraph')
-    types:           FILTER.__bundle.jbus_common_types
-    identifier:      FILTER.__bundle.jbus_common_identifier
-    filter:          FILTER
-    filterDAG:       require('jbus-common-filter-dag')
+jbus.common.types.check = require './jbus-common-types-check'
+
+
+
+
+
+
+

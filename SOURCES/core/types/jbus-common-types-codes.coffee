@@ -23,23 +23,21 @@ Licensing:     https://encapsule.io/licening
 #
 #
 
-FILTER = require 'jbus-common-filter'
+'use strict'
 
-COMMON = module.exports =
+MODULE =
+    __undefined: 0
+    __null: 1
+    __boolean: 2
+    __string: 3
+    __number: 4
+    __object: 5
+    __array: 6
+    __function: 7
+    __GUARD: 8
 
-    __meta:
-        name:        'jbus-common'
-        version:     '0.1.13'
-        author:      'Encapsule.io'
-        license:     'AGPL-3.0'
+Object.freeze MODULE
 
-    __bundle:
-        murmurhash:  FILTER.__bundle.murmurhashjs
-        nodeuuid:    FILTER.__bundle.nodeuuid
+module.exports = MODULE
 
-    util:            require('jbus-common-util')
-    graph:           require('jsgraph')
-    types:           FILTER.__bundle.jbus_common_types
-    identifier:      FILTER.__bundle.jbus_common_identifier
-    filter:          FILTER
-    filterDAG:       require('jbus-common-filter-dag')
+
