@@ -19,7 +19,7 @@ Please consult the included LICENSE file for agreement terms.
 UUID = require 'node-uuid'
 MURMUR = require 'murmurhash-js'
 
-TYPES = require 'jbus-common-types'
+TYPES = require './arc_core_types'
 
 MODULE = module.exports = {}
 

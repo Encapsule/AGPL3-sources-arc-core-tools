@@ -27,10 +27,9 @@ IDENTIFIER.__meta =
 IDENTIFIER.__bundle =
     nodeuuid:     require 'node-uuid'
     murmurhashjs: require 'murmurhash-js'
-    types: require 'jbus-common-types'
 
-IDENTIFIER.murmur3 = require './jbus-common-identifier-murmur3'
-IDENTIFIER.irut =    require './jbus-common-identifier-irut'
+IDENTIFIER.hash = require './arc_core_identifier_hash'
+IDENTIFIER.irut =    require './arc_core_identifier_irut'
 
 
 
