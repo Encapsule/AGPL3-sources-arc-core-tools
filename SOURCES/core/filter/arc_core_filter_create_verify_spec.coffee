@@ -16,8 +16,8 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-IDENTIFIER = require 'jbus-common-identifier'
-TYPES = IDENTIFIER.__bundle.types
+IDENTIFIER = require './arc_core_identifier'
+TYPES = './arc_core_types'
 
 ###
     request = {

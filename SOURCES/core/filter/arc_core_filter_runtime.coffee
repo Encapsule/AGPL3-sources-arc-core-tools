@@ -18,8 +18,8 @@ Please consult the included LICENSE file for agreement terms.
 
 'use strict'
 
-IDENTIFIER = require 'jbus-common-identifier'
-filterRuntimeData = require './jbus-common-filter-runtime-spec-processor'
+IDENTIFIER = require './arc_core_identifier'
+filterRuntimeData = require './arc_core_filter_runtime_spec_processor'
 
 bodyFunctionResponseFilter =
     ____types: 'jsObject'

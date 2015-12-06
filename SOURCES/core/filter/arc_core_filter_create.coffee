@@ -18,11 +18,11 @@ Please consult the included LICENSE file for agreement terms.
 
 'use strict'
 
-IDENTIFIER = require 'jbus-common-identifier'
+IDENTIFIER = require './arc_core_identifier'
 
-verifyFilterCreateRequest = require './jbus-common-filter-create-verify-request'
-verifyFilterSpecDeclaration = require './jbus-common-filter-create-verify-spec'
-Filter = require './jbus-common-filter-runtime'
+verifyFilterCreateRequest = require './arc_core_filter_create_verify_request'
+verifyFilterSpecDeclaration = require './arc_core_filter_create_verify_spec'
+Filter = require './arc_core_filter_runtime'
 
 ###
     request = {

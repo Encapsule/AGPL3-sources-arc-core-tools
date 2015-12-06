@@ -16,11 +16,11 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-IDENTIFIER = require 'jbus-common-identifier'
-TYPES = IDENTIFIER.__bundle.types
+IDENTIFIER = require './arc_core_identifier'
 NODEUUID = IDENTIFIER.__bundle.nodeuuid
 MURMURHASHJS = IDENTIFIER.__bundle.murmurhashjs
-FILTERFACTORY = require './jbus-common-filter-create'
+TYPES = require './arc_core_types'
+FILTERFACTORY = require './arc_core_filter_create'
 
 FILTER = module.exports =
 
