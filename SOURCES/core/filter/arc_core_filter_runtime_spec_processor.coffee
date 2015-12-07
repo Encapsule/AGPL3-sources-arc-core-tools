@@ -17,7 +17,7 @@ Please consult the included LICENSE file for agreement terms.
 #
 
 IDENTIFIER = require './arc_core_identifier'
-TYPES = './arc_core_types'
+TYPES = require './arc_core_types'
 
 ###
     request = {

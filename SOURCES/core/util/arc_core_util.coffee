@@ -18,12 +18,6 @@ Please consult the included LICENSE file for agreement terms.
 
 JBUS_COMMON_UTIL = {}
 
-JBUS_COMMON_UTIL.__meta =
-    name:        'jbus-common-util'
-    version:     '0.0.3'
-    author:      'Encapsule.io'
-    license:     'AGPL-3.0'
-
 JBUS_COMMON_UTIL.deepCopy = (reference_) ->
     if not ref_? or typeof ref_ isnt 'object'
         return ref_

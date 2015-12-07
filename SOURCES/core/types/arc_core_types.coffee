@@ -26,16 +26,6 @@ Licensing:     https://encapsule.io/licening
 jbus = {}
 jbus.common = {}
 jbus.common.types = module.exports = {}
-
-jbus.common.types.__meta =
-    name:     'jbus-common-types'
-    version:  '0.0.2'
-    author:   'Encapsule.io'
-    license:  'AGPL-3.0'
-
 jbus.common.types.codes = require './arc_core_types_codes'
 jbus.common.types.convert = require './arc_core_types_convert'
 jbus.common.types.check = require './arc_core_types_check'
-
-
-

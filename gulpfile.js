@@ -1,7 +1,22 @@
+var packageMeta = require('./package.json');
+
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var coffee = require('gulp-coffee');
  
+var fs = require('fs');
+var path = require('path');
+
+gulp.task('tagbuild', function() {
+    var buildtag = JSON.stringify({
+	version: packageMeta.version
+    });
+    fs.writeFileSync(
+	path.join(process.cwd(), './BUILD/ARC_core/arc_build.json'),
+	buildtag
+    );
+});
+
 gulp.task('coffee', function() {
     gulp.src('./SOURCES/core/*.coffee')
 	.pipe(coffee().on('error', gutil.log))

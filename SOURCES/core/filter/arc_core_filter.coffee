@@ -16,24 +16,7 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-IDENTIFIER = require './arc_core_identifier'
-NODEUUID = IDENTIFIER.__bundle.nodeuuid
-MURMURHASHJS = IDENTIFIER.__bundle.murmurhashjs
-TYPES = require './arc_core_types'
 FILTERFACTORY = require './arc_core_filter_create'
 
 FILTER = module.exports =
-
-    __meta:
-        name:        'jbus-common-filter'
-        version:     '0.0.13'
-        author:      'Encapsule.io'
-        license:     'AGPL-3.0'
-
-    __bundle:
-        jbus_common_types: TYPES
-        jbus_common_identifier: IDENTIFIER
-        nodeuuid: NODEUUID
-        murmurhashjs: MURMURHASHJS
-
     create: FILTERFACTORY

@@ -23,23 +23,22 @@ Licensing:     https://encapsule.io/licening
 #
 #
 
-FILTER = require 'jbus-common-filter'
+ARC_BUILD = require './arc_build.json'
 
 COMMON = module.exports =
 
     __meta:
-        name:        'jbus-common'
-        version:     '0.1.13'
+        name:        'arc-core'
+        version:     ARC_BUILD.version
         author:      'Encapsule.io'
-        license:     'AGPL-3.0'
 
     __bundle:
-        murmurhash:  FILTER.__bundle.murmurhashjs
-        nodeuuid:    FILTER.__bundle.nodeuuid
+        murmurhash:  require 'murmurhash-js'
+        nodeuuid:    require 'node-uuid'
 
-    util:            require('jbus-common-util')
-    graph:           require('jsgraph')
-    types:           FILTER.__bundle.jbus_common_types
-    identifier:      FILTER.__bundle.jbus_common_identifier
-    filter:          FILTER
-    filterDAG:       require('jbus-common-filter-dag')
+    util:            require './arc_core_util'
+    graph:           require './arc_core_graph'
+    types:           require './arc_core_types'
+    identifier:      require './arc_core_identifier'
+    filter:          require './arc_core_filter'
+    filterDAG:       require './arc_core_filter_dag'

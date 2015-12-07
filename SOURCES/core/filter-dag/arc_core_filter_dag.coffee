@@ -16,19 +16,7 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-FILTER = require './arc_core_filter'
-GRAPH = require './arc_core_graph'
 FILTERDAGFACTORY = require './arc_core_filter_dag_create'
 
 module.exports =
-
-    __meta:
-        name:        'jbus-common-filter-dag'
-        version:     '0.0.6'
-        author:      'Encapsule.io'
-        license:     'AGPL-3.0'
-
     create: FILTERDAGFACTORY.request
-
-
-
