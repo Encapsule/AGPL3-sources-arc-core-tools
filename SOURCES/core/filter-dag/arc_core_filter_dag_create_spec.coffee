@@ -16,21 +16,21 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-FILTERLIB = require 'jbus-common-filter'
+FILTERLIB = require './arc_core_filter'
+IDENTIFIERLIB = require './arc_core_identifier'
 
-IDENTIFIERLIB = FILTERLIB.__bundle.jbus_common_identifier
-FILTERDAGREQFS = require './filterdag-create-input'
+FILTERDAGREQFS = require './arc_core_filter_dag_create_input'
 
-CONSTRAINT_TYPES = require './jbus-common-filter-dag-create-spec-constraint-types'
-CONSTRAINT_FUNCTIONS = require './jbus-common-filter-dag-create-spec-constraint-functions'
-CONSTRAINT_RECONCILE = require './jbus-common-filter-dag-create-spec-constraint-reconcile'
+MODELPROCESSOR = require './arc_core_filter_dag_create_spec_model'
+CONSTRAINTPROCESSOR = require './arc_core_filter_dag_create_spec_constraint'
+SPECRECONCILER = require './arc_core_filter_dag_create_spec_reconcile'
 
 filterlibResponse = FILTERLIB.create
-    operationID: 'tmhYEUdOR_yk5NRLLk3u1A'
-    operationName: "FilterDAG Constraint Processor"
-    operationDescription: "Parses a FilterDAG constraint specification and returns an intermediate result."
+    operationID: 'loZ5xDoyTO-bUq77KaBk8g'
+    operationName: "FilterDAG Spec Processor"
+    operationDescription: "Parses a FilerDAG specification descriptor and returns an intermediate result object."
 
-    inputFilterSpec: FILTERDAGREQFS.inputFilterSpec.dagSpecification.contraints
+    inputFilterSpec: FILTERDAGREQFS.dagSpecification
 
     bodyFunction: (request_) ->
 
@@ -40,47 +40,53 @@ filterlibResponse = FILTERLIB.create
         while not inBreakScope
             inBreakScope = true
 
-            innerResponse = CONSTRAINT_TYPES.request request_.types
+            # Process the FilterDAG spec's model object.
+            innerResponse = MODELPROCESSOR.request request_.model
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
-            constraintTypes = innerResponse.result
+            specificationModel = innerResponse.result
 
-            innerResponse = CONSTRAINT_FUNCTIONS.request request_.functions
+            # Process the FilterDAG spec's constraints object.
+            innerResponse = CONSTRAINTPROCESSOR.request request_.constraints
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
-            constraintFunctions = innerResponse.result
+            specificationConstraints = innerResponse.result            
 
-            innerResponse = CONSTRAINT_RECONCILE.request
-                types: constraintTypes
-                functions: constraintFunctions
+            innerResponse = SPECRECONCILER.request
+                model: specificationModel
+                constraints: specificationConstraints
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
 
-            filterDAGConstraints = innerResponse.result
+            filterDAGSpecification = innerResponse.result
 
             genTag =
                 id: this.operationID
                 name: this.operationName
 
-            innerResponse = IDENTIFIERLIB.irut.fromReference filterDAGConstraints
+            innerResponse = IDENTIFIERLIB.irut.fromReference filterDAGSpecification
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
             genTag.hash = innerResponse.result
 
-            filterDAGConstraints.generator = genTag
+            filterDAGSpecification.generator = genTag
 
-            response.result = filterDAGConstraints
-            break
+            response.result = filterDAGSpecification
+                
+            break        
 
         if errors.length
            response.error = errors.join " "
+
         response
+
 
 if filterlibResponse.error
     throw new Error filterlibResponse.error
 
 module.exports = filterlibResponse.result
+

@@ -16,9 +16,9 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-FILTER = require 'jbus-common-filter'
-GRAPH = require 'jsgraph'
-FILTERDAGFACTORY = require './jbus-common-filter-dag-create'
+FILTER = require './arc_core_filter'
+GRAPH = require './arc_core_graph'
+FILTERDAGFACTORY = require './arc_core_filter_dag_create'
 
 module.exports =
 

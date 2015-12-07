@@ -16,13 +16,13 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-FILTERLIB = require 'jbus-common-filter'
-IDENTIFIERLIB = FILTERLIB.__bundle.jbus_common_identifier
-INPUTFS = require './filterdag-create-input'
-OUTPUTFS = require './filterdag-create-output'
+FILTERLIB = require './arc_core_filter'
+IDENTIFIERLIB = require './arc_core_identifier'
+INPUTFS = require './arc_core_filter_dag_create_input'
+OUTPUTFS = require './arc_core_filter_dag_create_output'
 
-DAGSPECPROCESSOR = require './jbus-common-filter-dag-create-spec'
-DAGGENERATOR = require './jbus-common-filter-dag-create-factory'
+DAGSPECPROCESSOR = require './arc_core_filter_dag_create_spec'
+DAGGENERATOR = require './arc_core_filter_dag_create_factory'
 
 filterlibResponse = FILTERLIB.create
     operationID: "v_R2RUU9TEacuwgxmydxGw"

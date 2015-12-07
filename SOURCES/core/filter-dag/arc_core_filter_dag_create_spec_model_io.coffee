@@ -16,10 +16,10 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-FILTERLIB = require 'jbus-common-filter'
+FILTERLIB = require './arc_core_filter'
 
-FILTERDAGREQFS = require './filterdag-create-input'
-FILTERDAGXFORMFS = require './filterdag-model-transform-output'
+FILTERDAGREQFS = require './arc_core_filter_dag_create_input'
+FILTERDAGXFORMFS = require './arc_core_filter_dag_create_output'
 
 INPUTFS =
     ____label: "I/O Model Processor Request"
@@ -30,7 +30,7 @@ INPUTFS =
         inputs: FILTERDAGREQFS.inputFilterSpec.dagSpecification.model.inputs
         outputs: FILTERDAGREQFS.inputFilterSpec.dagSpecification.model.outputs
 
-OUTPUTFS = require './filterdag-model-io-output'
+OUTPUTFS = require './arc_core_filter_dag_model_io_output'
 
 filterlibResponse = FILTERLIB.create
     operationID: 'Lry7jHEARSasslVcxqVHww'

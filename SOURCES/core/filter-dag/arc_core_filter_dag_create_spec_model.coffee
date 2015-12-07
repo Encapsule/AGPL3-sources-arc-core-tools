@@ -16,14 +16,14 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-FILTERLIB = require 'jbus-common-filter'
-IDENTIFIERLIB = FILTERLIB.__bundle.jbus_common_identifier
+FILTERLIB = require './arc_core_filter'
+IDENTIFIERLIB = require './arc_core_identifier'
 
-FILTERDAGREQFS = require './filterdag-create-input'
+FILTERDAGREQFS = require './arc_core_filter_dag_create_input'
 
-MODELXFORMGEN = require './jbus-common-filter-dag-create-spec-model-transform'
-MODELIOPROCESS = require './jbus-common-filter-dag-create-spec-model-io'
-MODELRECONCILE = require './jbus-common-filter-dag-create-spec-model-reconcile'
+MODELXFORMGEN = require './arc_core_filter_dag_create_spec_model_transform'
+MODELIOPROCESS = require './arc_core_filter_dag_create_spec_model_io'
+MODELRECONCILE = require './arc_core_filter_dag_create_spec_model_reconcile'
 
 filterlibResponse = FILTERLIB.create
     operationID: 'Xke4-hLKSIChJos77JVOmg'

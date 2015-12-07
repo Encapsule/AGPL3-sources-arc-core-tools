@@ -16,11 +16,9 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-FILTERLIB = require 'jbus-common-filter'
-
-IDENTIFIERLIB = FILTERLIB.__bundle.jbus_common_identifier
-FILTERDAGREQFS = require './filterdag-create-input'
-
+FILTERLIB = require './arc_core_filter'
+IDENTIFIERLIB = require './arc_core_identifier'
+FILTERDAGREQFS = require './arc_core_filter_dag_create_input'
 
 filterlibResponse = FILTERLIB.create
     operationID: '7bqdXoXHSvm90lMvfkOUKQ'

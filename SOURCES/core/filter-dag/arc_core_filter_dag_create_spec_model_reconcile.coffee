@@ -16,12 +16,10 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-FILTERLIB = require 'jbus-common-filter'
-
-FILTERDAGREQFS = require './filterdag-create-input'
-
-FILTERDAGXFORMFS = require './filterdag-model-transform-output'
-FILTERDAGIOMODEL = require './filterdag-model-io-output'
+FILTERLIB = require './arc_core_filter'
+FILTERDAGREQFS = require './arc_core_filter_dag_create_input'
+FILTERDAGXFORMFS = require './arc_core_filter_dag_model_transform_output'
+FILTERDAGIOMODEL = require './arc_core_filter_dag_model_io_output'
 
 INPUTFS =
     ____types: "jsObject"

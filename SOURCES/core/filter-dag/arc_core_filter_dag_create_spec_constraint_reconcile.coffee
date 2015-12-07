@@ -16,10 +16,8 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-FILTERLIB = require 'jbus-common-filter'
-
-IDENTIFIERLIB = FILTERLIB.__bundle.jbus_common_identifier
-
+FILTERLIB = require './arc_core_filter'
+IDENTIFIERLIB = require './arc_core_identifier'
 
 filterlibResponse = FILTERLIB.create
     operationID: 'ABIJoB_lRfeP4keMZgRkzA'

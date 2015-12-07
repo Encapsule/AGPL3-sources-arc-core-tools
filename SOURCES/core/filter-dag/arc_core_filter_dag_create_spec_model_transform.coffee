@@ -16,10 +16,10 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-FILTERLIB = require 'jbus-common-filter'
-FILTERDAGREQFS = require './filterdag-create-input'
-FILTERDAGXFORMFS = require './filterdag-model-transform-output'
-GRAPHLIB = require 'jsgraph'
+FILTERLIB = require './arc_core_filter'
+FILTERDAGREQFS = require './arc_core_filter_dag_create_input'
+FILTERDAGXFORMFS = require './arc_core_filter_dag_create_output'
+GRAPHLIB = require './arc_core_graph'
 
 filterlibResponse = FILTERLIB.create
     operationID: 'h6w300MIQaegK6rK9fDeOw'
