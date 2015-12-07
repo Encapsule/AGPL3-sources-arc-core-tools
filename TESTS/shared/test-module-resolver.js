@@ -11,7 +11,7 @@
 var PATH = require('path');
 
 module.exports = function(moduleBaseDir_) {
-    var basedir = moduleBaseDir_;
+    var basedir = PATH.join("../../", moduleBaseDir_);
     return function(submoduleName_) {
 	var submodulePath = PATH.join(basedir, submoduleName_);
 	console.log("> loading module under test '" + submodulePath + "'...");
