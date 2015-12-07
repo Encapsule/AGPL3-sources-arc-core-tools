@@ -31,6 +31,8 @@ COMMON = module.exports =
         name:        'arc-core'
         version:     ARC_BUILD.version
         author:      'Encapsule.io'
+        buildID:     ARC_BUILD.buildID
+        buildTime:   ARC_BUILD.buildTime
 
     __bundle:
         murmurhash:  require 'murmurhash-js'
