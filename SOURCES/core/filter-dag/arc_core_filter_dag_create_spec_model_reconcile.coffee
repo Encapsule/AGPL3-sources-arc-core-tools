@@ -17,9 +17,9 @@ Please consult the included LICENSE file for agreement terms.
 #
 
 FILTERLIB = require './arc_core_filter'
-FILTERDAGREQFS = require './arc_core_filter_dag_create_input'
-FILTERDAGXFORMFS = require './arc_core_filter_dag_model_transform_output'
-FILTERDAGIOMODEL = require './arc_core_filter_dag_model_io_output'
+FILTERDAGREQFS = require './arc_core_filter_dag_create_ifs'
+FILTERDAGXFORMFS = require './arc_core_filter_dag_create_spec_model_transform_ofs'
+FILTERDAGIOMODEL = require './arc_core_filter_dag_create_spec_model_io_ofs'
 
 INPUTFS =
     ____types: "jsObject"

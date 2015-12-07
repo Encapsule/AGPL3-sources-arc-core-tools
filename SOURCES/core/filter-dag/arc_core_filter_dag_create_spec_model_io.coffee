@@ -18,8 +18,8 @@ Please consult the included LICENSE file for agreement terms.
 
 FILTERLIB = require './arc_core_filter'
 
-FILTERDAGREQFS = require './arc_core_filter_dag_create_input'
-FILTERDAGXFORMFS = require './arc_core_filter_dag_create_output'
+FILTERDAGREQFS = require './arc_core_filter_dag_create_ifs'
+FILTERDAGXFORMFS = require './arc_core_filter_dag_create_spec_model_transform_ofs'
 
 INPUTFS =
     ____label: "I/O Model Processor Request"
@@ -30,7 +30,7 @@ INPUTFS =
         inputs: FILTERDAGREQFS.inputFilterSpec.dagSpecification.model.inputs
         outputs: FILTERDAGREQFS.inputFilterSpec.dagSpecification.model.outputs
 
-OUTPUTFS = require './arc_core_filter_dag_model_io_output'
+OUTPUTFS = require './arc_core_filter_dag_create_spec_model_io_ofs'
 
 filterlibResponse = FILTERLIB.create
     operationID: 'Lry7jHEARSasslVcxqVHww'

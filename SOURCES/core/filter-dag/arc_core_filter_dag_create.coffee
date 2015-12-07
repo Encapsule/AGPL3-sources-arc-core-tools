@@ -18,8 +18,8 @@ Please consult the included LICENSE file for agreement terms.
 
 FILTERLIB = require './arc_core_filter'
 IDENTIFIERLIB = require './arc_core_identifier'
-INPUTFS = require './arc_core_filter_dag_create_input'
-OUTPUTFS = require './arc_core_filter_dag_create_output'
+INPUTFS = require './arc_core_filter_dag_create_ifs'
+OUTPUTFS = require './arc_core_filter_dag_create_ofs'
 
 DAGSPECPROCESSOR = require './arc_core_filter_dag_create_spec'
 DAGGENERATOR = require './arc_core_filter_dag_create_factory'

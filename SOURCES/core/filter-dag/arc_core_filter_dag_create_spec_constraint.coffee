@@ -19,7 +19,7 @@ Please consult the included LICENSE file for agreement terms.
 FILTERLIB = require './arc_core_filter'
 
 IDENTIFIERLIB = require './arc_core_identifier'
-FILTERDAGREQFS = require './arc_core_filter_dag_create_input'
+FILTERDAGREQFS = require './arc_core_filter_dag_create_ifs'
 
 CONSTRAINT_TYPES = require './arc_core_filter_dag_create_spec_constraint_types'
 CONSTRAINT_FUNCTIONS = require './arc_core_filter_dag_create_spec_constraint_functions'
