@@ -5,7 +5,7 @@ module.exports =
         inputsMap:
             ____accept: "jsObject"
         outputsMap:
-             ____accept: "jsObject"
+            ____accept: "jsObject"
         typeConstraints:
             ____types: "jsArray"
             element:
@@ -49,4 +49,3 @@ module.exports =
                 ____types: "jsArray"
                 element:
                     ____types: "jsString"
-

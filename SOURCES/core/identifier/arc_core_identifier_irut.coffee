@@ -7,7 +7,7 @@
 
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
+JBUS is licensed under the GNU Affero General Public License v3.0.
 Please consult the included LICENSE file for agreement terms.
 
 ----------------------------------------------------------------------
@@ -57,8 +57,8 @@ MODULE.fromEther = ->
     while r2.charAt(tail - 1) == '='
         tail--
     r3 = r2.slice 0, tail
-    r4 = r3.replace(/\+/g, "-");
-    r5 = r4.replace(/\//g, "_");
+    r4 = r3.replace(/\+/g, "-")
+    r5 = r4.replace(/\//g, "_")
     r5
 
 
@@ -124,12 +124,12 @@ MODULE.fromReference = (ref_) ->
         while r2.charAt(r2.length - pads - 1) == '='
             pads++
         r3 = r2.slice 0, r2.length - pads
-        r4 = r3.replace(/\+/g, "-");
-        r5 = r4.replace(/\//g, "_");
+        r4 = r3.replace(/\+/g, "-")
+        r5 = r4.replace(/\//g, "_")
         response.result = r5
     if errors.length
-       errors.unshift "jbus common identifier IRUT generation failed:"
-       response.error = errors.join ' '
+        errors.unshift "jbus common identifier IRUT generation failed:"
+        response.error = errors.join ' '
     response
 
 MODULE.isIRUT = (irut_) ->

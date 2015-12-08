@@ -7,7 +7,7 @@
 
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
+JBUS is licensed under the GNU Affero General Public License v3.0.
 Please consult the included LICENSE file for agreement terms.
 
 ----------------------------------------------------------------------
@@ -35,7 +35,7 @@ bodyFunctionResponseFilter =
         ____label: "Result"
         ____description: "Null if an error occurred. Otherwise, some opaque JavaScript value reference."
         
-Object.freeze bodyFunctionResponseFilter        
+Object.freeze bodyFunctionResponseFilter
 
 module.exports = class Filter
 
@@ -95,4 +95,3 @@ module.exports = class Filter
 
         # Return the response
         response
-

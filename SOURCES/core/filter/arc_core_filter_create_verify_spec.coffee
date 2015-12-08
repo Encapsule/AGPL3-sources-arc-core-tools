@@ -7,7 +7,7 @@
 
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
+JBUS is licensed under the GNU Affero General Public License v3.0.
 Please consult the included LICENSE file for agreement terms.
 
 ----------------------------------------------------------------------
@@ -24,7 +24,7 @@ TYPES = require './arc_core_types'
         path: string
         typemap: object
     }
-###    
+###
 
 verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
     response = error: null, result: null
@@ -103,7 +103,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
                         if (validTypeConstraint)
                             errors.unshift "Redundant type constraint declared on namespace '#{mapPropertyName}'."
                             break
-                        innerResponse = verifyTypeConstraintArgs('____accept', mapPropertyValue);
+                        innerResponse = verifyTypeConstraintArgs('____accept', mapPropertyValue)
                         if innerResponse.error
                             errors.unshift innerResponse.error
                             break
@@ -115,7 +115,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
                         if (validTypeConstraint)
                             errors.unshift "Redundant type constraint declared on namespace '#{mapPropertyName}'."
                             break
-                        innerResponse = verifyTypeConstraintArgs('____types', mapPropertyValue);
+                        innerResponse = verifyTypeConstraintArgs('____types', mapPropertyValue)
                         if innerResponse.error
                             errors.unshift innerResponse.error
                             break
@@ -253,7 +253,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
 
         # inside break scope
 
-    # function body scope                
+    # function body scope
     
     if errors.length
         response.error = errors.join ' '

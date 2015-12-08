@@ -7,7 +7,7 @@
 
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
+JBUS is licensed under the GNU Affero General Public License v3.0.
 Please consult the included LICENSE file for agreement terms.
 
 ----------------------------------------------------------------------
@@ -28,7 +28,7 @@ TYPES = require './arc_core_types'
         error = null or string explaining why result is null
         result: filtered copied of request.value or null if an error occurred
     }
-### 
+###
 filterRuntimeData = module.exports = (request_) ->
 
     errors = []
@@ -43,9 +43,9 @@ filterRuntimeData = module.exports = (request_) ->
 
         innerResponse = TYPES.check.inTypeSet value: request_, types: 'jsObject'
         if innerResponse.error
-            errors.unshift innerResponse.error;
+            errors.unshift innerResponse.error
         if not innerResponse.result
-            errors.unshift innerResponse.guidance;
+            errors.unshift innerResponse.guidance
         if errors.length
             errors.unshift "Invalid request:"
             break
@@ -121,7 +121,7 @@ filterRuntimeData = module.exports = (request_) ->
                     # default automatically.
 
                     # Confirm that that value specified by the ____defaultValue directive is valid.
-                    # Effectively we're retrying the initial test here using the static declared data in place of the input.                    
+                    # Effectively we're retrying the initial test here using the static declared data in place of the input.
                     innerResponse = TYPES.check.inTypeSet value: spec.____defaultValue, types: spec[constraintDirective]
                     if innerResponse.error
                         errors.unshift innerResponse.error
@@ -265,6 +265,3 @@ filterRuntimeData = module.exports = (request_) ->
         response.result = finalResult
             
     response
-
-
-

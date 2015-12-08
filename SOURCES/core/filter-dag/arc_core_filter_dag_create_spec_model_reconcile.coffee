@@ -7,7 +7,7 @@
 
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
+JBUS is licensed under the GNU Affero General Public License v3.0.
 Please consult the included LICENSE file for agreement terms.
 
 ----------------------------------------------------------------------
@@ -26,7 +26,7 @@ INPUTFS =
     ____label: "FilterDAG Model Reconciler Request"
     ____description: "FilterDAG model reconciliation request object."
     transformSpecs:  FILTERDAGREQFS.inputFilterSpec.dagSpecification.model.transformations
-    transformModel: FILTERDAGXFORMFS 
+    transformModel: FILTERDAGXFORMFS
     ioModel: FILTERDAGIOMODEL
 
 filterlibResponse = FILTERLIB.create
@@ -87,7 +87,7 @@ filterlibResponse = FILTERLIB.create
             break
 
         if errors.length
-           response.error = errors.join " "
+            response.error = errors.join " "
         response
 
 if filterlibResponse.error

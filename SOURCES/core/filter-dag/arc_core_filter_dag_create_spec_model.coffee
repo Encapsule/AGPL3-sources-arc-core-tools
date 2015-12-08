@@ -7,7 +7,7 @@
 
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
+JBUS is licensed under the GNU Affero General Public License v3.0.
 Please consult the included LICENSE file for agreement terms.
 
 ----------------------------------------------------------------------
@@ -44,7 +44,7 @@ filterlibResponse = FILTERLIB.create
             innerResponse = MODELXFORMGEN.request request_.transformations
             if innerResponse.error
                 errors.unshift innerResponse.error
-                break        
+                break
             transformModel = innerResponse.result
 
             # Process the I/O model declarations.
@@ -62,7 +62,7 @@ filterlibResponse = FILTERLIB.create
             # FilterDAG specification model object.
             innerResponse = MODELRECONCILE.request
                 transformSpecs: request_.transformations
-                transformModel: transformModel 
+                transformModel: transformModel
                 ioModel: ioModel
             if innerResponse.error
                 errors.unshift innerResponse.error
@@ -87,8 +87,8 @@ filterlibResponse = FILTERLIB.create
             break
 
         if errors.length
-           errors.unshift "Error(s) in spec model:"
-           response.error = errors.join " "
+            errors.unshift "Error(s) in spec model:"
+            response.error = errors.join " "
         response
 
 

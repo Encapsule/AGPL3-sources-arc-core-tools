@@ -7,7 +7,7 @@
 
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
+JBUS is licensed under the GNU Affero General Public License v3.0.
 Please consult the included LICENSE file for agreement terms.
 
 ----------------------------------------------------------------------
@@ -27,6 +27,3 @@ MODULE.fromUTF8 = (utf8_) ->
 
 MODULE.fromReference = (ref_) ->
     MODULE.fromUTF8 JSON.stringify ref_
-
-
-

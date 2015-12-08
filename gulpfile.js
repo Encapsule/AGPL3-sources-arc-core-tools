@@ -3,6 +3,7 @@ var packageMeta = require('./package.json');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var coffee = require('gulp-coffee');
+var coffeelint = require('gulp-coffeelint');
 var mocha = require('gulp-mocha');
  
 var fs = require('fs');
@@ -26,21 +27,27 @@ gulp.task('tagbuild', [ "coffee" ], function() {
 gulp.task('coffee', function() {
     console.log("coffee...");
     gulp.src('./SOURCES/core/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/ARC_core/'));
     gulp.src('./SOURCES/core/util/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/ARC_core/'));
     gulp.src('./SOURCES/core/types/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/ARC_core/'))
     gulp.src('./SOURCES/core/identifier/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/ARC_core/'))
     gulp.src('./SOURCES/core/filter/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/ARC_core/'))
     gulp.src('./SOURCES/core/filter-dag/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/ARC_core/'))
 });

@@ -7,7 +7,7 @@
 
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
+JBUS is licensed under the GNU Affero General Public License v3.0.
 Please consult the included LICENSE file for agreement terms.
 
 ----------------------------------------------------------------------
@@ -51,10 +51,8 @@ filterlibResponse = FILTERLIB.create
             break
 
         if errors.length
-           response.error = errors.join " "
+            response.error = errors.join " "
         response
-
-
 
 if filterlibResponse.error
     throw new Error filterlibResponse.error

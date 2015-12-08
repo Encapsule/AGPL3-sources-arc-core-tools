@@ -8,7 +8,7 @@
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
 This software is licensed under the terms of the GNU Affero General
-Public License v3.0. 
+Public License v3.0.
 
 Please review the included LICENSE file for specific agreement terms.
 See also: https://opensource.org/licenses/AGPL-3.0
@@ -130,12 +130,4 @@ MODULE.isJSON = (value_) ->
         response.error = errors.join ' '
     response
 
-
-
-
-
 module.exports = MODULE
-
-
-
-

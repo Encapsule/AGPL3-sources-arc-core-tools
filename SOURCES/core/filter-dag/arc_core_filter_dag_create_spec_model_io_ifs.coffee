@@ -54,4 +54,3 @@ module.exports =
                 ____types: "jsArray"
                 element:
                     ____types: "jsString"
-

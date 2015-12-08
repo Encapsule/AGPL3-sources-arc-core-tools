@@ -7,7 +7,7 @@
 
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
+JBUS is licensed under the GNU Affero General Public License v3.0.
 Please consult the included LICENSE file for agreement terms.
 
 ----------------------------------------------------------------------
@@ -70,7 +70,7 @@ module.exports = (request_) ->
         # default values as allowed by the type map declaration.
 
         innerResponse = verifyFilterCreateRequest request_
-        if innerResponse.error                     
+        if innerResponse.error
             errors.unshift innerResponse.error
             break
 
@@ -100,5 +100,3 @@ module.exports = (request_) ->
         response.error = errors.join ' '
 
     response
-    
-

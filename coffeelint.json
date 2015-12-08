@@ -1,0 +1,18 @@
+{
+    "indentation" : {
+        "level" : "error",
+        "value" : 4
+    },
+    "line_endings" : {
+        "value" : "unix",
+        "level" : "error"
+    },
+    "eol_last": {
+        "value": true,
+        "level" : "error"
+    },
+    "max_line_length": {
+        "value": 240,
+        "level": "error"
+    }
+}

@@ -7,7 +7,7 @@
 
 Copyright (C) 2015 Encapsule.io Bellevue, WA USA
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
+JBUS is licensed under the GNU Affero General Public License v3.0.
 Please consult the included LICENSE file for agreement terms.
 
 ----------------------------------------------------------------------
@@ -78,7 +78,7 @@ module.exports =
                             ____accept: [ "jsNull", "jsString" ]
                             ____defaultValue: null
 
-                         filterSpec: 
+                         filterSpec:
                              ____label: "Type Specification"
                              ____description: "JBUS Filter-format Filter Spec object."
                              ____accept: "jsObject"
@@ -264,5 +264,3 @@ module.exports =
                 ____description: "Developer-specified common context object (opaque to the FilterDAG factory) made available to all JBUS Filter objects bound into the generated FilterDAG object."
                 ____accept: "jsObject"
                 ____defaultValue: {}
-
-
