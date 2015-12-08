@@ -3,6 +3,7 @@ var packageMeta = require('./package.json');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var coffee = require('gulp-coffee');
+var mocha = require('gulp-mocha');
  
 var fs = require('fs');
 var path = require('path');
@@ -55,6 +56,11 @@ gulp.task("baseBuild", [ "copyjs", "coffee", "tagbuild" ], function() {
 
 });
 
-gulp.task('default', [ 'baseBuild' ], function() {
+gulp.task("test", function() {
+    return gulp.src('TESTS/test_arc.js', {read: false})
+        .pipe(mocha({reporter: 'spec'}));
+});
+
+gulp.task('default', [ 'baseBuild', "test" ], function() {
     console.log("default...");
 });
