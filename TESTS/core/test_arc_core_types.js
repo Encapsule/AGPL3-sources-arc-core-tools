@@ -3,7 +3,7 @@
 var assert = require('chai').assert;
 
 
-describe("jbus-common-types submodule tests:", function() {
+describe("arc_core.types Test Suite:", function() {
 
     require('./types/test-types-luts');
     require('./types/test-types-convert');

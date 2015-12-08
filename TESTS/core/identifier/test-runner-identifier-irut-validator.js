@@ -1,8 +1,9 @@
 // test-runner-identifier-irut-validator
 
 var assert = require('chai').assert;
+var testModule = require('./module-under-test');
 
-var IRUT = require('../../../DISTRIBUTION/jbus-common-identifier/lib/jbus-common-identifier-irut');
+var IRUT = testModule('arc_core_identifier_irut');
 
 var testIRUTValidator = module.exports = function (testVector_) {
 
