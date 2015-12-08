@@ -1,34 +1,31 @@
 {
-  "private": true,
-  "name": "arc_master",
-  "version": "0.0.1",
-  "description": "Encapsule.io ARC protocol master package.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Encapsule/ARC_master.git"
-  },
-  "keywords": [
-    "ARC"
-  ],
-  "author": "Encapsule.io",
-  "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/Encapsule/ARC_master/issues"
-  },
-  "homepage": "https://github.com/Encapsule/ARC_master#readme",
-  "devDependencies": {
-    "chai": "^3.4.1",
-    "gulp": "^3.9.0",
-    "gulp-coffee": "^2.3.1",
-    "gulp-coffeelint": "^0.5.0",
-    "gulp-mocha": "^2.2.0",
-    "gulp-util": "^3.0.7",
-    "mocha": "^2.3.4",
-    "murmurhash-js": "^1.0.0",
-    "node-uuid": "^1.4.7"
-  }
+    "private": true,
+    "name": "arc_master",
+    "version": "0.0.2",
+    "description": "Encapsule.io ARC protocol master repository.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Encapsule/ARC_master.git"
+    },
+    "author": "Encapsule.io",
+    "license": "AGPL-3.0",
+    "bugs": {
+        "url": "https://github.com/Encapsule/ARC_master/issues"
+    },
+    "homepage": "https://github.com/Encapsule/ARC_master#readme",
+    "devDependencies": {
+        "chai": "^3.4.1",
+        "gulp": "^3.9.0",
+        "gulp-coffee": "^2.3.1",
+        "gulp-coffeelint": "^0.5.0",
+        "gulp-mocha": "^2.2.0",
+        "gulp-util": "^3.0.7",
+        "mocha": "^2.3.4",
+        "murmurhash-js": "^1.0.0",
+        "node-uuid": "^1.4.7"
+    }
 }
