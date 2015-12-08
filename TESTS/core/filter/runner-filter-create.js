@@ -2,8 +2,10 @@
 
 var assert = require('chai').assert;
 
-var composeNormalizedFunction = require('../../../DISTRIBUTION/jbus-common-filter/lib/jbus-common-filter-create');
-var NormalizedFunction = require('../../../DISTRIBUTION/jbus-common-filter/lib/jbus-common-filter-runtime');
+var testModule = require('./module-under-test');
+
+var composeNormalizedFunction = testModule('arc_core_filter_create');
+var NormalizedFunction = testModule('arc_core_filter_runtime');
 
 /*
   testVector = {

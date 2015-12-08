@@ -1,7 +1,8 @@
 // test-nff-runtime-namepsace-opaque.js
 
 var assert = require('chai').assert;
-var composeFunction = require('../../../DISTRIBUTION/jbus-common-filter/lib/jbus-common-filter-create');
+var testModule = require('./module-under-test');
+var composeFunction = testModule('arc_core_filter_create');
 var testNFFRuntime = require('./runner-filter-runtime');
 
 testNFFRuntime({

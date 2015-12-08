@@ -4,7 +4,8 @@
 var assert = require('chai').assert;
 var testNFFRuntime = require('./runner-filter-runtime');
 
-var composeFunction = require('../../../DISTRIBUTION/jbus-common-filter/lib/jbus-common-filter-create');
+var testModule = require('./module-under-test');
+var composeFunction = testModule('arc_core_filter_create');
 
 // ==========================================================================
 var generateTestNFF1 = require('./fixture-gen-filter-1');

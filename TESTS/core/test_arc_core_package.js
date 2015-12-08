@@ -2,154 +2,151 @@
 
 var assert = require('chai').assert;
 
-var META = require('../../DISTRIBUTION/jbus-common/package.json');
+var testModule = require('./module-under-test');
+var CORE = testModule('arc_core');
 
-var COMMON = require('../../DISTRIBUTION/jbus-common');
-
-describe("jbus-common top-level package tests:", function() {
+describe("arc_core top-level package tests:", function() {
 
     it("The jbus-common module should have loaded.", function() {
-        assert.isDefined(COMMON);
-        assert.isObject(COMMON);
+        assert.isDefined(CORE);
+        assert.isObject(CORE);
     });
 
-    require('../shared-tests/runner-package-export-signature')('jbus-common');
+    describe("arc_core.__bundle export namespace tests.", function() {
 
-    describe("jbus-common.__bundle export namespace tests.", function() {
-
-        it("jbus-common.__bundle should be an object.", function() {
-            assert.property(COMMON, '__bundle');
-            assert.isObject(COMMON.__bundle);
+        it("arc_core.__bundle should be an object.", function() {
+            assert.property(CORE, '__bundle');
+            assert.isObject(CORE.__bundle);
         });
 
-        it("jbus-common.__bundle.murmurhash should be a function.", function() {
-            assert.property(COMMON.__bundle, "murmurhash");
-            assert.isFunction(COMMON.__bundle.murmurhash);
+        it("arc_core.__bundle.murmurhash should be a function.", function() {
+            assert.property(CORE.__bundle, "murmurhash");
+            assert.isFunction(CORE.__bundle.murmurhash);
         });
 
-        it("jbus.common.__bundle.nodeuuid should be a function.", function() {
-            assert.property(COMMON.__bundle, "nodeuuid");
-            assert.isFunction(COMMON.__bundle.nodeuuid);
+        it("arc_core.__bundle.nodeuuid should be a function.", function() {
+            assert.property(CORE.__bundle, "nodeuuid");
+            assert.isFunction(CORE.__bundle.nodeuuid);
         });
 
     });
 
-    describe("jbus-common.graph export namespace tests.", function() {
+    describe("arc_core.graph export namespace tests.", function() {
 
-        it("jbus-common.graph should be an object.", function() {
-            assert.property(COMMON, 'graph');
-            assert.isObject(COMMON.graph);
+        it("arc_core.graph should be an object.", function() {
+            assert.property(CORE, 'graph');
+            assert.isObject(CORE.graph);
         });
     });
 
-    describe("jbus-common.identifier export namespace tests.", function() {
+    describe("arc_core.identifier export namespace tests.", function() {
 
-        it("jbus-common.identifier should be an object.", function() {
-            assert.property(COMMON, 'identifier');
-            assert.isObject(COMMON.identifier);
+        it("arc_core_.identifier should be an object.", function() {
+            assert.property(CORE, 'identifier');
+            assert.isObject(CORE.identifier);
         });
 
-        describe("identifier.murmur3 export namespace tests.", function() {
+        describe("arc_core.identifier.hash export namespace tests.", function() {
 
-            it("identifier.murmur3 should be an object.", function() {
-                assert.property(COMMON.identifier, 'murmur3');
-                assert.isObject(COMMON.identifier.murmur3);
+            it("arc_core.identifier.hash should be an object.", function() {
+                assert.property(CORE.identifier, 'hash');
+                assert.isObject(CORE.identifier.hash);
             });
 
-            it("identifier.murmur3.fromUTF8 should be a function.", function() {
-                assert.property(COMMON.identifier.murmur3, 'fromUTF8');
-                assert.isFunction(COMMON.identifier.murmur3.fromUTF8);
+            it("arc_core.identifier.murmur3.fromUTF8 should be a function.", function() {
+                assert.property(CORE.identifier.hash, 'fromUTF8');
+                assert.isFunction(CORE.identifier.hash.fromUTF8);
             });
 
-            it("identifier.murmur3.fromReference should be a function.", function() {
-                assert.property(COMMON.identifier.murmur3, 'fromReference');
-                assert.isFunction(COMMON.identifier.murmur3.fromReference);
+            it("arc_core.identifier.murmur3.fromReference should be a function.", function() {
+                assert.property(CORE.identifier.hash, 'fromReference');
+                assert.isFunction(CORE.identifier.hash.fromReference);
             });
 
         });
 
-        describe("identifier.irut export namespace tests.", function() {
+        describe("arc_core.identifier.irut export namespace tests.", function() {
 
-            it("identifier.irut should be an object.", function() {
-                assert.property(COMMON.identifier, 'irut');
-                assert.isObject(COMMON.identifier.irut);
+            it("arc_core.identifier.irut should be an object.", function() {
+                assert.property(CORE.identifier, 'irut');
+                assert.isObject(CORE.identifier.irut);
             });
 
-            it("identifier.irut.fromEther should be a function.", function() {
-                assert.property(COMMON.identifier.irut, 'fromEther');
-                assert.isFunction(COMMON.identifier.irut.fromEther);
+            it("arc_core.identifier.irut.fromEther should be a function.", function() {
+                assert.property(CORE.identifier.irut, 'fromEther');
+                assert.isFunction(CORE.identifier.irut.fromEther);
             });
 
-            it("identifier.irut.fromReference should be a function.", function() {
-                assert.property(COMMON.identifier.irut, 'fromReference');
-                assert.isFunction(COMMON.identifier.irut.fromReference);
+            it("arc_core.identifier.irut.fromReference should be a function.", function() {
+                assert.property(CORE.identifier.irut, 'fromReference');
+                assert.isFunction(CORE.identifier.irut.fromReference);
             });
 
-            it("identifier.irut.isIRUT should be a function.", function() {
-                assert.property(COMMON.identifier.irut, 'isIRUT');
-                assert.isFunction(COMMON.identifier.irut.isIRUT);
+            it("arc_core.identifier.irut.isIRUT should be a function.", function() {
+                assert.property(CORE.identifier.irut, 'isIRUT');
+                assert.isFunction(CORE.identifier.irut.isIRUT);
             });
             
         });
 
     });
 
-    describe("jbus-common.util export namespace tests.", function() {
+    describe("arc_core.util export namespace tests.", function() {
 
-        it("jbus-common.util should be an object.", function() {
-            assert.property(COMMON, 'util');
-            assert.isObject(COMMON.util);
+        it("arc_core.util.util should be an object.", function() {
+            assert.property(CORE, 'util');
+            assert.isObject(CORE.util);
         });
 
         it("util.clone should be a function.", function() {
-            assert.property(COMMON.util, 'clone');
-            assert.isFunction(COMMON.util.clone);
+            assert.property(CORE.util, 'clone');
+            assert.isFunction(CORE.util.clone);
         });
 
         it("util.dictionaryLength should be a function.", function() {
-            assert.property(COMMON.util, 'dictionaryLength');
-            assert.isFunction(COMMON.util.dictionaryLength);
+            assert.property(CORE.util, 'dictionaryLength');
+            assert.isFunction(CORE.util.dictionaryLength);
         });
 
         it("util.getEpochTime should a function.", function() {
-            assert.property(COMMON.util, 'getEpochTime');
-            assert.isFunction(COMMON.util.getEpochTime);
+            assert.property(CORE.util, 'getEpochTime');
+            assert.isFunction(CORE.util.getEpochTime);
         });
 
     });
 
-    describe("jbus-common.types export namespace tests.", function() {
+    describe("arc_core.types export namespace tests.", function() {
 
-        it("jbus-common.types should be an object.", function() {
-            assert.property(COMMON, 'types');
-            assert.isObject(COMMON.types);
+        it("arc_core.types should be an object.", function() {
+            assert.property(CORE, 'types');
+            assert.isObject(CORE.types);
         });
 
-        it("types.codes should be an object.", function() {
-            assert.property(COMMON.types, 'codes');
-            assert.isObject(COMMON.types.codes);
+        it("arc_core.types.codes should be an object.", function() {
+            assert.property(CORE.types, 'codes');
+            assert.isObject(CORE.types.codes);
         });
 
-        it("types.convert should be a function.", function() {
-            assert.property(COMMON.types, 'convert');
-            assert.isFunction(COMMON.types.convert);
+        it("arc_core.types.convert should be a function.", function() {
+            assert.property(CORE.types, 'convert');
+            assert.isFunction(CORE.types.convert);
         });
 
-        describe("types.check export namespace tests.", function() {
+        describe("arc_core.types.check export namespace tests.", function() {
 
             it("types.check should be an object.", function() {
-                assert.property(COMMON.types, 'check');
-                assert.isObject(COMMON.types.check);
+                assert.property(CORE.types, 'check');
+                assert.isObject(CORE.types.check);
             });
 
-            it("types.check.inTypeSet should be a function.", function() {
-                assert.property(COMMON.types.check, 'inTypeSet');
-                assert.isFunction(COMMON.types.check.inTypeSet);
+            it("arc_core.types.check.inTypeSet should be a function.", function() {
+                assert.property(CORE.types.check, 'inTypeSet');
+                assert.isFunction(CORE.types.check.inTypeSet);
             });
 
-            it("types.check.isJSON should be a function.", function() {
-                assert.property(COMMON.types.check, 'isJSON');
-                assert.isFunction(COMMON.types.check.isJSON);
+            it("arc_core.types.check.isJSON should be a function.", function() {
+                assert.property(CORE.types.check, 'isJSON');
+                assert.isFunction(CORE.types.check.isJSON);
             });
 
         });

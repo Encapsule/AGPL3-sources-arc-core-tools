@@ -1,6 +1,7 @@
 // fixture-gen-nff-1.js
 
-var createFilter = require('../../../DISTRIBUTION/jbus-common-filter/lib/jbus-common-filter-create');
+var testModule = require('./module-under-test');
+var createFilter = testModule('arc_core_filter_create');
 
 var generateTestNFF1 = module.exports = function() {
     return createFilter({

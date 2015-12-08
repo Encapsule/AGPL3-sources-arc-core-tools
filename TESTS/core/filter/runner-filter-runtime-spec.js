@@ -3,7 +3,9 @@
 
 var assert = require('chai').assert;
 
-var filterRuntimeData = require('../../../DISTRIBUTION/jbus-common-filter/lib/jbus-common-filter-runtime-spec-processor');
+var testModule = require('./module-under-test');
+
+var filterRuntimeData = testModule('arc_core_filter_runtime_spec_processor');
 
 /*
   testVector = {

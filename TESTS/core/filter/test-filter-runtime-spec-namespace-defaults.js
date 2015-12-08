@@ -1,8 +1,9 @@
 // test-nff-runtime-namespace-defaults.js
 
 var assert = require('chai');
+var testModule = require('./module-under-test');
 
-var createFilter = require('../../../DISTRIBUTION/jbus-common-filter/lib/jbus-common-filter-create');
+var createFilter = testModule('arc_core_filter_create');
 var testNFFRuntime = require('./runner-filter-runtime');
 
 var generateTestNFF_Opaque1 = function() {
