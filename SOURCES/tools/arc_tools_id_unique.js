@@ -17,7 +17,7 @@ Please consult the included LICENSE file for agreement terms.
 // Inspired by: https://developer.atlassian.com/blog/2015/11/scripting-with-node/
 //
 
-var TOOLS_META = require('./arc_build.json');
+var TOOLS_META = require('./arc_build');
 var ARC_CORE = require('../arc_core/arc_core');
 
 var program = require('commander');

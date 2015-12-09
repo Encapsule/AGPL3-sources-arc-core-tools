@@ -23,24 +23,24 @@ Licensing:     https://encapsule.io/licening
 #
 #
 
-ARC_BUILD = require './arc_build.json'
+ARC_BUILD = require './arc_build'
 
 COMMON = module.exports =
 
     __meta:
-        name:        'arc-core'
-        version:     ARC_BUILD.version
-        author:      'Encapsule.io'
-        buildID:     ARC_BUILD.buildID
-        buildTime:   ARC_BUILD.buildTime
+        name:          'arccore'
+        version:       ARC_BUILD.version
+        codename:      ARC_BUILD.codename
+        author:        ARC_BUILD.author
+        buildID:       ARC_BUILD.buildID
 
     __bundle:
-        murmurhash:  require 'murmurhash-js'
-        nodeuuid:    require 'node-uuid'
+        murmurhash_js: require 'murmurhash-js'
+        nodeuuid:      require 'node-uuid'
 
-    util:            require './arc_core_util'
-    graph:           require './arc_core_graph'
-    types:           require './arc_core_types'
-    identifier:      require './arc_core_identifier'
-    filter:          require './arc_core_filter'
-    filterDAG:       require './arc_core_filter_dag'
+    util:              require './arc_core_util'
+    graph:             require './arc_core_graph'
+    types:             require './arc_core_types'
+    identifier:        require './arc_core_identifier'
+    filter:            require './arc_core_filter'
+    filterDAG:         require './arc_core_filter_dag'

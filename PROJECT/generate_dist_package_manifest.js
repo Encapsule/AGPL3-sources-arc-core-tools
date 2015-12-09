@@ -22,6 +22,7 @@ module.exports = function (request_) {
     var manifest = {
         name: request_.name,
         version: request_.version,
+        codename: request_.codename,
         buildID: request_.buildID,
         description: pdb.description,
         main: "index.js",
@@ -30,7 +31,7 @@ module.exports = function (request_) {
             url: "git+https://github.com/Encapsule/" + request_.name + ".git",
         },
         keywords: pdb.keywords,
-        author: "Encapsule.io",
+        author: request_.author,
         license: "MIT",
         bugs: {
             url: "https://github.com/Encapsule/" + request_.name + "/issues"

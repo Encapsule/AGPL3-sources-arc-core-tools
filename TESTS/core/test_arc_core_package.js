@@ -20,8 +20,8 @@ describe("arc_core top-level package tests:", function() {
         });
 
         it("arc_core.__bundle.murmurhash should be a function.", function() {
-            assert.property(CORE.__bundle, "murmurhash");
-            assert.isFunction(CORE.__bundle.murmurhash);
+            assert.property(CORE.__bundle, "murmurhash_js");
+            assert.isFunction(CORE.__bundle.murmurhash_js);
         });
 
         it("arc_core.__bundle.nodeuuid should be a function.", function() {

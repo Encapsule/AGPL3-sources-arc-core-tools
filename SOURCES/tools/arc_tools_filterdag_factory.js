@@ -14,7 +14,7 @@ Please consult the included LICENSE file for agreement terms.
 ----------------------------------------------------------------------
 */
 
-var TOOLS_META = require('./arc_build.json');
+var TOOLS_META = require('./arc_build');
 var ARC_CORE = require('../arc_core/arc_core');
 var FILE_DIR_ENUMERATOR = require('./arc_tools_lib_file_dir_enum_sync');
 var FILE_JSRC_LOADER = require('./arc_tools_lib_jsrc_file_loader_sync');
