@@ -26,6 +26,7 @@ var node_modules = fs.readdirSync('node_modules').filter(function(packageName) {
     case '.bin':
     case 'node-uuid':
     case 'murmurhash-js':
+    case 'arccore':
         includeInPackedOutput = true;
         break;
     default:
@@ -36,18 +37,37 @@ var node_modules = fs.readdirSync('node_modules').filter(function(packageName) {
 });
 
 module.exports = {
-    plugins: [
-        new webpack.optimize.OccurenceOrderPlugin()
-    ],
-    entry: {
-        main: './BUILD/arccore/arc_core.js'
+    arccore: {
+        plugins: [
+            new webpack.optimize.OccurenceOrderPlugin()
+        ],
+        entry: {
+            main: './BUILD/arccore/arc_core.js'
+        },
+        target: "node",
+        externals: node_modules,
+        output: {
+            path: './BUILD/arccore/',
+            filename: outputFilename,
+            libraryTarget: "commonjs2"
+        }
     },
-    target: "node",
-    externals: node_modules,
-    output: {
-        path: './BUILD/arccore/',
-        filename: outputFilename,
-        libraryTarget: "commonjs2"
+    arctools: {
+        plugins: [
+            new webpack.optimize.OccurenceOrderPlugin()
+        ],
+        entry: {
+            main: [
+                './BUILD/arctools/arc_tools_lib_filterdag_spec_loader.js'
+            ]
+        },
+        target: "node",
+        externals: node_modules,
+        output: {
+            path: './BUILD/arctools/',
+            filename: outputFilename,
+            libraryTarget: "commonjs2"
+        }
     }
 };
 

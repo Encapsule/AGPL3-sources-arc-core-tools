@@ -6,6 +6,7 @@ var coffee = require('gulp-coffee');
 var coffeelint = require('gulp-coffeelint');
 var mocha = require('gulp-mocha');
 var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
 var webpack = require('webpack');
  
 var fs = require('fs');
@@ -110,14 +111,17 @@ gulp.task("test", function() {
         .pipe(mocha({reporter: 'spec'}));
 });
 
-var wpconfig = require('./webpack.config');
-var wpconfig2 = Object.create(wpconfig);
-wpconfig2.debug = true;
+var wpconfig = require('./webpack.config')
+var wpconfig_arccore = Object.create(wpconfig.arccore);
+wpconfig_arccore.debug = true;
+var wpconfig_arctools = Object.create(wpconfig.arctools);
+wpconfig_arctools.debug = true;
 
-var wpcc = webpack(wpconfig2);
+var wpcc_arccore = webpack(wpconfig_arccore);
+var wpcc_arctools = webpack(wpconfig_arctools);
 
-gulp.task("webpack", [ "test" ], function(callback_) {
-    wpcc.run(function(err, stats) {
+gulp.task("webpack_arccore", [ "test" ], function(callback_) {
+    wpcc_arccore.run(function(err, stats) {
 	if(err) throw new gutil.PluginError("webpack:build-dev", err);
 	gutil.log("[webpack:build-dev]", stats.toString({
 	    colors: true
@@ -126,15 +130,43 @@ gulp.task("webpack", [ "test" ], function(callback_) {
     });
 });
 
-gulp.task("compress", [ "webpack" ], function() {
-    return gulp.src('./BUILD/arccore/index.js')
+gulp.task("webpack_arctools", [ "test" ], function(callback_) {
+    wpcc_arctools.run(function(err, stats) {
+	if(err) throw new gutil.PluginError("webpack:build-dev", err);
+	gutil.log("[webpack:build-dev]", stats.toString({
+	    colors: true
+	}));
+        callback_();
+    });
+});
+
+gulp.task("webpack", [ "webpack_arccore", "webpack_arctools" ], function() {
+});
+
+
+gulp.task("compress_arccore", [ "webpack" ], function() {
+    gulp.src('./BUILD/arccore/index.js')
         .pipe(uglify())
         .pipe(gulp.dest('./DISTS/arccore/'));
 });
+gulp.task("compress_arctools", [ "compress_arccore" ], function() {
+    gulp.src('./DISTS/arccore/index.js')
+        .pipe(rename('arc_core_min.js'))
+        .pipe(gulp.dest('./BUILD/arctools'));
+    gulp.src('./BUILD/arctools/index.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('./DISTS/arctools/'));
+});
+gulp.task("compress", [ "compress_arccore", "compress_arctools" ], function() {
+});
+
+
 
 gulp.task("dist", [ "webpack" ], function() {
     gulp.src('package.json', { cwd: './BUILD/arccore' })
         .pipe(gulp.dest('./DISTS/arccore'));
+    gulp.src('package.json', { cwd: './BUILD/arctools' })
+        .pipe(gulp.dest('./DISTS/arctools'));
 });
 
            

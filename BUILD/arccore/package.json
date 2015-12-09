@@ -2,7 +2,7 @@
     "name": "arccore",
     "version": "0.0.3",
     "codename": "ultramarine",
-    "buildID": "n25JwfvKQjmBsnCbPRmMnA",
+    "buildID": "8saptr6EQHOoHK_iuDNBnA",
     "description": "Encapsule/arc* library common runtime for Node.js.",
     "main": "index.js",
     "repository": {
