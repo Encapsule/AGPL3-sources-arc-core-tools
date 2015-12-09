@@ -9,23 +9,45 @@ var mocha = require('gulp-mocha');
 var fs = require('fs');
 var path = require('path');
 
+var genPackageManifest = require('./PROJECT/generate_dist_package_manifest');
+
 gulp.task('tagbuild', [ "coffee" ], function() {
     console.log("tagbuild...");
     var identifier = require('./BUILD/arccore/arc_core_identifier');
     var util = require('./BUILD/arccore/arc_core_util');
-    var buildtag = JSON.stringify({
+    var buildtag = {
 	version: packageMeta.version,
         buildID: identifier.irut.fromEther(),
         buildTime: util.getEpochTime()
-    });
+    };
+    buildtagJSON = JSON.stringify(buildtag);
     fs.writeFileSync(
 	path.join(process.cwd(), './BUILD/arccore/arc_build.json'),
-	buildtag
+	buildtagJSON
+    );
+    var arccoreManifest = genPackageManifest({
+        name: 'arccore',
+        version: buildtag.version,
+        buildID: buildtag.buildID
+    });
+    fs.writeFileSync(
+        path.join(process.cwd(), './BUILD/arccore/package.json'),
+        arccoreManifest
     );
     fs.writeFileSync(
         path.join(process.cwd(), './BUILD/arctools/arc_build.json'),
-        buildtag
+        buildtagJSON
     );
+    var arctoolsManifest = genPackageManifest({
+        name: 'arctools',
+        version: buildtag.version,
+        buildID: buildtag.buildID
+    });
+    fs.writeFileSync(
+        path.join(process.cwd(), './BUILD/arctools/package.json'),
+        arctoolsManifest
+    );
+    
 });
 
 gulp.task('coffee', function() {
