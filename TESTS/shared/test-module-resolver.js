@@ -3,15 +3,26 @@
 // A little trick to decouple Mocha tests from the location
 // of the modules they're testing.
 //
-//
-// Suppose my tests are in `MyProject/tests` and the JavaScript
-// files I want to test are located in `MyProject/build/JavaScript`.
-//
 
 var PATH = require('path');
 
-module.exports = function(moduleBaseDir_) {
-    var basedir = PATH.join("../../", moduleBaseDir_);
+// packageName_ is the npm package name used to publish ARCspace/arc*
+// repositories on github and npmjs.org. Note that these names are used
+// here to select a subdirectory in the ./BUILD tree to use as the basis
+// for further manual selecton of the target require.
+
+module.exports = function(packageName_) {
+
+    basedir = undefined;
+    buildDirPath = "../../BUILD/";
+    switch (packageName_) {
+    case "arccore":
+    case "arctools":
+        basedir = PATH.join(buildDirPath, packageName_);
+        break;
+    default:
+        throw new Error("Attempt to resolve unknown package name reference '" + packageName_ + "'!");
+    }
     return function(submoduleName_) {
 	var submodulePath = PATH.join(basedir, submoduleName_);
 	console.log("> loading module under test '" + submodulePath + "'...");
