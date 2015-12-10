@@ -16,9 +16,9 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-JBUS_COMMON_UTIL = {}
+ARC_CORE_UTIL = {}
 
-JBUS_COMMON_UTIL.deepCopy = (reference_) ->
+ARC_CORE_UTIL.deepCopy = (ref_) ->
     if not ref_? or typeof ref_ isnt 'object'
         return ref_
     if ref_ instanceof Date
@@ -32,13 +32,13 @@ JBUS_COMMON_UTIL.deepCopy = (reference_) ->
         return new RegExp ref_.source, flags
     instance = new ref_.constructor()
     for key of ref_
-        instance[key] = COMMON.UTIL.clone ref_[key]
+        instance[key] = ARC_CORE_UTIL.deepCopy ref_[key]
     instance
 
-JBUS_COMMON_UTIL.clone = (reference_) -> JBUS_COMMON_UTIL.deepCopy(reference_)
+ARC_CORE_UTIL.clone = (ref_) -> ARC_CORE_UTIL.deepCopy(ref_)
 
-JBUS_COMMON_UTIL.dictionaryLength = (reference_) -> Object.keys(reference_).length
+ARC_CORE_UTIL.dictionaryLength = (ref_) -> Object.keys(ref_).length
 
-JBUS_COMMON_UTIL.getEpochTime = -> Math.round new Date().getTime() / 1000.0
+ARC_CORE_UTIL.getEpochTime = -> Math.round new Date().getTime() / 1000.0
 
-module.exports = JBUS_COMMON_UTIL
+module.exports = ARC_CORE_UTIL

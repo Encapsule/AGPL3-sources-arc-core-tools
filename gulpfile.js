@@ -13,6 +13,7 @@ var fs = require('fs');
 var path = require('path');
 
 var genPackageManifest = require('./PROJECT/generate_dist_package_manifest');
+var genPackageREADME = require('./PROJECT/generate_dist_package_README');
 
 gulp.task('tagbuild', [ "coffee" ], function() {
     console.log("tagbuild...");
@@ -40,31 +41,29 @@ gulp.task('tagbuild', [ "coffee" ], function() {
         path.join(process.cwd(), './BUILD/arctools/arc_build.js'),
         buildtagJavaScript
     );
-    var arccoreManifest = genPackageManifest({
-        name: 'arccore',
-        author: buildtag.author,
-        version: buildtag.version,
-        codename: buildtag.codename,
-        buildID: buildtag.buildID,
-        buildTime: buildtag.buildTime
-    });
+    var arccoreDescriptor = util.clone(buildtag);
+    arccoreDescriptor.name = 'arccore';
+    var arccoreManifest = genPackageManifest(arccoreDescriptor);
     fs.writeFileSync(
         path.join(process.cwd(), './BUILD/arccore/package.json'),
         arccoreManifest
     );
-    var arctoolsManifest = genPackageManifest({
-        name: 'arctools',
-        author: buildtag.author,
-        version: buildtag.version,
-        codename: buildtag.codename,
-        buildID: buildtag.buildID,
-        buildTime: buildtag.buildTime        
-    });
+    fs.writeFileSync(
+	path.join(process.cwd(), './BUILD/arccore/README.md'),
+	genPackageREADME(arccoreDescriptor)
+    );
+
+    var arctoolsDescriptor = util.clone(buildtag);
+    arctoolsDescriptor.name = 'arctools';
+    var arctoolsManifest = genPackageManifest(arctoolsDescriptor);
     fs.writeFileSync(
         path.join(process.cwd(), './BUILD/arctools/package.json'),
         arctoolsManifest
     );
-    
+    fs.writeFileSync(
+	path.join(process.cwd(), './BUILD/arctools/README.md'),
+	genPackageREADME(arctoolsDescriptor)
+    );
 });
 
 gulp.task('coffee', function() {
@@ -165,10 +164,16 @@ gulp.task("compress", [ "compress_arctools" ], function() {
 
 
 gulp.task("stage", [ "compress" ], function() {
+    // arccore
     gulp.src('package.json', { cwd: './BUILD/arccore' })
         .pipe(gulp.dest('./STAGE/arccore'));
+    gulp.src('README.md', { cwd: './BUILD/arccore' })
+	.pipe(gulp.dest('./STAGE/arccore'));
+    // arctools
     gulp.src('package.json', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+    gulp.src('README.md', { cwd: './BUILD/arctools' })
+	.pipe(gulp.dest('./STAGE/arctools'));
     gulp.src('arc_tools_filterdag_compiler.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
     gulp.src('arc_tools_filterdag_factory.js', { cwd: './BUILD/arctools' })

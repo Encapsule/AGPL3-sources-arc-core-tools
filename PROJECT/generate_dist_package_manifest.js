@@ -1,22 +1,5 @@
 
-var packageDatabase = {
-    arccore: {
-        description: "Encapsule/arc* library common runtime for Node.js.",
-        keywords: "ARC",
-        main: "index.js"
-    },
-    arctools: {
-        preferGlobal: true,
-        description: "Addressable Resource Class (ARC) command line tools.",
-        keywords: "ARC",
-        bin: {
-            arc_generateIRUT: "./arc_tools_id_unique.js",
-            arc_compileFilterDAG: "./arc_tools_filterdag_compiler.js",
-            //arc_generateFilterDAG: "./arc_tools_filterdag_factory.js"
-        }
-    }
-};
-
+var packageDatabase = require('./package_manifests');
 
 module.exports = function (request_) {
     var pdb = packageDatabase[request_.name];
@@ -28,7 +11,7 @@ module.exports = function (request_) {
         version: request_.version,
         codename: request_.codename,
         buildID: request_.buildID,
-        buildEpoch: request_.buildTime,
+        buildTime: request_.buildTime,
         repository: {
             type: "git",
             url: "git+https://github.com/Encapsule/" + request_.name + ".git",

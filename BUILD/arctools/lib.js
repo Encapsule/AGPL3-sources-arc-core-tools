@@ -2400,7 +2400,7 @@ module.exports =
 	/* 19 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.3", codename: "ultramarine", author: "Encapsule", buildID: "MyybnoMYTKyyepoFJ7SKuw", buildTime: "1449735145"};
+		module.exports = { version: "0.0.3", codename: "ultramarine", author: "Encapsule", buildID: "DBUNN9MuTriXwOZFO18_mA", buildTime: "1449786423"};
 
 	/***/ },
 	/* 20 */
@@ -6426,13 +6426,13 @@ module.exports =
 		 */
 
 		(function() {
-		  var JBUS_COMMON_UTIL;
+		  var ARC_CORE_UTIL;
 
-		  JBUS_COMMON_UTIL = {};
+		  ARC_CORE_UTIL = {};
 
-		  JBUS_COMMON_UTIL.deepCopy = function(reference_) {
+		  ARC_CORE_UTIL.deepCopy = function(ref_) {
 		    var flags, instance, key;
-		    if ((typeof ref_ === "undefined" || ref_ === null) || typeof ref_ !== 'object') {
+		    if ((ref_ == null) || typeof ref_ !== 'object') {
 		      return ref_;
 		    }
 		    if (ref_ instanceof Date) {
@@ -6456,24 +6456,24 @@ module.exports =
 		    }
 		    instance = new ref_.constructor();
 		    for (key in ref_) {
-		      instance[key] = COMMON.UTIL.clone(ref_[key]);
+		      instance[key] = ARC_CORE_UTIL.deepCopy(ref_[key]);
 		    }
 		    return instance;
 		  };
 
-		  JBUS_COMMON_UTIL.clone = function(reference_) {
-		    return JBUS_COMMON_UTIL.deepCopy(reference_);
+		  ARC_CORE_UTIL.clone = function(ref_) {
+		    return ARC_CORE_UTIL.deepCopy(ref_);
 		  };
 
-		  JBUS_COMMON_UTIL.dictionaryLength = function(reference_) {
-		    return Object.keys(reference_).length;
+		  ARC_CORE_UTIL.dictionaryLength = function(ref_) {
+		    return Object.keys(ref_).length;
 		  };
 
-		  JBUS_COMMON_UTIL.getEpochTime = function() {
+		  ARC_CORE_UTIL.getEpochTime = function() {
 		    return Math.round(new Date().getTime() / 1000.0);
 		  };
 
-		  module.exports = JBUS_COMMON_UTIL;
+		  module.exports = ARC_CORE_UTIL;
 
 		}).call(this);
 
@@ -6636,7 +6636,7 @@ module.exports =
 /* 4 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.3", codename: "ultramarine", author: "Encapsule", buildID: "cQ934GxlREKuUXd9lRYmww", buildTime: "1449735420"};
+	module.exports = { version: "0.0.3", codename: "ultramarine", author: "Encapsule", buildID: "GVWLoCWJQuSJ5sNiSYJctw", buildTime: "1449786736"};
 
 /***/ },
 /* 5 */
