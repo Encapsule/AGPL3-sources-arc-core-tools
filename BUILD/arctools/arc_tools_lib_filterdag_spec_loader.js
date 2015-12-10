@@ -14,7 +14,7 @@ Please consult the included LICENSE file for agreement terms.
 ----------------------------------------------------------------------
 */
 
-var ARC_CORE = require('./arc_core');
+var ARC_CORE = require('../arccore');
 
 var response = ARC_CORE.filter.create({
     operationID: "XkLs1-s1SFGTchfd9eZqYA",

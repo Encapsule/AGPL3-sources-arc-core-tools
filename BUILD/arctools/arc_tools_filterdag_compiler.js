@@ -1,29 +1,18 @@
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0. 
-
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
-*/
+#!/usr/bin/env node
 
 var FS = require('fs');
 var PATH = require('path');
-var TOOLS_META = require('./arc_build');
-var ARC_CORE = require('../arc_core/arc_core');
-var FILE_DIR_ENUMERATOR = require('./arc_tools_lib_file_dir_enum_sync');
-var FILE_JSRC_LOADER = require('./arc_tools_lib_jsrc_file_loader_sync');
-var FILE_RC_WRITER = require('./arc_tools_lib_string_to_file_sync');
-var SPEC_LOADER = require('./arc_tools_lib_filterdag_spec_loader');
+var TOOLSLIB = require('./arc_tools_lib');
+var TOOLS_META = TOOLSLIB.meta;
+TOOLS_META.name="Encapsule/arctools";
 
-var program = require('commander');
+var ARC_CORE = TOOLSLIB.arccore;
+var FILE_DIR_ENUMERATOR = TOOLSLIB.fileDirEnumSync;
+var FILE_JSRC_LOADER = TOOLSLIB.jsrcFileLoaderSync;
+var FILE_RC_WRITER = TOOLSLIB.stringToFileSync;
+var SPEC_LOADER = TOOLSLIB.filterdagSpecLoader;
+
+var program = TOOLSLIB.commander;
 
 program
     .version(TOOLS_META.version)
@@ -47,13 +36,12 @@ var normalizePath = function(path_) {
     return PATH.normalize(path);
 };
 
-
 var ioDir = program.ioDir || "./";
 
 var inputDirPath = normalizePath(PATH.join(ioDir, "specs/"));
 var outputDirPath = normalizePath(PATH.join(ioDir, "manifests/"));
 
-console.log("**** " + TOOLS_META.author + " " + TOOLS_META.name + " v" + TOOLS_META.version + " FilterDAG Spec Compiler ****");
+console.log(TOOLSLIB.createToolBanner("arc_compileFilterDAG"));
 console.log("Input directory:  '" + inputDirPath);
 console.log("Output directory: '" + outputDirPath);
 

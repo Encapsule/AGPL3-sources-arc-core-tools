@@ -26,7 +26,8 @@ var node_modules = fs.readdirSync('node_modules').filter(function(packageName) {
     case '.bin':
     case 'node-uuid':
     case 'murmurhash-js':
-    case 'arccore':
+    case 'commander':
+    case 'graceful-readlink':
         includeInPackedOutput = true;
         break;
     default:
@@ -57,15 +58,13 @@ module.exports = {
             new webpack.optimize.OccurenceOrderPlugin()
         ],
         entry: {
-            main: [
-                './BUILD/arctools/arc_tools_lib_filterdag_spec_loader.js'
-            ]
+            lib: './BUILD/arctools/arc_tools_lib.js',
         },
         target: "node",
         externals: node_modules,
         output: {
             path: './BUILD/arctools/',
-            filename: outputFilename,
+            filename: 'lib.js',
             libraryTarget: "commonjs2"
         }
     }

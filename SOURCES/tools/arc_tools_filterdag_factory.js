@@ -1,25 +1,12 @@
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
+#!/usr/bin/env node
 
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+var TOOLSLIB = require('./arc_tools_lib');
+var TOOLS_META = TOOLSLIB.meta;
+var ARC_CORE = TOOLSLIB.arccore;
+var FILE_DIR_ENUMERATOR = TOOLSLIB.fileDirEnumSync;
+var FILE_JSRC_LOADER = TOOLSLIB.jsrcFileLoaderSync;
 
-JBUS is licensed under the GNU Affero General Public License v3.0. 
-
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
-*/
-
-var TOOLS_META = require('./arc_build');
-var ARC_CORE = require('../arc_core/arc_core');
-var FILE_DIR_ENUMERATOR = require('./arc_tools_lib_file_dir_enum_sync');
-var FILE_JSRC_LOADER = require('./arc_tools_lib_jsrc_file_loader_sync');
-
-var program = require('commander');
+var program = TOOLSLIB.commander;
 
 program
     .version(TOOLS_META.version)
@@ -31,8 +18,6 @@ program
     .option('--info', 'Print tool information and exit.')
 
 program.parse(process.argv);
-
-console.log("SDKJHFKDJFHKDS");
 
 var inBreakScope = false;
 while (!inBreakScope) {

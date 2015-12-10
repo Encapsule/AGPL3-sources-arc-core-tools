@@ -1,26 +1,14 @@
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0. 
-
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
-*/
+#!/usr/bin/env node
 
 ////
 // Inspired by: https://developer.atlassian.com/blog/2015/11/scripting-with-node/
 //
 
-var TOOLS_META = require('./arc_build');
-var ARC_CORE = require('../arc_core/arc_core');
+var TOOLSLIB = require('./arc_tools_lib');
+var TOOLS_META = TOOLSLIB.meta;
+var ARC_CORE = TOOLSLIB.arccore;
+var program = TOOLSLIB.commander;
 
-var program = require('commander');
 program.version(TOOLS_META.version).
     option('--info', 'Print tool information.').
     parse(process.argv);

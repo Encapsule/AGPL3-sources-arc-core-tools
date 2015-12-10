@@ -2,7 +2,7 @@
     "name": "arccore",
     "version": "0.0.3",
     "codename": "ultramarine",
-    "buildID": "8saptr6EQHOoHK_iuDNBnA",
+    "buildID": "VcDj_uqxRGOQdvNew3hN2Q",
     "description": "Encapsule/arc* library common runtime for Node.js.",
     "main": "index.js",
     "repository": {
@@ -10,7 +10,7 @@
         "url": "git+https://github.com/Encapsule/arccore.git"
     },
     "keywords": "ARC",
-    "author": "ChrisRus",
+    "author": "Encapsule",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/Encapsule/arccore/issues"

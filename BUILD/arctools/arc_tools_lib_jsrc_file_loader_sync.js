@@ -16,7 +16,7 @@ Please consult the included LICENSE file for agreement terms.
 
 var FS = require('fs');
 var PATH = require('path');
-var ARC_CORE = require('../arc_core/arc_core');
+var ARC_CORE = require('../arccore');
 
 var response = ARC_CORE.filter.create({
 
