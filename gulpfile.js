@@ -36,27 +36,29 @@ gulp.task('tagbuild', [ "coffee" ], function() {
 	path.join(process.cwd(), './BUILD/arccore/arc_build.js'),
 	buildtagJavaScript
     );
+    fs.writeFileSync(
+        path.join(process.cwd(), './BUILD/arctools/arc_build.js'),
+        buildtagJavaScript
+    );
     var arccoreManifest = genPackageManifest({
         name: 'arccore',
         author: buildtag.author,
         version: buildtag.version,
         codename: buildtag.codename,
-        buildID: buildtag.buildID
+        buildID: buildtag.buildID,
+        buildTime: buildtag.buildTime
     });
     fs.writeFileSync(
         path.join(process.cwd(), './BUILD/arccore/package.json'),
         arccoreManifest
-    );
-    fs.writeFileSync(
-        path.join(process.cwd(), './BUILD/arctools/arc_build.js'),
-        buildtagJavaScript
     );
     var arctoolsManifest = genPackageManifest({
         name: 'arctools',
         author: buildtag.author,
         version: buildtag.version,
         codename: buildtag.codename,
-        buildID: buildtag.buildID
+        buildID: buildtag.buildID,
+        buildTime: buildtag.buildTime        
     });
     fs.writeFileSync(
         path.join(process.cwd(), './BUILD/arctools/package.json'),
@@ -147,14 +149,14 @@ gulp.task("webpack", [ "webpack_arccore", "webpack_arctools" ], function() {
 gulp.task("compress_arccore", [ "webpack" ], function() {
     gulp.src('./BUILD/arccore/index.js')
         .pipe(uglify())
-        .pipe(gulp.dest('./DISTS/arccore/'));
+        .pipe(gulp.dest('./STAGE/arccore/'));
 });
 
 gulp.task("compress_arctools", [ "compress_arccore" ], function() {
     gulp.src('./BUILD/arctools/lib.js')
         .pipe(uglify())
         .pipe(rename('arc_tools_lib.js'))
-        .pipe(gulp.dest('./DISTS/arctools/'));
+        .pipe(gulp.dest('./STAGE/arctools/'));
 });
 
 gulp.task("compress", [ "compress_arctools" ], function() {
@@ -162,20 +164,26 @@ gulp.task("compress", [ "compress_arctools" ], function() {
 
 
 
-gulp.task("dist", [ "compress" ], function() {
+gulp.task("stage", [ "compress" ], function() {
     gulp.src('package.json', { cwd: './BUILD/arccore' })
-        .pipe(gulp.dest('./DISTS/arccore'));
+        .pipe(gulp.dest('./STAGE/arccore'));
     gulp.src('package.json', { cwd: './BUILD/arctools' })
-        .pipe(gulp.dest('./DISTS/arctools'));
+        .pipe(gulp.dest('./STAGE/arctools'));
     gulp.src('arc_tools_filterdag_compiler.js', { cwd: './BUILD/arctools' })
-        .pipe(gulp.dest('./DISTS/arctools'));
+        .pipe(gulp.dest('./STAGE/arctools'));
     gulp.src('arc_tools_filterdag_factory.js', { cwd: './BUILD/arctools' })
-        .pipe(gulp.dest('./DISTS/arctools'));
+        .pipe(gulp.dest('./STAGE/arctools'));
     gulp.src('arc_tools_id_unique.js', { cwd: './BUILD/arctools' })
-        .pipe(gulp.dest('./DISTS/arctools'));
+        .pipe(gulp.dest('./STAGE/arctools'));
 });
 
-           
-gulp.task('default', [ 'baseBuild', "test", "dist" ], function() {
+gulp.task("distribute", [ "default" ], function() {
+    gulp.src('./STAGE/**')
+        .pipe(gulp.dest('./DISTS/'));
+});
+
+
+
+gulp.task('default', [ 'baseBuild', "test", "stage" ], function() {
     console.log("default...");
 });
