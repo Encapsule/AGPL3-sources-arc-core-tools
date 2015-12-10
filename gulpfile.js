@@ -180,6 +180,8 @@ gulp.task("stage", [ "compress" ], function() {
         .pipe(gulp.dest('./STAGE/arctools'));
     gulp.src('arc_tools_id_unique.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+    gulp.src('arc_tools_project.js', { cwd: './BUILD/arctools' })
+        .pipe(gulp.dest('./STAGE/arctools'));
 });
 
 gulp.task("distribute", [ "default" ], function() {

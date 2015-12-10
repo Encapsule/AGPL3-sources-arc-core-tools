@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.0.3",
-  "codename": "ultramarine",
+  "version": "0.0.4",
+  "codename": "ultramarine1",
   "description": "Encapsule.io ARC protocol master repository.",
   "main": "index.js",
   "scripts": {

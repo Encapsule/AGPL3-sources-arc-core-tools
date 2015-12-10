@@ -2400,7 +2400,7 @@ module.exports =
 	/* 19 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.3", codename: "ultramarine", author: "Encapsule", buildID: "DBUNN9MuTriXwOZFO18_mA", buildTime: "1449786423"};
+		module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "3Z62QFQKQFmcZoy7UEFssg", buildTime: "1449791618"};
 
 	/***/ },
 	/* 20 */
@@ -6636,7 +6636,7 @@ module.exports =
 /* 4 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.3", codename: "ultramarine", author: "Encapsule", buildID: "GVWLoCWJQuSJ5sNiSYJctw", buildTime: "1449786736"};
+	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "P_dgFBsHQDuuw6eMB6BVnA", buildTime: "1449791633"};
 
 /***/ },
 /* 5 */

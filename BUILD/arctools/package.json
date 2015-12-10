@@ -1,9 +1,9 @@
 {
     "name": "arctools",
-    "version": "0.0.3",
-    "codename": "ultramarine",
-    "buildID": "GVWLoCWJQuSJ5sNiSYJctw",
-    "buildTime": 1449786736,
+    "version": "0.0.4",
+    "codename": "ultramarine1",
+    "buildID": "P_dgFBsHQDuuw6eMB6BVnA",
+    "buildTime": 1449791633,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arctools.git"
@@ -19,6 +19,7 @@
     "keywords": "ARC",
     "bin": {
         "arc_generateIRUT": "./arc_tools_id_unique.js",
-        "arc_compileFilterDAG": "./arc_tools_filterdag_compiler.js"
+        "arc_compileFilterDAG": "./arc_tools_filterdag_compiler.js",
+        "arc_project": "./arc_tools_project.js"
     }
 }
