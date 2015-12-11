@@ -12,6 +12,8 @@ var FILE_JSRC_LOADER = TOOLSLIB.jsrcFileLoaderSync;
 var FILE_RC_WRITER = TOOLSLIB.stringToFileSync;
 var SPEC_LOADER = TOOLSLIB.filterdagSpecLoader;
 
+var clistyle = TOOLSLIB.clistyles;
+
 var normalizePath = function(path_) {
     var path = path_;
     if (!PATH.isAbsolute(path)) {

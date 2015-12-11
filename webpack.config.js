@@ -29,9 +29,10 @@ var node_modules = fs.readdirSync('node_modules').filter(function(packageName) {
     case 'commander':
     case 'graceful-readlink':
     case 'chalk':
-    case 'ansi-styles':
-    case 'escape-string-regexp':
     case 'has-ansi':
+    case 'ansi-styles':
+    case 'ansi-regex':
+    case 'escape-string-regexp':
     case 'strip-ansi':
     case 'supports-color':
         includeInPackedOutput = true;
