@@ -1,11 +1,21 @@
 #!/usr/bin/env node
 
-TOOLSLIB = require('./arc_tools_lib');
 var toolName = "arc_project";
+
+var TOOLSLIB = require('./arc_tools_lib');
+var chalk = TOOLSLIB.chalk;
+
+var toolStyles = {
+    bannerEnter: chalk.cyan.bold,
+    bannerExit: chalk.cyan,
+    infoHead: chalk.bold.cyan,
+    infoBody: chalk.cyan,
+    exitCode: chalk.bold.magenta
+};
+
 var exitCode = 0; // assume success
 bounce = false;
 
-console.log(TOOLSLIB.createToolBanner(toolName));
 
 var program = TOOLSLIB.commander;
 program.version(TOOLSLIB.meta.version)
@@ -13,11 +23,15 @@ program.version(TOOLSLIB.meta.version)
     .option('--info', 'Print tool information and exit.')
     .parse(process.argv);
 
+console.log(toolStyles.bannerEnter(TOOLSLIB.createToolBanner(toolName)));
 
 if (program.info) {
-    console.log("> " + toolName +
-		" leverages bundled Encapsule/arccore:");
-    console.log(JSON.stringify(TOOLSLIB.arccore.__meta, undefined, 4));
+    console.log(
+	toolStyles.infoHead(toolName + " leverages bundled Encapsule/arccore runtime:")
+    );
+    console.log(
+	toolStyles.infoBody(JSON.stringify(TOOLSLIB.arccore.__meta, undefined, 4))
+    );
     bounce = true;
 }
 
@@ -28,4 +42,5 @@ while (!bounce) {
     break;
 };
 
-console.log(toolName + " exit with status " + exitCode);
+console.log(toolStyles.bannerExit(toolName + " exit with status ") +
+	    toolStyles.exitCode(exitCode));

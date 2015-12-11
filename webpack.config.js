@@ -28,6 +28,12 @@ var node_modules = fs.readdirSync('node_modules').filter(function(packageName) {
     case 'murmurhash-js':
     case 'commander':
     case 'graceful-readlink':
+    case 'chalk':
+    case 'ansi-styles':
+    case 'escape-string-regexp':
+    case 'has-ansi':
+    case 'strip-ansi':
+    case 'supports-color':
         includeInPackedOutput = true;
         break;
     default:

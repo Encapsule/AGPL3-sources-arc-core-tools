@@ -1,6 +1,7 @@
 module.exports = {
     meta: require('./arc_build'),
     commander: require('commander'),
+    chalk: require('chalk'),
     arccore: require('../arccore/arc_core'),
     fileDirEnumSync: require('./arc_tools_lib_file_dir_enum_sync'),
     jsrcFileLoaderSync: require('./arc_tools_lib_jsrc_file_loader_sync'),

@@ -1,13 +1,15 @@
 
+var chalk = require('chalk');
 var ARCBUILD = require('./arc_build');
 
 module.exports = function(toolName_) {
 
     var banner = "**** " +
-        "Encapsule/arctools: " + toolName_ +
+        "Encapsule/arctools::" +
+	chalk.white(toolName_) +
         " v" + ARCBUILD.version +
-        " release \"" + ARCBUILD.codename + "\"" +
-        " build \"" + ARCBUILD.buildID + "\" ****";
+        " release \"" + chalk.yellow(ARCBUILD.codename) + "\"" +
+        " build \"" + chalk.yellow(ARCBUILD.buildID) + "\" ****";
 
     return banner;
 

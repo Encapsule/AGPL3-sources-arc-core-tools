@@ -47,13 +47,14 @@ module.exports =
 
 	module.exports = {
 	    meta: __webpack_require__(21),
-	    commander: __webpack_require__(60),
-	    arccore: __webpack_require__(25),
-	    fileDirEnumSync: __webpack_require__(55),
-	    jsrcFileLoaderSync: __webpack_require__(57),
-	    stringToFileSync: __webpack_require__(58),
-	    filterdagSpecLoader: __webpack_require__(56),
-	    createToolBanner: __webpack_require__(59)
+	    commander: __webpack_require__(64),
+	    chalk: __webpack_require__(22),
+	    arccore: __webpack_require__(27),
+	    fileDirEnumSync: __webpack_require__(57),
+	    jsrcFileLoaderSync: __webpack_require__(59),
+	    stringToFileSync: __webpack_require__(60),
+	    filterdagSpecLoader: __webpack_require__(58),
+	    createToolBanner: __webpack_require__(61)
 	};
 
 
@@ -82,9 +83,9 @@ module.exports =
 
 	  IDENTIFIER = module.exports = {};
 
-	  IDENTIFIER.hash = __webpack_require__(51);
+	  IDENTIFIER.hash = __webpack_require__(53);
 
-	  IDENTIFIER.irut = __webpack_require__(52);
+	  IDENTIFIER.irut = __webpack_require__(54);
 
 	}).call(this);
 
@@ -112,7 +113,7 @@ module.exports =
 	(function() {
 	  var FILTER, FILTERFACTORY;
 
-	  FILTERFACTORY = __webpack_require__(32);
+	  FILTERFACTORY = __webpack_require__(34);
 
 	  FILTER = module.exports = {
 	    create: FILTERFACTORY
@@ -522,7 +523,7 @@ module.exports =
 
 	  jbus.common.types.convert = __webpack_require__(19);
 
-	  jbus.common.types.check = __webpack_require__(53);
+	  jbus.common.types.check = __webpack_require__(55);
 
 	}).call(this);
 
@@ -2956,7 +2957,7 @@ module.exports =
 	/* 19 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "RYMy74mgSMO9bAs5PU9JDg", buildTime: "1449802435"};
+		module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "ziU_yKGmQSyLX-HNKG3dAQ", buildTime: "1449809957"};
 
 	/***/ },
 	/* 20 */
@@ -7171,7 +7172,7 @@ module.exports =
 	/* 51 */
 	/***/ function(module, exports) {
 
-		module.exports = __webpack_require__(23);
+		module.exports = __webpack_require__(25);
 
 	/***/ }
 	/******/ ]);
@@ -7240,8 +7241,8 @@ module.exports =
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(63)
-	var murmur2 = __webpack_require__(62)
+	var murmur3 = __webpack_require__(69)
+	var murmur2 = __webpack_require__(68)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -7269,9 +7270,9 @@ module.exports =
 	// http://en.wikipedia.org/wiki/Directed_graph
 
 	var helperFunctions = __webpack_require__(4);
-	var digraphParams = __webpack_require__(31);
-	var digraphImport = __webpack_require__(30);
-	var digraphExport = __webpack_require__(29);
+	var digraphParams = __webpack_require__(33);
+	var digraphImport = __webpack_require__(32);
+	var digraphExport = __webpack_require__(31);
 
 	(function() {
 	    var __bind = function(method, scope){ return function(){ return method.apply(scope, arguments); }; };
@@ -8267,13 +8268,13 @@ module.exports =
 	        // the edges are reverese in the result digraph. Note that if present,
 	        // vertex and edge properties in the source digraph are copied by
 	        // reference to the result digraph.
-	        transpose: __webpack_require__(28),
+	        transpose: __webpack_require__(30),
 
 	        // Directed graph breadth-first traversal visitor algorithm.
-	        breadthFirstTraverse: __webpack_require__(26),
+	        breadthFirstTraverse: __webpack_require__(28),
 
 	        // Directed graph depth-first traversal visitor algorithm.
-	        depthFirstTraverse: __webpack_require__(27),
+	        depthFirstTraverse: __webpack_require__(29),
 
 	        // ADVANCED
 
@@ -8595,10 +8596,132 @@ module.exports =
 /* 21 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "KZ5ofQQXQtqpe6Rr2BrC0g", buildTime: "1449802666"};
+	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "idP-gGzVRk69WToXY-Z8WQ", buildTime: "1449810008"};
 
 /***/ },
 /* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var escapeStringRegexp = __webpack_require__(65);
+	var ansiStyles = __webpack_require__(62);
+	var stripAnsi = __webpack_require__(70);
+	var hasAnsi = __webpack_require__(67);
+	var supportsColor = __webpack_require__(63);
+	var defineProps = Object.defineProperties;
+	var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
+
+	function Chalk(options) {
+		// detect mode if not set manually
+		this.enabled = !options || options.enabled === undefined ? supportsColor : options.enabled;
+	}
+
+	// use bright blue on Windows as the normal blue color is illegible
+	if (isSimpleWindowsTerm) {
+		ansiStyles.blue.open = '\u001b[94m';
+	}
+
+	var styles = (function () {
+		var ret = {};
+
+		Object.keys(ansiStyles).forEach(function (key) {
+			ansiStyles[key].closeRe = new RegExp(escapeStringRegexp(ansiStyles[key].close), 'g');
+
+			ret[key] = {
+				get: function () {
+					return build.call(this, this._styles.concat(key));
+				}
+			};
+		});
+
+		return ret;
+	})();
+
+	var proto = defineProps(function chalk() {}, styles);
+
+	function build(_styles) {
+		var builder = function () {
+			return applyStyle.apply(builder, arguments);
+		};
+
+		builder._styles = _styles;
+		builder.enabled = this.enabled;
+		// __proto__ is used because we must return a function, but there is
+		// no way to create a function with a different prototype.
+		/* eslint-disable no-proto */
+		builder.__proto__ = proto;
+
+		return builder;
+	}
+
+	function applyStyle() {
+		// support varags, but simply cast to string in case there's only one arg
+		var args = arguments;
+		var argsLen = args.length;
+		var str = argsLen !== 0 && String(arguments[0]);
+
+		if (argsLen > 1) {
+			// don't slice `arguments`, it prevents v8 optimizations
+			for (var a = 1; a < argsLen; a++) {
+				str += ' ' + args[a];
+			}
+		}
+
+		if (!this.enabled || !str) {
+			return str;
+		}
+
+		var nestedStyles = this._styles;
+		var i = nestedStyles.length;
+
+		// Turns out that on Windows dimmed gray text becomes invisible in cmd.exe,
+		// see https://github.com/chalk/chalk/issues/58
+		// If we're on Windows and we're dealing with a gray color, temporarily make 'dim' a noop.
+		var originalDim = ansiStyles.dim.open;
+		if (isSimpleWindowsTerm && (nestedStyles.indexOf('gray') !== -1 || nestedStyles.indexOf('grey') !== -1)) {
+			ansiStyles.dim.open = '';
+		}
+
+		while (i--) {
+			var code = ansiStyles[nestedStyles[i]];
+
+			// Replace any instances already present with a re-opening code
+			// otherwise only the part of the string until said closing code
+			// will be colored, and the rest will simply be 'plain'.
+			str = code.open + str.replace(code.closeRe, code.open) + code.close;
+		}
+
+		// Reset the original 'dim' if we changed it to work around the Windows dimmed gray issue.
+		ansiStyles.dim.open = originalDim;
+
+		return str;
+	}
+
+	function init() {
+		var ret = {};
+
+		Object.keys(styles).forEach(function (name) {
+			ret[name] = {
+				get: function () {
+					return build.call(this, [name]);
+				}
+			};
+		});
+
+		return ret;
+	}
+
+	defineProps(Chalk.prototype, init());
+
+	module.exports = new Chalk();
+	module.exports.styles = ansiStyles;
+	module.exports.hasColor = hasAnsi;
+	module.exports.stripColor = stripAnsi;
+	module.exports.supportsColor = supportsColor;
+
+
+/***/ },
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;//     uuid.js
@@ -8659,7 +8782,7 @@ module.exports =
 	    // Moderately fast, high quality
 	    if (true) {
 	      try {
-	        var _rb = __webpack_require__(23).randomBytes;
+	        var _rb = __webpack_require__(25).randomBytes;
 	        _nodeRNG = _rng = _rb && function() {return _rb(16);};
 	        _rng();
 	      } catch(e) {}
@@ -8876,19 +8999,25 @@ module.exports =
 
 
 /***/ },
-/* 23 */
+/* 24 */
+/***/ function(module, exports) {
+
+	module.exports = require("ansi-regex");
+
+/***/ },
+/* 25 */
 /***/ function(module, exports) {
 
 	module.exports = require("crypto");
 
 /***/ },
-/* 24 */
+/* 26 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "KZ5ofQQXQtqpe6Rr2BrC0g", buildTime: "1449802666"};
+	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "idP-gGzVRk69WToXY-Z8WQ", buildTime: "1449810008"};
 
 /***/ },
-/* 25 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -8917,7 +9046,7 @@ module.exports =
 	(function() {
 	  var ARC_BUILD, COMMON;
 
-	  ARC_BUILD = __webpack_require__(24);
+	  ARC_BUILD = __webpack_require__(26);
 
 	  COMMON = module.exports = {
 	    __meta: {
@@ -8929,21 +9058,21 @@ module.exports =
 	    },
 	    __bundle: {
 	      murmurhash_js: __webpack_require__(12),
-	      nodeuuid: __webpack_require__(22)
+	      nodeuuid: __webpack_require__(23)
 	    },
-	    util: __webpack_require__(54),
+	    util: __webpack_require__(56),
 	    graph: __webpack_require__(18),
 	    types: __webpack_require__(5),
 	    identifier: __webpack_require__(1),
 	    filter: __webpack_require__(2),
-	    filterDAG: __webpack_require__(35)
+	    filterDAG: __webpack_require__(37)
 	  };
 
 	}).call(this);
 
 
 /***/ },
-/* 26 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -9250,7 +9379,7 @@ module.exports =
 
 
 /***/ },
-/* 27 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -9581,7 +9710,7 @@ module.exports =
 
 
 /***/ },
-/* 28 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -9655,7 +9784,7 @@ module.exports =
 
 
 /***/ },
-/* 29 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -9716,7 +9845,7 @@ module.exports =
 
 
 /***/ },
-/* 30 */
+/* 32 */
 /***/ function(module, exports) {
 
 	/*
@@ -9886,7 +10015,7 @@ module.exports =
 
 
 /***/ },
-/* 31 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -10008,7 +10137,7 @@ module.exports =
 
 
 /***/ },
-/* 32 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -10033,11 +10162,11 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(1);
 
-	  verifyFilterCreateRequest = __webpack_require__(33);
+	  verifyFilterCreateRequest = __webpack_require__(35);
 
-	  verifyFilterSpecDeclaration = __webpack_require__(34);
+	  verifyFilterSpecDeclaration = __webpack_require__(36);
 
-	  Filter = __webpack_require__(49);
+	  Filter = __webpack_require__(51);
 
 
 	  /*
@@ -10124,7 +10253,7 @@ module.exports =
 
 
 /***/ },
-/* 33 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -10315,7 +10444,7 @@ module.exports =
 
 
 /***/ },
-/* 34 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -10680,7 +10809,7 @@ module.exports =
 
 
 /***/ },
-/* 35 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -10702,7 +10831,7 @@ module.exports =
 	(function() {
 	  var FILTERDAGFACTORY;
 
-	  FILTERDAGFACTORY = __webpack_require__(36);
+	  FILTERDAGFACTORY = __webpack_require__(38);
 
 	  module.exports = {
 	    create: FILTERDAGFACTORY.request
@@ -10712,7 +10841,7 @@ module.exports =
 
 
 /***/ },
-/* 36 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -10740,11 +10869,11 @@ module.exports =
 
 	  INPUTFS = __webpack_require__(3);
 
-	  OUTPUTFS = __webpack_require__(38);
+	  OUTPUTFS = __webpack_require__(40);
 
-	  DAGSPECPROCESSOR = __webpack_require__(39);
+	  DAGSPECPROCESSOR = __webpack_require__(41);
 
-	  DAGGENERATOR = __webpack_require__(37);
+	  DAGGENERATOR = __webpack_require__(39);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: "v_R2RUU9TEacuwgxmydxGw",
@@ -10824,7 +10953,7 @@ module.exports =
 
 
 /***/ },
-/* 37 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -10898,7 +11027,7 @@ module.exports =
 
 
 /***/ },
-/* 38 */
+/* 40 */
 /***/ function(module, exports) {
 
 	
@@ -10953,7 +11082,7 @@ module.exports =
 
 
 /***/ },
-/* 39 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -10981,11 +11110,11 @@ module.exports =
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  MODELPROCESSOR = __webpack_require__(44);
+	  MODELPROCESSOR = __webpack_require__(46);
 
-	  CONSTRAINTPROCESSOR = __webpack_require__(40);
+	  CONSTRAINTPROCESSOR = __webpack_require__(42);
 
-	  SPECRECONCILER = __webpack_require__(48);
+	  SPECRECONCILER = __webpack_require__(50);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'loZ5xDoyTO-bUq77KaBk8g',
@@ -11054,7 +11183,7 @@ module.exports =
 
 
 /***/ },
-/* 40 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11082,11 +11211,11 @@ module.exports =
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  CONSTRAINT_TYPES = __webpack_require__(43);
+	  CONSTRAINT_TYPES = __webpack_require__(45);
 
-	  CONSTRAINT_FUNCTIONS = __webpack_require__(41);
+	  CONSTRAINT_FUNCTIONS = __webpack_require__(43);
 
-	  CONSTRAINT_RECONCILE = __webpack_require__(42);
+	  CONSTRAINT_RECONCILE = __webpack_require__(44);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'tmhYEUdOR_yk5NRLLk3u1A',
@@ -11155,7 +11284,7 @@ module.exports =
 
 
 /***/ },
-/* 41 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11254,7 +11383,7 @@ module.exports =
 
 
 /***/ },
-/* 42 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11315,7 +11444,7 @@ module.exports =
 
 
 /***/ },
-/* 43 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11417,7 +11546,7 @@ module.exports =
 
 
 /***/ },
-/* 44 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11445,11 +11574,11 @@ module.exports =
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  MODELXFORMGEN = __webpack_require__(47);
+	  MODELXFORMGEN = __webpack_require__(49);
 
-	  MODELIOPROCESS = __webpack_require__(45);
+	  MODELIOPROCESS = __webpack_require__(47);
 
-	  MODELRECONCILE = __webpack_require__(46);
+	  MODELRECONCILE = __webpack_require__(48);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'Xke4-hLKSIChJos77JVOmg',
@@ -11526,7 +11655,7 @@ module.exports =
 
 
 /***/ },
-/* 45 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11719,7 +11848,7 @@ module.exports =
 
 
 /***/ },
-/* 46 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11832,7 +11961,7 @@ module.exports =
 
 
 /***/ },
-/* 47 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12040,7 +12169,7 @@ module.exports =
 
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12139,7 +12268,7 @@ module.exports =
 
 
 /***/ },
-/* 49 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12165,7 +12294,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(1);
 
-	  filterRuntimeData = __webpack_require__(50);
+	  filterRuntimeData = __webpack_require__(52);
 
 	  bodyFunctionResponseFilter = {
 	    ____types: 'jsObject',
@@ -12257,7 +12386,7 @@ module.exports =
 
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12536,7 +12665,7 @@ module.exports =
 
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12577,7 +12706,7 @@ module.exports =
 
 
 /***/ },
-/* 52 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12599,7 +12728,7 @@ module.exports =
 	(function() {
 	  var MODULE, MURMUR, TYPES, UUID;
 
-	  UUID = __webpack_require__(22);
+	  UUID = __webpack_require__(23);
 
 	  MURMUR = __webpack_require__(12);
 
@@ -12781,7 +12910,7 @@ module.exports =
 
 
 /***/ },
-/* 53 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12946,7 +13075,7 @@ module.exports =
 
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports) {
 
 	
@@ -13019,7 +13148,7 @@ module.exports =
 
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -13161,7 +13290,7 @@ module.exports =
 
 
 /***/ },
-/* 56 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -13232,7 +13361,7 @@ module.exports =
 
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -13335,7 +13464,7 @@ module.exports =
 
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -13426,19 +13555,21 @@ module.exports =
 
 
 /***/ },
-/* 59 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
+	var chalk = __webpack_require__(22);
 	var ARCBUILD = __webpack_require__(21);
 
 	module.exports = function(toolName_) {
 
 	    var banner = "**** " +
-	        "Encapsule/arctools: " + toolName_ +
+	        "Encapsule/arctools::" +
+		chalk.white(toolName_) +
 	        " v" + ARCBUILD.version +
-	        " release \"" + ARCBUILD.codename + "\"" +
-	        " build \"" + ARCBUILD.buildID + "\" ****";
+	        " release \"" + chalk.yellow(ARCBUILD.codename) + "\"" +
+	        " build \"" + chalk.yellow(ARCBUILD.buildID) + "\" ****";
 
 	    return banner;
 
@@ -13446,16 +13577,144 @@ module.exports =
 
 
 /***/ },
-/* 60 */
+/* 62 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+
+	function assembleStyles () {
+		var styles = {
+			modifiers: {
+				reset: [0, 0],
+				bold: [1, 22], // 21 isn't widely supported and 22 does the same thing
+				dim: [2, 22],
+				italic: [3, 23],
+				underline: [4, 24],
+				inverse: [7, 27],
+				hidden: [8, 28],
+				strikethrough: [9, 29]
+			},
+			colors: {
+				black: [30, 39],
+				red: [31, 39],
+				green: [32, 39],
+				yellow: [33, 39],
+				blue: [34, 39],
+				magenta: [35, 39],
+				cyan: [36, 39],
+				white: [37, 39],
+				gray: [90, 39]
+			},
+			bgColors: {
+				bgBlack: [40, 49],
+				bgRed: [41, 49],
+				bgGreen: [42, 49],
+				bgYellow: [43, 49],
+				bgBlue: [44, 49],
+				bgMagenta: [45, 49],
+				bgCyan: [46, 49],
+				bgWhite: [47, 49]
+			}
+		};
+
+		// fix humans
+		styles.colors.grey = styles.colors.gray;
+
+		Object.keys(styles).forEach(function (groupName) {
+			var group = styles[groupName];
+
+			Object.keys(group).forEach(function (styleName) {
+				var style = group[styleName];
+
+				styles[styleName] = group[styleName] = {
+					open: '\u001b[' + style[0] + 'm',
+					close: '\u001b[' + style[1] + 'm'
+				};
+			});
+
+			Object.defineProperty(styles, groupName, {
+				value: group,
+				enumerable: false
+			});
+		});
+
+		return styles;
+	}
+
+	Object.defineProperty(module, 'exports', {
+		enumerable: true,
+		get: assembleStyles
+	});
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(71)(module)))
+
+/***/ },
+/* 63 */
+/***/ function(module, exports) {
+
+	'use strict';
+	var argv = process.argv;
+
+	var terminator = argv.indexOf('--');
+	var hasFlag = function (flag) {
+		flag = '--' + flag;
+		var pos = argv.indexOf(flag);
+		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
+	};
+
+	module.exports = (function () {
+		if ('FORCE_COLOR' in process.env) {
+			return true;
+		}
+
+		if (hasFlag('no-color') ||
+			hasFlag('no-colors') ||
+			hasFlag('color=false')) {
+			return false;
+		}
+
+		if (hasFlag('color') ||
+			hasFlag('colors') ||
+			hasFlag('color=true') ||
+			hasFlag('color=always')) {
+			return true;
+		}
+
+		if (process.stdout && !process.stdout.isTTY) {
+			return false;
+		}
+
+		if (process.platform === 'win32') {
+			return true;
+		}
+
+		if ('COLORTERM' in process.env) {
+			return true;
+		}
+
+		if (process.env.TERM === 'dumb') {
+			return false;
+		}
+
+		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
+			return true;
+		}
+
+		return false;
+	})();
+
+
+/***/ },
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var EventEmitter = __webpack_require__(65).EventEmitter;
-	var spawn = __webpack_require__(64).spawn;
-	var readlink = __webpack_require__(61).readlinkSync;
+	var EventEmitter = __webpack_require__(73).EventEmitter;
+	var spawn = __webpack_require__(72).spawn;
+	var readlink = __webpack_require__(66).readlinkSync;
 	var path = __webpack_require__(10);
 	var dirname = path.dirname;
 	var basename = path.basename;
@@ -14562,7 +14821,24 @@ module.exports =
 
 
 /***/ },
-/* 61 */
+/* 65 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var matchOperatorsRe = /[|\\{}()[\]^$+*?.]/g;
+
+	module.exports = function (str) {
+		if (typeof str !== 'string') {
+			throw new TypeError('Expected a string');
+		}
+
+		return str.replace(matchOperatorsRe,  '\\$&');
+	};
+
+
+/***/ },
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(6)
@@ -14580,7 +14856,17 @@ module.exports =
 
 
 /***/ },
-/* 62 */
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var ansiRegex = __webpack_require__(24);
+	var re = new RegExp(ansiRegex().source); // remove the `g` flag
+	module.exports = re.test.bind(re);
+
+
+/***/ },
+/* 68 */
 /***/ function(module, exports) {
 
 	/**
@@ -14640,7 +14926,7 @@ module.exports =
 
 
 /***/ },
-/* 63 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -14713,13 +14999,41 @@ module.exports =
 	}
 
 /***/ },
-/* 64 */
+/* 70 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var ansiRegex = __webpack_require__(24)();
+
+	module.exports = function (str) {
+		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
+	};
+
+
+/***/ },
+/* 71 */
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ },
+/* 72 */
 /***/ function(module, exports) {
 
 	module.exports = require("child_process");
 
 /***/ },
-/* 65 */
+/* 73 */
 /***/ function(module, exports) {
 
 	module.exports = require("events");
