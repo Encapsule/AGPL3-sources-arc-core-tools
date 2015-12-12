@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+var toolName = "arc_compileFilterDAG";
+
 var FS = require('fs');
 var PATH = require('path');
 var TOOLSLIB = require('./arc_tools_lib');
@@ -22,6 +24,8 @@ var normalizePath = function(path_) {
     return PATH.normalize(path);
 };
 
+console.log(TOOLSLIB.createToolBanner(toolName));
+
 var program = TOOLSLIB.commander;
 
 program
@@ -32,6 +36,9 @@ program
     .parse(process.argv);
 
 var bounce = false;
+var errors = [];
+
+
 while (!bounce) {
     bounce = true;
 
@@ -39,11 +46,9 @@ while (!bounce) {
     var inputDirPath = normalizePath(PATH.join(ioDir, "specs/"));
     var outputDirPath = normalizePath(PATH.join(ioDir, "manifests/"));
     var compilerReport = {};
-    errors = [];
 
-    console.log(TOOLSLIB.createToolBanner("arc_compileFilterDAG"));
-    console.log("> Input directory:  '" + inputDirPath);
-    console.log("< Output directory: '" + outputDirPath);
+    console.log(clistyle.dirInput("> Input directory:  '" + inputDirPath));
+    console.log(clistyle.dirOutput("< Output directory: '" + outputDirPath));
 
     if (program.info) {
 	console.log(JSON.stringify(TOOLS_META, undefined, 4));
@@ -51,19 +56,22 @@ while (!bounce) {
 	break; // bounce
     }
 
-    console.log("\n> Enumerating input files...");
+    console.log(clistyle.processStepHeader("> Enumerating input files..."));
 
     var enumResponse = FILE_DIR_ENUMERATOR.request({
 	parentDirectory: inputDirPath,
 	fileCallback: function(path_) {
             var pathParse = PATH.parse(path_);
-            return ((pathParse.ext === ".js") || (pathParse.ext === '.json'));
+            var include = ((pathParse.ext === ".js") || (pathParse.ext === '.json'));
+            if (include) {
+                console.log("... discovered '" + clistyle.fileInput(path_) + "'");
+            }
+            return include;
 	}
     });
 
     if (enumResponse.error) {
-	console.log("Sorry. A fatal error occurred reading input files.");
-	console.log(enumResponse.error);
+	errors.push(enumResponse.error);
 	break; // bounce
     }
 
@@ -74,13 +82,13 @@ while (!bounce) {
 
     compilerReport.inputResourceFiles = enumResponse.result.files.length;
 
-    console.log("\n> Attempting to load " + compilerReport.inputResourceFiles + " discovered files as JavaScript/JSON...");
+    console.log(clistyle.processStepHeader("> Attempting to load " + compilerReport.inputResourceFiles + " discovered files as JavaScript/JSON..."));
 
     var resources = [];
 
     compilerReport.inputResourceLoads = 0;
     enumResponse.result.files.forEach(function(filepath_) {
-	console.log("... loading '" + filepath_ + "'");
+	console.log("... loading '" + clistyle.fileInput(filepath_) + "'");
 	var loaderResponse = FILE_JSRC_LOADER.request(filepath_)
 	var record = {
             origin: filepath_,
@@ -100,7 +108,7 @@ while (!bounce) {
 	break; // bounce
     }
 
-    console.log("\n> Evaluating " + compilerReport.inputResourceLoads + " in-memory JavaScript/JSON resources...");
+    console.log(clistyle.processStepHeader("> Evaluating " + compilerReport.inputResourceLoads + " in-memory JavaScript/JSON resources..."));
 
     var specifications = []
     compilerReport.inputSpecLoads = 0;
@@ -109,7 +117,7 @@ while (!bounce) {
             console.log("... skipping non-JavaScript/JSON file '" + resourceRecord_.origin);
             return;
 	}
-	console.log("... parsing '" + resourceRecord_.origin + "'");
+	console.log("... parsing '" + clistyle.fileInput(resourceRecord_.origin) + "'");
 	specLoaderResponse = SPEC_LOADER.request(resourceRecord_.result);
 	var record = {
             origin: resourceRecord_.origin,
@@ -124,7 +132,7 @@ while (!bounce) {
 	}
     });
 
-    console.log("\n> Discovered " + compilerReport.inputSpecLoads + " specification files. Starting compilation...");
+    console.log(clistyle.processStepHeader("> Discovered " + compilerReport.inputSpecLoads + " specification files. Starting compilation..."));
 
     var manifests = []
     compilerReport.inputSpecCompiles = 0;
@@ -133,7 +141,7 @@ while (!bounce) {
             console.log("... skipping unknown JavaScript/JSON file '" + specificationRecord_.origin + "'");
             return;
 	}
-	console.log("... parsing '" + specificationRecord_.origin + "'");
+	console.log("... parsing '" + clistyle.fileInput(specificationRecord_.origin) + "'");
 	filterDAGFactoryResponse = ARC_CORE.filterDAG.create(specificationRecord_.result);
 	var record = {
             origin: specificationRecord_.origin,
@@ -148,42 +156,40 @@ while (!bounce) {
 	}
     });
 
-    console.log("\n> Generated " + compilerReport.inputSpecCompiles + " manifests. Writing outputs...");
+    console.log(clistyle.processStepHeader("> Generated " + compilerReport.inputSpecCompiles + " manifests. Writing outputs..."));
 
     compilerReport.manifestsWritten = 0;
     manifests.forEach(function(manifestRecord_) {
 	if (manifestRecord_.error) {
-            console.log("... no manifest produced for resource file '" + manifestRecord_.origin + "'");
+            console.log("... no manifest produced for resource file '" + clistyle.fileInput(manifestRecord_.origin) + "'");
             return;
 	}
 	var filePath = PATH.join(outputDirPath, "filterdag-manifest-" + manifestRecord_.result.dagID + ".json");
-	console.log("... writing FilterDAG manifest '" + filePath + "'");
-
+	console.log("... writing FilterDAG manifest '" + clistyle.fileOutput(filePath) + "'");
 	var fileWriter = FILE_RC_WRITER.request({
             path: filePath,
             resource: JSON.stringify(manifestRecord_.result, undefined, 4)
 	});
-
 	if (fileWriter.error) {
             console.log("! File write error: " + fileWriter.error);
 	    errors.push({ origin: manifestRecord_.origin, dest: filePath, error: fileWriter.error, result: fileWriter.result });
 	} else {
-            console.log("... wrote '" + filePath + "'.");
             compilerReport.manifestsWritten++;
 	}
-
     });
-
     break;
+
 } // while (!bounce)
 
 if (errors.length) {
-    console.log("\n> Error report:");
-    console.log(JSON.stringify(errors, undefined, 4));
+    console.log(clistyle.errorReportHeader("Error Report:"));
+    console.log(clistyle.errorReportErrors(JSON.stringify(errors, undefined, 4)));
 }
 
-console.log("\n> Compiler summary: " + JSON.stringify(compilerReport));
-
+if (compilerReport.inputResourceFiles > 0) {
+    console.log(clistyle.compilerSummaryHeader("\n> Compiler summary:"));
+    console.log(clistyle.compilerSummaryData(JSON.stringify(compilerReport)));
+}
 
 
 

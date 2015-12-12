@@ -92,6 +92,11 @@ gulp.task('coffee', function() {
         .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/arccore/'))
+    gulp.src('./SOURCES/core/type-discriminator/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'))
+    
 });
 
 gulp.task('copyjs', function() {

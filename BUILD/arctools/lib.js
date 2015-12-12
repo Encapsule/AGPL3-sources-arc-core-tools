@@ -47,7 +47,7 @@ module.exports =
 
 	module.exports = {
 	    meta: __webpack_require__(22),
-	    commander: __webpack_require__(65),
+	    commander: __webpack_require__(64),
 	    chalk: __webpack_require__(12),
 	    arccore: __webpack_require__(28),
 	    fileDirEnumSync: __webpack_require__(58),
@@ -2958,7 +2958,7 @@ module.exports =
 	/* 19 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "zoKy16c7RMCqUTyq7OQmKw", buildTime: "1449860888"};
+		module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "oKqiNtbfSeKdos8bct-zng", buildTime: "1449922951"};
 
 	/***/ },
 	/* 20 */
@@ -7243,11 +7243,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var escapeStringRegexp = __webpack_require__(66);
+	var escapeStringRegexp = __webpack_require__(65);
 	var ansiStyles = __webpack_require__(63);
-	var stripAnsi = __webpack_require__(71);
-	var hasAnsi = __webpack_require__(68);
-	var supportsColor = __webpack_require__(64);
+	var stripAnsi = __webpack_require__(70);
+	var hasAnsi = __webpack_require__(67);
+	var supportsColor = __webpack_require__(71);
 	var defineProps = Object.defineProperties;
 	var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
 
@@ -7364,8 +7364,8 @@ module.exports =
 /* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(70)
-	var murmur2 = __webpack_require__(69)
+	var murmur3 = __webpack_require__(69)
+	var murmur2 = __webpack_require__(68)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -8719,7 +8719,7 @@ module.exports =
 /* 22 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "caysW1hYQ-SdPuRqZ7H69Q", buildTime: "1449860951"};
+	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "1f1V1veBRC6ITV-RMHoz3w", buildTime: "1449922987"};
 
 /***/ },
 /* 23 */
@@ -8728,14 +8728,25 @@ module.exports =
 	var chalk = __webpack_require__(12);
 	module.exports = {
 	    bannerEnter: chalk.cyan.bold,
-	    bannerAuthor: chalk.green,
+	    bannerAuthor: chalk.blue,
 	    bannerPackage: chalk.green,
 	    bannerToolname: chalk.white,
 	    bannerRelease: chalk.yellow,
 	    bannerBuild: chalk.yellow,
 	    bannerExit: chalk.cyan,
+
+	    dirInput: chalk.green.bold,
+	    dirOutput: chalk.red.bold,
+	    fileInput: chalk.green,
+	    fileOutput: chalk.red,
+
 	    infoHead: chalk.bold.cyan,
 	    infoBody: chalk.cyan,
+	    processStepHeader: chalk.blue.bold,
+	    compilerSummaryHeader: chalk.green.bold,
+	    compilerSummaryData: chalk.cyan,
+	    errorReportHeader: chalk.magenta.bold,
+	    errorReportErrors: chalk.red.bold,
 	    exitCode: chalk.bold.magenta
 	};
 
@@ -9038,7 +9049,7 @@ module.exports =
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "caysW1hYQ-SdPuRqZ7H69Q", buildTime: "1449860951"};
+	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "1f1V1veBRC6ITV-RMHoz3w", buildTime: "1449922987"};
 
 /***/ },
 /* 28 */
@@ -13679,62 +13690,6 @@ module.exports =
 
 /***/ },
 /* 64 */
-/***/ function(module, exports) {
-
-	'use strict';
-	var argv = process.argv;
-
-	var terminator = argv.indexOf('--');
-	var hasFlag = function (flag) {
-		flag = '--' + flag;
-		var pos = argv.indexOf(flag);
-		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
-	};
-
-	module.exports = (function () {
-		if ('FORCE_COLOR' in process.env) {
-			return true;
-		}
-
-		if (hasFlag('no-color') ||
-			hasFlag('no-colors') ||
-			hasFlag('color=false')) {
-			return false;
-		}
-
-		if (hasFlag('color') ||
-			hasFlag('colors') ||
-			hasFlag('color=true') ||
-			hasFlag('color=always')) {
-			return true;
-		}
-
-		if (process.stdout && !process.stdout.isTTY) {
-			return false;
-		}
-
-		if (process.platform === 'win32') {
-			return true;
-		}
-
-		if ('COLORTERM' in process.env) {
-			return true;
-		}
-
-		if (process.env.TERM === 'dumb') {
-			return false;
-		}
-
-		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
-			return true;
-		}
-
-		return false;
-	})();
-
-
-/***/ },
-/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -13743,7 +13698,7 @@ module.exports =
 
 	var EventEmitter = __webpack_require__(74).EventEmitter;
 	var spawn = __webpack_require__(73).spawn;
-	var readlink = __webpack_require__(67).readlinkSync;
+	var readlink = __webpack_require__(66).readlinkSync;
 	var path = __webpack_require__(10);
 	var dirname = path.dirname;
 	var basename = path.basename;
@@ -14850,7 +14805,7 @@ module.exports =
 
 
 /***/ },
-/* 66 */
+/* 65 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14867,7 +14822,7 @@ module.exports =
 
 
 /***/ },
-/* 67 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(6)
@@ -14885,7 +14840,7 @@ module.exports =
 
 
 /***/ },
-/* 68 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14895,7 +14850,7 @@ module.exports =
 
 
 /***/ },
-/* 69 */
+/* 68 */
 /***/ function(module, exports) {
 
 	/**
@@ -14955,7 +14910,7 @@ module.exports =
 
 
 /***/ },
-/* 70 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -15028,7 +14983,7 @@ module.exports =
 	}
 
 /***/ },
-/* 71 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15037,6 +14992,62 @@ module.exports =
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
+
+
+/***/ },
+/* 71 */
+/***/ function(module, exports) {
+
+	'use strict';
+	var argv = process.argv;
+
+	var terminator = argv.indexOf('--');
+	var hasFlag = function (flag) {
+		flag = '--' + flag;
+		var pos = argv.indexOf(flag);
+		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
+	};
+
+	module.exports = (function () {
+		if ('FORCE_COLOR' in process.env) {
+			return true;
+		}
+
+		if (hasFlag('no-color') ||
+			hasFlag('no-colors') ||
+			hasFlag('color=false')) {
+			return false;
+		}
+
+		if (hasFlag('color') ||
+			hasFlag('colors') ||
+			hasFlag('color=true') ||
+			hasFlag('color=always')) {
+			return true;
+		}
+
+		if (process.stdout && !process.stdout.isTTY) {
+			return false;
+		}
+
+		if (process.platform === 'win32') {
+			return true;
+		}
+
+		if ('COLORTERM' in process.env) {
+			return true;
+		}
+
+		if (process.env.TERM === 'dumb') {
+			return false;
+		}
+
+		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
+			return true;
+		}
+
+		return false;
+	})();
 
 
 /***/ },
