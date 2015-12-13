@@ -52,10 +52,10 @@
         bfsResponse = GRAPHLIB.directed.breadthFirstTraverse({
           digraph: specificationGraph,
           visitor: {
-            examineVertex: function(grequest_) {
+            discoverVertex: function(grequest_) {
               var allVertices, currentVertexProperty, operationID, outEdges, unambiguousVertices, unresolvableFilters;
               currentVertexProperty = grequest_.g.getVertexProperty(grequest_.u);
-              console.log(grequest_.u);
+              console.log("examineVertex '" + grequest_.u + "'");
               outEdges = grequest_.g.outEdges(grequest_.u);
               switch (currentVertexProperty.color) {
                 case "white":
@@ -90,14 +90,30 @@
                     }
                   }
                   allVertices.forEach(function(vertexID_) {
-                    var targetVertexProperty;
+                    var results, targetVertexProperty;
                     targetVertexProperty = grequest_.g.getVertexProperty(vertexID_);
-                    if (targetVertexProperty.color === "white" && targetVertexProperty.filters.length === 1) {
-                      targetVertexProperty.color = "black";
-                      return grequest_.g.setVertexProperty({
-                        u: vertexID_,
-                        targetVertexProperty: targetVertexProperty
-                      });
+                    if (targetVertexProperty.color === "white") {
+                      if (targetVertexProperty.filters.length === 1) {
+                        targetVertexProperty.color = "black";
+                        return grequest_.g.setVertexProperty({
+                          u: vertexID_,
+                          targetVertexProperty: targetVertexProperty
+                        });
+                      } else {
+                        results = [];
+                        for (operationID in unresolvableFilters) {
+                          if (targetVertexProperty.filters[operationID]) {
+                            targetVertexProperty.color = "black";
+                            results.push(grequest_.g.setVertexProperty({
+                              u: vertexID_,
+                              targetVertexProperty: targetVertexProperty
+                            }));
+                          } else {
+                            results.push(void 0);
+                          }
+                        }
+                        return results;
+                      }
                     }
                   });
                   break;
@@ -125,6 +141,49 @@
                   break;
                 default:
                   console.log("UNEXPECTED COLOR IN MAP! " + currentVertexProperty.color);
+                  break;
+              }
+              return true;
+            },
+            examineVertex: function(grequest_) {
+              var blackVertices, currentVertexProperty, outEdges;
+              currentVertexProperty = grequest_.g.getVertexProperty(grequest_.u);
+              console.log("finishVertex '" + grequest_.u + "'");
+              switch (currentVertexProperty.color) {
+                case "white":
+                  outEdges = grequest_.g.outEdges(grequest_.u);
+                  blackVertices = 0;
+                  outEdges.forEach(function(edge_) {
+                    if (grequest_.g.getVertexProperty(edge_.v).color = "black") {
+                      return blackVertices++;
+                    }
+                  });
+                  if (outEdges.length && (outEdges.length === blackVertices)) {
+                    currentVertexProperty.color = "black";
+                    grequest_.g.setVertexProperty({
+                      u: grequest_.u,
+                      p: currentVertexProperty
+                    });
+                  } else {
+                    currentVertexProperty.color === "gold";
+                    grequest_.g.setVertexProperty({
+                      u: grequest_.u,
+                      p: currentVertexProperty
+                    });
+                  }
+                  break;
+                case "black":
+                  break;
+                case "orange":
+                  currentVertexProperty.color = "gold";
+                  grequest_.g.setVertexProperty({
+                    u: grequest_u,
+                    p: currentVertexProperty
+                  });
+                  break;
+                default:
+                  console.log("bad color " + currentVertexProperty.color);
+                  errors.push("Internal error. Unexpected color found in map '" + currentVertexProperty.color + "'");
                   break;
               }
               return true;

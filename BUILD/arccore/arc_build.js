@@ -1,1 +1,1 @@
-module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "1f1V1veBRC6ITV-RMHoz3w", buildTime: "1449922987"};
+module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "jVyRQTnvQF2TTq5mrDaOPQ", buildTime: "1449978700"};
