@@ -1,13 +1,92 @@
+UTILLIB = require './arc_core_util'
+FILTERLIB = require './arc_core_filter'
+GRAPHLIB = require './arc_core_graph'
 
 
-module.exports = buildGraphFromFilterSpec = (request_) ->
+buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
+    response = error: null, result: null
+    errors = []
+    inBreakScope = false
+    while not inBreakScope
+        inBreakScope = true
+        result = {}
+        innerResponse = GRAPHLIB.directed.create
+            name: "Merged Filter Spec Input Model"
+            description: "Tree of name/type constraints formed by merging N input filter specifications."
+        if innerResponse.error
+            errors.unshift innerResponse.error
+            break
+        result.digraph = innerResponse.result
+        result.digraph.addVertex { u: "request", p: { color: "white" } }
+        result.filterTable = {}
+        for filter in request_
+            innerResponse = addFilterSpecToMergedDigraphModel graph: result.digraph, filter: filter
+            if innerResponse.error
+                errors.unshift innerResponse.error
+                break
+            result.filterTable[filter.filterDescriptor.operationID] = {}
+        if errors.length
+            errors.unshift "Unable to build merged filter specification digraph model."
+            break
+        innerResponse = deduceBreadthFirstOrder result.digraph
+        if innerResponse.error
+            errors.unshift innerResponse.error
+            break
+        result.order = innerResponse.result
+        response.result = result
+        break
+    if errors.length
+        response.error = errors.join " "
+    response
+
+
+deduceBreadthFirstOrder = (digraph_) ->
+    response = error: null, result: null
+    errors = []
+    inBreakScope = false
+    while not inBreakScope
+        inBreakScope = true
+        bfsVertices = []
+        rbfsVertices = []
+        bfsResponse = GRAPHLIB.directed.breadthFirstTraverse
+            digraph: digraph_
+            visitor:
+                discoverVertex: (grequest_) ->
+                    bfsVertices.push grequest_.u
+                    true
+        if bfsResponse.error
+            errors.unshift bfsResponse.error
+            errors.unshift "Error during BFS of merged filter specification graph."
+            break
+        if not bfsResponse.result.searchStatus == "completed"
+            errors.unshift "BFS of merged filter specification graph did not complete as expected."
+            break
+        if UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)
+            errors.unshift "BFS of merged filter specification graph did not discover all vertices?"
+            break
+        index = 0
+        while index < bfsVertices.length
+            rbfsVertices[index] = bfsVertices[bfsVertices.length - index - 1]
+            index++
+        response.result =
+            bfsVertices: bfsVertices
+            rbfsVertices: rbfsVertices
+        break
+    if errors.length
+        response.error = errors.join " "
+    response
+
+
+# request = { filter: object, digraph: object }
+
+addFilterSpecToMergedDigraphModel = (request_) ->
 
     response = error: null, result: null
     errors = []
     inBreakScope = false
 
     operationID = request_.filter.filterDescriptor.operationID
-    
+
     while not inBreakScope
 
         inBreakScope = true

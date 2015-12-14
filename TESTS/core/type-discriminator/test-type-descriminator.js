@@ -12,5 +12,4 @@ var typeDiscriminator = testModule('arc_core_type_discriminator');
 
 var response = typeDiscriminator.request(filterArray);
 
-console.log(response.result.toJSON(undefined,4));
-
+console.log("ARC core type discriminator filter reponse = '" + JSON.stringify(response,undefined,4) + "'");
