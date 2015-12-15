@@ -1,11 +1,13 @@
 (function() {
-  var FILTERLIB, GRAPHLIB, UTILLIB, addFilterSpecToMergedDigraphModel, buildMergedFilterSpecDigraphModel, deduceBreadthFirstOrder;
+  var FILTERLIB, GRAPHLIB, UTILLIB, addFilterSpecToMergedDigraphModel, buildMergedFilterSpecDigraphModel, deduceBreadthFirstOrder, rootVertex;
 
   UTILLIB = require('./arc_core_util');
 
   FILTERLIB = require('./arc_core_filter');
 
   GRAPHLIB = require('./arc_core_graph');
+
+  rootVertex = "request";
 
   buildMergedFilterSpecDigraphModel = module.exports = function(request_) {
     var errors, filter, filters, i, inBreakScope, innerResponse, len, response, result, uprops;
@@ -17,10 +19,16 @@
     inBreakScope = false;
     while (!inBreakScope) {
       inBreakScope = true;
-      result = {};
+      result = {
+        digraph: null,
+        filterTable: {},
+        order: {
+          bfsVertices: [],
+          rbfsVertices: []
+        }
+      };
       innerResponse = GRAPHLIB.directed.create({
-        name: "Merged Filter Spec Input Model",
-        description: "Tree of name/type constraints formed by merging N input filter specifications."
+        name: "Discriminator Decission Tree Model"
       });
       if (innerResponse.error) {
         errors.unshift(innerResponse.error);
@@ -28,12 +36,11 @@
       }
       result.digraph = innerResponse.result;
       result.digraph.addVertex({
-        u: "request",
+        u: rootVertex,
         p: {
           color: "white"
         }
       });
-      result.filterTable = {};
       filters = [];
       for (i = 0, len = request_.length; i < len; i++) {
         filter = request_[i];
@@ -52,12 +59,13 @@
         errors.unshift("Unable to build merged filter specification digraph model.");
         break;
       }
-      uprops = result.digraph.getVertexProperty("request");
+      uprops = result.digraph.getVertexProperty(rootVertex);
       uprops.filters = filters;
       result.digraph.setVertexProperty({
-        u: "request",
+        u: rootVertex,
         p: uprops
       });
+      result.digraph.setGraphDescription("Models the combined input filter specifications of Filter ID's: [" + filters.join(", ") + "].");
       innerResponse = deduceBreadthFirstOrder(result.digraph);
       if (innerResponse.error) {
         errors.unshift(innerResponse.error);
@@ -137,7 +145,7 @@
       inBreakScope = true;
       mapQueue = [];
       mapQueue.push({
-        parentVertex: "request",
+        parentVertex: rootVertex,
         parentNamespaceName: "",
         path: "request",
         namespaceDescriptor: request_.filter.filterDescriptor.inputFilterSpec

@@ -13,6 +13,9 @@ var specGraphBuilder = testModule('arc_core_type_discriminator_filter_spec_digra
     expectedResults: {
         error: string
         result: object
+        vertices: number
+        leaves: number
+        edges: number
     }
   }
 */
@@ -46,6 +49,15 @@ module.exports = function (testVector_) {
                 it("The result object is expected to match control value.", function() {
                     var actualResult = JSON.stringify(response.result);
                     assert.equal(actualResult, testVector_.expectedResults.result);
+                });
+                it("The result graph model is expected to have " + testVector_.expectedResults.vertices + " vertices.", function() {
+                    assert.equal(response.result.digraph.verticesCount(), testVector_.expectedResults.vertices);
+                });
+                it("The result graph model is expected to have " + testVector_.expectedResults.leaves + " leaf vertices.", function() {
+                    assert.equal(response.result.digraph.leafVerticesCount(), testVector_.expectedResults.leaves);
+                });
+                it("The result graph model is expected to have " + testVector_.expectedResults.edges + " edges.", function() {
+                    assert.equal(response.result.digraph.edgesCount(), testVector_.expectedResults.edges);
                 });
             });
         } else {

@@ -43,7 +43,7 @@ var digraphExport = require('./arc_core_digraph_export');
             this.inEdges = __bind(this.inEdges, this);
             this.outDegree = __bind(this.outDegree, this);
             this.outEdges = __bind(this.outEdges, this);
-            
+
             // Edge-scope methods
             this.isEdge = __bind(this.isEdge, this);
             this.addEdge = __bind(this.addEdge, this);
@@ -52,7 +52,7 @@ var digraphExport = require('./arc_core_digraph_export');
             this.setEdgeProperty = __bind(this.setEdgeProperty, this);
             this.hasEdgeProperty = __bind(this.hasEdgeProperty, this);
             this.clearEdgeProperty = __bind(this.clearEdgeProperty, this);
-            
+
             // Digraph-scope methods
             this.verticesCount = __bind(this.verticesCount, this);
             this.getVertices = __bind(this.getVertices, this);
@@ -96,7 +96,7 @@ var digraphExport = require('./arc_core_digraph_export');
             if (helperFunctions.JSType(string_) === '[object String]') {
                 this._private.name = string_;
                 response.result = true;
-            } else {                
+            } else {
                 response.error = "Invalid graph name specified. Expected '[object String]'.";
             }
             return response;
@@ -111,7 +111,7 @@ var digraphExport = require('./arc_core_digraph_export');
             if (helperFunctions.JSType(string_) === '[object String]') {
                 this._private.description = string_;
                 response.result = true;
-            } else {                
+            } else {
                 response.error = "Invalid graph name specified. Expected '[object String]'.";
             }
             return response;
@@ -127,7 +127,7 @@ var digraphExport = require('./arc_core_digraph_export');
             var vertex = this._private.vertexMap[vertexId_];
             return (vertex !== null) && vertex && true || false;
         };
-            
+
         /*
           request = {
               u: vertex ID string
@@ -523,7 +523,7 @@ var digraphExport = require('./arc_core_digraph_export');
         DirectedGraph.prototype.fromObject = function (object_) {
             return digraphImport(this, object_);
         };
-        
+
         DirectedGraph.prototype.fromJSON = function(json_) {
             return digraphImport(this, json_);
         };

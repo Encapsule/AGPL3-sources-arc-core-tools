@@ -2,6 +2,7 @@ UTILLIB = require './arc_core_util'
 FILTERLIB = require './arc_core_filter'
 GRAPHLIB = require './arc_core_graph'
 
+rootVertex = "request"
 
 buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
     response = error: null, result: null
@@ -9,18 +10,30 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
     inBreakScope = false
     while not inBreakScope
         inBreakScope = true
-        result = {}
+
+        # Initialize the result.
+        result =
+            digraph: null
+            filterTable: {}
+            order:
+                bfsVertices: []
+                rbfsVertices: []
+
+        # Create am empty digraph model.
         innerResponse = GRAPHLIB.directed.create
-            name: "Merged Filter Spec Input Model"
-            description: "Tree of name/type constraints formed by merging N input filter specifications."
+            name: "Discriminator Decission Tree Model"
         if innerResponse.error
             errors.unshift innerResponse.error
             break
         result.digraph = innerResponse.result
-        result.digraph.addVertex { u: "request", p: { color: "white" } }
-        result.filterTable = {}
+
+        # Add a vertex that models the root of the disriminator decisssion tree.
+        result.digraph.addVertex { u: rootVertex, p: { color: "white" } }
+
+        # Process each filter in the request array.
         filters = []
         for filter in request_
+            # Add this filter's input specification to discriminator's decission tree graph.
             innerResponse = addFilterSpecToMergedDigraphModel graph: result.digraph, filter: filter
             if innerResponse.error
                 errors.unshift innerResponse.error
@@ -30,9 +43,14 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
         if errors.length
             errors.unshift "Unable to build merged filter specification digraph model."
             break
-        uprops = result.digraph.getVertexProperty "request"
+
+        # Indicate that the discrimintor vertex must resolve all filters in the request array.
+        uprops = result.digraph.getVertexProperty rootVertex
         uprops.filters = filters
-        result.digraph.setVertexProperty { u: "request", p: uprops }
+        result.digraph.setVertexProperty { u: rootVertex, p: uprops }
+        result.digraph.setGraphDescription "Models the combined input filter specifications of Filter ID's: [" + filters.join(", ") + "]."
+
+        # Deduce the breadth-firth order of the discriminator's decission tree graph.
         innerResponse = deduceBreadthFirstOrder result.digraph
         if innerResponse.error
             errors.unshift innerResponse.error
@@ -40,6 +58,7 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
         result.order = innerResponse.result
         response.result = result
         break
+
     if errors.length
         response.error = errors.join " "
     response
@@ -98,7 +117,7 @@ addFilterSpecToMergedDigraphModel = (request_) ->
 
         mapQueue = []
         mapQueue.push
-            parentVertex: "request"
+            parentVertex: rootVertex
             parentNamespaceName: ""
             path: "request"
             namespaceDescriptor: request_.filter.filterDescriptor.inputFilterSpec
