@@ -1,5 +1,5 @@
 (function() {
-  var FILTERLIB, GRAPHLIB, UTILLIB, buildMergedFilterSpecDigraphModel, filterlibResponse;
+  var FILTERLIB, GRAPHLIB, UTILLIB, analyzeMergedFilterSpecVertex, buildMergedFilterSpecDigraphModel, filterlibResponse;
 
   UTILLIB = require('./arc_core_util');
 
@@ -8,6 +8,8 @@
   GRAPHLIB = require('./arc_core_graph');
 
   buildMergedFilterSpecDigraphModel = require('./arc_core_type_discriminator_filter_spec_digraph');
+
+  analyzeMergedFilterSpecVertex = require('./arc_core_type_discriminator_choice_sets_digraph');
 
   filterlibResponse = FILTERLIB.create({
     operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -34,6 +36,16 @@
           break;
         }
         filterSpecDigraph = innerResponse.result;
+        filterSpecDigraph.order.rbfsVertices.forEach(function(vertex_) {
+          innerResponse = analyzeMergedFilterSpecVertex({
+            digraph: filterSpecDigraph.digraph,
+            vertex: vertex_
+          });
+          if (innerResponse.error) {
+            return errors.unshift(innerResponse.error);
+          }
+        });
+        console.log(filterSpecDigraph.digraph.toJSON(void 0, 4));
         response.result = filterSpecDigraph;
         break;
       }

@@ -5,6 +5,8 @@ GRAPHLIB = require './arc_core_graph'
 
 buildMergedFilterSpecDigraphModel = require './arc_core_type_discriminator_filter_spec_digraph'
 
+analyzeMergedFilterSpecVertex = require './arc_core_type_discriminator_choice_sets_digraph'
+
 filterlibResponse = FILTERLIB.create
 
     operationID: "5A8uDJunQUm1w-HcBPQ6Gw"
@@ -28,6 +30,16 @@ filterlibResponse = FILTERLIB.create
                 errors.unshift innerResponse.error
                 break
             filterSpecDigraph = innerResponse.result
+
+            filterSpecDigraph.order.rbfsVertices.forEach (vertex_) ->
+                innerResponse = analyzeMergedFilterSpecVertex
+                    digraph: filterSpecDigraph.digraph
+                    vertex: vertex_
+                if innerResponse.error
+                    errors.unshift innerResponse.error
+
+            console.log filterSpecDigraph.digraph.toJSON(undefined,4)
+
 
             response.result = filterSpecDigraph
             break

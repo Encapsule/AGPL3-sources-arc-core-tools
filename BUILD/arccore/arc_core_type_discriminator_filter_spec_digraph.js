@@ -8,7 +8,7 @@
   GRAPHLIB = require('./arc_core_graph');
 
   buildMergedFilterSpecDigraphModel = module.exports = function(request_) {
-    var errors, filter, i, inBreakScope, innerResponse, len, response, result;
+    var errors, filter, filters, i, inBreakScope, innerResponse, len, response, result, uprops;
     response = {
       error: null,
       result: null
@@ -34,6 +34,7 @@
         }
       });
       result.filterTable = {};
+      filters = [];
       for (i = 0, len = request_.length; i < len; i++) {
         filter = request_[i];
         innerResponse = addFilterSpecToMergedDigraphModel({
@@ -45,11 +46,18 @@
           break;
         }
         result.filterTable[filter.filterDescriptor.operationID] = {};
+        filters.push(filter.filterDescriptor.operationID);
       }
       if (errors.length) {
         errors.unshift("Unable to build merged filter specification digraph model.");
         break;
       }
+      uprops = result.digraph.getVertexProperty("request");
+      uprops.filters = filters;
+      result.digraph.setVertexProperty({
+        u: "request",
+        p: uprops
+      });
       innerResponse = deduceBreadthFirstOrder(result.digraph);
       if (innerResponse.error) {
         errors.unshift(innerResponse.error);

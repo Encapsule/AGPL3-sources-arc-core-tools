@@ -19,15 +19,20 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
         result.digraph = innerResponse.result
         result.digraph.addVertex { u: "request", p: { color: "white" } }
         result.filterTable = {}
+        filters = []
         for filter in request_
             innerResponse = addFilterSpecToMergedDigraphModel graph: result.digraph, filter: filter
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
             result.filterTable[filter.filterDescriptor.operationID] = {}
+            filters.push filter.filterDescriptor.operationID
         if errors.length
             errors.unshift "Unable to build merged filter specification digraph model."
             break
+        uprops = result.digraph.getVertexProperty "request"
+        uprops.filters = filters
+        result.digraph.setVertexProperty { u: "request", p: uprops }
         innerResponse = deduceBreadthFirstOrder result.digraph
         if innerResponse.error
             errors.unshift innerResponse.error
