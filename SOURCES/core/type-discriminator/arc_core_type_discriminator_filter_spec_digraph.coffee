@@ -117,7 +117,7 @@ addFilterSpecToMergedDigraphModel = (request_) ->
                 types = mapEntry.namespaceDescriptor.____types
                 if Object.prototype.toString.call(types) == '[object String]'
                     types = [ types ]
-                considerSubnamespaces = (-1 == types.indexOf('jsUndefined'))
+                # considerSubnamespaces = (-1 == types.indexOf('jsUndefined'))
             else
                 if (mapEntry.namespaceDescriptor.____accept? and mapEntry.namespaceDescriptor.____accept)
                     types = mapEntry.namespaceDescriptor.____accept
@@ -128,6 +128,9 @@ addFilterSpecToMergedDigraphModel = (request_) ->
                     if (mapEntry.namespaceDescriptor.____opaque? and mapEntry.namespaceDescriptor.____opaque)
                         types = [ 'jsUndefined', 'jsNull', 'jsBoolean', 'jsNumber', 'jsObject', 'jsFunction', 'jsString', 'jsArray' ]
                         considerSubnamespace = false
+
+            if (mapEntry.namespaceDescriptor.____defaultValue? and mapEntry.namespaceDescriptor.____defaultValue)
+                types.push 'jsUndefined'
 
             for type in types
                 vertexId = mapEntry.parentVertex + mapEntry.parentNamespaceName + "(" + type + ")"
@@ -140,7 +143,7 @@ addFilterSpecToMergedDigraphModel = (request_) ->
 
                 request_.graph.addEdge { e: { u: mapEntry.parentVertex, v: vertexId } }
 
-                if not considerSubnamespaces
+                if (not considerSubnamespaces) or (type == 'jsUndefined') or (type == 'jsArray')
                     continue
 
                 for subnamespaceName of mapEntry.namespaceDescriptor

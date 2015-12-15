@@ -156,7 +156,6 @@
           if (Object.prototype.toString.call(types) === '[object String]') {
             types = [types];
           }
-          considerSubnamespaces = -1 === types.indexOf('jsUndefined');
         } else {
           if ((mapEntry.namespaceDescriptor.____accept != null) && mapEntry.namespaceDescriptor.____accept) {
             types = mapEntry.namespaceDescriptor.____accept;
@@ -170,6 +169,9 @@
               considerSubnamespace = false;
             }
           }
+        }
+        if ((mapEntry.namespaceDescriptor.____defaultValue != null) && mapEntry.namespaceDescriptor.____defaultValue) {
+          types.push('jsUndefined');
         }
         for (i = 0, len = types.length; i < len; i++) {
           type = types[i];
@@ -197,7 +199,7 @@
               v: vertexId
             }
           });
-          if (!considerSubnamespaces) {
+          if ((!considerSubnamespaces) || (type === 'jsUndefined') || (type === 'jsArray')) {
             continue;
           }
           for (subnamespaceName in mapEntry.namespaceDescriptor) {
