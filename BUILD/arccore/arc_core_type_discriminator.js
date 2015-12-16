@@ -1,13 +1,11 @@
 (function() {
-  var FILTERLIB, GRAPHLIB, UTILLIB, buildMergedFilterSpecDigraphModel, deduceDiscriminationChoiceSets, filterlibResponse;
-
-  UTILLIB = require('./arc_core_util');
+  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceDiscriminationChoiceSets, filterlibResponse, partitionAndColorGraphByAmbiguity;
 
   FILTERLIB = require('./arc_core_filter');
 
-  GRAPHLIB = require('./arc_core_graph');
-
   buildMergedFilterSpecDigraphModel = require('./arc_core_type_discriminator_filter_spec_digraph');
+
+  partitionAndColorGraphByAmbiguity = require('./arc_core_type_discriminator_ambiguity_detector');
 
   deduceDiscriminationChoiceSets = require('./arc_core_type_discriminator_choice_sets_digraph');
 
@@ -30,12 +28,21 @@
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
+        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
         innerResponse = buildMergedFilterSpecDigraphModel(request_);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;
         }
         mergedFilterSpecGraphModel = innerResponse.result;
+        console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
+        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
+        innerResponse = partitionAndColorGraphByAmbiguity(mergedFilterSpecGraphModel.digraph);
+        console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
+        if (innerResponse.error) {
+          errors.unshift(innerResponse.error);
+          break;
+        }
 
         /*
         innerResponse = deduceDiscriminationChoiceSets
