@@ -2337,7 +2337,7 @@ module.exports =
 /* 19 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "BW5GmFTXS9y_740MLr71GA", buildTime: "1450200340"};
+	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "ACSaRke_SHOAeryt2n6Uig", buildTime: "1450223928"};
 
 /***/ },
 /* 20 */

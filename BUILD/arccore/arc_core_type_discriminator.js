@@ -1,5 +1,5 @@
 (function() {
-  var FILTERLIB, GRAPHLIB, UTILLIB, analyzeMergedFilterSpecVertex, buildMergedFilterSpecDigraphModel, filterlibResponse;
+  var FILTERLIB, GRAPHLIB, UTILLIB, buildMergedFilterSpecDigraphModel, deduceDiscriminationChoiceSets, filterlibResponse;
 
   UTILLIB = require('./arc_core_util');
 
@@ -9,7 +9,7 @@
 
   buildMergedFilterSpecDigraphModel = require('./arc_core_type_discriminator_filter_spec_digraph');
 
-  analyzeMergedFilterSpecVertex = require('./arc_core_type_discriminator_choice_sets_digraph');
+  deduceDiscriminationChoiceSets = require('./arc_core_type_discriminator_choice_sets_digraph');
 
   filterlibResponse = FILTERLIB.create({
     operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -21,7 +21,7 @@
       ____opaque: true
     },
     bodyFunction: function(request_) {
-      var errors, filterSpecDigraph, inBreakScope, innerResponse, response;
+      var errors, inBreakScope, innerResponse, mergedFilterSpecGraphModel, response;
       response = {
         error: null,
         result: null
@@ -35,18 +35,17 @@
           errors.unshift(innerResponse.error);
           break;
         }
-        filterSpecDigraph = innerResponse.result;
-        filterSpecDigraph.order.rbfsVertices.forEach(function(vertex_) {
-          innerResponse = analyzeMergedFilterSpecVertex({
-            digraph: filterSpecDigraph.digraph,
-            vertex: vertex_
-          });
-          if (innerResponse.error) {
-            return errors.unshift(innerResponse.error);
-          }
-        });
-        console.log(filterSpecDigraph.digraph.toJSON(void 0, 4));
-        response.result = filterSpecDigraph;
+        mergedFilterSpecGraphModel = innerResponse.result;
+
+        /*
+        innerResponse = deduceDiscriminationChoiceSets
+            digraph: mergedFilterSpecGraphModel.digraph
+            rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
+        if innerResponse.error
+            errors.unshift innerResponse.error
+            break
+         */
+        response.result = mergedFilterSpecGraphModel;
         break;
       }
       if (errors.length) {

@@ -72,10 +72,22 @@ deduceBreadthFirstOrder = (digraph_) ->
         inBreakScope = true
         bfsVertices = []
         rbfsVertices = []
+        ambiguousBlackVertices = []
         bfsResponse = GRAPHLIB.directed.breadthFirstTraverse
             digraph: digraph_
             visitor:
                 discoverVertex: (grequest_) ->
+                    vertexProperty = grequest_.g.getVertexProperty grequest_.u
+                    vertexProperty.filters = vertexProperty.filters.sort()
+                    if vertexProperty.filters.length == 1
+                        vertexProperty.color = "gold"
+                    else
+                        if grequest_.g.outDegree(grequest_.u)
+                            vertexProperty.color = "gray"
+                        else
+                            vertexProperty.color = "black"
+                            ambiguousBlackVertices.push grequest_.u
+                    grequest_.g.setVertexProperty { u: grequest_.u, p: vertexProperty }
                     bfsVertices.push grequest_.u
                     true
         if bfsResponse.error
@@ -88,10 +100,45 @@ deduceBreadthFirstOrder = (digraph_) ->
         if UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)
             errors.unshift "BFS of merged filter specification graph did not discover all vertices?"
             break
+
         index = 0
         while index < bfsVertices.length
             rbfsVertices[index] = bfsVertices[bfsVertices.length - index - 1]
             index++
+
+        index = 0
+        while index < rbfsVertices.length
+            vertex = rbfsVertices[index++]
+            uprop = digraph_.getVertexProperty vertex
+            if uprop.color != "gray"
+                continue
+            childFilters = {}
+            outEdges = digraph_.outEdges vertex
+            outEdges.forEach (edge_) ->
+                vprop = digraph_.getVertexProperty edge_.v
+                if vprop.color != "black"
+                    vprop.filters.forEach (filter_) ->
+                        childFilters[filter_] = true
+            unresolvableFilters = []
+            uprop.filters.forEach (filter_) ->
+                if not (childFilters[filter_]? and childFilters[filter_])
+                    unresolvableFilters.push filter_
+            if unresolvableFilters.length
+                uprop.color = "black"
+                uprop.ambiguousFilters = JSON.stringify(unresolvableFilters)
+                ambiguousBlackVertices.push vertex
+
+        # We cannot uniquely discriminate between filters whose input filter specifications
+        # contain overlapping request structures that terminate at the leaf node of any of
+        # the consituent filter's contributions to the merged filter spec digraph model.
+
+        if ambiguousBlackVertices.length
+            ambiguousBlackVertices.sort()
+            ambiguousBlackVertices.forEach (vertex_) ->
+                vertexProperty = digraph_.getVertexProperty vertex_
+                errors.push "Filters [#{vertexProperty.filters.join(" and ")}] overlap ambiguously at filter spec node '#{vertex_}'."
+            break
+
         response.result =
             bfsVertices: bfsVertices
             rbfsVertices: rbfsVertices

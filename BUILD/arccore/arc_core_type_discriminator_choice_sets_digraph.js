@@ -1,9 +1,46 @@
 (function() {
-  var Analyzemergedfilterspecvertex, UTILLIB;
+  var UTILLIB, analyzeFilterSpecGraphVertex, deduceDiscriminationChoiceSets;
 
   UTILLIB = require('./arc_core_util');
 
-  Analyzemergedfilterspecvertex = module.exports = function(request_) {
+  deduceDiscriminationChoiceSets = module.exports = function(request_) {
+    var errors, inBreakScope, index, innerResponse, response, vertex;
+    response = {
+      error: null,
+      result: null
+    };
+    errors = [];
+    inBreakScope = false;
+    index = 0;
+    vertex = null;
+    while (!inBreakScope) {
+      inBreakScope = true;
+      while (index < request_.rbfsVertices.length) {
+        vertex = request_.rbfsVertices[index];
+        innerResponse = analyzeFilterSpecGraphVertex({
+          digraph: request_.digraph,
+          vertex: vertex
+        });
+        if (innerResponse.error) {
+          errors.unshift(innerResponse.error);
+          break;
+        }
+        index++;
+      }
+      if (errors.length) {
+        break;
+      }
+    }
+    if (errors.length) {
+      errors.unshift("Unable to deduce discrimination choice sets due to error processing merged filter spec graph vertex '" + vertex + "'.");
+      errors.unshift("Further details:");
+      response.error = errors.join(" ");
+    }
+    console.log("Choice sets-colored spec graph: '" + (request_.digraph.toJSON(void 0, 4)) + "'.");
+    return response;
+  };
+
+  analyzeFilterSpecGraphVertex = function(request_) {
     var ambiguousChoicesByFilter, errors, filter_, inBreakScope, outDegree, outEdges, response, unambiguousChoicesByFilter, unambiguousChoicesCount, uprops;
     response = {
       error: null,

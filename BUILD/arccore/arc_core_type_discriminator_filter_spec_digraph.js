@@ -82,7 +82,7 @@
   };
 
   deduceBreadthFirstOrder = function(digraph_) {
-    var bfsResponse, bfsVertices, errors, inBreakScope, index, rbfsVertices, response;
+    var ambiguousBlackVertices, bfsResponse, bfsVertices, childFilters, errors, inBreakScope, index, outEdges, rbfsVertices, response, unresolvableFilters, uprop, vertex;
     response = {
       error: null,
       result: null
@@ -93,10 +93,28 @@
       inBreakScope = true;
       bfsVertices = [];
       rbfsVertices = [];
+      ambiguousBlackVertices = [];
       bfsResponse = GRAPHLIB.directed.breadthFirstTraverse({
         digraph: digraph_,
         visitor: {
           discoverVertex: function(grequest_) {
+            var vertexProperty;
+            vertexProperty = grequest_.g.getVertexProperty(grequest_.u);
+            vertexProperty.filters = vertexProperty.filters.sort();
+            if (vertexProperty.filters.length === 1) {
+              vertexProperty.color = "gold";
+            } else {
+              if (grequest_.g.outDegree(grequest_.u)) {
+                vertexProperty.color = "gray";
+              } else {
+                vertexProperty.color = "black";
+                ambiguousBlackVertices.push(grequest_.u);
+              }
+            }
+            grequest_.g.setVertexProperty({
+              u: grequest_.u,
+              p: vertexProperty
+            });
             bfsVertices.push(grequest_.u);
             return true;
           }
@@ -119,6 +137,45 @@
       while (index < bfsVertices.length) {
         rbfsVertices[index] = bfsVertices[bfsVertices.length - index - 1];
         index++;
+      }
+      index = 0;
+      while (index < rbfsVertices.length) {
+        vertex = rbfsVertices[index++];
+        uprop = digraph_.getVertexProperty(vertex);
+        if (uprop.color !== "gray") {
+          continue;
+        }
+        childFilters = {};
+        outEdges = digraph_.outEdges(vertex);
+        outEdges.forEach(function(edge_) {
+          var vprop;
+          vprop = digraph_.getVertexProperty(edge_.v);
+          if (vprop.color !== "black") {
+            return vprop.filters.forEach(function(filter_) {
+              return childFilters[filter_] = true;
+            });
+          }
+        });
+        unresolvableFilters = [];
+        uprop.filters.forEach(function(filter_) {
+          if (!((childFilters[filter_] != null) && childFilters[filter_])) {
+            return unresolvableFilters.push(filter_);
+          }
+        });
+        if (unresolvableFilters.length) {
+          uprop.color = "black";
+          uprop.ambiguousFilters = JSON.stringify(unresolvableFilters);
+          ambiguousBlackVertices.push(vertex);
+        }
+      }
+      if (ambiguousBlackVertices.length) {
+        ambiguousBlackVertices.sort();
+        ambiguousBlackVertices.forEach(function(vertex_) {
+          var vertexProperty;
+          vertexProperty = digraph_.getVertexProperty(vertex_);
+          return errors.push("Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.");
+        });
+        break;
       }
       response.result = {
         bfsVertices: bfsVertices,

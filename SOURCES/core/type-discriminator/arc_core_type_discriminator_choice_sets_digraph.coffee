@@ -1,9 +1,37 @@
 
 UTILLIB = require './arc_core_util'
 
-# request = { digraph: object, vertex, string }
 
-Analyzemergedfilterspecvertex = module.exports = (request_) ->
+# request = { digraph: object, rbfsVertices: array }
+deduceDiscriminationChoiceSets = module.exports = (request_) ->
+    response = error: null, result: null
+    errors = []
+    inBreakScope = false
+    index = 0
+    vertex = null
+    while not inBreakScope
+        inBreakScope = true
+        while index < request_.rbfsVertices.length
+            vertex = request_.rbfsVertices[index]
+            innerResponse = analyzeFilterSpecGraphVertex digraph: request_.digraph, vertex: vertex
+            if innerResponse.error
+                errors.unshift innerResponse.error
+                break
+            index++
+        if errors.length
+            break
+    if errors.length
+        errors.unshift "Unable to deduce discrimination choice sets due to error processing merged filter spec graph vertex '#{vertex}'."
+        errors.unshift "Further details:"
+        response.error = errors.join(" ")
+
+    console.log "Choice sets-colored spec graph: '#{request_.digraph.toJSON(undefined, 4)}'."
+
+    response
+
+
+# request = { digraph: object, vertex, string }
+analyzeFilterSpecGraphVertex = (request_) ->
     response = error: null, result: null
     errors = []
     inBreakScope = false

@@ -5,7 +5,7 @@ GRAPHLIB = require './arc_core_graph'
 
 buildMergedFilterSpecDigraphModel = require './arc_core_type_discriminator_filter_spec_digraph'
 
-analyzeMergedFilterSpecVertex = require './arc_core_type_discriminator_choice_sets_digraph'
+deduceDiscriminationChoiceSets = require './arc_core_type_discriminator_choice_sets_digraph'
 
 filterlibResponse = FILTERLIB.create
 
@@ -29,19 +29,18 @@ filterlibResponse = FILTERLIB.create
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
-            filterSpecDigraph = innerResponse.result
+            mergedFilterSpecGraphModel = innerResponse.result
 
-            filterSpecDigraph.order.rbfsVertices.forEach (vertex_) ->
-                innerResponse = analyzeMergedFilterSpecVertex
-                    digraph: filterSpecDigraph.digraph
-                    vertex: vertex_
-                if innerResponse.error
-                    errors.unshift innerResponse.error
+            ###
+            innerResponse = deduceDiscriminationChoiceSets
+                digraph: mergedFilterSpecGraphModel.digraph
+                rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
+            if innerResponse.error
+                errors.unshift innerResponse.error
+                break
+            ###
 
-            console.log filterSpecDigraph.digraph.toJSON(undefined,4)
-
-
-            response.result = filterSpecDigraph
+            response.result = mergedFilterSpecGraphModel
             break
 
         if errors.length
