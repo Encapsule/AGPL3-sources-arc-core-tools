@@ -24,7 +24,6 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
                             uprop.color = "gray"
                         else
                             uprop.color = "black"
-                            uprop.ambiguousFilters = uprop.filters
                             ambiguousBlackVertices.push grequest_.u
                     grequest_.g.setVertexProperty { u: grequest_.u, p: uprop }
                     rbfsVertices.unshift grequest_.u
@@ -44,25 +43,43 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
         while index < rbfsVertices.length
             vertex = rbfsVertices[index++]
             uprop = digraph_.getVertexProperty vertex
+
             if uprop.color != "gray"
                 continue
-            childFilters = {}
+
+            allFilters = {}
+            blackFilters = {}
+            orangeFilters = {}
+
             outEdges = digraph_.outEdges vertex
             outEdges.forEach (edge_) ->
                 vprop = digraph_.getVertexProperty edge_.v
-                if vprop.color != "black"
-                    vprop.filters.forEach (filter_) ->
-                        childFilters[filter_] = true
-            unresolvableFilters = []
-            uprop.filters.forEach (filter_) ->
-                if not (childFilters[filter_]? and childFilters[filter_])
-                    unresolvableFilters.push filter_
-            if unresolvableFilters.length
-                uprop.color = "black"
-                uprop.ambiguousFilters = JSON.stringify(unresolvableFilters)
-                ambiguousBlackVertices.push vertex
-            else
+                vprop.filters.forEach (filter_) ->
+                    allFilters[filter_] = true
+                    switch vprop.color
+                        when "gold"
+                            orangeFilters[filter_] = true
+                            break
+                        when "black"
+                            blackFilters[filter_] = true
+                            break
+                        else
+                            errors.unshift "Unexpected color '#{vprops.color}' discovered analyzing vertex '#{edge_.v}'."
+                            break
+
+                uprop.filters.forEach (filter_) ->
+                    if not (allFilters[filter_]? and allFilters[filter_])
+                        blackFilters[filter_] = true
+                for filter_ of blackFilters
+                    if orangeFilters[filter_]? and orangeFilters[filter_]
+                        delete orangeFilters[filter_]
+
+            if not UTILLIB.dictionaryLength(blackFilters)
                 uprop.color = "green"
+            else
+                uprop.color = "black"
+                ambiguousBlackVertices.push vertex
+
             digraph_.setVertexProperty { u: vertex, p: uprop }
 
         # We cannot uniquely discriminate between filters whose input filter specifications

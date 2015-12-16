@@ -6,7 +6,7 @@
   UTILLIB = require('./arc_core_util');
 
   partitionAndColorGraphByAmbiguity = module.exports = function(digraph_) {
-    var ambiguousBlackVertices, bfsResponse, childFilters, errors, inBreakScope, index, outEdges, rbfsVertices, response, unresolvableFilters, uprop, vertex;
+    var allFilters, ambiguousBlackVertices, bfsResponse, blackFilters, errors, inBreakScope, index, orangeFilters, outEdges, rbfsVertices, response, uprop, vertex;
     response = {
       error: null,
       result: null
@@ -31,7 +31,6 @@
                 uprop.color = "gray";
               } else {
                 uprop.color = "black";
-                uprop.ambiguousFilters = uprop.filters;
                 ambiguousBlackVertices.push(grequest_.u);
               }
             }
@@ -64,29 +63,47 @@
         if (uprop.color !== "gray") {
           continue;
         }
-        childFilters = {};
+        allFilters = {};
+        blackFilters = {};
+        orangeFilters = {};
         outEdges = digraph_.outEdges(vertex);
         outEdges.forEach(function(edge_) {
-          var vprop;
+          var filter_, results, vprop;
           vprop = digraph_.getVertexProperty(edge_.v);
-          if (vprop.color !== "black") {
-            return vprop.filters.forEach(function(filter_) {
-              return childFilters[filter_] = true;
-            });
+          vprop.filters.forEach(function(filter_) {
+            allFilters[filter_] = true;
+            switch (vprop.color) {
+              case "gold":
+                orangeFilters[filter_] = true;
+                break;
+              case "black":
+                blackFilters[filter_] = true;
+                break;
+              default:
+                errors.unshift("Unexpected color '" + vprops.color + "' discovered analyzing vertex '" + edge_.v + "'.");
+                break;
+            }
+          });
+          uprop.filters.forEach(function(filter_) {
+            if (!((allFilters[filter_] != null) && allFilters[filter_])) {
+              return blackFilters[filter_] = true;
+            }
+          });
+          results = [];
+          for (filter_ in blackFilters) {
+            if ((orangeFilters[filter_] != null) && orangeFilters[filter_]) {
+              results.push(delete orangeFilters[filter_]);
+            } else {
+              results.push(void 0);
+            }
           }
+          return results;
         });
-        unresolvableFilters = [];
-        uprop.filters.forEach(function(filter_) {
-          if (!((childFilters[filter_] != null) && childFilters[filter_])) {
-            return unresolvableFilters.push(filter_);
-          }
-        });
-        if (unresolvableFilters.length) {
-          uprop.color = "black";
-          uprop.ambiguousFilters = JSON.stringify(unresolvableFilters);
-          ambiguousBlackVertices.push(vertex);
-        } else {
+        if (!UTILLIB.dictionaryLength(blackFilters)) {
           uprop.color = "green";
+        } else {
+          uprop.color = "black";
+          ambiguousBlackVertices.push(vertex);
         }
         digraph_.setVertexProperty({
           u: vertex,

@@ -2,7 +2,7 @@
 
 # Encapsule/arccore v0.0.4 "ultramarine1"
 
-Build ID "aa74Ca4fSEefew5YOSMr8g" Wed Dec 16 2015 00:06:03 GMT-0800 (PST)
+Build ID "DJYXAb2cSROEu-83hYnaqg" Wed Dec 16 2015 14:42:51 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
