@@ -105,7 +105,8 @@
       response.result = {
         digraph: digraph_,
         ambigousBlackVertices: ambiguousBlackVertices,
-        ambiguousFilterSpecificationErrors: []
+        ambiguousFilterSpecificationErrors: [],
+        rbfsVertices: rbfsVertices
       };
       if (ambiguousBlackVertices.length) {
         ambiguousBlackVertices.sort();

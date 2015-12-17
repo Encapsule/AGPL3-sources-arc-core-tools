@@ -2413,7 +2413,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "hx6y4oZUTau-r7y7PP4M5Q", buildTime: "1450376145"};
+	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "uZo2KPVET2-v9v9I_vLPQw", buildTime: "1450378875"};
 
 /***/ },
 /* 21 */
@@ -6459,7 +6459,8 @@ module.exports =
 	      response.result = {
 	        digraph: digraph_,
 	        ambigousBlackVertices: ambiguousBlackVertices,
-	        ambiguousFilterSpecificationErrors: []
+	        ambiguousFilterSpecificationErrors: [],
+	        rbfsVertices: rbfsVertices
 	      };
 	      if (ambiguousBlackVertices.length) {
 	        ambiguousBlackVertices.sort();

@@ -106,6 +106,7 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
             digraph: digraph_
             ambigousBlackVertices: ambiguousBlackVertices
             ambiguousFilterSpecificationErrors: []
+            rbfsVertices: rbfsVertices
 
         if ambiguousBlackVertices.length
             ambiguousBlackVertices.sort()
