@@ -10,7 +10,7 @@ describe(testSuiteName, function() {
     require('./test_arc_core_types');
     require('./test_arc_core_identifier');
     require('./test_arc_core_filter');
-    require('./test_arc_core_type_discriminator');
+    require('./test_arc_core_discriminator');
     // require('./test_arc_core_filter_dag');
     require('./test_arc_core_package');
 

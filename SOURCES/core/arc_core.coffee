@@ -1,6 +1,6 @@
 ###
 ----------------------------------------------------------------------
- 
+
            +---+---+---+---+
  chaos --> | J | B | U | S | --> order
            +---+---+---+---+
@@ -38,9 +38,10 @@ COMMON = module.exports =
         murmurhash_js: require 'murmurhash-js'
         nodeuuid:      require 'node-uuid'
 
-    util:              require './arc_core_util'
-    graph:             require './arc_core_graph'
-    types:             require './arc_core_types'
-    identifier:        require './arc_core_identifier'
+    discriminator:     { create: require('./arc_core_type_discriminator').request }
     filter:            require './arc_core_filter'
     filterDAG:         require './arc_core_filter_dag'
+    graph:             require './arc_core_graph'
+    identifier:        require './arc_core_identifier'
+    types:             require './arc_core_types'
+    util:              require './arc_core_util'

@@ -48,7 +48,7 @@ module.exports =
 	
 	/*
 	----------------------------------------------------------------------
-	 
+
 	           +---+---+---+---+
 	 chaos --> | J | B | U | S | --> order
 	           +---+---+---+---+
@@ -71,7 +71,7 @@ module.exports =
 	(function() {
 	  var ARC_BUILD, COMMON;
 
-	  ARC_BUILD = __webpack_require__(19);
+	  ARC_BUILD = __webpack_require__(20);
 
 	  COMMON = module.exports = {
 	    __meta: {
@@ -82,15 +82,18 @@ module.exports =
 	      buildID: ARC_BUILD.buildID
 	    },
 	    __bundle: {
-	      murmurhash_js: __webpack_require__(9),
-	      nodeuuid: __webpack_require__(18)
+	      murmurhash_js: __webpack_require__(11),
+	      nodeuuid: __webpack_require__(19)
 	    },
-	    util: __webpack_require__(48),
-	    graph: __webpack_require__(15),
+	    discriminator: {
+	      create: __webpack_require__(48).request
+	    },
+	    filter: __webpack_require__(1),
+	    filterDAG: __webpack_require__(30),
+	    graph: __webpack_require__(7),
+	    identifier: __webpack_require__(2),
 	    types: __webpack_require__(5),
-	    identifier: __webpack_require__(1),
-	    filter: __webpack_require__(2),
-	    filterDAG: __webpack_require__(29)
+	    util: __webpack_require__(9)
 	  };
 
 	}).call(this);
@@ -117,13 +120,13 @@ module.exports =
 	 */
 
 	(function() {
-	  var IDENTIFIER;
+	  var FILTER, FILTERFACTORY;
 
-	  IDENTIFIER = module.exports = {};
+	  FILTERFACTORY = __webpack_require__(27);
 
-	  IDENTIFIER.hash = __webpack_require__(45);
-
-	  IDENTIFIER.irut = __webpack_require__(46);
+	  FILTER = module.exports = {
+	    create: FILTERFACTORY
+	  };
 
 	}).call(this);
 
@@ -149,13 +152,13 @@ module.exports =
 	 */
 
 	(function() {
-	  var FILTER, FILTERFACTORY;
+	  var IDENTIFIER;
 
-	  FILTERFACTORY = __webpack_require__(26);
+	  IDENTIFIER = module.exports = {};
 
-	  FILTER = module.exports = {
-	    create: FILTERFACTORY
-	  };
+	  IDENTIFIER.hash = __webpack_require__(46);
+
+	  IDENTIFIER.irut = __webpack_require__(47);
 
 	}).call(this);
 
@@ -557,11 +560,11 @@ module.exports =
 
 	  jbus.common.types = module.exports = {};
 
-	  jbus.common.types.codes = __webpack_require__(7);
+	  jbus.common.types.codes = __webpack_require__(8);
 
-	  jbus.common.types.convert = __webpack_require__(16);
+	  jbus.common.types.convert = __webpack_require__(17);
 
-	  jbus.common.types.check = __webpack_require__(47);
+	  jbus.common.types.check = __webpack_require__(52);
 
 	}).call(this);
 
@@ -598,6 +601,93 @@ module.exports =
 
 /***/ },
 /* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* --------------------------------------------------------------------------
+
+	   The MIT License (MIT)
+
+	   Copyright (c) 2014-2015 Christopher D. Russell
+
+	   Permission is hereby granted, free of charge, to any person obtaining a copy
+	   of this software and associated documentation files (the "Software"), to deal
+	   in the Software without restriction, including without limitation the rights
+	   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	   copies of the Software, and to permit persons to whom the Software is
+	   furnished to do so, subject to the following conditions:
+
+	   The above copyright notice and this permission notice shall be included in all
+	   copies or substantial portions of the Software.
+
+	   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+	   SOFTWARE.
+
+	  This library is part of the Encapsule Project System in Cloud (SiC) open service
+	  architecture. Please follow https://twitter.com/Encapsule for news and updates
+	  about jsgraph and other time saving libraries that do amazing things with in-memory
+	  data on Node.js and HTML.  https://github.com/encapsule http://blog.encapsule.org
+
+	-------------------------------------------------------------------------- */
+
+	var jsgraph = module.exports = {
+
+	    // Directed graph support
+	    directed: {
+
+	        ////
+	        // Create a DirectedGraph container object.
+	        //
+	        // var response = jsgraph.directed.create(request);
+	        //
+	        // request = Undefined, JSON string, or data object [1]
+	        //
+	        // response = {
+	        //     error: null or string explaining why result is null
+	        //     result: DirectedGraph container object or null if error
+	        // }
+	        //
+	        // Notes:
+	        //
+	        // [1] see DirectedGraph.toJSON/toObject methods.
+	        //
+	        ////
+	        create: __webpack_require__(12).createDirectedGraph,
+
+	        // Directed graph transposition algorithm.
+	        // Creates a new DirectedGraph container object that's identical
+	        // to a caller-specified digraph except that the direction of the
+	        // the edges are reverese in the result digraph. Note that if present,
+	        // vertex and edge properties in the source digraph are copied by
+	        // reference to the result digraph.
+	        transpose: __webpack_require__(23),
+
+	        // Directed graph breadth-first traversal visitor algorithm.
+	        breadthFirstTraverse: __webpack_require__(21),
+
+	        // Directed graph depth-first traversal visitor algorithm.
+	        depthFirstTraverse: __webpack_require__(22),
+
+	        // ADVANCED
+
+	        // Color constant hashtable (advanced).
+	        colors: __webpack_require__(6),
+
+	        // Directed graph traversal context factory (advanced).
+	        createTraversalContext: __webpack_require__(13)
+
+	    }
+	};
+
+
+
+
+/***/ },
+/* 8 */
 /***/ function(module, exports) {
 
 	
@@ -647,7 +737,80 @@ module.exports =
 
 
 /***/ },
-/* 8 */
+/* 9 */
+/***/ function(module, exports) {
+
+	
+	/*
+	----------------------------------------------------------------------
+	 
+	           +---+---+---+---+
+	 chaos --> | J | B | U | S | --> order
+	           +---+---+---+---+
+
+	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+	JBUS is licensed under the GNU Affero General Public License v3.0.
+	Please consult the included LICENSE file for agreement terms.
+
+	----------------------------------------------------------------------
+	 */
+
+	(function() {
+	  var ARC_CORE_UTIL;
+
+	  ARC_CORE_UTIL = {};
+
+	  ARC_CORE_UTIL.deepCopy = function(ref_) {
+	    var flags, instance, key;
+	    if ((ref_ == null) || typeof ref_ !== 'object') {
+	      return ref_;
+	    }
+	    if (ref_ instanceof Date) {
+	      return new Date(ref_.getTime());
+	    }
+	    if (ref_ instanceof RegExp) {
+	      flags = '';
+	      if (object_.global != null) {
+	        flags += 'g';
+	      }
+	      if (object_.ignoreCase != null) {
+	        flags += 'i';
+	      }
+	      if (object_.multiline != null) {
+	        flags += 'm';
+	      }
+	      if (object_.sticky != null) {
+	        flags += 'y';
+	      }
+	      return new RegExp(ref_.source, flags);
+	    }
+	    instance = new ref_.constructor();
+	    for (key in ref_) {
+	      instance[key] = ARC_CORE_UTIL.deepCopy(ref_[key]);
+	    }
+	    return instance;
+	  };
+
+	  ARC_CORE_UTIL.clone = function(ref_) {
+	    return ARC_CORE_UTIL.deepCopy(ref_);
+	  };
+
+	  ARC_CORE_UTIL.dictionaryLength = function(ref_) {
+	    return Object.keys(ref_).length;
+	  };
+
+	  ARC_CORE_UTIL.getEpochTime = function() {
+	    return Math.round(new Date().getTime() / 1000.0);
+	  };
+
+	  module.exports = ARC_CORE_UTIL;
+
+	}).call(this);
+
+
+/***/ },
+/* 10 */
 /***/ function(module, exports) {
 
 	(function() {
@@ -701,11 +864,11 @@ module.exports =
 
 
 /***/ },
-/* 9 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(50)
-	var murmur2 = __webpack_require__(49)
+	var murmur3 = __webpack_require__(54)
+	var murmur2 = __webpack_require__(53)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -713,7 +876,7 @@ module.exports =
 
 
 /***/ },
-/* 10 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -733,9 +896,9 @@ module.exports =
 	// http://en.wikipedia.org/wiki/Directed_graph
 
 	var helperFunctions = __webpack_require__(4);
-	var digraphParams = __webpack_require__(25);
-	var digraphImport = __webpack_require__(24);
-	var digraphExport = __webpack_require__(23);
+	var digraphParams = __webpack_require__(26);
+	var digraphImport = __webpack_require__(25);
+	var digraphExport = __webpack_require__(24);
 
 	(function() {
 	    var __bind = function(method, scope){ return function(){ return method.apply(scope, arguments); }; };
@@ -1284,7 +1447,7 @@ module.exports =
 
 
 /***/ },
-/* 11 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -1345,7 +1508,7 @@ module.exports =
 
 
 /***/ },
-/* 12 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -1361,7 +1524,7 @@ module.exports =
 	*/
 
 	var helperFunctions = __webpack_require__(4);
-	var TRAVERSE_CONTEXT = __webpack_require__(11);
+	var TRAVERSE_CONTEXT = __webpack_require__(13);
 
 	/*
 	  request = {
@@ -1514,7 +1677,7 @@ module.exports =
 
 
 /***/ },
-/* 13 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -1583,7 +1746,7 @@ module.exports =
 
 
 /***/ },
-/* 14 */
+/* 16 */
 /***/ function(module, exports) {
 
 	(function() {
@@ -1667,94 +1830,7 @@ module.exports =
 
 
 /***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* --------------------------------------------------------------------------
-
-	   The MIT License (MIT)
-
-	   Copyright (c) 2014-2015 Christopher D. Russell
-
-	   Permission is hereby granted, free of charge, to any person obtaining a copy
-	   of this software and associated documentation files (the "Software"), to deal
-	   in the Software without restriction, including without limitation the rights
-	   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	   copies of the Software, and to permit persons to whom the Software is
-	   furnished to do so, subject to the following conditions:
-
-	   The above copyright notice and this permission notice shall be included in all
-	   copies or substantial portions of the Software.
-
-	   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-	   SOFTWARE.
-
-	  This library is part of the Encapsule Project System in Cloud (SiC) open service
-	  architecture. Please follow https://twitter.com/Encapsule for news and updates
-	  about jsgraph and other time saving libraries that do amazing things with in-memory
-	  data on Node.js and HTML.  https://github.com/encapsule http://blog.encapsule.org
-
-	-------------------------------------------------------------------------- */
-
-	var jsgraph = module.exports = {
-
-	    // Directed graph support
-	    directed: {
-
-	        ////
-	        // Create a DirectedGraph container object.
-	        //
-	        // var response = jsgraph.directed.create(request);
-	        //
-	        // request = Undefined, JSON string, or data object [1]
-	        //
-	        // response = {
-	        //     error: null or string explaining why result is null
-	        //     result: DirectedGraph container object or null if error
-	        // }
-	        //
-	        // Notes:
-	        //
-	        // [1] see DirectedGraph.toJSON/toObject methods.
-	        //
-	        ////
-	        create: __webpack_require__(10).createDirectedGraph,
-
-	        // Directed graph transposition algorithm.
-	        // Creates a new DirectedGraph container object that's identical
-	        // to a caller-specified digraph except that the direction of the
-	        // the edges are reverese in the result digraph. Note that if present,
-	        // vertex and edge properties in the source digraph are copied by
-	        // reference to the result digraph.
-	        transpose: __webpack_require__(22),
-
-	        // Directed graph breadth-first traversal visitor algorithm.
-	        breadthFirstTraverse: __webpack_require__(20),
-
-	        // Directed graph depth-first traversal visitor algorithm.
-	        depthFirstTraverse: __webpack_require__(21),
-
-	        // ADVANCED
-
-	        // Color constant hashtable (advanced).
-	        colors: __webpack_require__(6),
-
-	        // Directed graph traversal context factory (advanced).
-	        createTraversalContext: __webpack_require__(11)
-
-	    }
-	};
-
-
-
-
-/***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -1783,9 +1859,9 @@ module.exports =
 	(function() {
 	  var convert, typeCodes, typeLUTS;
 
-	  typeCodes = __webpack_require__(7);
+	  typeCodes = __webpack_require__(8);
 
-	  typeLUTS = __webpack_require__(17);
+	  typeLUTS = __webpack_require__(18);
 
 
 	  /*
@@ -1925,7 +2001,7 @@ module.exports =
 
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -1955,7 +2031,7 @@ module.exports =
 	  'use strict';
 	  var MODULE, jstc, typeCodes;
 
-	  typeCodes = __webpack_require__(7);
+	  typeCodes = __webpack_require__(8);
 
 	  MODULE = {};
 
@@ -2056,7 +2132,7 @@ module.exports =
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;//     uuid.js
@@ -2117,7 +2193,7 @@ module.exports =
 	    // Moderately fast, high quality
 	    if (true) {
 	      try {
-	        var _rb = __webpack_require__(51).randomBytes;
+	        var _rb = __webpack_require__(55).randomBytes;
 	        _nodeRNG = _rng = _rb && function() {return _rb(16);};
 	        _rng();
 	      } catch(e) {}
@@ -2334,13 +2410,13 @@ module.exports =
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "GluLGHO6QBS_Y7jyXfr7eQ", buildTime: "1450339668"};
+	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "hx6y4oZUTau-r7y7PP4M5Q", buildTime: "1450376145"};
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -2401,8 +2477,8 @@ module.exports =
 
 	var algorithmName = "BFT"; // constant string used in error messages
 	var colors = __webpack_require__(6);
-	var visitorCallback = __webpack_require__(13);
-	var normalizeRequest = __webpack_require__(12);
+	var visitorCallback = __webpack_require__(15);
+	var normalizeRequest = __webpack_require__(14);
 
 
 	module.exports = function (request_) {
@@ -2647,7 +2723,7 @@ module.exports =
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -2664,8 +2740,8 @@ module.exports =
 
 	var algorithmName = "DFT"; // used in error messages
 	var colors = __webpack_require__(6);
-	var visitorCallback = __webpack_require__(13);
-	var normalizeRequest = __webpack_require__(12);
+	var visitorCallback = __webpack_require__(15);
+	var normalizeRequest = __webpack_require__(14);
 
 
 	module.exports = function (request_) {
@@ -2978,7 +3054,7 @@ module.exports =
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -2999,7 +3075,7 @@ module.exports =
 	// http://www.boost.org/doc/libs/1_55_0/libs/graph/doc/transpose_graph.html
 
 	var helperFunctions = __webpack_require__(4);
-	var DirectedGraph = __webpack_require__(10).DirectedGraph;
+	var DirectedGraph = __webpack_require__(12).DirectedGraph;
 
 	/*
 	  request = DirectedGraph reference
@@ -3052,7 +3128,7 @@ module.exports =
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -3113,7 +3189,7 @@ module.exports =
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 	/*
@@ -3283,7 +3359,7 @@ module.exports =
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -3405,7 +3481,7 @@ module.exports =
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -3428,13 +3504,13 @@ module.exports =
 	  'use strict';
 	  var Filter, IDENTIFIER, verifyFilterCreateRequest, verifyFilterSpecDeclaration;
 
-	  IDENTIFIER = __webpack_require__(1);
+	  IDENTIFIER = __webpack_require__(2);
 
-	  verifyFilterCreateRequest = __webpack_require__(27);
+	  verifyFilterCreateRequest = __webpack_require__(28);
 
-	  verifyFilterSpecDeclaration = __webpack_require__(28);
+	  verifyFilterSpecDeclaration = __webpack_require__(29);
 
-	  Filter = __webpack_require__(43);
+	  Filter = __webpack_require__(44);
 
 
 	  /*
@@ -3521,7 +3597,7 @@ module.exports =
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -3543,7 +3619,7 @@ module.exports =
 	(function() {
 	  var IDENTIFIER, TYPES, normalizeCompositionRequest;
 
-	  IDENTIFIER = __webpack_require__(1);
+	  IDENTIFIER = __webpack_require__(2);
 
 	  TYPES = __webpack_require__(5);
 
@@ -3712,7 +3788,7 @@ module.exports =
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -3734,7 +3810,7 @@ module.exports =
 	(function() {
 	  var IDENTIFIER, TYPES, verifyCompositionTypeMapDeclaration, verifyTypeConstraintArgs;
 
-	  IDENTIFIER = __webpack_require__(1);
+	  IDENTIFIER = __webpack_require__(2);
 
 	  TYPES = __webpack_require__(5);
 
@@ -4077,7 +4153,7 @@ module.exports =
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4099,7 +4175,7 @@ module.exports =
 	(function() {
 	  var FILTERDAGFACTORY;
 
-	  FILTERDAGFACTORY = __webpack_require__(30);
+	  FILTERDAGFACTORY = __webpack_require__(31);
 
 	  module.exports = {
 	    create: FILTERDAGFACTORY.request
@@ -4109,7 +4185,7 @@ module.exports =
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4131,17 +4207,17 @@ module.exports =
 	(function() {
 	  var DAGGENERATOR, DAGSPECPROCESSOR, FILTERLIB, IDENTIFIERLIB, INPUTFS, OUTPUTFS, filterlibResponse, message;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
-	  IDENTIFIERLIB = __webpack_require__(1);
+	  IDENTIFIERLIB = __webpack_require__(2);
 
 	  INPUTFS = __webpack_require__(3);
 
-	  OUTPUTFS = __webpack_require__(32);
+	  OUTPUTFS = __webpack_require__(33);
 
-	  DAGSPECPROCESSOR = __webpack_require__(33);
+	  DAGSPECPROCESSOR = __webpack_require__(34);
 
-	  DAGGENERATOR = __webpack_require__(31);
+	  DAGGENERATOR = __webpack_require__(32);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: "v_R2RUU9TEacuwgxmydxGw",
@@ -4221,7 +4297,7 @@ module.exports =
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4243,9 +4319,9 @@ module.exports =
 	(function() {
 	  var FILTERDAGREQFS, FILTERLIB, IDENTIFIERLIB, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
-	  IDENTIFIERLIB = __webpack_require__(1);
+	  IDENTIFIERLIB = __webpack_require__(2);
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
@@ -4295,7 +4371,7 @@ module.exports =
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	
@@ -4350,7 +4426,7 @@ module.exports =
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4372,17 +4448,17 @@ module.exports =
 	(function() {
 	  var CONSTRAINTPROCESSOR, FILTERDAGREQFS, FILTERLIB, IDENTIFIERLIB, MODELPROCESSOR, SPECRECONCILER, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
-	  IDENTIFIERLIB = __webpack_require__(1);
+	  IDENTIFIERLIB = __webpack_require__(2);
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  MODELPROCESSOR = __webpack_require__(38);
+	  MODELPROCESSOR = __webpack_require__(39);
 
-	  CONSTRAINTPROCESSOR = __webpack_require__(34);
+	  CONSTRAINTPROCESSOR = __webpack_require__(35);
 
-	  SPECRECONCILER = __webpack_require__(42);
+	  SPECRECONCILER = __webpack_require__(43);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'loZ5xDoyTO-bUq77KaBk8g',
@@ -4451,7 +4527,7 @@ module.exports =
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4473,17 +4549,17 @@ module.exports =
 	(function() {
 	  var CONSTRAINT_FUNCTIONS, CONSTRAINT_RECONCILE, CONSTRAINT_TYPES, FILTERDAGREQFS, FILTERLIB, IDENTIFIERLIB, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
-	  IDENTIFIERLIB = __webpack_require__(1);
+	  IDENTIFIERLIB = __webpack_require__(2);
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  CONSTRAINT_TYPES = __webpack_require__(37);
+	  CONSTRAINT_TYPES = __webpack_require__(38);
 
-	  CONSTRAINT_FUNCTIONS = __webpack_require__(35);
+	  CONSTRAINT_FUNCTIONS = __webpack_require__(36);
 
-	  CONSTRAINT_RECONCILE = __webpack_require__(36);
+	  CONSTRAINT_RECONCILE = __webpack_require__(37);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'tmhYEUdOR_yk5NRLLk3u1A',
@@ -4552,7 +4628,7 @@ module.exports =
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4574,9 +4650,9 @@ module.exports =
 	(function() {
 	  var FILTERDAGREQFS, FILTERLIB, IDENTIFIERLIB, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
-	  IDENTIFIERLIB = __webpack_require__(1);
+	  IDENTIFIERLIB = __webpack_require__(2);
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
@@ -4651,7 +4727,7 @@ module.exports =
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4673,9 +4749,9 @@ module.exports =
 	(function() {
 	  var FILTERLIB, IDENTIFIERLIB, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
-	  IDENTIFIERLIB = __webpack_require__(1);
+	  IDENTIFIERLIB = __webpack_require__(2);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'ABIJoB_lRfeP4keMZgRkzA',
@@ -4712,7 +4788,7 @@ module.exports =
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4734,9 +4810,9 @@ module.exports =
 	(function() {
 	  var FILTERDAGREQFS, FILTERLIB, IDENTIFIERLIB, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
-	  IDENTIFIERLIB = __webpack_require__(1);
+	  IDENTIFIERLIB = __webpack_require__(2);
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
@@ -4814,7 +4890,7 @@ module.exports =
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4836,17 +4912,17 @@ module.exports =
 	(function() {
 	  var FILTERDAGREQFS, FILTERLIB, IDENTIFIERLIB, MODELIOPROCESS, MODELRECONCILE, MODELXFORMGEN, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
-	  IDENTIFIERLIB = __webpack_require__(1);
+	  IDENTIFIERLIB = __webpack_require__(2);
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  MODELXFORMGEN = __webpack_require__(41);
+	  MODELXFORMGEN = __webpack_require__(42);
 
-	  MODELIOPROCESS = __webpack_require__(39);
+	  MODELIOPROCESS = __webpack_require__(40);
 
-	  MODELRECONCILE = __webpack_require__(40);
+	  MODELRECONCILE = __webpack_require__(41);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'Xke4-hLKSIChJos77JVOmg',
@@ -4923,7 +4999,7 @@ module.exports =
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -4945,11 +5021,11 @@ module.exports =
 	(function() {
 	  var FILTERDAGREQFS, FILTERDAGXFORMFS, FILTERLIB, INPUTFS, OUTPUTFS, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  FILTERDAGXFORMFS = __webpack_require__(8);
+	  FILTERDAGXFORMFS = __webpack_require__(10);
 
 	  INPUTFS = {
 	    ____label: "I/O Model Processor Request",
@@ -4962,7 +5038,7 @@ module.exports =
 	    }
 	  };
 
-	  OUTPUTFS = __webpack_require__(14);
+	  OUTPUTFS = __webpack_require__(16);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'Lry7jHEARSasslVcxqVHww',
@@ -5116,7 +5192,7 @@ module.exports =
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -5138,13 +5214,13 @@ module.exports =
 	(function() {
 	  var FILTERDAGIOMODEL, FILTERDAGREQFS, FILTERDAGXFORMFS, FILTERLIB, INPUTFS, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  FILTERDAGXFORMFS = __webpack_require__(8);
+	  FILTERDAGXFORMFS = __webpack_require__(10);
 
-	  FILTERDAGIOMODEL = __webpack_require__(14);
+	  FILTERDAGIOMODEL = __webpack_require__(16);
 
 	  INPUTFS = {
 	    ____types: "jsObject",
@@ -5229,7 +5305,7 @@ module.exports =
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -5251,13 +5327,13 @@ module.exports =
 	(function() {
 	  var FILTERDAGREQFS, FILTERDAGXFORMFS, FILTERLIB, GRAPHLIB, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  FILTERDAGXFORMFS = __webpack_require__(8);
+	  FILTERDAGXFORMFS = __webpack_require__(10);
 
-	  GRAPHLIB = __webpack_require__(15);
+	  GRAPHLIB = __webpack_require__(7);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'h6w300MIQaegK6rK9fDeOw',
@@ -5437,7 +5513,7 @@ module.exports =
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -5459,7 +5535,7 @@ module.exports =
 	(function() {
 	  var FILTERLIB, filterlibResponse;
 
-	  FILTERLIB = __webpack_require__(2);
+	  FILTERLIB = __webpack_require__(1);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'GLxLYuwnTCyCyr-lKfohUg',
@@ -5536,7 +5612,7 @@ module.exports =
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -5560,9 +5636,9 @@ module.exports =
 	  var Filter, IDENTIFIER, bodyFunctionResponseFilter, filterRuntimeData,
 	    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-	  IDENTIFIER = __webpack_require__(1);
+	  IDENTIFIER = __webpack_require__(2);
 
-	  filterRuntimeData = __webpack_require__(44);
+	  filterRuntimeData = __webpack_require__(45);
 
 	  bodyFunctionResponseFilter = {
 	    ____types: 'jsObject',
@@ -5654,7 +5730,7 @@ module.exports =
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -5676,7 +5752,7 @@ module.exports =
 	(function() {
 	  var IDENTIFIER, TYPES, filterRuntimeData;
 
-	  IDENTIFIER = __webpack_require__(1);
+	  IDENTIFIER = __webpack_require__(2);
 
 	  TYPES = __webpack_require__(5);
 
@@ -5933,7 +6009,7 @@ module.exports =
 
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -5955,7 +6031,7 @@ module.exports =
 	(function() {
 	  var MODULE, MURMUR;
 
-	  MURMUR = __webpack_require__(9);
+	  MURMUR = __webpack_require__(11);
 
 	  MODULE = module.exports = {};
 
@@ -5974,7 +6050,7 @@ module.exports =
 
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -5996,9 +6072,9 @@ module.exports =
 	(function() {
 	  var MODULE, MURMUR, TYPES, UUID;
 
-	  UUID = __webpack_require__(18);
+	  UUID = __webpack_require__(19);
 
-	  MURMUR = __webpack_require__(9);
+	  MURMUR = __webpack_require__(11);
 
 	  TYPES = __webpack_require__(5);
 
@@ -6178,7 +6254,535 @@ module.exports =
 
 
 /***/ },
-/* 47 */
+/* 48 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
+	  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceDiscriminationChoiceSets, filterlibResponse, partitionAndColorGraphByAmbiguity;
+
+	  FILTERLIB = __webpack_require__(1);
+
+	  buildMergedFilterSpecDigraphModel = __webpack_require__(51);
+
+	  partitionAndColorGraphByAmbiguity = __webpack_require__(49);
+
+	  deduceDiscriminationChoiceSets = __webpack_require__(50);
+
+	  filterlibResponse = FILTERLIB.create({
+	    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
+	    operationName: "Request Discriminator Filter Factory",
+	    operationDescription: "Manufactures a new Filter object that routes its request to 1:N registered sub-Filter objects based on analysis of the request signature.",
+	    inputFilterSpec: {
+	      ____label: "Array of Filters",
+	      ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
+	      ____types: "jsArray",
+	      filter: {
+	        ____label: "Sub-Filter Object",
+	        ____description: "Pre-constructed Filter object.",
+	        ____accept: "jsObject"
+	      }
+	    },
+	    bodyFunction: function(request_) {
+	      var errors, exclusionSetModel, inBreakScope, innerResponse, mergedFilterSpecGraphModel, response;
+	      response = {
+	        error: null,
+	        result: null
+	      };
+	      errors = [];
+	      inBreakScope = false;
+	      while (!inBreakScope) {
+	        inBreakScope = true;
+	        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
+	        innerResponse = buildMergedFilterSpecDigraphModel(request_);
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        mergedFilterSpecGraphModel = innerResponse.result;
+	        console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
+	        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
+	        innerResponse = partitionAndColorGraphByAmbiguity(mergedFilterSpecGraphModel.digraph);
+	        console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          errors.unshift("Internal error analyzing input filter array: ");
+	          break;
+	        }
+	        exclusionSetModel = innerResponse.result;
+	        exclusionSetModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
+	          return errors.push(error_);
+	        });
+	        if (errors.length) {
+	          break;
+	        }
+
+	        /*
+	        innerResponse = deduceDiscriminationChoiceSets
+	            digraph: mergedFilterSpecGraphModel.digraph
+	            rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
+	        if innerResponse.error
+	            errors.unshift innerResponse.error
+	            break
+	         */
+	        response.result = innerResponse.result;
+	        break;
+	      }
+	      if (errors.length) {
+	        response.error = errors.join(" ");
+	      }
+	      return response;
+	    },
+	    outputName: "Type Desrimination Filter Output",
+	    outputDescriptor: "A generated Type Descriminator Filter.",
+	    outputFilterSpec: {
+	      ____opaque: true
+	    }
+	  });
+
+	  if (filterlibResponse.error) {
+	    throw new Error(filterlibResponse.error);
+	  }
+
+	  module.exports = filterlibResponse.result;
+
+	}).call(this);
+
+
+/***/ },
+/* 49 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
+	  var GRAPHLIB, UTILLIB, partitionAndColorGraphByAmbiguity;
+
+	  GRAPHLIB = __webpack_require__(7);
+
+	  UTILLIB = __webpack_require__(9);
+
+	  partitionAndColorGraphByAmbiguity = module.exports = function(digraph_) {
+	    var allFilters, ambiguousBlackVertices, bfsResponse, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      rbfsVertices = [];
+	      ambiguousBlackVertices = [];
+	      bfsResponse = GRAPHLIB.directed.breadthFirstTraverse({
+	        digraph: digraph_,
+	        visitor: {
+	          discoverVertex: function(grequest_) {
+	            var uprop;
+	            uprop = grequest_.g.getVertexProperty(grequest_.u);
+	            uprop.filters.sort();
+	            if (uprop.filters.length === 1) {
+	              uprop.color = "gold";
+	            } else {
+	              if (grequest_.g.outDegree(grequest_.u)) {
+	                uprop.color = "gray";
+	              } else {
+	                uprop.color = "black";
+	                ambiguousBlackVertices.push(grequest_.u);
+	              }
+	            }
+	            grequest_.g.setVertexProperty({
+	              u: grequest_.u,
+	              p: uprop
+	            });
+	            rbfsVertices.unshift(grequest_.u);
+	            return true;
+	          }
+	        }
+	      });
+	      if (bfsResponse.error) {
+	        errors.unshift(bfsResponse.error);
+	        errors.unshift("Error during BFS of merged filter specification graph.");
+	        break;
+	      }
+	      if (!bfsResponse.result.searchStatus === "completed") {
+	        errors.unshift("BFS of merged filter specification graph did not complete as expected.");
+	        break;
+	      }
+	      if (UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)) {
+	        errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
+	        break;
+	      }
+	      index = 0;
+	      while (index < rbfsVertices.length) {
+	        vertex = rbfsVertices[index++];
+	        uprop = digraph_.getVertexProperty(vertex);
+	        if (uprop.color !== "gray") {
+	          continue;
+	        }
+	        allFilters = {};
+	        blackFilters = {};
+	        goldFilters = {};
+	        outEdges = digraph_.outEdges(vertex);
+	        outEdges.forEach(function(edge_) {
+	          var vprop;
+	          vprop = digraph_.getVertexProperty(edge_.v);
+	          return vprop.filters.forEach(function(filter_) {
+	            allFilters[filter_] = true;
+	            if ((vprop.color === "gold") || (vprop.color === "green")) {
+	              return goldFilters[filter_] = true;
+	            } else if (vprop.color === "black") {
+	              return blackFilters[filter_] = true;
+	            } else {
+	              return errors.unshift("Unexpected color '" + vprop.color + "' discovered analyzing vertex '" + edge_.v + "'.");
+	            }
+	          });
+	        });
+	        uprop.filters.forEach(function(filter_) {
+	          if (!((allFilters[filter_] != null) && allFilters[filter_])) {
+	            return blackFilters[filter_] = true;
+	          }
+	        });
+	        for (filter_ in blackFilters) {
+	          if ((goldFilters[filter_] != null) && goldFilters[filter_]) {
+	            delete goldFilters[filter_];
+	          }
+	        }
+	        if (!UTILLIB.dictionaryLength(blackFilters)) {
+	          uprop.color = "green";
+	        } else {
+	          uprop.color = "black";
+	          ambiguousBlackVertices.push(vertex);
+	        }
+	        digraph_.setVertexProperty({
+	          u: vertex,
+	          p: uprop
+	        });
+	      }
+	      response.result = {
+	        digraph: digraph_,
+	        ambigousBlackVertices: ambiguousBlackVertices,
+	        ambiguousFilterSpecificationErrors: []
+	      };
+	      if (ambiguousBlackVertices.length) {
+	        ambiguousBlackVertices.sort();
+	        ambiguousBlackVertices.forEach(function(vertex_) {
+	          var message, vertexProperty;
+	          vertexProperty = digraph_.getVertexProperty(vertex_);
+	          message = "Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.";
+	          return response.result.ambiguousFilterSpecificationErrors.push(message);
+	        });
+	      }
+	      break;
+	    }
+	    if (errors.length) {
+	      response.error = errors.join(" ");
+	    }
+	    return response;
+	  };
+
+	}).call(this);
+
+
+/***/ },
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
+	  var UTILLIB, analyzeFilterSpecGraphVertex, deduceDiscriminationChoiceSets;
+
+	  UTILLIB = __webpack_require__(9);
+
+	  deduceDiscriminationChoiceSets = module.exports = function(request_) {
+	    var errors, inBreakScope, index, innerResponse, response, vertex;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    index = 0;
+	    vertex = null;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      while (index < request_.rbfsVertices.length) {
+	        vertex = request_.rbfsVertices[index];
+	        innerResponse = analyzeFilterSpecGraphVertex({
+	          digraph: request_.digraph,
+	          vertex: vertex
+	        });
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        index++;
+	      }
+	      if (errors.length) {
+	        break;
+	      }
+	    }
+	    if (errors.length) {
+	      errors.unshift("Unable to deduce discrimination choice sets due to error processing merged filter spec graph vertex '" + vertex + "'.");
+	      errors.unshift("Further details:");
+	      response.error = errors.join(" ");
+	    }
+	    console.log("Choice sets-colored spec graph: '" + (request_.digraph.toJSON(void 0, 4)) + "'.");
+	    return response;
+	  };
+
+	  analyzeFilterSpecGraphVertex = function(request_) {
+	    var ambiguousChoicesByFilter, errors, filter_, inBreakScope, outDegree, outEdges, response, unambiguousChoicesByFilter, unambiguousChoicesCount, uprops;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      uprops = request_.digraph.getVertexProperty(request_.vertex);
+	      outDegree = request_.digraph.outDegree(request_.vertex);
+	      unambiguousChoicesByFilter = {};
+	      ambiguousChoicesByFilter = {};
+	      if (!outDegree) {
+	        if (uprops.filters.length === 1) {
+	          filter_ = uprops.filters[0];
+	          if (!((unambiguousChoicesByFilter[filter_] != null) && unabiguousChoicesByFilter[filter_])) {
+	            unambiguousChoicesByFilter[filter_] = {};
+	          }
+	          unambiguousChoicesByFilter[filter_][request_.vertex] = true;
+	          uprops.color = "yellow";
+	        } else {
+	          uprops.filters.forEach(function(filter_) {
+	            if (!((ambiguousChoicesByFilter[filter] != null) && ambiguousChoicesByFilter[filter])) {
+	              ambiguousChoicesByFilter[filter] = {};
+	            }
+	            return ambiguousChoicesByFilter[filter][request_.vertex] = true;
+	          });
+	          uprops.color = "black";
+	        }
+	      } else {
+	        outEdges = request_.digraph.outEdges(request_.vertex);
+	        outEdges.forEach(function(edge_) {
+	          var results, vprops;
+	          vprops = request_.digraph.getVertexProperty(edge_.v);
+	          for (filter_ in vprops.pass1.unambiguousChoicesByFilter) {
+	            if (!((unambiguousChoicesByFilter[filter_] != null) && unambiguousChoicesByFilter[filter_])) {
+	              unambiguousChoicesByFilter[filter_] = {};
+	            }
+	            unambiguousChoicesByFilter[filter_][request_.vertex] = true;
+	          }
+	          results = [];
+	          for (filter_ in vprops.pass1.ambiguousChoicesByFilter) {
+	            if (!((ambiguousChoicesByFilter[filter_] != null) && ambiguousChoicesByFilter[filter_])) {
+	              ambiguousChoicesByFilter[filter_] = {};
+	            }
+	            results.push(ambiguousChoicesByFilter[filter_][request_.vertex] = true);
+	          }
+	          return results;
+	        });
+	        unambiguousChoicesCount = UTILLIB.dictionaryLength(unambiguousChoicesByFilter);
+	        if (uprops.filters.length === unambiguousChoicesCount) {
+	          uprops.color = "yellow";
+	        } else if (unambiguousChoicesCount) {
+	          uprops.color = "orange";
+	        } else {
+	          uprops.color = "black";
+	        }
+	      }
+	      uprops.pass1 = {
+	        unambiguousChoicesByFilter: unambiguousChoicesByFilter,
+	        ambiguousChoicesByFilter: ambiguousChoicesByFilter
+	      };
+	      request_.digraph.setVertexProperty({
+	        u: request_.vertex,
+	        p: uprops
+	      });
+	      response.result = uprops;
+	      break;
+	    }
+	    if (errors.length) {
+	      response.error = errors.join(" ");
+	    }
+	    return response;
+	  };
+
+	}).call(this);
+
+
+/***/ },
+/* 51 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
+	  var FILTERLIB, GRAPHLIB, UTILLIB, addFilterSpecToMergedDigraphModel, buildMergedFilterSpecDigraphModel, rootVertex;
+
+	  UTILLIB = __webpack_require__(9);
+
+	  FILTERLIB = __webpack_require__(1);
+
+	  GRAPHLIB = __webpack_require__(7);
+
+	  rootVertex = "request";
+
+	  buildMergedFilterSpecDigraphModel = module.exports = function(request_) {
+	    var errors, filter, filters, i, inBreakScope, innerResponse, len, response, result, uprops;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      result = {
+	        digraph: null,
+	        filterTable: {}
+	      };
+	      innerResponse = GRAPHLIB.directed.create({
+	        name: "Discriminator Decission Tree Model"
+	      });
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      result.digraph = innerResponse.result;
+	      result.digraph.addVertex({
+	        u: rootVertex,
+	        p: {
+	          color: "white"
+	        }
+	      });
+	      filters = [];
+	      for (i = 0, len = request_.length; i < len; i++) {
+	        filter = request_[i];
+	        innerResponse = addFilterSpecToMergedDigraphModel({
+	          graph: result.digraph,
+	          filter: filter
+	        });
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        result.filterTable[filter.filterDescriptor.operationID] = {};
+	        filters.push(filter.filterDescriptor.operationID);
+	      }
+	      if (errors.length) {
+	        errors.unshift("Unable to build merged filter specification digraph model.");
+	        break;
+	      }
+	      uprops = result.digraph.getVertexProperty(rootVertex);
+	      uprops.filters = filters;
+	      result.digraph.setVertexProperty({
+	        u: rootVertex,
+	        p: uprops
+	      });
+	      result.digraph.setGraphDescription("Models the combined input filter specifications of Filter ID's: [" + filters.join(", ") + "].");
+	      response.result = result;
+	      break;
+	    }
+	    if (errors.length) {
+	      response.error = errors.join(" ");
+	    }
+	    return response;
+	  };
+
+	  addFilterSpecToMergedDigraphModel = function(request_) {
+	    var considerSubnamespace, considerSubnamespaces, errors, i, inBreakScope, len, mapEntry, mapQueue, operationID, response, subnamespaceName, type, types, vertexId, vertexProperty;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    operationID = request_.filter.filterDescriptor.operationID;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      mapQueue = [];
+	      mapQueue.push({
+	        parentVertex: rootVertex,
+	        parentNamespaceName: "",
+	        path: "request",
+	        namespaceDescriptor: request_.filter.filterDescriptor.inputFilterSpec
+	      });
+	      while (mapQueue.length) {
+	        mapEntry = mapQueue.shift();
+	        types = null;
+	        considerSubnamespaces = true;
+	        if (!((mapEntry.namespaceDescriptor != null) && mapEntry.namespaceDescriptor)) {
+	          mapEntry.namespaceDescriptor = {
+	            ____opaque: true
+	          };
+	        }
+	        if ((mapEntry.namespaceDescriptor.____types != null) && mapEntry.namespaceDescriptor.____types) {
+	          types = mapEntry.namespaceDescriptor.____types;
+	          if (Object.prototype.toString.call(types) === '[object String]') {
+	            types = [types];
+	          }
+	        } else {
+	          if ((mapEntry.namespaceDescriptor.____accept != null) && mapEntry.namespaceDescriptor.____accept) {
+	            types = mapEntry.namespaceDescriptor.____accept;
+	            if (Object.prototype.toString.call(types) === '[object String]') {
+	              types = [types];
+	            }
+	            considerSubnamespaces = false;
+	          } else {
+	            if ((mapEntry.namespaceDescriptor.____opaque != null) && mapEntry.namespaceDescriptor.____opaque) {
+	              types = ['jsUndefined', 'jsNull', 'jsBoolean', 'jsNumber', 'jsObject', 'jsFunction', 'jsString', 'jsArray'];
+	              considerSubnamespace = false;
+	            }
+	          }
+	        }
+	        if ((mapEntry.namespaceDescriptor.____defaultValue != null) && mapEntry.namespaceDescriptor.____defaultValue) {
+	          types.push('jsUndefined');
+	        }
+	        for (i = 0, len = types.length; i < len; i++) {
+	          type = types[i];
+	          vertexId = mapEntry.parentVertex + mapEntry.parentNamespaceName + "(" + type + ")";
+	          if (!request_.graph.isVertex(vertexId)) {
+	            request_.graph.addVertex({
+	              u: vertexId,
+	              p: {
+	                filterSpecPath: mapEntry.path,
+	                filters: [operationID],
+	                color: "white"
+	              }
+	            });
+	          } else {
+	            vertexProperty = request_.graph.getVertexProperty(vertexId);
+	            vertexProperty.filters.push(operationID);
+	            request_.graph.setVertexProperty({
+	              u: vertexId,
+	              p: vertexProperty
+	            });
+	          }
+	          request_.graph.addEdge({
+	            e: {
+	              u: mapEntry.parentVertex,
+	              v: vertexId
+	            }
+	          });
+	          if ((!considerSubnamespaces) || (type === 'jsUndefined') || (type === 'jsArray')) {
+	            continue;
+	          }
+	          for (subnamespaceName in mapEntry.namespaceDescriptor) {
+	            if (subnamespaceName.indexOf('____') !== 0) {
+	              mapQueue.push({
+	                parentVertex: vertexId,
+	                parentNamespaceName: "." + subnamespaceName,
+	                path: mapEntry.path + "." + subnamespaceName,
+	                namespaceDescriptor: mapEntry.namespaceDescriptor[subnamespaceName]
+	              });
+	            }
+	          }
+	        }
+	      }
+	    }
+	    return response;
+	  };
+
+	}).call(this);
+
+
+/***/ },
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -6207,11 +6811,11 @@ module.exports =
 	(function() {
 	  var MODULE, typeCodes, typeConvert, typeLUTS;
 
-	  typeCodes = __webpack_require__(7);
+	  typeCodes = __webpack_require__(8);
 
-	  typeLUTS = __webpack_require__(17);
+	  typeLUTS = __webpack_require__(18);
 
-	  typeConvert = __webpack_require__(16);
+	  typeConvert = __webpack_require__(17);
 
 	  MODULE = {};
 
@@ -6343,80 +6947,7 @@ module.exports =
 
 
 /***/ },
-/* 48 */
-/***/ function(module, exports) {
-
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0.
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	 */
-
-	(function() {
-	  var ARC_CORE_UTIL;
-
-	  ARC_CORE_UTIL = {};
-
-	  ARC_CORE_UTIL.deepCopy = function(ref_) {
-	    var flags, instance, key;
-	    if ((ref_ == null) || typeof ref_ !== 'object') {
-	      return ref_;
-	    }
-	    if (ref_ instanceof Date) {
-	      return new Date(ref_.getTime());
-	    }
-	    if (ref_ instanceof RegExp) {
-	      flags = '';
-	      if (object_.global != null) {
-	        flags += 'g';
-	      }
-	      if (object_.ignoreCase != null) {
-	        flags += 'i';
-	      }
-	      if (object_.multiline != null) {
-	        flags += 'm';
-	      }
-	      if (object_.sticky != null) {
-	        flags += 'y';
-	      }
-	      return new RegExp(ref_.source, flags);
-	    }
-	    instance = new ref_.constructor();
-	    for (key in ref_) {
-	      instance[key] = ARC_CORE_UTIL.deepCopy(ref_[key]);
-	    }
-	    return instance;
-	  };
-
-	  ARC_CORE_UTIL.clone = function(ref_) {
-	    return ARC_CORE_UTIL.deepCopy(ref_);
-	  };
-
-	  ARC_CORE_UTIL.dictionaryLength = function(ref_) {
-	    return Object.keys(ref_).length;
-	  };
-
-	  ARC_CORE_UTIL.getEpochTime = function() {
-	    return Math.round(new Date().getTime() / 1000.0);
-	  };
-
-	  module.exports = ARC_CORE_UTIL;
-
-	}).call(this);
-
-
-/***/ },
-/* 49 */
+/* 53 */
 /***/ function(module, exports) {
 
 	/**
@@ -6476,7 +7007,7 @@ module.exports =
 
 
 /***/ },
-/* 50 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6549,7 +7080,7 @@ module.exports =
 	}
 
 /***/ },
-/* 51 */
+/* 55 */
 /***/ function(module, exports) {
 
 	module.exports = require("crypto");
