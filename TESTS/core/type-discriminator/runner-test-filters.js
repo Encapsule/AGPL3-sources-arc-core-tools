@@ -1,7 +1,7 @@
 var testModule = require('./module-under-test');
 var FILTERLIB = testModule('arc_core_filter');
 
-module.exports = {
+module.exports = testFilter = {
 
     test1: FILTERLIB.create({
         operationID: "6UirSEewQLiM6VY_Uo1hSA",
@@ -96,5 +96,3 @@ module.exports = {
     })
 
 };
-
-console.log(JSON.stringify(module.exports,undefined,4));

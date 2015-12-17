@@ -1,5 +1,4 @@
 
-
 FILTERLIB = require './arc_core_filter'
 
 buildMergedFilterSpecDigraphModel = require './arc_core_type_discriminator_filter_spec_digraph'
@@ -9,13 +8,17 @@ deduceDiscriminationChoiceSets = require './arc_core_type_discriminator_choice_s
 filterlibResponse = FILTERLIB.create
 
     operationID: "5A8uDJunQUm1w-HcBPQ6Gw"
-    operationName: "Type Discriminator"
-    operationDescription: "Analyze request data and return the operationID of the filter the data should be routed to."
+    operationName: "Request Discriminator Filter Factory"
+    operationDescription: "Manufactures a new Filter object that routes its request to 1:N registered sub-Filter objects based on analysis of the request signature."
 
-    inputName: "Type Descriminator Filter Input"
-    inputDescription: "An array of two or more Filters whose input Filter Specs will be used to build the discrimination filter."
     inputFilterSpec:
-        ____opaque: true
+        ____label: "Array of Filters"
+        ____description: "An array Filter objects that define the set of request signatures to be analyzed."
+        ____types: "jsArray"
+        filter:
+            ____label: "Sub-Filter Object"
+            ____description: "Pre-constructed Filter object."
+            ____accept: "jsObject"
 
     bodyFunction: (request_) ->
         response = error: null, result: null
@@ -34,11 +37,17 @@ filterlibResponse = FILTERLIB.create
 
             console.log "STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY"
             innerResponse = partitionAndColorGraphByAmbiguity mergedFilterSpecGraphModel.digraph
-
             console.log mergedFilterSpecGraphModel.digraph.toJSON(undefined, 4)
 
             if innerResponse.error
                 errors.unshift innerResponse.error
+                errors.unshift "Internal error analyzing input filter array: "
+                break
+
+            exclusionSetModel = innerResponse.result
+
+            exclusionSetModel.ambiguousFilterSpecificationErrors.forEach (error_) -> errors.push error_
+            if errors.length
                 break
 
             ###
@@ -50,7 +59,7 @@ filterlibResponse = FILTERLIB.create
                 break
             ###
 
-            response.result = mergedFilterSpecGraphModel
+            response.result = innerResponse.result
             break
 
         if errors.length
@@ -61,9 +70,6 @@ filterlibResponse = FILTERLIB.create
     outputDescriptor: "A generated Type Descriminator Filter."
     outputFilterSpec:
         ____opaque: true
-
-
-
 
 if filterlibResponse.error
     throw new Error filterlibResponse.error

@@ -11,15 +11,20 @@
 
   filterlibResponse = FILTERLIB.create({
     operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
-    operationName: "Type Discriminator",
-    operationDescription: "Analyze request data and return the operationID of the filter the data should be routed to.",
-    inputName: "Type Descriminator Filter Input",
-    inputDescription: "An array of two or more Filters whose input Filter Specs will be used to build the discrimination filter.",
+    operationName: "Request Discriminator Filter Factory",
+    operationDescription: "Manufactures a new Filter object that routes its request to 1:N registered sub-Filter objects based on analysis of the request signature.",
     inputFilterSpec: {
-      ____opaque: true
+      ____label: "Array of Filters",
+      ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
+      ____types: "jsArray",
+      filter: {
+        ____label: "Sub-Filter Object",
+        ____description: "Pre-constructed Filter object.",
+        ____accept: "jsObject"
+      }
     },
     bodyFunction: function(request_) {
-      var errors, inBreakScope, innerResponse, mergedFilterSpecGraphModel, response;
+      var errors, exclusionSetModel, inBreakScope, innerResponse, mergedFilterSpecGraphModel, response;
       response = {
         error: null,
         result: null
@@ -41,6 +46,14 @@
         console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
+          errors.unshift("Internal error analyzing input filter array: ");
+          break;
+        }
+        exclusionSetModel = innerResponse.result;
+        exclusionSetModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
+          return errors.push(error_);
+        });
+        if (errors.length) {
           break;
         }
 
@@ -52,7 +65,7 @@
             errors.unshift innerResponse.error
             break
          */
-        response.result = mergedFilterSpecGraphModel;
+        response.result = innerResponse.result;
         break;
       }
       if (errors.length) {

@@ -102,18 +102,20 @@
           p: uprop
         });
       }
+      response.result = {
+        digraph: digraph_,
+        ambigousBlackVertices: ambiguousBlackVertices,
+        ambiguousFilterSpecificationErrors: []
+      };
       if (ambiguousBlackVertices.length) {
         ambiguousBlackVertices.sort();
         ambiguousBlackVertices.forEach(function(vertex_) {
-          var vertexProperty;
+          var message, vertexProperty;
           vertexProperty = digraph_.getVertexProperty(vertex_);
-          return errors.push("Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.");
+          message = "Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.";
+          return response.result.ambiguousFilterSpecificationErrors.push(message);
         });
       }
-      response.result = {
-        digraph: digraph_,
-        ambigousBlackVertices: ambiguousBlackVertices
-      };
       break;
     }
     if (errors.length) {
