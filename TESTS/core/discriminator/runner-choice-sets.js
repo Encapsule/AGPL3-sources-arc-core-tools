@@ -3,31 +3,32 @@ var assert = require('chai').assert;
 
 var testModule = require('./module-under-test');
 
-var ambiguityDetector = testModule('arc_core_type_discriminator_ambiguity_detector');
+var buildDiscriminatorChoiceSets = testModule('arc_core_type_discriminator_choice_sets_digraph');
 
 /*
   request = {
     testName: string
     validConfig: boolean
-    request: merged filter spec digraph model
+    request: { digraph: object, rgbfsVerictices: array }
     expectedResults: {
-      error: null/string
-      result: null/colored merged filter spec digraph model
+      error: string
+      result: object
     }
   }
 */
 
-var testAmbiguityDetector = module.exports = function (testVector_) {
+var testChoiceSetsGenerator = module.exports = function (testVector_) {
 
-    response = null;
-    describe("ARC core type discriminator ambiguity detector test use case: " + testVector_.testName + ":", function() {
+    response = null
+    describe("ARC core type discriminator choice sets generator test use case: " + testVector_.testName + ":", function() {
         before(function() {
             var functionUnderTest = function() {
-                response = ambiguityDetector(testVector_.request);
+                response = buildDiscriminatorChoiceSets(testVector_.request);
             };
-            assert.doesNotThrow(functionUnderTest, "AMBIGUITY DETECTOR SHOULD NEVER THROW!");
+            assert.doesNotThrow(functionUnderTest, "DISCRIMINATOR CHOICE SETS GENERATOR SHOULD NEVER THROW!");
         });
-        it("The ambiguity detector should have returned a response object.", function() {
+
+        it("The choice sets generator should have returned a response object.", function() {
             assert.isDefined(response);
             assert.isNotNull(response);
             assert.isObject(response);
@@ -35,7 +36,6 @@ var testAmbiguityDetector = module.exports = function (testVector_) {
             assert.property(response, 'result');
         });
         if (testVector_.validConfig) {
-
             describe("Verify expected valid response.", function() {
                 it("The request should not have returned an error.", function() {
                     assert.isNull(response.error);

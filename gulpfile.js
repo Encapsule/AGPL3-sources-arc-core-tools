@@ -112,7 +112,7 @@ gulp.task("baseBuild", [ "copyjs", "tagbuild", "coffee" ], function() {
 
 });
 
-gulp.task("test", function() {
+gulp.task("test", [ "baseBuild" ], function() {
     return gulp.src('TESTS/test_arc.js', {read: false})
         .pipe(mocha({reporter: 'spec'}));
 });
@@ -189,7 +189,7 @@ gulp.task("stage", [ "compress" ], function() {
         .pipe(gulp.dest('./STAGE/arctools'));
 });
 
-gulp.task("distribute", [ "default" ], function() {
+gulp.task("publish", function() {
     gulp.src('./STAGE/**')
         .pipe(gulp.dest('./DISTS/'));
 });

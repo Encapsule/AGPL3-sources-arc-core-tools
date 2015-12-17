@@ -46,20 +46,19 @@ filterlibResponse = FILTERLIB.create
 
             exclusionSetModel = innerResponse.result
 
+            # Exit with error if the input filter set cannot be discriminates.
             exclusionSetModel.ambiguousFilterSpecificationErrors.forEach (error_) -> errors.push error_
             if errors.length
                 break
 
-            ###
             innerResponse = deduceDiscriminationChoiceSets
                 digraph: mergedFilterSpecGraphModel.digraph
                 rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
-            ###
 
-            response.result = innerResponse.result
+            response.result = exclusionSetModel
             break
 
         if errors.length

@@ -8,6 +8,7 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
     inBreakScope = false
     while not inBreakScope
         inBreakScope = true
+        bfsVertices = []
         rbfsVertices = []
         ambiguousBlackVertices = []
 
@@ -28,7 +29,7 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
                             uprop.color = "black"
                             ambiguousBlackVertices.push grequest_.u
                     grequest_.g.setVertexProperty { u: grequest_.u, p: uprop }
-                    rbfsVertices.unshift grequest_.u
+                    bfsVertices.push grequest_.u
                     true
 
         # Fail outright if the search looks off even a little bit.
@@ -44,6 +45,11 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
             break
 
         # LEAVES TO ROOT LEAVES COLORING (not as simple)
+
+        index = 0
+        while index < bfsVertices.length
+            rbfsVertices[index] = bfsVertices[bfsVertices.length - index - 1]
+            index++
 
         index = 0
         while index < rbfsVertices.length
@@ -106,6 +112,7 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
             digraph: digraph_
             ambigousBlackVertices: ambiguousBlackVertices
             ambiguousFilterSpecificationErrors: []
+            bfsVertices: bfsVertices
             rbfsVertices: rbfsVertices
 
         if ambiguousBlackVertices.length

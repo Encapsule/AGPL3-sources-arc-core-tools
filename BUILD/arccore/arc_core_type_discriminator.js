@@ -56,16 +56,15 @@
         if (errors.length) {
           break;
         }
-
-        /*
-        innerResponse = deduceDiscriminationChoiceSets
-            digraph: mergedFilterSpecGraphModel.digraph
-            rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
-        if innerResponse.error
-            errors.unshift innerResponse.error
-            break
-         */
-        response.result = innerResponse.result;
+        innerResponse = deduceDiscriminationChoiceSets({
+          digraph: mergedFilterSpecGraphModel.digraph,
+          rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
+        });
+        if (innerResponse.error) {
+          errors.unshift(innerResponse.error);
+          break;
+        }
+        response.result = exclusionSetModel;
         break;
       }
       if (errors.length) {

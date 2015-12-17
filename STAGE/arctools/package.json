@@ -1,9 +1,9 @@
 {
     "name": "arctools",
     "version": "0.0.4",
-    "codename": "ultramarine1",
-    "buildID": "uZo2KPVET2-v9v9I_vLPQw",
-    "buildTime": 1450378875,
+    "codename": "colorbook",
+    "buildID": "Pg0zGRTxRdOh2CxnQORlPw",
+    "buildTime": 1450394963,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arctools.git"

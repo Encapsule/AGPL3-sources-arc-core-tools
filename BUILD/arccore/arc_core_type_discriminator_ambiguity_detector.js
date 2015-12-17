@@ -6,7 +6,7 @@
   UTILLIB = require('./arc_core_util');
 
   partitionAndColorGraphByAmbiguity = module.exports = function(digraph_) {
-    var allFilters, ambiguousBlackVertices, bfsResponse, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
+    var allFilters, ambiguousBlackVertices, bfsResponse, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
     response = {
       error: null,
       result: null
@@ -15,6 +15,7 @@
     inBreakScope = false;
     while (!inBreakScope) {
       inBreakScope = true;
+      bfsVertices = [];
       rbfsVertices = [];
       ambiguousBlackVertices = [];
       bfsResponse = GRAPHLIB.directed.breadthFirstTraverse({
@@ -38,7 +39,7 @@
               u: grequest_.u,
               p: uprop
             });
-            rbfsVertices.unshift(grequest_.u);
+            bfsVertices.push(grequest_.u);
             return true;
           }
         }
@@ -55,6 +56,11 @@
       if (UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)) {
         errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
         break;
+      }
+      index = 0;
+      while (index < bfsVertices.length) {
+        rbfsVertices[index] = bfsVertices[bfsVertices.length - index - 1];
+        index++;
       }
       index = 0;
       while (index < rbfsVertices.length) {
@@ -106,6 +112,7 @@
         digraph: digraph_,
         ambigousBlackVertices: ambiguousBlackVertices,
         ambiguousFilterSpecificationErrors: [],
+        bfsVertices: bfsVertices,
         rbfsVertices: rbfsVertices
       };
       if (ambiguousBlackVertices.length) {

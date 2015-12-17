@@ -3194,7 +3194,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "hx6y4oZUTau-r7y7PP4M5Q", buildTime: "1450376145"};
+		module.exports = { version: "0.0.4", codename: "boundarybay", author: "Encapsule", buildID: "M3JwYm7kQ1CAwTgAkt5Exg", buildTime: "1450394823"};
 
 	/***/ },
 	/* 21 */
@@ -7096,16 +7096,15 @@ module.exports =
 		        if (errors.length) {
 		          break;
 		        }
-
-		        /*
-		        innerResponse = deduceDiscriminationChoiceSets
-		            digraph: mergedFilterSpecGraphModel.digraph
-		            rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
-		        if innerResponse.error
-		            errors.unshift innerResponse.error
-		            break
-		         */
-		        response.result = innerResponse.result;
+		        innerResponse = deduceDiscriminationChoiceSets({
+		          digraph: mergedFilterSpecGraphModel.digraph,
+		          rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
+		        });
+		        if (innerResponse.error) {
+		          errors.unshift(innerResponse.error);
+		          break;
+		        }
+		        response.result = exclusionSetModel;
 		        break;
 		      }
 		      if (errors.length) {
@@ -7141,7 +7140,7 @@ module.exports =
 		  UTILLIB = __webpack_require__(9);
 
 		  partitionAndColorGraphByAmbiguity = module.exports = function(digraph_) {
-		    var allFilters, ambiguousBlackVertices, bfsResponse, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
+		    var allFilters, ambiguousBlackVertices, bfsResponse, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
 		    response = {
 		      error: null,
 		      result: null
@@ -7150,6 +7149,7 @@ module.exports =
 		    inBreakScope = false;
 		    while (!inBreakScope) {
 		      inBreakScope = true;
+		      bfsVertices = [];
 		      rbfsVertices = [];
 		      ambiguousBlackVertices = [];
 		      bfsResponse = GRAPHLIB.directed.breadthFirstTraverse({
@@ -7173,7 +7173,7 @@ module.exports =
 		              u: grequest_.u,
 		              p: uprop
 		            });
-		            rbfsVertices.unshift(grequest_.u);
+		            bfsVertices.push(grequest_.u);
 		            return true;
 		          }
 		        }
@@ -7190,6 +7190,11 @@ module.exports =
 		      if (UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)) {
 		        errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
 		        break;
+		      }
+		      index = 0;
+		      while (index < bfsVertices.length) {
+		        rbfsVertices[index] = bfsVertices[bfsVertices.length - index - 1];
+		        index++;
 		      }
 		      index = 0;
 		      while (index < rbfsVertices.length) {
@@ -7240,7 +7245,9 @@ module.exports =
 		      response.result = {
 		        digraph: digraph_,
 		        ambigousBlackVertices: ambiguousBlackVertices,
-		        ambiguousFilterSpecificationErrors: []
+		        ambiguousFilterSpecificationErrors: [],
+		        bfsVertices: bfsVertices,
+		        rbfsVertices: rbfsVertices
 		      };
 		      if (ambiguousBlackVertices.length) {
 		        ambiguousBlackVertices.sort();
@@ -7267,11 +7274,11 @@ module.exports =
 	/***/ function(module, exports, __webpack_require__) {
 
 		(function() {
-		  var UTILLIB, analyzeFilterSpecGraphVertex, deduceDiscriminationChoiceSets;
+		  var UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
 
 		  UTILLIB = __webpack_require__(9);
 
-		  deduceDiscriminationChoiceSets = module.exports = function(request_) {
+		  buildDiscriminatorChoiceSets = module.exports = function(request_) {
 		    var errors, inBreakScope, index, innerResponse, response, vertex;
 		    response = {
 		      error: null,
@@ -7298,18 +7305,16 @@ module.exports =
 		      if (errors.length) {
 		        break;
 		      }
+		      response.result = request_;
 		    }
 		    if (errors.length) {
-		      errors.unshift("Unable to deduce discrimination choice sets due to error processing merged filter spec graph vertex '" + vertex + "'.");
-		      errors.unshift("Further details:");
 		      response.error = errors.join(" ");
 		    }
-		    console.log("Choice sets-colored spec graph: '" + (request_.digraph.toJSON(void 0, 4)) + "'.");
 		    return response;
 		  };
 
 		  analyzeFilterSpecGraphVertex = function(request_) {
-		    var ambiguousChoicesByFilter, errors, filter_, inBreakScope, outDegree, outEdges, response, unambiguousChoicesByFilter, unambiguousChoicesCount, uprops;
+		    var errors, inBreakScope, response, uprop;
 		    response = {
 		      error: null,
 		      result: null
@@ -7318,65 +7323,15 @@ module.exports =
 		    inBreakScope = false;
 		    while (!inBreakScope) {
 		      inBreakScope = true;
-		      uprops = request_.digraph.getVertexProperty(request_.vertex);
-		      outDegree = request_.digraph.outDegree(request_.vertex);
-		      unambiguousChoicesByFilter = {};
-		      ambiguousChoicesByFilter = {};
-		      if (!outDegree) {
-		        if (uprops.filters.length === 1) {
-		          filter_ = uprops.filters[0];
-		          if (!((unambiguousChoicesByFilter[filter_] != null) && unabiguousChoicesByFilter[filter_])) {
-		            unambiguousChoicesByFilter[filter_] = {};
-		          }
-		          unambiguousChoicesByFilter[filter_][request_.vertex] = true;
-		          uprops.color = "yellow";
-		        } else {
-		          uprops.filters.forEach(function(filter_) {
-		            if (!((ambiguousChoicesByFilter[filter] != null) && ambiguousChoicesByFilter[filter])) {
-		              ambiguousChoicesByFilter[filter] = {};
-		            }
-		            return ambiguousChoicesByFilter[filter][request_.vertex] = true;
-		          });
-		          uprops.color = "black";
-		        }
-		      } else {
-		        outEdges = request_.digraph.outEdges(request_.vertex);
-		        outEdges.forEach(function(edge_) {
-		          var results, vprops;
-		          vprops = request_.digraph.getVertexProperty(edge_.v);
-		          for (filter_ in vprops.pass1.unambiguousChoicesByFilter) {
-		            if (!((unambiguousChoicesByFilter[filter_] != null) && unambiguousChoicesByFilter[filter_])) {
-		              unambiguousChoicesByFilter[filter_] = {};
-		            }
-		            unambiguousChoicesByFilter[filter_][request_.vertex] = true;
-		          }
-		          results = [];
-		          for (filter_ in vprops.pass1.ambiguousChoicesByFilter) {
-		            if (!((ambiguousChoicesByFilter[filter_] != null) && ambiguousChoicesByFilter[filter_])) {
-		              ambiguousChoicesByFilter[filter_] = {};
-		            }
-		            results.push(ambiguousChoicesByFilter[filter_][request_.vertex] = true);
-		          }
-		          return results;
-		        });
-		        unambiguousChoicesCount = UTILLIB.dictionaryLength(unambiguousChoicesByFilter);
-		        if (uprops.filters.length === unambiguousChoicesCount) {
-		          uprops.color = "yellow";
-		        } else if (unambiguousChoicesCount) {
-		          uprops.color = "orange";
-		        } else {
-		          uprops.color = "black";
-		        }
+		      uprop = request_.digraph.getVertexProperty(request_.vertex);
+		      console.log(uprop.color + " '" + request_.vertex + "'");
+		      if (uprop.color === "gold") {
+		        break;
 		      }
-		      uprops.pass1 = {
-		        unambiguousChoicesByFilter: unambiguousChoicesByFilter,
-		        ambiguousChoicesByFilter: ambiguousChoicesByFilter
-		      };
-		      request_.digraph.setVertexProperty({
-		        u: request_.vertex,
-		        p: uprops
-		      });
-		      response.result = uprops;
+		      if (uprop.color !== "green") {
+		        errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
+		        break;
+		      }
 		      break;
 		    }
 		    if (errors.length) {
@@ -9323,7 +9278,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "uZo2KPVET2-v9v9I_vLPQw", buildTime: "1450378875"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "Pg0zGRTxRdOh2CxnQORlPw", buildTime: "1450394963"};
 
 /***/ },
 /* 24 */
@@ -9653,7 +9608,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "ultramarine1", author: "Encapsule", buildID: "uZo2KPVET2-v9v9I_vLPQw", buildTime: "1450378875"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "Pg0zGRTxRdOh2CxnQORlPw", buildTime: "1450394963"};
 
 /***/ },
 /* 29 */
@@ -13613,16 +13568,15 @@ module.exports =
 	        if (errors.length) {
 	          break;
 	        }
-
-	        /*
-	        innerResponse = deduceDiscriminationChoiceSets
-	            digraph: mergedFilterSpecGraphModel.digraph
-	            rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
-	        if innerResponse.error
-	            errors.unshift innerResponse.error
-	            break
-	         */
-	        response.result = innerResponse.result;
+	        innerResponse = deduceDiscriminationChoiceSets({
+	          digraph: mergedFilterSpecGraphModel.digraph,
+	          rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
+	        });
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        response.result = exclusionSetModel;
 	        break;
 	      }
 	      if (errors.length) {
@@ -13658,7 +13612,7 @@ module.exports =
 	  UTILLIB = __webpack_require__(10);
 
 	  partitionAndColorGraphByAmbiguity = module.exports = function(digraph_) {
-	    var allFilters, ambiguousBlackVertices, bfsResponse, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
+	    var allFilters, ambiguousBlackVertices, bfsResponse, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
 	    response = {
 	      error: null,
 	      result: null
@@ -13667,6 +13621,7 @@ module.exports =
 	    inBreakScope = false;
 	    while (!inBreakScope) {
 	      inBreakScope = true;
+	      bfsVertices = [];
 	      rbfsVertices = [];
 	      ambiguousBlackVertices = [];
 	      bfsResponse = GRAPHLIB.directed.breadthFirstTraverse({
@@ -13690,7 +13645,7 @@ module.exports =
 	              u: grequest_.u,
 	              p: uprop
 	            });
-	            rbfsVertices.unshift(grequest_.u);
+	            bfsVertices.push(grequest_.u);
 	            return true;
 	          }
 	        }
@@ -13707,6 +13662,11 @@ module.exports =
 	      if (UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)) {
 	        errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
 	        break;
+	      }
+	      index = 0;
+	      while (index < bfsVertices.length) {
+	        rbfsVertices[index] = bfsVertices[bfsVertices.length - index - 1];
+	        index++;
 	      }
 	      index = 0;
 	      while (index < rbfsVertices.length) {
@@ -13758,6 +13718,7 @@ module.exports =
 	        digraph: digraph_,
 	        ambigousBlackVertices: ambiguousBlackVertices,
 	        ambiguousFilterSpecificationErrors: [],
+	        bfsVertices: bfsVertices,
 	        rbfsVertices: rbfsVertices
 	      };
 	      if (ambiguousBlackVertices.length) {
@@ -13785,11 +13746,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var UTILLIB, analyzeFilterSpecGraphVertex, deduceDiscriminationChoiceSets;
+	  var UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
 
 	  UTILLIB = __webpack_require__(10);
 
-	  deduceDiscriminationChoiceSets = module.exports = function(request_) {
+	  buildDiscriminatorChoiceSets = module.exports = function(request_) {
 	    var errors, inBreakScope, index, innerResponse, response, vertex;
 	    response = {
 	      error: null,
@@ -13816,18 +13777,16 @@ module.exports =
 	      if (errors.length) {
 	        break;
 	      }
+	      response.result = request_;
 	    }
 	    if (errors.length) {
-	      errors.unshift("Unable to deduce discrimination choice sets due to error processing merged filter spec graph vertex '" + vertex + "'.");
-	      errors.unshift("Further details:");
 	      response.error = errors.join(" ");
 	    }
-	    console.log("Choice sets-colored spec graph: '" + (request_.digraph.toJSON(void 0, 4)) + "'.");
 	    return response;
 	  };
 
 	  analyzeFilterSpecGraphVertex = function(request_) {
-	    var ambiguousChoicesByFilter, errors, filter_, inBreakScope, outDegree, outEdges, response, unambiguousChoicesByFilter, unambiguousChoicesCount, uprops;
+	    var errors, inBreakScope, response, uprop;
 	    response = {
 	      error: null,
 	      result: null
@@ -13836,65 +13795,15 @@ module.exports =
 	    inBreakScope = false;
 	    while (!inBreakScope) {
 	      inBreakScope = true;
-	      uprops = request_.digraph.getVertexProperty(request_.vertex);
-	      outDegree = request_.digraph.outDegree(request_.vertex);
-	      unambiguousChoicesByFilter = {};
-	      ambiguousChoicesByFilter = {};
-	      if (!outDegree) {
-	        if (uprops.filters.length === 1) {
-	          filter_ = uprops.filters[0];
-	          if (!((unambiguousChoicesByFilter[filter_] != null) && unabiguousChoicesByFilter[filter_])) {
-	            unambiguousChoicesByFilter[filter_] = {};
-	          }
-	          unambiguousChoicesByFilter[filter_][request_.vertex] = true;
-	          uprops.color = "yellow";
-	        } else {
-	          uprops.filters.forEach(function(filter_) {
-	            if (!((ambiguousChoicesByFilter[filter] != null) && ambiguousChoicesByFilter[filter])) {
-	              ambiguousChoicesByFilter[filter] = {};
-	            }
-	            return ambiguousChoicesByFilter[filter][request_.vertex] = true;
-	          });
-	          uprops.color = "black";
-	        }
-	      } else {
-	        outEdges = request_.digraph.outEdges(request_.vertex);
-	        outEdges.forEach(function(edge_) {
-	          var results, vprops;
-	          vprops = request_.digraph.getVertexProperty(edge_.v);
-	          for (filter_ in vprops.pass1.unambiguousChoicesByFilter) {
-	            if (!((unambiguousChoicesByFilter[filter_] != null) && unambiguousChoicesByFilter[filter_])) {
-	              unambiguousChoicesByFilter[filter_] = {};
-	            }
-	            unambiguousChoicesByFilter[filter_][request_.vertex] = true;
-	          }
-	          results = [];
-	          for (filter_ in vprops.pass1.ambiguousChoicesByFilter) {
-	            if (!((ambiguousChoicesByFilter[filter_] != null) && ambiguousChoicesByFilter[filter_])) {
-	              ambiguousChoicesByFilter[filter_] = {};
-	            }
-	            results.push(ambiguousChoicesByFilter[filter_][request_.vertex] = true);
-	          }
-	          return results;
-	        });
-	        unambiguousChoicesCount = UTILLIB.dictionaryLength(unambiguousChoicesByFilter);
-	        if (uprops.filters.length === unambiguousChoicesCount) {
-	          uprops.color = "yellow";
-	        } else if (unambiguousChoicesCount) {
-	          uprops.color = "orange";
-	        } else {
-	          uprops.color = "black";
-	        }
+	      uprop = request_.digraph.getVertexProperty(request_.vertex);
+	      console.log(uprop.color + " '" + request_.vertex + "'");
+	      if (uprop.color === "gold") {
+	        break;
 	      }
-	      uprops.pass1 = {
-	        unambiguousChoicesByFilter: unambiguousChoicesByFilter,
-	        ambiguousChoicesByFilter: ambiguousChoicesByFilter
-	      };
-	      request_.digraph.setVertexProperty({
-	        u: request_.vertex,
-	        p: uprops
-	      });
-	      response.result = uprops;
+	      if (uprop.color !== "green") {
+	        errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
+	        break;
+	      }
 	      break;
 	    }
 	    if (errors.length) {

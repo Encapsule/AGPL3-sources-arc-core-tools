@@ -40,7 +40,7 @@ var node_modules = fs.readdirSync('node_modules').filter(function(packageName) {
     default:
         break;
     }
-    console.log("Include '" + packageName + "'? " + includeInPackedOutput);
+    //console.log("Include '" + packageName + "'? " + includeInPackedOutput);
     return !includeInPackedOutput; // Confusing, but correct.
 });
 
