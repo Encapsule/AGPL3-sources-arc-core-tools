@@ -6,7 +6,7 @@
   UTILLIB = require('./arc_core_util');
 
   partitionAndColorGraphByAmbiguity = module.exports = function(digraph_) {
-    var allFilters, ambiguousBlackVertices, bfsResponse, blackFilters, errors, inBreakScope, index, orangeFilters, outEdges, rbfsVertices, response, uprop, vertex;
+    var allFilters, ambiguousBlackVertices, bfsResponse, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
     response = {
       error: null,
       result: null
@@ -65,40 +65,32 @@
         }
         allFilters = {};
         blackFilters = {};
-        orangeFilters = {};
+        goldFilters = {};
         outEdges = digraph_.outEdges(vertex);
         outEdges.forEach(function(edge_) {
-          var filter_, results, vprop;
+          var vprop;
           vprop = digraph_.getVertexProperty(edge_.v);
-          vprop.filters.forEach(function(filter_) {
+          return vprop.filters.forEach(function(filter_) {
             allFilters[filter_] = true;
-            switch (vprop.color) {
-              case "gold":
-                orangeFilters[filter_] = true;
-                break;
-              case "black":
-                blackFilters[filter_] = true;
-                break;
-              default:
-                errors.unshift("Unexpected color '" + vprops.color + "' discovered analyzing vertex '" + edge_.v + "'.");
-                break;
-            }
-          });
-          uprop.filters.forEach(function(filter_) {
-            if (!((allFilters[filter_] != null) && allFilters[filter_])) {
+            if ((vprop.color === "gold") || (vprop.color === "green")) {
+              return goldFilters[filter_] = true;
+            } else if (vprop.color === "black") {
               return blackFilters[filter_] = true;
+            } else {
+              return errors.unshift("Unexpected color '" + vprop.color + "' discovered analyzing vertex '" + edge_.v + "'.");
             }
           });
-          results = [];
-          for (filter_ in blackFilters) {
-            if ((orangeFilters[filter_] != null) && orangeFilters[filter_]) {
-              results.push(delete orangeFilters[filter_]);
-            } else {
-              results.push(void 0);
-            }
-          }
-          return results;
         });
+        uprop.filters.forEach(function(filter_) {
+          if (!((allFilters[filter_] != null) && allFilters[filter_])) {
+            return blackFilters[filter_] = true;
+          }
+        });
+        for (filter_ in blackFilters) {
+          if ((goldFilters[filter_] != null) && goldFilters[filter_]) {
+            delete goldFilters[filter_];
+          }
+        }
         if (!UTILLIB.dictionaryLength(blackFilters)) {
           uprop.color = "green";
         } else {

@@ -49,30 +49,28 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
 
             allFilters = {}
             blackFilters = {}
-            orangeFilters = {}
+            goldFilters = {}
 
             outEdges = digraph_.outEdges vertex
             outEdges.forEach (edge_) ->
                 vprop = digraph_.getVertexProperty edge_.v
                 vprop.filters.forEach (filter_) ->
-                    allFilters[filter_] = true
-                    switch vprop.color
-                        when "gold"
-                            orangeFilters[filter_] = true
-                            break
-                        when "black"
-                            blackFilters[filter_] = true
-                            break
-                        else
-                            errors.unshift "Unexpected color '#{vprops.color}' discovered analyzing vertex '#{edge_.v}'."
-                            break
 
-                uprop.filters.forEach (filter_) ->
-                    if not (allFilters[filter_]? and allFilters[filter_])
+                    allFilters[filter_] = true
+                    if (vprop.color == "gold") or (vprop.color == "green")
+                        goldFilters[filter_] = true
+                    else if vprop.color == "black"
                         blackFilters[filter_] = true
-                for filter_ of blackFilters
-                    if orangeFilters[filter_]? and orangeFilters[filter_]
-                        delete orangeFilters[filter_]
+                    else
+                        errors.unshift "Unexpected color '#{vprop.color}' discovered analyzing vertex '#{edge_.v}'."
+
+            uprop.filters.forEach (filter_) ->
+                if not (allFilters[filter_]? and allFilters[filter_])
+                    blackFilters[filter_] = true
+
+            for filter_ of blackFilters
+                if goldFilters[filter_]? and goldFilters[filter_]
+                    delete goldFilters[filter_]
 
             if not UTILLIB.dictionaryLength(blackFilters)
                 uprop.color = "green"
