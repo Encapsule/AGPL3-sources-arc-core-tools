@@ -3194,7 +3194,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "boundarybay", author: "Encapsule", buildID: "M3JwYm7kQ1CAwTgAkt5Exg", buildTime: "1450394823"};
+		module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "VRfZu4mAQPKtnqqkJCGHNw", buildTime: "1450398453"};
 
 	/***/ },
 	/* 21 */
@@ -7096,10 +7096,7 @@ module.exports =
 		        if (errors.length) {
 		          break;
 		        }
-		        innerResponse = deduceDiscriminationChoiceSets({
-		          digraph: mergedFilterSpecGraphModel.digraph,
-		          rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
-		        });
+		        innerResponse = deduceDiscriminationChoiceSets(exclusionSetModel);
 		        if (innerResponse.error) {
 		          errors.unshift(innerResponse.error);
 		          break;
@@ -7290,7 +7287,7 @@ module.exports =
 		    vertex = null;
 		    while (!inBreakScope) {
 		      inBreakScope = true;
-		      while (index < request_.rbfsVertices.length) {
+		      while (index < request_.bfsVertices.length) {
 		        vertex = request_.rbfsVertices[index];
 		        innerResponse = analyzeFilterSpecGraphVertex({
 		          digraph: request_.digraph,
@@ -9278,7 +9275,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "Pg0zGRTxRdOh2CxnQORlPw", buildTime: "1450394963"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "jbxVwXkWTSixi8-34q49jA", buildTime: "1450399913"};
 
 /***/ },
 /* 24 */
@@ -9608,7 +9605,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "Pg0zGRTxRdOh2CxnQORlPw", buildTime: "1450394963"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "jbxVwXkWTSixi8-34q49jA", buildTime: "1450399913"};
 
 /***/ },
 /* 29 */
@@ -13568,10 +13565,7 @@ module.exports =
 	        if (errors.length) {
 	          break;
 	        }
-	        innerResponse = deduceDiscriminationChoiceSets({
-	          digraph: mergedFilterSpecGraphModel.digraph,
-	          rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
-	        });
+	        innerResponse = deduceDiscriminationChoiceSets(exclusionSetModel);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
@@ -13762,7 +13756,7 @@ module.exports =
 	    vertex = null;
 	    while (!inBreakScope) {
 	      inBreakScope = true;
-	      while (index < request_.rbfsVertices.length) {
+	      while (index < request_.bfsVertices.length) {
 	        vertex = request_.rbfsVertices[index];
 	        innerResponse = analyzeFilterSpecGraphVertex({
 	          digraph: request_.digraph,
@@ -13950,7 +13944,8 @@ module.exports =
 	              p: {
 	                filterSpecPath: mapEntry.path,
 	                filters: [operationID],
-	                color: "white"
+	                color: "white",
+	                typeConstraint: type
 	              }
 	            });
 	          } else {

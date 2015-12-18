@@ -16,10 +16,7 @@ var exclusionSetModels = {
 testChoiceSetsGenerator({
     testName: "Test #1",
     validConfig: true,
-    request: {
-        digraph: exclusionSetModels.test1.result.digraph,
-        rbfsVertices: exclusionSetModels.test1.result.rbfsVertices
-    },
+    request: exclusionSetModels.test1.result,
     expectedResults: {
         error: null,
         result: null
@@ -29,10 +26,7 @@ testChoiceSetsGenerator({
 testChoiceSetsGenerator({
     testName: "Test #2",
     validConfig: true,
-    request: {
-        digraph: exclusionSetModels.test2.result.digraph,
-        rbfsVertices: exclusionSetModels.test2.result.rbfsVertices
-    },
+    request: exclusionSetModels.test2.result,
     expectedResults: {
         error: null,
         result: null

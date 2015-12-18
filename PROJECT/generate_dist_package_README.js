@@ -42,6 +42,6 @@ module.exports = function(request_) {
     mddoc.push("<hr>");
     mddoc.push("Copyright (C) " + buildYear + " Christopher D. Russell");
 
-    return mddoc.join("\n\n");
+    return mddoc.join("\n\n") + "\n";
 
 };

@@ -15,7 +15,7 @@
     vertex = null;
     while (!inBreakScope) {
       inBreakScope = true;
-      while (index < request_.rbfsVertices.length) {
+      while (index < request_.bfsVertices.length) {
         vertex = request_.rbfsVertices[index];
         innerResponse = analyzeFilterSpecGraphVertex({
           digraph: request_.digraph,

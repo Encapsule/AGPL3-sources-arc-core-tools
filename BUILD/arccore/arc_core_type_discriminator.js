@@ -56,10 +56,7 @@
         if (errors.length) {
           break;
         }
-        innerResponse = deduceDiscriminationChoiceSets({
-          digraph: mergedFilterSpecGraphModel.digraph,
-          rbfsVertices: mergedFilterSpecGraphModel.order.rbfsVertices
-        });
+        innerResponse = deduceDiscriminationChoiceSets(exclusionSetModel);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;

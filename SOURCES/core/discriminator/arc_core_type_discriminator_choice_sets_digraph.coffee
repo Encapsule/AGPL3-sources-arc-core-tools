@@ -1,17 +1,18 @@
 
 UTILLIB = require './arc_core_util'
 
-# request = { digraph: object, rbfsVertices: array }
+# request = exclusionSetModel = { digraph: object, bfsVertices: array, rbfsVertices: array }
 
 buildDiscriminatorChoiceSets = module.exports = (request_) ->
     response = error: null, result: null
     errors = []
     inBreakScope = false
+
     index = 0
     vertex = null
     while not inBreakScope
         inBreakScope = true
-        while index < request_.rbfsVertices.length
+        while index < request_.bfsVertices.length
             vertex = request_.rbfsVertices[index]
             innerResponse = analyzeFilterSpecGraphVertex digraph: request_.digraph, vertex: vertex
             if innerResponse.error

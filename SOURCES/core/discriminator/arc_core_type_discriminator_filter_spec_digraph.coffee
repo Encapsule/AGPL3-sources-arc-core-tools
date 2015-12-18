@@ -85,6 +85,7 @@ addFilterSpecToMergedDigraphModel = (request_) ->
             types =  null
             considerSubnamespaces = true
 
+            # Default filters that specify no input specification.
             if not (mapEntry.namespaceDescriptor? and mapEntry.namespaceDescriptor)
                 mapEntry.namespaceDescriptor = { ____opaque: true }
 
@@ -92,7 +93,6 @@ addFilterSpecToMergedDigraphModel = (request_) ->
                 types = mapEntry.namespaceDescriptor.____types
                 if Object.prototype.toString.call(types) == '[object String]'
                     types = [ types ]
-                # considerSubnamespaces = (-1 == types.indexOf('jsUndefined'))
             else
                 if (mapEntry.namespaceDescriptor.____accept? and mapEntry.namespaceDescriptor.____accept)
                     types = mapEntry.namespaceDescriptor.____accept
@@ -110,7 +110,13 @@ addFilterSpecToMergedDigraphModel = (request_) ->
             for type in types
                 vertexId = mapEntry.parentVertex + mapEntry.parentNamespaceName + "(" + type + ")"
                 if not request_.graph.isVertex vertexId
-                    request_.graph.addVertex u: vertexId, p: { filterSpecPath: mapEntry.path, filters: [ operationID ], color: "white" }
+                    request_.graph.addVertex
+                        u: vertexId
+                        p:
+                            filterSpecPath: mapEntry.path
+                            filters: [ operationID ]
+                            color: "white"
+                            typeConstraint: type
                 else
                     vertexProperty = request_.graph.getVertexProperty vertexId
                     vertexProperty.filters.push operationID

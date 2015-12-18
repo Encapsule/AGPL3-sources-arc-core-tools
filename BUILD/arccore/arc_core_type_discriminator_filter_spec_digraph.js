@@ -129,7 +129,8 @@
               p: {
                 filterSpecPath: mapEntry.path,
                 filters: [operationID],
-                color: "white"
+                color: "white",
+                typeConstraint: type
               }
             });
           } else {
