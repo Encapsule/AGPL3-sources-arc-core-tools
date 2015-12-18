@@ -11,9 +11,20 @@ buildDiscriminatorChoiceSets = module.exports = (request_) ->
     index = 0
     vertex = null
     while not inBreakScope
+
+        uprop = request_.digraph.getVertexProperty "request"
+
+        if uprop.color == "gold"
+            if request_.digraph.outDegree "request"
+                errors.unshift "Cannot create mutual exclusion set tree for merged filter spec model containing only one filter spec."
+                break
+            else
+                errors.unshift "Cannot create mutual exclusion set tree for merged filter spec model because it's null."
+                break
+
         inBreakScope = true
         while index < request_.bfsVertices.length
-            vertex = request_.rbfsVertices[index]
+            vertex = request_.bfsVertices[index]
             innerResponse = analyzeFilterSpecGraphVertex digraph: request_.digraph, vertex: vertex
             if innerResponse.error
                 errors.unshift innerResponse.error

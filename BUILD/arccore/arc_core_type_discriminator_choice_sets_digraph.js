@@ -4,7 +4,7 @@
   UTILLIB = require('./arc_core_util');
 
   buildDiscriminatorChoiceSets = module.exports = function(request_) {
-    var errors, inBreakScope, index, innerResponse, response, vertex;
+    var errors, inBreakScope, index, innerResponse, response, uprop, vertex;
     response = {
       error: null,
       result: null
@@ -14,9 +14,19 @@
     index = 0;
     vertex = null;
     while (!inBreakScope) {
+      uprop = request_.digraph.getVertexProperty("request");
+      if (uprop.color === "gold") {
+        if (request_.digraph.outDegree("request")) {
+          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model containing only one filter spec.");
+          break;
+        } else {
+          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model because it's null.");
+          break;
+        }
+      }
       inBreakScope = true;
       while (index < request_.bfsVertices.length) {
-        vertex = request_.rbfsVertices[index];
+        vertex = request_.bfsVertices[index];
         innerResponse = analyzeFilterSpecGraphVertex({
           digraph: request_.digraph,
           vertex: vertex

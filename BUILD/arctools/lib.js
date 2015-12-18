@@ -3194,7 +3194,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "VRfZu4mAQPKtnqqkJCGHNw", buildTime: "1450398453"};
+		module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "SQHKRITlRKymRNw4MY8MCQ", buildTime: "1450417340"};
 
 	/***/ },
 	/* 21 */
@@ -7475,7 +7475,8 @@ module.exports =
 		              p: {
 		                filterSpecPath: mapEntry.path,
 		                filters: [operationID],
-		                color: "white"
+		                color: "white",
+		                typeConstraint: type
 		              }
 		            });
 		          } else {
@@ -9275,7 +9276,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "jbxVwXkWTSixi8-34q49jA", buildTime: "1450399913"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "3seEYrYjRfCpMaezwwcUjA", buildTime: "1450418931"};
 
 /***/ },
 /* 24 */
@@ -9605,7 +9606,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "jbxVwXkWTSixi8-34q49jA", buildTime: "1450399913"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "3seEYrYjRfCpMaezwwcUjA", buildTime: "1450418931"};
 
 /***/ },
 /* 29 */
@@ -13745,7 +13746,7 @@ module.exports =
 	  UTILLIB = __webpack_require__(10);
 
 	  buildDiscriminatorChoiceSets = module.exports = function(request_) {
-	    var errors, inBreakScope, index, innerResponse, response, vertex;
+	    var errors, inBreakScope, index, innerResponse, response, uprop, vertex;
 	    response = {
 	      error: null,
 	      result: null
@@ -13755,9 +13756,19 @@ module.exports =
 	    index = 0;
 	    vertex = null;
 	    while (!inBreakScope) {
+	      uprop = request_.digraph.getVertexProperty("request");
+	      if (uprop.color === "gold") {
+	        if (request_.digraph.outDegree("request")) {
+	          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model containing only one filter spec.");
+	          break;
+	        } else {
+	          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model because it's null.");
+	          break;
+	        }
+	      }
 	      inBreakScope = true;
 	      while (index < request_.bfsVertices.length) {
-	        vertex = request_.rbfsVertices[index];
+	        vertex = request_.bfsVertices[index];
 	        innerResponse = analyzeFilterSpecGraphVertex({
 	          digraph: request_.digraph,
 	          vertex: vertex
