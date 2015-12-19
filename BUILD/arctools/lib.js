@@ -47,7 +47,7 @@ module.exports =
 
 	module.exports = {
 	    meta: __webpack_require__(23),
-	    commander: __webpack_require__(69),
+	    commander: __webpack_require__(68),
 	    chalk: __webpack_require__(14),
 	    arccore: __webpack_require__(29),
 	    fileDirEnumSync: __webpack_require__(62),
@@ -3194,7 +3194,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "SQHKRITlRKymRNw4MY8MCQ", buildTime: "1450417340"};
+		module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "SgByADCPTjeRhPan-fk0pA", buildTime: "1450498012"};
 
 	/***/ },
 	/* 21 */
@@ -7271,12 +7271,14 @@ module.exports =
 	/***/ function(module, exports, __webpack_require__) {
 
 		(function() {
-		  var UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
+		  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
 
 		  UTILLIB = __webpack_require__(9);
 
+		  IDLIB = __webpack_require__(2);
+
 		  buildDiscriminatorChoiceSets = module.exports = function(request_) {
-		    var errors, inBreakScope, index, innerResponse, response, vertex;
+		    var discriminatorScript, errors, inBreakScope, index, innerResponse, response, uprop, vertex;
 		    response = {
 		      error: null,
 		      result: null
@@ -7287,8 +7289,19 @@ module.exports =
 		    vertex = null;
 		    while (!inBreakScope) {
 		      inBreakScope = true;
+		      uprop = request_.digraph.getVertexProperty("request");
+		      if (uprop.color === "gold") {
+		        if (request_.digraph.outDegree("request")) {
+		          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model containing only one filter spec.");
+		          break;
+		        } else {
+		          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model because it's null.");
+		          break;
+		        }
+		      }
+		      discriminatorScript = [];
 		      while (index < request_.bfsVertices.length) {
-		        vertex = request_.rbfsVertices[index];
+		        vertex = request_.bfsVertices[index];
 		        innerResponse = analyzeFilterSpecGraphVertex({
 		          digraph: request_.digraph,
 		          vertex: vertex
@@ -7297,12 +7310,13 @@ module.exports =
 		          errors.unshift(innerResponse.error);
 		          break;
 		        }
+		        discriminatorScript.push(innerResponse.result);
 		        index++;
 		      }
 		      if (errors.length) {
 		        break;
 		      }
-		      response.result = request_;
+		      response.result = discriminatorScript;
 		    }
 		    if (errors.length) {
 		      response.error = errors.join(" ");
@@ -7311,7 +7325,7 @@ module.exports =
 		  };
 
 		  analyzeFilterSpecGraphVertex = function(request_) {
-		    var errors, inBreakScope, response, uprop;
+		    var choices, errors, inBreakScope, outEdges, response, uprop;
 		    response = {
 		      error: null,
 		      result: null
@@ -7321,19 +7335,48 @@ module.exports =
 		    while (!inBreakScope) {
 		      inBreakScope = true;
 		      uprop = request_.digraph.getVertexProperty(request_.vertex);
-		      console.log(uprop.color + " '" + request_.vertex + "'");
-		      if (uprop.color === "gold") {
-		        break;
-		      }
-		      if (uprop.color !== "green") {
-		        errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
-		        break;
+		      switch (uprop.color) {
+		        case "gold":
+		          response.result = {
+		            truth: {
+		              filterID: uprop.filters[0],
+		              filterSpecPath: uprop.filterSpecPath,
+		              typeConstraint: uprop.typeConstraint
+		            }
+		          };
+		          break;
+		        case "green":
+		          choices = {};
+		          outEdges = request_.digraph.outEdges(request_.vertex);
+		          outEdges.forEach(function(edge_) {
+		            var choiceKey, vprop;
+		            vprop = request_.digraph.getVertexProperty(edge_.v);
+		            choiceKey = vprop.filters.join(":") + ":" + vprop.filterSpecPath;
+		            if (!((choices[choiceKey] != null) && choices[choiceKey])) {
+		              choices[choiceKey] = {
+		                disambiguate: {
+		                  typeConstraints: [],
+		                  filterSpecPath: vprop.filterSpecPath
+		                }
+		              };
+		            }
+		            return choices[choiceKey].disambiguate.typeConstraints.push(vprop.typeConstraint);
+		          });
+		          response.result = {
+		            disambiguate: choices
+		          };
+		          break;
+		        default:
+		          errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
+		          break;
 		      }
 		      break;
 		    }
 		    if (errors.length) {
 		      response.error = errors.join(" ");
 		    }
+		    console.log("Choice Sets:");
+		    console.log(JSON.stringify(response, void 0, 4) + "\n\n");
 		    return response;
 		  };
 
@@ -7887,11 +7930,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var escapeStringRegexp = __webpack_require__(70);
+	var escapeStringRegexp = __webpack_require__(69);
 	var ansiStyles = __webpack_require__(67);
-	var stripAnsi = __webpack_require__(75);
-	var hasAnsi = __webpack_require__(72);
-	var supportsColor = __webpack_require__(68);
+	var stripAnsi = __webpack_require__(74);
+	var hasAnsi = __webpack_require__(71);
+	var supportsColor = __webpack_require__(75);
 	var defineProps = Object.defineProperties;
 	var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
 
@@ -8008,8 +8051,8 @@ module.exports =
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(74)
-	var murmur2 = __webpack_require__(73)
+	var murmur3 = __webpack_require__(73)
+	var murmur2 = __webpack_require__(72)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -9276,7 +9319,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "3seEYrYjRfCpMaezwwcUjA", buildTime: "1450418931"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "UU33N-ctRp2QAD1GKaHoAg", buildTime: "1450498058"};
 
 /***/ },
 /* 24 */
@@ -9606,7 +9649,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "3seEYrYjRfCpMaezwwcUjA", buildTime: "1450418931"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "UU33N-ctRp2QAD1GKaHoAg", buildTime: "1450498058"};
 
 /***/ },
 /* 29 */
@@ -13741,12 +13784,14 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
+	  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
 
 	  UTILLIB = __webpack_require__(10);
 
+	  IDLIB = __webpack_require__(2);
+
 	  buildDiscriminatorChoiceSets = module.exports = function(request_) {
-	    var errors, inBreakScope, index, innerResponse, response, uprop, vertex;
+	    var discriminatorScript, errors, inBreakScope, index, innerResponse, response, uprop, vertex;
 	    response = {
 	      error: null,
 	      result: null
@@ -13756,6 +13801,7 @@ module.exports =
 	    index = 0;
 	    vertex = null;
 	    while (!inBreakScope) {
+	      inBreakScope = true;
 	      uprop = request_.digraph.getVertexProperty("request");
 	      if (uprop.color === "gold") {
 	        if (request_.digraph.outDegree("request")) {
@@ -13766,7 +13812,7 @@ module.exports =
 	          break;
 	        }
 	      }
-	      inBreakScope = true;
+	      discriminatorScript = [];
 	      while (index < request_.bfsVertices.length) {
 	        vertex = request_.bfsVertices[index];
 	        innerResponse = analyzeFilterSpecGraphVertex({
@@ -13777,21 +13823,24 @@ module.exports =
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
+	        discriminatorScript.push(innerResponse.result);
 	        index++;
 	      }
 	      if (errors.length) {
 	        break;
 	      }
-	      response.result = request_;
+	      response.result = discriminatorScript;
 	    }
 	    if (errors.length) {
 	      response.error = errors.join(" ");
 	    }
+	    console.log("Choice Sets:");
+	    console.log(JSON.stringify(response, void 0, 4) + "\n\n");
 	    return response;
 	  };
 
 	  analyzeFilterSpecGraphVertex = function(request_) {
-	    var errors, inBreakScope, response, uprop;
+	    var choices, errors, inBreakScope, outEdges, response, uprop;
 	    response = {
 	      error: null,
 	      result: null
@@ -13801,13 +13850,40 @@ module.exports =
 	    while (!inBreakScope) {
 	      inBreakScope = true;
 	      uprop = request_.digraph.getVertexProperty(request_.vertex);
-	      console.log(uprop.color + " '" + request_.vertex + "'");
-	      if (uprop.color === "gold") {
-	        break;
-	      }
-	      if (uprop.color !== "green") {
-	        errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
-	        break;
+	      switch (uprop.color) {
+	        case "gold":
+	          response.result = {
+	            truth: {
+	              filterID: uprop.filters[0],
+	              filterSpecPath: uprop.filterSpecPath,
+	              typeConstraint: uprop.typeConstraint
+	            }
+	          };
+	          break;
+	        case "green":
+	          choices = {};
+	          outEdges = request_.digraph.outEdges(request_.vertex);
+	          outEdges.forEach(function(edge_) {
+	            var choiceKey, vprop;
+	            vprop = request_.digraph.getVertexProperty(edge_.v);
+	            choiceKey = vprop.filters.join(":") + ":" + vprop.filterSpecPath;
+	            if (!((choices[choiceKey] != null) && choices[choiceKey])) {
+	              choices[choiceKey] = {
+	                disambiguate: {
+	                  typeConstraints: [],
+	                  filterSpecPath: vprop.filterSpecPath
+	                }
+	              };
+	            }
+	            return choices[choiceKey].disambiguate.typeConstraints.push(vprop.typeConstraint);
+	          });
+	          response.result = {
+	            disambiguate: choices
+	          };
+	          break;
+	        default:
+	          errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
+	          break;
 	      }
 	      break;
 	    }
@@ -14668,62 +14744,6 @@ module.exports =
 
 /***/ },
 /* 68 */
-/***/ function(module, exports) {
-
-	'use strict';
-	var argv = process.argv;
-
-	var terminator = argv.indexOf('--');
-	var hasFlag = function (flag) {
-		flag = '--' + flag;
-		var pos = argv.indexOf(flag);
-		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
-	};
-
-	module.exports = (function () {
-		if ('FORCE_COLOR' in process.env) {
-			return true;
-		}
-
-		if (hasFlag('no-color') ||
-			hasFlag('no-colors') ||
-			hasFlag('color=false')) {
-			return false;
-		}
-
-		if (hasFlag('color') ||
-			hasFlag('colors') ||
-			hasFlag('color=true') ||
-			hasFlag('color=always')) {
-			return true;
-		}
-
-		if (process.stdout && !process.stdout.isTTY) {
-			return false;
-		}
-
-		if (process.platform === 'win32') {
-			return true;
-		}
-
-		if ('COLORTERM' in process.env) {
-			return true;
-		}
-
-		if (process.env.TERM === 'dumb') {
-			return false;
-		}
-
-		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
-			return true;
-		}
-
-		return false;
-	})();
-
-
-/***/ },
-/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -14732,7 +14752,7 @@ module.exports =
 
 	var EventEmitter = __webpack_require__(78).EventEmitter;
 	var spawn = __webpack_require__(77).spawn;
-	var readlink = __webpack_require__(71).readlinkSync;
+	var readlink = __webpack_require__(70).readlinkSync;
 	var path = __webpack_require__(12);
 	var dirname = path.dirname;
 	var basename = path.basename;
@@ -15839,7 +15859,7 @@ module.exports =
 
 
 /***/ },
-/* 70 */
+/* 69 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15856,7 +15876,7 @@ module.exports =
 
 
 /***/ },
-/* 71 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(6)
@@ -15874,7 +15894,7 @@ module.exports =
 
 
 /***/ },
-/* 72 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15884,7 +15904,7 @@ module.exports =
 
 
 /***/ },
-/* 73 */
+/* 72 */
 /***/ function(module, exports) {
 
 	/**
@@ -15944,7 +15964,7 @@ module.exports =
 
 
 /***/ },
-/* 74 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16017,7 +16037,7 @@ module.exports =
 	}
 
 /***/ },
-/* 75 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16026,6 +16046,62 @@ module.exports =
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
+
+
+/***/ },
+/* 75 */
+/***/ function(module, exports) {
+
+	'use strict';
+	var argv = process.argv;
+
+	var terminator = argv.indexOf('--');
+	var hasFlag = function (flag) {
+		flag = '--' + flag;
+		var pos = argv.indexOf(flag);
+		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
+	};
+
+	module.exports = (function () {
+		if ('FORCE_COLOR' in process.env) {
+			return true;
+		}
+
+		if (hasFlag('no-color') ||
+			hasFlag('no-colors') ||
+			hasFlag('color=false')) {
+			return false;
+		}
+
+		if (hasFlag('color') ||
+			hasFlag('colors') ||
+			hasFlag('color=true') ||
+			hasFlag('color=always')) {
+			return true;
+		}
+
+		if (process.stdout && !process.stdout.isTTY) {
+			return false;
+		}
+
+		if (process.platform === 'win32') {
+			return true;
+		}
+
+		if ('COLORTERM' in process.env) {
+			return true;
+		}
+
+		if (process.env.TERM === 'dumb') {
+			return false;
+		}
+
+		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
+			return true;
+		}
+
+		return false;
+	})();
 
 
 /***/ },

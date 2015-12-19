@@ -1,10 +1,12 @@
 (function() {
-  var UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
+  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
 
   UTILLIB = require('./arc_core_util');
 
+  IDLIB = require('./arc_core_identifier');
+
   buildDiscriminatorChoiceSets = module.exports = function(request_) {
-    var errors, inBreakScope, index, innerResponse, response, uprop, vertex;
+    var discriminatorScript, errors, inBreakScope, index, innerResponse, response, uprop, vertex;
     response = {
       error: null,
       result: null
@@ -14,6 +16,7 @@
     index = 0;
     vertex = null;
     while (!inBreakScope) {
+      inBreakScope = true;
       uprop = request_.digraph.getVertexProperty("request");
       if (uprop.color === "gold") {
         if (request_.digraph.outDegree("request")) {
@@ -24,7 +27,7 @@
           break;
         }
       }
-      inBreakScope = true;
+      discriminatorScript = [];
       while (index < request_.bfsVertices.length) {
         vertex = request_.bfsVertices[index];
         innerResponse = analyzeFilterSpecGraphVertex({
@@ -35,21 +38,24 @@
           errors.unshift(innerResponse.error);
           break;
         }
+        discriminatorScript.push(innerResponse.result);
         index++;
       }
       if (errors.length) {
         break;
       }
-      response.result = request_;
+      response.result = discriminatorScript;
     }
     if (errors.length) {
       response.error = errors.join(" ");
     }
+    console.log("Choice Sets:");
+    console.log(JSON.stringify(response, void 0, 4) + "\n\n");
     return response;
   };
 
   analyzeFilterSpecGraphVertex = function(request_) {
-    var errors, inBreakScope, response, uprop;
+    var choices, errors, inBreakScope, outEdges, response, uprop;
     response = {
       error: null,
       result: null
@@ -59,13 +65,40 @@
     while (!inBreakScope) {
       inBreakScope = true;
       uprop = request_.digraph.getVertexProperty(request_.vertex);
-      console.log(uprop.color + " '" + request_.vertex + "'");
-      if (uprop.color === "gold") {
-        break;
-      }
-      if (uprop.color !== "green") {
-        errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
-        break;
+      switch (uprop.color) {
+        case "gold":
+          response.result = {
+            truth: {
+              filterID: uprop.filters[0],
+              filterSpecPath: uprop.filterSpecPath,
+              typeConstraint: uprop.typeConstraint
+            }
+          };
+          break;
+        case "green":
+          choices = {};
+          outEdges = request_.digraph.outEdges(request_.vertex);
+          outEdges.forEach(function(edge_) {
+            var choiceKey, vprop;
+            vprop = request_.digraph.getVertexProperty(edge_.v);
+            choiceKey = vprop.filters.join(":") + ":" + vprop.filterSpecPath;
+            if (!((choices[choiceKey] != null) && choices[choiceKey])) {
+              choices[choiceKey] = {
+                disambiguate: {
+                  typeConstraints: [],
+                  filterSpecPath: vprop.filterSpecPath
+                }
+              };
+            }
+            return choices[choiceKey].disambiguate.typeConstraints.push(vprop.typeConstraint);
+          });
+          response.result = {
+            disambiguate: choices
+          };
+          break;
+        default:
+          errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
+          break;
       }
       break;
     }
