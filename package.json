@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "stillwater",
+  "name": "arc_master",
   "version": "0.0.4",
-  "codename": "colorbook",
+  "codename": "stillwater",
   "description": "Encapsule.io ARC protocol master repository.",
   "main": "index.js",
   "scripts": {

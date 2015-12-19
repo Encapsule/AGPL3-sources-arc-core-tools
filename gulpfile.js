@@ -15,7 +15,7 @@ var path = require('path');
 var genPackageManifest = require('./PROJECT/generate_dist_package_manifest');
 var genPackageREADME = require('./PROJECT/generate_dist_package_README');
 
-gulp.task('tagbuild', function() {
+gulp.task('tagbuild', [ "copyjs" ], function(callback_) {
     console.log("tagbuild...");
     var identifier = require('./BUILD/arccore/arc_core_identifier');
     var util = require('./BUILD/arccore/arc_core_util');
@@ -64,9 +64,10 @@ gulp.task('tagbuild', function() {
 	path.join(process.cwd(), './BUILD/arctools/README.md'),
 	genPackageREADME(arctoolsDescriptor)
     );
+    callback_();
 });
 
-gulp.task('coffee', function() {
+gulp.task('coffee', function(callback_) {
     console.log("coffee...");
     gulp.src('./SOURCES/core/*.coffee')
         .pipe(coffeelint()).pipe(coffeelint.reporter())
@@ -96,20 +97,26 @@ gulp.task('coffee', function() {
         .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/arccore/'))
-
+    callback_();
 });
 
-gulp.task('copyjs', function() {
+gulp.task('copyjs', [ "copyjs_graph", "copyjs_tools" ], function(callback_) {
     console.log("copyjs...");
-    gulp.src('./SOURCES/core/graph/*.js')
-	.pipe(gulp.dest('./BUILD/arccore/'));
-    gulp.src('./SOURCES/tools/*.js')
-        .pipe(gulp.dest('./BUILD/arctools/'));
+    callback_();
 });
 
-gulp.task("baseBuild", [ "copyjs", "coffee" ], function() {
-    console.log("baseBuild...");
+gulp.task('copyjs_graph', function() {
+    console.log("copyjs_graph");
+    return gulp.src('./SOURCES/core/graph/*.js').pipe(gulp.dest('./BUILD/arccore/'));
+});
 
+gulp.task('copyjs_tools', function() {
+    console.log("copyjs_tools");
+    return gulp.src('./SOURCES/tools/*.js').pipe(gulp.dest('./BUILD/arctools/'));
+});
+
+gulp.task("baseBuild", [ "copyjs", "coffee", "tagbuild" ], function() {
+    console.log("baseBuild...");
 });
 
 gulp.task("test", [ "baseBuild" ], function() {
@@ -168,7 +175,7 @@ gulp.task("compress", [ "compress_arctools" ], function() {
 
 
 
-gulp.task("stage", [ "compress" ], function() {
+gulp.task("stage", [ "compress" ], function(callback_) {
     // arccore
     gulp.src('package.json', { cwd: './BUILD/arccore' })
         .pipe(gulp.dest('./STAGE/arccore'));
@@ -187,6 +194,7 @@ gulp.task("stage", [ "compress" ], function() {
         .pipe(gulp.dest('./STAGE/arctools'));
     gulp.src('arc_tools_project.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+    callback_();
 });
 
 gulp.task("publish", function() {

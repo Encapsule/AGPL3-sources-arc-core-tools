@@ -1,9 +1,9 @@
 {
     "name": "arccore",
     "version": "0.0.4",
-    "codename": "colorbook",
-    "buildID": "3xrcdlNQTCih9AWv0n_woQ",
-    "buildTime": 1450518698,
+    "codename": "stillwater",
+    "buildID": "Hi1Iq9ngQwOWOiMcGrhdvw",
+    "buildTime": 1450568214,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arccore.git"

@@ -2413,7 +2413,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "3xrcdlNQTCih9AWv0n_woQ", buildTime: "1450518698"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "Hi1Iq9ngQwOWOiMcGrhdvw", buildTime: "1450568214"};
 
 /***/ },
 /* 21 */
