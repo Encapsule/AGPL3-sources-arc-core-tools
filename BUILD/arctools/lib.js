@@ -3194,7 +3194,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "Y0ir-3evSCWRyyD9FYGpiQ", buildTime: "1450513115"};
+		module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "3xrcdlNQTCih9AWv0n_woQ", buildTime: "1450518698"};
 
 	/***/ },
 	/* 21 */
@@ -7039,15 +7039,15 @@ module.exports =
 	/***/ function(module, exports, __webpack_require__) {
 
 		(function() {
-		  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceDiscriminationChoiceSets, filterlibResponse, partitionAndColorGraphByAmbiguity;
+		  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, partitionAndColorMergedModelByAmbiguity;
 
 		  FILTERLIB = __webpack_require__(1);
 
-		  buildMergedFilterSpecDigraphModel = __webpack_require__(51);
+		  buildMergedFilterSpecDigraphModel = __webpack_require__(50);
 
-		  partitionAndColorGraphByAmbiguity = __webpack_require__(49);
+		  partitionAndColorMergedModelByAmbiguity = __webpack_require__(49);
 
-		  deduceDiscriminationChoiceSets = __webpack_require__(50);
+		  deduceRuntimeParseDigraphFromAmbiguityColoring = __webpack_require__(51);
 
 		  filterlibResponse = FILTERLIB.create({
 		    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -7064,7 +7064,7 @@ module.exports =
 		      }
 		    },
 		    bodyFunction: function(request_) {
-		      var errors, exclusionSetModel, inBreakScope, innerResponse, mergedFilterSpecGraphModel, response;
+		      var ambiguityModel, errors, inBreakScope, innerResponse, mergedFilterSpecDigraphModel, response;
 		      response = {
 		        error: null,
 		        result: null
@@ -7079,29 +7079,29 @@ module.exports =
 		          errors.unshift(innerResponse.error);
 		          break;
 		        }
-		        mergedFilterSpecGraphModel = innerResponse.result;
-		        console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
+		        mergedFilterSpecDigraphModel = innerResponse.result;
+		        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
 		        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-		        innerResponse = partitionAndColorGraphByAmbiguity(mergedFilterSpecGraphModel.digraph);
-		        console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
+		        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedFilterSpecDigraphModel.digraph);
+		        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
 		        if (innerResponse.error) {
 		          errors.unshift(innerResponse.error);
 		          errors.unshift("Internal error analyzing input filter array: ");
 		          break;
 		        }
-		        exclusionSetModel = innerResponse.result;
-		        exclusionSetModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
+		        ambiguityModel = innerResponse.result;
+		        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
 		          return errors.push(error_);
 		        });
 		        if (errors.length) {
 		          break;
 		        }
-		        innerResponse = deduceDiscriminationChoiceSets(exclusionSetModel);
+		        innerResponse = deduceRuntimeParseDigraphFromAmbiguityColoring(ambiguityModel);
 		        if (innerResponse.error) {
 		          errors.unshift(innerResponse.error);
 		          break;
 		        }
-		        response.result = exclusionSetModel;
+		        response.result = ambiguityModel;
 		        break;
 		      }
 		      if (errors.length) {
@@ -7274,123 +7274,6 @@ module.exports =
 	/***/ function(module, exports, __webpack_require__) {
 
 		(function() {
-		  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
-
-		  UTILLIB = __webpack_require__(9);
-
-		  IDLIB = __webpack_require__(2);
-
-		  buildDiscriminatorChoiceSets = module.exports = function(request_) {
-		    var discriminatorScript, errors, inBreakScope, index, innerResponse, response, uprop, vertex;
-		    response = {
-		      error: null,
-		      result: null
-		    };
-		    errors = [];
-		    inBreakScope = false;
-		    index = 0;
-		    vertex = null;
-		    while (!inBreakScope) {
-		      inBreakScope = true;
-		      uprop = request_.digraph.getVertexProperty("request");
-		      if (uprop.color === "gold") {
-		        if (request_.digraph.outDegree("request")) {
-		          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model containing only one filter spec.");
-		          break;
-		        } else {
-		          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model because it's null.");
-		          break;
-		        }
-		      }
-		      discriminatorScript = [];
-		      while (index < request_.bfsVertices.length) {
-		        vertex = request_.bfsVertices[index];
-		        innerResponse = analyzeFilterSpecGraphVertex({
-		          digraph: request_.digraph,
-		          vertex: vertex
-		        });
-		        if (innerResponse.error) {
-		          errors.unshift(innerResponse.error);
-		          break;
-		        }
-		        discriminatorScript.push(innerResponse.result);
-		        index++;
-		      }
-		      if (errors.length) {
-		        break;
-		      }
-		      response.result = discriminatorScript;
-		    }
-		    if (errors.length) {
-		      response.error = errors.join(" ");
-		    }
-		    console.log("Choice Sets:");
-		    console.log(JSON.stringify(response, void 0, 4) + "\n\n");
-		    return response;
-		  };
-
-		  analyzeFilterSpecGraphVertex = function(request_) {
-		    var choices, errors, inBreakScope, outEdges, response, uprop;
-		    response = {
-		      error: null,
-		      result: null
-		    };
-		    errors = [];
-		    inBreakScope = false;
-		    while (!inBreakScope) {
-		      inBreakScope = true;
-		      uprop = request_.digraph.getVertexProperty(request_.vertex);
-		      switch (uprop.color) {
-		        case "gold":
-		          response.result = {
-		            truth: {
-		              filterID: uprop.filters[0],
-		              filterSpecPath: uprop.filterSpecPath,
-		              typeConstraint: uprop.typeConstraint
-		            }
-		          };
-		          break;
-		        case "green":
-		          choices = {};
-		          outEdges = request_.digraph.outEdges(request_.vertex);
-		          outEdges.forEach(function(edge_) {
-		            var choiceKey, vprop;
-		            vprop = request_.digraph.getVertexProperty(edge_.v);
-		            choiceKey = vprop.filters.join(":") + ":" + vprop.filterSpecPath;
-		            if (!((choices[choiceKey] != null) && choices[choiceKey])) {
-		              choices[choiceKey] = {
-		                disambiguate: {
-		                  typeConstraints: [],
-		                  filterSpecPath: vprop.filterSpecPath
-		                }
-		              };
-		            }
-		            return choices[choiceKey].disambiguate.typeConstraints.push(vprop.typeConstraint);
-		          });
-		          response.result = {
-		            disambiguate: choices
-		          };
-		          break;
-		        default:
-		          errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
-		          break;
-		      }
-		      break;
-		    }
-		    if (errors.length) {
-		      response.error = errors.join(" ");
-		    }
-		    return response;
-		  };
-
-		}).call(this);
-
-
-	/***/ },
-	/* 51 */
-	/***/ function(module, exports, __webpack_require__) {
-
-		(function() {
 		  var FILTERLIB, GRAPHLIB, UTILLIB, addFilterSpecToMergedDigraphModel, buildMergedFilterSpecDigraphModel, rootVertex;
 
 		  UTILLIB = __webpack_require__(9);
@@ -7554,6 +7437,123 @@ module.exports =
 		          }
 		        }
 		      }
+		    }
+		    return response;
+		  };
+
+		}).call(this);
+
+
+	/***/ },
+	/* 51 */
+	/***/ function(module, exports, __webpack_require__) {
+
+		(function() {
+		  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
+
+		  UTILLIB = __webpack_require__(9);
+
+		  IDLIB = __webpack_require__(2);
+
+		  buildDiscriminatorChoiceSets = module.exports = function(request_) {
+		    var discriminatorScript, errors, inBreakScope, index, innerResponse, response, uprop, vertex;
+		    response = {
+		      error: null,
+		      result: null
+		    };
+		    errors = [];
+		    inBreakScope = false;
+		    index = 0;
+		    vertex = null;
+		    while (!inBreakScope) {
+		      inBreakScope = true;
+		      uprop = request_.digraph.getVertexProperty("request");
+		      if (uprop.color === "gold") {
+		        if (request_.digraph.outDegree("request")) {
+		          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model containing only one filter spec.");
+		          break;
+		        } else {
+		          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model because it's null.");
+		          break;
+		        }
+		      }
+		      discriminatorScript = [];
+		      while (index < request_.bfsVertices.length) {
+		        vertex = request_.bfsVertices[index];
+		        innerResponse = analyzeFilterSpecGraphVertex({
+		          digraph: request_.digraph,
+		          vertex: vertex
+		        });
+		        if (innerResponse.error) {
+		          errors.unshift(innerResponse.error);
+		          break;
+		        }
+		        discriminatorScript.push(innerResponse.result);
+		        index++;
+		      }
+		      if (errors.length) {
+		        break;
+		      }
+		      response.result = discriminatorScript;
+		    }
+		    if (errors.length) {
+		      response.error = errors.join(" ");
+		    }
+		    console.log("Choice Sets:");
+		    console.log(JSON.stringify(response, void 0, 4) + "\n\n");
+		    return response;
+		  };
+
+		  analyzeFilterSpecGraphVertex = function(request_) {
+		    var choices, errors, inBreakScope, outEdges, response, uprop;
+		    response = {
+		      error: null,
+		      result: null
+		    };
+		    errors = [];
+		    inBreakScope = false;
+		    while (!inBreakScope) {
+		      inBreakScope = true;
+		      uprop = request_.digraph.getVertexProperty(request_.vertex);
+		      switch (uprop.color) {
+		        case "gold":
+		          response.result = {
+		            truth: {
+		              filterID: uprop.filters[0],
+		              filterSpecPath: uprop.filterSpecPath,
+		              typeConstraint: uprop.typeConstraint
+		            }
+		          };
+		          break;
+		        case "green":
+		          choices = {};
+		          outEdges = request_.digraph.outEdges(request_.vertex);
+		          outEdges.forEach(function(edge_) {
+		            var choiceKey, vprop;
+		            vprop = request_.digraph.getVertexProperty(edge_.v);
+		            choiceKey = vprop.filters.join(":") + ":" + vprop.filterSpecPath;
+		            if (!((choices[choiceKey] != null) && choices[choiceKey])) {
+		              choices[choiceKey] = {
+		                disambiguate: {
+		                  typeConstraints: [],
+		                  filterSpecPath: vprop.filterSpecPath
+		                }
+		              };
+		            }
+		            return choices[choiceKey].disambiguate.typeConstraints.push(vprop.typeConstraint);
+		          });
+		          response.result = {
+		            disambiguate: choices
+		          };
+		          break;
+		        default:
+		          errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
+		          break;
+		      }
+		      break;
+		    }
+		    if (errors.length) {
+		      response.error = errors.join(" ");
 		    }
 		    return response;
 		  };
@@ -9322,7 +9322,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "l6mZ_8BLSxa26ey817H3cw", buildTime: "1450513657"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "3xrcdlNQTCih9AWv0n_woQ", buildTime: "1450518698"};
 
 /***/ },
 /* 24 */
@@ -9652,7 +9652,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "l6mZ_8BLSxa26ey817H3cw", buildTime: "1450513657"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "3xrcdlNQTCih9AWv0n_woQ", buildTime: "1450518698"};
 
 /***/ },
 /* 29 */
@@ -13555,15 +13555,15 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceDiscriminationChoiceSets, filterlibResponse, partitionAndColorGraphByAmbiguity;
+	  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, partitionAndColorMergedModelByAmbiguity;
 
 	  FILTERLIB = __webpack_require__(1);
 
-	  buildMergedFilterSpecDigraphModel = __webpack_require__(60);
+	  buildMergedFilterSpecDigraphModel = __webpack_require__(59);
 
-	  partitionAndColorGraphByAmbiguity = __webpack_require__(58);
+	  partitionAndColorMergedModelByAmbiguity = __webpack_require__(58);
 
-	  deduceDiscriminationChoiceSets = __webpack_require__(59);
+	  deduceRuntimeParseDigraphFromAmbiguityColoring = __webpack_require__(60);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -13580,7 +13580,7 @@ module.exports =
 	      }
 	    },
 	    bodyFunction: function(request_) {
-	      var errors, exclusionSetModel, inBreakScope, innerResponse, mergedFilterSpecGraphModel, response;
+	      var ambiguityModel, errors, inBreakScope, innerResponse, mergedFilterSpecDigraphModel, response;
 	      response = {
 	        error: null,
 	        result: null
@@ -13595,29 +13595,29 @@ module.exports =
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
-	        mergedFilterSpecGraphModel = innerResponse.result;
-	        console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
+	        mergedFilterSpecDigraphModel = innerResponse.result;
+	        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
 	        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-	        innerResponse = partitionAndColorGraphByAmbiguity(mergedFilterSpecGraphModel.digraph);
-	        console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
+	        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedFilterSpecDigraphModel.digraph);
+	        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          errors.unshift("Internal error analyzing input filter array: ");
 	          break;
 	        }
-	        exclusionSetModel = innerResponse.result;
-	        exclusionSetModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
+	        ambiguityModel = innerResponse.result;
+	        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
 	          return errors.push(error_);
 	        });
 	        if (errors.length) {
 	          break;
 	        }
-	        innerResponse = deduceDiscriminationChoiceSets(exclusionSetModel);
+	        innerResponse = deduceRuntimeParseDigraphFromAmbiguityColoring(ambiguityModel);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
-	        response.result = exclusionSetModel;
+	        response.result = ambiguityModel;
 	        break;
 	      }
 	      if (errors.length) {
@@ -13790,123 +13790,6 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
-
-	  UTILLIB = __webpack_require__(10);
-
-	  IDLIB = __webpack_require__(2);
-
-	  buildDiscriminatorChoiceSets = module.exports = function(request_) {
-	    var discriminatorScript, errors, inBreakScope, index, innerResponse, response, uprop, vertex;
-	    response = {
-	      error: null,
-	      result: null
-	    };
-	    errors = [];
-	    inBreakScope = false;
-	    index = 0;
-	    vertex = null;
-	    while (!inBreakScope) {
-	      inBreakScope = true;
-	      uprop = request_.digraph.getVertexProperty("request");
-	      if (uprop.color === "gold") {
-	        if (request_.digraph.outDegree("request")) {
-	          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model containing only one filter spec.");
-	          break;
-	        } else {
-	          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model because it's null.");
-	          break;
-	        }
-	      }
-	      discriminatorScript = [];
-	      while (index < request_.bfsVertices.length) {
-	        vertex = request_.bfsVertices[index];
-	        innerResponse = analyzeFilterSpecGraphVertex({
-	          digraph: request_.digraph,
-	          vertex: vertex
-	        });
-	        if (innerResponse.error) {
-	          errors.unshift(innerResponse.error);
-	          break;
-	        }
-	        discriminatorScript.push(innerResponse.result);
-	        index++;
-	      }
-	      if (errors.length) {
-	        break;
-	      }
-	      response.result = discriminatorScript;
-	    }
-	    if (errors.length) {
-	      response.error = errors.join(" ");
-	    }
-	    console.log("Choice Sets:");
-	    console.log(JSON.stringify(response, void 0, 4) + "\n\n");
-	    return response;
-	  };
-
-	  analyzeFilterSpecGraphVertex = function(request_) {
-	    var choices, errors, inBreakScope, outEdges, response, uprop;
-	    response = {
-	      error: null,
-	      result: null
-	    };
-	    errors = [];
-	    inBreakScope = false;
-	    while (!inBreakScope) {
-	      inBreakScope = true;
-	      uprop = request_.digraph.getVertexProperty(request_.vertex);
-	      switch (uprop.color) {
-	        case "gold":
-	          response.result = {
-	            truth: {
-	              filterID: uprop.filters[0],
-	              filterSpecPath: uprop.filterSpecPath,
-	              typeConstraint: uprop.typeConstraint
-	            }
-	          };
-	          break;
-	        case "green":
-	          choices = {};
-	          outEdges = request_.digraph.outEdges(request_.vertex);
-	          outEdges.forEach(function(edge_) {
-	            var choiceKey, vprop;
-	            vprop = request_.digraph.getVertexProperty(edge_.v);
-	            choiceKey = vprop.filters.join(":") + ":" + vprop.filterSpecPath;
-	            if (!((choices[choiceKey] != null) && choices[choiceKey])) {
-	              choices[choiceKey] = {
-	                disambiguate: {
-	                  typeConstraints: [],
-	                  filterSpecPath: vprop.filterSpecPath
-	                }
-	              };
-	            }
-	            return choices[choiceKey].disambiguate.typeConstraints.push(vprop.typeConstraint);
-	          });
-	          response.result = {
-	            disambiguate: choices
-	          };
-	          break;
-	        default:
-	          errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
-	          break;
-	      }
-	      break;
-	    }
-	    if (errors.length) {
-	      response.error = errors.join(" ");
-	    }
-	    return response;
-	  };
-
-	}).call(this);
-
-
-/***/ },
-/* 60 */
-/***/ function(module, exports, __webpack_require__) {
-
-	(function() {
 	  var FILTERLIB, GRAPHLIB, UTILLIB, addFilterSpecToMergedDigraphModel, buildMergedFilterSpecDigraphModel, rootVertex;
 
 	  UTILLIB = __webpack_require__(10);
@@ -14070,6 +13953,123 @@ module.exports =
 	          }
 	        }
 	      }
+	    }
+	    return response;
+	  };
+
+	}).call(this);
+
+
+/***/ },
+/* 60 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
+	  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
+
+	  UTILLIB = __webpack_require__(10);
+
+	  IDLIB = __webpack_require__(2);
+
+	  buildDiscriminatorChoiceSets = module.exports = function(request_) {
+	    var discriminatorScript, errors, inBreakScope, index, innerResponse, response, uprop, vertex;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    index = 0;
+	    vertex = null;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      uprop = request_.digraph.getVertexProperty("request");
+	      if (uprop.color === "gold") {
+	        if (request_.digraph.outDegree("request")) {
+	          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model containing only one filter spec.");
+	          break;
+	        } else {
+	          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model because it's null.");
+	          break;
+	        }
+	      }
+	      discriminatorScript = [];
+	      while (index < request_.bfsVertices.length) {
+	        vertex = request_.bfsVertices[index];
+	        innerResponse = analyzeFilterSpecGraphVertex({
+	          digraph: request_.digraph,
+	          vertex: vertex
+	        });
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        discriminatorScript.push(innerResponse.result);
+	        index++;
+	      }
+	      if (errors.length) {
+	        break;
+	      }
+	      response.result = discriminatorScript;
+	    }
+	    if (errors.length) {
+	      response.error = errors.join(" ");
+	    }
+	    console.log("Choice Sets:");
+	    console.log(JSON.stringify(response, void 0, 4) + "\n\n");
+	    return response;
+	  };
+
+	  analyzeFilterSpecGraphVertex = function(request_) {
+	    var choices, errors, inBreakScope, outEdges, response, uprop;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      uprop = request_.digraph.getVertexProperty(request_.vertex);
+	      switch (uprop.color) {
+	        case "gold":
+	          response.result = {
+	            truth: {
+	              filterID: uprop.filters[0],
+	              filterSpecPath: uprop.filterSpecPath,
+	              typeConstraint: uprop.typeConstraint
+	            }
+	          };
+	          break;
+	        case "green":
+	          choices = {};
+	          outEdges = request_.digraph.outEdges(request_.vertex);
+	          outEdges.forEach(function(edge_) {
+	            var choiceKey, vprop;
+	            vprop = request_.digraph.getVertexProperty(edge_.v);
+	            choiceKey = vprop.filters.join(":") + ":" + vprop.filterSpecPath;
+	            if (!((choices[choiceKey] != null) && choices[choiceKey])) {
+	              choices[choiceKey] = {
+	                disambiguate: {
+	                  typeConstraints: [],
+	                  filterSpecPath: vprop.filterSpecPath
+	                }
+	              };
+	            }
+	            return choices[choiceKey].disambiguate.typeConstraints.push(vprop.typeConstraint);
+	          });
+	          response.result = {
+	            disambiguate: choices
+	          };
+	          break;
+	        default:
+	          errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
+	          break;
+	      }
+	      break;
+	    }
+	    if (errors.length) {
+	      response.error = errors.join(" ");
 	    }
 	    return response;
 	  };

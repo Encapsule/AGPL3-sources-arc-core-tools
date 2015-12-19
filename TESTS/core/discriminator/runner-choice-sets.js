@@ -3,7 +3,7 @@ var assert = require('chai').assert;
 
 var testModule = require('./module-under-test');
 
-var buildDiscriminatorChoiceSets = testModule('arc_core_type_discriminator_choice_sets_digraph');
+var buildDiscriminatorChoiceSets = testModule('arc_core_type_discriminator_runtime_parse_digraph');
 
 /*
   request = {

@@ -1,13 +1,13 @@
 (function() {
-  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceDiscriminationChoiceSets, filterlibResponse, partitionAndColorGraphByAmbiguity;
+  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, partitionAndColorMergedModelByAmbiguity;
 
   FILTERLIB = require('./arc_core_filter');
 
-  buildMergedFilterSpecDigraphModel = require('./arc_core_type_discriminator_filter_spec_digraph');
+  buildMergedFilterSpecDigraphModel = require('./arc_core_type_discriminator_merged_model_digraph');
 
-  partitionAndColorGraphByAmbiguity = require('./arc_core_type_discriminator_ambiguity_detector');
+  partitionAndColorMergedModelByAmbiguity = require('./arc_core_type_discriminator_ambiguity_detector');
 
-  deduceDiscriminationChoiceSets = require('./arc_core_type_discriminator_choice_sets_digraph');
+  deduceRuntimeParseDigraphFromAmbiguityColoring = require('./arc_core_type_discriminator_runtime_parse_digraph');
 
   filterlibResponse = FILTERLIB.create({
     operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -24,7 +24,7 @@
       }
     },
     bodyFunction: function(request_) {
-      var errors, exclusionSetModel, inBreakScope, innerResponse, mergedFilterSpecGraphModel, response;
+      var ambiguityModel, errors, inBreakScope, innerResponse, mergedFilterSpecDigraphModel, response;
       response = {
         error: null,
         result: null
@@ -39,29 +39,29 @@
           errors.unshift(innerResponse.error);
           break;
         }
-        mergedFilterSpecGraphModel = innerResponse.result;
-        console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
+        mergedFilterSpecDigraphModel = innerResponse.result;
+        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
         console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-        innerResponse = partitionAndColorGraphByAmbiguity(mergedFilterSpecGraphModel.digraph);
-        console.log(mergedFilterSpecGraphModel.digraph.toJSON(void 0, 4));
+        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedFilterSpecDigraphModel.digraph);
+        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           errors.unshift("Internal error analyzing input filter array: ");
           break;
         }
-        exclusionSetModel = innerResponse.result;
-        exclusionSetModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
+        ambiguityModel = innerResponse.result;
+        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
           return errors.push(error_);
         });
         if (errors.length) {
           break;
         }
-        innerResponse = deduceDiscriminationChoiceSets(exclusionSetModel);
+        innerResponse = deduceRuntimeParseDigraphFromAmbiguityColoring(ambiguityModel);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;
         }
-        response.result = exclusionSetModel;
+        response.result = ambiguityModel;
         break;
       }
       if (errors.length) {

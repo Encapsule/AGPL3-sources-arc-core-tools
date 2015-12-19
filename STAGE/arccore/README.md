@@ -2,7 +2,7 @@
 
 # Encapsule/arccore v0.0.4 "colorbook"
 
-Build ID "l6mZ_8BLSxa26ey817H3cw" Sat Dec 19 2015 00:27:37 GMT-0800 (PST)
+Build ID "3xrcdlNQTCih9AWv0n_woQ" Sat Dec 19 2015 01:51:38 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

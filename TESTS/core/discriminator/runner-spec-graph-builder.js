@@ -3,7 +3,7 @@ var assert = require('chai').assert;
 
 var testModule = require('./module-under-test');
 
-var specGraphBuilder = testModule('arc_core_type_discriminator_filter_spec_digraph');
+var specGraphBuilder = testModule('arc_core_type_discriminator_merged_model_digraph');
 
 /*
   testVector = {

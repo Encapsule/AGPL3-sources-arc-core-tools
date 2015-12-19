@@ -15,7 +15,7 @@ var path = require('path');
 var genPackageManifest = require('./PROJECT/generate_dist_package_manifest');
 var genPackageREADME = require('./PROJECT/generate_dist_package_README');
 
-gulp.task('tagbuild', [ "coffee" ], function() {
+gulp.task('tagbuild', function() {
     console.log("tagbuild...");
     var identifier = require('./BUILD/arccore/arc_core_identifier');
     var util = require('./BUILD/arccore/arc_core_util');
@@ -107,7 +107,7 @@ gulp.task('copyjs', function() {
         .pipe(gulp.dest('./BUILD/arctools/'));
 });
 
-gulp.task("baseBuild", [ "copyjs", "tagbuild", "coffee" ], function() {
+gulp.task("baseBuild", [ "copyjs", "coffee" ], function() {
     console.log("baseBuild...");
 
 });
@@ -126,7 +126,7 @@ wpconfig_arctools.debug = true;
 var wpcc_arccore = webpack(wpconfig_arccore);
 var wpcc_arctools = webpack(wpconfig_arctools);
 
-gulp.task("webpack_arccore", [ "test" ], function(callback_) {
+gulp.task("webpack_arccore", [ "coffee", "test" ], function(callback_) {
     wpcc_arccore.run(function(err, stats) {
 	if(err) throw new gutil.PluginError("webpack:build-dev", err);
 	gutil.log("[webpack:build-dev]", stats.toString({
@@ -136,7 +136,7 @@ gulp.task("webpack_arccore", [ "test" ], function(callback_) {
     });
 });
 
-gulp.task("webpack_arctools", [ "test" ], function(callback_) {
+gulp.task("webpack_arctools", [ "webpack_arccore" ], function(callback_) {
     wpcc_arctools.run(function(err, stats) {
 	if(err) throw new gutil.PluginError("webpack:build-dev", err);
 	gutil.log("[webpack:build-dev]", stats.toString({

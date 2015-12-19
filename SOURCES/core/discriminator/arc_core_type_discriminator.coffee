@@ -1,9 +1,19 @@
 
 FILTERLIB = require './arc_core_filter'
 
-buildMergedFilterSpecDigraphModel = require './arc_core_type_discriminator_filter_spec_digraph'
-partitionAndColorGraphByAmbiguity = require './arc_core_type_discriminator_ambiguity_detector'
-deduceDiscriminationChoiceSets = require './arc_core_type_discriminator_choice_sets_digraph'
+# --------------------------------------------------------------------------
+# Internal algorithm implementation.
+
+buildMergedFilterSpecDigraphModel =
+    require './arc_core_type_discriminator_merged_model_digraph'
+
+partitionAndColorMergedModelByAmbiguity =
+    require './arc_core_type_discriminator_ambiguity_detector'
+
+deduceRuntimeParseDigraphFromAmbiguityColoring =
+    require './arc_core_type_discriminator_runtime_parse_digraph'
+
+# --------------------------------------------------------------------------
 
 filterlibResponse = FILTERLIB.create
 
@@ -32,31 +42,31 @@ filterlibResponse = FILTERLIB.create
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
-            mergedFilterSpecGraphModel = innerResponse.result
-            console.log mergedFilterSpecGraphModel.digraph.toJSON(undefined, 4)
+            mergedFilterSpecDigraphModel = innerResponse.result
+            console.log mergedFilterSpecDigraphModel.digraph.toJSON(undefined, 4)
 
             console.log "STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY"
-            innerResponse = partitionAndColorGraphByAmbiguity mergedFilterSpecGraphModel.digraph
-            console.log mergedFilterSpecGraphModel.digraph.toJSON(undefined, 4)
+            innerResponse = partitionAndColorMergedModelByAmbiguity mergedFilterSpecDigraphModel.digraph
+            console.log mergedFilterSpecDigraphModel.digraph.toJSON(undefined, 4)
 
             if innerResponse.error
                 errors.unshift innerResponse.error
                 errors.unshift "Internal error analyzing input filter array: "
                 break
 
-            exclusionSetModel = innerResponse.result
+            ambiguityModel = innerResponse.result
 
             # Exit with error if the input filter set cannot be discriminated.
-            exclusionSetModel.ambiguousFilterSpecificationErrors.forEach (error_) -> errors.push error_
+            ambiguityModel.ambiguousFilterSpecificationErrors.forEach (error_) -> errors.push error_
             if errors.length
                 break
 
-            innerResponse = deduceDiscriminationChoiceSets exclusionSetModel
+            innerResponse = deduceRuntimeParseDigraphFromAmbiguityColoring ambiguityModel
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
 
-            response.result = exclusionSetModel
+            response.result = ambiguityModel
             break
 
         if errors.length
