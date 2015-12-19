@@ -119,6 +119,9 @@
         ambiguousBlackVertices.sort();
         ambiguousBlackVertices.forEach(function(vertex_) {
           var message, vertexProperty;
+          if (vertex_ === "request") {
+            return;
+          }
           vertexProperty = digraph_.getVertexProperty(vertex_);
           message = "Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.";
           return response.result.ambiguousFilterSpecificationErrors.push(message);

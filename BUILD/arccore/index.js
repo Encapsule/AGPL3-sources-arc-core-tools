@@ -2413,7 +2413,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "UU33N-ctRp2QAD1GKaHoAg", buildTime: "1450498058"};
+	module.exports = { version: "0.0.4", codename: "colorbook", author: "Encapsule", buildID: "l6mZ_8BLSxa26ey817H3cw", buildTime: "1450513657"};
 
 /***/ },
 /* 21 */
@@ -6469,6 +6469,9 @@ module.exports =
 	        ambiguousBlackVertices.sort();
 	        ambiguousBlackVertices.forEach(function(vertex_) {
 	          var message, vertexProperty;
+	          if (vertex_ === "request") {
+	            return;
+	          }
 	          vertexProperty = digraph_.getVertexProperty(vertex_);
 	          message = "Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.";
 	          return response.result.ambiguousFilterSpecificationErrors.push(message);

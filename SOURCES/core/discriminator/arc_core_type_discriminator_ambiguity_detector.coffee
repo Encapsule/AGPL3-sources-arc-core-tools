@@ -9,7 +9,7 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
     while not inBreakScope
         inBreakScope = true
         bfsVertices = []
-        rbfsVertices = []
+        rbfsVertices = [] # this was for the result but I think not necessary
         ambiguousBlackVertices = []
 
         # ROOT TO LEAVES COLORING (relatively simple)
@@ -104,10 +104,6 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
 
             digraph_.setVertexProperty { u: vertex, p: uprop }
 
-        # We cannot uniquely discriminate between filters whose input filter specifications
-        # contain overlapping request structures that terminate at the leaf node of any of
-        # the consituent filter's contributions to the merged filter spec digraph model.
-
         response.result =
             digraph: digraph_
             ambigousBlackVertices: ambiguousBlackVertices
@@ -115,9 +111,18 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
             bfsVertices: bfsVertices
             rbfsVertices: rbfsVertices
 
+        # We cannot uniquely discriminate between filters whose input filter specifications
+        # contain overlapping request structures that terminate at the leaf node of any of
+        # the consituent filter's contributions to the merged filter spec digraph model.
+        # Note that this algorithm does not return an error if asked to analyze an ambiguous
+        # exclusion set model (the input digraph model that's initially white). Rather errors
+        # are reserved for non-routine problems.
+
         if ambiguousBlackVertices.length
             ambiguousBlackVertices.sort()
             ambiguousBlackVertices.forEach (vertex_) ->
+                if vertex_ == "request"
+                    return
                 vertexProperty = digraph_.getVertexProperty vertex_
                 message = "Filters [#{vertexProperty.filters.join(" and ")}] overlap ambiguously at filter spec node '#{vertex_}'."
                 response.result.ambiguousFilterSpecificationErrors.push message
