@@ -13,6 +13,9 @@ partitionAndColorMergedModelByAmbiguity =
 deduceRuntimeParseDigraphFromAmbiguityColoring =
     require './arc_core_type_discriminator_runtime_parse_digraph'
 
+generateDiscriminatorFilterRuntime =
+    require './arc_core_type_discriminator_runtime'
+
 # --------------------------------------------------------------------------
 
 filterlibResponse = FILTERLIB.create
@@ -42,21 +45,23 @@ filterlibResponse = FILTERLIB.create
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
-            mergedFilterSpecDigraphModel = innerResponse.result
-            console.log mergedFilterSpecDigraphModel.digraph.toJSON(undefined, 4)
+            mergedModel = innerResponse.result
+            console.log mergedModel.digraph.toJSON(undefined, 4)
 
             console.log "STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY"
-            innerResponse = partitionAndColorMergedModelByAmbiguity mergedFilterSpecDigraphModel.digraph
-            console.log mergedFilterSpecDigraphModel.digraph.toJSON(undefined, 4)
+            innerResponse = partitionAndColorMergedModelByAmbiguity mergedModel.digraph
 
             if innerResponse.error
                 errors.unshift innerResponse.error
                 errors.unshift "Internal error analyzing input filter array: "
                 break
-
             ambiguityModel = innerResponse.result
 
+            console.log ambiguityModel.digraph.toJSON(undefined, 4)
+
             # Exit with error if the input filter set cannot be discriminated.
+            # Note that we may relax this policy enforcement later with an options object flag.
+
             ambiguityModel.ambiguousFilterSpecificationErrors.forEach (error_) -> errors.push error_
             if errors.length
                 break
@@ -66,7 +71,17 @@ filterlibResponse = FILTERLIB.create
                 errors.unshift innerResponse.error
                 break
 
-            response.result = ambiguityModel
+            runtimeModel = innerResponse.result
+
+            innerResponse = generateDiscriminatorFilterRuntime runtimeParseGraph
+            if innerResponse.error
+                errors.unshift innerResponse.error
+                break
+
+            runtimeFilter = innerResponse.result
+
+            response.result = runtimeFilter
+
             break
 
         if errors.length

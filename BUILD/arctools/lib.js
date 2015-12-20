@@ -47,14 +47,14 @@ module.exports =
 
 	module.exports = {
 	    meta: __webpack_require__(23),
-	    commander: __webpack_require__(68),
+	    commander: __webpack_require__(70),
 	    chalk: __webpack_require__(14),
 	    arccore: __webpack_require__(29),
-	    fileDirEnumSync: __webpack_require__(62),
-	    jsrcFileLoaderSync: __webpack_require__(64),
-	    stringToFileSync: __webpack_require__(65),
-	    filterdagSpecLoader: __webpack_require__(63),
-	    createToolBanner: __webpack_require__(66),
+	    fileDirEnumSync: __webpack_require__(63),
+	    jsrcFileLoaderSync: __webpack_require__(65),
+	    stringToFileSync: __webpack_require__(66),
+	    filterdagSpecLoader: __webpack_require__(64),
+	    createToolBanner: __webpack_require__(67),
 	    clistyles: __webpack_require__(24)
 	};
 
@@ -524,7 +524,7 @@ module.exports =
 
 	  jbus.common.types.convert = __webpack_require__(21);
 
-	  jbus.common.types.check = __webpack_require__(61);
+	  jbus.common.types.check = __webpack_require__(62);
 
 	}).call(this);
 
@@ -1345,7 +1345,7 @@ module.exports =
 
 		  jbus.common.types.convert = __webpack_require__(17);
 
-		  jbus.common.types.check = __webpack_require__(52);
+		  jbus.common.types.check = __webpack_require__(53);
 
 		}).call(this);
 
@@ -1648,8 +1648,8 @@ module.exports =
 	/* 11 */
 	/***/ function(module, exports, __webpack_require__) {
 
-		var murmur3 = __webpack_require__(54)
-		var murmur2 = __webpack_require__(53)
+		var murmur3 = __webpack_require__(55)
+		var murmur2 = __webpack_require__(54)
 
 		module.exports = murmur3
 		module.exports.murmur3 = murmur3
@@ -2974,7 +2974,7 @@ module.exports =
 		    // Moderately fast, high quality
 		    if (true) {
 		      try {
-		        var _rb = __webpack_require__(55).randomBytes;
+		        var _rb = __webpack_require__(56).randomBytes;
 		        _nodeRNG = _rng = _rb && function() {return _rb(16);};
 		        _rng();
 		      } catch(e) {}
@@ -3194,7 +3194,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "Hi1Iq9ngQwOWOiMcGrhdvw", buildTime: "1450568214"};
+		module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "MMsoC7piS_KIBd8sJbZnzg", buildTime: "1450647200"};
 
 	/***/ },
 	/* 21 */
@@ -7039,7 +7039,7 @@ module.exports =
 	/***/ function(module, exports, __webpack_require__) {
 
 		(function() {
-		  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, partitionAndColorMergedModelByAmbiguity;
+		  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, generateDiscriminatorFilterRuntime, partitionAndColorMergedModelByAmbiguity;
 
 		  FILTERLIB = __webpack_require__(1);
 
@@ -7047,7 +7047,9 @@ module.exports =
 
 		  partitionAndColorMergedModelByAmbiguity = __webpack_require__(49);
 
-		  deduceRuntimeParseDigraphFromAmbiguityColoring = __webpack_require__(51);
+		  deduceRuntimeParseDigraphFromAmbiguityColoring = __webpack_require__(52);
+
+		  generateDiscriminatorFilterRuntime = __webpack_require__(51);
 
 		  filterlibResponse = FILTERLIB.create({
 		    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -7064,7 +7066,7 @@ module.exports =
 		      }
 		    },
 		    bodyFunction: function(request_) {
-		      var ambiguityModel, errors, inBreakScope, innerResponse, mergedFilterSpecDigraphModel, response;
+		      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeModel;
 		      response = {
 		        error: null,
 		        result: null
@@ -7079,17 +7081,17 @@ module.exports =
 		          errors.unshift(innerResponse.error);
 		          break;
 		        }
-		        mergedFilterSpecDigraphModel = innerResponse.result;
-		        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
+		        mergedModel = innerResponse.result;
+		        console.log(mergedModel.digraph.toJSON(void 0, 4));
 		        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-		        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedFilterSpecDigraphModel.digraph);
-		        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
+		        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedModel.digraph);
 		        if (innerResponse.error) {
 		          errors.unshift(innerResponse.error);
 		          errors.unshift("Internal error analyzing input filter array: ");
 		          break;
 		        }
 		        ambiguityModel = innerResponse.result;
+		        console.log(ambiguityModel.digraph.toJSON(void 0, 4));
 		        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
 		          return errors.push(error_);
 		        });
@@ -7101,7 +7103,14 @@ module.exports =
 		          errors.unshift(innerResponse.error);
 		          break;
 		        }
-		        response.result = ambiguityModel;
+		        runtimeModel = innerResponse.result;
+		        innerResponse = generateDiscriminatorFilterRuntime(runtimeParseGraph);
+		        if (innerResponse.error) {
+		          errors.unshift(innerResponse.error);
+		          break;
+		        }
+		        runtimeFilter = innerResponse.result;
+		        response.result = runtimeFilter;
 		        break;
 		      }
 		      if (errors.length) {
@@ -7136,8 +7145,8 @@ module.exports =
 
 		  UTILLIB = __webpack_require__(9);
 
-		  partitionAndColorGraphByAmbiguity = module.exports = function(digraph_) {
-		    var allFilters, ambiguousBlackVertices, bfsResponse, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
+		  partitionAndColorGraphByAmbiguity = module.exports = function(mergedModelDigraph_) {
+		    var allFilters, ambiguityModelDigraph, ambiguousBlackVertices, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, innerResponse, outEdges, rbfsVertices, response, uprop, vertex;
 		    response = {
 		      error: null,
 		      result: null
@@ -7149,8 +7158,14 @@ module.exports =
 		      bfsVertices = [];
 		      rbfsVertices = [];
 		      ambiguousBlackVertices = [];
-		      bfsResponse = GRAPHLIB.directed.breadthFirstTraverse({
-		        digraph: digraph_,
+		      innerResponse = GRAPHLIB.directed.create(mergedModelDigraph_.toJSON());
+		      if (innerResponse.error) {
+		        errors.unshift(innerResponse.error);
+		        break;
+		      }
+		      ambiguityModelDigraph = innerResponse.result;
+		      innerResponse = GRAPHLIB.directed.breadthFirstTraverse({
+		        digraph: ambiguityModelDigraph,
 		        visitor: {
 		          discoverVertex: function(grequest_) {
 		            var uprop;
@@ -7175,16 +7190,16 @@ module.exports =
 		          }
 		        }
 		      });
-		      if (bfsResponse.error) {
-		        errors.unshift(bfsResponse.error);
+		      if (innerResponse.error) {
+		        errors.unshift(innerResponse.error);
 		        errors.unshift("Error during BFS of merged filter specification graph.");
 		        break;
 		      }
-		      if (!bfsResponse.result.searchStatus === "completed") {
+		      if (!innerResponse.result.searchStatus === "completed") {
 		        errors.unshift("BFS of merged filter specification graph did not complete as expected.");
 		        break;
 		      }
-		      if (UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)) {
+		      if (UTILLIB.dictionaryLength(innerResponse.result.undiscoveredMap)) {
 		        errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
 		        break;
 		      }
@@ -7196,17 +7211,17 @@ module.exports =
 		      index = 0;
 		      while (index < rbfsVertices.length) {
 		        vertex = rbfsVertices[index++];
-		        uprop = digraph_.getVertexProperty(vertex);
+		        uprop = ambiguityModelDigraph.getVertexProperty(vertex);
 		        if (uprop.color !== "gray") {
 		          continue;
 		        }
 		        allFilters = {};
 		        blackFilters = {};
 		        goldFilters = {};
-		        outEdges = digraph_.outEdges(vertex);
+		        outEdges = ambiguityModelDigraph.outEdges(vertex);
 		        outEdges.forEach(function(edge_) {
 		          var vprop;
-		          vprop = digraph_.getVertexProperty(edge_.v);
+		          vprop = ambiguityModelDigraph.getVertexProperty(edge_.v);
 		          return vprop.filters.forEach(function(filter_) {
 		            allFilters[filter_] = true;
 		            if ((vprop.color === "gold") || (vprop.color === "green")) {
@@ -7234,17 +7249,15 @@ module.exports =
 		          uprop.color = "black";
 		          ambiguousBlackVertices.push(vertex);
 		        }
-		        digraph_.setVertexProperty({
+		        ambiguityModelDigraph.setVertexProperty({
 		          u: vertex,
 		          p: uprop
 		        });
 		      }
 		      response.result = {
-		        digraph: digraph_,
+		        digraph: ambiguityModelDigraph,
 		        ambigousBlackVertices: ambiguousBlackVertices,
-		        ambiguousFilterSpecificationErrors: [],
-		        bfsVertices: bfsVertices,
-		        rbfsVertices: rbfsVertices
+		        ambiguousFilterSpecificationErrors: []
 		      };
 		      if (ambiguousBlackVertices.length) {
 		        ambiguousBlackVertices.sort();
@@ -7253,7 +7266,7 @@ module.exports =
 		          if (vertex_ === "request") {
 		            return;
 		          }
-		          vertexProperty = digraph_.getVertexProperty(vertex_);
+		          vertexProperty = ambiguityModelDigraph.getVertexProperty(vertex_);
 		          message = "Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.";
 		          return response.result.ambiguousFilterSpecificationErrors.push(message);
 		        });
@@ -7449,6 +7462,66 @@ module.exports =
 	/***/ function(module, exports, __webpack_require__) {
 
 		(function() {
+		  var FILTERLIB, generateDiscriminatorRuntimeFilter;
+
+		  FILTERLIB = __webpack_require__(1);
+
+		  generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
+		    var errors, inBreakScope, innerResponse, response, runtimeContext;
+		    response = {
+		      error: null,
+		      result: null
+		    };
+		    errors = [];
+		    inBreakScope = false;
+		    runtimeContext = runtimeContext_;
+		    while (!inBreakScope) {
+		      inBreakScope = true;
+		      innerResponse = FILTERLIB.create({
+		        operationID: "XY-x390CSVmXTu0oYXlRiw",
+		        operationName: "Discrimintor Filter",
+		        operationDescription: "Discriminates between N disjunct request signatures.",
+		        bodyFunction: function(request_) {
+		          response = {
+		            error: null,
+		            response: null
+		          };
+		          errors = [];
+		          inBreakScope = false;
+		          while (!inBreakScope) {
+		            inBreakScope = true;
+		            console.log("In " + this.operationName + ":" + this.operationID);
+		            console.log("runtime context = " + (JSON.stringify(runtimeContext)));
+		            break;
+		          }
+		          if (errors.length) {
+		            response.error = errors.join(" ");
+		          }
+		          return response;
+		        }
+		      });
+		      if (innerResponse.error) {
+		        errors.unshift(innerResponse.error);
+		        errors.unshift("Unable to generate discriminator filter runtime due to error:");
+		        break;
+		      }
+		      response.result = innerResponse.result;
+		      break;
+		    }
+		    if (errors.length) {
+		      response.error = errors.join(" ");
+		    }
+		    return response;
+		  };
+
+		}).call(this);
+
+
+	/***/ },
+	/* 52 */
+	/***/ function(module, exports, __webpack_require__) {
+
+		(function() {
 		  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
 
 		  UTILLIB = __webpack_require__(9);
@@ -7562,7 +7635,7 @@ module.exports =
 
 
 	/***/ },
-	/* 52 */
+	/* 53 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		
@@ -7727,7 +7800,7 @@ module.exports =
 
 
 	/***/ },
-	/* 53 */
+	/* 54 */
 	/***/ function(module, exports) {
 
 		/**
@@ -7787,7 +7860,7 @@ module.exports =
 
 
 	/***/ },
-	/* 54 */
+	/* 55 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/**
@@ -7860,7 +7933,7 @@ module.exports =
 		}
 
 	/***/ },
-	/* 55 */
+	/* 56 */
 	/***/ function(module, exports) {
 
 		module.exports = __webpack_require__(27);
@@ -7933,11 +8006,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var escapeStringRegexp = __webpack_require__(69);
-	var ansiStyles = __webpack_require__(67);
-	var stripAnsi = __webpack_require__(74);
-	var hasAnsi = __webpack_require__(71);
-	var supportsColor = __webpack_require__(75);
+	var escapeStringRegexp = __webpack_require__(71);
+	var ansiStyles = __webpack_require__(68);
+	var stripAnsi = __webpack_require__(76);
+	var hasAnsi = __webpack_require__(73);
+	var supportsColor = __webpack_require__(69);
 	var defineProps = Object.defineProperties;
 	var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
 
@@ -8054,8 +8127,8 @@ module.exports =
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(73)
-	var murmur2 = __webpack_require__(72)
+	var murmur3 = __webpack_require__(75)
+	var murmur2 = __webpack_require__(74)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -9322,7 +9395,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "Hi1Iq9ngQwOWOiMcGrhdvw", buildTime: "1450568214"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "MMsoC7piS_KIBd8sJbZnzg", buildTime: "1450647200"};
 
 /***/ },
 /* 24 */
@@ -9652,7 +9725,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "Hi1Iq9ngQwOWOiMcGrhdvw", buildTime: "1450568214"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "MMsoC7piS_KIBd8sJbZnzg", buildTime: "1450647200"};
 
 /***/ },
 /* 29 */
@@ -13555,7 +13628,7 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, partitionAndColorMergedModelByAmbiguity;
+	  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, generateDiscriminatorFilterRuntime, partitionAndColorMergedModelByAmbiguity;
 
 	  FILTERLIB = __webpack_require__(1);
 
@@ -13563,7 +13636,9 @@ module.exports =
 
 	  partitionAndColorMergedModelByAmbiguity = __webpack_require__(58);
 
-	  deduceRuntimeParseDigraphFromAmbiguityColoring = __webpack_require__(60);
+	  deduceRuntimeParseDigraphFromAmbiguityColoring = __webpack_require__(61);
+
+	  generateDiscriminatorFilterRuntime = __webpack_require__(60);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -13580,7 +13655,7 @@ module.exports =
 	      }
 	    },
 	    bodyFunction: function(request_) {
-	      var ambiguityModel, errors, inBreakScope, innerResponse, mergedFilterSpecDigraphModel, response;
+	      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeModel;
 	      response = {
 	        error: null,
 	        result: null
@@ -13595,17 +13670,17 @@ module.exports =
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
-	        mergedFilterSpecDigraphModel = innerResponse.result;
-	        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
+	        mergedModel = innerResponse.result;
+	        console.log(mergedModel.digraph.toJSON(void 0, 4));
 	        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-	        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedFilterSpecDigraphModel.digraph);
-	        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
+	        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedModel.digraph);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          errors.unshift("Internal error analyzing input filter array: ");
 	          break;
 	        }
 	        ambiguityModel = innerResponse.result;
+	        console.log(ambiguityModel.digraph.toJSON(void 0, 4));
 	        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
 	          return errors.push(error_);
 	        });
@@ -13617,7 +13692,14 @@ module.exports =
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
-	        response.result = ambiguityModel;
+	        runtimeModel = innerResponse.result;
+	        innerResponse = generateDiscriminatorFilterRuntime(runtimeParseGraph);
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        runtimeFilter = innerResponse.result;
+	        response.result = runtimeFilter;
 	        break;
 	      }
 	      if (errors.length) {
@@ -13652,8 +13734,8 @@ module.exports =
 
 	  UTILLIB = __webpack_require__(10);
 
-	  partitionAndColorGraphByAmbiguity = module.exports = function(digraph_) {
-	    var allFilters, ambiguousBlackVertices, bfsResponse, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
+	  partitionAndColorGraphByAmbiguity = module.exports = function(mergedModelDigraph_) {
+	    var allFilters, ambiguityModelDigraph, ambiguousBlackVertices, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, innerResponse, outEdges, rbfsVertices, response, uprop, vertex;
 	    response = {
 	      error: null,
 	      result: null
@@ -13665,8 +13747,14 @@ module.exports =
 	      bfsVertices = [];
 	      rbfsVertices = [];
 	      ambiguousBlackVertices = [];
-	      bfsResponse = GRAPHLIB.directed.breadthFirstTraverse({
-	        digraph: digraph_,
+	      innerResponse = GRAPHLIB.directed.create(mergedModelDigraph_.toJSON());
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      ambiguityModelDigraph = innerResponse.result;
+	      innerResponse = GRAPHLIB.directed.breadthFirstTraverse({
+	        digraph: ambiguityModelDigraph,
 	        visitor: {
 	          discoverVertex: function(grequest_) {
 	            var uprop;
@@ -13691,16 +13779,16 @@ module.exports =
 	          }
 	        }
 	      });
-	      if (bfsResponse.error) {
-	        errors.unshift(bfsResponse.error);
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
 	        errors.unshift("Error during BFS of merged filter specification graph.");
 	        break;
 	      }
-	      if (!bfsResponse.result.searchStatus === "completed") {
+	      if (!innerResponse.result.searchStatus === "completed") {
 	        errors.unshift("BFS of merged filter specification graph did not complete as expected.");
 	        break;
 	      }
-	      if (UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)) {
+	      if (UTILLIB.dictionaryLength(innerResponse.result.undiscoveredMap)) {
 	        errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
 	        break;
 	      }
@@ -13712,17 +13800,17 @@ module.exports =
 	      index = 0;
 	      while (index < rbfsVertices.length) {
 	        vertex = rbfsVertices[index++];
-	        uprop = digraph_.getVertexProperty(vertex);
+	        uprop = ambiguityModelDigraph.getVertexProperty(vertex);
 	        if (uprop.color !== "gray") {
 	          continue;
 	        }
 	        allFilters = {};
 	        blackFilters = {};
 	        goldFilters = {};
-	        outEdges = digraph_.outEdges(vertex);
+	        outEdges = ambiguityModelDigraph.outEdges(vertex);
 	        outEdges.forEach(function(edge_) {
 	          var vprop;
-	          vprop = digraph_.getVertexProperty(edge_.v);
+	          vprop = ambiguityModelDigraph.getVertexProperty(edge_.v);
 	          return vprop.filters.forEach(function(filter_) {
 	            allFilters[filter_] = true;
 	            if ((vprop.color === "gold") || (vprop.color === "green")) {
@@ -13750,17 +13838,15 @@ module.exports =
 	          uprop.color = "black";
 	          ambiguousBlackVertices.push(vertex);
 	        }
-	        digraph_.setVertexProperty({
+	        ambiguityModelDigraph.setVertexProperty({
 	          u: vertex,
 	          p: uprop
 	        });
 	      }
 	      response.result = {
-	        digraph: digraph_,
+	        digraph: ambiguityModelDigraph,
 	        ambigousBlackVertices: ambiguousBlackVertices,
-	        ambiguousFilterSpecificationErrors: [],
-	        bfsVertices: bfsVertices,
-	        rbfsVertices: rbfsVertices
+	        ambiguousFilterSpecificationErrors: []
 	      };
 	      if (ambiguousBlackVertices.length) {
 	        ambiguousBlackVertices.sort();
@@ -13769,7 +13855,7 @@ module.exports =
 	          if (vertex_ === "request") {
 	            return;
 	          }
-	          vertexProperty = digraph_.getVertexProperty(vertex_);
+	          vertexProperty = ambiguityModelDigraph.getVertexProperty(vertex_);
 	          message = "Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.";
 	          return response.result.ambiguousFilterSpecificationErrors.push(message);
 	        });
@@ -13965,6 +14051,66 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
+	  var FILTERLIB, generateDiscriminatorRuntimeFilter;
+
+	  FILTERLIB = __webpack_require__(1);
+
+	  generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
+	    var errors, inBreakScope, innerResponse, response, runtimeContext;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    runtimeContext = runtimeContext_;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      innerResponse = FILTERLIB.create({
+	        operationID: "XY-x390CSVmXTu0oYXlRiw",
+	        operationName: "Discrimintor Filter",
+	        operationDescription: "Discriminates between N disjunct request signatures.",
+	        bodyFunction: function(request_) {
+	          response = {
+	            error: null,
+	            response: null
+	          };
+	          errors = [];
+	          inBreakScope = false;
+	          while (!inBreakScope) {
+	            inBreakScope = true;
+	            console.log("In " + this.operationName + ":" + this.operationID);
+	            console.log("runtime context = " + (JSON.stringify(runtimeContext)));
+	            break;
+	          }
+	          if (errors.length) {
+	            response.error = errors.join(" ");
+	          }
+	          return response;
+	        }
+	      });
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        errors.unshift("Unable to generate discriminator filter runtime due to error:");
+	        break;
+	      }
+	      response.result = innerResponse.result;
+	      break;
+	    }
+	    if (errors.length) {
+	      response.error = errors.join(" ");
+	    }
+	    return response;
+	  };
+
+	}).call(this);
+
+
+/***/ },
+/* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
 	  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
 
 	  UTILLIB = __webpack_require__(10);
@@ -14078,7 +14224,7 @@ module.exports =
 
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -14243,7 +14389,7 @@ module.exports =
 
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -14385,7 +14531,7 @@ module.exports =
 
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -14456,7 +14602,7 @@ module.exports =
 
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -14559,7 +14705,7 @@ module.exports =
 
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -14650,7 +14796,7 @@ module.exports =
 
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -14677,7 +14823,7 @@ module.exports =
 
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
@@ -14746,19 +14892,75 @@ module.exports =
 		get: assembleStyles
 	});
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(76)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(77)(module)))
 
 /***/ },
-/* 68 */
+/* 69 */
+/***/ function(module, exports) {
+
+	'use strict';
+	var argv = process.argv;
+
+	var terminator = argv.indexOf('--');
+	var hasFlag = function (flag) {
+		flag = '--' + flag;
+		var pos = argv.indexOf(flag);
+		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
+	};
+
+	module.exports = (function () {
+		if ('FORCE_COLOR' in process.env) {
+			return true;
+		}
+
+		if (hasFlag('no-color') ||
+			hasFlag('no-colors') ||
+			hasFlag('color=false')) {
+			return false;
+		}
+
+		if (hasFlag('color') ||
+			hasFlag('colors') ||
+			hasFlag('color=true') ||
+			hasFlag('color=always')) {
+			return true;
+		}
+
+		if (process.stdout && !process.stdout.isTTY) {
+			return false;
+		}
+
+		if (process.platform === 'win32') {
+			return true;
+		}
+
+		if ('COLORTERM' in process.env) {
+			return true;
+		}
+
+		if (process.env.TERM === 'dumb') {
+			return false;
+		}
+
+		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
+			return true;
+		}
+
+		return false;
+	})();
+
+
+/***/ },
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var EventEmitter = __webpack_require__(78).EventEmitter;
-	var spawn = __webpack_require__(77).spawn;
-	var readlink = __webpack_require__(70).readlinkSync;
+	var EventEmitter = __webpack_require__(79).EventEmitter;
+	var spawn = __webpack_require__(78).spawn;
+	var readlink = __webpack_require__(72).readlinkSync;
 	var path = __webpack_require__(12);
 	var dirname = path.dirname;
 	var basename = path.basename;
@@ -15865,7 +16067,7 @@ module.exports =
 
 
 /***/ },
-/* 69 */
+/* 71 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15882,7 +16084,7 @@ module.exports =
 
 
 /***/ },
-/* 70 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(6)
@@ -15900,7 +16102,7 @@ module.exports =
 
 
 /***/ },
-/* 71 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15910,7 +16112,7 @@ module.exports =
 
 
 /***/ },
-/* 72 */
+/* 74 */
 /***/ function(module, exports) {
 
 	/**
@@ -15970,7 +16172,7 @@ module.exports =
 
 
 /***/ },
-/* 73 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16043,7 +16245,7 @@ module.exports =
 	}
 
 /***/ },
-/* 74 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16055,63 +16257,7 @@ module.exports =
 
 
 /***/ },
-/* 75 */
-/***/ function(module, exports) {
-
-	'use strict';
-	var argv = process.argv;
-
-	var terminator = argv.indexOf('--');
-	var hasFlag = function (flag) {
-		flag = '--' + flag;
-		var pos = argv.indexOf(flag);
-		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
-	};
-
-	module.exports = (function () {
-		if ('FORCE_COLOR' in process.env) {
-			return true;
-		}
-
-		if (hasFlag('no-color') ||
-			hasFlag('no-colors') ||
-			hasFlag('color=false')) {
-			return false;
-		}
-
-		if (hasFlag('color') ||
-			hasFlag('colors') ||
-			hasFlag('color=true') ||
-			hasFlag('color=always')) {
-			return true;
-		}
-
-		if (process.stdout && !process.stdout.isTTY) {
-			return false;
-		}
-
-		if (process.platform === 'win32') {
-			return true;
-		}
-
-		if ('COLORTERM' in process.env) {
-			return true;
-		}
-
-		if (process.env.TERM === 'dumb') {
-			return false;
-		}
-
-		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
-			return true;
-		}
-
-		return false;
-	})();
-
-
-/***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -16127,13 +16273,13 @@ module.exports =
 
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports) {
 
 	module.exports = require("child_process");
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports) {
 
 	module.exports = require("events");

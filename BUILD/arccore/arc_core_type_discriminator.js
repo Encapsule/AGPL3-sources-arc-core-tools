@@ -1,5 +1,5 @@
 (function() {
-  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, partitionAndColorMergedModelByAmbiguity;
+  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, generateDiscriminatorFilterRuntime, partitionAndColorMergedModelByAmbiguity;
 
   FILTERLIB = require('./arc_core_filter');
 
@@ -8,6 +8,8 @@
   partitionAndColorMergedModelByAmbiguity = require('./arc_core_type_discriminator_ambiguity_detector');
 
   deduceRuntimeParseDigraphFromAmbiguityColoring = require('./arc_core_type_discriminator_runtime_parse_digraph');
+
+  generateDiscriminatorFilterRuntime = require('./arc_core_type_discriminator_runtime');
 
   filterlibResponse = FILTERLIB.create({
     operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -24,7 +26,7 @@
       }
     },
     bodyFunction: function(request_) {
-      var ambiguityModel, errors, inBreakScope, innerResponse, mergedFilterSpecDigraphModel, response;
+      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeModel;
       response = {
         error: null,
         result: null
@@ -39,17 +41,17 @@
           errors.unshift(innerResponse.error);
           break;
         }
-        mergedFilterSpecDigraphModel = innerResponse.result;
-        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
+        mergedModel = innerResponse.result;
+        console.log(mergedModel.digraph.toJSON(void 0, 4));
         console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedFilterSpecDigraphModel.digraph);
-        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
+        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedModel.digraph);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           errors.unshift("Internal error analyzing input filter array: ");
           break;
         }
         ambiguityModel = innerResponse.result;
+        console.log(ambiguityModel.digraph.toJSON(void 0, 4));
         ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
           return errors.push(error_);
         });
@@ -61,7 +63,14 @@
           errors.unshift(innerResponse.error);
           break;
         }
-        response.result = ambiguityModel;
+        runtimeModel = innerResponse.result;
+        innerResponse = generateDiscriminatorFilterRuntime(runtimeParseGraph);
+        if (innerResponse.error) {
+          errors.unshift(innerResponse.error);
+          break;
+        }
+        runtimeFilter = innerResponse.result;
+        response.result = runtimeFilter;
         break;
       }
       if (errors.length) {

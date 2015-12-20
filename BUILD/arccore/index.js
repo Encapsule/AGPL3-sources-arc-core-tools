@@ -564,7 +564,7 @@ module.exports =
 
 	  jbus.common.types.convert = __webpack_require__(17);
 
-	  jbus.common.types.check = __webpack_require__(52);
+	  jbus.common.types.check = __webpack_require__(53);
 
 	}).call(this);
 
@@ -867,8 +867,8 @@ module.exports =
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(54)
-	var murmur2 = __webpack_require__(53)
+	var murmur3 = __webpack_require__(55)
+	var murmur2 = __webpack_require__(54)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -2193,7 +2193,7 @@ module.exports =
 	    // Moderately fast, high quality
 	    if (true) {
 	      try {
-	        var _rb = __webpack_require__(55).randomBytes;
+	        var _rb = __webpack_require__(56).randomBytes;
 	        _nodeRNG = _rng = _rb && function() {return _rb(16);};
 	        _rng();
 	      } catch(e) {}
@@ -2413,7 +2413,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "Hi1Iq9ngQwOWOiMcGrhdvw", buildTime: "1450568214"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "MMsoC7piS_KIBd8sJbZnzg", buildTime: "1450647200"};
 
 /***/ },
 /* 21 */
@@ -6258,7 +6258,7 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, partitionAndColorMergedModelByAmbiguity;
+	  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, generateDiscriminatorFilterRuntime, partitionAndColorMergedModelByAmbiguity;
 
 	  FILTERLIB = __webpack_require__(1);
 
@@ -6266,7 +6266,9 @@ module.exports =
 
 	  partitionAndColorMergedModelByAmbiguity = __webpack_require__(49);
 
-	  deduceRuntimeParseDigraphFromAmbiguityColoring = __webpack_require__(51);
+	  deduceRuntimeParseDigraphFromAmbiguityColoring = __webpack_require__(52);
+
+	  generateDiscriminatorFilterRuntime = __webpack_require__(51);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -6283,7 +6285,7 @@ module.exports =
 	      }
 	    },
 	    bodyFunction: function(request_) {
-	      var ambiguityModel, errors, inBreakScope, innerResponse, mergedFilterSpecDigraphModel, response;
+	      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeModel;
 	      response = {
 	        error: null,
 	        result: null
@@ -6298,17 +6300,17 @@ module.exports =
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
-	        mergedFilterSpecDigraphModel = innerResponse.result;
-	        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
+	        mergedModel = innerResponse.result;
+	        console.log(mergedModel.digraph.toJSON(void 0, 4));
 	        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-	        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedFilterSpecDigraphModel.digraph);
-	        console.log(mergedFilterSpecDigraphModel.digraph.toJSON(void 0, 4));
+	        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedModel.digraph);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          errors.unshift("Internal error analyzing input filter array: ");
 	          break;
 	        }
 	        ambiguityModel = innerResponse.result;
+	        console.log(ambiguityModel.digraph.toJSON(void 0, 4));
 	        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
 	          return errors.push(error_);
 	        });
@@ -6320,7 +6322,14 @@ module.exports =
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
-	        response.result = ambiguityModel;
+	        runtimeModel = innerResponse.result;
+	        innerResponse = generateDiscriminatorFilterRuntime(runtimeParseGraph);
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        runtimeFilter = innerResponse.result;
+	        response.result = runtimeFilter;
 	        break;
 	      }
 	      if (errors.length) {
@@ -6355,8 +6364,8 @@ module.exports =
 
 	  UTILLIB = __webpack_require__(9);
 
-	  partitionAndColorGraphByAmbiguity = module.exports = function(digraph_) {
-	    var allFilters, ambiguousBlackVertices, bfsResponse, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
+	  partitionAndColorGraphByAmbiguity = module.exports = function(mergedModelDigraph_) {
+	    var allFilters, ambiguityModelDigraph, ambiguousBlackVertices, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, innerResponse, outEdges, rbfsVertices, response, uprop, vertex;
 	    response = {
 	      error: null,
 	      result: null
@@ -6368,8 +6377,14 @@ module.exports =
 	      bfsVertices = [];
 	      rbfsVertices = [];
 	      ambiguousBlackVertices = [];
-	      bfsResponse = GRAPHLIB.directed.breadthFirstTraverse({
-	        digraph: digraph_,
+	      innerResponse = GRAPHLIB.directed.create(mergedModelDigraph_.toJSON());
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      ambiguityModelDigraph = innerResponse.result;
+	      innerResponse = GRAPHLIB.directed.breadthFirstTraverse({
+	        digraph: ambiguityModelDigraph,
 	        visitor: {
 	          discoverVertex: function(grequest_) {
 	            var uprop;
@@ -6394,16 +6409,16 @@ module.exports =
 	          }
 	        }
 	      });
-	      if (bfsResponse.error) {
-	        errors.unshift(bfsResponse.error);
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
 	        errors.unshift("Error during BFS of merged filter specification graph.");
 	        break;
 	      }
-	      if (!bfsResponse.result.searchStatus === "completed") {
+	      if (!innerResponse.result.searchStatus === "completed") {
 	        errors.unshift("BFS of merged filter specification graph did not complete as expected.");
 	        break;
 	      }
-	      if (UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)) {
+	      if (UTILLIB.dictionaryLength(innerResponse.result.undiscoveredMap)) {
 	        errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
 	        break;
 	      }
@@ -6415,17 +6430,17 @@ module.exports =
 	      index = 0;
 	      while (index < rbfsVertices.length) {
 	        vertex = rbfsVertices[index++];
-	        uprop = digraph_.getVertexProperty(vertex);
+	        uprop = ambiguityModelDigraph.getVertexProperty(vertex);
 	        if (uprop.color !== "gray") {
 	          continue;
 	        }
 	        allFilters = {};
 	        blackFilters = {};
 	        goldFilters = {};
-	        outEdges = digraph_.outEdges(vertex);
+	        outEdges = ambiguityModelDigraph.outEdges(vertex);
 	        outEdges.forEach(function(edge_) {
 	          var vprop;
-	          vprop = digraph_.getVertexProperty(edge_.v);
+	          vprop = ambiguityModelDigraph.getVertexProperty(edge_.v);
 	          return vprop.filters.forEach(function(filter_) {
 	            allFilters[filter_] = true;
 	            if ((vprop.color === "gold") || (vprop.color === "green")) {
@@ -6453,17 +6468,15 @@ module.exports =
 	          uprop.color = "black";
 	          ambiguousBlackVertices.push(vertex);
 	        }
-	        digraph_.setVertexProperty({
+	        ambiguityModelDigraph.setVertexProperty({
 	          u: vertex,
 	          p: uprop
 	        });
 	      }
 	      response.result = {
-	        digraph: digraph_,
+	        digraph: ambiguityModelDigraph,
 	        ambigousBlackVertices: ambiguousBlackVertices,
-	        ambiguousFilterSpecificationErrors: [],
-	        bfsVertices: bfsVertices,
-	        rbfsVertices: rbfsVertices
+	        ambiguousFilterSpecificationErrors: []
 	      };
 	      if (ambiguousBlackVertices.length) {
 	        ambiguousBlackVertices.sort();
@@ -6472,7 +6485,7 @@ module.exports =
 	          if (vertex_ === "request") {
 	            return;
 	          }
-	          vertexProperty = digraph_.getVertexProperty(vertex_);
+	          vertexProperty = ambiguityModelDigraph.getVertexProperty(vertex_);
 	          message = "Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.";
 	          return response.result.ambiguousFilterSpecificationErrors.push(message);
 	        });
@@ -6668,6 +6681,66 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
+	  var FILTERLIB, generateDiscriminatorRuntimeFilter;
+
+	  FILTERLIB = __webpack_require__(1);
+
+	  generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
+	    var errors, inBreakScope, innerResponse, response, runtimeContext;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    runtimeContext = runtimeContext_;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      innerResponse = FILTERLIB.create({
+	        operationID: "XY-x390CSVmXTu0oYXlRiw",
+	        operationName: "Discrimintor Filter",
+	        operationDescription: "Discriminates between N disjunct request signatures.",
+	        bodyFunction: function(request_) {
+	          response = {
+	            error: null,
+	            response: null
+	          };
+	          errors = [];
+	          inBreakScope = false;
+	          while (!inBreakScope) {
+	            inBreakScope = true;
+	            console.log("In " + this.operationName + ":" + this.operationID);
+	            console.log("runtime context = " + (JSON.stringify(runtimeContext)));
+	            break;
+	          }
+	          if (errors.length) {
+	            response.error = errors.join(" ");
+	          }
+	          return response;
+	        }
+	      });
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        errors.unshift("Unable to generate discriminator filter runtime due to error:");
+	        break;
+	      }
+	      response.result = innerResponse.result;
+	      break;
+	    }
+	    if (errors.length) {
+	      response.error = errors.join(" ");
+	    }
+	    return response;
+	  };
+
+	}).call(this);
+
+
+/***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
 	  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
 
 	  UTILLIB = __webpack_require__(9);
@@ -6781,7 +6854,7 @@ module.exports =
 
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -6946,7 +7019,7 @@ module.exports =
 
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports) {
 
 	/**
@@ -7006,7 +7079,7 @@ module.exports =
 
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7079,7 +7152,7 @@ module.exports =
 	}
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports) {
 
 	module.exports = require("crypto");

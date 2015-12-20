@@ -5,8 +5,8 @@
 
   UTILLIB = require('./arc_core_util');
 
-  partitionAndColorGraphByAmbiguity = module.exports = function(digraph_) {
-    var allFilters, ambiguousBlackVertices, bfsResponse, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, outEdges, rbfsVertices, response, uprop, vertex;
+  partitionAndColorGraphByAmbiguity = module.exports = function(mergedModelDigraph_) {
+    var allFilters, ambiguityModelDigraph, ambiguousBlackVertices, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, innerResponse, outEdges, rbfsVertices, response, uprop, vertex;
     response = {
       error: null,
       result: null
@@ -18,8 +18,14 @@
       bfsVertices = [];
       rbfsVertices = [];
       ambiguousBlackVertices = [];
-      bfsResponse = GRAPHLIB.directed.breadthFirstTraverse({
-        digraph: digraph_,
+      innerResponse = GRAPHLIB.directed.create(mergedModelDigraph_.toJSON());
+      if (innerResponse.error) {
+        errors.unshift(innerResponse.error);
+        break;
+      }
+      ambiguityModelDigraph = innerResponse.result;
+      innerResponse = GRAPHLIB.directed.breadthFirstTraverse({
+        digraph: ambiguityModelDigraph,
         visitor: {
           discoverVertex: function(grequest_) {
             var uprop;
@@ -44,16 +50,16 @@
           }
         }
       });
-      if (bfsResponse.error) {
-        errors.unshift(bfsResponse.error);
+      if (innerResponse.error) {
+        errors.unshift(innerResponse.error);
         errors.unshift("Error during BFS of merged filter specification graph.");
         break;
       }
-      if (!bfsResponse.result.searchStatus === "completed") {
+      if (!innerResponse.result.searchStatus === "completed") {
         errors.unshift("BFS of merged filter specification graph did not complete as expected.");
         break;
       }
-      if (UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)) {
+      if (UTILLIB.dictionaryLength(innerResponse.result.undiscoveredMap)) {
         errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
         break;
       }
@@ -65,17 +71,17 @@
       index = 0;
       while (index < rbfsVertices.length) {
         vertex = rbfsVertices[index++];
-        uprop = digraph_.getVertexProperty(vertex);
+        uprop = ambiguityModelDigraph.getVertexProperty(vertex);
         if (uprop.color !== "gray") {
           continue;
         }
         allFilters = {};
         blackFilters = {};
         goldFilters = {};
-        outEdges = digraph_.outEdges(vertex);
+        outEdges = ambiguityModelDigraph.outEdges(vertex);
         outEdges.forEach(function(edge_) {
           var vprop;
-          vprop = digraph_.getVertexProperty(edge_.v);
+          vprop = ambiguityModelDigraph.getVertexProperty(edge_.v);
           return vprop.filters.forEach(function(filter_) {
             allFilters[filter_] = true;
             if ((vprop.color === "gold") || (vprop.color === "green")) {
@@ -103,17 +109,15 @@
           uprop.color = "black";
           ambiguousBlackVertices.push(vertex);
         }
-        digraph_.setVertexProperty({
+        ambiguityModelDigraph.setVertexProperty({
           u: vertex,
           p: uprop
         });
       }
       response.result = {
-        digraph: digraph_,
+        digraph: ambiguityModelDigraph,
         ambigousBlackVertices: ambiguousBlackVertices,
-        ambiguousFilterSpecificationErrors: [],
-        bfsVertices: bfsVertices,
-        rbfsVertices: rbfsVertices
+        ambiguousFilterSpecificationErrors: []
       };
       if (ambiguousBlackVertices.length) {
         ambiguousBlackVertices.sort();
@@ -122,7 +126,7 @@
           if (vertex_ === "request") {
             return;
           }
-          vertexProperty = digraph_.getVertexProperty(vertex_);
+          vertexProperty = ambiguityModelDigraph.getVertexProperty(vertex_);
           message = "Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.";
           return response.result.ambiguousFilterSpecificationErrors.push(message);
         });

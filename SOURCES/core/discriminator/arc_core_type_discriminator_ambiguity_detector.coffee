@@ -2,7 +2,7 @@
 GRAPHLIB = require './arc_core_graph'
 UTILLIB = require './arc_core_util'
 
-partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
+partitionAndColorGraphByAmbiguity = module.exports = (mergedModelDigraph_) ->
     response = error: null, result: null
     errors = []
     inBreakScope = false
@@ -12,10 +12,17 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
         rbfsVertices = [] # this was for the result but I think not necessary
         ambiguousBlackVertices = []
 
+        # DEEP COPY THE INPUT GRAPH
+        innerResponse = GRAPHLIB.directed.create mergedModelDigraph_.toJSON()
+        if innerResponse.error
+            errors.unshift innerResponse.error
+            break
+        ambiguityModelDigraph = innerResponse.result
+
         # ROOT TO LEAVES COLORING (relatively simple)
 
-        bfsResponse = GRAPHLIB.directed.breadthFirstTraverse
-            digraph: digraph_
+        innerResponse = GRAPHLIB.directed.breadthFirstTraverse
+            digraph: ambiguityModelDigraph
             visitor:
                 discoverVertex: (grequest_) ->
                     uprop = grequest_.g.getVertexProperty grequest_.u
@@ -33,14 +40,14 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
                     true
 
         # Fail outright if the search looks off even a little bit.
-        if bfsResponse.error
-            errors.unshift bfsResponse.error
+        if innerResponse.error
+            errors.unshift innerResponse.error
             errors.unshift "Error during BFS of merged filter specification graph."
             break
-        if not bfsResponse.result.searchStatus == "completed"
+        if not innerResponse.result.searchStatus == "completed"
             errors.unshift "BFS of merged filter specification graph did not complete as expected."
             break
-        if UTILLIB.dictionaryLength(bfsResponse.result.undiscoveredMap)
+        if UTILLIB.dictionaryLength(innerResponse.result.undiscoveredMap)
             errors.unshift "BFS of merged filter specification graph did not discover all vertices?"
             break
 
@@ -54,7 +61,7 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
         index = 0
         while index < rbfsVertices.length
             vertex = rbfsVertices[index++]
-            uprop = digraph_.getVertexProperty vertex
+            uprop = ambiguityModelDigraph.getVertexProperty vertex
 
             # DO NOT TOUCH GOLD AND BLACK VERTICES
 
@@ -67,10 +74,10 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
 
             # EXAMINE THE VERTICES ADJACENT TO THE INITIALLY GRAY VERTEX
 
-            outEdges = digraph_.outEdges vertex
+            outEdges = ambiguityModelDigraph.outEdges vertex
             outEdges.forEach (edge_) ->
 
-                vprop = digraph_.getVertexProperty edge_.v
+                vprop = ambiguityModelDigraph.getVertexProperty edge_.v
 
                 vprop.filters.forEach (filter_) ->
 
@@ -102,14 +109,14 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
                 uprop.color = "black"
                 ambiguousBlackVertices.push vertex
 
-            digraph_.setVertexProperty { u: vertex, p: uprop }
+            ambiguityModelDigraph.setVertexProperty { u: vertex, p: uprop }
 
         response.result =
-            digraph: digraph_
+            digraph: ambiguityModelDigraph
             ambigousBlackVertices: ambiguousBlackVertices
             ambiguousFilterSpecificationErrors: []
-            bfsVertices: bfsVertices
-            rbfsVertices: rbfsVertices
+            # bfsVertices: bfsVertices
+            # rbfsVertices: rbfsVertices
 
         # We cannot uniquely discriminate between filters whose input filter specifications
         # contain overlapping request structures that terminate at the leaf node of any of
@@ -123,7 +130,7 @@ partitionAndColorGraphByAmbiguity = module.exports = (digraph_) ->
             ambiguousBlackVertices.forEach (vertex_) ->
                 if vertex_ == "request"
                     return
-                vertexProperty = digraph_.getVertexProperty vertex_
+                vertexProperty = ambiguityModelDigraph.getVertexProperty vertex_
                 message = "Filters [#{vertexProperty.filters.join(" and ")}] overlap ambiguously at filter spec node '#{vertex_}'."
                 response.result.ambiguousFilterSpecificationErrors.push message
         break
