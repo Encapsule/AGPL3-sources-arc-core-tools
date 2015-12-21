@@ -5,28 +5,28 @@ var ambiguityDetector = testModule('arc_core_type_discriminator_ambiguity_detect
 
 var testFilters = require('./runner-test-filters')
 
-var testChoiceSetsGenerator = require('./runner-choice-sets');
+var testBuildRuntimeParseModel = require('./runner-runtime-parse-model');
 
-var exclusionSetModels = {
+var ambiguityModelSet = {
     test1: ambiguityDetector(specGraphBuilder([ testFilters.test1.result, testFilters.test2.result ]).result.digraph)
     ,
     test2: ambiguityDetector(specGraphBuilder([ testFilters.test4.result, testFilters.test2.result ]).result.digraph)
 };
 
-testChoiceSetsGenerator({
+testBuildRuntimeParseModel({
     testName: "Test #1",
     validConfig: true,
-    request: exclusionSetModels.test1.result,
+    request: ambiguityModelSet.test1.result,
     expectedResults: {
         error: null,
         result: null
     }
 });
 
-testChoiceSetsGenerator({
+testBuildRuntimeParseModel({
     testName: "Test #2",
     validConfig: true,
-    request: exclusionSetModels.test2.result,
+    request: ambiguityModelSet.test2.result,
     expectedResults: {
         error: null,
         result: null

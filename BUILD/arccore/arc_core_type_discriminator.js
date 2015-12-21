@@ -1,15 +1,15 @@
 (function() {
-  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, generateDiscriminatorFilterRuntime, partitionAndColorMergedModelByAmbiguity;
+  var FILTERLIB, createAmbiguityModel, createDiscriminatorFilterRuntime, createMergedFilterSpecModel, createRuntimeParseModel, filterlibResponse;
 
   FILTERLIB = require('./arc_core_filter');
 
-  buildMergedFilterSpecDigraphModel = require('./arc_core_type_discriminator_merged_model_digraph');
+  createMergedFilterSpecModel = require('./arc_core_type_discriminator_merged_model_digraph');
 
-  partitionAndColorMergedModelByAmbiguity = require('./arc_core_type_discriminator_ambiguity_detector');
+  createAmbiguityModel = require('./arc_core_type_discriminator_ambiguity_detector');
 
-  deduceRuntimeParseDigraphFromAmbiguityColoring = require('./arc_core_type_discriminator_runtime_parse_digraph');
+  createRuntimeParseModel = require('./arc_core_type_discriminator_runtime_parse_digraph');
 
-  generateDiscriminatorFilterRuntime = require('./arc_core_type_discriminator_runtime');
+  createDiscriminatorFilterRuntime = require('./arc_core_type_discriminator_runtime');
 
   filterlibResponse = FILTERLIB.create({
     operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -36,7 +36,7 @@
       while (!inBreakScope) {
         inBreakScope = true;
         console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
-        innerResponse = buildMergedFilterSpecDigraphModel(request_);
+        innerResponse = createMergedFilterSpecModel(request_);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;
@@ -44,7 +44,7 @@
         mergedModel = innerResponse.result;
         console.log(mergedModel.digraph.toJSON(void 0, 4));
         console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedModel.digraph);
+        innerResponse = createAmbiguityModel(mergedModel.digraph);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           errors.unshift("Internal error analyzing input filter array: ");
@@ -58,13 +58,13 @@
         if (errors.length) {
           break;
         }
-        innerResponse = deduceRuntimeParseDigraphFromAmbiguityColoring(ambiguityModel);
+        innerResponse = createRuntimeParseModel(ambiguityModel);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;
         }
         runtimeModel = innerResponse.result;
-        innerResponse = generateDiscriminatorFilterRuntime(runtimeParseGraph);
+        innerResponse = createDiscriminatorFilterRuntime(runtimeParseGraph);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;

@@ -90,9 +90,9 @@ module.exports =
 	    },
 	    filter: __webpack_require__(1),
 	    filterDAG: __webpack_require__(30),
-	    graph: __webpack_require__(7),
+	    graph: __webpack_require__(5),
 	    identifier: __webpack_require__(2),
-	    types: __webpack_require__(5),
+	    types: __webpack_require__(6),
 	    util: __webpack_require__(9)
 	  };
 
@@ -528,81 +528,6 @@ module.exports =
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	This software is licensed under the terms of the GNU Affero General
-	Public License v3.0.
-
-	Please review the included LICENSE file for specific agreement terms.
-	See also: https://opensource.org/licenses/AGPL-3.0
-
-	Source code:   https://github.com/encapsule.jbus
-	Documentation: https://encapsule.io/projects/jbus/docs/common
-	Licensing:     https://encapsule.io/licening
-
-	----------------------------------------------------------------------
-	 */
-
-	(function() {
-	  var jbus;
-
-	  jbus = {};
-
-	  jbus.common = {};
-
-	  jbus.common.types = module.exports = {};
-
-	  jbus.common.types.codes = __webpack_require__(8);
-
-	  jbus.common.types.convert = __webpack_require__(17);
-
-	  jbus.common.types.check = __webpack_require__(53);
-
-	}).call(this);
-
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
-	/*
-	  Encapsule/jsgraph/src/digraph-algorithm-common-colors.js
-
-	  Copyright (C) 2014-2015 Christopher D. Russell
-
-	  This library is published under the MIT License and is part of the
-	  Encapsule Project System in Cloud (SiC) open service architecture.
-	  Please follow https://twitter.com/Encapsule for news and updates
-	  about jsgraph and other time saving libraries that do amazing things
-	  with in-memory data on Node.js and HTML.
-	*/
-
-
-	// Encapsule/jsgraph/src/digraph-color.js
-	//
-
-	// Color ordinals used by directed graph algorithms.
-
-	module.exports = {
-	    white: 0,
-	    gray: 1,
-	    black: 2
-	};
-
-
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* --------------------------------------------------------------------------
 
 	   The MIT License (MIT)
@@ -675,7 +600,7 @@ module.exports =
 	        // ADVANCED
 
 	        // Color constant hashtable (advanced).
-	        colors: __webpack_require__(6),
+	        colors: __webpack_require__(7),
 
 	        // Directed graph traversal context factory (advanced).
 	        createTraversalContext: __webpack_require__(13)
@@ -683,6 +608,81 @@ module.exports =
 	    }
 	};
 
+
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/*
+	----------------------------------------------------------------------
+	 
+	           +---+---+---+---+
+	 chaos --> | J | B | U | S | --> order
+	           +---+---+---+---+
+
+	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+	This software is licensed under the terms of the GNU Affero General
+	Public License v3.0.
+
+	Please review the included LICENSE file for specific agreement terms.
+	See also: https://opensource.org/licenses/AGPL-3.0
+
+	Source code:   https://github.com/encapsule.jbus
+	Documentation: https://encapsule.io/projects/jbus/docs/common
+	Licensing:     https://encapsule.io/licening
+
+	----------------------------------------------------------------------
+	 */
+
+	(function() {
+	  var jbus;
+
+	  jbus = {};
+
+	  jbus.common = {};
+
+	  jbus.common.types = module.exports = {};
+
+	  jbus.common.types.codes = __webpack_require__(8);
+
+	  jbus.common.types.convert = __webpack_require__(17);
+
+	  jbus.common.types.check = __webpack_require__(53);
+
+	}).call(this);
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	/*
+	  Encapsule/jsgraph/src/digraph-algorithm-common-colors.js
+
+	  Copyright (C) 2014-2015 Christopher D. Russell
+
+	  This library is published under the MIT License and is part of the
+	  Encapsule Project System in Cloud (SiC) open service architecture.
+	  Please follow https://twitter.com/Encapsule for news and updates
+	  about jsgraph and other time saving libraries that do amazing things
+	  with in-memory data on Node.js and HTML.
+	*/
+
+
+	// Encapsule/jsgraph/src/digraph-color.js
+	//
+
+	// Color ordinals used by directed graph algorithms.
+
+	module.exports = {
+	    white: 0,
+	    gray: 1,
+	    black: 2
+	};
 
 
 
@@ -1463,7 +1463,7 @@ module.exports =
 	*/
 
 	var helperFunctions = __webpack_require__(4);
-	var colors = __webpack_require__(6);
+	var colors = __webpack_require__(7);
 
 	module.exports = function (request_) {
 	    var response = { error: null, result: null };
@@ -2413,7 +2413,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "MMsoC7piS_KIBd8sJbZnzg", buildTime: "1450647200"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "MqCLpaGaRgWntBCmNEnQpQ", buildTime: "1450662189"};
 
 /***/ },
 /* 21 */
@@ -2476,7 +2476,7 @@ module.exports =
 	*/
 
 	var algorithmName = "BFT"; // constant string used in error messages
-	var colors = __webpack_require__(6);
+	var colors = __webpack_require__(7);
 	var visitorCallback = __webpack_require__(15);
 	var normalizeRequest = __webpack_require__(14);
 
@@ -2739,7 +2739,7 @@ module.exports =
 	*/
 
 	var algorithmName = "DFT"; // used in error messages
-	var colors = __webpack_require__(6);
+	var colors = __webpack_require__(7);
 	var visitorCallback = __webpack_require__(15);
 	var normalizeRequest = __webpack_require__(14);
 
@@ -3621,7 +3621,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  TYPES = __webpack_require__(5);
+	  TYPES = __webpack_require__(6);
 
 	  normalizeCompositionRequest = module.exports = function(request_) {
 	    var errors, inBreakScope, innerResponse, localTypeCheck, nrequest, response;
@@ -3812,7 +3812,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  TYPES = __webpack_require__(5);
+	  TYPES = __webpack_require__(6);
 
 
 	  /*
@@ -5333,7 +5333,7 @@ module.exports =
 
 	  FILTERDAGXFORMFS = __webpack_require__(10);
 
-	  GRAPHLIB = __webpack_require__(7);
+	  GRAPHLIB = __webpack_require__(5);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'h6w300MIQaegK6rK9fDeOw',
@@ -5754,7 +5754,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  TYPES = __webpack_require__(5);
+	  TYPES = __webpack_require__(6);
 
 
 	  /*
@@ -6076,7 +6076,7 @@ module.exports =
 
 	  MURMUR = __webpack_require__(11);
 
-	  TYPES = __webpack_require__(5);
+	  TYPES = __webpack_require__(6);
 
 	  MODULE = module.exports = {};
 
@@ -6258,17 +6258,17 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var FILTERLIB, buildMergedFilterSpecDigraphModel, deduceRuntimeParseDigraphFromAmbiguityColoring, filterlibResponse, generateDiscriminatorFilterRuntime, partitionAndColorMergedModelByAmbiguity;
+	  var FILTERLIB, createAmbiguityModel, createDiscriminatorFilterRuntime, createMergedFilterSpecModel, createRuntimeParseModel, filterlibResponse;
 
 	  FILTERLIB = __webpack_require__(1);
 
-	  buildMergedFilterSpecDigraphModel = __webpack_require__(50);
+	  createMergedFilterSpecModel = __webpack_require__(50);
 
-	  partitionAndColorMergedModelByAmbiguity = __webpack_require__(49);
+	  createAmbiguityModel = __webpack_require__(49);
 
-	  deduceRuntimeParseDigraphFromAmbiguityColoring = __webpack_require__(52);
+	  createRuntimeParseModel = __webpack_require__(52);
 
-	  generateDiscriminatorFilterRuntime = __webpack_require__(51);
+	  createDiscriminatorFilterRuntime = __webpack_require__(51);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -6295,7 +6295,7 @@ module.exports =
 	      while (!inBreakScope) {
 	        inBreakScope = true;
 	        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
-	        innerResponse = buildMergedFilterSpecDigraphModel(request_);
+	        innerResponse = createMergedFilterSpecModel(request_);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
@@ -6303,7 +6303,7 @@ module.exports =
 	        mergedModel = innerResponse.result;
 	        console.log(mergedModel.digraph.toJSON(void 0, 4));
 	        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-	        innerResponse = partitionAndColorMergedModelByAmbiguity(mergedModel.digraph);
+	        innerResponse = createAmbiguityModel(mergedModel.digraph);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          errors.unshift("Internal error analyzing input filter array: ");
@@ -6317,13 +6317,13 @@ module.exports =
 	        if (errors.length) {
 	          break;
 	        }
-	        innerResponse = deduceRuntimeParseDigraphFromAmbiguityColoring(ambiguityModel);
+	        innerResponse = createRuntimeParseModel(ambiguityModel);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
 	        runtimeModel = innerResponse.result;
-	        innerResponse = generateDiscriminatorFilterRuntime(runtimeParseGraph);
+	        innerResponse = createDiscriminatorFilterRuntime(runtimeParseGraph);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
@@ -6360,7 +6360,7 @@ module.exports =
 	(function() {
 	  var GRAPHLIB, UTILLIB, partitionAndColorGraphByAmbiguity;
 
-	  GRAPHLIB = __webpack_require__(7);
+	  GRAPHLIB = __webpack_require__(5);
 
 	  UTILLIB = __webpack_require__(9);
 
@@ -6512,7 +6512,7 @@ module.exports =
 
 	  FILTERLIB = __webpack_require__(1);
 
-	  GRAPHLIB = __webpack_require__(7);
+	  GRAPHLIB = __webpack_require__(5);
 
 	  rootVertex = "request";
 
@@ -6741,107 +6741,88 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var IDLIB, UTILLIB, analyzeFilterSpecGraphVertex, buildDiscriminatorChoiceSets;
+	  var GRAPHLIB, IDLIB, UTILLIB, buildRuntimeParseModel;
+
+	  GRAPHLIB = __webpack_require__(5);
 
 	  UTILLIB = __webpack_require__(9);
 
 	  IDLIB = __webpack_require__(2);
 
-	  buildDiscriminatorChoiceSets = module.exports = function(request_) {
-	    var discriminatorScript, errors, inBreakScope, index, innerResponse, response, uprop, vertex;
+	  buildRuntimeParseModel = module.exports = function(request_) {
+	    var errors, inBreakScope, innerResponse, response, runtimeParseDigraph;
 	    response = {
 	      error: null,
 	      result: null
 	    };
 	    errors = [];
 	    inBreakScope = false;
-	    index = 0;
-	    vertex = null;
 	    while (!inBreakScope) {
 	      inBreakScope = true;
-	      uprop = request_.digraph.getVertexProperty("request");
-	      if (uprop.color === "gold") {
-	        if (request_.digraph.outDegree("request")) {
-	          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model containing only one filter spec.");
-	          break;
-	        } else {
-	          errors.unshift("Cannot create mutual exclusion set tree for merged filter spec model because it's null.");
-	          break;
-	        }
+	      innerResponse = GRAPHLIB.directed.create({
+	        name: "Discriminator Runtime Parse Digraph"
+	      });
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
 	      }
-	      discriminatorScript = [];
-	      while (index < request_.bfsVertices.length) {
-	        vertex = request_.bfsVertices[index];
-	        innerResponse = analyzeFilterSpecGraphVertex({
-	          digraph: request_.digraph,
-	          vertex: vertex
-	        });
-	        if (innerResponse.error) {
-	          errors.unshift(innerResponse.error);
-	          break;
+	      runtimeParseDigraph = innerResponse.result;
+	      runtimeParseDigraph.addVertex({
+	        u: "request"
+	      });
+	      innerResponse = GRAPHLIB.directed.breadthFirstTraverse({
+	        digraph: request_.digraph,
+	        visitor: {
+	          examineEdge: function(gcb_) {
+	            var colorHash, rtprops, uprop, vprop;
+	            uprop = gcb_.g.getVertexProperty(gcb_.e.u);
+	            vprop = gcb_.g.getVertexProperty(gcb_.e.v);
+	            colorHash = uprop.color + ":" + vprop.color;
+	            switch (colorHash) {
+	              case "green:green":
+	                rtprops = {};
+	                rtprops.filterSpecPath = vprop.filterSpecPath;
+	                rtprops.typeConstraint = vprop.typeConstraint;
+	                runtimeParseDigraph.addVertex({
+	                  u: gcb_.e.v,
+	                  p: rtprops
+	                });
+	                runtimeParseDigraph.addEdge({
+	                  e: gcb_.e
+	                });
+	                break;
+	              case "green:gold":
+	                rtprops = {};
+	                rtprops.filterSpecPath = vprop.filterSpecPath;
+	                rtprops.typeConstraint = vprop.typeConstraint;
+	                rtprops.filterID = vprop.filters[0];
+	                runtimeParseDigraph.addVertex({
+	                  u: gcb_.e.v,
+	                  p: rtprops
+	                });
+	                runtimeParseDigraph.addEdge({
+	                  e: gcb_.e
+	                });
+	                break;
+	              case "gold:gold":
+	                break;
+	              default:
+	                errors.unshift("Unexpected ambiguity model digraph coloring discovered!");
+	            }
+	            return true;
+	          }
 	        }
-	        discriminatorScript.push(innerResponse.result);
-	        index++;
-	      }
+	      });
 	      if (errors.length) {
 	        break;
 	      }
-	      response.result = discriminatorScript;
-	    }
-	    if (errors.length) {
-	      response.error = errors.join(" ");
-	    }
-	    console.log("Choice Sets:");
-	    console.log(JSON.stringify(response, void 0, 4) + "\n\n");
-	    return response;
-	  };
-
-	  analyzeFilterSpecGraphVertex = function(request_) {
-	    var choices, errors, inBreakScope, outEdges, response, uprop;
-	    response = {
-	      error: null,
-	      result: null
-	    };
-	    errors = [];
-	    inBreakScope = false;
-	    while (!inBreakScope) {
-	      inBreakScope = true;
-	      uprop = request_.digraph.getVertexProperty(request_.vertex);
-	      switch (uprop.color) {
-	        case "gold":
-	          response.result = {
-	            truth: {
-	              filterID: uprop.filters[0],
-	              filterSpecPath: uprop.filterSpecPath,
-	              typeConstraint: uprop.typeConstraint
-	            }
-	          };
-	          break;
-	        case "green":
-	          choices = {};
-	          outEdges = request_.digraph.outEdges(request_.vertex);
-	          outEdges.forEach(function(edge_) {
-	            var choiceKey, vprop;
-	            vprop = request_.digraph.getVertexProperty(edge_.v);
-	            choiceKey = vprop.filters.join(":") + ":" + vprop.filterSpecPath;
-	            if (!((choices[choiceKey] != null) && choices[choiceKey])) {
-	              choices[choiceKey] = {
-	                disambiguate: {
-	                  typeConstraints: [],
-	                  filterSpecPath: vprop.filterSpecPath
-	                }
-	              };
-	            }
-	            return choices[choiceKey].disambiguate.typeConstraints.push(vprop.typeConstraint);
-	          });
-	          response.result = {
-	            disambiguate: choices
-	          };
-	          break;
-	        default:
-	          errors.unshift("Unexpected graph coloration '" + uprop.color + "' discovered on vertex '" + request_.vertex + "'.");
-	          break;
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
 	      }
+	      response.result = {
+	        filterTable: request_.filterTable,
+	        parseDigraph: runtimeParseDigraph
+	      };
 	      break;
 	    }
 	    if (errors.length) {

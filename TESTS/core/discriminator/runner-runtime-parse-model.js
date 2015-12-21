@@ -3,7 +3,7 @@ var assert = require('chai').assert;
 
 var testModule = require('./module-under-test');
 
-var buildDiscriminatorChoiceSets = testModule('arc_core_type_discriminator_runtime_parse_digraph');
+var buildRuntimeParseModel = testModule('arc_core_type_discriminator_runtime_parse_digraph');
 
 /*
   request = {
@@ -23,7 +23,7 @@ var testChoiceSetsGenerator = module.exports = function (testVector_) {
     describe("ARC core type discriminator choice sets generator test use case: " + testVector_.testName + ":", function() {
         before(function() {
             var functionUnderTest = function() {
-                response = buildDiscriminatorChoiceSets(testVector_.request);
+                response = buildRuntimeParseModel(testVector_.request);
             };
             assert.doesNotThrow(functionUnderTest, "DISCRIMINATOR CHOICE SETS GENERATOR SHOULD NEVER THROW!");
         });
