@@ -2413,7 +2413,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "MqCLpaGaRgWntBCmNEnQpQ", buildTime: "1450662189"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "YZVcZexsTlmKn_z6sBaOEw", buildTime: "1450673352"};
 
 /***/ },
 /* 21 */
@@ -6317,7 +6317,10 @@ module.exports =
 	        if (errors.length) {
 	          break;
 	        }
-	        innerResponse = createRuntimeParseModel(ambiguityModel);
+	        innerResponse = createRuntimeParseModel({
+	          ambiguityModelDigraph: ambiguityModel.digraph,
+	          filterTable: mergedModel.filterTable
+	        });
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
@@ -6771,10 +6774,11 @@ module.exports =
 	        u: "request"
 	      });
 	      innerResponse = GRAPHLIB.directed.breadthFirstTraverse({
-	        digraph: request_.digraph,
+	        digraph: request_,
 	        visitor: {
 	          examineEdge: function(gcb_) {
-	            var colorHash, rtprops, uprop, vprop;
+	            var colorHash, continueTraversal, rtprops, uprop, vprop;
+	            continueTraversal = true;
 	            uprop = gcb_.g.getVertexProperty(gcb_.e.u);
 	            vprop = gcb_.g.getVertexProperty(gcb_.e.v);
 	            colorHash = uprop.color + ":" + vprop.color;
@@ -6807,9 +6811,11 @@ module.exports =
 	              case "gold:gold":
 	                break;
 	              default:
-	                errors.unshift("Unexpected ambiguity model digraph coloring discovered!");
+	                errors.push("Illegal input digraph edge color hash '" + colorHash + "'");
+	                errors.push("at edge ['" + gcb_.e.u + "' -> '" + gcb_.e.v + "'].");
+	                continueTraversal = false;
 	            }
-	            return true;
+	            return continueTraversal;
 	          }
 	        }
 	      });
@@ -6819,10 +6825,7 @@ module.exports =
 	      if (innerResponse.error) {
 	        errors.unshift(innerResponse.error);
 	      }
-	      response.result = {
-	        filterTable: request_.filterTable,
-	        parseDigraph: runtimeParseDigraph
-	      };
+	      response.result = runtimeParseDigraph;
 	      break;
 	    }
 	    if (errors.length) {

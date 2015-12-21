@@ -58,7 +58,10 @@
         if (errors.length) {
           break;
         }
-        innerResponse = createRuntimeParseModel(ambiguityModel);
+        innerResponse = createRuntimeParseModel({
+          ambiguityModelDigraph: ambiguityModel.digraph,
+          filterTable: mergedModel.filterTable
+        });
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;

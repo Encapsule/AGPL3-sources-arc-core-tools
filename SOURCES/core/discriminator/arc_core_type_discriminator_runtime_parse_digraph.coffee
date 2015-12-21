@@ -3,7 +3,7 @@ GRAPHLIB = require './arc_core_graph'
 UTILLIB = require './arc_core_util'
 IDLIB = require './arc_core_identifier'
 
-# request = { exclusionSetModel: object, filterMap: object }
+# request = object (ambiguity model digraph reference)
 
 buildRuntimeParseModel = module.exports = (request_) ->
     response = error: null, result: null
@@ -23,9 +23,11 @@ buildRuntimeParseModel = module.exports = (request_) ->
         runtimeParseDigraph.addVertex u: "request"
 
         innerResponse = GRAPHLIB.directed.breadthFirstTraverse
-            digraph: request_.digraph
+            digraph: request_
             visitor:
                 examineEdge: (gcb_) ->
+
+                    continueTraversal = true
 
                     uprop = gcb_.g.getVertexProperty gcb_.e.u
                     vprop = gcb_.g.getVertexProperty gcb_.e.v
@@ -55,9 +57,11 @@ buildRuntimeParseModel = module.exports = (request_) ->
                             break
 
                         else
-                            errors.unshift "Unexpected ambiguity model digraph coloring discovered!"
+                            errors.push "Illegal input digraph edge color hash '#{colorHash}'"
+                            errors.push "at edge ['#{gcb_.e.u}' -> '#{gcb_.e.v}']."
+                            continueTraversal = false
 
-                    true
+                    continueTraversal
 
         if errors.length
             break
@@ -65,9 +69,7 @@ buildRuntimeParseModel = module.exports = (request_) ->
         if innerResponse.error
             errors.unshift innerResponse.error
 
-        response.result =
-            filterTable: request_.filterTable
-            parseDigraph: runtimeParseDigraph
+        response.result = runtimeParseDigraph
 
         break
 

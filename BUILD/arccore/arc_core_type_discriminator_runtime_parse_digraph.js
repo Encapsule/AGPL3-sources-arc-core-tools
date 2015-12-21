@@ -29,10 +29,11 @@
         u: "request"
       });
       innerResponse = GRAPHLIB.directed.breadthFirstTraverse({
-        digraph: request_.digraph,
+        digraph: request_,
         visitor: {
           examineEdge: function(gcb_) {
-            var colorHash, rtprops, uprop, vprop;
+            var colorHash, continueTraversal, rtprops, uprop, vprop;
+            continueTraversal = true;
             uprop = gcb_.g.getVertexProperty(gcb_.e.u);
             vprop = gcb_.g.getVertexProperty(gcb_.e.v);
             colorHash = uprop.color + ":" + vprop.color;
@@ -65,9 +66,11 @@
               case "gold:gold":
                 break;
               default:
-                errors.unshift("Unexpected ambiguity model digraph coloring discovered!");
+                errors.push("Illegal input digraph edge color hash '" + colorHash + "'");
+                errors.push("at edge ['" + gcb_.e.u + "' -> '" + gcb_.e.v + "'].");
+                continueTraversal = false;
             }
-            return true;
+            return continueTraversal;
           }
         }
       });
@@ -77,10 +80,7 @@
       if (innerResponse.error) {
         errors.unshift(innerResponse.error);
       }
-      response.result = {
-        filterTable: request_.filterTable,
-        parseDigraph: runtimeParseDigraph
-      };
+      response.result = runtimeParseDigraph;
       break;
     }
     if (errors.length) {

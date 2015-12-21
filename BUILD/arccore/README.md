@@ -2,7 +2,7 @@
 
 # Encapsule/arccore v0.0.4 "stillwater"
 
-Build ID "MqCLpaGaRgWntBCmNEnQpQ" Sun Dec 20 2015 17:43:09 GMT-0800 (PST)
+Build ID "H0Pqm1YdQh6mml2ARHyyTg" Sun Dec 20 2015 20:52:48 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

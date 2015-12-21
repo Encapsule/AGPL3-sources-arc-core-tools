@@ -8,15 +8,16 @@ var testFilters = require('./runner-test-filters')
 var testBuildRuntimeParseModel = require('./runner-runtime-parse-model');
 
 var ambiguityModelSet = {
-    test1: ambiguityDetector(specGraphBuilder([ testFilters.test1.result, testFilters.test2.result ]).result.digraph)
-    ,
-    test2: ambiguityDetector(specGraphBuilder([ testFilters.test4.result, testFilters.test2.result ]).result.digraph)
+    test1: ambiguityDetector(specGraphBuilder([ testFilters.test1.result, testFilters.test2.result ]).result.digraph),
+    test2: ambiguityDetector(specGraphBuilder([ testFilters.test4.result, testFilters.test2.result ]).result.digraph),
+    test3: ambiguityDetector(specGraphBuilder([ testFilters.test5.result, testFilters.test3.result, testFilters.test7.result ]).result.digraph),
+    test4: ambiguityDetector(specGraphBuilder([ testFilters.test2.result, testFilters.test3.result, testFilters.test4.result, testFilters.test5.result,  testFilters.test7.result]).result.digraph)
 };
 
 testBuildRuntimeParseModel({
-    testName: "Test #1",
+    testName: "Input Ambiguity Model #1",
     validConfig: true,
-    request: ambiguityModelSet.test1.result,
+    request: ambiguityModelSet.test1.result.digraph,
     expectedResults: {
         error: null,
         result: null
@@ -24,9 +25,29 @@ testBuildRuntimeParseModel({
 });
 
 testBuildRuntimeParseModel({
-    testName: "Test #2",
+    testName: "Input Ambiguioty Model #2",
     validConfig: true,
-    request: ambiguityModelSet.test2.result,
+    request: ambiguityModelSet.test2.result.digraph,
+    expectedResults: {
+        error: null,
+        result: null
+    }
+});
+
+testBuildRuntimeParseModel({
+    testName: "Input Ambiguioty Model #3",
+    validConfig: true,
+    request: ambiguityModelSet.test3.result.digraph,
+    expectedResults: {
+        error: null,
+        result: null
+    }
+});
+
+testBuildRuntimeParseModel({
+    testName: "Input Ambiguioty Model #4",
+    validConfig: false,
+    request: ambiguityModelSet.test4.result.digraph,
     expectedResults: {
         error: null,
         result: null
