@@ -56,26 +56,26 @@ filterlibResponse = FILTERLIB.create
                 errors.unshift "Internal error analyzing input filter array: "
                 break
             ambiguityModel = innerResponse.result
-
             console.log ambiguityModel.digraph.toJSON(undefined, 4)
 
             # Exit with error if the input filter set cannot be discriminated.
             # Note that we may relax this policy enforcement later with an options object flag.
 
+            console.log "... checking for ambiguities in the ambiguity model"
             ambiguityModel.ambiguousFilterSpecificationErrors.forEach (error_) -> errors.push error_
             if errors.length
                 break
 
-            innerResponse = createRuntimeParseModel
-                ambiguityModelDigraph: ambiguityModel.digraph
-                filterTable: mergedModel.filterTable
-
+            console.log "STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL"
+            innerResponse = createRuntimeParseModel ambiguityModel.digraph
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
 
             runtimeModel = innerResponse.result
+            console.log JSON.stringify runtimeModel, undefined, 4
 
+            console.log "STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER"
             innerResponse = createDiscriminatorFilterRuntime runtimeParseGraph
             if innerResponse.error
                 errors.unshift innerResponse.error

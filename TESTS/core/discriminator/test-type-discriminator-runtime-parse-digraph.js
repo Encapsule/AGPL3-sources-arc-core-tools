@@ -49,7 +49,7 @@ testBuildRuntimeParseModel({
     validConfig: false,
     request: ambiguityModelSet.test4.result.digraph,
     expectedResults: {
-        error: 'Illegal input digraph edge color hash \'black:black\' at edge [\'request\' -> \'request(jsObject)\'].',
+        error: "Invalid ambiguity model digraph. The root vertex should be color \'green\' but is \'black\'.",
         result: null
     }
 });

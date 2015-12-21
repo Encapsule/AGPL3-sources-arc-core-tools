@@ -8,7 +8,7 @@
   IDLIB = require('./arc_core_identifier');
 
   buildRuntimeParseModel = module.exports = function(request_) {
-    var errors, inBreakScope, innerResponse, response, runtimeParseDigraph;
+    var errors, inBreakScope, innerResponse, response, runtimeParseDigraph, uprop;
     response = {
       error: null,
       result: null
@@ -17,6 +17,11 @@
     inBreakScope = false;
     while (!inBreakScope) {
       inBreakScope = true;
+      uprop = request_.getVertexProperty("request");
+      if (uprop.color !== "green") {
+        errors.unshift("Invalid ambiguity model digraph. The root vertex should be color 'green' but is '" + uprop.color + "'.");
+        break;
+      }
       innerResponse = GRAPHLIB.directed.create({
         name: "Discriminator Runtime Parse Digraph"
       });
@@ -32,7 +37,7 @@
         digraph: request_,
         visitor: {
           examineEdge: function(gcb_) {
-            var colorHash, continueTraversal, rtprops, uprop, vprop;
+            var colorHash, continueTraversal, rtprops, vprop;
             continueTraversal = true;
             uprop = gcb_.g.getVertexProperty(gcb_.e.u);
             vprop = gcb_.g.getVertexProperty(gcb_.e.v);

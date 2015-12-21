@@ -13,6 +13,11 @@ buildRuntimeParseModel = module.exports = (request_) ->
     while not inBreakScope
         inBreakScope = true
 
+        uprop = request_.getVertexProperty "request"
+        if uprop.color != "green"
+            errors.unshift "Invalid ambiguity model digraph. The root vertex should be color 'green' but is '#{uprop.color}'."
+            break
+
         innerResponse = GRAPHLIB.directed.create
             name: "Discriminator Runtime Parse Digraph"
         if innerResponse.error

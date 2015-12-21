@@ -52,21 +52,22 @@
         }
         ambiguityModel = innerResponse.result;
         console.log(ambiguityModel.digraph.toJSON(void 0, 4));
+        console.log("... checking for ambiguities in the ambiguity model");
         ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
           return errors.push(error_);
         });
         if (errors.length) {
           break;
         }
-        innerResponse = createRuntimeParseModel({
-          ambiguityModelDigraph: ambiguityModel.digraph,
-          filterTable: mergedModel.filterTable
-        });
+        console.log("STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL");
+        innerResponse = createRuntimeParseModel(ambiguityModel.digraph);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;
         }
         runtimeModel = innerResponse.result;
+        console.log(JSON.stringify(runtimeModel, void 0, 4));
+        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
         innerResponse = createDiscriminatorFilterRuntime(runtimeParseGraph);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);

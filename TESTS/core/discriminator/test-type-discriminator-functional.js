@@ -4,7 +4,6 @@ var assert = require('chai').assert;
 var testModule = require('./module-under-test');
 
 var filterArray = [
-    testModule('arc_core_filter_dag_create'),
     testModule('arc_core_filter_dag_create_spec')
 ];
 

@@ -2413,7 +2413,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "MO6o3UvZSt-l9k4gpUfJ-A", buildTime: "1450674130"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "C73BH4GgTACcJjQi3lr_Hw", buildTime: "1450677231"};
 
 /***/ },
 /* 21 */
@@ -6311,21 +6311,22 @@ module.exports =
 	        }
 	        ambiguityModel = innerResponse.result;
 	        console.log(ambiguityModel.digraph.toJSON(void 0, 4));
+	        console.log("... checking for ambiguities in the ambiguity model");
 	        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
 	          return errors.push(error_);
 	        });
 	        if (errors.length) {
 	          break;
 	        }
-	        innerResponse = createRuntimeParseModel({
-	          ambiguityModelDigraph: ambiguityModel.digraph,
-	          filterTable: mergedModel.filterTable
-	        });
+	        console.log("STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL");
+	        innerResponse = createRuntimeParseModel(ambiguityModel.digraph);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
 	        runtimeModel = innerResponse.result;
+	        console.log(JSON.stringify(runtimeModel, void 0, 4));
+	        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
 	        innerResponse = createDiscriminatorFilterRuntime(runtimeParseGraph);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
@@ -6753,7 +6754,7 @@ module.exports =
 	  IDLIB = __webpack_require__(2);
 
 	  buildRuntimeParseModel = module.exports = function(request_) {
-	    var errors, inBreakScope, innerResponse, response, runtimeParseDigraph;
+	    var errors, inBreakScope, innerResponse, response, runtimeParseDigraph, uprop;
 	    response = {
 	      error: null,
 	      result: null
@@ -6762,6 +6763,11 @@ module.exports =
 	    inBreakScope = false;
 	    while (!inBreakScope) {
 	      inBreakScope = true;
+	      uprop = request_.getVertexProperty("request");
+	      if (uprop.color !== "green") {
+	        errors.unshift("Invalid ambiguity model digraph. The root vertex should be color 'green' but is '" + uprop.color + "'.");
+	        break;
+	      }
 	      innerResponse = GRAPHLIB.directed.create({
 	        name: "Discriminator Runtime Parse Digraph"
 	      });
@@ -6777,7 +6783,7 @@ module.exports =
 	        digraph: request_,
 	        visitor: {
 	          examineEdge: function(gcb_) {
-	            var colorHash, continueTraversal, rtprops, uprop, vprop;
+	            var colorHash, continueTraversal, rtprops, vprop;
 	            continueTraversal = true;
 	            uprop = gcb_.g.getVertexProperty(gcb_.e.u);
 	            vprop = gcb_.g.getVertexProperty(gcb_.e.v);
