@@ -115,7 +115,7 @@ gulp.task('copyjs_tools', function() {
     return gulp.src('./SOURCES/tools/*.js').pipe(gulp.dest('./BUILD/arctools/'));
 });
 
-gulp.task("baseBuild", [ "copyjs", "coffee", "tagbuild" ], function() {
+gulp.task("baseBuild", [ "copyjs", "coffee" ], function() {
     console.log("baseBuild...");
 });
 
