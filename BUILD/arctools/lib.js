@@ -3194,7 +3194,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "5tbHUq9HS8GPmHXYPxRWbQ", buildTime: "1450751015"};
+		module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "oZUBgjxNRtShcsIivGqGfg", buildTime: "1450809339"};
 
 	/***/ },
 	/* 21 */
@@ -9499,7 +9499,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "5tbHUq9HS8GPmHXYPxRWbQ", buildTime: "1450751015"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "oZUBgjxNRtShcsIivGqGfg", buildTime: "1450809339"};
 
 /***/ },
 /* 24 */
@@ -9829,7 +9829,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "5tbHUq9HS8GPmHXYPxRWbQ", buildTime: "1450751015"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "oZUBgjxNRtShcsIivGqGfg", buildTime: "1450809339"};
 
 /***/ },
 /* 29 */
