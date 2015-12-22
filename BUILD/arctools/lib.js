@@ -47,14 +47,14 @@ module.exports =
 
 	module.exports = {
 	    meta: __webpack_require__(23),
-	    commander: __webpack_require__(69),
+	    commander: __webpack_require__(70),
 	    chalk: __webpack_require__(14),
 	    arccore: __webpack_require__(29),
-	    fileDirEnumSync: __webpack_require__(63),
-	    jsrcFileLoaderSync: __webpack_require__(65),
-	    stringToFileSync: __webpack_require__(66),
-	    filterdagSpecLoader: __webpack_require__(64),
-	    createToolBanner: __webpack_require__(67),
+	    fileDirEnumSync: __webpack_require__(64),
+	    jsrcFileLoaderSync: __webpack_require__(66),
+	    stringToFileSync: __webpack_require__(67),
+	    filterdagSpecLoader: __webpack_require__(65),
+	    createToolBanner: __webpack_require__(68),
 	    clistyles: __webpack_require__(24)
 	};
 
@@ -524,7 +524,7 @@ module.exports =
 
 	  jbus.common.types.convert = __webpack_require__(21);
 
-	  jbus.common.types.check = __webpack_require__(62);
+	  jbus.common.types.check = __webpack_require__(63);
 
 	}).call(this);
 
@@ -1345,7 +1345,7 @@ module.exports =
 
 		  jbus.common.types.convert = __webpack_require__(17);
 
-		  jbus.common.types.check = __webpack_require__(53);
+		  jbus.common.types.check = __webpack_require__(54);
 
 		}).call(this);
 
@@ -1648,8 +1648,8 @@ module.exports =
 	/* 11 */
 	/***/ function(module, exports, __webpack_require__) {
 
-		var murmur3 = __webpack_require__(55)
-		var murmur2 = __webpack_require__(54)
+		var murmur3 = __webpack_require__(56)
+		var murmur2 = __webpack_require__(55)
 
 		module.exports = murmur3
 		module.exports.murmur3 = murmur3
@@ -2974,7 +2974,7 @@ module.exports =
 		    // Moderately fast, high quality
 		    if (true) {
 		      try {
-		        var _rb = __webpack_require__(56).randomBytes;
+		        var _rb = __webpack_require__(57).randomBytes;
 		        _nodeRNG = _rng = _rb && function() {return _rb(16);};
 		        _rng();
 		      } catch(e) {}
@@ -7047,7 +7047,7 @@ module.exports =
 
 		  createAmbiguityModel = __webpack_require__(49);
 
-		  createRuntimeParseModel = __webpack_require__(52);
+		  createRuntimeParseModel = __webpack_require__(53);
 
 		  createDiscriminatorFilterRuntime = __webpack_require__(51);
 
@@ -7466,11 +7466,13 @@ module.exports =
 	/***/ function(module, exports, __webpack_require__) {
 
 		(function() {
-		  var FILTERLIB, TYPELIB, generateDiscriminatorRuntimeFilter;
+		  var FILTERLIB, TYPELIB, checkPropertyNameTypeConstraint, generateDiscriminatorRuntimeFilter;
 
 		  FILTERLIB = __webpack_require__(1);
 
 		  TYPELIB = __webpack_require__(5);
+
+		  checkPropertyNameTypeConstraint = __webpack_require__(52);
 
 		  generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
 		    var errors, inBreakScope, innerResponse, response, runtimeContext;
@@ -7561,6 +7563,47 @@ module.exports =
 
 	/***/ },
 	/* 52 */
+	/***/ function(module, exports, __webpack_require__) {
+
+		(function() {
+		  var TYPELIB;
+
+		  TYPELIB = __webpack_require__(5);
+
+		  module.exports = function(propertyName_, propertyTypeContraint_, parentNamespaceReference_) {
+		    var checkResponse, propertyReference, response;
+		    response = {
+		      error: null,
+		      result: null
+		    };
+		    propertyReference = parentNamespaceReference_[propertyName_];
+		    checkResponse = TYPELIB.check.inTypeSet({
+		      value: propertyReference,
+		      types: propertyTypeConstraint_
+		    });
+		    if (checkResponse.error) {
+		      response.error = checkResponse.error;
+		      return response;
+		    }
+		    if (checkResponse.result) {
+		      response.result = {
+		        pass: true,
+		        reference: propertyReference
+		      };
+		    } else {
+		      response.result = {
+		        pass: false,
+		        reference: void 0
+		      };
+		    }
+		    return response;
+		  };
+
+		}).call(this);
+
+
+	/***/ },
+	/* 53 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		(function() {
@@ -7663,7 +7706,7 @@ module.exports =
 
 
 	/***/ },
-	/* 53 */
+	/* 54 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		
@@ -7828,7 +7871,7 @@ module.exports =
 
 
 	/***/ },
-	/* 54 */
+	/* 55 */
 	/***/ function(module, exports) {
 
 		/**
@@ -7888,7 +7931,7 @@ module.exports =
 
 
 	/***/ },
-	/* 55 */
+	/* 56 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/**
@@ -7961,7 +8004,7 @@ module.exports =
 		}
 
 	/***/ },
-	/* 56 */
+	/* 57 */
 	/***/ function(module, exports) {
 
 		module.exports = __webpack_require__(27);
@@ -8034,11 +8077,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var escapeStringRegexp = __webpack_require__(70);
-	var ansiStyles = __webpack_require__(68);
-	var stripAnsi = __webpack_require__(75);
-	var hasAnsi = __webpack_require__(72);
-	var supportsColor = __webpack_require__(76);
+	var escapeStringRegexp = __webpack_require__(71);
+	var ansiStyles = __webpack_require__(69);
+	var stripAnsi = __webpack_require__(76);
+	var hasAnsi = __webpack_require__(73);
+	var supportsColor = __webpack_require__(77);
 	var defineProps = Object.defineProperties;
 	var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
 
@@ -8155,8 +8198,8 @@ module.exports =
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(74)
-	var murmur2 = __webpack_require__(73)
+	var murmur3 = __webpack_require__(75)
+	var murmur2 = __webpack_require__(74)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -13664,7 +13707,7 @@ module.exports =
 
 	  createAmbiguityModel = __webpack_require__(58);
 
-	  createRuntimeParseModel = __webpack_require__(61);
+	  createRuntimeParseModel = __webpack_require__(62);
 
 	  createDiscriminatorFilterRuntime = __webpack_require__(60);
 
@@ -14083,11 +14126,13 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var FILTERLIB, TYPELIB, generateDiscriminatorRuntimeFilter;
+	  var FILTERLIB, TYPELIB, checkPropertyNameTypeConstraint, generateDiscriminatorRuntimeFilter;
 
 	  FILTERLIB = __webpack_require__(1);
 
 	  TYPELIB = __webpack_require__(5);
+
+	  checkPropertyNameTypeConstraint = __webpack_require__(61);
 
 	  generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
 	    var errors, inBreakScope, innerResponse, response, runtimeContext;
@@ -14178,6 +14223,47 @@ module.exports =
 
 /***/ },
 /* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
+	  var TYPELIB;
+
+	  TYPELIB = __webpack_require__(5);
+
+	  module.exports = function(propertyName_, propertyTypeContraint_, parentNamespaceReference_) {
+	    var checkResponse, propertyReference, response;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    propertyReference = parentNamespaceReference_[propertyName_];
+	    checkResponse = TYPELIB.check.inTypeSet({
+	      value: propertyReference,
+	      types: propertyTypeConstraint_
+	    });
+	    if (checkResponse.error) {
+	      response.error = checkResponse.error;
+	      return response;
+	    }
+	    if (checkResponse.result) {
+	      response.result = {
+	        pass: true,
+	        reference: propertyReference
+	      };
+	    } else {
+	      response.result = {
+	        pass: false,
+	        reference: void 0
+	      };
+	    }
+	    return response;
+	  };
+
+	}).call(this);
+
+
+/***/ },
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -14280,7 +14366,7 @@ module.exports =
 
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -14445,7 +14531,7 @@ module.exports =
 
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -14587,7 +14673,7 @@ module.exports =
 
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -14658,7 +14744,7 @@ module.exports =
 
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -14761,7 +14847,7 @@ module.exports =
 
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -14852,7 +14938,7 @@ module.exports =
 
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -14879,7 +14965,7 @@ module.exports =
 
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
@@ -14948,19 +15034,19 @@ module.exports =
 		get: assembleStyles
 	});
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(77)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(78)(module)))
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var EventEmitter = __webpack_require__(79).EventEmitter;
-	var spawn = __webpack_require__(78).spawn;
-	var readlink = __webpack_require__(71).readlinkSync;
+	var EventEmitter = __webpack_require__(80).EventEmitter;
+	var spawn = __webpack_require__(79).spawn;
+	var readlink = __webpack_require__(72).readlinkSync;
 	var path = __webpack_require__(12);
 	var dirname = path.dirname;
 	var basename = path.basename;
@@ -16067,7 +16153,7 @@ module.exports =
 
 
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16084,7 +16170,7 @@ module.exports =
 
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(7)
@@ -16102,7 +16188,7 @@ module.exports =
 
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16112,7 +16198,7 @@ module.exports =
 
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports) {
 
 	/**
@@ -16172,7 +16258,7 @@ module.exports =
 
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16245,7 +16331,7 @@ module.exports =
 	}
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16257,7 +16343,7 @@ module.exports =
 
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16313,7 +16399,7 @@ module.exports =
 
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -16329,13 +16415,13 @@ module.exports =
 
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports) {
 
 	module.exports = require("child_process");
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports) {
 
 	module.exports = require("events");

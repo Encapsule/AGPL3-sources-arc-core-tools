@@ -1,9 +1,11 @@
 (function() {
-  var FILTERLIB, TYPELIB, generateDiscriminatorRuntimeFilter;
+  var FILTERLIB, TYPELIB, checkPropertyNameTypeConstraint, generateDiscriminatorRuntimeFilter;
 
   FILTERLIB = require('./arc_core_filter');
 
   TYPELIB = require('./arc_core_types');
+
+  checkPropertyNameTypeConstraint = require('./arc_core_type_discriminator_runtime_check_property');
 
   generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
     var errors, inBreakScope, innerResponse, response, runtimeContext;

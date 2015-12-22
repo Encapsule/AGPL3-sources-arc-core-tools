@@ -564,7 +564,7 @@ module.exports =
 
 	  jbus.common.types.convert = __webpack_require__(17);
 
-	  jbus.common.types.check = __webpack_require__(53);
+	  jbus.common.types.check = __webpack_require__(54);
 
 	}).call(this);
 
@@ -867,8 +867,8 @@ module.exports =
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(55)
-	var murmur2 = __webpack_require__(54)
+	var murmur3 = __webpack_require__(56)
+	var murmur2 = __webpack_require__(55)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -2193,7 +2193,7 @@ module.exports =
 	    // Moderately fast, high quality
 	    if (true) {
 	      try {
-	        var _rb = __webpack_require__(56).randomBytes;
+	        var _rb = __webpack_require__(57).randomBytes;
 	        _nodeRNG = _rng = _rb && function() {return _rb(16);};
 	        _rng();
 	      } catch(e) {}
@@ -6266,7 +6266,7 @@ module.exports =
 
 	  createAmbiguityModel = __webpack_require__(49);
 
-	  createRuntimeParseModel = __webpack_require__(52);
+	  createRuntimeParseModel = __webpack_require__(53);
 
 	  createDiscriminatorFilterRuntime = __webpack_require__(51);
 
@@ -6685,11 +6685,13 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var FILTERLIB, TYPELIB, generateDiscriminatorRuntimeFilter;
+	  var FILTERLIB, TYPELIB, checkPropertyNameTypeConstraint, generateDiscriminatorRuntimeFilter;
 
 	  FILTERLIB = __webpack_require__(1);
 
 	  TYPELIB = __webpack_require__(5);
+
+	  checkPropertyNameTypeConstraint = __webpack_require__(52);
 
 	  generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
 	    var errors, inBreakScope, innerResponse, response, runtimeContext;
@@ -6780,6 +6782,47 @@ module.exports =
 
 /***/ },
 /* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
+	  var TYPELIB;
+
+	  TYPELIB = __webpack_require__(5);
+
+	  module.exports = function(propertyName_, propertyTypeContraint_, parentNamespaceReference_) {
+	    var checkResponse, propertyReference, response;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    propertyReference = parentNamespaceReference_[propertyName_];
+	    checkResponse = TYPELIB.check.inTypeSet({
+	      value: propertyReference,
+	      types: propertyTypeConstraint_
+	    });
+	    if (checkResponse.error) {
+	      response.error = checkResponse.error;
+	      return response;
+	    }
+	    if (checkResponse.result) {
+	      response.result = {
+	        pass: true,
+	        reference: propertyReference
+	      };
+	    } else {
+	      response.result = {
+	        pass: false,
+	        reference: void 0
+	      };
+	    }
+	    return response;
+	  };
+
+	}).call(this);
+
+
+/***/ },
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -6882,7 +6925,7 @@ module.exports =
 
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -7047,7 +7090,7 @@ module.exports =
 
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports) {
 
 	/**
@@ -7107,7 +7150,7 @@ module.exports =
 
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7180,7 +7223,7 @@ module.exports =
 	}
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports) {
 
 	module.exports = require("crypto");

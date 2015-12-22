@@ -2,6 +2,8 @@
 FILTERLIB = require './arc_core_filter'
 TYPELIB = require './arc_core_types'
 
+checkPropertyNameTypeConstraint = require './arc_core_type_discriminator_runtime_check_property'
+
 # request = { filterTable: object, parseDigraph: object }
 
 generateDiscriminatorRuntimeFilter = module.exports = (runtimeContext_) ->
@@ -25,19 +27,19 @@ generateDiscriminatorRuntimeFilter = module.exports = (runtimeContext_) ->
                 inBreakScope = false
                 while not inBreakScope
 
+
                     inBreakScope = true
                     console.log "In #{@operationName}:#{@operationID}"
                     console.log "runtime context = #{JSON.stringify(runtimeContext)}"
 
                     input = { request: request_ }
-                    path = null
                     currentVertex = "request"
                     filterID = null
 
                     while (not filterID) and currentVertex
 
-                        uprop = runtimeContext.getVertexProperty currentVertex
-                        outEdges = runtimeContext.outEdges currentVertex
+                        uprop = runtimeContext.parseDigraph.getVertexProperty currentVertex
+                        outEdges = runtimeContext.parseDigraph outEdges currentVertex
 
                         index = 0
                         continueRankScan = true
