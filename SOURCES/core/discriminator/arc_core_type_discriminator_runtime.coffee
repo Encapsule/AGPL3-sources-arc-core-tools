@@ -41,9 +41,6 @@ filterlibResponse = FILTERLIB.create
                     while not inBreakScope
                         inBreakScope = true
 
-                        console.log "In #{@operationName}:#{@operationID}"
-                        console.log "runtime context = #{JSON.stringify(runtimeContext)}"
-
                         inputNamespace = { request: request_ }
                         currentVertex = "request"
                         filterID = null
@@ -61,7 +58,7 @@ filterlibResponse = FILTERLIB.create
                                 edge = outEdges[index]
                                 vprop = runtimeContext.parseDigraph.getVertexProperty edge.v
 
-                                typeConstraint = vprop.typeContraint
+                                typeConstraint = vprop.typeConstraint
                                 pathParts = vprop.filterSpecPath.split "."
                                 propertyName = pathParts[pathParts.length - 1]
 
@@ -82,12 +79,20 @@ filterlibResponse = FILTERLIB.create
                                     index++
 
                             if index == outEdges.length
-                                errors.unshift "Request input not recognized."
+                                supportedFilters = []
+                                for filterID of runtimeContext.filterTable
+                                    filter = runtimeContext.filterTable[filterID]
+                                    supportedFilters.push "[#{filter.filterDescriptor.operationName}:#{filterID}]"
+                                errors.unshift "Expected request for one of filters #{supportedFilters.join(" or ")}."
+                                errors.unshift "Invalid request input data signature is not recognized and cannot be routed."
 
-                        if not errrors.length
+                        if not errors.length
                             response.result = filterID
 
                         break
+
+                    if errors.length
+                        response.error = errors.join " "
 
                     response
 
@@ -95,6 +100,9 @@ filterlibResponse = FILTERLIB.create
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
+
+            runtimeFilter = innerResponse.result
+            runtimeFilter.runtimeContext = runtimeContext
 
             response.result = innerResponse.result
             break

@@ -3,7 +3,7 @@
 
   TYPELIB = require('./arc_core_types');
 
-  module.exports = function(propertyName_, typeContraint_, namespaceReference_) {
+  module.exports = function(propertyName_, typeConstraint_, namespaceReference_) {
     var checkResponse, propertyReference, response;
     response = {
       error: null,

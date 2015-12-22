@@ -1,3 +1,4 @@
+
 UTILLIB = require './arc_core_util'
 FILTERLIB = require './arc_core_filter'
 GRAPHLIB = require './arc_core_graph'
@@ -35,7 +36,7 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
-            result.filterTable[filter.filterDescriptor.operationID] = {}
+            result.filterTable[filter.filterDescriptor.operationID] = filter
             filters.push filter.filterDescriptor.operationID
         if errors.length
             errors.unshift "Unable to build merged filter specification digraph model."

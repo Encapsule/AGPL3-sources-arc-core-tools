@@ -48,7 +48,7 @@
           errors.unshift(innerResponse.error);
           break;
         }
-        result.filterTable[filter.filterDescriptor.operationID] = {};
+        result.filterTable[filter.filterDescriptor.operationID] = filter;
         filters.push(filter.filterDescriptor.operationID);
       }
       if (errors.length) {

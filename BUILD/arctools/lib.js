@@ -6399,7 +6399,7 @@ module.exports =
 		
 		/*
 		----------------------------------------------------------------------
-		 
+
 		           +---+---+---+---+
 		 chaos --> | J | B | U | S | --> order
 		           +---+---+---+---+
@@ -7343,7 +7343,7 @@ module.exports =
 		          errors.unshift(innerResponse.error);
 		          break;
 		        }
-		        result.filterTable[filter.filterDescriptor.operationID] = {};
+		        result.filterTable[filter.filterDescriptor.operationID] = filter;
 		        filters.push(filter.filterDescriptor.operationID);
 		      }
 		      if (errors.length) {
@@ -7491,7 +7491,7 @@ module.exports =
 		      }
 		    },
 		    bodyFunction: function(request_) {
-		      var errors, inBreakScope, innerResponse, response, runtimeContext;
+		      var errors, inBreakScope, innerResponse, response, runtimeContext, runtimeFilter;
 		      response = {
 		        error: null,
 		        result: null
@@ -7506,7 +7506,7 @@ module.exports =
 		          operationName: "Discrimintor Filter",
 		          operationDescription: "Discriminates between N disjunct request signatures.",
 		          bodyFunction: function(request_) {
-		            var checkResponse, continueRankEnum, currentVertex, edge, filterID, index, inputNamespace, outEdges, pathParts, propertyName, typeConstraint, uprop, vprop;
+		            var checkResponse, continueRankEnum, currentVertex, edge, filter, filterID, index, inputNamespace, outEdges, pathParts, propertyName, supportedFilters, typeConstraint, uprop, vprop;
 		            response = {
 		              error: null,
 		              response: null
@@ -7515,8 +7515,6 @@ module.exports =
 		            inBreakScope = false;
 		            while (!inBreakScope) {
 		              inBreakScope = true;
-		              console.log("In " + this.operationName + ":" + this.operationID);
-		              console.log("runtime context = " + (JSON.stringify(runtimeContext)));
 		              inputNamespace = {
 		                request: request_
 		              };
@@ -7530,7 +7528,7 @@ module.exports =
 		                while ((!filterID) && (!errors.length) && (index < outEdges.length) && continueRankEnum) {
 		                  edge = outEdges[index];
 		                  vprop = runtimeContext.parseDigraph.getVertexProperty(edge.v);
-		                  typeConstraint = vprop.typeContraint;
+		                  typeConstraint = vprop.typeConstraint;
 		                  pathParts = vprop.filterSpecPath.split(".");
 		                  propertyName = pathParts[pathParts.length - 1];
 		                  checkResponse = checkPropConstraint(propertyName, typeConstraint, inputNamespace);
@@ -7551,13 +7549,22 @@ module.exports =
 		                  }
 		                }
 		                if (index === outEdges.length) {
-		                  errors.unshift("Request input not recognized.");
+		                  supportedFilters = [];
+		                  for (filterID in runtimeContext.filterTable) {
+		                    filter = runtimeContext.filterTable[filterID];
+		                    supportedFilters.push("[" + filter.filterDescriptor.operationName + ":" + filterID + "]");
+		                  }
+		                  errors.unshift("Expected request for one of filters " + (supportedFilters.join(" or ")) + ".");
+		                  errors.unshift("Invalid request input data signature is not recognized and cannot be routed.");
 		                }
 		              }
-		              if (!errrors.length) {
+		              if (!errors.length) {
 		                response.result = filterID;
 		              }
 		              break;
+		            }
+		            if (errors.length) {
+		              response.error = errors.join(" ");
 		            }
 		            return response;
 		          }
@@ -7566,6 +7573,8 @@ module.exports =
 		          errors.unshift(innerResponse.error);
 		          break;
 		        }
+		        runtimeFilter = innerResponse.result;
+		        runtimeFilter.runtimeContext = runtimeContext;
 		        response.result = innerResponse.result;
 		        break;
 		      }
@@ -7594,7 +7603,7 @@ module.exports =
 
 		  TYPELIB = __webpack_require__(5);
 
-		  module.exports = function(propertyName_, typeContraint_, namespaceReference_) {
+		  module.exports = function(propertyName_, typeConstraint_, namespaceReference_) {
 		    var checkResponse, propertyReference, response;
 		    response = {
 		      error: null,
@@ -13083,7 +13092,7 @@ module.exports =
 	
 	/*
 	----------------------------------------------------------------------
-	 
+
 	           +---+---+---+---+
 	 chaos --> | J | B | U | S | --> order
 	           +---+---+---+---+
@@ -14027,7 +14036,7 @@ module.exports =
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
-	        result.filterTable[filter.filterDescriptor.operationID] = {};
+	        result.filterTable[filter.filterDescriptor.operationID] = filter;
 	        filters.push(filter.filterDescriptor.operationID);
 	      }
 	      if (errors.length) {
@@ -14175,7 +14184,7 @@ module.exports =
 	      }
 	    },
 	    bodyFunction: function(request_) {
-	      var errors, inBreakScope, innerResponse, response, runtimeContext;
+	      var errors, inBreakScope, innerResponse, response, runtimeContext, runtimeFilter;
 	      response = {
 	        error: null,
 	        result: null
@@ -14190,7 +14199,7 @@ module.exports =
 	          operationName: "Discrimintor Filter",
 	          operationDescription: "Discriminates between N disjunct request signatures.",
 	          bodyFunction: function(request_) {
-	            var checkResponse, continueRankEnum, currentVertex, edge, filterID, index, inputNamespace, outEdges, pathParts, propertyName, typeConstraint, uprop, vprop;
+	            var checkResponse, continueRankEnum, currentVertex, edge, filter, filterID, index, inputNamespace, outEdges, pathParts, propertyName, supportedFilters, typeConstraint, uprop, vprop;
 	            response = {
 	              error: null,
 	              response: null
@@ -14199,8 +14208,6 @@ module.exports =
 	            inBreakScope = false;
 	            while (!inBreakScope) {
 	              inBreakScope = true;
-	              console.log("In " + this.operationName + ":" + this.operationID);
-	              console.log("runtime context = " + (JSON.stringify(runtimeContext)));
 	              inputNamespace = {
 	                request: request_
 	              };
@@ -14214,7 +14221,7 @@ module.exports =
 	                while ((!filterID) && (!errors.length) && (index < outEdges.length) && continueRankEnum) {
 	                  edge = outEdges[index];
 	                  vprop = runtimeContext.parseDigraph.getVertexProperty(edge.v);
-	                  typeConstraint = vprop.typeContraint;
+	                  typeConstraint = vprop.typeConstraint;
 	                  pathParts = vprop.filterSpecPath.split(".");
 	                  propertyName = pathParts[pathParts.length - 1];
 	                  checkResponse = checkPropConstraint(propertyName, typeConstraint, inputNamespace);
@@ -14235,13 +14242,22 @@ module.exports =
 	                  }
 	                }
 	                if (index === outEdges.length) {
-	                  errors.unshift("Request input not recognized.");
+	                  supportedFilters = [];
+	                  for (filterID in runtimeContext.filterTable) {
+	                    filter = runtimeContext.filterTable[filterID];
+	                    supportedFilters.push("[" + filter.filterDescriptor.operationName + ":" + filterID + "]");
+	                  }
+	                  errors.unshift("Expected request for one of filters " + (supportedFilters.join(" or ")) + ".");
+	                  errors.unshift("Invalid request input data signature is not recognized and cannot be routed.");
 	                }
 	              }
-	              if (!errrors.length) {
+	              if (!errors.length) {
 	                response.result = filterID;
 	              }
 	              break;
+	            }
+	            if (errors.length) {
+	              response.error = errors.join(" ");
 	            }
 	            return response;
 	          }
@@ -14250,6 +14266,8 @@ module.exports =
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
+	        runtimeFilter = innerResponse.result;
+	        runtimeFilter.runtimeContext = runtimeContext;
 	        response.result = innerResponse.result;
 	        break;
 	      }
@@ -14278,7 +14296,7 @@ module.exports =
 
 	  TYPELIB = __webpack_require__(5);
 
-	  module.exports = function(propertyName_, typeContraint_, namespaceReference_) {
+	  module.exports = function(propertyName_, typeConstraint_, namespaceReference_) {
 	    var checkResponse, propertyReference, response;
 	    response = {
 	      error: null,
