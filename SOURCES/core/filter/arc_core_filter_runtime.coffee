@@ -1,6 +1,6 @@
 ###
 ----------------------------------------------------------------------
- 
+
            +---+---+---+---+
  chaos --> | J | B | U | S | --> order
            +---+---+---+---+
@@ -34,7 +34,7 @@ bodyFunctionResponseFilter =
         ____opaque: true
         ____label: "Result"
         ____description: "Null if an error occurred. Otherwise, some opaque JavaScript value reference."
-        
+
 Object.freeze bodyFunctionResponseFilter
 
 module.exports = class Filter
@@ -56,7 +56,7 @@ module.exports = class Filter
             if inputFilterResponse.error
                 errors.unshift inputFilterResponse.error
                 break
-                
+
             if @filterDescriptor.bodyFunction
 
                 # CALL MAIN FUNCTION WITH FILTERED INPUT REQUEST DATA
@@ -77,7 +77,7 @@ module.exports = class Filter
             else
                 # If no bodyFunction is defined, simply pass the input filter's response through.
                 bodyFunctionResponse = inputFilterResponse
-                
+
             # FILTER THE OUTPUT RESPONSE DATA OF THE MAIN FUNCTION
             dispatchState = "verifying response result data"
 
