@@ -2,7 +2,7 @@
 FILTERLIB = require './arc_core_filter'
 TYPELIB = require './arc_core_types'
 
-/* request = { filterTable: object, parseDigraph: object } */
+# request = { filterTable: object, parseDigraph: object }
 
 generateDiscriminatorRuntimeFilter = module.exports = (runtimeContext_) ->
 

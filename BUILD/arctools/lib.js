@@ -47,7 +47,7 @@ module.exports =
 
 	module.exports = {
 	    meta: __webpack_require__(23),
-	    commander: __webpack_require__(70),
+	    commander: __webpack_require__(69),
 	    chalk: __webpack_require__(14),
 	    arccore: __webpack_require__(29),
 	    fileDirEnumSync: __webpack_require__(63),
@@ -488,6 +488,51 @@ module.exports =
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
+	/*
+	----------------------------------------------------------------------
+	 
+	           +---+---+---+---+
+	 chaos --> | J | B | U | S | --> order
+	           +---+---+---+---+
+
+	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+	This software is licensed under the terms of the GNU Affero General
+	Public License v3.0.
+
+	Please review the included LICENSE file for specific agreement terms.
+	See also: https://opensource.org/licenses/AGPL-3.0
+
+	Source code:   https://github.com/encapsule.jbus
+	Documentation: https://encapsule.io/projects/jbus/docs/common
+	Licensing:     https://encapsule.io/licening
+
+	----------------------------------------------------------------------
+	 */
+
+	(function() {
+	  var jbus;
+
+	  jbus = {};
+
+	  jbus.common = {};
+
+	  jbus.common.types = module.exports = {};
+
+	  jbus.common.types.codes = __webpack_require__(9);
+
+	  jbus.common.types.convert = __webpack_require__(21);
+
+	  jbus.common.types.check = __webpack_require__(62);
+
+	}).call(this);
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* --------------------------------------------------------------------------
 
 	   The MIT License (MIT)
@@ -569,51 +614,6 @@ module.exports =
 	};
 
 
-
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	This software is licensed under the terms of the GNU Affero General
-	Public License v3.0.
-
-	Please review the included LICENSE file for specific agreement terms.
-	See also: https://opensource.org/licenses/AGPL-3.0
-
-	Source code:   https://github.com/encapsule.jbus
-	Documentation: https://encapsule.io/projects/jbus/docs/common
-	Licensing:     https://encapsule.io/licening
-
-	----------------------------------------------------------------------
-	 */
-
-	(function() {
-	  var jbus;
-
-	  jbus = {};
-
-	  jbus.common = {};
-
-	  jbus.common.types = module.exports = {};
-
-	  jbus.common.types.codes = __webpack_require__(9);
-
-	  jbus.common.types.convert = __webpack_require__(21);
-
-	  jbus.common.types.check = __webpack_require__(62);
-
-	}).call(this);
 
 
 /***/ },
@@ -871,9 +871,9 @@ module.exports =
 		    },
 		    filter: __webpack_require__(1),
 		    filterDAG: __webpack_require__(30),
-		    graph: __webpack_require__(5),
+		    graph: __webpack_require__(6),
 		    identifier: __webpack_require__(2),
-		    types: __webpack_require__(6),
+		    types: __webpack_require__(5),
 		    util: __webpack_require__(9)
 		  };
 
@@ -1309,6 +1309,51 @@ module.exports =
 	/* 5 */
 	/***/ function(module, exports, __webpack_require__) {
 
+		
+		/*
+		----------------------------------------------------------------------
+		 
+		           +---+---+---+---+
+		 chaos --> | J | B | U | S | --> order
+		           +---+---+---+---+
+
+		Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+		This software is licensed under the terms of the GNU Affero General
+		Public License v3.0.
+
+		Please review the included LICENSE file for specific agreement terms.
+		See also: https://opensource.org/licenses/AGPL-3.0
+
+		Source code:   https://github.com/encapsule.jbus
+		Documentation: https://encapsule.io/projects/jbus/docs/common
+		Licensing:     https://encapsule.io/licening
+
+		----------------------------------------------------------------------
+		 */
+
+		(function() {
+		  var jbus;
+
+		  jbus = {};
+
+		  jbus.common = {};
+
+		  jbus.common.types = module.exports = {};
+
+		  jbus.common.types.codes = __webpack_require__(8);
+
+		  jbus.common.types.convert = __webpack_require__(17);
+
+		  jbus.common.types.check = __webpack_require__(53);
+
+		}).call(this);
+
+
+	/***/ },
+	/* 6 */
+	/***/ function(module, exports, __webpack_require__) {
+
 		/* --------------------------------------------------------------------------
 
 		   The MIT License (MIT)
@@ -1390,51 +1435,6 @@ module.exports =
 		};
 
 
-
-
-	/***/ },
-	/* 6 */
-	/***/ function(module, exports, __webpack_require__) {
-
-		
-		/*
-		----------------------------------------------------------------------
-		 
-		           +---+---+---+---+
-		 chaos --> | J | B | U | S | --> order
-		           +---+---+---+---+
-
-		Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-		This software is licensed under the terms of the GNU Affero General
-		Public License v3.0.
-
-		Please review the included LICENSE file for specific agreement terms.
-		See also: https://opensource.org/licenses/AGPL-3.0
-
-		Source code:   https://github.com/encapsule.jbus
-		Documentation: https://encapsule.io/projects/jbus/docs/common
-		Licensing:     https://encapsule.io/licening
-
-		----------------------------------------------------------------------
-		 */
-
-		(function() {
-		  var jbus;
-
-		  jbus = {};
-
-		  jbus.common = {};
-
-		  jbus.common.types = module.exports = {};
-
-		  jbus.common.types.codes = __webpack_require__(8);
-
-		  jbus.common.types.convert = __webpack_require__(17);
-
-		  jbus.common.types.check = __webpack_require__(53);
-
-		}).call(this);
 
 
 	/***/ },
@@ -3194,7 +3194,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "C73BH4GgTACcJjQi3lr_Hw", buildTime: "1450677231"};
+		module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "5tbHUq9HS8GPmHXYPxRWbQ", buildTime: "1450751015"};
 
 	/***/ },
 	/* 21 */
@@ -4402,7 +4402,7 @@ module.exports =
 
 		  IDENTIFIER = __webpack_require__(2);
 
-		  TYPES = __webpack_require__(6);
+		  TYPES = __webpack_require__(5);
 
 		  normalizeCompositionRequest = module.exports = function(request_) {
 		    var errors, inBreakScope, innerResponse, localTypeCheck, nrequest, response;
@@ -4593,7 +4593,7 @@ module.exports =
 
 		  IDENTIFIER = __webpack_require__(2);
 
-		  TYPES = __webpack_require__(6);
+		  TYPES = __webpack_require__(5);
 
 
 		  /*
@@ -6114,7 +6114,7 @@ module.exports =
 
 		  FILTERDAGXFORMFS = __webpack_require__(10);
 
-		  GRAPHLIB = __webpack_require__(5);
+		  GRAPHLIB = __webpack_require__(6);
 
 		  filterlibResponse = FILTERLIB.create({
 		    operationID: 'h6w300MIQaegK6rK9fDeOw',
@@ -6535,7 +6535,7 @@ module.exports =
 
 		  IDENTIFIER = __webpack_require__(2);
 
-		  TYPES = __webpack_require__(6);
+		  TYPES = __webpack_require__(5);
 
 
 		  /*
@@ -6857,7 +6857,7 @@ module.exports =
 
 		  MURMUR = __webpack_require__(11);
 
-		  TYPES = __webpack_require__(6);
+		  TYPES = __webpack_require__(5);
 
 		  MODULE = module.exports = {};
 
@@ -7145,7 +7145,7 @@ module.exports =
 		(function() {
 		  var GRAPHLIB, UTILLIB, partitionAndColorGraphByAmbiguity;
 
-		  GRAPHLIB = __webpack_require__(5);
+		  GRAPHLIB = __webpack_require__(6);
 
 		  UTILLIB = __webpack_require__(9);
 
@@ -7297,7 +7297,7 @@ module.exports =
 
 		  FILTERLIB = __webpack_require__(1);
 
-		  GRAPHLIB = __webpack_require__(5);
+		  GRAPHLIB = __webpack_require__(6);
 
 		  rootVertex = "request";
 
@@ -7466,9 +7466,11 @@ module.exports =
 	/***/ function(module, exports, __webpack_require__) {
 
 		(function() {
-		  var FILTERLIB, generateDiscriminatorRuntimeFilter;
+		  var FILTERLIB, TYPELIB, generateDiscriminatorRuntimeFilter;
 
 		  FILTERLIB = __webpack_require__(1);
+
+		  TYPELIB = __webpack_require__(5);
 
 		  generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
 		    var errors, inBreakScope, innerResponse, response, runtimeContext;
@@ -7486,6 +7488,7 @@ module.exports =
 		        operationName: "Discrimintor Filter",
 		        operationDescription: "Discriminates between N disjunct request signatures.",
 		        bodyFunction: function(request_) {
+		          var continueRankScan, currentVertex, edge, filterID, index, input, outEdges, path, pathParts, testPropertyName, testReference, testTypeConstraint, uprop, vprop;
 		          response = {
 		            error: null,
 		            response: null
@@ -7496,6 +7499,41 @@ module.exports =
 		            inBreakScope = true;
 		            console.log("In " + this.operationName + ":" + this.operationID);
 		            console.log("runtime context = " + (JSON.stringify(runtimeContext)));
+		            input = {
+		              request: request_
+		            };
+		            path = null;
+		            currentVertex = "request";
+		            filterID = null;
+		            while ((!filterID) && currentVertex) {
+		              uprop = runtimeContext.getVertexProperty(currentVertex);
+		              outEdges = runtimeContext.outEdges(currentVertex);
+		              index = 0;
+		              continueRankScan = true;
+		              while (continueRankScan && (index < outEdges.length)) {
+		                edge = outEdges[index++];
+		                vprop = runtimeContext.parseDigraph.getVertexProperty(edge.v);
+		                testTypeConstraint = vprop.typeContraint;
+		                pathParts = vprop.filterSpecPath.split(".");
+		                testPropertyName = pathParts[pathParts.length - 1];
+		                testReference = input[testPropertyName];
+		                innerResponse = TYPELIB.check({
+		                  value: testReference,
+		                  types: testTypeConstraint
+		                });
+		                if (!innerResponse.error) {
+		                  continueRankScan = false;
+		                  if ((vprop.filterID != null) && vprop.filterID) {
+		                    filterID = vprop.filterID;
+		                    break;
+		                  } else {
+		                    currentVertex = edge.v;
+		                    input = testReference;
+		                    break;
+		                  }
+		                }
+		              }
+		            }
 		            break;
 		          }
 		          if (errors.length) {
@@ -7528,7 +7566,7 @@ module.exports =
 		(function() {
 		  var GRAPHLIB, IDLIB, UTILLIB, buildRuntimeParseModel;
 
-		  GRAPHLIB = __webpack_require__(5);
+		  GRAPHLIB = __webpack_require__(6);
 
 		  UTILLIB = __webpack_require__(9);
 
@@ -7996,11 +8034,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var escapeStringRegexp = __webpack_require__(71);
+	var escapeStringRegexp = __webpack_require__(70);
 	var ansiStyles = __webpack_require__(68);
-	var stripAnsi = __webpack_require__(76);
-	var hasAnsi = __webpack_require__(73);
-	var supportsColor = __webpack_require__(69);
+	var stripAnsi = __webpack_require__(75);
+	var hasAnsi = __webpack_require__(72);
+	var supportsColor = __webpack_require__(76);
 	var defineProps = Object.defineProperties;
 	var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
 
@@ -8117,8 +8155,8 @@ module.exports =
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(75)
-	var murmur2 = __webpack_require__(74)
+	var murmur3 = __webpack_require__(74)
+	var murmur2 = __webpack_require__(73)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -9385,7 +9423,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "C73BH4GgTACcJjQi3lr_Hw", buildTime: "1450677231"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "5tbHUq9HS8GPmHXYPxRWbQ", buildTime: "1450751015"};
 
 /***/ },
 /* 24 */
@@ -9715,7 +9753,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "C73BH4GgTACcJjQi3lr_Hw", buildTime: "1450677231"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "5tbHUq9HS8GPmHXYPxRWbQ", buildTime: "1450751015"};
 
 /***/ },
 /* 29 */
@@ -9766,9 +9804,9 @@ module.exports =
 	    },
 	    filter: __webpack_require__(1),
 	    filterDAG: __webpack_require__(39),
-	    graph: __webpack_require__(5),
+	    graph: __webpack_require__(6),
 	    identifier: __webpack_require__(2),
-	    types: __webpack_require__(6),
+	    types: __webpack_require__(5),
 	    util: __webpack_require__(10)
 	  };
 
@@ -10981,7 +11019,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  TYPES = __webpack_require__(6);
+	  TYPES = __webpack_require__(5);
 
 	  normalizeCompositionRequest = module.exports = function(request_) {
 	    var errors, inBreakScope, innerResponse, localTypeCheck, nrequest, response;
@@ -11172,7 +11210,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  TYPES = __webpack_require__(6);
+	  TYPES = __webpack_require__(5);
 
 
 	  /*
@@ -12693,7 +12731,7 @@ module.exports =
 
 	  FILTERDAGXFORMFS = __webpack_require__(13);
 
-	  GRAPHLIB = __webpack_require__(5);
+	  GRAPHLIB = __webpack_require__(6);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'h6w300MIQaegK6rK9fDeOw',
@@ -13114,7 +13152,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  TYPES = __webpack_require__(6);
+	  TYPES = __webpack_require__(5);
 
 
 	  /*
@@ -13436,7 +13474,7 @@ module.exports =
 
 	  MURMUR = __webpack_require__(15);
 
-	  TYPES = __webpack_require__(6);
+	  TYPES = __webpack_require__(5);
 
 	  MODULE = module.exports = {};
 
@@ -13724,7 +13762,7 @@ module.exports =
 	(function() {
 	  var GRAPHLIB, UTILLIB, partitionAndColorGraphByAmbiguity;
 
-	  GRAPHLIB = __webpack_require__(5);
+	  GRAPHLIB = __webpack_require__(6);
 
 	  UTILLIB = __webpack_require__(10);
 
@@ -13876,7 +13914,7 @@ module.exports =
 
 	  FILTERLIB = __webpack_require__(1);
 
-	  GRAPHLIB = __webpack_require__(5);
+	  GRAPHLIB = __webpack_require__(6);
 
 	  rootVertex = "request";
 
@@ -14045,9 +14083,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var FILTERLIB, generateDiscriminatorRuntimeFilter;
+	  var FILTERLIB, TYPELIB, generateDiscriminatorRuntimeFilter;
 
 	  FILTERLIB = __webpack_require__(1);
+
+	  TYPELIB = __webpack_require__(5);
 
 	  generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
 	    var errors, inBreakScope, innerResponse, response, runtimeContext;
@@ -14065,6 +14105,7 @@ module.exports =
 	        operationName: "Discrimintor Filter",
 	        operationDescription: "Discriminates between N disjunct request signatures.",
 	        bodyFunction: function(request_) {
+	          var continueRankScan, currentVertex, edge, filterID, index, input, outEdges, path, pathParts, testPropertyName, testReference, testTypeConstraint, uprop, vprop;
 	          response = {
 	            error: null,
 	            response: null
@@ -14075,6 +14116,41 @@ module.exports =
 	            inBreakScope = true;
 	            console.log("In " + this.operationName + ":" + this.operationID);
 	            console.log("runtime context = " + (JSON.stringify(runtimeContext)));
+	            input = {
+	              request: request_
+	            };
+	            path = null;
+	            currentVertex = "request";
+	            filterID = null;
+	            while ((!filterID) && currentVertex) {
+	              uprop = runtimeContext.getVertexProperty(currentVertex);
+	              outEdges = runtimeContext.outEdges(currentVertex);
+	              index = 0;
+	              continueRankScan = true;
+	              while (continueRankScan && (index < outEdges.length)) {
+	                edge = outEdges[index++];
+	                vprop = runtimeContext.parseDigraph.getVertexProperty(edge.v);
+	                testTypeConstraint = vprop.typeContraint;
+	                pathParts = vprop.filterSpecPath.split(".");
+	                testPropertyName = pathParts[pathParts.length - 1];
+	                testReference = input[testPropertyName];
+	                innerResponse = TYPELIB.check({
+	                  value: testReference,
+	                  types: testTypeConstraint
+	                });
+	                if (!innerResponse.error) {
+	                  continueRankScan = false;
+	                  if ((vprop.filterID != null) && vprop.filterID) {
+	                    filterID = vprop.filterID;
+	                    break;
+	                  } else {
+	                    currentVertex = edge.v;
+	                    input = testReference;
+	                    break;
+	                  }
+	                }
+	              }
+	            }
 	            break;
 	          }
 	          if (errors.length) {
@@ -14107,7 +14183,7 @@ module.exports =
 	(function() {
 	  var GRAPHLIB, IDLIB, UTILLIB, buildRuntimeParseModel;
 
-	  GRAPHLIB = __webpack_require__(5);
+	  GRAPHLIB = __webpack_require__(6);
 
 	  UTILLIB = __webpack_require__(10);
 
@@ -14876,62 +14952,6 @@ module.exports =
 
 /***/ },
 /* 69 */
-/***/ function(module, exports) {
-
-	'use strict';
-	var argv = process.argv;
-
-	var terminator = argv.indexOf('--');
-	var hasFlag = function (flag) {
-		flag = '--' + flag;
-		var pos = argv.indexOf(flag);
-		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
-	};
-
-	module.exports = (function () {
-		if ('FORCE_COLOR' in process.env) {
-			return true;
-		}
-
-		if (hasFlag('no-color') ||
-			hasFlag('no-colors') ||
-			hasFlag('color=false')) {
-			return false;
-		}
-
-		if (hasFlag('color') ||
-			hasFlag('colors') ||
-			hasFlag('color=true') ||
-			hasFlag('color=always')) {
-			return true;
-		}
-
-		if (process.stdout && !process.stdout.isTTY) {
-			return false;
-		}
-
-		if (process.platform === 'win32') {
-			return true;
-		}
-
-		if ('COLORTERM' in process.env) {
-			return true;
-		}
-
-		if (process.env.TERM === 'dumb') {
-			return false;
-		}
-
-		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
-			return true;
-		}
-
-		return false;
-	})();
-
-
-/***/ },
-/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -14940,7 +14960,7 @@ module.exports =
 
 	var EventEmitter = __webpack_require__(79).EventEmitter;
 	var spawn = __webpack_require__(78).spawn;
-	var readlink = __webpack_require__(72).readlinkSync;
+	var readlink = __webpack_require__(71).readlinkSync;
 	var path = __webpack_require__(12);
 	var dirname = path.dirname;
 	var basename = path.basename;
@@ -16047,7 +16067,7 @@ module.exports =
 
 
 /***/ },
-/* 71 */
+/* 70 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16064,7 +16084,7 @@ module.exports =
 
 
 /***/ },
-/* 72 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(7)
@@ -16082,7 +16102,7 @@ module.exports =
 
 
 /***/ },
-/* 73 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16092,7 +16112,7 @@ module.exports =
 
 
 /***/ },
-/* 74 */
+/* 73 */
 /***/ function(module, exports) {
 
 	/**
@@ -16152,7 +16172,7 @@ module.exports =
 
 
 /***/ },
-/* 75 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16225,7 +16245,7 @@ module.exports =
 	}
 
 /***/ },
-/* 76 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16234,6 +16254,62 @@ module.exports =
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
+
+
+/***/ },
+/* 76 */
+/***/ function(module, exports) {
+
+	'use strict';
+	var argv = process.argv;
+
+	var terminator = argv.indexOf('--');
+	var hasFlag = function (flag) {
+		flag = '--' + flag;
+		var pos = argv.indexOf(flag);
+		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
+	};
+
+	module.exports = (function () {
+		if ('FORCE_COLOR' in process.env) {
+			return true;
+		}
+
+		if (hasFlag('no-color') ||
+			hasFlag('no-colors') ||
+			hasFlag('color=false')) {
+			return false;
+		}
+
+		if (hasFlag('color') ||
+			hasFlag('colors') ||
+			hasFlag('color=true') ||
+			hasFlag('color=always')) {
+			return true;
+		}
+
+		if (process.stdout && !process.stdout.isTTY) {
+			return false;
+		}
+
+		if (process.platform === 'win32') {
+			return true;
+		}
+
+		if ('COLORTERM' in process.env) {
+			return true;
+		}
+
+		if (process.env.TERM === 'dumb') {
+			return false;
+		}
+
+		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
+			return true;
+		}
+
+		return false;
+	})();
 
 
 /***/ },

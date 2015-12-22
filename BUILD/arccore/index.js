@@ -90,9 +90,9 @@ module.exports =
 	    },
 	    filter: __webpack_require__(1),
 	    filterDAG: __webpack_require__(30),
-	    graph: __webpack_require__(5),
+	    graph: __webpack_require__(6),
 	    identifier: __webpack_require__(2),
-	    types: __webpack_require__(6),
+	    types: __webpack_require__(5),
 	    util: __webpack_require__(9)
 	  };
 
@@ -528,6 +528,51 @@ module.exports =
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
+	/*
+	----------------------------------------------------------------------
+	 
+	           +---+---+---+---+
+	 chaos --> | J | B | U | S | --> order
+	           +---+---+---+---+
+
+	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+	This software is licensed under the terms of the GNU Affero General
+	Public License v3.0.
+
+	Please review the included LICENSE file for specific agreement terms.
+	See also: https://opensource.org/licenses/AGPL-3.0
+
+	Source code:   https://github.com/encapsule.jbus
+	Documentation: https://encapsule.io/projects/jbus/docs/common
+	Licensing:     https://encapsule.io/licening
+
+	----------------------------------------------------------------------
+	 */
+
+	(function() {
+	  var jbus;
+
+	  jbus = {};
+
+	  jbus.common = {};
+
+	  jbus.common.types = module.exports = {};
+
+	  jbus.common.types.codes = __webpack_require__(8);
+
+	  jbus.common.types.convert = __webpack_require__(17);
+
+	  jbus.common.types.check = __webpack_require__(53);
+
+	}).call(this);
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* --------------------------------------------------------------------------
 
 	   The MIT License (MIT)
@@ -609,51 +654,6 @@ module.exports =
 	};
 
 
-
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	This software is licensed under the terms of the GNU Affero General
-	Public License v3.0.
-
-	Please review the included LICENSE file for specific agreement terms.
-	See also: https://opensource.org/licenses/AGPL-3.0
-
-	Source code:   https://github.com/encapsule.jbus
-	Documentation: https://encapsule.io/projects/jbus/docs/common
-	Licensing:     https://encapsule.io/licening
-
-	----------------------------------------------------------------------
-	 */
-
-	(function() {
-	  var jbus;
-
-	  jbus = {};
-
-	  jbus.common = {};
-
-	  jbus.common.types = module.exports = {};
-
-	  jbus.common.types.codes = __webpack_require__(8);
-
-	  jbus.common.types.convert = __webpack_require__(17);
-
-	  jbus.common.types.check = __webpack_require__(53);
-
-	}).call(this);
 
 
 /***/ },
@@ -2413,7 +2413,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "C73BH4GgTACcJjQi3lr_Hw", buildTime: "1450677231"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "5tbHUq9HS8GPmHXYPxRWbQ", buildTime: "1450751015"};
 
 /***/ },
 /* 21 */
@@ -3621,7 +3621,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  TYPES = __webpack_require__(6);
+	  TYPES = __webpack_require__(5);
 
 	  normalizeCompositionRequest = module.exports = function(request_) {
 	    var errors, inBreakScope, innerResponse, localTypeCheck, nrequest, response;
@@ -3812,7 +3812,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  TYPES = __webpack_require__(6);
+	  TYPES = __webpack_require__(5);
 
 
 	  /*
@@ -5333,7 +5333,7 @@ module.exports =
 
 	  FILTERDAGXFORMFS = __webpack_require__(10);
 
-	  GRAPHLIB = __webpack_require__(5);
+	  GRAPHLIB = __webpack_require__(6);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'h6w300MIQaegK6rK9fDeOw',
@@ -5754,7 +5754,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  TYPES = __webpack_require__(6);
+	  TYPES = __webpack_require__(5);
 
 
 	  /*
@@ -6076,7 +6076,7 @@ module.exports =
 
 	  MURMUR = __webpack_require__(11);
 
-	  TYPES = __webpack_require__(6);
+	  TYPES = __webpack_require__(5);
 
 	  MODULE = module.exports = {};
 
@@ -6364,7 +6364,7 @@ module.exports =
 	(function() {
 	  var GRAPHLIB, UTILLIB, partitionAndColorGraphByAmbiguity;
 
-	  GRAPHLIB = __webpack_require__(5);
+	  GRAPHLIB = __webpack_require__(6);
 
 	  UTILLIB = __webpack_require__(9);
 
@@ -6516,7 +6516,7 @@ module.exports =
 
 	  FILTERLIB = __webpack_require__(1);
 
-	  GRAPHLIB = __webpack_require__(5);
+	  GRAPHLIB = __webpack_require__(6);
 
 	  rootVertex = "request";
 
@@ -6685,9 +6685,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var FILTERLIB, generateDiscriminatorRuntimeFilter;
+	  var FILTERLIB, TYPELIB, generateDiscriminatorRuntimeFilter;
 
 	  FILTERLIB = __webpack_require__(1);
+
+	  TYPELIB = __webpack_require__(5);
 
 	  generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
 	    var errors, inBreakScope, innerResponse, response, runtimeContext;
@@ -6705,6 +6707,7 @@ module.exports =
 	        operationName: "Discrimintor Filter",
 	        operationDescription: "Discriminates between N disjunct request signatures.",
 	        bodyFunction: function(request_) {
+	          var continueRankScan, currentVertex, edge, filterID, index, input, outEdges, path, pathParts, testPropertyName, testReference, testTypeConstraint, uprop, vprop;
 	          response = {
 	            error: null,
 	            response: null
@@ -6715,6 +6718,41 @@ module.exports =
 	            inBreakScope = true;
 	            console.log("In " + this.operationName + ":" + this.operationID);
 	            console.log("runtime context = " + (JSON.stringify(runtimeContext)));
+	            input = {
+	              request: request_
+	            };
+	            path = null;
+	            currentVertex = "request";
+	            filterID = null;
+	            while ((!filterID) && currentVertex) {
+	              uprop = runtimeContext.getVertexProperty(currentVertex);
+	              outEdges = runtimeContext.outEdges(currentVertex);
+	              index = 0;
+	              continueRankScan = true;
+	              while (continueRankScan && (index < outEdges.length)) {
+	                edge = outEdges[index++];
+	                vprop = runtimeContext.parseDigraph.getVertexProperty(edge.v);
+	                testTypeConstraint = vprop.typeContraint;
+	                pathParts = vprop.filterSpecPath.split(".");
+	                testPropertyName = pathParts[pathParts.length - 1];
+	                testReference = input[testPropertyName];
+	                innerResponse = TYPELIB.check({
+	                  value: testReference,
+	                  types: testTypeConstraint
+	                });
+	                if (!innerResponse.error) {
+	                  continueRankScan = false;
+	                  if ((vprop.filterID != null) && vprop.filterID) {
+	                    filterID = vprop.filterID;
+	                    break;
+	                  } else {
+	                    currentVertex = edge.v;
+	                    input = testReference;
+	                    break;
+	                  }
+	                }
+	              }
+	            }
 	            break;
 	          }
 	          if (errors.length) {
@@ -6747,7 +6785,7 @@ module.exports =
 	(function() {
 	  var GRAPHLIB, IDLIB, UTILLIB, buildRuntimeParseModel;
 
-	  GRAPHLIB = __webpack_require__(5);
+	  GRAPHLIB = __webpack_require__(6);
 
 	  UTILLIB = __webpack_require__(9);
 
