@@ -26,7 +26,7 @@
       }
     },
     bodyFunction: function(request_) {
-      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeModel;
+      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeParseDigraph;
       response = {
         error: null,
         result: null
@@ -65,10 +65,13 @@
           errors.unshift(innerResponse.error);
           break;
         }
-        runtimeModel = innerResponse.result;
-        console.log(JSON.stringify(runtimeModel, void 0, 4));
+        runtimeParseDigraph = innerResponse.result;
+        console.log(runtimeParseDigraph.toJSON(void 0, 4));
         console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
-        innerResponse = createDiscriminatorFilterRuntime(runtimeParseGraph);
+        innerResponse = createDiscriminatorFilterRuntime.request({
+          filterTable: mergedModel.filterTable,
+          parseDigraph: runtimeParseDigraph
+        });
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;

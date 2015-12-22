@@ -103,3 +103,8 @@ filterlibResponse = FILTERLIB.create
             response.result = errors.join " "
 
         response
+
+if filterlibResponse.error
+    throw new Error "Cannot load module due to error: " + filterlibResponse.error
+
+module.exports = filterlibResponse.result

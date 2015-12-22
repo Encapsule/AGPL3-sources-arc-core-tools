@@ -3,8 +3,11 @@ var assert = require('chai').assert;
 
 var testModule = require('./module-under-test');
 
+var testFilters = require('./runner-test-filters')
+
 var filterArray = [
-    testModule('arc_core_filter_dag_create_spec')
+    testFilters.test1.result,
+    testFilters.test3.result
 ];
 
 var typeDiscriminator = testModule('arc_core_type_discriminator');

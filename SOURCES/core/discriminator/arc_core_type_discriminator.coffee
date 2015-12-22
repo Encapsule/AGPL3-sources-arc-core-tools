@@ -72,11 +72,14 @@ filterlibResponse = FILTERLIB.create
                 errors.unshift innerResponse.error
                 break
 
-            runtimeModel = innerResponse.result
-            console.log JSON.stringify runtimeModel, undefined, 4
+            runtimeParseDigraph = innerResponse.result
+            console.log runtimeParseDigraph.toJSON undefined, 4
 
             console.log "STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER"
-            innerResponse = createDiscriminatorFilterRuntime runtimeParseGraph
+            innerResponse = createDiscriminatorFilterRuntime.request
+                filterTable: mergedModel.filterTable
+                parseDigraph: runtimeParseDigraph
+
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break

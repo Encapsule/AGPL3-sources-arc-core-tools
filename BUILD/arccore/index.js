@@ -6285,7 +6285,7 @@ module.exports =
 	      }
 	    },
 	    bodyFunction: function(request_) {
-	      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeModel;
+	      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeParseDigraph;
 	      response = {
 	        error: null,
 	        result: null
@@ -6324,10 +6324,13 @@ module.exports =
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
-	        runtimeModel = innerResponse.result;
-	        console.log(JSON.stringify(runtimeModel, void 0, 4));
+	        runtimeParseDigraph = innerResponse.result;
+	        console.log(runtimeParseDigraph.toJSON(void 0, 4));
 	        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
-	        innerResponse = createDiscriminatorFilterRuntime(runtimeParseGraph);
+	        innerResponse = createDiscriminatorFilterRuntime.request({
+	          filterTable: mergedModel.filterTable,
+	          parseDigraph: runtimeParseDigraph
+	        });
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
@@ -6685,97 +6688,118 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var FILTERLIB, TYPELIB, checkPropertyNameTypeConstraint, generateDiscriminatorRuntimeFilter;
+	  var FILTERLIB, TYPELIB, checkPropConstraint, filterlibResponse;
 
 	  FILTERLIB = __webpack_require__(1);
 
 	  TYPELIB = __webpack_require__(5);
 
-	  checkPropertyNameTypeConstraint = __webpack_require__(52);
+	  checkPropConstraint = __webpack_require__(52);
 
-	  generateDiscriminatorRuntimeFilter = module.exports = function(runtimeContext_) {
-	    var errors, inBreakScope, innerResponse, response, runtimeContext;
-	    response = {
-	      error: null,
-	      result: null
-	    };
-	    errors = [];
-	    inBreakScope = false;
-	    runtimeContext = runtimeContext_;
-	    while (!inBreakScope) {
-	      inBreakScope = true;
-	      innerResponse = FILTERLIB.create({
-	        operationID: "XY-x390CSVmXTu0oYXlRiw",
-	        operationName: "Discrimintor Filter",
-	        operationDescription: "Discriminates between N disjunct request signatures.",
-	        bodyFunction: function(request_) {
-	          var continueRankScan, currentVertex, edge, filterID, index, input, outEdges, path, pathParts, testPropertyName, testReference, testTypeConstraint, uprop, vprop;
-	          response = {
-	            error: null,
-	            response: null
-	          };
-	          errors = [];
-	          inBreakScope = false;
-	          while (!inBreakScope) {
-	            inBreakScope = true;
-	            console.log("In " + this.operationName + ":" + this.operationID);
-	            console.log("runtime context = " + (JSON.stringify(runtimeContext)));
-	            input = {
-	              request: request_
+	  filterlibResponse = FILTERLIB.create({
+	    operationID: "nIcFGxZeQia9GCBFbpiDZQ",
+	    operationName: "Discriminator Filter Factory",
+	    operationDescription: "Generates and returns a Discriminator Filter object.",
+	    inputFilterSpec: {
+	      ____types: "jsObject",
+	      filterTable: {
+	        ____accept: "jsObject"
+	      },
+	      parseDigraph: {
+	        ____accept: "jsObject"
+	      }
+	    },
+	    bodyFunction: function(request_) {
+	      var errors, inBreakScope, innerResponse, response, runtimeContext;
+	      response = {
+	        error: null,
+	        result: null
+	      };
+	      errors = [];
+	      inBreakScope = false;
+	      runtimeContext = request_;
+	      while (!inBreakScope) {
+	        inBreakScope = true;
+	        innerResponse = FILTERLIB.create({
+	          operationID: "XY-x390CSVmXTu0oYXlRiw",
+	          operationName: "Discrimintor Filter",
+	          operationDescription: "Discriminates between N disjunct request signatures.",
+	          bodyFunction: function(request_) {
+	            var checkResponse, continueRankEnum, currentVertex, edge, filterID, index, inputNamespace, outEdges, pathParts, propertyName, typeConstraint, uprop, vprop;
+	            response = {
+	              error: null,
+	              response: null
 	            };
-	            path = null;
-	            currentVertex = "request";
-	            filterID = null;
-	            while ((!filterID) && currentVertex) {
-	              uprop = runtimeContext.getVertexProperty(currentVertex);
-	              outEdges = runtimeContext.outEdges(currentVertex);
-	              index = 0;
-	              continueRankScan = true;
-	              while (continueRankScan && (index < outEdges.length)) {
-	                edge = outEdges[index++];
-	                vprop = runtimeContext.parseDigraph.getVertexProperty(edge.v);
-	                testTypeConstraint = vprop.typeContraint;
-	                pathParts = vprop.filterSpecPath.split(".");
-	                testPropertyName = pathParts[pathParts.length - 1];
-	                testReference = input[testPropertyName];
-	                innerResponse = TYPELIB.check({
-	                  value: testReference,
-	                  types: testTypeConstraint
-	                });
-	                if (!innerResponse.error) {
-	                  continueRankScan = false;
-	                  if ((vprop.filterID != null) && vprop.filterID) {
-	                    filterID = vprop.filterID;
-	                    break;
-	                  } else {
-	                    currentVertex = edge.v;
-	                    input = testReference;
+	            errors = [];
+	            inBreakScope = false;
+	            while (!inBreakScope) {
+	              inBreakScope = true;
+	              console.log("In " + this.operationName + ":" + this.operationID);
+	              console.log("runtime context = " + (JSON.stringify(runtimeContext)));
+	              inputNamespace = {
+	                request: request_
+	              };
+	              currentVertex = "request";
+	              filterID = null;
+	              while ((!filterID) && (!errors.length)) {
+	                uprop = runtimeContext.parseDigraph.getVertexProperty(currentVertex);
+	                outEdges = runtimeContext.parseDigraph.outEdges(currentVertex);
+	                index = 0;
+	                continueRankEnum = true;
+	                while ((!filterID) && (!errors.length) && (index < outEdges.length) && continueRankEnum) {
+	                  edge = outEdges[index];
+	                  vprop = runtimeContext.parseDigraph.getVertexProperty(edge.v);
+	                  typeConstraint = vprop.typeContraint;
+	                  pathParts = vprop.filterSpecPath.split(".");
+	                  propertyName = pathParts[pathParts.length - 1];
+	                  checkResponse = checkPropConstraint(propertyName, typeConstraint, inputNamespace);
+	                  if (checkResponse.error) {
+	                    errors.unshift(checkResponse.error);
 	                    break;
 	                  }
+	                  if (checkResponse.result.pass) {
+	                    if (vprop.filterID) {
+	                      filterID = vprop.filterID;
+	                    } else {
+	                      continueRankEnum = false;
+	                      currentVertex = edge.v;
+	                      inputNamespace = checkResponse.result.reference;
+	                    }
+	                  } else {
+	                    index++;
+	                  }
+	                }
+	                if (index === outEdges.length) {
+	                  errors.unshift("Request input not recognized.");
 	                }
 	              }
+	              if (!errrors.length) {
+	                response.result = filterID;
+	              }
+	              break;
 	            }
-	            break;
+	            return response;
 	          }
-	          if (errors.length) {
-	            response.error = errors.join(" ");
-	          }
-	          return response;
+	        });
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
 	        }
-	      });
-	      if (innerResponse.error) {
-	        errors.unshift(innerResponse.error);
-	        errors.unshift("Unable to generate discriminator filter runtime due to error:");
+	        response.result = innerResponse.result;
 	        break;
 	      }
-	      response.result = innerResponse.result;
-	      break;
+	      if (errors.length) {
+	        response.result = errors.join(" ");
+	      }
+	      return response;
 	    }
-	    if (errors.length) {
-	      response.error = errors.join(" ");
-	    }
-	    return response;
-	  };
+	  });
+
+	  if (filterlibResponse.error) {
+	    throw new Error("Cannot load module due to error: " + filterlibResponse.error);
+	  }
+
+	  module.exports = filterlibResponse.result;
 
 	}).call(this);
 
@@ -6789,16 +6813,16 @@ module.exports =
 
 	  TYPELIB = __webpack_require__(5);
 
-	  module.exports = function(propertyName_, propertyTypeContraint_, parentNamespaceReference_) {
+	  module.exports = function(propertyName_, typeContraint_, namespaceReference_) {
 	    var checkResponse, propertyReference, response;
 	    response = {
 	      error: null,
 	      result: null
 	    };
-	    propertyReference = parentNamespaceReference_[propertyName_];
+	    propertyReference = namespaceReference_[propertyName_];
 	    checkResponse = TYPELIB.check.inTypeSet({
 	      value: propertyReference,
-	      types: propertyTypeConstraint_
+	      types: typeConstraint_
 	    });
 	    if (checkResponse.error) {
 	      response.error = checkResponse.error;

@@ -3,16 +3,16 @@
 
   TYPELIB = require('./arc_core_types');
 
-  module.exports = function(propertyName_, propertyTypeContraint_, parentNamespaceReference_) {
+  module.exports = function(propertyName_, typeContraint_, namespaceReference_) {
     var checkResponse, propertyReference, response;
     response = {
       error: null,
       result: null
     };
-    propertyReference = parentNamespaceReference_[propertyName_];
+    propertyReference = namespaceReference_[propertyName_];
     checkResponse = TYPELIB.check.inTypeSet({
       value: propertyReference,
-      types: propertyTypeConstraint_
+      types: typeConstraint_
     });
     if (checkResponse.error) {
       response.error = checkResponse.error;
