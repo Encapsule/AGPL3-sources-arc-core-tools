@@ -25,7 +25,7 @@ testBuildRuntimeParseModel({
 });
 
 testBuildRuntimeParseModel({
-    testName: "Input Ambiguioty Model #2",
+    testName: "Input Ambiguity Model #2",
     validConfig: true,
     request: ambiguityModelSet.test2.result.digraph,
     expectedResults: {
@@ -35,7 +35,7 @@ testBuildRuntimeParseModel({
 });
 
 testBuildRuntimeParseModel({
-    testName: "Input Ambiguioty Model #3",
+    testName: "Input Ambiguity Model #3",
     validConfig: true,
     request: ambiguityModelSet.test3.result.digraph,
     expectedResults: {
@@ -45,7 +45,7 @@ testBuildRuntimeParseModel({
 });
 
 testBuildRuntimeParseModel({
-    testName: "Input Ambiguioty Model #4",
+    testName: "Input Ambiguity Model #4",
     validConfig: false,
     request: ambiguityModelSet.test4.result.digraph,
     expectedResults: {
