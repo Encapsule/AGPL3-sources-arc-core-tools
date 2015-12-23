@@ -93,6 +93,52 @@ module.exports = testFilter = {
                 ____accept: "jsString"
             }
         }
+    }),
+
+    testColor1: FILTERLIB.create({
+        operationID: "0BN_zKZnSnmkhuhkFYTpCQ",
+        operationName: "test9",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            yellow: {
+                ____accept: "jsString"
+            },
+            blue: {
+                ____types: "jsObject",
+                green: {
+                    ____accept: "jsString"
+                }
+            }
+        }
+    }),
+
+    testColor2: FILTERLIB.create({
+        operationID: "1xEOwIdXT260V-M5zWYSNg",
+        operationName: "test10",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            blue: {
+                ____types: "jsNumber"
+            }
+        }
+    }),
+
+    testColor3: FILTERLIB.create({
+        operationID: "dyOir4HZSl2lBQCXqB2eWA",
+        operationName: "test11",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            green: {
+                ____accept: "jsString"
+            },
+            blue: {
+                ____types: "jsObject",
+                red: {
+                    ____accept: "jsFunction"
+                }
+            }
+        }
     })
+
 
 };

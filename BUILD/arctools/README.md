@@ -1,8 +1,8 @@
 ![Encapsule.io](https://encapsule.io/images/blue-burst-encapsule.io-logo-251x64.png "Encapsule.io")
 
-# Encapsule/arctools v0.0.4 "stillwater"
+# Encapsule/arctools v0.0.4 "steelhead"
 
-Build ID "3az2_GwISImsrQcyboF3VQ" Tue Dec 22 2015 19:36:20 GMT-0800 (PST)
+Build ID "Tk5bOkb8RY6H-liOpO23bA" Wed Dec 23 2015 00:21:38 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
