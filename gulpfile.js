@@ -67,37 +67,22 @@ gulp.task('tagbuild', [ "copyjs" ], function(callback_) {
     callback_();
 });
 
-gulp.task('coffee', function(callback_) {
+gulp.task('coffee', [ 'coffee.base', 'coffee.libs' ], function() {
     console.log("coffee...");
-    gulp.src('./SOURCES/core/*.coffee')
+});
+
+gulp.task('coffee.base', function() {
+    return gulp.src('./SOURCES/core/*.coffee')
         .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/arccore/'));
-    gulp.src('./SOURCES/core/util/*.coffee')
+});
+
+gulp.task('coffee.libs', function() {
+    return gulp.src('./SOURCES/core/**/*.coffee')
         .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/arccore/'));
-    gulp.src('./SOURCES/core/types/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'))
-    gulp.src('./SOURCES/core/identifier/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'))
-    gulp.src('./SOURCES/core/filter/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'))
-    gulp.src('./SOURCES/core/filter-dag/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'))
-    gulp.src('./SOURCES/core/discriminator/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'))
-    callback_();
 });
 
 gulp.task('copyjs', [ "copyjs_graph", "copyjs_tools" ], function(callback_) {
