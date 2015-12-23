@@ -3,7 +3,7 @@ var assert = require('chai').assert;
 
 var genericFilterTestSuite = require('./runner-generic-filter');
 
-var testFilters = require('./runner-test-filters');
+var testFilters = require('./fixture-test-filters');
 
 var testModule = require('./module-under-test');
 var discriminatorFactoryFilter = testModule('arc_core_type_discriminator_factory');

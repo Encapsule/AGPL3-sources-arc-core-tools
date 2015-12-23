@@ -1,7 +1,7 @@
 
 var testModule = require('./module-under-test');
 var specGraphBuilder = testModule('arc_core_type_discriminator_merged_model_digraph');
-var testFilters = require('./runner-test-filters')
+var testFilters = require('./fixture-test-filters')
 
 
 var testAmbiguityDetector = require('./runner-ambiguity-detector')

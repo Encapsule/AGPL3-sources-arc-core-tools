@@ -84,8 +84,9 @@
                     filter = runtimeContext.filterTable[filterID];
                     supportedFilters.push("[" + filter.filterDescriptor.operationName + ":" + filterID + "]");
                   }
-                  errors.unshift("Expected request for one of filters " + (supportedFilters.join(" or ")) + ".");
-                  errors.unshift("Invalid request input data signature is not recognized and cannot be routed.");
+                  errors.push("Unrecognized request format.");
+                  errors.push("Request signature must match one of filter set");
+                  errors.push("{" + (supportedFilters.join(", ")) + "}.");
                 }
               }
               if (!errors.length) {

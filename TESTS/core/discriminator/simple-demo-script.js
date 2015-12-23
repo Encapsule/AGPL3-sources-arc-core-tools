@@ -3,7 +3,7 @@ var assert = require('chai').assert;
 
 var testModule = require('./module-under-test');
 
-var testFilters = require('./runner-test-filters')
+var testFilters = require('./fixture-test-filters')
 
 var filterArray = [
     testFilters.test1.result,

@@ -1,6 +1,6 @@
 
 var testSpecGraphBuilder = require('./runner-spec-graph-builder');
-var testFilters = require('./runner-test-filters');
+var testFilters = require('./fixture-test-filters');
 
 testSpecGraphBuilder({
     testName: "Empty filter array request.",
