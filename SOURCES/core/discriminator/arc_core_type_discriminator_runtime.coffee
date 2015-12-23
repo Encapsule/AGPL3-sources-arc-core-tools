@@ -15,6 +15,17 @@ filterlibResponse = FILTERLIB.create
             ____accept: "jsObject"
         parseDigraph:
             ____accept: "jsObject"
+        options:
+            ____label: "Options Object"
+            ____description: "Factory options object."
+            ____types: "jsObject"
+            ____defaultValue: {}
+            action:
+                ____label: "Action Flag"
+                ____description: "The action to be taken by the generated Discriminator Filter."
+                ____accept: "jsString"
+                ____inValueSet: [ "getFilterID", "getFilter", "routeRequest" ]
+                ____defaultValue: "getFilterID"
 
     bodyFunction: (request_) ->
 
@@ -97,13 +108,11 @@ filterlibResponse = FILTERLIB.create
 
                     response
 
-
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
 
             runtimeFilter = innerResponse.result
-            runtimeFilter.runtimeContext = runtimeContext
 
             response.result = innerResponse.result
             break
