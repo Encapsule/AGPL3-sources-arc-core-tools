@@ -14,5 +14,13 @@ describe("ARC core type discriminator test suite.", function() {
         require('./discriminator/test-type-discriminator-runtime-parse-digraph');
     });
 
+    describe("Discriminator Filter Factory unit test suite:", function() {
+        require('./discriminator/test-type-discriminator-factory')
+    });
+
+    describe("Discriminator Filter runtime unit test suite:", function() {
+        require('./discriminator/test-type-discriminator-runtime');
+    });
+
 });
 

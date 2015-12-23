@@ -10,7 +10,7 @@ var filterArray = [
     testFilters.test3.result
 ];
 
-var typeDiscriminator = testModule('arc_core_type_discriminator');
+var typeDiscriminator = testModule('arc_core_type_discriminator_factory');
 
 var response = typeDiscriminator.request(filterArray);
 

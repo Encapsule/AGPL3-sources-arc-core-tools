@@ -1,27 +1,3 @@
-###
-----------------------------------------------------------------------
-
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-This software is licensed under the terms of the GNU Affero General
-Public License v3.0.
-
-Please review the included LICENSE file for specific agreement terms.
-See also: https://opensource.org/licenses/AGPL-3.0
-
-Source code:   https://github.com/encapsule.jbus
-Documentation: https://encapsule.io/projects/jbus/docs/common
-Licensing:     https://encapsule.io/licening
-
-----------------------------------------------------------------------
-###
-#
-#
-#
 
 ARC_BUILD = require './arc_build'
 
@@ -38,7 +14,7 @@ COMMON = module.exports =
         murmurhash_js: require 'murmurhash-js'
         nodeuuid:      require 'node-uuid'
 
-    discriminator:     { create: require('./arc_core_type_discriminator').request }
+    discriminator:     { create: require('./arc_core_type_discriminator_factory').request }
     filter:            require './arc_core_filter'
     filterDAG:         require './arc_core_filter_dag'
     graph:             require './arc_core_graph'

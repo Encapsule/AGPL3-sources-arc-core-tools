@@ -22,7 +22,13 @@
       filter: {
         ____label: "Sub-Filter Object",
         ____description: "Pre-constructed Filter object.",
-        ____accept: "jsObject"
+        ____types: "jsObject",
+        filterDescriptor: {
+          ____accept: "jsObject"
+        },
+        request: {
+          ____accept: "jsFunction"
+        }
       }
     },
     bodyFunction: function(request_) {
@@ -35,6 +41,10 @@
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
+        if (request_.length < 2) {
+          errors.unshift("Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.");
+          break;
+        }
         console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
         innerResponse = createMergedFilterSpecModel(request_);
         if (innerResponse.error) {
