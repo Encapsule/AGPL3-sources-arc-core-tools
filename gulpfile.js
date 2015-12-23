@@ -67,7 +67,7 @@ gulp.task('tagbuild', [ "copyjs" ], function(callback_) {
     callback_();
 });
 
-gulp.task('coffee', [ 'coffee.base', 'coffee.libs' ], function() {
+gulp.task('coffee', [ 'coffee.base', 'coffee.discriminator', 'coffee.filter', 'coffee.filter-dag', 'coffee.identifier', 'coffee.types', 'coffee.util' ], function() {
     console.log("coffee...");
 });
 
@@ -78,12 +78,44 @@ gulp.task('coffee.base', function() {
 	.pipe(gulp.dest('./BUILD/arccore/'));
 });
 
-gulp.task('coffee.libs', function() {
-    return gulp.src('./SOURCES/core/**/*.coffee')
+gulp.task('coffee.discriminator', function() {
+    return gulp.src('./SOURCES/core/discriminator/*.coffee')
         .pipe(coffeelint()).pipe(coffeelint.reporter())
 	.pipe(coffee().on('error', gutil.log))
 	.pipe(gulp.dest('./BUILD/arccore/'));
 });
+
+gulp.task('coffee.filter', function() {
+    return gulp.src('./SOURCES/core/filter/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+gulp.task('coffee.filter-dag', function() {
+    return gulp.src('./SOURCES/core/filter-dag/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+gulp.task('coffee.identifier', function() {
+    return gulp.src('./SOURCES/core/identifier/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+gulp.task('coffee.types', function() {
+    return gulp.src('./SOURCES/core/types/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+gulp.task('coffee.util', function() {
+    return gulp.src('./SOURCES/core/util/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+
 
 gulp.task('copyjs', [ "copyjs_graph", "copyjs_tools" ], function(callback_) {
     console.log("copyjs...");
