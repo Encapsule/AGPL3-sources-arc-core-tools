@@ -2,7 +2,7 @@
 
 # Encapsule/arccore v0.0.4 "steelhead"
 
-Build ID "Tk5bOkb8RY6H-liOpO23bA" Wed Dec 23 2015 00:21:38 GMT-0800 (PST)
+Build ID "UBziRusXRVuEyyAGoOSs6w" Wed Dec 23 2015 13:23:27 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
