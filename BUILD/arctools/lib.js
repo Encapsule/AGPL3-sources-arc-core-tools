@@ -47,7 +47,7 @@ module.exports =
 
 	module.exports = {
 	    meta: __webpack_require__(23),
-	    commander: __webpack_require__(71),
+	    commander: __webpack_require__(70),
 	    chalk: __webpack_require__(14),
 	    arccore: __webpack_require__(29),
 	    fileDirEnumSync: __webpack_require__(64),
@@ -826,29 +826,6 @@ module.exports =
 	/* 0 */
 	/***/ function(module, exports, __webpack_require__) {
 
-		
-		/*
-		----------------------------------------------------------------------
-
-		           +---+---+---+---+
-		 chaos --> | J | B | U | S | --> order
-		           +---+---+---+---+
-
-		Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-		This software is licensed under the terms of the GNU Affero General
-		Public License v3.0.
-
-		Please review the included LICENSE file for specific agreement terms.
-		See also: https://opensource.org/licenses/AGPL-3.0
-
-		Source code:   https://github.com/encapsule.jbus
-		Documentation: https://encapsule.io/projects/jbus/docs/common
-		Licensing:     https://encapsule.io/licening
-
-		----------------------------------------------------------------------
-		 */
-
 		(function() {
 		  var ARC_BUILD, COMMON;
 
@@ -867,7 +844,7 @@ module.exports =
 		      nodeuuid: __webpack_require__(19)
 		    },
 		    discriminator: {
-		      create: __webpack_require__(48).request
+		      create: __webpack_require__(49).request
 		    },
 		    filter: __webpack_require__(1),
 		    filterDAG: __webpack_require__(30),
@@ -3194,7 +3171,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "oZUBgjxNRtShcsIivGqGfg", buildTime: "1450809339"};
+		module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "3az2_GwISImsrQcyboF3VQ", buildTime: "1450841780"};
 
 	/***/ },
 	/* 21 */
@@ -7039,113 +7016,6 @@ module.exports =
 	/***/ function(module, exports, __webpack_require__) {
 
 		(function() {
-		  var FILTERLIB, createAmbiguityModel, createDiscriminatorFilterRuntime, createMergedFilterSpecModel, createRuntimeParseModel, filterlibResponse;
-
-		  FILTERLIB = __webpack_require__(1);
-
-		  createMergedFilterSpecModel = __webpack_require__(50);
-
-		  createAmbiguityModel = __webpack_require__(49);
-
-		  createRuntimeParseModel = __webpack_require__(53);
-
-		  createDiscriminatorFilterRuntime = __webpack_require__(51);
-
-		  filterlibResponse = FILTERLIB.create({
-		    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
-		    operationName: "Request Discriminator Filter Factory",
-		    operationDescription: "Manufactures a new Filter object that routes its request to 1:N registered sub-Filter objects based on analysis of the request signature.",
-		    inputFilterSpec: {
-		      ____label: "Array of Filters",
-		      ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
-		      ____types: "jsArray",
-		      filter: {
-		        ____label: "Sub-Filter Object",
-		        ____description: "Pre-constructed Filter object.",
-		        ____accept: "jsObject"
-		      }
-		    },
-		    bodyFunction: function(request_) {
-		      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeParseDigraph;
-		      response = {
-		        error: null,
-		        result: null
-		      };
-		      errors = [];
-		      inBreakScope = false;
-		      while (!inBreakScope) {
-		        inBreakScope = true;
-		        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
-		        innerResponse = createMergedFilterSpecModel(request_);
-		        if (innerResponse.error) {
-		          errors.unshift(innerResponse.error);
-		          break;
-		        }
-		        mergedModel = innerResponse.result;
-		        console.log(mergedModel.digraph.toJSON(void 0, 4));
-		        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-		        innerResponse = createAmbiguityModel(mergedModel.digraph);
-		        if (innerResponse.error) {
-		          errors.unshift(innerResponse.error);
-		          errors.unshift("Internal error analyzing input filter array: ");
-		          break;
-		        }
-		        ambiguityModel = innerResponse.result;
-		        console.log(ambiguityModel.digraph.toJSON(void 0, 4));
-		        console.log("... checking for ambiguities in the ambiguity model");
-		        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
-		          return errors.push(error_);
-		        });
-		        if (errors.length) {
-		          break;
-		        }
-		        console.log("STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL");
-		        innerResponse = createRuntimeParseModel(ambiguityModel.digraph);
-		        if (innerResponse.error) {
-		          errors.unshift(innerResponse.error);
-		          break;
-		        }
-		        runtimeParseDigraph = innerResponse.result;
-		        console.log(runtimeParseDigraph.toJSON(void 0, 4));
-		        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
-		        innerResponse = createDiscriminatorFilterRuntime.request({
-		          filterTable: mergedModel.filterTable,
-		          parseDigraph: runtimeParseDigraph
-		        });
-		        if (innerResponse.error) {
-		          errors.unshift(innerResponse.error);
-		          break;
-		        }
-		        runtimeFilter = innerResponse.result;
-		        response.result = runtimeFilter;
-		        break;
-		      }
-		      if (errors.length) {
-		        response.error = errors.join(" ");
-		      }
-		      return response;
-		    },
-		    outputName: "Type Desrimination Filter Output",
-		    outputDescriptor: "A generated Type Descriminator Filter.",
-		    outputFilterSpec: {
-		      ____opaque: true
-		    }
-		  });
-
-		  if (filterlibResponse.error) {
-		    throw new Error(filterlibResponse.error);
-		  }
-
-		  module.exports = filterlibResponse.result;
-
-		}).call(this);
-
-
-	/***/ },
-	/* 49 */
-	/***/ function(module, exports, __webpack_require__) {
-
-		(function() {
 		  var GRAPHLIB, UTILLIB, partitionAndColorGraphByAmbiguity;
 
 		  GRAPHLIB = __webpack_require__(6);
@@ -7285,6 +7155,123 @@ module.exports =
 		    }
 		    return response;
 		  };
+
+		}).call(this);
+
+
+	/***/ },
+	/* 49 */
+	/***/ function(module, exports, __webpack_require__) {
+
+		(function() {
+		  var FILTERLIB, createAmbiguityModel, createDiscriminatorFilterRuntime, createMergedFilterSpecModel, createRuntimeParseModel, filterlibResponse;
+
+		  FILTERLIB = __webpack_require__(1);
+
+		  createMergedFilterSpecModel = __webpack_require__(50);
+
+		  createAmbiguityModel = __webpack_require__(48);
+
+		  createRuntimeParseModel = __webpack_require__(53);
+
+		  createDiscriminatorFilterRuntime = __webpack_require__(51);
+
+		  filterlibResponse = FILTERLIB.create({
+		    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
+		    operationName: "Request Discriminator Filter Factory",
+		    operationDescription: "Manufactures a new Filter object that routes its request to 1:N registered sub-Filter objects based on analysis of the request signature.",
+		    inputFilterSpec: {
+		      ____label: "Array of Filters",
+		      ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
+		      ____types: "jsArray",
+		      filter: {
+		        ____label: "Sub-Filter Object",
+		        ____description: "Pre-constructed Filter object.",
+		        ____types: "jsObject",
+		        filterDescriptor: {
+		          ____accept: "jsObject"
+		        },
+		        request: {
+		          ____accept: "jsFunction"
+		        }
+		      }
+		    },
+		    bodyFunction: function(request_) {
+		      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeParseDigraph;
+		      response = {
+		        error: null,
+		        result: null
+		      };
+		      errors = [];
+		      inBreakScope = false;
+		      while (!inBreakScope) {
+		        inBreakScope = true;
+		        if (request_.length < 2) {
+		          errors.unshift("Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.");
+		          break;
+		        }
+		        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
+		        innerResponse = createMergedFilterSpecModel(request_);
+		        if (innerResponse.error) {
+		          errors.unshift(innerResponse.error);
+		          break;
+		        }
+		        mergedModel = innerResponse.result;
+		        console.log(mergedModel.digraph.toJSON(void 0, 4));
+		        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
+		        innerResponse = createAmbiguityModel(mergedModel.digraph);
+		        if (innerResponse.error) {
+		          errors.unshift(innerResponse.error);
+		          errors.unshift("Internal error analyzing input filter array: ");
+		          break;
+		        }
+		        ambiguityModel = innerResponse.result;
+		        console.log(ambiguityModel.digraph.toJSON(void 0, 4));
+		        console.log("... checking for ambiguities in the ambiguity model");
+		        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
+		          return errors.push(error_);
+		        });
+		        if (errors.length) {
+		          break;
+		        }
+		        console.log("STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL");
+		        innerResponse = createRuntimeParseModel(ambiguityModel.digraph);
+		        if (innerResponse.error) {
+		          errors.unshift(innerResponse.error);
+		          break;
+		        }
+		        runtimeParseDigraph = innerResponse.result;
+		        console.log(runtimeParseDigraph.toJSON(void 0, 4));
+		        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
+		        innerResponse = createDiscriminatorFilterRuntime.request({
+		          filterTable: mergedModel.filterTable,
+		          parseDigraph: runtimeParseDigraph
+		        });
+		        if (innerResponse.error) {
+		          errors.unshift(innerResponse.error);
+		          break;
+		        }
+		        runtimeFilter = innerResponse.result;
+		        response.result = runtimeFilter;
+		        break;
+		      }
+		      if (errors.length) {
+		        response.error = errors.join(" ");
+		      }
+		      return response;
+		    },
+		    outputName: "Type Desrimination Filter Output",
+		    outputDescriptor: "A generated Type Descriminator Filter.",
+		    outputFilterSpec: {
+		      ____opaque: true
+		    }
+		  });
+
+		  if (filterlibResponse.error) {
+		    throw new Error(filterlibResponse.error);
+		  }
+
+		  module.exports = filterlibResponse.result;
 
 		}).call(this);
 
@@ -8110,11 +8097,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var escapeStringRegexp = __webpack_require__(72);
+	var escapeStringRegexp = __webpack_require__(71);
 	var ansiStyles = __webpack_require__(69);
-	var stripAnsi = __webpack_require__(77);
-	var hasAnsi = __webpack_require__(74);
-	var supportsColor = __webpack_require__(70);
+	var stripAnsi = __webpack_require__(76);
+	var hasAnsi = __webpack_require__(73);
+	var supportsColor = __webpack_require__(77);
 	var defineProps = Object.defineProperties;
 	var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
 
@@ -8231,8 +8218,8 @@ module.exports =
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(76)
-	var murmur2 = __webpack_require__(75)
+	var murmur3 = __webpack_require__(75)
+	var murmur2 = __webpack_require__(74)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -9499,7 +9486,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "oZUBgjxNRtShcsIivGqGfg", buildTime: "1450809339"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "3az2_GwISImsrQcyboF3VQ", buildTime: "1450841780"};
 
 /***/ },
 /* 24 */
@@ -9829,34 +9816,11 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "oZUBgjxNRtShcsIivGqGfg", buildTime: "1450809339"};
+	module.exports = { version: "0.0.4", codename: "stillwater", author: "Encapsule", buildID: "3az2_GwISImsrQcyboF3VQ", buildTime: "1450841780"};
 
 /***/ },
 /* 29 */
 /***/ function(module, exports, __webpack_require__) {
-
-	
-	/*
-	----------------------------------------------------------------------
-
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	This software is licensed under the terms of the GNU Affero General
-	Public License v3.0.
-
-	Please review the included LICENSE file for specific agreement terms.
-	See also: https://opensource.org/licenses/AGPL-3.0
-
-	Source code:   https://github.com/encapsule.jbus
-	Documentation: https://encapsule.io/projects/jbus/docs/common
-	Licensing:     https://encapsule.io/licening
-
-	----------------------------------------------------------------------
-	 */
 
 	(function() {
 	  var ARC_BUILD, COMMON;
@@ -9876,7 +9840,7 @@ module.exports =
 	      nodeuuid: __webpack_require__(26)
 	    },
 	    discriminator: {
-	      create: __webpack_require__(57).request
+	      create: __webpack_require__(58).request
 	    },
 	    filter: __webpack_require__(1),
 	    filterDAG: __webpack_require__(39),
@@ -13732,113 +13696,6 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
-	  var FILTERLIB, createAmbiguityModel, createDiscriminatorFilterRuntime, createMergedFilterSpecModel, createRuntimeParseModel, filterlibResponse;
-
-	  FILTERLIB = __webpack_require__(1);
-
-	  createMergedFilterSpecModel = __webpack_require__(59);
-
-	  createAmbiguityModel = __webpack_require__(58);
-
-	  createRuntimeParseModel = __webpack_require__(62);
-
-	  createDiscriminatorFilterRuntime = __webpack_require__(60);
-
-	  filterlibResponse = FILTERLIB.create({
-	    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
-	    operationName: "Request Discriminator Filter Factory",
-	    operationDescription: "Manufactures a new Filter object that routes its request to 1:N registered sub-Filter objects based on analysis of the request signature.",
-	    inputFilterSpec: {
-	      ____label: "Array of Filters",
-	      ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
-	      ____types: "jsArray",
-	      filter: {
-	        ____label: "Sub-Filter Object",
-	        ____description: "Pre-constructed Filter object.",
-	        ____accept: "jsObject"
-	      }
-	    },
-	    bodyFunction: function(request_) {
-	      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeParseDigraph;
-	      response = {
-	        error: null,
-	        result: null
-	      };
-	      errors = [];
-	      inBreakScope = false;
-	      while (!inBreakScope) {
-	        inBreakScope = true;
-	        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
-	        innerResponse = createMergedFilterSpecModel(request_);
-	        if (innerResponse.error) {
-	          errors.unshift(innerResponse.error);
-	          break;
-	        }
-	        mergedModel = innerResponse.result;
-	        console.log(mergedModel.digraph.toJSON(void 0, 4));
-	        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
-	        innerResponse = createAmbiguityModel(mergedModel.digraph);
-	        if (innerResponse.error) {
-	          errors.unshift(innerResponse.error);
-	          errors.unshift("Internal error analyzing input filter array: ");
-	          break;
-	        }
-	        ambiguityModel = innerResponse.result;
-	        console.log(ambiguityModel.digraph.toJSON(void 0, 4));
-	        console.log("... checking for ambiguities in the ambiguity model");
-	        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
-	          return errors.push(error_);
-	        });
-	        if (errors.length) {
-	          break;
-	        }
-	        console.log("STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL");
-	        innerResponse = createRuntimeParseModel(ambiguityModel.digraph);
-	        if (innerResponse.error) {
-	          errors.unshift(innerResponse.error);
-	          break;
-	        }
-	        runtimeParseDigraph = innerResponse.result;
-	        console.log(runtimeParseDigraph.toJSON(void 0, 4));
-	        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
-	        innerResponse = createDiscriminatorFilterRuntime.request({
-	          filterTable: mergedModel.filterTable,
-	          parseDigraph: runtimeParseDigraph
-	        });
-	        if (innerResponse.error) {
-	          errors.unshift(innerResponse.error);
-	          break;
-	        }
-	        runtimeFilter = innerResponse.result;
-	        response.result = runtimeFilter;
-	        break;
-	      }
-	      if (errors.length) {
-	        response.error = errors.join(" ");
-	      }
-	      return response;
-	    },
-	    outputName: "Type Desrimination Filter Output",
-	    outputDescriptor: "A generated Type Descriminator Filter.",
-	    outputFilterSpec: {
-	      ____opaque: true
-	    }
-	  });
-
-	  if (filterlibResponse.error) {
-	    throw new Error(filterlibResponse.error);
-	  }
-
-	  module.exports = filterlibResponse.result;
-
-	}).call(this);
-
-
-/***/ },
-/* 58 */
-/***/ function(module, exports, __webpack_require__) {
-
-	(function() {
 	  var GRAPHLIB, UTILLIB, partitionAndColorGraphByAmbiguity;
 
 	  GRAPHLIB = __webpack_require__(6);
@@ -13978,6 +13835,123 @@ module.exports =
 	    }
 	    return response;
 	  };
+
+	}).call(this);
+
+
+/***/ },
+/* 58 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
+	  var FILTERLIB, createAmbiguityModel, createDiscriminatorFilterRuntime, createMergedFilterSpecModel, createRuntimeParseModel, filterlibResponse;
+
+	  FILTERLIB = __webpack_require__(1);
+
+	  createMergedFilterSpecModel = __webpack_require__(59);
+
+	  createAmbiguityModel = __webpack_require__(57);
+
+	  createRuntimeParseModel = __webpack_require__(62);
+
+	  createDiscriminatorFilterRuntime = __webpack_require__(60);
+
+	  filterlibResponse = FILTERLIB.create({
+	    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
+	    operationName: "Request Discriminator Filter Factory",
+	    operationDescription: "Manufactures a new Filter object that routes its request to 1:N registered sub-Filter objects based on analysis of the request signature.",
+	    inputFilterSpec: {
+	      ____label: "Array of Filters",
+	      ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
+	      ____types: "jsArray",
+	      filter: {
+	        ____label: "Sub-Filter Object",
+	        ____description: "Pre-constructed Filter object.",
+	        ____types: "jsObject",
+	        filterDescriptor: {
+	          ____accept: "jsObject"
+	        },
+	        request: {
+	          ____accept: "jsFunction"
+	        }
+	      }
+	    },
+	    bodyFunction: function(request_) {
+	      var ambiguityModel, errors, inBreakScope, innerResponse, mergedModel, response, runtimeFilter, runtimeParseDigraph;
+	      response = {
+	        error: null,
+	        result: null
+	      };
+	      errors = [];
+	      inBreakScope = false;
+	      while (!inBreakScope) {
+	        inBreakScope = true;
+	        if (request_.length < 2) {
+	          errors.unshift("Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.");
+	          break;
+	        }
+	        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
+	        innerResponse = createMergedFilterSpecModel(request_);
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        mergedModel = innerResponse.result;
+	        console.log(mergedModel.digraph.toJSON(void 0, 4));
+	        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
+	        innerResponse = createAmbiguityModel(mergedModel.digraph);
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          errors.unshift("Internal error analyzing input filter array: ");
+	          break;
+	        }
+	        ambiguityModel = innerResponse.result;
+	        console.log(ambiguityModel.digraph.toJSON(void 0, 4));
+	        console.log("... checking for ambiguities in the ambiguity model");
+	        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
+	          return errors.push(error_);
+	        });
+	        if (errors.length) {
+	          break;
+	        }
+	        console.log("STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL");
+	        innerResponse = createRuntimeParseModel(ambiguityModel.digraph);
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        runtimeParseDigraph = innerResponse.result;
+	        console.log(runtimeParseDigraph.toJSON(void 0, 4));
+	        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
+	        innerResponse = createDiscriminatorFilterRuntime.request({
+	          filterTable: mergedModel.filterTable,
+	          parseDigraph: runtimeParseDigraph
+	        });
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        runtimeFilter = innerResponse.result;
+	        response.result = runtimeFilter;
+	        break;
+	      }
+	      if (errors.length) {
+	        response.error = errors.join(" ");
+	      }
+	      return response;
+	    },
+	    outputName: "Type Desrimination Filter Output",
+	    outputDescriptor: "A generated Type Descriminator Filter.",
+	    outputFilterSpec: {
+	      ____opaque: true
+	    }
+	  });
+
+	  if (filterlibResponse.error) {
+	    throw new Error(filterlibResponse.error);
+	  }
+
+	  module.exports = filterlibResponse.result;
 
 	}).call(this);
 
@@ -15104,62 +15078,6 @@ module.exports =
 
 /***/ },
 /* 70 */
-/***/ function(module, exports) {
-
-	'use strict';
-	var argv = process.argv;
-
-	var terminator = argv.indexOf('--');
-	var hasFlag = function (flag) {
-		flag = '--' + flag;
-		var pos = argv.indexOf(flag);
-		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
-	};
-
-	module.exports = (function () {
-		if ('FORCE_COLOR' in process.env) {
-			return true;
-		}
-
-		if (hasFlag('no-color') ||
-			hasFlag('no-colors') ||
-			hasFlag('color=false')) {
-			return false;
-		}
-
-		if (hasFlag('color') ||
-			hasFlag('colors') ||
-			hasFlag('color=true') ||
-			hasFlag('color=always')) {
-			return true;
-		}
-
-		if (process.stdout && !process.stdout.isTTY) {
-			return false;
-		}
-
-		if (process.platform === 'win32') {
-			return true;
-		}
-
-		if ('COLORTERM' in process.env) {
-			return true;
-		}
-
-		if (process.env.TERM === 'dumb') {
-			return false;
-		}
-
-		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
-			return true;
-		}
-
-		return false;
-	})();
-
-
-/***/ },
-/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -15168,7 +15086,7 @@ module.exports =
 
 	var EventEmitter = __webpack_require__(80).EventEmitter;
 	var spawn = __webpack_require__(79).spawn;
-	var readlink = __webpack_require__(73).readlinkSync;
+	var readlink = __webpack_require__(72).readlinkSync;
 	var path = __webpack_require__(12);
 	var dirname = path.dirname;
 	var basename = path.basename;
@@ -16275,7 +16193,7 @@ module.exports =
 
 
 /***/ },
-/* 72 */
+/* 71 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16292,7 +16210,7 @@ module.exports =
 
 
 /***/ },
-/* 73 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(7)
@@ -16310,7 +16228,7 @@ module.exports =
 
 
 /***/ },
-/* 74 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16320,7 +16238,7 @@ module.exports =
 
 
 /***/ },
-/* 75 */
+/* 74 */
 /***/ function(module, exports) {
 
 	/**
@@ -16380,7 +16298,7 @@ module.exports =
 
 
 /***/ },
-/* 76 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16453,7 +16371,7 @@ module.exports =
 	}
 
 /***/ },
-/* 77 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16462,6 +16380,62 @@ module.exports =
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
+
+
+/***/ },
+/* 77 */
+/***/ function(module, exports) {
+
+	'use strict';
+	var argv = process.argv;
+
+	var terminator = argv.indexOf('--');
+	var hasFlag = function (flag) {
+		flag = '--' + flag;
+		var pos = argv.indexOf(flag);
+		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
+	};
+
+	module.exports = (function () {
+		if ('FORCE_COLOR' in process.env) {
+			return true;
+		}
+
+		if (hasFlag('no-color') ||
+			hasFlag('no-colors') ||
+			hasFlag('color=false')) {
+			return false;
+		}
+
+		if (hasFlag('color') ||
+			hasFlag('colors') ||
+			hasFlag('color=true') ||
+			hasFlag('color=always')) {
+			return true;
+		}
+
+		if (process.stdout && !process.stdout.isTTY) {
+			return false;
+		}
+
+		if (process.platform === 'win32') {
+			return true;
+		}
+
+		if ('COLORTERM' in process.env) {
+			return true;
+		}
+
+		if (process.env.TERM === 'dumb') {
+			return false;
+		}
+
+		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
+			return true;
+		}
+
+		return false;
+	})();
 
 
 /***/ },

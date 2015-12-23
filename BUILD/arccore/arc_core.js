@@ -1,26 +1,3 @@
-
-/*
-----------------------------------------------------------------------
-
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-This software is licensed under the terms of the GNU Affero General
-Public License v3.0.
-
-Please review the included LICENSE file for specific agreement terms.
-See also: https://opensource.org/licenses/AGPL-3.0
-
-Source code:   https://github.com/encapsule.jbus
-Documentation: https://encapsule.io/projects/jbus/docs/common
-Licensing:     https://encapsule.io/licening
-
-----------------------------------------------------------------------
- */
-
 (function() {
   var ARC_BUILD, COMMON;
 
@@ -39,7 +16,7 @@ Licensing:     https://encapsule.io/licening
       nodeuuid: require('node-uuid')
     },
     discriminator: {
-      create: require('./arc_core_type_discriminator').request
+      create: require('./arc_core_type_discriminator_factory').request
     },
     filter: require('./arc_core_filter'),
     filterDAG: require('./arc_core_filter_dag'),
