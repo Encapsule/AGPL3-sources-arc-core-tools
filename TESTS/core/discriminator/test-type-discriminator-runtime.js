@@ -8,17 +8,17 @@ var testFilters = require('./fixture-test-filters');
 var testModule = require('./module-under-test');
 var discriminatorFactoryFilter = testModule('arc_core_type_discriminator_factory');
 
-var factoryResponse = discriminatorFactoryFilter.request(
-    [ testFilters.test1.result, testFilters.test3.result ]
-);
+var factoryResponse = discriminatorFactoryFilter.request({
+    filters: [ testFilters.test1.result, testFilters.test3.result ]
+});
 assert.isNull(factoryResponse.error);
 assert.isObject(factoryResponse.result);
 
 var discriminatorFilter = factoryResponse.result;
 
-factoryResponse = discriminatorFactoryFilter.request(
-    [ testFilters.testColor1.result, testFilters.testColor2.result, testFilters.testColor3.result ]
-);
+factoryResponse = discriminatorFactoryFilter.request({
+    filters: [ testFilters.testColor1.result, testFilters.testColor2.result, testFilters.testColor3.result ]
+});
 assert.isNull(factoryResponse.error);
 assert.isObject(factoryResponse.result);
 

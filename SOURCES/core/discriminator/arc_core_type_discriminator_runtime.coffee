@@ -35,6 +35,11 @@ filterlibResponse = FILTERLIB.create
 
         runtimeContext = request_
 
+        supportedFilters = []
+        for filterID of runtimeContext.filterTable
+            filter = runtimeContext.filterTable[filterID]
+            supportedFilters.push "[#{filter.filterDescriptor.operationName}:#{filterID}]"
+
         while not inBreakScope
             inBreakScope = true
 
@@ -90,10 +95,6 @@ filterlibResponse = FILTERLIB.create
                                     index++
 
                             if index == outEdges.length
-                                supportedFilters = []
-                                for filterID of runtimeContext.filterTable
-                                    filter = runtimeContext.filterTable[filterID]
-                                    supportedFilters.push "[#{filter.filterDescriptor.operationName}:#{filterID}]"
                                 errors.push "Unrecognized request format."
                                 errors.push "Request signature must match one of filter set"
                                 errors.push "{#{supportedFilters.join(", ")}}."
@@ -113,6 +114,8 @@ filterlibResponse = FILTERLIB.create
                 break
 
             runtimeFilter = innerResponse.result
+            runtimeFilter.supportedFilters = supportedFilters
+            runtimeFilter.options = runtimeContext.options
 
             response.result = innerResponse.result
             break
