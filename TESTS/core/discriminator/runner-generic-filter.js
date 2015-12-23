@@ -41,11 +41,6 @@ module.exports = function (testVector_) {
                 it("The request should not have returned an error.", function() {
                     assert.isNull(response.error);
                 });
-                it("The request is expected to have returned a result object.", function() {
-                    assert.isDefined(response.result);
-                    assert.isNotNull(response.result);
-                    assert.isObject(response.result);
-                });
                 it("The result object is expected to match control value.", function() {
                     var actualResult = JSON.stringify(response.result);
                     assert.equal(actualResult, testVector_.expectedResults.result);
