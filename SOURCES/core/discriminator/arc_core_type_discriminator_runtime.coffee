@@ -100,7 +100,24 @@ filterlibResponse = FILTERLIB.create
                                 errors.push "{#{supportedFilters.join(", ")}}."
 
                         if not errors.length
-                            response.result = filterID
+                            # Take action based on the runtimeContext.options.action flag.
+                            switch runtimeContext.options.action
+                                when "getFilterID"
+                                    response.result = filterID
+                                    break
+                                when "getFilter"
+                                    response.result = runtimeContext.filterTable[filterID]
+                                    break
+                                when "routeRequest"
+                                    routeResponse = runtimeContext.filterTable[filterID].request request_
+                                    if not routeResponse.error
+                                        response.result = routeResponse.result
+                                    else
+                                        errors.unshift routeResponse.error
+                                    break
+                                else
+                                    errors "Internal error unrecognized discriminator action '#{runtimeContext.options.action}'."
+                                    break
 
                         break
 

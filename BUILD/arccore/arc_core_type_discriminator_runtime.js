@@ -18,10 +18,23 @@
       },
       parseDigraph: {
         ____accept: "jsObject"
+      },
+      options: {
+        ____label: "Options Object",
+        ____description: "Factory options object.",
+        ____types: "jsObject",
+        ____defaultValue: {},
+        action: {
+          ____label: "Action Flag",
+          ____description: "The action to be taken by the generated Discriminator Filter.",
+          ____accept: "jsString",
+          ____inValueSet: ["getFilterID", "getFilter", "routeRequest"],
+          ____defaultValue: "getFilterID"
+        }
       }
     },
     bodyFunction: function(request_) {
-      var errors, inBreakScope, innerResponse, response, runtimeContext, runtimeFilter;
+      var errors, filter, filterID, inBreakScope, innerResponse, response, runtimeContext, runtimeFilter, supportedFilters;
       response = {
         error: null,
         result: null
@@ -29,6 +42,11 @@
       errors = [];
       inBreakScope = false;
       runtimeContext = request_;
+      supportedFilters = [];
+      for (filterID in runtimeContext.filterTable) {
+        filter = runtimeContext.filterTable[filterID];
+        supportedFilters.push("[" + filter.filterDescriptor.operationName + ":" + filterID + "]");
+      }
       while (!inBreakScope) {
         inBreakScope = true;
         innerResponse = FILTERLIB.create({
@@ -36,7 +54,7 @@
           operationName: "Discrimintor Filter",
           operationDescription: "Discriminates between N disjunct request signatures.",
           bodyFunction: function(request_) {
-            var checkResponse, continueRankEnum, currentVertex, edge, filter, filterID, index, inputNamespace, outEdges, pathParts, propertyName, supportedFilters, typeConstraint, uprop, vprop;
+            var checkResponse, continueRankEnum, currentVertex, edge, index, inputNamespace, outEdges, pathParts, propertyName, routeResponse, typeConstraint, uprop, vprop;
             response = {
               error: null,
               response: null
@@ -79,18 +97,31 @@
                   }
                 }
                 if (index === outEdges.length) {
-                  supportedFilters = [];
-                  for (filterID in runtimeContext.filterTable) {
-                    filter = runtimeContext.filterTable[filterID];
-                    supportedFilters.push("[" + filter.filterDescriptor.operationName + ":" + filterID + "]");
-                  }
                   errors.push("Unrecognized request format.");
                   errors.push("Request signature must match one of filter set");
                   errors.push("{" + (supportedFilters.join(", ")) + "}.");
                 }
               }
               if (!errors.length) {
-                response.result = filterID;
+                switch (runtimeContext.options.action) {
+                  case "getFilterID":
+                    response.result = filterID;
+                    break;
+                  case "getFilter":
+                    response.result = runtimeContext.filterTable[filterID];
+                    break;
+                  case "routeRequest":
+                    routeResponse = runtimeContext.filterTable[filterID].request(request_);
+                    if (!routeResponse.error) {
+                      response.result = routeResponse.result;
+                    } else {
+                      errors.unshift(routeResponse.error);
+                    }
+                    break;
+                  default:
+                    errors("Internal error unrecognized discriminator action '" + runtimeContext.options.action + "'.");
+                    break;
+                }
               }
               break;
             }
@@ -105,7 +136,8 @@
           break;
         }
         runtimeFilter = innerResponse.result;
-        runtimeFilter.runtimeContext = runtimeContext;
+        runtimeFilter.supportedFilters = supportedFilters;
+        runtimeFilter.options = runtimeContext.options;
         response.result = innerResponse.result;
         break;
       }

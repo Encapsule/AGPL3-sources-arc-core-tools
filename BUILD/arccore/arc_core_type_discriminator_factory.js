@@ -16,18 +16,36 @@
     operationName: "Request Discriminator Filter Factory",
     operationDescription: "Manufactures a new Filter object that routes its request to 1:N registered sub-Filter objects based on analysis of the request signature.",
     inputFilterSpec: {
-      ____label: "Array of Filters",
-      ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
-      ____types: "jsArray",
-      filter: {
-        ____label: "Sub-Filter Object",
-        ____description: "Pre-constructed Filter object.",
+      ____label: "Request Object",
+      ____description: "Discriminator filter factory request object.",
+      ____types: "jsObject",
+      options: {
+        ____label: "Options Object",
+        ____description: "Factory options object.",
         ____types: "jsObject",
-        filterDescriptor: {
-          ____accept: "jsObject"
-        },
-        request: {
-          ____accept: "jsFunction"
+        ____defaultValue: {},
+        action: {
+          ____label: "Action Flag",
+          ____description: "The action to be taken by the generated Discriminator Filter.",
+          ____accept: "jsString",
+          ____inValueSet: ["getFilterID", "getFilter", "routeRequest"],
+          ____defaultValue: "getFilterID"
+        }
+      },
+      filters: {
+        ____label: "Array of Filters",
+        ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
+        ____types: "jsArray",
+        filter: {
+          ____label: "Sub-Filter Object",
+          ____description: "Pre-constructed Filter object.",
+          ____types: "jsObject",
+          filterDescriptor: {
+            ____accept: "jsObject"
+          },
+          request: {
+            ____accept: "jsFunction"
+          }
         }
       }
     },
@@ -41,12 +59,12 @@
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
-        if (request_.length < 2) {
+        if (request_.filters.length < 2) {
           errors.unshift("Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.");
           break;
         }
         console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
-        innerResponse = createMergedFilterSpecModel(request_);
+        innerResponse = createMergedFilterSpecModel(request_.filters);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;
@@ -80,7 +98,8 @@
         console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
         innerResponse = createDiscriminatorFilterRuntime.request({
           filterTable: mergedModel.filterTable,
-          parseDigraph: runtimeParseDigraph
+          parseDigraph: runtimeParseDigraph,
+          options: request_.options
         });
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);

@@ -3171,7 +3171,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.4", codename: "steelhead", author: "Encapsule", buildID: "UBziRusXRVuEyyAGoOSs6w", buildTime: "1450905807"};
+		module.exports = { version: "0.0.4", codename: "steelhead", author: "Encapsule", buildID: "_NSBB7RJQvuFpx1uJNqzEA", buildTime: "1450922669"};
 
 	/***/ },
 	/* 21 */
@@ -7181,18 +7181,36 @@ module.exports =
 		    operationName: "Request Discriminator Filter Factory",
 		    operationDescription: "Manufactures a new Filter object that routes its request to 1:N registered sub-Filter objects based on analysis of the request signature.",
 		    inputFilterSpec: {
-		      ____label: "Array of Filters",
-		      ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
-		      ____types: "jsArray",
-		      filter: {
-		        ____label: "Sub-Filter Object",
-		        ____description: "Pre-constructed Filter object.",
+		      ____label: "Request Object",
+		      ____description: "Discriminator filter factory request object.",
+		      ____types: "jsObject",
+		      options: {
+		        ____label: "Options Object",
+		        ____description: "Factory options object.",
 		        ____types: "jsObject",
-		        filterDescriptor: {
-		          ____accept: "jsObject"
-		        },
-		        request: {
-		          ____accept: "jsFunction"
+		        ____defaultValue: {},
+		        action: {
+		          ____label: "Action Flag",
+		          ____description: "The action to be taken by the generated Discriminator Filter.",
+		          ____accept: "jsString",
+		          ____inValueSet: ["getFilterID", "getFilter", "routeRequest"],
+		          ____defaultValue: "getFilterID"
+		        }
+		      },
+		      filters: {
+		        ____label: "Array of Filters",
+		        ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
+		        ____types: "jsArray",
+		        filter: {
+		          ____label: "Sub-Filter Object",
+		          ____description: "Pre-constructed Filter object.",
+		          ____types: "jsObject",
+		          filterDescriptor: {
+		            ____accept: "jsObject"
+		          },
+		          request: {
+		            ____accept: "jsFunction"
+		          }
 		        }
 		      }
 		    },
@@ -7206,12 +7224,12 @@ module.exports =
 		      inBreakScope = false;
 		      while (!inBreakScope) {
 		        inBreakScope = true;
-		        if (request_.length < 2) {
+		        if (request_.filters.length < 2) {
 		          errors.unshift("Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.");
 		          break;
 		        }
 		        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
-		        innerResponse = createMergedFilterSpecModel(request_);
+		        innerResponse = createMergedFilterSpecModel(request_.filters);
 		        if (innerResponse.error) {
 		          errors.unshift(innerResponse.error);
 		          break;
@@ -7245,7 +7263,8 @@ module.exports =
 		        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
 		        innerResponse = createDiscriminatorFilterRuntime.request({
 		          filterTable: mergedModel.filterTable,
-		          parseDigraph: runtimeParseDigraph
+		          parseDigraph: runtimeParseDigraph,
+		          options: request_.options
 		        });
 		        if (innerResponse.error) {
 		          errors.unshift(innerResponse.error);
@@ -7475,10 +7494,23 @@ module.exports =
 		      },
 		      parseDigraph: {
 		        ____accept: "jsObject"
+		      },
+		      options: {
+		        ____label: "Options Object",
+		        ____description: "Factory options object.",
+		        ____types: "jsObject",
+		        ____defaultValue: {},
+		        action: {
+		          ____label: "Action Flag",
+		          ____description: "The action to be taken by the generated Discriminator Filter.",
+		          ____accept: "jsString",
+		          ____inValueSet: ["getFilterID", "getFilter", "routeRequest"],
+		          ____defaultValue: "getFilterID"
+		        }
 		      }
 		    },
 		    bodyFunction: function(request_) {
-		      var errors, inBreakScope, innerResponse, response, runtimeContext, runtimeFilter;
+		      var errors, filter, filterID, inBreakScope, innerResponse, response, runtimeContext, runtimeFilter, supportedFilters;
 		      response = {
 		        error: null,
 		        result: null
@@ -7486,6 +7518,11 @@ module.exports =
 		      errors = [];
 		      inBreakScope = false;
 		      runtimeContext = request_;
+		      supportedFilters = [];
+		      for (filterID in runtimeContext.filterTable) {
+		        filter = runtimeContext.filterTable[filterID];
+		        supportedFilters.push("[" + filter.filterDescriptor.operationName + ":" + filterID + "]");
+		      }
 		      while (!inBreakScope) {
 		        inBreakScope = true;
 		        innerResponse = FILTERLIB.create({
@@ -7493,7 +7530,7 @@ module.exports =
 		          operationName: "Discrimintor Filter",
 		          operationDescription: "Discriminates between N disjunct request signatures.",
 		          bodyFunction: function(request_) {
-		            var checkResponse, continueRankEnum, currentVertex, edge, filter, filterID, index, inputNamespace, outEdges, pathParts, propertyName, supportedFilters, typeConstraint, uprop, vprop;
+		            var checkResponse, continueRankEnum, currentVertex, edge, index, inputNamespace, outEdges, pathParts, propertyName, routeResponse, typeConstraint, uprop, vprop;
 		            response = {
 		              error: null,
 		              response: null
@@ -7536,18 +7573,31 @@ module.exports =
 		                  }
 		                }
 		                if (index === outEdges.length) {
-		                  supportedFilters = [];
-		                  for (filterID in runtimeContext.filterTable) {
-		                    filter = runtimeContext.filterTable[filterID];
-		                    supportedFilters.push("[" + filter.filterDescriptor.operationName + ":" + filterID + "]");
-		                  }
 		                  errors.push("Unrecognized request format.");
 		                  errors.push("Request signature must match one of filter set");
 		                  errors.push("{" + (supportedFilters.join(", ")) + "}.");
 		                }
 		              }
 		              if (!errors.length) {
-		                response.result = filterID;
+		                switch (runtimeContext.options.action) {
+		                  case "getFilterID":
+		                    response.result = filterID;
+		                    break;
+		                  case "getFilter":
+		                    response.result = runtimeContext.filterTable[filterID];
+		                    break;
+		                  case "routeRequest":
+		                    routeResponse = runtimeContext.filterTable[filterID].request(request_);
+		                    if (!routeResponse.error) {
+		                      response.result = routeResponse.result;
+		                    } else {
+		                      errors.unshift(routeResponse.error);
+		                    }
+		                    break;
+		                  default:
+		                    errors("Internal error unrecognized discriminator action '" + runtimeContext.options.action + "'.");
+		                    break;
+		                }
 		              }
 		              break;
 		            }
@@ -7562,7 +7612,8 @@ module.exports =
 		          break;
 		        }
 		        runtimeFilter = innerResponse.result;
-		        runtimeFilter.runtimeContext = runtimeContext;
+		        runtimeFilter.supportedFilters = supportedFilters;
+		        runtimeFilter.options = runtimeContext.options;
 		        response.result = innerResponse.result;
 		        break;
 		      }
@@ -9487,7 +9538,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "steelhead", author: "Encapsule", buildID: "UBziRusXRVuEyyAGoOSs6w", buildTime: "1450905807"};
+	module.exports = { version: "0.0.4", codename: "steelhead", author: "Encapsule", buildID: "_NSBB7RJQvuFpx1uJNqzEA", buildTime: "1450922669"};
 
 /***/ },
 /* 24 */
@@ -9817,7 +9868,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.4", codename: "steelhead", author: "Encapsule", buildID: "UBziRusXRVuEyyAGoOSs6w", buildTime: "1450905807"};
+	module.exports = { version: "0.0.4", codename: "steelhead", author: "Encapsule", buildID: "_NSBB7RJQvuFpx1uJNqzEA", buildTime: "1450922669"};
 
 /***/ },
 /* 29 */
@@ -13862,18 +13913,36 @@ module.exports =
 	    operationName: "Request Discriminator Filter Factory",
 	    operationDescription: "Manufactures a new Filter object that routes its request to 1:N registered sub-Filter objects based on analysis of the request signature.",
 	    inputFilterSpec: {
-	      ____label: "Array of Filters",
-	      ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
-	      ____types: "jsArray",
-	      filter: {
-	        ____label: "Sub-Filter Object",
-	        ____description: "Pre-constructed Filter object.",
+	      ____label: "Request Object",
+	      ____description: "Discriminator filter factory request object.",
+	      ____types: "jsObject",
+	      options: {
+	        ____label: "Options Object",
+	        ____description: "Factory options object.",
 	        ____types: "jsObject",
-	        filterDescriptor: {
-	          ____accept: "jsObject"
-	        },
-	        request: {
-	          ____accept: "jsFunction"
+	        ____defaultValue: {},
+	        action: {
+	          ____label: "Action Flag",
+	          ____description: "The action to be taken by the generated Discriminator Filter.",
+	          ____accept: "jsString",
+	          ____inValueSet: ["getFilterID", "getFilter", "routeRequest"],
+	          ____defaultValue: "getFilterID"
+	        }
+	      },
+	      filters: {
+	        ____label: "Array of Filters",
+	        ____description: "An array Filter objects that define the set of request signatures to be analyzed.",
+	        ____types: "jsArray",
+	        filter: {
+	          ____label: "Sub-Filter Object",
+	          ____description: "Pre-constructed Filter object.",
+	          ____types: "jsObject",
+	          filterDescriptor: {
+	            ____accept: "jsObject"
+	          },
+	          request: {
+	            ____accept: "jsFunction"
+	          }
 	        }
 	      }
 	    },
@@ -13887,12 +13956,12 @@ module.exports =
 	      inBreakScope = false;
 	      while (!inBreakScope) {
 	        inBreakScope = true;
-	        if (request_.length < 2) {
+	        if (request_.filters.length < 2) {
 	          errors.unshift("Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.");
 	          break;
 	        }
 	        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
-	        innerResponse = createMergedFilterSpecModel(request_);
+	        innerResponse = createMergedFilterSpecModel(request_.filters);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
@@ -13926,7 +13995,8 @@ module.exports =
 	        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
 	        innerResponse = createDiscriminatorFilterRuntime.request({
 	          filterTable: mergedModel.filterTable,
-	          parseDigraph: runtimeParseDigraph
+	          parseDigraph: runtimeParseDigraph,
+	          options: request_.options
 	        });
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
@@ -14156,10 +14226,23 @@ module.exports =
 	      },
 	      parseDigraph: {
 	        ____accept: "jsObject"
+	      },
+	      options: {
+	        ____label: "Options Object",
+	        ____description: "Factory options object.",
+	        ____types: "jsObject",
+	        ____defaultValue: {},
+	        action: {
+	          ____label: "Action Flag",
+	          ____description: "The action to be taken by the generated Discriminator Filter.",
+	          ____accept: "jsString",
+	          ____inValueSet: ["getFilterID", "getFilter", "routeRequest"],
+	          ____defaultValue: "getFilterID"
+	        }
 	      }
 	    },
 	    bodyFunction: function(request_) {
-	      var errors, inBreakScope, innerResponse, response, runtimeContext, runtimeFilter;
+	      var errors, filter, filterID, inBreakScope, innerResponse, response, runtimeContext, runtimeFilter, supportedFilters;
 	      response = {
 	        error: null,
 	        result: null
@@ -14167,6 +14250,11 @@ module.exports =
 	      errors = [];
 	      inBreakScope = false;
 	      runtimeContext = request_;
+	      supportedFilters = [];
+	      for (filterID in runtimeContext.filterTable) {
+	        filter = runtimeContext.filterTable[filterID];
+	        supportedFilters.push("[" + filter.filterDescriptor.operationName + ":" + filterID + "]");
+	      }
 	      while (!inBreakScope) {
 	        inBreakScope = true;
 	        innerResponse = FILTERLIB.create({
@@ -14174,7 +14262,7 @@ module.exports =
 	          operationName: "Discrimintor Filter",
 	          operationDescription: "Discriminates between N disjunct request signatures.",
 	          bodyFunction: function(request_) {
-	            var checkResponse, continueRankEnum, currentVertex, edge, filter, filterID, index, inputNamespace, outEdges, pathParts, propertyName, supportedFilters, typeConstraint, uprop, vprop;
+	            var checkResponse, continueRankEnum, currentVertex, edge, index, inputNamespace, outEdges, pathParts, propertyName, routeResponse, typeConstraint, uprop, vprop;
 	            response = {
 	              error: null,
 	              response: null
@@ -14217,18 +14305,31 @@ module.exports =
 	                  }
 	                }
 	                if (index === outEdges.length) {
-	                  supportedFilters = [];
-	                  for (filterID in runtimeContext.filterTable) {
-	                    filter = runtimeContext.filterTable[filterID];
-	                    supportedFilters.push("[" + filter.filterDescriptor.operationName + ":" + filterID + "]");
-	                  }
 	                  errors.push("Unrecognized request format.");
 	                  errors.push("Request signature must match one of filter set");
 	                  errors.push("{" + (supportedFilters.join(", ")) + "}.");
 	                }
 	              }
 	              if (!errors.length) {
-	                response.result = filterID;
+	                switch (runtimeContext.options.action) {
+	                  case "getFilterID":
+	                    response.result = filterID;
+	                    break;
+	                  case "getFilter":
+	                    response.result = runtimeContext.filterTable[filterID];
+	                    break;
+	                  case "routeRequest":
+	                    routeResponse = runtimeContext.filterTable[filterID].request(request_);
+	                    if (!routeResponse.error) {
+	                      response.result = routeResponse.result;
+	                    } else {
+	                      errors.unshift(routeResponse.error);
+	                    }
+	                    break;
+	                  default:
+	                    errors("Internal error unrecognized discriminator action '" + runtimeContext.options.action + "'.");
+	                    break;
+	                }
 	              }
 	              break;
 	            }
@@ -14243,7 +14344,8 @@ module.exports =
 	          break;
 	        }
 	        runtimeFilter = innerResponse.result;
-	        runtimeFilter.runtimeContext = runtimeContext;
+	        runtimeFilter.supportedFilters = supportedFilters;
+	        runtimeFilter.options = runtimeContext.options;
 	        response.result = innerResponse.result;
 	        break;
 	      }
