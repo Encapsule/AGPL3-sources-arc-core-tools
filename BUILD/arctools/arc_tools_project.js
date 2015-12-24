@@ -2,7 +2,9 @@
 
 var toolName = "arc_project";
 
+var PATH = require('path');
 var TOOLSLIB = require('./arc_tools_lib');
+
 var chalk = TOOLSLIB.chalk;
 var clistyle = TOOLSLIB.clistyles;
 
@@ -15,8 +17,8 @@ var program = TOOLSLIB.commander;
 program.version(TOOLSLIB.meta.version)
     .description(TOOLSLIB.meta.descripton)
     .option('--info', "Print tool information and exit.")
-    .option('-d, --directory [directory]', "Locate 'arctools.json' from [directory] (default: cwd)")
-    .option('-n, --new [directory]', "Create 'arctools.json' in [directory] (default: cwd)")
+    .option('-d, --directory <directory>', "Use <directory> as the ARC tools project root directory. (default: cwd)")
+    .option('-i, --initialize a new arctools_project.json in ARC tools root directory. (default: ./arctools_project.json)')
     .option('--info', "Print tool information and exit.")
     .parse(process.argv);
 
@@ -27,6 +29,18 @@ if (program.info) {
 
 while (!bounce) {
     // do some things...
+
+    // Set the main ARC tools project directory
+    var projectDirectory = TOOLSLIB.paths.normalizePath(program.directory || "./");
+    var projectFilename = TOOLSLIB.paths.normalizePath(program.create || PATH.join(projectDirectory, "arctools.json"));
+
+    console.log("project directory: '" + projectDirectory + "'.");
+
+    if (program.initialize !== undefined) {
+        console.log("Attempting to initialize a new project...");
+    } else {
+        console.log("Attempting to open existing project...");
+    }
 
     // finished with the things.
     break;

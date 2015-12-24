@@ -16,13 +16,7 @@ var SPEC_LOADER = TOOLSLIB.filterdagSpecLoader;
 
 var clistyle = TOOLSLIB.clistyles;
 
-var normalizePath = function(path_) {
-    var path = path_;
-    if (!PATH.isAbsolute(path)) {
-        path = PATH.join(process.cwd(), path);
-    }
-    return PATH.normalize(path);
-};
+var normalizePath = TOOLSLIB.paths.normalizePath;
 
 console.log(TOOLSLIB.createToolBanner(toolName));
 

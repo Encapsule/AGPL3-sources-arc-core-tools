@@ -8,5 +8,6 @@ module.exports = {
     stringToFileSync: require('./arc_tools_lib_string_to_file_sync'),
     filterdagSpecLoader: require('./arc_tools_lib_filterdag_spec_loader'),
     createToolBanner: require('./arc_tools_lib_tool_banner'),
-    clistyles: require('./arc_tools_lib_cli_styles')
+    clistyles: require('./arc_tools_lib_cli_styles'),
+    paths: require('./arc_tools_lib_paths')
 };

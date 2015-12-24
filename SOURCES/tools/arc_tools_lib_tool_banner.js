@@ -12,8 +12,8 @@ module.exports = function(toolName_) {
 		clistyle.bannerPackage("arctools") + "::" +
 		clistyle.bannerToolname(toolName_) +
 		" v" + ARCBUILD.version +
-		" release \"" + clistyle.bannerRelease(ARCBUILD.codename) + "\"" +
-		" build \"" + clistyle.bannerBuild(ARCBUILD.buildID) + "\" ****"
+		" release " + clistyle.bannerRelease(ARCBUILD.codename) + "" +
+		" build " + clistyle.bannerBuild(ARCBUILD.buildID) + " ****"
 	);
 
     return banner;

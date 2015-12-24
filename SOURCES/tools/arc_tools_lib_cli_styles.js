@@ -1,11 +1,11 @@
 var chalk = require('chalk');
 module.exports = {
-    bannerEnter: chalk.cyan.bold,
+    bannerEnter: chalk.white.bold,
     bannerAuthor: chalk.blue,
     bannerPackage: chalk.green,
-    bannerToolname: chalk.white,
-    bannerRelease: chalk.yellow,
-    bannerBuild: chalk.yellow,
+    bannerToolname: chalk.yellow,
+    bannerRelease: chalk.cyan,
+    bannerBuild: chalk.cyan,
     bannerExit: chalk.cyan,
 
     dirInput: chalk.green.bold,

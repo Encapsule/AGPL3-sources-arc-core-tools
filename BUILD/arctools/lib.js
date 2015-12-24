@@ -47,15 +47,16 @@ module.exports =
 
 	module.exports = {
 	    meta: __webpack_require__(23),
-	    commander: __webpack_require__(70),
+	    commander: __webpack_require__(71),
 	    chalk: __webpack_require__(14),
 	    arccore: __webpack_require__(29),
 	    fileDirEnumSync: __webpack_require__(64),
 	    jsrcFileLoaderSync: __webpack_require__(66),
-	    stringToFileSync: __webpack_require__(67),
+	    stringToFileSync: __webpack_require__(68),
 	    filterdagSpecLoader: __webpack_require__(65),
-	    createToolBanner: __webpack_require__(68),
-	    clistyles: __webpack_require__(24)
+	    createToolBanner: __webpack_require__(69),
+	    clistyles: __webpack_require__(24),
+	    paths: __webpack_require__(67)
 	};
 
 
@@ -520,7 +521,7 @@ module.exports =
 
 	  jbus.common.types = module.exports = {};
 
-	  jbus.common.types.codes = __webpack_require__(9);
+	  jbus.common.types.codes = __webpack_require__(10);
 
 	  jbus.common.types.convert = __webpack_require__(21);
 
@@ -605,7 +606,7 @@ module.exports =
 	        // ADVANCED
 
 	        // Color constant hashtable (advanced).
-	        colors: __webpack_require__(8),
+	        colors: __webpack_require__(9),
 
 	        // Directed graph traversal context factory (advanced).
 	        createTraversalContext: __webpack_require__(17)
@@ -624,6 +625,12 @@ module.exports =
 
 /***/ },
 /* 8 */
+/***/ function(module, exports) {
+
+	module.exports = require("path");
+
+/***/ },
+/* 9 */
 /***/ function(module, exports) {
 
 	/*
@@ -653,7 +660,7 @@ module.exports =
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 	
@@ -703,7 +710,7 @@ module.exports =
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	
@@ -776,7 +783,7 @@ module.exports =
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports =
@@ -8085,12 +8092,6 @@ module.exports =
 	/******/ ]);
 
 /***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	module.exports = require("path");
-
-/***/ },
 /* 13 */
 /***/ function(module, exports) {
 
@@ -8149,11 +8150,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var escapeStringRegexp = __webpack_require__(71);
-	var ansiStyles = __webpack_require__(69);
-	var stripAnsi = __webpack_require__(76);
-	var hasAnsi = __webpack_require__(73);
-	var supportsColor = __webpack_require__(77);
+	var escapeStringRegexp = __webpack_require__(72);
+	var ansiStyles = __webpack_require__(70);
+	var stripAnsi = __webpack_require__(77);
+	var hasAnsi = __webpack_require__(74);
+	var supportsColor = __webpack_require__(78);
 	var defineProps = Object.defineProperties;
 	var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
 
@@ -8270,8 +8271,8 @@ module.exports =
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(75)
-	var murmur2 = __webpack_require__(74)
+	var murmur3 = __webpack_require__(76)
+	var murmur2 = __webpack_require__(75)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -8866,7 +8867,7 @@ module.exports =
 	*/
 
 	var helperFunctions = __webpack_require__(4);
-	var colors = __webpack_require__(8);
+	var colors = __webpack_require__(9);
 
 	module.exports = function (request_) {
 	    var response = { error: null, result: null };
@@ -9262,7 +9263,7 @@ module.exports =
 	(function() {
 	  var convert, typeCodes, typeLUTS;
 
-	  typeCodes = __webpack_require__(9);
+	  typeCodes = __webpack_require__(10);
 
 	  typeLUTS = __webpack_require__(22);
 
@@ -9434,7 +9435,7 @@ module.exports =
 	  'use strict';
 	  var MODULE, jstc, typeCodes;
 
-	  typeCodes = __webpack_require__(9);
+	  typeCodes = __webpack_require__(10);
 
 	  MODULE = {};
 
@@ -9546,12 +9547,12 @@ module.exports =
 
 	var chalk = __webpack_require__(14);
 	module.exports = {
-	    bannerEnter: chalk.cyan.bold,
+	    bannerEnter: chalk.white.bold,
 	    bannerAuthor: chalk.blue,
 	    bannerPackage: chalk.green,
-	    bannerToolname: chalk.white,
-	    bannerRelease: chalk.yellow,
-	    bannerBuild: chalk.yellow,
+	    bannerToolname: chalk.yellow,
+	    bannerRelease: chalk.cyan,
+	    bannerBuild: chalk.cyan,
 	    bannerExit: chalk.cyan,
 
 	    dirInput: chalk.green.bold,
@@ -9899,7 +9900,7 @@ module.exports =
 	    graph: __webpack_require__(6),
 	    identifier: __webpack_require__(2),
 	    types: __webpack_require__(5),
-	    util: __webpack_require__(10)
+	    util: __webpack_require__(11)
 	  };
 
 	}).call(this);
@@ -9966,7 +9967,7 @@ module.exports =
 	*/
 
 	var algorithmName = "BFT"; // constant string used in error messages
-	var colors = __webpack_require__(8);
+	var colors = __webpack_require__(9);
 	var visitorCallback = __webpack_require__(19);
 	var normalizeRequest = __webpack_require__(18);
 
@@ -10229,7 +10230,7 @@ module.exports =
 	*/
 
 	var algorithmName = "DFT"; // used in error messages
-	var colors = __webpack_require__(8);
+	var colors = __webpack_require__(9);
 	var visitorCallback = __webpack_require__(19);
 	var normalizeRequest = __webpack_require__(18);
 
@@ -13752,7 +13753,7 @@ module.exports =
 
 	  GRAPHLIB = __webpack_require__(6);
 
-	  UTILLIB = __webpack_require__(10);
+	  UTILLIB = __webpack_require__(11);
 
 	  partitionAndColorGraphByAmbiguity = module.exports = function(mergedModelDigraph_) {
 	    var allFilters, ambiguityModelDigraph, ambiguousBlackVertices, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, innerResponse, outEdges, rbfsVertices, response, uprop, vertex;
@@ -14034,7 +14035,7 @@ module.exports =
 	(function() {
 	  var FILTERLIB, GRAPHLIB, UTILLIB, addFilterSpecToMergedDigraphModel, buildMergedFilterSpecDigraphModel, rootVertex;
 
-	  UTILLIB = __webpack_require__(10);
+	  UTILLIB = __webpack_require__(11);
 
 	  FILTERLIB = __webpack_require__(1);
 
@@ -14415,7 +14416,7 @@ module.exports =
 
 	  GRAPHLIB = __webpack_require__(6);
 
-	  UTILLIB = __webpack_require__(10);
+	  UTILLIB = __webpack_require__(11);
 
 	  IDLIB = __webpack_require__(2);
 
@@ -14539,7 +14540,7 @@ module.exports =
 	(function() {
 	  var MODULE, typeCodes, typeConvert, typeLUTS;
 
-	  typeCodes = __webpack_require__(9);
+	  typeCodes = __webpack_require__(10);
 
 	  typeLUTS = __webpack_require__(22);
 
@@ -14678,25 +14679,10 @@ module.exports =
 /* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0. 
-
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	*/
-
+	
 	var FS = __webpack_require__(7);
-	var PATH = __webpack_require__(12);
-	var ARC_CORE = __webpack_require__(11);
+	var PATH = __webpack_require__(8);
+	var ARC_CORE = __webpack_require__(12);
 
 	var response = ARC_CORE.filter.create({
 
@@ -14820,23 +14806,8 @@ module.exports =
 /* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0. 
-
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	*/
-
-	var ARC_CORE = __webpack_require__(11);
+	
+	var ARC_CORE = __webpack_require__(12);
 
 	var response = ARC_CORE.filter.create({
 	    operationID: "XkLs1-s1SFGTchfd9eZqYA",
@@ -14891,25 +14862,10 @@ module.exports =
 /* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0. 
-
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	*/
-
+	
 	var FS = __webpack_require__(7);
-	var PATH = __webpack_require__(12);
-	var ARC_CORE = __webpack_require__(11);
+	var PATH = __webpack_require__(8);
+	var ARC_CORE = __webpack_require__(12);
 
 	var response = ARC_CORE.filter.create({
 
@@ -14994,25 +14950,30 @@ module.exports =
 /* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
+	
+	var PATH = __webpack_require__(8);
 
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+	module.exports = {
 
-	JBUS is licensed under the GNU Affero General Public License v3.0. 
+	    normalizePath: function(path_) {
+	        var path = path_;
+	        if (!PATH.isAbsolute(path)) {
+	            path = PATH.join(process.cwd(), path);
+	        }
+	        return PATH.normalize(path);
+	    }
 
-	Please consult the included LICENSE file for agreement terms.
+	};
 
-	----------------------------------------------------------------------
-	*/
 
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
 	var FS = __webpack_require__(7);
-	var PATH = __webpack_require__(12);
-	var ARC_CORE = __webpack_require__(11);
+	var PATH = __webpack_require__(8);
+	var ARC_CORE = __webpack_require__(12);
 
 	var response = ARC_CORE.filter.create({
 
@@ -15082,7 +15043,7 @@ module.exports =
 
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -15099,8 +15060,8 @@ module.exports =
 			clistyle.bannerPackage("arctools") + "::" +
 			clistyle.bannerToolname(toolName_) +
 			" v" + ARCBUILD.version +
-			" release \"" + clistyle.bannerRelease(ARCBUILD.codename) + "\"" +
-			" build \"" + clistyle.bannerBuild(ARCBUILD.buildID) + "\" ****"
+			" release " + clistyle.bannerRelease(ARCBUILD.codename) + "" +
+			" build " + clistyle.bannerBuild(ARCBUILD.buildID) + " ****"
 		);
 
 	    return banner;
@@ -15109,7 +15070,7 @@ module.exports =
 
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
@@ -15178,20 +15139,20 @@ module.exports =
 		get: assembleStyles
 	});
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(78)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(79)(module)))
 
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var EventEmitter = __webpack_require__(80).EventEmitter;
-	var spawn = __webpack_require__(79).spawn;
-	var readlink = __webpack_require__(72).readlinkSync;
-	var path = __webpack_require__(12);
+	var EventEmitter = __webpack_require__(81).EventEmitter;
+	var spawn = __webpack_require__(80).spawn;
+	var readlink = __webpack_require__(73).readlinkSync;
+	var path = __webpack_require__(8);
 	var dirname = path.dirname;
 	var basename = path.basename;
 	var fs = __webpack_require__(7);
@@ -16297,7 +16258,7 @@ module.exports =
 
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16314,7 +16275,7 @@ module.exports =
 
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(7)
@@ -16332,7 +16293,7 @@ module.exports =
 
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16342,7 +16303,7 @@ module.exports =
 
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports) {
 
 	/**
@@ -16402,7 +16363,7 @@ module.exports =
 
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16475,7 +16436,7 @@ module.exports =
 	}
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16487,7 +16448,7 @@ module.exports =
 
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16543,7 +16504,7 @@ module.exports =
 
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -16559,13 +16520,13 @@ module.exports =
 
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports) {
 
 	module.exports = require("child_process");
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports) {
 
 	module.exports = require("events");
