@@ -1,8 +1,8 @@
 ![Encapsule.io](https://encapsule.io/images/blue-burst-encapsule.io-logo-251x64.png "Encapsule.io")
 
-# Encapsule/arctools v0.0.4 "steelhead"
+# Encapsule/arctools v0.0.5 "subterra"
 
-Build ID "_NSBB7RJQvuFpx1uJNqzEA" Wed Dec 23 2015 18:04:29 GMT-0800 (PST)
+Build ID "MXPWlcuxQjuGVeXVWKu7Qg" Wed Dec 23 2015 18:39:18 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

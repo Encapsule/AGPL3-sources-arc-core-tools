@@ -1,9 +1,9 @@
 {
     "name": "arctools",
-    "version": "0.0.4",
-    "codename": "steelhead",
-    "buildID": "_NSBB7RJQvuFpx1uJNqzEA",
-    "buildTime": 1450922669,
+    "version": "0.0.5",
+    "codename": "subterra",
+    "buildID": "MXPWlcuxQjuGVeXVWKu7Qg",
+    "buildTime": 1450924758,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arctools.git"
