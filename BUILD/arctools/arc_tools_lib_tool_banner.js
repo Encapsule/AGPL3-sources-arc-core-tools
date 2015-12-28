@@ -6,15 +6,15 @@ var ARCBUILD = require('./arc_build');
 module.exports = function(toolName_) {
 
     var banner =
-	clistyle.bannerEnter(
-	    "**** " +
-		clistyle.bannerAuthor("Encapsule") + "/" +
-		clistyle.bannerPackage("arctools") + "::" +
-		clistyle.bannerToolname(toolName_) +
-		" v" + ARCBUILD.version +
-		" release " + clistyle.bannerRelease(ARCBUILD.codename) + "" +
-		" build " + clistyle.bannerBuild(ARCBUILD.buildID) + " ****"
-	);
+	clistyle.banner("**** " +
+		        clistyle.bannerAuthor("Encapsule") + "/" +
+		        clistyle.bannerPackage("arctools") + ":" +
+		        clistyle.bannerToolname(toolName_) +
+		        clistyle.bannerVersion(" v" + ARCBUILD.version) + " " +
+                        "build " +
+                        clistyle.bannerRelease(ARCBUILD.codename) + " " +
+                        clistyle.bannerBuild(ARCBUILD.buildID) +
+                        " ****");
 
     return banner;
 

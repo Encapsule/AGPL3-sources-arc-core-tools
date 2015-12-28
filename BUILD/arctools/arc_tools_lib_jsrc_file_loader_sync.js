@@ -35,12 +35,30 @@ var response = ARC_CORE.filter.create({
                 npath = PATH.join(process.cwd(), npath);
             }
             npath = PATH.normalize(npath);
+
             var fileContents = FS.readFileSync(npath);
-            try {
-                eval('resource = ' + fileContents);
-            } catch (error_) {
-                errors.unshift(error_.toString());
-                errors.unshift("Fatal exception executing JavaScript eval operator on filesystem path ` '" + npath + "':");
+
+            var pathParse = PATH.parse(npath);
+            switch (pathParse.ext) {
+            case '.js':
+                try {
+                    eval('resource = ' + fileContents);
+                } catch (error_) {
+                    errors.unshift(error_.toString());
+                    errors.unshift("Fatal exception executing JavaScript eval operator on contents of file '" + npath + "':");
+                }
+                break;
+            case '.json':
+                try {
+                    resource = JSON.parse(fileContents);
+                } catch (error_) {
+                    errors.unshift(error_.toString());
+                    errors.unshift("Fatat exception executing JSON.parse on contents of file '" + npath + "':");
+                }
+                break;
+            default:
+                errors.unshift("Path '" + npath + "' file extension '" + pathParse.ext + "' will not be parsed.");
+                break;
             }
             if (errors.length) {
                 break;

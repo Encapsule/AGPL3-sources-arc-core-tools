@@ -47,7 +47,7 @@ module.exports =
 
 	module.exports = {
 	    meta: __webpack_require__(23),
-	    commander: __webpack_require__(71),
+	    commander: __webpack_require__(72),
 	    chalk: __webpack_require__(14),
 	    arccore: __webpack_require__(29),
 	    fileDirEnumSync: __webpack_require__(64),
@@ -3178,7 +3178,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "MXPWlcuxQjuGVeXVWKu7Qg", buildTime: "1450924758"};
+		module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "AprXQ5D-RDaF5s14w_kIzQ", buildTime: "1451265956"};
 
 	/***/ },
 	/* 21 */
@@ -8150,11 +8150,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var escapeStringRegexp = __webpack_require__(72);
+	var escapeStringRegexp = __webpack_require__(73);
 	var ansiStyles = __webpack_require__(70);
-	var stripAnsi = __webpack_require__(77);
-	var hasAnsi = __webpack_require__(74);
-	var supportsColor = __webpack_require__(78);
+	var stripAnsi = __webpack_require__(78);
+	var hasAnsi = __webpack_require__(75);
+	var supportsColor = __webpack_require__(71);
 	var defineProps = Object.defineProperties;
 	var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
 
@@ -8271,8 +8271,8 @@ module.exports =
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(76)
-	var murmur2 = __webpack_require__(75)
+	var murmur3 = __webpack_require__(77)
+	var murmur2 = __webpack_require__(76)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -9539,7 +9539,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "MXPWlcuxQjuGVeXVWKu7Qg", buildTime: "1450924758"};
+	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "AprXQ5D-RDaF5s14w_kIzQ", buildTime: "1451265956"};
 
 /***/ },
 /* 24 */
@@ -9547,27 +9547,37 @@ module.exports =
 
 	var chalk = __webpack_require__(14);
 	module.exports = {
-	    bannerEnter: chalk.white.bold,
-	    bannerAuthor: chalk.blue,
-	    bannerPackage: chalk.green,
-	    bannerToolname: chalk.yellow,
-	    bannerRelease: chalk.cyan,
-	    bannerBuild: chalk.cyan,
-	    bannerExit: chalk.cyan,
+	    // tool entry banner styles
+	    banner: chalk.cyan,
+	    bannerAuthor: chalk.cyan,
+	    bannerPackage: chalk.cyan.bold,
+	    bannerToolname: chalk.green.bold,
+	    bannerVersion: chalk.yellow.bold,
+	    bannerRelease: chalk.cyan.bold,
+	    bannerBuild: chalk.cyan.bold,
 
+	    // tool exit banner styles
+	    bannerExit: chalk.cyan.bold,
+	    exitCode: chalk.bold.magenta,
+
+	    // tool warnings/errors styles
+	    toolError: chalk.red.bold,
+
+	    // general shared styles
 	    dirInput: chalk.green.bold,
 	    dirOutput: chalk.red.bold,
 	    fileInput: chalk.green,
 	    fileOutput: chalk.red,
 
+	    // compiler styles
 	    infoHead: chalk.bold.cyan,
 	    infoBody: chalk.cyan,
 	    processStepHeader: chalk.blue.bold,
 	    compilerSummaryHeader: chalk.green.bold,
 	    compilerSummaryData: chalk.cyan,
 	    errorReportHeader: chalk.magenta.bold,
-	    errorReportErrors: chalk.red.bold,
-	    exitCode: chalk.bold.magenta
+	    errorReportErrors: chalk.red.bold
+
 	};
 
 
@@ -9869,7 +9879,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "MXPWlcuxQjuGVeXVWKu7Qg", buildTime: "1450924758"};
+	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "AprXQ5D-RDaF5s14w_kIzQ", buildTime: "1451265956"};
 
 /***/ },
 /* 29 */
@@ -14899,12 +14909,30 @@ module.exports =
 	                npath = PATH.join(process.cwd(), npath);
 	            }
 	            npath = PATH.normalize(npath);
+
 	            var fileContents = FS.readFileSync(npath);
-	            try {
-	                eval('resource = ' + fileContents);
-	            } catch (error_) {
-	                errors.unshift(error_.toString());
-	                errors.unshift("Fatal exception executing JavaScript eval operator on filesystem path ` '" + npath + "':");
+
+	            var pathParse = PATH.parse(npath);
+	            switch (pathParse.ext) {
+	            case '.js':
+	                try {
+	                    eval('resource = ' + fileContents);
+	                } catch (error_) {
+	                    errors.unshift(error_.toString());
+	                    errors.unshift("Fatal exception executing JavaScript eval operator on contents of file '" + npath + "':");
+	                }
+	                break;
+	            case '.json':
+	                try {
+	                    resource = JSON.parse(fileContents);
+	                } catch (error_) {
+	                    errors.unshift(error_.toString());
+	                    errors.unshift("Fatat exception executing JSON.parse on contents of file '" + npath + "':");
+	                }
+	                break;
+	            default:
+	                errors.unshift("Path '" + npath + "' file extension '" + pathParse.ext + "' will not be parsed.");
+	                break;
 	            }
 	            if (errors.length) {
 	                break;
@@ -15054,15 +15082,15 @@ module.exports =
 	module.exports = function(toolName_) {
 
 	    var banner =
-		clistyle.bannerEnter(
-		    "**** " +
-			clistyle.bannerAuthor("Encapsule") + "/" +
-			clistyle.bannerPackage("arctools") + "::" +
-			clistyle.bannerToolname(toolName_) +
-			" v" + ARCBUILD.version +
-			" release " + clistyle.bannerRelease(ARCBUILD.codename) + "" +
-			" build " + clistyle.bannerBuild(ARCBUILD.buildID) + " ****"
-		);
+		clistyle.banner("**** " +
+			        clistyle.bannerAuthor("Encapsule") + "/" +
+			        clistyle.bannerPackage("arctools") + ":" +
+			        clistyle.bannerToolname(toolName_) +
+			        clistyle.bannerVersion(" v" + ARCBUILD.version) + " " +
+	                        "build " +
+	                        clistyle.bannerRelease(ARCBUILD.codename) + " " +
+	                        clistyle.bannerBuild(ARCBUILD.buildID) +
+	                        " ****");
 
 	    return banner;
 
@@ -15143,6 +15171,62 @@ module.exports =
 
 /***/ },
 /* 71 */
+/***/ function(module, exports) {
+
+	'use strict';
+	var argv = process.argv;
+
+	var terminator = argv.indexOf('--');
+	var hasFlag = function (flag) {
+		flag = '--' + flag;
+		var pos = argv.indexOf(flag);
+		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
+	};
+
+	module.exports = (function () {
+		if ('FORCE_COLOR' in process.env) {
+			return true;
+		}
+
+		if (hasFlag('no-color') ||
+			hasFlag('no-colors') ||
+			hasFlag('color=false')) {
+			return false;
+		}
+
+		if (hasFlag('color') ||
+			hasFlag('colors') ||
+			hasFlag('color=true') ||
+			hasFlag('color=always')) {
+			return true;
+		}
+
+		if (process.stdout && !process.stdout.isTTY) {
+			return false;
+		}
+
+		if (process.platform === 'win32') {
+			return true;
+		}
+
+		if ('COLORTERM' in process.env) {
+			return true;
+		}
+
+		if (process.env.TERM === 'dumb') {
+			return false;
+		}
+
+		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
+			return true;
+		}
+
+		return false;
+	})();
+
+
+/***/ },
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -15151,7 +15235,7 @@ module.exports =
 
 	var EventEmitter = __webpack_require__(81).EventEmitter;
 	var spawn = __webpack_require__(80).spawn;
-	var readlink = __webpack_require__(73).readlinkSync;
+	var readlink = __webpack_require__(74).readlinkSync;
 	var path = __webpack_require__(8);
 	var dirname = path.dirname;
 	var basename = path.basename;
@@ -16258,7 +16342,7 @@ module.exports =
 
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16275,7 +16359,7 @@ module.exports =
 
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(7)
@@ -16293,7 +16377,7 @@ module.exports =
 
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16303,7 +16387,7 @@ module.exports =
 
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports) {
 
 	/**
@@ -16363,7 +16447,7 @@ module.exports =
 
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16436,7 +16520,7 @@ module.exports =
 	}
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16445,62 +16529,6 @@ module.exports =
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
-
-
-/***/ },
-/* 78 */
-/***/ function(module, exports) {
-
-	'use strict';
-	var argv = process.argv;
-
-	var terminator = argv.indexOf('--');
-	var hasFlag = function (flag) {
-		flag = '--' + flag;
-		var pos = argv.indexOf(flag);
-		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
-	};
-
-	module.exports = (function () {
-		if ('FORCE_COLOR' in process.env) {
-			return true;
-		}
-
-		if (hasFlag('no-color') ||
-			hasFlag('no-colors') ||
-			hasFlag('color=false')) {
-			return false;
-		}
-
-		if (hasFlag('color') ||
-			hasFlag('colors') ||
-			hasFlag('color=true') ||
-			hasFlag('color=always')) {
-			return true;
-		}
-
-		if (process.stdout && !process.stdout.isTTY) {
-			return false;
-		}
-
-		if (process.platform === 'win32') {
-			return true;
-		}
-
-		if ('COLORTERM' in process.env) {
-			return true;
-		}
-
-		if (process.env.TERM === 'dumb') {
-			return false;
-		}
-
-		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
-			return true;
-		}
-
-		return false;
-	})();
 
 
 /***/ },
