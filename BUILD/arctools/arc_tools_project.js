@@ -55,12 +55,12 @@ while (!exitProgram && !errors.length) {
 
     } else {
         console.log(theme.processStepHeader("Attempting to open existing project..."));
+        console.log(theme.dirInput("'" + projectPath + "'"));
         var innerResponse = TOOLSLIB.jsrcFileLoaderSync.request(projectPath);
         if (innerResponse.error) {
             errors.unshift(innerResponse.error);
             break;
         }
-        console.log(theme.dirInput("'" + projectPath + "'"));
         console.log(JSON.stringify(innerResponse,undefined,4));
     }
 

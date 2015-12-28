@@ -19,16 +19,19 @@ var response = ARC_CORE.filter.create({
         var response = { error: null, result: null };
         var errors = [];
         var inBreakScope = false;
+        var npath = request_;
+
         while (!inBreakScope) {
             inBreakScope = true;
+
             var resource = undefined;
-            var npath = request_
+
             if (!FS.existsSync(npath)) {
-                errors.unshift("The indicated path '" + npath + "' does not exist.");
+                errors.unshift("does not exist.");
                 break;
             }
             if (!FS.statSync(npath).isFile()) {
-                errors.unshift("The indicated path '" + npath + "' is not a file.");
+                errors.unshift("is not actually a file.");
                 break;
             }
             if (!PATH.isAbsolute(npath)) {
@@ -44,20 +47,18 @@ var response = ARC_CORE.filter.create({
                 try {
                     eval('resource = ' + fileContents);
                 } catch (error_) {
-                    errors.unshift(error_.toString());
-                    errors.unshift("Fatal exception executing JavaScript eval operator on contents of file '" + npath + "':");
+                    errors.unshift("cannot be loaded via JavaScript eval operator due to error '" + error_.toString() + "'.");
                 }
                 break;
             case '.json':
                 try {
                     resource = JSON.parse(fileContents);
                 } catch (error_) {
-                    errors.unshift(error_.toString());
-                    errors.unshift("Fatat exception executing JSON.parse on contents of file '" + npath + "':");
+                    errors.unshift("cannot be loaded via JSON.parse due to error '" + error_.toString() + "'.");
                 }
                 break;
             default:
-                errors.unshift("Path '" + npath + "' file extension '" + pathParse.ext + "' will not be parsed.");
+                errors.unshift("ends in invalid file extension '" + pathParse.ext + "'. Must be '.js' or '.json'.");
                 break;
             }
             if (errors.length) {
@@ -70,6 +71,7 @@ var response = ARC_CORE.filter.create({
             break;
         }
         if (errors.length) {
+            errors.unshift("File '" + npath + "'");
             response.error = errors.join(" ");
         }
         return response;
