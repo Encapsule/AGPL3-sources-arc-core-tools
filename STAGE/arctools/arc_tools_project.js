@@ -21,8 +21,9 @@ program
     .version(TOOLSLIB.meta.version)
     .description("ARC tool project")
     .option('--about', "Print tool information and exit.")
-    .option('-d, --directory <directory>', "Use <directory> as project root.")
+    .option('-d, --directory <directory>', "Use <directory> to find " + projectFilename + ".")
     .option('--initialize', "Initialize a new '" + projectFilename + "' file.")
+    .option('--verbose', "Log diagnostic and informational messages to console.")
     .parse(process.argv);
 
 if (program.about) {
@@ -35,20 +36,105 @@ while (!exitProgram && !errors.length) {
 
     // Set the main ARC tools project directory
     var projectDirectory = TOOLSLIB.paths.normalizePath(program.directory || "./");
-    var projectPath = TOOLSLIB.paths.normalizePath(projectDirectory + "/" + projectFilename);
+    var projectPath = undefined
 
-    console.log(theme.processStepHeader("Checking project directory..."));
+    if (program.verbose) {
+        console.log("Searching for " + toolName + " project file '" + projectFilename + "'");
+        console.log("Initial search directory '" + projectDirectory + "'");
+    }
+
     if (!FS.existsSync(projectDirectory)) {
-        errors.unshift("Bad project directory. Path '" + projectDirectory + "' does not exist.");
+        errors.unshift("Bad search directory. Path '" + projectDirectory + "' does not exist.");
         break;
     }
 
     if (!FS.statSync(projectDirectory).isDirectory()) {
-        errors.unshift("Bad project directory. Path '" + request_.parentDirectory + "' is not a directory.");
+        errors.unshift("Bad search directory. Path '" + request_.parentDirectory + "' is not a directory.");
         break;
     }
 
-    console.log(theme.dirInput("'" + projectDirectory + "'"));
+    if (program.verbose) {
+        console.log("Searching in and below:");
+    }
+
+    // Search for project file in or below the project directory first.
+    var innerResponse = TOOLSLIB.fileDirEnumSync.request({
+        directory: projectDirectory,
+        callback: function (file_) {
+            var parsePath = PATH.parse(file_);
+            var include = (parsePath.base === projectFilename);
+            if (program.verbose) {
+                console.log("'" + file_ + "' " + include);
+            }
+            return include;
+        }
+    });
+    if (innerResponse.error) {
+        errors.unshift(innerResponse.error);
+        break;
+    }
+    if (innerResponse.result.files.length) {
+
+        if (innerResponse.result.files.length > 1) {
+            errors.push("More than one '" + projectFilename + "' files located. Please constrain the search with the --directory option.");
+            console.log(theme.errorReportErrors(JSON.stringify(innerResponse.result.files, undefined, 4)));
+            break;
+        }
+
+        projectPath = innerResponse.result.files[0];
+        projectDirectory = PATH.parse(projectPath).dir;
+
+        if (program.verbose) {
+            console.log("Project directory and path reset below (subpath) of initial directory.");
+        }
+
+    } else {
+
+        if (!program.directory) {
+
+            if (program.verbose) {
+                console.log("Searching above:");
+            }
+
+            // If not located, look in parent directories before giving up.
+            var seek = true;
+            searchDirectory = TOOLSLIB.paths.normalizePath(projectDirectory + "./..");
+            while (seek) {
+                var seekProject = PATH.join(searchDirectory, projectFilename);
+                if (!FS.existsSync(seekProject)) {
+                    if (program.verbose) {
+                        console.log("'" + seekProject + "' false");
+                    }
+                } else {
+                    projectDirectory = searchDirectory;
+                    projectPath = seekProject;
+                    if (program.verbose) {
+                        console.log("Found project above: '" + theme.dirInput(projectPath) + "'");
+                    }
+                    break;
+                }
+                if (searchDirectory === "/" ) {
+                    if (program.verbose) {
+                        console.log("We're at the root of the filesystem. Giving up.");
+                    }
+                    break;
+                }
+                searchDirectory = TOOLSLIB.paths.normalizePath(searchDirectory + "./..");
+            }
+
+        } else {
+
+            if (program.verbose) {
+                console.log("No check of parent directories for project JSON if --directories is specified.");
+            }
+        }
+    }
+    if (!projectPath) {
+        projectPath = TOOLSLIB.paths.normalizePath(PATH.join(projectDirectory, projectFilename));
+        if (program.verbose) {
+            console.log("Using default project JSON filename '" + projectPath + "'.");
+        }
+    }
 
     if (program.initialize !== undefined) {
         console.log(theme.processStepHeader("Attempting to initialize a new project..."));

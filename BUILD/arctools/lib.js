@@ -3178,7 +3178,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "AprXQ5D-RDaF5s14w_kIzQ", buildTime: "1451265956"};
+		module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "eBSk4PDcQQiJvQV8wGfhCg", buildTime: "1451354942"};
 
 	/***/ },
 	/* 21 */
@@ -9539,7 +9539,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "AprXQ5D-RDaF5s14w_kIzQ", buildTime: "1451265956"};
+	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "eBSk4PDcQQiJvQV8wGfhCg", buildTime: "1451354942"};
 
 /***/ },
 /* 24 */
@@ -9879,7 +9879,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "AprXQ5D-RDaF5s14w_kIzQ", buildTime: "1451265956"};
+	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "eBSk4PDcQQiJvQV8wGfhCg", buildTime: "1451354942"};
 
 /***/ },
 /* 29 */
@@ -14705,12 +14705,12 @@ module.exports =
 	        ____description: "Enumerate subdirectory and files request object.",
 	        ____types: "jsObject",
 	        ____defaultValue: {},
-	        parentDirectory: {
+	        directory: {
 	            ____label: "Input Directory Path",
 	            ____description: "Input directory path string or undefined to use the current working directory for the search.",
 	            ____accept: [ "jsUndefined", "jsString" ]
 	        },
-	        fileCallback: {
+	        callback: {
 	            ____label: "File Callback",
 	            ____description: "Optional callback for determining if a file path should be included in the search results. Return true to include, false to exclude.",
 	            ____accept: [ "jsUndefined", "jsFunction" ]
@@ -14723,40 +14723,40 @@ module.exports =
 	        var inBreakScope = false;
 	        while (!inBreakScope) {
 	            inBreakScope = true;
-	            result = {
-	                parentDirectory: null,
-	                subDirectories: [],
+	            var result = {
+	                directory: null,
+	                subdirectories: [],
 	                files: []
 	            };
-	            if (request_.parentDirectory) {
-	                if (!FS.existsSync(request_.parentDirectory)) {
-	                    errors.unshift("The indicated path '" + request_.parentDirectory + "' does not exist.");
+	            if (request_.directory) {
+	                if (!FS.existsSync(request_.directory)) {
+	                    errors.unshift("The indicated path '" + request_.directory + "' does not exist.");
 	                    break;
 	                }
-	                if (!FS.statSync(request_.parentDirectory).isDirectory()) {
-	                    errors.unshift("The indicated path '" + request_.parentDirectory + "' is not a directory.");
+	                if (!FS.statSync(request_.directory).isDirectory()) {
+	                    errors.unshift("The indicated path '" + request_.directory + "' is not a directory.");
 	                    break;
 	                }
-	                var baseDirectory = request_.parentDirectory;
+	                var baseDirectory = request_.directory;
 	                if (!PATH.isAbsolute(baseDirectory)) {
 	                    baseDirectory = PATH.join(process.cwd(), baseDirectory);
 	                }
-	                result.parentDirectory = PATH.normalize(baseDirectory);
+	                result.directory = PATH.normalize(baseDirectory);
 	            } else {
-	                result.parentDirectory = process.cwd();
+	                result.directory = process.cwd();
 	            }
-	            directoryStack = [ result.parentDirectory ];
+	            directoryStack = [ result.directory ];
 	            while (directoryStack.length) {
-	                directory = directoryStack.shift()
-	                filenames = FS.readdirSync(directory) || [];
+	                var directory = directoryStack.shift()
+	                var filenames = FS.readdirSync(directory) || [];
 	                filenames.forEach(function(filename_) {
 	                    var filePath = PATH.join(directory, filename_);
 	                    if (FS.statSync(filePath).isDirectory()) {
-	                        result.subDirectories.push(filePath);
+	                        result.subdirectories.push(filePath);
 	                        directoryStack.push(filePath);
 	                    } else {
-	                        if (request_.fileCallback) {
-	                            var include = request_.fileCallback(filePath);
+	                        if (request_.callback) {
+	                            var include = request_.callback(filePath);
 	                            if (include === true) {
 	                                result.files.push(filePath);
 	                            }
@@ -14777,12 +14777,12 @@ module.exports =
 	        ____label: "Subdirectory Paths",
 	        ____description: "An array of subdirectory paths associated with the indicated parent directory path.",
 	        ____types: "jsObject",
-	        parentDirectory: {
-	            ____label: "Parent Directory",
-	            ____description: "The directory the search was performed from.",
+	        directory: {
+	            ____label: "Search Root Directory",
+	            ____description: "The search root directory.",
 	            ____accept: "jsString"
 	        },
-	        subDirectories: {
+	        subdirectories: {
 	            ____label: "Subdirectory Array",
 	            ____description: "An array of subdirectory paths discovered within the parent directory.",
 	            ____types: "jsArray",
