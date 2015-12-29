@@ -1,5 +1,8 @@
+var build = require('./arc_build');
+build.name = "arctools";
+
 module.exports = {
-    meta: require('./arc_build'),
+    meta: build,
     commander: require('commander'),
     chalk: require('chalk'),
     arccore: require('../arccore/arc_core'),
