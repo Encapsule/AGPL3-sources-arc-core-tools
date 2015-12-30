@@ -13,42 +13,60 @@ var filterlibResponse = FILTERLIB.create({
         ____label: "ARC Project Descriptor",
         ____description: "Configuration data for Encapsule arc_* command line tools suite.",
         ____types: "jsObject",
-        ____defaultValue: {},
         name: {
             ____accept: "jsString",
-            ____defaultValue: "",
+            ____defaultValue: ""
         },
         description: {
             ____accept: "jsString",
-            ____defaultValue: "",
+            ____defaultValue: ""
         },
         agent: {
             ____types: "jsObject",
-            ____defaultValue: {},
             name: {
-                ____accept: "jsString",
-                ____defaultValue: TOOLSLIB.meta.name,
+                ____accept: "jsString"
             },
             version: {
-                ____accept: "jsString",
-                ____defaultValue: TOOLSLIB.meta.version,
+                ____accept: "jsString"
             }
         },
         options: {
-            ____types: "jsObject",
-            ____defaultValue: {}
+            ____types: "jsObject"
         },
         directories: {
             ____types: "jsArray",
-            ____defaultValue: [],
             element: {
                 ____accept: "jsString"
             }
+        },
+        projectState: {
+            ____accept: "jsObject"
+
         }
     },
-    bodyFunction: function (request_) {
-        return { error: null, result: request_ };
+
+    bodyFunction: function(request_) {
+        var response = { error: null, result: null };
+        var errors = [];
+        var inBreakScope = false;
+        while (!inBreakScope) {
+            inBreakScope = true;
+
+            innerResponse = TOOLSLIB.arccore.graph.directed.create(request_.projectState);
+            if (innerResponse.error) {
+                errors.unshift(innerResponse.error);
+                break;
+            }
+            response.result = request_;
+            response.result.projectState = innerResponse.result;
+            break;
+        }
+        if (errors.length) {
+            response.error = errors.join(" ");
+        }
+        return response;
     },
+
 
     outputFilterSpec: {
         ____opaque: true

@@ -12,7 +12,7 @@ var theme = TOOLSLIB.clistyles;
 
 var filters = {};
 filters.projectConstruct = require('./arc_tools_project_construct');
-fitlers.projectParse = require('./arc_tools_project_parse');
+filters.projectParse = require('./arc_tools_project_parse');
 
 
 var arctoolsProjectData = undefined;
@@ -146,7 +146,11 @@ while (!exitProgram && !errors.length) {
 
     if (program.initialize !== undefined) {
         console.log(theme.processStepHeader("Attempting to initialize a new project..."));
-        innerResponse = parseProjectFilter.request();
+        if (FS.existsSync(projectPath)) {
+            errors.unshift("The target file '" + projectPath + "' already exists. If you really want to re-initialize, please manually remove/rename the existing file.");
+            break;
+        }
+        innerResponse = filters.projectConstruct.request();
         if (innerResponse.error) {
             errors.unshift(innerResponse.error);
             break;
@@ -161,13 +165,15 @@ while (!exitProgram && !errors.length) {
             errors.unshift(innerResponse.error);
             break;
         }
-        innerResponse = parseProjectFilter.request(innerResponse.result.resource);
+        innerResponse = filters.projectParse.request(innerResponse.result.resource);
         if (innerResponse.error) {
             errors.unshift(innerResponse.error);
             break;
         }
         arctoolsProjectData = innerResponse.result
     }
+
+    arctoolsProjectData.projectState = arctoolsProjectData.projectState.toObject();
 
     console.log("arctoolsProjectData = '" + JSON.stringify(arctoolsProjectData,undefined,4));
 
