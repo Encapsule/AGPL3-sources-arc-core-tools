@@ -1,0 +1,10 @@
+{
+    "name": "SERIOUSLY",
+    "description": "",
+    "agent": {
+        "name": "arctools",
+        "version": "0.0.5"
+    },
+    "options": {},
+    "directories": []
+}

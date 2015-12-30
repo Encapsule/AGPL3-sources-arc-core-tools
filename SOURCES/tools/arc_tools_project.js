@@ -10,9 +10,17 @@ var TOOLSLIB = require('./arc_tools_lib');
 var chalk = TOOLSLIB.chalk;
 var theme = TOOLSLIB.clistyles;
 
+var filters = {};
+filters.projectConstruct = require('./arc_tools_project_construct');
+fitlers.projectParse = require('./arc_tools_project_parse');
+
+
+var arctoolsProjectData = undefined;
+
 var exitCode = 0; // assume success
 var exitProgram = false;
 var errors = [];
+var innerResponse;
 
 console.log(TOOLSLIB.createToolBanner(toolName));
 
@@ -138,17 +146,38 @@ while (!exitProgram && !errors.length) {
 
     if (program.initialize !== undefined) {
         console.log(theme.processStepHeader("Attempting to initialize a new project..."));
-
-    } else {
-        console.log(theme.processStepHeader("Attempting to open existing project..."));
-        console.log(theme.dirInput("'" + projectPath + "'"));
-        var innerResponse = TOOLSLIB.jsrcFileLoaderSync.request(projectPath);
+        innerResponse = parseProjectFilter.request();
         if (innerResponse.error) {
             errors.unshift(innerResponse.error);
             break;
         }
-        console.log(JSON.stringify(innerResponse,undefined,4));
+        arctoolsProjectData = innerResponse.result;
+
+    } else {
+        console.log(theme.processStepHeader("Attempting to open existing project..."));
+        console.log(theme.dirInput("'" + projectPath + "'"));
+        innerResponse = TOOLSLIB.jsrcFileLoaderSync.request(projectPath);
+        if (innerResponse.error) {
+            errors.unshift(innerResponse.error);
+            break;
+        }
+        innerResponse = parseProjectFilter.request(innerResponse.result.resource);
+        if (innerResponse.error) {
+            errors.unshift(innerResponse.error);
+            break;
+        }
+        arctoolsProjectData = innerResponse.result
     }
+
+    console.log("arctoolsProjectData = '" + JSON.stringify(arctoolsProjectData,undefined,4));
+
+    innerResponse = TOOLSLIB.stringToFileSync.request({ resource: JSON.stringify(arctoolsProjectData, undefined, 4), path: projectPath });
+    if (innerResponse.error) {
+        errors.unshift(innerResponse.error);
+        break;
+    }
+    console.log("Wrote '" + projectPath + "'.");
+
 
     // finished with the things.
     break;
@@ -159,6 +188,7 @@ if (errors.length) {
     console.log(theme.toolError(errors.join(" ")));
 } else {
     exitCode = 0;
+
 }
 
 console.log(

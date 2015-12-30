@@ -6,8 +6,8 @@ var FILTERLIB = TOOLSLIB.arccore.filter;
 var filterlibResponse = FILTERLIB.create({
 
     operationID: "okYViiI-TFampiKJ28nQ4Q",
-    operationName: "ARC Project Parser",
-    operationDescription: "Parses a serialized ARC Project JSON document.",
+    operationName: "ARC Project Constructor",
+    operationDescription: "Constructs a new ARC Project JSON document.",
 
     inputFilterSpec: {
         ____label: "ARC Project Descriptor",
@@ -44,15 +44,16 @@ var filterlibResponse = FILTERLIB.create({
             element: {
                 ____accept: "jsString"
             }
+        },
+        digraph: {
+            ____accept: "jsObject"
+            ____defaultValue: {}
         }
     },
     bodyFunction: function (request_) {
         return { error: null, result: request_ };
-    },
-
-    outputFilterSpec: {
-        ____opaque: true
     }
+
 });
 
 if (filterlibResponse.error) {

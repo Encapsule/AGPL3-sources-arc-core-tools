@@ -9,8 +9,6 @@ var filterlibResponse = FILTERLIB.create({
     operationName: "ARC Project Parser",
     operationDescription: "Parses a serialized ARC Project JSON document.",
 
-    inputName: "ARC Project Descriptor",
-    inputDescription: "ARC project tool configuration data.",
     inputFilterSpec: {
         ____label: "ARC Project Descriptor",
         ____description: "Configuration data for Encapsule arc_* command line tools suite.",
@@ -30,13 +28,10 @@ var filterlibResponse = FILTERLIB.create({
             name: {
                 ____accept: "jsString",
                 ____defaultValue: TOOLSLIB.meta.name,
-                ____inValueSet: [ TOOLSLIB.meta.name ]
             },
             version: {
                 ____accept: "jsString",
                 ____defaultValue: TOOLSLIB.meta.version,
-                ____inValueSet: [ "0.0.5" ]
-
             }
         },
         options: {
@@ -54,8 +49,7 @@ var filterlibResponse = FILTERLIB.create({
     bodyFunction: function (request_) {
         return { error: null, result: request_ };
     },
-    outputName: "Parsed ARC Project",
-    outputDescription: "A parsed ARC project tool JSON document.",
+
     outputFilterSpec: {
         ____opaque: true
     }
