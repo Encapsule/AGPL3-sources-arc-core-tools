@@ -1,19 +1,3 @@
-
-/*
-----------------------------------------------------------------------
-
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
   'use strict';
   var Filter, IDENTIFIER, bodyFunctionResponseFilter, filterRuntimeData,
@@ -58,7 +42,7 @@ Please consult the included LICENSE file for agreement terms.
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
-        dispatchState = "verifying input data";
+        dispatchState = "verifying input request";
         inputFilterResponse = filterRuntimeData({
           value: request_,
           spec: this.filterDescriptor.inputFilterSpec
@@ -68,18 +52,17 @@ Please consult the included LICENSE file for agreement terms.
           break;
         }
         if (this.filterDescriptor.bodyFunction) {
-          dispatchState = "executing function body";
+          dispatchState = "dispatching operation";
           bodyFunctionResponse = this.filterDescriptor.bodyFunction(inputFilterResponse.result);
-          dispatchState = "analyzing response signature";
           returnSignatureCheck = filterRuntimeData({
             value: bodyFunctionResponse,
             spec: bodyFunctionResponseFilter
           });
           if (returnSignatureCheck.error) {
+            dispatchState = "verifying response signature of inner bodyFunction";
             errors.unshift(returnSignatureCheck.error);
             break;
           }
-          dispatchState = "analyzing response disposition";
           if (bodyFunctionResponse.error) {
             errors.unshift(bodyFunctionResponse.error);
             break;
@@ -87,7 +70,7 @@ Please consult the included LICENSE file for agreement terms.
         } else {
           bodyFunctionResponse = inputFilterResponse;
         }
-        dispatchState = "verifying response result data";
+        dispatchState = "verifying output response";
         outputFilterResponse = filterRuntimeData({
           value: bodyFunctionResponse.result,
           spec: this.filterDescriptor.outputFilterSpec
@@ -99,8 +82,8 @@ Please consult the included LICENSE file for agreement terms.
         response.result = outputFilterResponse.result;
       }
       if (errors.length) {
-        errors.unshift("An error occurred in function [" + this.filterDescriptor.operationName + "::" + this.filterDescriptor.operationID + "] while " + dispatchState + ":");
-        response.error = errors.join(' ');
+        errors.unshift("Error in " + this.filterDescriptor.operationID + " " + this.filterDescriptor.operationName + " while " + dispatchState + " due to:");
+        response.error = errors.join(" ");
       }
       return response;
     };

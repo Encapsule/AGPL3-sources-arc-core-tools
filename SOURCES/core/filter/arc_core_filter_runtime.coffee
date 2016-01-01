@@ -1,20 +1,3 @@
-###
-----------------------------------------------------------------------
-
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
-###
-#
-#
-#
 
 'use strict'
 
@@ -50,7 +33,7 @@ module.exports = class Filter
             inBreakScope = true
 
             # FILTER THE INPUT REQUEST DATA
-            dispatchState = "verifying input data"
+            dispatchState = "verifying input request"
 
             inputFilterResponse = filterRuntimeData value: request_, spec: @filterDescriptor.inputFilterSpec
             if inputFilterResponse.error
@@ -60,16 +43,15 @@ module.exports = class Filter
             if @filterDescriptor.bodyFunction
 
                 # CALL MAIN FUNCTION WITH FILTERED INPUT REQUEST DATA
-                dispatchState = "executing function body"
+                dispatchState = "dispatching operation"
                 bodyFunctionResponse = @filterDescriptor.bodyFunction inputFilterResponse.result
 
-                dispatchState = "analyzing response signature"
                 returnSignatureCheck = filterRuntimeData value: bodyFunctionResponse, spec: bodyFunctionResponseFilter
                 if returnSignatureCheck.error
+                    dispatchState = "verifying response signature of inner bodyFunction"
                     errors.unshift returnSignatureCheck.error
                     break
 
-                dispatchState = "analyzing response disposition"
                 if bodyFunctionResponse.error
                     errors.unshift bodyFunctionResponse.error
                     break
@@ -79,7 +61,7 @@ module.exports = class Filter
                 bodyFunctionResponse = inputFilterResponse
 
             # FILTER THE OUTPUT RESPONSE DATA OF THE MAIN FUNCTION
-            dispatchState = "verifying response result data"
+            dispatchState = "verifying output response"
 
             outputFilterResponse = filterRuntimeData value: bodyFunctionResponse.result, spec: @filterDescriptor.outputFilterSpec
             if outputFilterResponse.error
@@ -90,8 +72,8 @@ module.exports = class Filter
 
         if errors.length
             # The operation failed.
-            errors.unshift "An error occurred in function [#{@filterDescriptor.operationName}::#{@filterDescriptor.operationID}] while #{dispatchState}:"
-            response.error = errors.join ' '
+            errors.unshift "Error in #{@filterDescriptor.operationID} #{@filterDescriptor.operationName} while #{dispatchState} due to:"
+            response.error = errors.join " "
 
         # Return the response
         response

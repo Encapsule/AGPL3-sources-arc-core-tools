@@ -230,7 +230,7 @@ filterRuntimeData = module.exports = (request_) ->
                 newOutputData = outputData[namespace] = assignValue
             else
                 newOutputData = finalResult = assignValue
-            
+
             # Now add the mapQueueCache entries to the tail of the mapQueue
             while (valueJsMoniker != 'jsUndefined') and mapQueueCache.length
                 specDescriptor = mapQueueCache.shift()
@@ -242,9 +242,8 @@ filterRuntimeData = module.exports = (request_) ->
             break
 
     if errors.length
-        errors.unshift "Runtime data check failed:"
         response.error = errors.join ' '
     else
         response.result = finalResult
-            
+
     response

@@ -246,7 +246,6 @@
       }
     }
     if (errors.length) {
-      errors.unshift("Runtime data check failed:");
       response.error = errors.join(' ');
     } else {
       response.result = finalResult;
