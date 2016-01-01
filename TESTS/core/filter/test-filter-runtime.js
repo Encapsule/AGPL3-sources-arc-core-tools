@@ -176,7 +176,7 @@ testNFFRuntime({
         arrayContentsVerifyTest: [ 5 ]
     },
     expectedResults: {
-        error: 'An error occurred in function [TESTOPERATION::hGlMYzgjTHS9bYoPcbggFA] while verifying input data: Runtime data check failed: Error at path \'~.arrayContentsVerifyTest.foo[0]\': Value of type \'jsNumber\' not in allowed type set [jsString].',
+        error: 'An error occurred in function [TESTOPERATION::hGlMYzgjTHS9bYoPcbggFA] while verifying input data: Runtime data check failed: Error at path \'~.arrayContentsVerifyTest[0]\': Value of type \'jsNumber\' not in allowed type set [jsString].',
         result: ''
     }
 });
@@ -194,7 +194,7 @@ testNFFRuntime({
         arrayContentsVerifyTest: [ "okay", "okay too", {} ]
     },
     expectedResults: {
-        error: 'An error occurred in function [TESTOPERATION::hGlMYzgjTHS9bYoPcbggFA] while verifying input data: Runtime data check failed: Error at path \'~.arrayContentsVerifyTest.foo[2]\': Value of type \'jsObject\' not in allowed type set [jsString].',
+        error: 'An error occurred in function [TESTOPERATION::hGlMYzgjTHS9bYoPcbggFA] while verifying input data: Runtime data check failed: Error at path \'~.arrayContentsVerifyTest[2]\': Value of type \'jsObject\' not in allowed type set [jsString].',
         result: ''
     }
 });
@@ -263,10 +263,9 @@ testNFFRuntime({
         inStringRangeTest: 'D',
         inNumericalRangeTest: 7,
         arrayContentsVerifyTest: [ "okay", "good", 5 ]
-        
     },
     expectedResults: {
-        error: 'An error occurred in function [TESTOPERATION::hGlMYzgjTHS9bYoPcbggFA] while verifying input data: Runtime data check failed: Error at path \'~.arrayContentsVerifyTest.foo[2]\': Value of type \'jsNumber\' not in allowed type set [jsString].',
+        error: 'An error occurred in function [TESTOPERATION::hGlMYzgjTHS9bYoPcbggFA] while verifying input data: Runtime data check failed: Error at path \'~.arrayContentsVerifyTest[2]\': Value of type \'jsNumber\' not in allowed type set [jsString].',
         result: ''
     }
 });
