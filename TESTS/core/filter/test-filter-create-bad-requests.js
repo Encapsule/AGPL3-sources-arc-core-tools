@@ -66,7 +66,7 @@ testNFFComposeFunction({
     },
     expectedResults: {
         error: '',
-        result: '{"operationID":"ZZZ08q1GQYyl4yJqC2Jg_Q","operationName":"unnamed","operationDescription":"ZZZ08q1GQYyl4yJqC2Jg_Q provides no description.","inputName":"ZZZ08q1GQYyl4yJqC2Jg_Q input","inputDesription":"ZZZ08q1GQYyl4yJqC2Jg_Q input provides no description.","outputName":"ZZZ08q1GQYyl4yJqC2Jg_Q output","outputDescription":"ZZZ08q1GQYyl4yJqC2Jg_Q output provides no description."}'
+        result: '{"operationID":"ZZZ08q1GQYyl4yJqC2Jg_Q","operationName":"unnamed","operationDescription":"ZZZ08q1GQYyl4yJqC2Jg_Q provides no description."}'
     }
 });
 
@@ -80,75 +80,7 @@ testNFFComposeFunction({
     },
     expectedResults: {
         error: '',
-        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"unnamed","operationDescription":"VWc08q1GQYyl4yJqC2Jg_Q provides no description.","inputName":"VWc08q1GQYyl4yJqC2Jg_Q input","inputDesription":"VWc08q1GQYyl4yJqC2Jg_Q input provides no description.","outputName":"VWc08q1GQYyl4yJqC2Jg_Q output","outputDescription":"VWc08q1GQYyl4yJqC2Jg_Q output provides no description."}'
-    }
-});
-
-testNFFComposeFunction({
-    testName: "Bad input: inputName wrong type.",
-    validConfig: true,
-    request: {
-        operationID: 'VWc08q1GQYyl4yJqC2Jg_Q',
-        inputName: 6,
-        bodyFunction: function() {}
-    },
-    expectedResults: {
-        error: '',
-        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"unnamed","operationDescription":"VWc08q1GQYyl4yJqC2Jg_Q provides no description.","inputName":"VWc08q1GQYyl4yJqC2Jg_Q input","inputDesription":"VWc08q1GQYyl4yJqC2Jg_Q input provides no description.","outputName":"VWc08q1GQYyl4yJqC2Jg_Q output","outputDescription":"VWc08q1GQYyl4yJqC2Jg_Q output provides no description."}'
-    }
-});
-
-testNFFComposeFunction({
-    testName: "Bad input: inputDescription wrong type.",
-    validConfig: true,
-    request: {
-        operationID: 'VWc08q1GQYyl4yJqC2Jg_Q',
-        operationName: "Test Operation",
-        operationDescription: "This is a description of the test operation.",
-        inputName: "Test Inputs",
-        inputDescription: 6,
-        bodyFunction: function() {}
-    },
-    expectedResults: {
-        error: '',
-        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"Test Operation","operationDescription":"This is a description of the test operation.","inputName":"Test Inputs","inputDesription":"VWc08q1GQYyl4yJqC2Jg_Q input provides no description.","outputName":"VWc08q1GQYyl4yJqC2Jg_Q output","outputDescription":"VWc08q1GQYyl4yJqC2Jg_Q output provides no description."}'
-    }
-});
-
-testNFFComposeFunction({
-    testName: "Bad input: outputName wrong type.",
-    validConfig: true,
-    request: {
-        operationID: 'VWc08q1GQYyl4yJqC2Jg_Q',
-        operationName: "Test Operation",
-        operationDescription: "This is a description of the test operation.",
-        inputName: "Test Inputs",
-        inputDescription: "This is a description of the test inputs.",
-        outputName: 6,
-        bodyFunction: function() {}
-    },
-    expectedResults: {
-        error: '',
-        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"Test Operation","operationDescription":"This is a description of the test operation.","inputName":"Test Inputs","inputDescription":"This is a description of the test inputs.","outputName":"VWc08q1GQYyl4yJqC2Jg_Q output","outputDescription":"VWc08q1GQYyl4yJqC2Jg_Q output provides no description."}'
-    }
-});
-
-testNFFComposeFunction({
-    testName: "Bad input: outputDescription wrong type.",
-    validConfig: true,
-    request: {
-        operationID: 'VWc08q1GQYyl4yJqC2Jg_Q',
-        operationName: "Test Operation",
-        operationDescription: "This is a description of the test operation.",
-        inputName: "Test Input",
-        inputDescription: "This is a description of the test inputs.",
-        outputName: "Test Output",
-        outputDescription: 6,
-        bodyFunction: function() {}
-    },
-    expectedResults: {
-        error: '',
-        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"Test Operation","operationDescription":"This is a description of the test operation.","inputName":"Test Input","inputDescription":"This is a description of the test inputs.","outputName":"Test Output","outputDescription":"VWc08q1GQYyl4yJqC2Jg_Q output provides no description."}'
+        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"unnamed","operationDescription":"VWc08q1GQYyl4yJqC2Jg_Q provides no description."}'
     }
 });
 
@@ -166,7 +98,7 @@ testNFFComposeFunction({
     },
     expectedResults: {
         error: '',
-        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"Test Operation","operationDescription":"This is a description of the test operation.","inputName":"Test Input","inputDescription":"This is a description of the test inputs.","outputName":"Test Output","outputDescription":"This is a description of the test outputs."}'
+        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"Test Operation","operationDescription":"This is a description of the test operation."}'
     }
 });
 

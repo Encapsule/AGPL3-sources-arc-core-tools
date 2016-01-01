@@ -1,0 +1,16 @@
+{
+    "name": "",
+    "description": "",
+    "agent": {
+        "name": "arctools",
+        "version": "0.0.5"
+    },
+    "options": {},
+    "directories": [],
+    "projectState": {
+        "name": "c0MGip79S8qAA4ohUnDAew",
+        "description": "arctools project state cache",
+        "vlist": [],
+        "elist": []
+    }
+}

@@ -434,7 +434,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"Test Operation","operationDescription":"This is a description of the test operation.","inputName":"Test Inputs","inputDescription":"This is a description of the test inputs.","inputFilterSpec":{"____types":["jsObject"],"whatever":{"____types":"jsString","blue":{"____types":"jsArray"},"green":{"____types":["jsString"],"purple":{"____types":["jsNumber","jsString","jsUndefined"]}},"red":{"____types":["jsNumber","jsString","jsNull"]}}},"outputName":"Test Outputs","outputDescription":"This is a description of the test outputs."}'
+        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"Test Operation","operationDescription":"This is a description of the test operation.","inputFilterSpec":{"____types":["jsObject"],"whatever":{"____types":"jsString","blue":{"____types":"jsArray"},"green":{"____types":["jsString"],"purple":{"____types":["jsNumber","jsString","jsUndefined"]}},"red":{"____types":["jsNumber","jsString","jsNull"]}}}}'
     }
 });
 
@@ -451,7 +451,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"1234567890123456789012","operationName":"unnamed","operationDescription":"1234567890123456789012 provides no description.","inputName":"1234567890123456789012 input","inputDesription":"1234567890123456789012 input provides no description.","inputFilterSpec":{"____opaque":true},"outputName":"1234567890123456789012 output","outputDescription":"1234567890123456789012 output provides no description."}'
+        result: '{"operationID":"1234567890123456789012","operationName":"unnamed","operationDescription":"1234567890123456789012 provides no description.","inputFilterSpec":{"____opaque":true}}'
     }
 });
 
@@ -518,7 +518,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputName":"77fdkgbeldbfemxlsdbffd input","inputDesription":"77fdkgbeldbfemxlsdbffd input provides no description.","inputFilterSpec":{"____types":"jsObject","____defaultValue":5},"outputName":"77fdkgbeldbfemxlsdbffd output","outputDescription":"77fdkgbeldbfemxlsdbffd output provides no description."}'
+        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputFilterSpec":{"____types":"jsObject","____defaultValue":5}}'
     }
 });
 
@@ -535,7 +535,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputName":"77fdkgbeldbfemxlsdbffd input","inputDesription":"77fdkgbeldbfemxlsdbffd input provides no description.","inputFilterSpec":{"____types":"jsObject","____defaultValue":5},"outputName":"77fdkgbeldbfemxlsdbffd output","outputDescription":"77fdkgbeldbfemxlsdbffd output provides no description."}'
+        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputFilterSpec":{"____types":"jsObject","____defaultValue":5}}'
     }
 });
 
@@ -569,7 +569,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputName":"77fdkgbeldbfemxlsdbffd input","inputDesription":"77fdkgbeldbfemxlsdbffd input provides no description.","inputFilterSpec":{"____opaque":true,"____defaultValue":{}},"outputName":"77fdkgbeldbfemxlsdbffd output","outputDescription":"77fdkgbeldbfemxlsdbffd output provides no description."}'
+        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputFilterSpec":{"____opaque":true,"____defaultValue":{}}}'
     }
 });
 
@@ -585,7 +585,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"ICzEt4ZrSTCaktZHERiInw","operationName":"unnamed","operationDescription":"ICzEt4ZrSTCaktZHERiInw provides no description.","inputName":"ICzEt4ZrSTCaktZHERiInw input","inputDesription":"ICzEt4ZrSTCaktZHERiInw input provides no description.","inputFilterSpec":{"____accept":"jsObject"},"outputName":"ICzEt4ZrSTCaktZHERiInw output","outputDescription":"ICzEt4ZrSTCaktZHERiInw output provides no description."}'
+        result: '{"operationID":"ICzEt4ZrSTCaktZHERiInw","operationName":"unnamed","operationDescription":"ICzEt4ZrSTCaktZHERiInw provides no description.","inputFilterSpec":{"____accept":"jsObject"}}'
     }
 });
 
@@ -601,7 +601,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"ICzEt4ZrSTCaktZHERiInw","operationName":"unnamed","operationDescription":"ICzEt4ZrSTCaktZHERiInw provides no description.","inputName":"ICzEt4ZrSTCaktZHERiInw input","inputDesription":"ICzEt4ZrSTCaktZHERiInw input provides no description.","inputFilterSpec":{"____accept":"jsObject","____defaultValue":{"x":"whatever"}},"outputName":"ICzEt4ZrSTCaktZHERiInw output","outputDescription":"ICzEt4ZrSTCaktZHERiInw output provides no description."}'
+        result: '{"operationID":"ICzEt4ZrSTCaktZHERiInw","operationName":"unnamed","operationDescription":"ICzEt4ZrSTCaktZHERiInw provides no description.","inputFilterSpec":{"____accept":"jsObject","____defaultValue":{"x":"whatever"}}}'
     }
 });
 

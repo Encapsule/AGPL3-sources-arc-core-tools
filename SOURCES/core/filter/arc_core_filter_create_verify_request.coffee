@@ -72,35 +72,15 @@ normalizeCompositionRequest = module.exports = (request_) ->
             nrequest.operationName = 'unnamed'
         else
             nrequest.operationName = request_.operationName
-        
+
         if not localTypeCheck({ref: request_.operationDescription, path: '~.operationDescription', types: 'jsString', suppressError: true})
             nrequest.operationDescription = nrequest.operationID + " provides no description."
         else
             nrequest.operationDescription = request_.operationDescription
 
-        if not localTypeCheck({ref: request_.inputName, path: '~.inputName', types: 'jsString', suppressError: true})
-            nrequest.inputName = nrequest.operationID + " input"
-        else
-            nrequest.inputName = request_.inputName
-
-        if not localTypeCheck({ref: request_.inputDescription, path: '~.inputDescription', types: 'jsString', suppressError: true})
-            nrequest.inputDesription = nrequest.operationID + " input provides no description."
-        else
-            nrequest.inputDescription = request_.inputDescription
-
         if not localTypeCheck({ref: request_.inputFilterSpec, path: '~.inputFilterSpec', types: [ 'jsUndefined', 'jsObject' ]})
             break
         nrequest.inputFilterSpec = request_.inputFilterSpec
-
-        if not localTypeCheck({ref: request_.outputName, path: '~.outputName', types: 'jsString', suppressError: true})
-            nrequest.outputName = nrequest.operationID + " output"
-        else
-            nrequest.outputName = request_.outputName
-
-        if not localTypeCheck({ref: request_.outputDescription, path: '~.outputDescription', types: 'jsString', suppressError: true})
-            nrequest.outputDescription = nrequest.operationID + " output provides no description."
-        else
-            nrequest.outputDescription = request_.outputDescription
 
         if not localTypeCheck({ref: request_.outputFilterSpec, path: '~.outputFilterSpec', types: [ 'jsUndefined', 'jsObject' ]})
             break

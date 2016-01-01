@@ -50,7 +50,7 @@ module.exports =
 
 	module.exports = {
 	    meta: build,
-	    commander: __webpack_require__(72),
+	    commander: __webpack_require__(71),
 	    chalk: __webpack_require__(14),
 	    arccore: __webpack_require__(29),
 	    fileDirEnumSync: __webpack_require__(64),
@@ -3181,7 +3181,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "eBSk4PDcQQiJvQV8wGfhCg", buildTime: "1451354942"};
+		module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "UgOSZcbzS7avMyN1OWmy2Q", buildTime: "1451611000"};
 
 	/***/ },
 	/* 21 */
@@ -4481,26 +4481,6 @@ module.exports =
 		        nrequest.operationDescription = request_.operationDescription;
 		      }
 		      if (!localTypeCheck({
-		        ref: request_.inputName,
-		        path: '~.inputName',
-		        types: 'jsString',
-		        suppressError: true
-		      })) {
-		        nrequest.inputName = nrequest.operationID + " input";
-		      } else {
-		        nrequest.inputName = request_.inputName;
-		      }
-		      if (!localTypeCheck({
-		        ref: request_.inputDescription,
-		        path: '~.inputDescription',
-		        types: 'jsString',
-		        suppressError: true
-		      })) {
-		        nrequest.inputDesription = nrequest.operationID + " input provides no description.";
-		      } else {
-		        nrequest.inputDescription = request_.inputDescription;
-		      }
-		      if (!localTypeCheck({
 		        ref: request_.inputFilterSpec,
 		        path: '~.inputFilterSpec',
 		        types: ['jsUndefined', 'jsObject']
@@ -4508,26 +4488,6 @@ module.exports =
 		        break;
 		      }
 		      nrequest.inputFilterSpec = request_.inputFilterSpec;
-		      if (!localTypeCheck({
-		        ref: request_.outputName,
-		        path: '~.outputName',
-		        types: 'jsString',
-		        suppressError: true
-		      })) {
-		        nrequest.outputName = nrequest.operationID + " output";
-		      } else {
-		        nrequest.outputName = request_.outputName;
-		      }
-		      if (!localTypeCheck({
-		        ref: request_.outputDescription,
-		        path: '~.outputDescription',
-		        types: 'jsString',
-		        suppressError: true
-		      })) {
-		        nrequest.outputDescription = nrequest.operationID + " output provides no description.";
-		      } else {
-		        nrequest.outputDescription = request_.outputDescription;
-		      }
 		      if (!localTypeCheck({
 		        ref: request_.outputFilterSpec,
 		        path: '~.outputFilterSpec',
@@ -6501,22 +6461,6 @@ module.exports =
 	/* 45 */
 	/***/ function(module, exports, __webpack_require__) {
 
-		
-		/*
-		----------------------------------------------------------------------
-		 
-		           +---+---+---+---+
-		 chaos --> | J | B | U | S | --> order
-		           +---+---+---+---+
-
-		Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-		JBUS is licensed under the GNU Affero General Public License v3.0.
-		Please consult the included LICENSE file for agreement terms.
-
-		----------------------------------------------------------------------
-		 */
-
 		(function() {
 		  var IDENTIFIER, TYPES, filterRuntimeData;
 
@@ -6690,7 +6634,7 @@ module.exports =
 		                  element = inputData[i];
 		                  mapQueueCache.push({
 		                    namespace: index,
-		                    path: typePath + "." + mapPropertyName + "[" + (index++) + "]",
+		                    path: typePath + "[" + (index++) + "]",
 		                    spec: mapPropertyValue,
 		                    inputData: element
 		                  });
@@ -8153,11 +8097,11 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var escapeStringRegexp = __webpack_require__(73);
+	var escapeStringRegexp = __webpack_require__(72);
 	var ansiStyles = __webpack_require__(70);
-	var stripAnsi = __webpack_require__(78);
-	var hasAnsi = __webpack_require__(75);
-	var supportsColor = __webpack_require__(71);
+	var stripAnsi = __webpack_require__(77);
+	var hasAnsi = __webpack_require__(74);
+	var supportsColor = __webpack_require__(78);
 	var defineProps = Object.defineProperties;
 	var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
 
@@ -8274,8 +8218,8 @@ module.exports =
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(77)
-	var murmur2 = __webpack_require__(76)
+	var murmur3 = __webpack_require__(76)
+	var murmur2 = __webpack_require__(75)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -9542,7 +9486,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "eBSk4PDcQQiJvQV8wGfhCg", buildTime: "1451354942"};
+	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "UgOSZcbzS7avMyN1OWmy2Q", buildTime: "1451611000"};
 
 /***/ },
 /* 24 */
@@ -9882,7 +9826,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "eBSk4PDcQQiJvQV8wGfhCg", buildTime: "1451354942"};
+	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "UgOSZcbzS7avMyN1OWmy2Q", buildTime: "1451611000"};
 
 /***/ },
 /* 29 */
@@ -11217,26 +11161,6 @@ module.exports =
 	        nrequest.operationDescription = request_.operationDescription;
 	      }
 	      if (!localTypeCheck({
-	        ref: request_.inputName,
-	        path: '~.inputName',
-	        types: 'jsString',
-	        suppressError: true
-	      })) {
-	        nrequest.inputName = nrequest.operationID + " input";
-	      } else {
-	        nrequest.inputName = request_.inputName;
-	      }
-	      if (!localTypeCheck({
-	        ref: request_.inputDescription,
-	        path: '~.inputDescription',
-	        types: 'jsString',
-	        suppressError: true
-	      })) {
-	        nrequest.inputDesription = nrequest.operationID + " input provides no description.";
-	      } else {
-	        nrequest.inputDescription = request_.inputDescription;
-	      }
-	      if (!localTypeCheck({
 	        ref: request_.inputFilterSpec,
 	        path: '~.inputFilterSpec',
 	        types: ['jsUndefined', 'jsObject']
@@ -11244,26 +11168,6 @@ module.exports =
 	        break;
 	      }
 	      nrequest.inputFilterSpec = request_.inputFilterSpec;
-	      if (!localTypeCheck({
-	        ref: request_.outputName,
-	        path: '~.outputName',
-	        types: 'jsString',
-	        suppressError: true
-	      })) {
-	        nrequest.outputName = nrequest.operationID + " output";
-	      } else {
-	        nrequest.outputName = request_.outputName;
-	      }
-	      if (!localTypeCheck({
-	        ref: request_.outputDescription,
-	        path: '~.outputDescription',
-	        types: 'jsString',
-	        suppressError: true
-	      })) {
-	        nrequest.outputDescription = nrequest.operationID + " output provides no description.";
-	      } else {
-	        nrequest.outputDescription = request_.outputDescription;
-	      }
 	      if (!localTypeCheck({
 	        ref: request_.outputFilterSpec,
 	        path: '~.outputFilterSpec',
@@ -13237,22 +13141,6 @@ module.exports =
 /* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0.
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	 */
-
 	(function() {
 	  var IDENTIFIER, TYPES, filterRuntimeData;
 
@@ -13426,7 +13314,7 @@ module.exports =
 	                  element = inputData[i];
 	                  mapQueueCache.push({
 	                    namespace: index,
-	                    path: typePath + "." + mapPropertyName + "[" + (index++) + "]",
+	                    path: typePath + "[" + (index++) + "]",
 	                    spec: mapPropertyValue,
 	                    inputData: element
 	                  });
@@ -15176,62 +15064,6 @@ module.exports =
 
 /***/ },
 /* 71 */
-/***/ function(module, exports) {
-
-	'use strict';
-	var argv = process.argv;
-
-	var terminator = argv.indexOf('--');
-	var hasFlag = function (flag) {
-		flag = '--' + flag;
-		var pos = argv.indexOf(flag);
-		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
-	};
-
-	module.exports = (function () {
-		if ('FORCE_COLOR' in process.env) {
-			return true;
-		}
-
-		if (hasFlag('no-color') ||
-			hasFlag('no-colors') ||
-			hasFlag('color=false')) {
-			return false;
-		}
-
-		if (hasFlag('color') ||
-			hasFlag('colors') ||
-			hasFlag('color=true') ||
-			hasFlag('color=always')) {
-			return true;
-		}
-
-		if (process.stdout && !process.stdout.isTTY) {
-			return false;
-		}
-
-		if (process.platform === 'win32') {
-			return true;
-		}
-
-		if ('COLORTERM' in process.env) {
-			return true;
-		}
-
-		if (process.env.TERM === 'dumb') {
-			return false;
-		}
-
-		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
-			return true;
-		}
-
-		return false;
-	})();
-
-
-/***/ },
-/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -15240,7 +15072,7 @@ module.exports =
 
 	var EventEmitter = __webpack_require__(81).EventEmitter;
 	var spawn = __webpack_require__(80).spawn;
-	var readlink = __webpack_require__(74).readlinkSync;
+	var readlink = __webpack_require__(73).readlinkSync;
 	var path = __webpack_require__(8);
 	var dirname = path.dirname;
 	var basename = path.basename;
@@ -16347,7 +16179,7 @@ module.exports =
 
 
 /***/ },
-/* 73 */
+/* 72 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -16364,7 +16196,7 @@ module.exports =
 
 
 /***/ },
-/* 74 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var fs = __webpack_require__(7)
@@ -16382,7 +16214,7 @@ module.exports =
 
 
 /***/ },
-/* 75 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16392,7 +16224,7 @@ module.exports =
 
 
 /***/ },
-/* 76 */
+/* 75 */
 /***/ function(module, exports) {
 
 	/**
@@ -16452,7 +16284,7 @@ module.exports =
 
 
 /***/ },
-/* 77 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16525,7 +16357,7 @@ module.exports =
 	}
 
 /***/ },
-/* 78 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16534,6 +16366,62 @@ module.exports =
 	module.exports = function (str) {
 		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 	};
+
+
+/***/ },
+/* 78 */
+/***/ function(module, exports) {
+
+	'use strict';
+	var argv = process.argv;
+
+	var terminator = argv.indexOf('--');
+	var hasFlag = function (flag) {
+		flag = '--' + flag;
+		var pos = argv.indexOf(flag);
+		return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
+	};
+
+	module.exports = (function () {
+		if ('FORCE_COLOR' in process.env) {
+			return true;
+		}
+
+		if (hasFlag('no-color') ||
+			hasFlag('no-colors') ||
+			hasFlag('color=false')) {
+			return false;
+		}
+
+		if (hasFlag('color') ||
+			hasFlag('colors') ||
+			hasFlag('color=true') ||
+			hasFlag('color=always')) {
+			return true;
+		}
+
+		if (process.stdout && !process.stdout.isTTY) {
+			return false;
+		}
+
+		if (process.platform === 'win32') {
+			return true;
+		}
+
+		if ('COLORTERM' in process.env) {
+			return true;
+		}
+
+		if (process.env.TERM === 'dumb') {
+			return false;
+		}
+
+		if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
+			return true;
+		}
+
+		return false;
+	})();
 
 
 /***/ },

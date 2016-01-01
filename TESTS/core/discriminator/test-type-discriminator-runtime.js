@@ -124,7 +124,7 @@ genericFilterTestSuite({
     validConfig: true,
     expectedResults: {
         error: null,
-        result: '{"filterDescriptor":{"operationID":"dyOir4HZSl2lBQCXqB2eWA","operationName":"test11","operationDescription":"dyOir4HZSl2lBQCXqB2eWA provides no description.","inputName":"dyOir4HZSl2lBQCXqB2eWA input","inputDesription":"dyOir4HZSl2lBQCXqB2eWA input provides no description.","inputFilterSpec":{"____types":"jsObject","green":{"____accept":"jsString"},"blue":{"____types":"jsObject","red":{"____accept":"jsFunction"}}},"outputName":"dyOir4HZSl2lBQCXqB2eWA output","outputDescription":"dyOir4HZSl2lBQCXqB2eWA output provides no description."}}'
+        result: '{"filterDescriptor":{"operationID":"dyOir4HZSl2lBQCXqB2eWA","operationName":"test11","operationDescription":"dyOir4HZSl2lBQCXqB2eWA provides no description.","inputFilterSpec":{"____types":"jsObject","green":{"____accept":"jsString"},"blue":{"____types":"jsObject","red":{"____accept":"jsFunction"}}}}}'
     }
 });
 

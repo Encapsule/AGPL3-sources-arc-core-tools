@@ -1,19 +1,3 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
   var IDENTIFIER, TYPES, filterRuntimeData;
 
@@ -187,7 +171,7 @@ Please consult the included LICENSE file for agreement terms.
                   element = inputData[i];
                   mapQueueCache.push({
                     namespace: index,
-                    path: typePath + "." + mapPropertyName + "[" + (index++) + "]",
+                    path: typePath + "[" + (index++) + "]",
                     spec: mapPropertyValue,
                     inputData: element
                   });

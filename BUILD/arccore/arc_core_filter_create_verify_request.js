@@ -111,26 +111,6 @@ Please consult the included LICENSE file for agreement terms.
         nrequest.operationDescription = request_.operationDescription;
       }
       if (!localTypeCheck({
-        ref: request_.inputName,
-        path: '~.inputName',
-        types: 'jsString',
-        suppressError: true
-      })) {
-        nrequest.inputName = nrequest.operationID + " input";
-      } else {
-        nrequest.inputName = request_.inputName;
-      }
-      if (!localTypeCheck({
-        ref: request_.inputDescription,
-        path: '~.inputDescription',
-        types: 'jsString',
-        suppressError: true
-      })) {
-        nrequest.inputDesription = nrequest.operationID + " input provides no description.";
-      } else {
-        nrequest.inputDescription = request_.inputDescription;
-      }
-      if (!localTypeCheck({
         ref: request_.inputFilterSpec,
         path: '~.inputFilterSpec',
         types: ['jsUndefined', 'jsObject']
@@ -138,26 +118,6 @@ Please consult the included LICENSE file for agreement terms.
         break;
       }
       nrequest.inputFilterSpec = request_.inputFilterSpec;
-      if (!localTypeCheck({
-        ref: request_.outputName,
-        path: '~.outputName',
-        types: 'jsString',
-        suppressError: true
-      })) {
-        nrequest.outputName = nrequest.operationID + " output";
-      } else {
-        nrequest.outputName = request_.outputName;
-      }
-      if (!localTypeCheck({
-        ref: request_.outputDescription,
-        path: '~.outputDescription',
-        types: 'jsString',
-        suppressError: true
-      })) {
-        nrequest.outputDescription = nrequest.operationID + " output provides no description.";
-      } else {
-        nrequest.outputDescription = request_.outputDescription;
-      }
       if (!localTypeCheck({
         ref: request_.outputFilterSpec,
         path: '~.outputFilterSpec',

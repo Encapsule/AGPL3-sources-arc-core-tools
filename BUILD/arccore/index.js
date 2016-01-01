@@ -2390,7 +2390,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "eBSk4PDcQQiJvQV8wGfhCg", buildTime: "1451354942"};
+	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "UgOSZcbzS7avMyN1OWmy2Q", buildTime: "1451611000"};
 
 /***/ },
 /* 21 */
@@ -3690,26 +3690,6 @@ module.exports =
 	        nrequest.operationDescription = request_.operationDescription;
 	      }
 	      if (!localTypeCheck({
-	        ref: request_.inputName,
-	        path: '~.inputName',
-	        types: 'jsString',
-	        suppressError: true
-	      })) {
-	        nrequest.inputName = nrequest.operationID + " input";
-	      } else {
-	        nrequest.inputName = request_.inputName;
-	      }
-	      if (!localTypeCheck({
-	        ref: request_.inputDescription,
-	        path: '~.inputDescription',
-	        types: 'jsString',
-	        suppressError: true
-	      })) {
-	        nrequest.inputDesription = nrequest.operationID + " input provides no description.";
-	      } else {
-	        nrequest.inputDescription = request_.inputDescription;
-	      }
-	      if (!localTypeCheck({
 	        ref: request_.inputFilterSpec,
 	        path: '~.inputFilterSpec',
 	        types: ['jsUndefined', 'jsObject']
@@ -3717,26 +3697,6 @@ module.exports =
 	        break;
 	      }
 	      nrequest.inputFilterSpec = request_.inputFilterSpec;
-	      if (!localTypeCheck({
-	        ref: request_.outputName,
-	        path: '~.outputName',
-	        types: 'jsString',
-	        suppressError: true
-	      })) {
-	        nrequest.outputName = nrequest.operationID + " output";
-	      } else {
-	        nrequest.outputName = request_.outputName;
-	      }
-	      if (!localTypeCheck({
-	        ref: request_.outputDescription,
-	        path: '~.outputDescription',
-	        types: 'jsString',
-	        suppressError: true
-	      })) {
-	        nrequest.outputDescription = nrequest.operationID + " output provides no description.";
-	      } else {
-	        nrequest.outputDescription = request_.outputDescription;
-	      }
 	      if (!localTypeCheck({
 	        ref: request_.outputFilterSpec,
 	        path: '~.outputFilterSpec',
@@ -5710,22 +5670,6 @@ module.exports =
 /* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0.
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	 */
-
 	(function() {
 	  var IDENTIFIER, TYPES, filterRuntimeData;
 
@@ -5899,7 +5843,7 @@ module.exports =
 	                  element = inputData[i];
 	                  mapQueueCache.push({
 	                    namespace: index,
-	                    path: typePath + "." + mapPropertyName + "[" + (index++) + "]",
+	                    path: typePath + "[" + (index++) + "]",
 	                    spec: mapPropertyValue,
 	                    inputData: element
 	                  });
