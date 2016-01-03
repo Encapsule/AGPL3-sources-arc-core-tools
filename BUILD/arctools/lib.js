@@ -6343,22 +6343,6 @@ module.exports =
 	/* 44 */
 	/***/ function(module, exports, __webpack_require__) {
 
-		
-		/*
-		----------------------------------------------------------------------
-
-		           +---+---+---+---+
-		 chaos --> | J | B | U | S | --> order
-		           +---+---+---+---+
-
-		Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-		JBUS is licensed under the GNU Affero General Public License v3.0.
-		Please consult the included LICENSE file for agreement terms.
-
-		----------------------------------------------------------------------
-		 */
-
 		(function() {
 		  'use strict';
 		  var Filter, IDENTIFIER, bodyFunctionResponseFilter, filterRuntimeData,
@@ -6391,6 +6375,7 @@ module.exports =
 		    function Filter(filterDescriptor_) {
 		      this.request = bind(this.request, this);
 		      this.filterDescriptor = filterDescriptor_;
+		      Object.freeze(this.filterDescriptor);
 		    }
 
 		    Filter.prototype.request = function(request_) {
@@ -6403,7 +6388,7 @@ module.exports =
 		      inBreakScope = false;
 		      while (!inBreakScope) {
 		        inBreakScope = true;
-		        dispatchState = "verifying input data";
+		        dispatchState = "normalizing request input";
 		        inputFilterResponse = filterRuntimeData({
 		          value: request_,
 		          spec: this.filterDescriptor.inputFilterSpec
@@ -6413,18 +6398,17 @@ module.exports =
 		          break;
 		        }
 		        if (this.filterDescriptor.bodyFunction) {
-		          dispatchState = "executing function body";
+		          dispatchState = "performing main operation";
 		          bodyFunctionResponse = this.filterDescriptor.bodyFunction(inputFilterResponse.result);
-		          dispatchState = "analyzing response signature";
 		          returnSignatureCheck = filterRuntimeData({
 		            value: bodyFunctionResponse,
 		            spec: bodyFunctionResponseFilter
 		          });
 		          if (returnSignatureCheck.error) {
+		            dispatchState = "verifying response signature of main operation";
 		            errors.unshift(returnSignatureCheck.error);
 		            break;
 		          }
-		          dispatchState = "analyzing response disposition";
 		          if (bodyFunctionResponse.error) {
 		            errors.unshift(bodyFunctionResponse.error);
 		            break;
@@ -6432,7 +6416,7 @@ module.exports =
 		        } else {
 		          bodyFunctionResponse = inputFilterResponse;
 		        }
-		        dispatchState = "verifying response result data";
+		        dispatchState = "normalizing response result";
 		        outputFilterResponse = filterRuntimeData({
 		          value: bodyFunctionResponse.result,
 		          spec: this.filterDescriptor.outputFilterSpec
@@ -6444,8 +6428,8 @@ module.exports =
 		        response.result = outputFilterResponse.result;
 		      }
 		      if (errors.length) {
-		        errors.unshift("An error occurred in function [" + this.filterDescriptor.operationName + "::" + this.filterDescriptor.operationID + "] while " + dispatchState + ":");
-		        response.error = errors.join(' ');
+		        errors.unshift("Filter [" + this.filterDescriptor.operationID + "::" + this.filterDescriptor.operationName + "] failed while " + dispatchState + ".");
+		        response.error = errors.join(" ");
 		      }
 		      return response;
 		    };
@@ -6709,7 +6693,6 @@ module.exports =
 		      }
 		    }
 		    if (errors.length) {
-		      errors.unshift("Runtime data check failed:");
 		      response.error = errors.join(' ');
 		    } else {
 		      response.result = finalResult;
@@ -13023,22 +13006,6 @@ module.exports =
 /* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	/*
-	----------------------------------------------------------------------
-
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0.
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	 */
-
 	(function() {
 	  'use strict';
 	  var Filter, IDENTIFIER, bodyFunctionResponseFilter, filterRuntimeData,
@@ -13071,6 +13038,7 @@ module.exports =
 	    function Filter(filterDescriptor_) {
 	      this.request = bind(this.request, this);
 	      this.filterDescriptor = filterDescriptor_;
+	      Object.freeze(this.filterDescriptor);
 	    }
 
 	    Filter.prototype.request = function(request_) {
@@ -13083,7 +13051,7 @@ module.exports =
 	      inBreakScope = false;
 	      while (!inBreakScope) {
 	        inBreakScope = true;
-	        dispatchState = "verifying input data";
+	        dispatchState = "normalizing request input";
 	        inputFilterResponse = filterRuntimeData({
 	          value: request_,
 	          spec: this.filterDescriptor.inputFilterSpec
@@ -13093,18 +13061,17 @@ module.exports =
 	          break;
 	        }
 	        if (this.filterDescriptor.bodyFunction) {
-	          dispatchState = "executing function body";
+	          dispatchState = "performing main operation";
 	          bodyFunctionResponse = this.filterDescriptor.bodyFunction(inputFilterResponse.result);
-	          dispatchState = "analyzing response signature";
 	          returnSignatureCheck = filterRuntimeData({
 	            value: bodyFunctionResponse,
 	            spec: bodyFunctionResponseFilter
 	          });
 	          if (returnSignatureCheck.error) {
+	            dispatchState = "verifying response signature of main operation";
 	            errors.unshift(returnSignatureCheck.error);
 	            break;
 	          }
-	          dispatchState = "analyzing response disposition";
 	          if (bodyFunctionResponse.error) {
 	            errors.unshift(bodyFunctionResponse.error);
 	            break;
@@ -13112,7 +13079,7 @@ module.exports =
 	        } else {
 	          bodyFunctionResponse = inputFilterResponse;
 	        }
-	        dispatchState = "verifying response result data";
+	        dispatchState = "normalizing response result";
 	        outputFilterResponse = filterRuntimeData({
 	          value: bodyFunctionResponse.result,
 	          spec: this.filterDescriptor.outputFilterSpec
@@ -13124,8 +13091,8 @@ module.exports =
 	        response.result = outputFilterResponse.result;
 	      }
 	      if (errors.length) {
-	        errors.unshift("An error occurred in function [" + this.filterDescriptor.operationName + "::" + this.filterDescriptor.operationID + "] while " + dispatchState + ":");
-	        response.error = errors.join(' ');
+	        errors.unshift("Filter [" + this.filterDescriptor.operationID + "::" + this.filterDescriptor.operationName + "] failed while " + dispatchState + ".");
+	        response.error = errors.join(" ");
 	      }
 	      return response;
 	    };
@@ -13389,7 +13356,6 @@ module.exports =
 	      }
 	    }
 	    if (errors.length) {
-	      errors.unshift("Runtime data check failed:");
 	      response.error = errors.join(' ');
 	    } else {
 	      response.result = finalResult;

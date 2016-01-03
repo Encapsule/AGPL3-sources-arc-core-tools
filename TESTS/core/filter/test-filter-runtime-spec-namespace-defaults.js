@@ -4,9 +4,9 @@ var assert = require('chai');
 var testModule = require('./module-under-test');
 
 var createFilter = testModule('arc_core_filter_create');
-var testNFFRuntime = require('./runner-filter-runtime');
+var testFilterRuntime = require('./runner-filter-runtime');
 
-var generateTestNFF_Opaque1 = function() {
+var generateTestFilter_Opaque1 = function() {
     var functionObject = createFilter({
         operationID: 'ehfojdskgkafhodjfqjhdQ',
         operationName: "Default value #1",
@@ -23,20 +23,20 @@ var generateTestNFF_Opaque1 = function() {
 };
 
 
-testNFFRuntime({
-    testName: "NFF runtime top-level default value test #1 (no request)",
+testFilterRuntime({
+    testName: "Filter runtime top-level default value test #1 (no request)",
     validConfig: true,
-    nffGenerator: generateTestNFF_Opaque1,
+    nffGenerator: generateTestFilter_Opaque1,
     expectedResults: {
         error: null,
         result: '"The bodyFunction was passed request=\'undefined\'."'
     }
 });
 
-testNFFRuntime({
-    testName: "NFF runtime top-level default value test #2 (empty request object)",
+testFilterRuntime({
+    testName: "Filter runtime top-level default value test #2 (empty request object)",
     validConfig: true,
-    nffGenerator: generateTestNFF_Opaque1,
+    nffGenerator: generateTestFilter_Opaque1,
     request: "HEY",
     expectedResults: {
         error: null,
@@ -44,7 +44,7 @@ testNFFRuntime({
     }
 });
 
-var generateTestNFF_Namespace1 = function() {
+var generateTestFilter_Namespace1 = function() {
     var functionObject = createFilter({
         operationID: 'ehfojdskgkafhodjfqjhdQ',
         operationName: "Default value #1",
@@ -61,10 +61,10 @@ var generateTestNFF_Namespace1 = function() {
     return functionObject;
 };
 
-testNFFRuntime({
+testFilterRuntime({
     testName: 'Namespace 1 test 1',
     validConfig: true,
-    nffGenerator: generateTestNFF_Namespace1,
+    nffGenerator: generateTestFilter_Namespace1,
     expectedResults: {
         error: null,
         // Note that we expect the y property to get dropped:
@@ -73,10 +73,10 @@ testNFFRuntime({
     }
 });
 
-testNFFRuntime({
+testFilterRuntime({
     testName: 'Namespace 1 test 2',
     validConfig: true,
-    nffGenerator: generateTestNFF_Namespace1,
+    nffGenerator: generateTestFilter_Namespace1,
     request: { x: 'will get ignored' },
     expectedResults: {
         error: null,
@@ -86,7 +86,7 @@ testNFFRuntime({
     }
 });
 
-var generateTestNFF_Namespace2 = function() {
+var generateTestFilter_Namespace2 = function() {
     var functionObject = createFilter({
         operationID: 'ehfojdskgkafhodjfqjhdQ',
         operationName: "Default value #1",
@@ -107,31 +107,31 @@ var generateTestNFF_Namespace2 = function() {
     return functionObject;
 };
 
-testNFFRuntime({
-    testName: 'NFF Namespace 2 missing request',
+testFilterRuntime({
+    testName: 'Filter Namespace 2 missing request',
     validConfig: true,
-    nffGenerator: generateTestNFF_Namespace2,
+    nffGenerator: generateTestFilter_Namespace2,
     expectedResults: {
         error: null,
         result: '"The bodyFunction was passed request=\'{\\"y\\":\\"you didn\'t specify a value for \'y\' so we filled one in for you.\\"}\'."'
     }
 });
 
-testNFFRuntime({
-    testName: 'NFF Namespace 2 invalid request type',
+testFilterRuntime({
+    testName: 'Filter Namespace 2 invalid request type',
     validConfig: false,
-    nffGenerator: generateTestNFF_Namespace2,
+    nffGenerator: generateTestFilter_Namespace2,
     request: [ "apple", "orange" ],
     expectedResults: {
-        error: 'An error occurred in function [Default value #1::ehfojdskgkafhodjfqjhdQ] while verifying input data: Runtime data check failed: Error at path \'~\': Value of type \'jsArray\' not in allowed type set [jsObject].',
+        error: 'Filter [ehfojdskgkafhodjfqjhdQ::Default value #1] failed while normalizing request input. Error at path \'~\': Value of type \'jsArray\' not in allowed type set [jsObject].',
         result: null
     }
 });
 
-testNFFRuntime({
-    testName: 'NFF Namespace 2 empty request object',
+testFilterRuntime({
+    testName: 'Filter Namespace 2 empty request object',
     validConfig: true,
-    nffGenerator: generateTestNFF_Namespace2,
+    nffGenerator: generateTestFilter_Namespace2,
     request: {},
     expectedResults: {
         error: null,
@@ -139,21 +139,21 @@ testNFFRuntime({
     }
 });
 
-testNFFRuntime({
-    testName: 'NFF Namespace 2 request.y property wrong type',
+testFilterRuntime({
+    testName: 'Filter Namespace 2 request.y property wrong type',
     validConfig: false,
-    nffGenerator: generateTestNFF_Namespace2,
+    nffGenerator: generateTestFilter_Namespace2,
     request: { y: [] },
     expectedResults: {
-        error: 'An error occurred in function [Default value #1::ehfojdskgkafhodjfqjhdQ] while verifying input data: Runtime data check failed: Error at path \'~.y\': Value of type \'jsArray\' not in allowed type set [jsString].',
+        error: 'Filter [ehfojdskgkafhodjfqjhdQ::Default value #1] failed while normalizing request input. Error at path \'~.y\': Value of type \'jsArray\' not in allowed type set [jsString].',
         result: null
     }
 });
 
-testNFFRuntime({
-    testName: 'NFF Namespace 2 request.y property valid value',
+testFilterRuntime({
+    testName: 'Filter Namespace 2 request.y property valid value',
     validConfig: true,
-    nffGenerator: generateTestNFF_Namespace2,
+    nffGenerator: generateTestFilter_Namespace2,
     request: { y: 'input data explicitly sets y' },
     expectedResults: {
         error: null,
@@ -162,7 +162,7 @@ testNFFRuntime({
 });
 
 // ==========================================================================
-var generateTestNFF_Namespace3 = function() {
+var generateTestFilter_Namespace3 = function() {
     var functionObject = createFilter({
         operationID: 'ehfojdskgkafhodjfqjhdQ',
         inputFilterSpec: {
@@ -182,20 +182,20 @@ var generateTestNFF_Namespace3 = function() {
     return functionObject;
 };
 
-testNFFRuntime({
+testFilterRuntime({
     testName: 'Advanced defaults triggers case #1',
     validConfig: true,
-    nffGenerator: generateTestNFF_Namespace3,
+    nffGenerator: generateTestFilter_Namespace3,
     expectedResults: {
         error: null,
         result: '"The bodyFunction was passed request=\'{\\"y\\":\\"default value stream merged at outer request object.\\"}\'."'
     }
 });
 
-testNFFRuntime({
+testFilterRuntime({
     testName: 'Advanced defaults triggers case #2',
     validConfig: true,
-    nffGenerator: generateTestNFF_Namespace3,
+    nffGenerator: generateTestFilter_Namespace3,
     request: {},
     expectedResults: {
         error: null,
@@ -203,10 +203,10 @@ testNFFRuntime({
     }
 });
 
-testNFFRuntime({
+testFilterRuntime({
     testName: 'Advanced defaults triggers case #3',
     validConfig: true,
-    nffGenerator: generateTestNFF_Namespace3,
+    nffGenerator: generateTestFilter_Namespace3,
     request: { y: "value set explicitly in input data." },
     expectedResults: {
         error: null,

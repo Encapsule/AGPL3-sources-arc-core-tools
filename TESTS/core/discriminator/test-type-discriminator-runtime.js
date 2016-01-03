@@ -90,7 +90,7 @@ genericFilterTestSuite({
     request: 7,
     validConfig: false,
     expectedResults: {
-        error: 'An error occurred in function [Discrimintor Filter::XY-x390CSVmXTu0oYXlRiw] while analyzing response disposition: Unrecognized request format. Request signature must match one of filter set {[test1:6UirSEewQLiM6VY_Uo1hSA], [test3:tKTz14sOR4OlXpBr_zZbdA]}.',
+        error: 'Filter [XY-x390CSVmXTu0oYXlRiw::Discrimintor Filter] failed while performing main operation. Unrecognized request format. Request signature must match one of filter set {[test1:6UirSEewQLiM6VY_Uo1hSA], [test3:tKTz14sOR4OlXpBr_zZbdA]}.',
         result: null
     }
 });
@@ -101,7 +101,7 @@ genericFilterTestSuite({
     request: {},
     validConfig: false,
     expectedResults: {
-        error: 'An error occurred in function [Discrimintor Filter::XY-x390CSVmXTu0oYXlRiw] while analyzing response disposition: Unrecognized request format. Request signature must match one of filter set {[test9:0BN_zKZnSnmkhuhkFYTpCQ], [test10:1xEOwIdXT260V-M5zWYSNg], [test11:dyOir4HZSl2lBQCXqB2eWA]}.',
+        error: 'Filter [XY-x390CSVmXTu0oYXlRiw::Discrimintor Filter] failed while performing main operation. Unrecognized request format. Request signature must match one of filter set {[test9:0BN_zKZnSnmkhuhkFYTpCQ], [test10:1xEOwIdXT260V-M5zWYSNg], [test11:dyOir4HZSl2lBQCXqB2eWA]}.',
         result: null
     }
 });
@@ -134,7 +134,7 @@ genericFilterTestSuite({
     request: { blue: { red: function() {} } },
     validConfig: false,
     expectedResults: {
-        error: 'An error occurred in function [Discrimintor Filter::XY-x390CSVmXTu0oYXlRiw] while analyzing response disposition: An error occurred in function [test11::dyOir4HZSl2lBQCXqB2eWA] while verifying input data: Runtime data check failed: Error at path \'~.green\': Value of type \'jsUndefined\' not in allowed type set [jsString].',
+        error: 'Filter [XY-x390CSVmXTu0oYXlRiw::Discrimintor Filter] failed while performing main operation. Filter [dyOir4HZSl2lBQCXqB2eWA::test11] failed while normalizing request input. Error at path \'~.green\': Value of type \'jsUndefined\' not in allowed type set [jsString].',
         result: null
     }
 });

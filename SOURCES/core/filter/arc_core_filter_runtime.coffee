@@ -24,6 +24,7 @@ module.exports = class Filter
 
     constructor: (filterDescriptor_) ->
         @filterDescriptor = filterDescriptor_
+        Object.freeze @filterDescriptor
 
     request: (request_) =>
         response = error: null, result: null
@@ -33,7 +34,7 @@ module.exports = class Filter
             inBreakScope = true
 
             # FILTER THE INPUT REQUEST DATA
-            dispatchState = "verifying input request"
+            dispatchState = "normalizing request input"
 
             inputFilterResponse = filterRuntimeData value: request_, spec: @filterDescriptor.inputFilterSpec
             if inputFilterResponse.error
@@ -43,12 +44,12 @@ module.exports = class Filter
             if @filterDescriptor.bodyFunction
 
                 # CALL MAIN FUNCTION WITH FILTERED INPUT REQUEST DATA
-                dispatchState = "dispatching operation"
+                dispatchState = "performing main operation"
                 bodyFunctionResponse = @filterDescriptor.bodyFunction inputFilterResponse.result
 
                 returnSignatureCheck = filterRuntimeData value: bodyFunctionResponse, spec: bodyFunctionResponseFilter
                 if returnSignatureCheck.error
-                    dispatchState = "verifying response signature of inner bodyFunction"
+                    dispatchState = "verifying response signature of main operation"
                     errors.unshift returnSignatureCheck.error
                     break
 
@@ -61,7 +62,7 @@ module.exports = class Filter
                 bodyFunctionResponse = inputFilterResponse
 
             # FILTER THE OUTPUT RESPONSE DATA OF THE MAIN FUNCTION
-            dispatchState = "verifying output response"
+            dispatchState = "normalizing response result"
 
             outputFilterResponse = filterRuntimeData value: bodyFunctionResponse.result, spec: @filterDescriptor.outputFilterSpec
             if outputFilterResponse.error
@@ -72,7 +73,7 @@ module.exports = class Filter
 
         if errors.length
             # The operation failed.
-            errors.unshift "Error in #{@filterDescriptor.operationID} #{@filterDescriptor.operationName} while #{dispatchState} due to:"
+            errors.unshift "Filter [#{@filterDescriptor.operationID}::#{@filterDescriptor.operationName}] failed while #{dispatchState}."
             response.error = errors.join " "
 
         # Return the response

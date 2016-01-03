@@ -11,7 +11,7 @@ genericFilterTestSuite({
     filter: discriminatorFactoryFilter,
     validConfig: false,
     expectedResults: {
-        error: 'An error occurred in function [Request Discriminator Filter Factory::5A8uDJunQUm1w-HcBPQ6Gw] while verifying input data: Runtime data check failed: Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsObject].',
+        error: 'Filter [5A8uDJunQUm1w-HcBPQ6Gw::Request Discriminator Filter Factory] failed while normalizing request input. Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsObject].',
         result: null
     }
 });
@@ -22,7 +22,7 @@ genericFilterTestSuite({
     validConfig: false,
     request: {},
     expectedResults: {
-        error: 'An error occurred in function [Request Discriminator Filter Factory::5A8uDJunQUm1w-HcBPQ6Gw] while verifying input data: Runtime data check failed: Error at path \'~.filters\': Value of type \'jsUndefined\' not in allowed type set [jsArray].',
+        error: 'Filter [5A8uDJunQUm1w-HcBPQ6Gw::Request Discriminator Filter Factory] failed while normalizing request input. Error at path \'~.filters\': Value of type \'jsUndefined\' not in allowed type set [jsArray].',
         result: null
     }
 });
@@ -33,7 +33,7 @@ genericFilterTestSuite({
     request: { filters: [] },
     validConfig: false,
     expectedResults: {
-        error: 'An error occurred in function [Request Discriminator Filter Factory::5A8uDJunQUm1w-HcBPQ6Gw] while analyzing response disposition: Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.',
+        error: 'Filter [5A8uDJunQUm1w-HcBPQ6Gw::Request Discriminator Filter Factory] failed while performing main operation. Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.',
         result: null
     }
 });

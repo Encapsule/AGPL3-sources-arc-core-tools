@@ -22,7 +22,7 @@ testNFFRuntime({
     },
     request: undefined,
     expectedResults: {
-        error: 'An error occurred in function [unnamed::1234567890123456789012] while verifying input data: Runtime data check failed: Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsObject].',
+        error: 'Filter [1234567890123456789012::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsObject].',
         result: null
     }
 });

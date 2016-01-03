@@ -7,7 +7,7 @@ testVerifyFilterSpec({
     testName: "Undefined request object",
     validConfig: false,
     expectedResults: {
-        error: 'Runtime data check failed: Invalid request: Value of type \'jsUndefined\' not in allowed type set [jsObject].',
+        error: 'Invalid request: Value of type \'jsUndefined\' not in allowed type set [jsObject].',
         result: ''
     }
 });
@@ -17,7 +17,7 @@ testVerifyFilterSpec({
     validConfig: true,
     request: {},
     expectedResults: {
-        error: '',
+        error: 'Invalid request missing \'spec\' declaration: Value of type \'jsString\' not in allowed type set [jsObject,jsUndefined].',
         result: undefined
     }
 });
@@ -27,7 +27,7 @@ testVerifyFilterSpec({
     validConfig: false,
     request: { spec: 'WTF' },
     expectedResults: {
-        error: 'Runtime data check failed: Invalid request missing \'spec\' declaration: Value of type \'jsString\' not in allowed type set [jsObject,jsUndefined].',
+        error: 'Invalid request missing \'spec\' declaration: Value of type \'jsString\' not in allowed type set [jsObject,jsUndefined].',
         result: ''
     }
 });
@@ -37,7 +37,7 @@ testVerifyFilterSpec({
     validConfig: false,
     request: {spec:{}},
     expectedResults: {
-        error: 'Runtime data check failed: Error at path \'~\': jbus type in set check failed: Invalid request.types value type \'jsUndefined\'. Expected either \'[object String]\' (jsMoniker string) or \'[object Array]\' (of jsMoniker strings).',
+        error: 'Error at path \'~\': jbus type in set check failed: Invalid request.types value type \'jsUndefined\'. Expected either \'[object String]\' (jsMoniker string) or \'[object Array]\' (of jsMoniker strings).',
         result: ''
     }
 });
@@ -69,7 +69,7 @@ testVerifyFilterSpec({
     validConfig: false,
     request: {spec:{ ____types: 'jsNull'}, value: undefined },
     expectedResults: {
-        error: 'Runtime data check failed: Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsNull].',
+        error: 'Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsNull].',
         result: ''
     }
 });

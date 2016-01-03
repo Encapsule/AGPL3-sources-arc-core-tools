@@ -30,6 +30,7 @@
     function Filter(filterDescriptor_) {
       this.request = bind(this.request, this);
       this.filterDescriptor = filterDescriptor_;
+      Object.freeze(this.filterDescriptor);
     }
 
     Filter.prototype.request = function(request_) {
@@ -42,7 +43,7 @@
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
-        dispatchState = "verifying input request";
+        dispatchState = "normalizing request input";
         inputFilterResponse = filterRuntimeData({
           value: request_,
           spec: this.filterDescriptor.inputFilterSpec
@@ -52,14 +53,14 @@
           break;
         }
         if (this.filterDescriptor.bodyFunction) {
-          dispatchState = "dispatching operation";
+          dispatchState = "performing main operation";
           bodyFunctionResponse = this.filterDescriptor.bodyFunction(inputFilterResponse.result);
           returnSignatureCheck = filterRuntimeData({
             value: bodyFunctionResponse,
             spec: bodyFunctionResponseFilter
           });
           if (returnSignatureCheck.error) {
-            dispatchState = "verifying response signature of inner bodyFunction";
+            dispatchState = "verifying response signature of main operation";
             errors.unshift(returnSignatureCheck.error);
             break;
           }
@@ -70,7 +71,7 @@
         } else {
           bodyFunctionResponse = inputFilterResponse;
         }
-        dispatchState = "verifying output response";
+        dispatchState = "normalizing response result";
         outputFilterResponse = filterRuntimeData({
           value: bodyFunctionResponse.result,
           spec: this.filterDescriptor.outputFilterSpec
@@ -82,7 +83,7 @@
         response.result = outputFilterResponse.result;
       }
       if (errors.length) {
-        errors.unshift("Error in " + this.filterDescriptor.operationID + " " + this.filterDescriptor.operationName + " while " + dispatchState + " due to:");
+        errors.unshift("Filter [" + this.filterDescriptor.operationID + "::" + this.filterDescriptor.operationName + "] failed while " + dispatchState + ".");
         response.error = errors.join(" ");
       }
       return response;

@@ -3,10 +3,10 @@
 var assert = require('chai').assert;
 var testModule = require('./module-under-test');
 var composeFunction = testModule('arc_core_filter_create');
-var testNFFRuntime = require('./runner-filter-runtime');
+var testFilterRuntime = require('./runner-filter-runtime');
 
-testNFFRuntime({
-    testName: "NFF runtime with bodyFunction that does not return a response object.",
+testFilterRuntime({
+    testName: "Filter runtime with bodyFunction that does not return a response object.",
     validConfig: false,
     nffGenerator: function() {
         var functionObject = composeFunction({
@@ -20,15 +20,15 @@ testNFFRuntime({
         });
         return functionObject;
     },
-    request: "Doesn't matter - could be anything because NFF should reject this.",
+    request: "Doesn't matter - could be anything because Filter should reject this.",
     expectedResults: {
-        error: 'An error occurred in function [bodyFunction Bad Return Test::FW6hbJQ2R_uN4CCP3qIrYQ] while analyzing response signature: Runtime data check failed: Error at path \'~\': Value of type \'jsString\' not in allowed type set [jsObject].',
+        error: 'Filter [FW6hbJQ2R_uN4CCP3qIrYQ::bodyFunction Bad Return Test] failed while verifying response signature of main operation. Error at path \'~\': Value of type \'jsString\' not in allowed type set [jsObject].',
         result: null
     }
 });
 
-testNFFRuntime({
-    testName: "NFF runtime bodyFunction explicitly returns an error.",
+testFilterRuntime({
+    testName: "Filter runtime bodyFunction explicitly returns an error.",
     validConfig: false,
     nffGenerator: function() {
         var functionObject = composeFunction({
@@ -45,15 +45,15 @@ testNFFRuntime({
     },
     request: "Doesn't matter.",
     expectedResults: {
-        error: 'An error occurred in function [bodyFunction Returns Error Test::3Ssz5oWpSnmLcFmnY56TOQ] while analyzing response disposition: Ignoring request \'"Doesn\'t matter."\' and reporting an error instead.',
+        error: 'Filter [3Ssz5oWpSnmLcFmnY56TOQ::bodyFunction Returns Error Test] failed while performing main operation. Ignoring request \'"Doesn\'t matter."\' and reporting an error instead.',
         result: null
     }
 });
 
 
 
-testNFFRuntime({
-    testName: "NFF runtime opaque input namespace test #1",
+testFilterRuntime({
+    testName: "Filter runtime opaque input namespace test #1",
     validConfig: true,
     nffGenerator: function() {
         return composeFunction({
@@ -75,8 +75,8 @@ testNFFRuntime({
     }
 });
 
-testNFFRuntime({
-    testName: "NFF runtime with mix of opaque, declared, and undeclared inputs.",
+testFilterRuntime({
+    testName: "Filter runtime with mix of opaque, declared, and undeclared inputs.",
     validConfig: true,
     nffGenerator: function() {
         var functionObject = composeFunction({
@@ -142,8 +142,8 @@ testNFFRuntime({
 });
 
 
-testNFFRuntime({
-    testName: "NFF runtime opaque namespace and default value (no request input case).", 
+testFilterRuntime({
+    testName: "Filter runtime opaque namespace and default value (no request input case).", 
     validConfig: true,
     nffGenerator: function() {
         var functionObject = composeFunction({
@@ -158,8 +158,8 @@ testNFFRuntime({
     }
 });
 
-testNFFRuntime({
-    testName: "NFF runtime opaque namespace and default value (with request input case).", 
+testFilterRuntime({
+    testName: "Filter runtime opaque namespace and default value (with request input case).", 
     validConfig: true,
     nffGenerator: function() {
         var functionObject = composeFunction({
@@ -175,8 +175,8 @@ testNFFRuntime({
     }
 });
 
-testNFFRuntime({
-    testName: "NFF runtime opaque namespace and default value advanced test 1.", 
+testFilterRuntime({
+    testName: "Filter runtime opaque namespace and default value advanced test 1.", 
     validConfig: true,
     nffGenerator: function() {
         var functionObject = composeFunction({
@@ -192,8 +192,8 @@ testNFFRuntime({
 });
 
 
-testNFFRuntime({
-    testName: "NFF runtime opaque namespace and default value (advanced case with no request input).", 
+testFilterRuntime({
+    testName: "Filter runtime opaque namespace and default value (advanced case with no request input).", 
     validConfig: true,
     nffGenerator: function() {
         var functionObject = composeFunction({
@@ -225,8 +225,8 @@ testNFFRuntime({
     }
 });
 
-testNFFRuntime({
-    testName: "NFF runtime opaque namespace and default value (advanced case with input case 1).", 
+testFilterRuntime({
+    testName: "Filter runtime opaque namespace and default value (advanced case with input case 1).", 
     validConfig: true,
     nffGenerator: function() {
         var functionObject = composeFunction({
@@ -259,8 +259,8 @@ testNFFRuntime({
     }
 });
 
-testNFFRuntime({
-    testName: "NFF runtime opaque namespace and default value (advanced case with input case 2).", 
+testFilterRuntime({
+    testName: "Filter runtime opaque namespace and default value (advanced case with input case 2).", 
     validConfig: true,
     nffGenerator: function() {
         var functionObject = composeFunction({
