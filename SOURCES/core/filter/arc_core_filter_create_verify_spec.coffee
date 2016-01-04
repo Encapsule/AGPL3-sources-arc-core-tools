@@ -60,6 +60,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
             validTypeConstraint = false
             acceptNamespace = false
             opaqueNamespace = false
+            asMapNamespace = false
             defaulted = false
             subnamespacesDeclared = false
 
@@ -76,6 +77,11 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
                     when '____opaque'
                         if mapPropertyValue
                             opaqueNamespace = true
+                        break
+
+                    when '____asMap'
+                        if mapPropertyValue
+                            asMapNamespace = true
                         break
 
                     when '____defaultValue'

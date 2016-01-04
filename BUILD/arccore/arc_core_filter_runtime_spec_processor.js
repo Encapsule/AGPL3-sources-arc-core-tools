@@ -18,7 +18,7 @@
    */
 
   filterRuntimeData = module.exports = function(request_) {
-    var acceptInputNamespace, assignValue, constrainInRangeInclusive, constrainInValueSet, constraintDirective, defaulted, element, errors, finalResult, i, inBreakScope, inRange, index, innerResponse, inputData, inputDataUndefined, len, mapPropertyName, mapPropertyValue, mapQueue, mapQueueCache, namespace, newOutputData, opaque, outputData, response, spec, specDescriptor, subnamespaces, typePath, valueJsMoniker;
+    var acceptInputNamespace, asMap, assignValue, constrainInRangeInclusive, constrainInValueSet, constraintDirective, defaulted, element, errors, finalResult, i, inBreakScope, inRange, index, innerResponse, inputData, inputDataUndefined, key, len, mapPropertyName, mapPropertyValue, mapQueue, mapQueueCache, namespace, newOutputData, opaque, outputData, response, spec, specDescriptor, subnamespaces, typePath, valueJsMoniker;
     errors = [];
     response = {
       error: null,
@@ -85,6 +85,11 @@
           types: 'jsUndefined'
         });
         defaulted = !innerResponse.result;
+        innerResponse = TYPES.check.inTypeSet({
+          value: spec.____asMap,
+          types: 'jsBoolean'
+        });
+        asMap = innerResponse.result && spec.____asMap;
         acceptInputNamespace = false;
         if (!opaque) {
           constraintDirective = null;
@@ -152,6 +157,8 @@
               break;
             case '____opaque':
               break;
+            case '____asMap':
+              break;
             case '____defaultValue':
               break;
             case '____inValueSet':
@@ -172,6 +179,16 @@
                   mapQueueCache.push({
                     namespace: index,
                     path: typePath + "[" + (index++) + "]",
+                    spec: mapPropertyValue,
+                    inputData: element
+                  });
+                }
+              } else if ((valueJsMoniker === 'jsObject') && asMap) {
+                for (key in inputData) {
+                  element = inputData[key];
+                  mapQueueCache.push({
+                    namespace: key,
+                    path: typePath + "." + key,
                     spec: mapPropertyValue,
                     inputData: element
                   });

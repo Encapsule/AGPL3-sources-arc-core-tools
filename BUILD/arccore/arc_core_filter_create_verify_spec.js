@@ -1,19 +1,3 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
   var IDENTIFIER, TYPES, verifyCompositionTypeMapDeclaration, verifyTypeConstraintArgs;
 
@@ -30,7 +14,7 @@ Please consult the included LICENSE file for agreement terms.
    */
 
   verifyCompositionTypeMapDeclaration = module.exports = function(request_) {
-    var acceptNamespace, constraint, constraintOptions, constraintProp, defaulted, description, errors, inBreakScope, innerResponse, jsMonikers, label, mapPropertyName, mapPropertyValue, mapQueue, newPath, opaqueNamespace, response, subnamespacesDeclared, typemap, typemapDescriptor, typepath, validTypeConstraint;
+    var acceptNamespace, asMapNamespace, constraint, constraintOptions, constraintProp, defaulted, description, errors, inBreakScope, innerResponse, jsMonikers, label, mapPropertyName, mapPropertyValue, mapQueue, newPath, opaqueNamespace, response, subnamespacesDeclared, typemap, typemapDescriptor, typepath, validTypeConstraint;
     response = {
       error: null,
       result: null
@@ -89,6 +73,7 @@ Please consult the included LICENSE file for agreement terms.
         validTypeConstraint = false;
         acceptNamespace = false;
         opaqueNamespace = false;
+        asMapNamespace = false;
         defaulted = false;
         subnamespacesDeclared = false;
         typemapDescriptor = mapQueue.shift();
@@ -100,6 +85,11 @@ Please consult the included LICENSE file for agreement terms.
             case '____opaque':
               if (mapPropertyValue) {
                 opaqueNamespace = true;
+              }
+              break;
+            case '____asMap':
+              if (mapPropertyValue) {
+                asMapNamespace = true;
               }
               break;
             case '____defaultValue':

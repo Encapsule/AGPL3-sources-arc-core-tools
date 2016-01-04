@@ -69,6 +69,10 @@ filterRuntimeData = module.exports = (request_) ->
             innerResponse = TYPES.check.inTypeSet value: spec.____defaultValue, types: 'jsUndefined'
             defaulted = not innerResponse.result
 
+            # Detect namespace with the 'as map' flag set.
+            innerResponse = TYPES.check.inTypeSet value: spec.____asMap, types: 'jsBoolean'
+            asMap = innerResponse.result and spec.____asMap
+
             acceptInputNamespace = false
 
             if not opaque
@@ -81,7 +85,7 @@ filterRuntimeData = module.exports = (request_) ->
                     constraintDirective = '____accept'
                 else
                     constraintDirective = '____types'
-                  
+
                 innerResponse = TYPES.check.inTypeSet value: inputData, types: spec[constraintDirective]
                 if innerResponse.error
                     errors.unshift innerResponse.error
@@ -120,6 +124,7 @@ filterRuntimeData = module.exports = (request_) ->
 
                 # At this point inputData is set and has passed type checking.
                 valueJsMoniker = innerResponse.result
+
             else
                 # Is opaque
                 if defaulted and not (inputData? and inputData)
@@ -149,6 +154,9 @@ filterRuntimeData = module.exports = (request_) ->
                     when '____opaque'
                         # Ignore ____opaque as we have already evaluated the constraint.
                         break
+                    when '____asMap'
+                        # Ignore ____asMap as we have already evaluated the constant.
+                        break
                     when '____defaultValue'
                         break
                     when '____inValueSet'
@@ -174,6 +182,14 @@ filterRuntimeData = module.exports = (request_) ->
                                 mapQueueCache.push
                                     namespace: index
                                     path: "#{typePath}[#{index++}]"
+                                    spec: mapPropertyValue,
+                                    inputData: element
+                        else if (valueJsMoniker == 'jsObject') and asMap
+                            for key of inputData
+                                element = inputData[key]
+                                mapQueueCache.push
+                                    namespace: key
+                                    path: "#{typePath}.#{key}"
                                     spec: mapPropertyValue,
                                     inputData: element
                         else

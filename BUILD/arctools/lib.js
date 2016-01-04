@@ -4519,22 +4519,6 @@ module.exports =
 	/* 29 */
 	/***/ function(module, exports, __webpack_require__) {
 
-		
-		/*
-		----------------------------------------------------------------------
-		 
-		           +---+---+---+---+
-		 chaos --> | J | B | U | S | --> order
-		           +---+---+---+---+
-
-		Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-		JBUS is licensed under the GNU Affero General Public License v3.0.
-		Please consult the included LICENSE file for agreement terms.
-
-		----------------------------------------------------------------------
-		 */
-
 		(function() {
 		  var IDENTIFIER, TYPES, verifyCompositionTypeMapDeclaration, verifyTypeConstraintArgs;
 
@@ -4551,7 +4535,7 @@ module.exports =
 		   */
 
 		  verifyCompositionTypeMapDeclaration = module.exports = function(request_) {
-		    var acceptNamespace, constraint, constraintOptions, constraintProp, defaulted, description, errors, inBreakScope, innerResponse, jsMonikers, label, mapPropertyName, mapPropertyValue, mapQueue, newPath, opaqueNamespace, response, subnamespacesDeclared, typemap, typemapDescriptor, typepath, validTypeConstraint;
+		    var acceptNamespace, asMapNamespace, constraint, constraintOptions, constraintProp, defaulted, description, errors, inBreakScope, innerResponse, jsMonikers, label, mapPropertyName, mapPropertyValue, mapQueue, newPath, opaqueNamespace, response, subnamespacesDeclared, typemap, typemapDescriptor, typepath, validTypeConstraint;
 		    response = {
 		      error: null,
 		      result: null
@@ -4610,6 +4594,7 @@ module.exports =
 		        validTypeConstraint = false;
 		        acceptNamespace = false;
 		        opaqueNamespace = false;
+		        asMapNamespace = false;
 		        defaulted = false;
 		        subnamespacesDeclared = false;
 		        typemapDescriptor = mapQueue.shift();
@@ -4621,6 +4606,11 @@ module.exports =
 		            case '____opaque':
 		              if (mapPropertyValue) {
 		                opaqueNamespace = true;
+		              }
+		              break;
+		            case '____asMap':
+		              if (mapPropertyValue) {
+		                asMapNamespace = true;
 		              }
 		              break;
 		            case '____defaultValue':
@@ -6465,7 +6455,7 @@ module.exports =
 		   */
 
 		  filterRuntimeData = module.exports = function(request_) {
-		    var acceptInputNamespace, assignValue, constrainInRangeInclusive, constrainInValueSet, constraintDirective, defaulted, element, errors, finalResult, i, inBreakScope, inRange, index, innerResponse, inputData, inputDataUndefined, len, mapPropertyName, mapPropertyValue, mapQueue, mapQueueCache, namespace, newOutputData, opaque, outputData, response, spec, specDescriptor, subnamespaces, typePath, valueJsMoniker;
+		    var acceptInputNamespace, asMap, assignValue, constrainInRangeInclusive, constrainInValueSet, constraintDirective, defaulted, element, errors, finalResult, i, inBreakScope, inRange, index, innerResponse, inputData, inputDataUndefined, key, len, mapPropertyName, mapPropertyValue, mapQueue, mapQueueCache, namespace, newOutputData, opaque, outputData, response, spec, specDescriptor, subnamespaces, typePath, valueJsMoniker;
 		    errors = [];
 		    response = {
 		      error: null,
@@ -6532,6 +6522,11 @@ module.exports =
 		          types: 'jsUndefined'
 		        });
 		        defaulted = !innerResponse.result;
+		        innerResponse = TYPES.check.inTypeSet({
+		          value: spec.____asMap,
+		          types: 'jsBoolean'
+		        });
+		        asMap = innerResponse.result && spec.____asMap;
 		        acceptInputNamespace = false;
 		        if (!opaque) {
 		          constraintDirective = null;
@@ -6599,6 +6594,8 @@ module.exports =
 		              break;
 		            case '____opaque':
 		              break;
+		            case '____asMap':
+		              break;
 		            case '____defaultValue':
 		              break;
 		            case '____inValueSet':
@@ -6619,6 +6616,16 @@ module.exports =
 		                  mapQueueCache.push({
 		                    namespace: index,
 		                    path: typePath + "[" + (index++) + "]",
+		                    spec: mapPropertyValue,
+		                    inputData: element
+		                  });
+		                }
+		              } else if ((valueJsMoniker === 'jsObject') && asMap) {
+		                for (key in inputData) {
+		                  element = inputData[key];
+		                  mapQueueCache.push({
+		                    namespace: key,
+		                    path: typePath + "." + key,
 		                    spec: mapPropertyValue,
 		                    inputData: element
 		                  });
@@ -11182,22 +11189,6 @@ module.exports =
 /* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0.
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	 */
-
 	(function() {
 	  var IDENTIFIER, TYPES, verifyCompositionTypeMapDeclaration, verifyTypeConstraintArgs;
 
@@ -11214,7 +11205,7 @@ module.exports =
 	   */
 
 	  verifyCompositionTypeMapDeclaration = module.exports = function(request_) {
-	    var acceptNamespace, constraint, constraintOptions, constraintProp, defaulted, description, errors, inBreakScope, innerResponse, jsMonikers, label, mapPropertyName, mapPropertyValue, mapQueue, newPath, opaqueNamespace, response, subnamespacesDeclared, typemap, typemapDescriptor, typepath, validTypeConstraint;
+	    var acceptNamespace, asMapNamespace, constraint, constraintOptions, constraintProp, defaulted, description, errors, inBreakScope, innerResponse, jsMonikers, label, mapPropertyName, mapPropertyValue, mapQueue, newPath, opaqueNamespace, response, subnamespacesDeclared, typemap, typemapDescriptor, typepath, validTypeConstraint;
 	    response = {
 	      error: null,
 	      result: null
@@ -11273,6 +11264,7 @@ module.exports =
 	        validTypeConstraint = false;
 	        acceptNamespace = false;
 	        opaqueNamespace = false;
+	        asMapNamespace = false;
 	        defaulted = false;
 	        subnamespacesDeclared = false;
 	        typemapDescriptor = mapQueue.shift();
@@ -11284,6 +11276,11 @@ module.exports =
 	            case '____opaque':
 	              if (mapPropertyValue) {
 	                opaqueNamespace = true;
+	              }
+	              break;
+	            case '____asMap':
+	              if (mapPropertyValue) {
+	                asMapNamespace = true;
 	              }
 	              break;
 	            case '____defaultValue':
@@ -13128,7 +13125,7 @@ module.exports =
 	   */
 
 	  filterRuntimeData = module.exports = function(request_) {
-	    var acceptInputNamespace, assignValue, constrainInRangeInclusive, constrainInValueSet, constraintDirective, defaulted, element, errors, finalResult, i, inBreakScope, inRange, index, innerResponse, inputData, inputDataUndefined, len, mapPropertyName, mapPropertyValue, mapQueue, mapQueueCache, namespace, newOutputData, opaque, outputData, response, spec, specDescriptor, subnamespaces, typePath, valueJsMoniker;
+	    var acceptInputNamespace, asMap, assignValue, constrainInRangeInclusive, constrainInValueSet, constraintDirective, defaulted, element, errors, finalResult, i, inBreakScope, inRange, index, innerResponse, inputData, inputDataUndefined, key, len, mapPropertyName, mapPropertyValue, mapQueue, mapQueueCache, namespace, newOutputData, opaque, outputData, response, spec, specDescriptor, subnamespaces, typePath, valueJsMoniker;
 	    errors = [];
 	    response = {
 	      error: null,
@@ -13195,6 +13192,11 @@ module.exports =
 	          types: 'jsUndefined'
 	        });
 	        defaulted = !innerResponse.result;
+	        innerResponse = TYPES.check.inTypeSet({
+	          value: spec.____asMap,
+	          types: 'jsBoolean'
+	        });
+	        asMap = innerResponse.result && spec.____asMap;
 	        acceptInputNamespace = false;
 	        if (!opaque) {
 	          constraintDirective = null;
@@ -13262,6 +13264,8 @@ module.exports =
 	              break;
 	            case '____opaque':
 	              break;
+	            case '____asMap':
+	              break;
 	            case '____defaultValue':
 	              break;
 	            case '____inValueSet':
@@ -13282,6 +13286,16 @@ module.exports =
 	                  mapQueueCache.push({
 	                    namespace: index,
 	                    path: typePath + "[" + (index++) + "]",
+	                    spec: mapPropertyValue,
+	                    inputData: element
+	                  });
+	                }
+	              } else if ((valueJsMoniker === 'jsObject') && asMap) {
+	                for (key in inputData) {
+	                  element = inputData[key];
+	                  mapQueueCache.push({
+	                    namespace: key,
+	                    path: typePath + "." + key,
 	                    spec: mapPropertyValue,
 	                    inputData: element
 	                  });

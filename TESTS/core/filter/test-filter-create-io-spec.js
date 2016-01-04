@@ -620,9 +620,29 @@ testCreateFilter({
     },
     expectedResults: {
         error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': You cannot declare subnamespace filter spec(s) of a parent namespace declared using \'____accept\'.',
-        result: ''
+        result: null
     }
 });
+
+testCreateFilter({
+    testName: "Type map: test ____asMap directive (trivial case 1)",
+    validConfig: true,
+    request: {
+        operationID: "mM17o2-CQ-W-RNQhouMeGw",
+        inputFilterSpec: {
+            ____types: 'jsObject',
+            ____asMap: true,
+            element: {
+                ____types: "jsNumber"
+            }
+        }
+    },
+    expectedResults: {
+        error: null,
+        result: '{"operationID":"mM17o2-CQ-W-RNQhouMeGw","operationName":"unnamed","operationDescription":"mM17o2-CQ-W-RNQhouMeGw provides no description.","inputFilterSpec":{"____types":"jsObject","____asMap":true,"element":{"____types":"jsNumber"}}}'
+    }
+});
+
 
 
 
