@@ -1,20 +1,3 @@
-###
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
-###
-#
-#
-#
 
 IDENTIFIER = require './arc_core_identifier'
 TYPES = require './arc_core_types'
@@ -67,7 +50,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
         while mapQueue.length
 
             # inside while mapQueue.length
-            
+
             constraint = "default"
             constraintOptions = undefined
             jsMonikers = undefined
@@ -110,7 +93,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
                         acceptNamespace = true
                         validTypeConstraint = true
                         break
-                        
+
                     when '____types'
                         if (validTypeConstraint)
                             errors.unshift "Redundant type constraint declared on namespace '#{mapPropertyName}'."
@@ -182,7 +165,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
                             errors.unshift innerResponse.guidance
                             errors.unshift "Error checking directive '#{mapPropertyName}.begin':"
                             break
-                        
+
                         innerResponse = TYPES.check.inTypeSet value: mapPropertyValue.end, types: [ 'jsNumber', 'jsString' ]
                         if innerResponse.error
                             errors.unshift innerResponse.error
@@ -254,7 +237,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
         # inside break scope
 
     # function body scope
-    
+
     if errors.length
         response.error = errors.join ' '
     else
@@ -298,4 +281,3 @@ verifyTypeConstraintArgs = (name_, argument_) ->
     if errors2.length
         response.error = errors2.join ' '
     response
-                
