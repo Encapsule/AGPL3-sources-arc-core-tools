@@ -211,6 +211,10 @@ gulp.task("stage", [ "compress" ], function(callback_) {
         .pipe(gulp.dest('./STAGE/arctools'));
     gulp.src('arc_tools_project.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+    gulp.src('arc_tools_project_construct.js', { cwd: './BUILD/arctools' })
+        .pipe(gulp.dest('./STAGE/arctools'));
+    gulp.src('arc_tools_project_parse.js', { cwd: './BUILD/arctools' })
+        .pipe(gulp.dest('./STAGE/arctools'));
     callback_();
 });
 

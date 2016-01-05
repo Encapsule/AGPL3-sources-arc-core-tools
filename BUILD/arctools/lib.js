@@ -492,29 +492,6 @@ module.exports =
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	This software is licensed under the terms of the GNU Affero General
-	Public License v3.0.
-
-	Please review the included LICENSE file for specific agreement terms.
-	See also: https://opensource.org/licenses/AGPL-3.0
-
-	Source code:   https://github.com/encapsule.jbus
-	Documentation: https://encapsule.io/projects/jbus/docs/common
-	Licensing:     https://encapsule.io/licening
-
-	----------------------------------------------------------------------
-	 */
-
 	(function() {
 	  var jbus;
 
@@ -1295,29 +1272,6 @@ module.exports =
 	/***/ },
 	/* 5 */
 	/***/ function(module, exports, __webpack_require__) {
-
-		
-		/*
-		----------------------------------------------------------------------
-		 
-		           +---+---+---+---+
-		 chaos --> | J | B | U | S | --> order
-		           +---+---+---+---+
-
-		Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-		This software is licensed under the terms of the GNU Affero General
-		Public License v3.0.
-
-		Please review the included LICENSE file for specific agreement terms.
-		See also: https://opensource.org/licenses/AGPL-3.0
-
-		Source code:   https://github.com/encapsule.jbus
-		Documentation: https://encapsule.io/projects/jbus/docs/common
-		Licensing:     https://encapsule.io/licening
-
-		----------------------------------------------------------------------
-		 */
 
 		(function() {
 		  var jbus;
@@ -2601,29 +2555,6 @@ module.exports =
 	/* 17 */
 	/***/ function(module, exports, __webpack_require__) {
 
-		
-		/*
-		----------------------------------------------------------------------
-		 
-		           +---+---+---+---+
-		 chaos --> | J | B | U | S | --> order
-		           +---+---+---+---+
-
-		Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-		This software is licensed under the terms of the GNU Affero General
-		Public License v3.0.
-
-		Please review the included LICENSE file for specific agreement terms.
-		See also: https://opensource.org/licenses/AGPL-3.0
-
-		Source code:   https://github.com/encapsule.jbus
-		Documentation: https://encapsule.io/projects/jbus/docs/common
-		Licensing:     https://encapsule.io/licening
-
-		----------------------------------------------------------------------
-		 */
-
 		(function() {
 		  var convert, typeCodes, typeLUTS;
 
@@ -2757,7 +2688,7 @@ module.exports =
 		      response.result = lookupResult;
 		    }
 		    if (errors.length) {
-		      errors.unshift("jbus type conversion failed:");
+		      errors.unshift("Type conversion failed:");
 		      response.error = errors.join(" ");
 		    }
 		    return response;
@@ -2771,29 +2702,6 @@ module.exports =
 	/***/ },
 	/* 18 */
 	/***/ function(module, exports, __webpack_require__) {
-
-		
-		/*
-		----------------------------------------------------------------------
-		 
-		           +---+---+---+---+
-		 chaos --> | J | B | U | S | --> order
-		           +---+---+---+---+
-
-		Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-		This software is licensed under the terms of the GNU Affero General
-		Public License v3.0.
-
-		Please review the included LICENSE file for specific agreement terms.
-		See also: https://opensource.org/licenses/AGPL-3.0
-
-		Source code:   https://github.com/encapsule.jbus
-		Documentation: https://encapsule.io/projects/jbus/docs/common
-		Licensing:     https://encapsule.io/licening
-
-		----------------------------------------------------------------------
-		 */
 
 		(function() {
 		  'use strict';
@@ -3181,7 +3089,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "UgOSZcbzS7avMyN1OWmy2Q", buildTime: "1451611000"};
+		module.exports = { version: "0.0.5", codename: "perspective", author: "Encapsule", buildID: "KM7V6FGcQQOxVzP2sNYAmA", buildTime: "1452018685"};
 
 	/***/ },
 	/* 21 */
@@ -7713,29 +7621,6 @@ module.exports =
 	/* 54 */
 	/***/ function(module, exports, __webpack_require__) {
 
-		
-		/*
-		----------------------------------------------------------------------
-		 
-		           +---+---+---+---+
-		 chaos --> | J | B | U | S | --> order
-		           +---+---+---+---+
-
-		Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-		This software is licensed under the terms of the GNU Affero General
-		Public License v3.0.
-
-		Please review the included LICENSE file for specific agreement terms.
-		See also: https://opensource.org/licenses/AGPL-3.0
-
-		Source code:   https://github.com/encapsule.jbus
-		Documentation: https://encapsule.io/projects/jbus/docs/common
-		Licensing:     https://encapsule.io/licening
-
-		----------------------------------------------------------------------
-		 */
-
 		(function() {
 		  var MODULE, typeCodes, typeConvert, typeLUTS;
 
@@ -7833,7 +7718,7 @@ module.exports =
 		      }
 		    }
 		    if (errors.length) {
-		      errors.unshift("jbus type in set check failed:");
+		      errors.unshift("Type in set check failed:");
 		      response.error = errors.join(' ');
 		    }
 		    return response;
@@ -7863,7 +7748,7 @@ module.exports =
 		      response.result = convertResponse.result;
 		    }
 		    if (errors.length) {
-		      errors.unshift("jbus type JSON check failed:");
+		      errors.unshift("JSON check failed:");
 		      response.error = errors.join(' ');
 		    }
 		    return response;
@@ -9162,29 +9047,6 @@ module.exports =
 /* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	This software is licensed under the terms of the GNU Affero General
-	Public License v3.0.
-
-	Please review the included LICENSE file for specific agreement terms.
-	See also: https://opensource.org/licenses/AGPL-3.0
-
-	Source code:   https://github.com/encapsule.jbus
-	Documentation: https://encapsule.io/projects/jbus/docs/common
-	Licensing:     https://encapsule.io/licening
-
-	----------------------------------------------------------------------
-	 */
-
 	(function() {
 	  var convert, typeCodes, typeLUTS;
 
@@ -9318,7 +9180,7 @@ module.exports =
 	      response.result = lookupResult;
 	    }
 	    if (errors.length) {
-	      errors.unshift("jbus type conversion failed:");
+	      errors.unshift("Type conversion failed:");
 	      response.error = errors.join(" ");
 	    }
 	    return response;
@@ -9332,29 +9194,6 @@ module.exports =
 /***/ },
 /* 22 */
 /***/ function(module, exports, __webpack_require__) {
-
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	This software is licensed under the terms of the GNU Affero General
-	Public License v3.0.
-
-	Please review the included LICENSE file for specific agreement terms.
-	See also: https://opensource.org/licenses/AGPL-3.0
-
-	Source code:   https://github.com/encapsule.jbus
-	Documentation: https://encapsule.io/projects/jbus/docs/common
-	Licensing:     https://encapsule.io/licening
-
-	----------------------------------------------------------------------
-	 */
 
 	(function() {
 	  'use strict';
@@ -9464,7 +9303,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "UgOSZcbzS7avMyN1OWmy2Q", buildTime: "1451611000"};
+	module.exports = { version: "0.0.5", codename: "perspective", author: "Encapsule", buildID: "KM7V6FGcQQOxVzP2sNYAmA", buildTime: "1452018685"};
 
 /***/ },
 /* 24 */
@@ -9804,7 +9643,7 @@ module.exports =
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "subterra", author: "Encapsule", buildID: "UgOSZcbzS7avMyN1OWmy2Q", buildTime: "1451611000"};
+	module.exports = { version: "0.0.5", codename: "perspective", author: "Encapsule", buildID: "KM7V6FGcQQOxVzP2sNYAmA", buildTime: "1452018685"};
 
 /***/ },
 /* 29 */
@@ -14371,29 +14210,6 @@ module.exports =
 /* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	This software is licensed under the terms of the GNU Affero General
-	Public License v3.0.
-
-	Please review the included LICENSE file for specific agreement terms.
-	See also: https://opensource.org/licenses/AGPL-3.0
-
-	Source code:   https://github.com/encapsule.jbus
-	Documentation: https://encapsule.io/projects/jbus/docs/common
-	Licensing:     https://encapsule.io/licening
-
-	----------------------------------------------------------------------
-	 */
-
 	(function() {
 	  var MODULE, typeCodes, typeConvert, typeLUTS;
 
@@ -14491,7 +14307,7 @@ module.exports =
 	      }
 	    }
 	    if (errors.length) {
-	      errors.unshift("jbus type in set check failed:");
+	      errors.unshift("Type in set check failed:");
 	      response.error = errors.join(' ');
 	    }
 	    return response;
@@ -14521,7 +14337,7 @@ module.exports =
 	      response.result = convertResponse.result;
 	    }
 	    if (errors.length) {
-	      errors.unshift("jbus type JSON check failed:");
+	      errors.unshift("JSON check failed:");
 	      response.error = errors.join(' ');
 	    }
 	    return response;

@@ -120,7 +120,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error(s) in \'____types\' directive declaration. jbus type conversion failed: Invalid request \'value\' specifies unknown jsCode \'llama\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error(s) in \'____types\' directive declaration. Type conversion failed: Invalid request \'value\' specifies unknown jsCode \'llama\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
     }
 });
 
@@ -158,7 +158,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error(s) in \'____types\' directive declaration. jbus type conversion failed: Invalid request \'value\' specifies unknown jsCode \'goat\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error(s) in \'____types\' directive declaration. Type conversion failed: Invalid request \'value\' specifies unknown jsCode \'goat\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
     }
 });
 

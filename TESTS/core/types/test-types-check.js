@@ -9,7 +9,6 @@ var testIsJSON = require('./test-runner-types-check-is-json');
 
 var typeCheckModule = testModule('arc_core_types_check');
 
-
 describe("Attempt to load the jbus-common-types-check module.", function() {
 
     it("The jbus-common-types-check module is expected to have loaded.", function() {
@@ -35,7 +34,7 @@ describe("Attempt to load the jbus-common-types-check module.", function() {
             testName: "Missing request object.",
             validConfig: false,
             expectedResults: {
-                error: 'jbus type in set check failed: Missing request object in-parameter.'
+                error: 'Type in set check failed: Missing request object in-parameter.'
             }
         });
 
@@ -45,7 +44,7 @@ describe("Attempt to load the jbus-common-types-check module.", function() {
             validConfig: false,
             request: "bogus",
             expectedResults: {
-                error: 'jbus type in set check failed: Invalid request: Expected value of type \'[object Object]\' but found \'[object String]\' instead.'
+                error: 'Type in set check failed: Invalid request: Expected value of type \'[object Object]\' but found \'[object String]\' instead.'
             }
         });
 
@@ -55,7 +54,7 @@ describe("Attempt to load the jbus-common-types-check module.", function() {
             validConfig: false,
             request: {},
             expectedResults: {
-                error: 'jbus type in set check failed: Invalid request.types value type \'jsUndefined\'. Expected either \'[object String]\' (jsMoniker string) or \'[object Array]\' (of jsMoniker strings).'
+                error: 'Type in set check failed: Invalid request.types value type \'jsUndefined\'. Expected either \'[object String]\' (jsMoniker string) or \'[object Array]\' (of jsMoniker strings).'
             }
         });
 
@@ -67,7 +66,7 @@ describe("Attempt to load the jbus-common-types-check module.", function() {
                 types: 5
             },
             expectedResults: {
-                error: 'jbus type in set check failed: Invalid request.types value type \'jsNumber\'. Expected either \'[object String]\' (jsMoniker string) or \'[object Array]\' (of jsMoniker strings).'
+                error: 'Type in set check failed: Invalid request.types value type \'jsNumber\'. Expected either \'[object String]\' (jsMoniker string) or \'[object Array]\' (of jsMoniker strings).'
             }
         });
 
@@ -155,7 +154,7 @@ describe("Attempt to load the jbus-common-types-check module.", function() {
             validConfig: true,
             expectedResults: {
                 error: null,
-                guidance: 'jbus type conversion failed: No coversion from dimension \'jsTypeString\' to \'jsonMoniker\' for value \'[object Undefined]\'.',
+                guidance: 'Type conversion failed: No coversion from dimension \'jsTypeString\' to \'jsonMoniker\' for value \'[object Undefined]\'.',
                 result: false
             }
         });
@@ -167,7 +166,7 @@ describe("Attempt to load the jbus-common-types-check module.", function() {
             validConfig: true,
             expectedResults: {
                 error: null,
-                guidance: 'jbus type conversion failed: No coversion from dimension \'jsTypeString\' to \'jsonMoniker\' for value \'[object Function]\'.',
+                guidance: 'Type conversion failed: No coversion from dimension \'jsTypeString\' to \'jsonMoniker\' for value \'[object Function]\'.',
                 result: false
             }
         });

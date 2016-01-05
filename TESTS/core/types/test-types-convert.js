@@ -64,7 +64,7 @@ testConvertFunction({
     validConfig: false,
     request: undefined,
     expectedResults: {
-        error: 'jbus type conversion failed: Missing request object.'
+        error: 'Type conversion failed: Missing request object.'
     }
 });
 
@@ -74,7 +74,7 @@ testConvertFunction({
     validConfig: false,
     request: null,
     expectedResults: {
-        error: 'jbus type conversion failed: Missing request object.'
+        error: 'Type conversion failed: Missing request object.'
     }
 });
 
@@ -84,7 +84,7 @@ testConvertFunction({
     validConfig: false,
     request: [],
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request value type. Expected reference to \'[object Object]\'.'
+        error: 'Type conversion failed: Invalid request value type. Expected reference to \'[object Object]\'.'
     }
 });
 
@@ -94,7 +94,7 @@ testConvertFunction({
     validConfig: false,
     request: {},
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request missing \'from\' property.'
+        error: 'Type conversion failed: Invalid request missing \'from\' property.'
     }
 });
 
@@ -106,7 +106,7 @@ testConvertFunction({
         from: null
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request missing \'from\' property.'
+        error: 'Type conversion failed: Invalid request missing \'from\' property.'
     }
 });
 
@@ -118,7 +118,7 @@ testConvertFunction({
         from: undefined
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request missing \'from\' property.'
+        error: 'Type conversion failed: Invalid request missing \'from\' property.'
     }
 });
 
@@ -130,7 +130,7 @@ testConvertFunction({
         from: 6
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request \'from\' value type. Expected reference to \'[object String]\'.'
+        error: 'Type conversion failed: Invalid request \'from\' value type. Expected reference to \'[object String]\'.'
     }
 });
 
@@ -142,7 +142,7 @@ testConvertFunction({
         from: "jsObject"
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request missing \'to\' property.'
+        error: 'Type conversion failed: Invalid request missing \'to\' property.'
     }
 });
 
@@ -155,7 +155,7 @@ testConvertFunction({
         to: null
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request missing \'to\' property.'
+        error: 'Type conversion failed: Invalid request missing \'to\' property.'
     }
 });
 
@@ -168,7 +168,7 @@ testConvertFunction({
         to: undefined
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request missing \'to\' property.'
+        error: 'Type conversion failed: Invalid request missing \'to\' property.'
     }
 });
 
@@ -181,7 +181,7 @@ testConvertFunction({
         to: { test: "YO!" }
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request \'to\' value type. Expected reference to \'[object String]\'.'
+        error: 'Type conversion failed: Invalid request \'to\' value type. Expected reference to \'[object String]\'.'
     }
 });
 
@@ -194,7 +194,7 @@ testConvertFunction({
         to: "jsCode"
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request \'from\' value \'ERROR\' is not a valid dimension string. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
+        error: 'Type conversion failed: Invalid request \'from\' value \'ERROR\' is not a valid dimension string. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
     }
 });
 
@@ -207,7 +207,7 @@ testConvertFunction({
         to: "whatever",
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request \'from\' value \'whatever\' is not a valid dimension string. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
+        error: 'Type conversion failed: Invalid request \'from\' value \'whatever\' is not a valid dimension string. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
     }
 });
 
@@ -222,7 +222,7 @@ testConvertFunction({
         value: "should be a number"
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request \'value\' type. Expected reference to \'[object Number]\'.'
+        error: 'Type conversion failed: Invalid request \'value\' type. Expected reference to \'[object Number]\'.'
     }
 });
 
@@ -236,7 +236,7 @@ testConvertFunction({
         value: 100
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request \'value\' \'100\' is not a valid \'jsCode\' value.'
+        error: 'Type conversion failed: Invalid request \'value\' \'100\' is not a valid \'jsCode\' value.'
     }
 });
 
@@ -250,7 +250,7 @@ testConvertFunction({
         value: 100
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request \'value\' type. Expected reference to \'[object String]\'.'
+        error: 'Type conversion failed: Invalid request \'value\' type. Expected reference to \'[object String]\'.'
     }
 });
 
@@ -264,7 +264,7 @@ testConvertFunction({
         value: "jsBoolean"
     },
     expectedResults: {
-        error: 'jbus type conversion failed: No conversion to \'WTF-THIS\' available. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
+        error: 'Type conversion failed: No conversion to \'WTF-THIS\' available. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
     }
 });
 
@@ -278,7 +278,7 @@ testConvertFunction({
         value: "WTF-THIS"
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request \'value\' specifies unknown jsCode \'WTF-THIS\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
+        error: 'Type conversion failed: Invalid request \'value\' specifies unknown jsCode \'WTF-THIS\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
     }
 });
 
@@ -292,7 +292,7 @@ testConvertFunction({
         value: "WTF-THIS"
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request \'value\' specifies unknown jsCode \'WTF-THIS\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
+        error: 'Type conversion failed: Invalid request \'value\' specifies unknown jsCode \'WTF-THIS\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
     }
 });
 
@@ -306,7 +306,7 @@ testConvertFunction({
         value: "WTF-THIS"
     },
     expectedResults: {
-        error: 'jbus type conversion failed: Invalid request \'value\' specifies unknown jsonMoniker \'WTF-THIS\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
+        error: 'Type conversion failed: Invalid request \'value\' specifies unknown jsonMoniker \'WTF-THIS\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
     }
 });
 
@@ -320,7 +320,7 @@ testConvertFunction({
         value: "jsUndefined"
     },
     expectedResults: {
-        error: 'jbus type conversion failed: No coversion from dimension \'jsMoniker\' to \'jsonMoniker\' for value \'jsUndefined\'.'
+        error: 'Type conversion failed: No coversion from dimension \'jsMoniker\' to \'jsonMoniker\' for value \'jsUndefined\'.'
     }
 });
 
@@ -334,7 +334,7 @@ testConvertFunction({
         value: "jsFunction"
     },
     expectedResults: {
-        error: 'jbus type conversion failed: No coversion from dimension \'jsMoniker\' to \'jsonMoniker\' for value \'jsFunction\'.'
+        error: 'Type conversion failed: No coversion from dimension \'jsMoniker\' to \'jsonMoniker\' for value \'jsFunction\'.'
     }
 });
 
@@ -348,7 +348,7 @@ testConvertFunction({
         value: function() { console.log("nope"); }
     },
     expectedResults: {
-        error: 'jbus type conversion failed: No coversion from dimension \'jsTypeString\' to \'jsonMoniker\' for value \'[object Function]\'.'
+        error: 'Type conversion failed: No coversion from dimension \'jsTypeString\' to \'jsonMoniker\' for value \'[object Function]\'.'
     }
 });
 

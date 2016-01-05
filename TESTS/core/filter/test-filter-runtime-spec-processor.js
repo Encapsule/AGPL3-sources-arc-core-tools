@@ -37,7 +37,7 @@ testVerifyFilterSpec({
     validConfig: false,
     request: {spec:{}},
     expectedResults: {
-        error: 'Error at path \'~\': jbus type in set check failed: Invalid request.types value type \'jsUndefined\'. Expected either \'[object String]\' (jsMoniker string) or \'[object Array]\' (of jsMoniker strings).',
+        error: 'Error at path \'~\': Type in set check failed: Invalid request.types value type \'jsUndefined\'. Expected either \'[object String]\' (jsMoniker string) or \'[object Array]\' (of jsMoniker strings).',
         result: ''
     }
 });

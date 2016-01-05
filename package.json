@@ -2,7 +2,7 @@
   "private": true,
   "name": "arc_master",
   "version": "0.0.5",
-  "codename": "subterra",
+  "codename": "perspective",
   "description": "Encapsule.io ARC protocol master repository.",
   "main": "index.js",
   "scripts": {
