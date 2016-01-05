@@ -1,19 +1,3 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
   'use strict';
   var Filter, IDENTIFIER, verifyFilterCreateRequest, verifyFilterSpecDeclaration;
@@ -49,7 +33,7 @@ Please consult the included LICENSE file for agreement terms.
           outputDescription: required string
   
            * Describe your function's outputs for machine readers.
-          
+  
           outputTypeMap: object
   
           bodyFunction: function you wish to wrap in a NormalizedFunction
@@ -101,7 +85,7 @@ Please consult the included LICENSE file for agreement terms.
       response.result = new Filter(functionDescriptor);
     }
     if (errors.length) {
-      errors.unshift("jbus.common.filter.create request failed:");
+      errors.unshift("Filter factory failure:");
       response.error = errors.join(' ');
     }
     return response;

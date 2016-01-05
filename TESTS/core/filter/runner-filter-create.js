@@ -21,7 +21,7 @@ var testFilterComposeFunction = module.exports = function(testVector_) {
 
     callResponse = null;
 
-    describe("jbus common Filter.createFilter test use case: " + testVector_.testName, function() {
+    describe("arccore filter factory test use case: " + testVector_.testName, function() {
 
         before(function() {
 

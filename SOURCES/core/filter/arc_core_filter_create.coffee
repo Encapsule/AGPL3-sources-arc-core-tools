@@ -1,20 +1,3 @@
-###
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
-###
-#
-#
-#
 
 'use strict'
 
@@ -46,7 +29,7 @@ Filter = require './arc_core_filter_runtime'
         outputDescription: required string
 
         # Describe your function's outputs for machine readers.
-        
+
         outputTypeMap: object
 
         bodyFunction: function you wish to wrap in a NormalizedFunction
@@ -96,7 +79,7 @@ module.exports = (request_) ->
         response.result = new Filter functionDescriptor
 
     if errors.length
-        errors.unshift "jbus.common.filter.create request failed:"
+        errors.unshift "Filter factory failure:"
         response.error = errors.join ' '
 
     response

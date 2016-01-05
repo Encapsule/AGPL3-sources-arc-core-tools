@@ -8,7 +8,7 @@ testNFFComposeFunction({
     validConfig: false,
     request: undefined,
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: Invalid data type specified for property \'~\'. Value of type \'jsUndefined\' not in allowed type set [jsObject].'
+        error: 'Filter factory failure: Invalid data type specified for property \'~\'. Value of type \'jsUndefined\' not in allowed type set [jsObject].'
     }
 });
 
@@ -18,7 +18,7 @@ testNFFComposeFunction({
     validConfig: false,
     request: {},
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: Invalid data type specified for property \'~.operationID\'. Value of type \'jsUndefined\' not in allowed type set [jsString].'
+        error: 'Filter factory failure: Invalid data type specified for property \'~.operationID\'. Value of type \'jsUndefined\' not in allowed type set [jsString].'
     }
 });
 
@@ -29,7 +29,7 @@ testNFFComposeFunction({
         operationID: 5
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: Invalid data type specified for property \'~.operationID\'. Value of type \'jsNumber\' not in allowed type set [jsString].'
+        error: 'Filter factory failure: Invalid data type specified for property \'~.operationID\'. Value of type \'jsNumber\' not in allowed type set [jsString].'
     }
 });
 
@@ -40,7 +40,7 @@ testNFFComposeFunction({
         operationID: "Um, yea. I'm going to have you come on in on Saturday."
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: Invalid IRUT specified for \'~.operationID: Expected 22-character string. Found 54-character string instead.'
+        error: 'Filter factory failure: Invalid IRUT specified for \'~.operationID: Expected 22-character string. Found 54-character string instead.'
     }
 });
 
@@ -51,7 +51,7 @@ testNFFComposeFunction({
         operationID: "//34567890123456789012"
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: Invalid IRUT specified for \'~.operationID: Expected only Base64 characters (substitute: \'+\' > \'-\', \'/\' > \'_\').'
+        error: 'Filter factory failure: Invalid IRUT specified for \'~.operationID: Expected only Base64 characters (substitute: \'+\' > \'-\', \'/\' > \'_\').'
     }
 });
 
@@ -116,7 +116,7 @@ testNFFComposeFunction({
         bodyFunction: "Nope!"
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: Invalid data type specified for property \'~.bodyFunction\'. Value of type \'jsString\' not in allowed type set [jsFunction,jsUndefined].'
+        error: 'Filter factory failure: Invalid data type specified for property \'~.bodyFunction\'. Value of type \'jsString\' not in allowed type set [jsFunction,jsUndefined].'
     }
 });
 

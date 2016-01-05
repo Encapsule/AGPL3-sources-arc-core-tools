@@ -75,7 +75,7 @@
         opaqueNamespace = false;
         asMapNamespace = false;
         defaulted = false;
-        subnamespacesDeclared = false;
+        subnamespacesDeclared = 0;
         typemapDescriptor = mapQueue.shift();
         typepath = (typemapDescriptor.path != null) && typemapDescriptor.path || '~';
         typemap = typemapDescriptor.typemap;
@@ -242,18 +242,22 @@
                 path: newPath,
                 typemap: mapPropertyValue
               });
-              subnamespacesDeclared = true;
+              subnamespacesDeclared++;
               break;
-          }
-          if (acceptNamespace && subnamespacesDeclared) {
-            errors.unshift("You cannot declare subnamespace filter spec(s) of a parent namespace declared using '____accept'.");
-            break;
           }
         }
         if (!errors.length) {
           inBreakScope = false;
           while (!inBreakScope) {
             inBreakScope = true;
+            if (acceptNamespace && subnamespacesDeclared) {
+              errors.unshift("You cannot declare subnamespace filter spec(s) of a parent namespace declared using '____accept'.");
+              break;
+            }
+            if (asMapNamespace && (subnamespacesDeclared !== 1)) {
+              errors.unshift("Namespaces declared using '____asMap' set true must declare a single subnamespace declaration.");
+              break;
+            }
             if (!(validTypeConstraint || opaqueNamespace)) {
               errors.unshift("Missing required '____accept', '____types', or '_____opaque' type constraint directive.");
               break;

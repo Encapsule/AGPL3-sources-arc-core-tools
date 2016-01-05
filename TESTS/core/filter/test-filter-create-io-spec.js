@@ -23,7 +23,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: Invalid data type specified for property \'~.outputFilterSpec\'. Value of type \'jsArray\' not in allowed type set [jsUndefined,jsObject].'
+        error: 'Filter factory failure: Invalid data type specified for property \'~.outputFilterSpec\'. Value of type \'jsArray\' not in allowed type set [jsUndefined,jsObject].'
     }
 });
 
@@ -44,7 +44,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.outputFilterSpec\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
+        error: 'Filter factory failure: While examining data namespace \'~.outputFilterSpec\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
     }
 });
 
@@ -63,7 +63,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: Invalid data type specified for property \'~.inputFilterSpec\'. Value of type \'jsArray\' not in allowed type set [jsUndefined,jsObject].'
+        error: 'Filter factory failure: Invalid data type specified for property \'~.inputFilterSpec\'. Value of type \'jsArray\' not in allowed type set [jsUndefined,jsObject].'
     }
 });
 
@@ -82,7 +82,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
     }
 });
 
@@ -101,7 +101,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Error checking directive \'____types\': Value of type \'jsNumber\' not in allowed type set [jsString,jsArray].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error checking directive \'____types\': Value of type \'jsNumber\' not in allowed type set [jsString,jsArray].'
     }
 });
 
@@ -120,7 +120,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Error(s) in \'____types\' directive declaration. jbus type conversion failed: Invalid request \'value\' specifies unknown jsCode \'llama\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error(s) in \'____types\' directive declaration. jbus type conversion failed: Invalid request \'value\' specifies unknown jsCode \'llama\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
     }
 });
 
@@ -139,7 +139,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Type specification \'____types\' directive is missing argument(s).'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Type specification \'____types\' directive is missing argument(s).'
     }
 });
 
@@ -158,7 +158,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Error(s) in \'____types\' directive declaration. jbus type conversion failed: Invalid request \'value\' specifies unknown jsCode \'goat\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error(s) in \'____types\' directive declaration. jbus type conversion failed: Invalid request \'value\' specifies unknown jsCode \'goat\'. Valid dimensions: [jsReference,jsCode,jsTypeString,jsMoniker,jsonMoniker].'
     }
 });
 
@@ -180,7 +180,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Unrecognized typemap directive \'____callback\' not allowed in declaration.'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Unrecognized typemap directive \'____callback\' not allowed in declaration.'
     }
 });
 
@@ -202,7 +202,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Error queuing typemap object \'whatever\': Value of type \'jsString\' not in allowed type set [jsObject].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error queuing typemap object \'whatever\': Value of type \'jsString\' not in allowed type set [jsObject].'
     }
 });
 
@@ -224,7 +224,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec.whatever\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec.whatever\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
     }
 });
 
@@ -256,7 +256,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec.whatever.green\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec.whatever.green\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
     }
 });
 
@@ -281,7 +281,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec.whatever\': Error checking directive \'____label\': Value of type \'jsObject\' not in allowed type set [jsString].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec.whatever\': Error checking directive \'____label\': Value of type \'jsObject\' not in allowed type set [jsString].'
     }
 
 });
@@ -307,7 +307,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec.whatever\': Error checking directive \'____description\': Value of type \'jsObject\' not in allowed type set [jsString].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec.whatever\': Error checking directive \'____description\': Value of type \'jsObject\' not in allowed type set [jsString].'
     }
 });
 
@@ -332,7 +332,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec.whatever\': Error checking directive \'____inValueSet\': Value of type \'jsObject\' not in allowed type set [jsArray].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec.whatever\': Error checking directive \'____inValueSet\': Value of type \'jsObject\' not in allowed type set [jsArray].'
     }
 });
 
@@ -354,7 +354,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Error checking directive \'____inRangeInclusive\': Value of type \'jsString\' not in allowed type set [jsObject].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error checking directive \'____inRangeInclusive\': Value of type \'jsString\' not in allowed type set [jsObject].'
     }
 });
 
@@ -376,7 +376,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Error checking directive \'____inRangeInclusive.begin\': Value of type \'jsUndefined\' not in allowed type set [jsNumber,jsString].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error checking directive \'____inRangeInclusive.begin\': Value of type \'jsUndefined\' not in allowed type set [jsNumber,jsString].'
     }
 });
 
@@ -398,7 +398,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Error checking directive \'____inRangeInclusive.begin\': Value of type \'jsUndefined\' not in allowed type set [jsNumber,jsString].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error checking directive \'____inRangeInclusive.begin\': Value of type \'jsUndefined\' not in allowed type set [jsNumber,jsString].'
     }
 });
 
@@ -466,7 +466,7 @@ testCreateFilter({
         }
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.',
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.',
         result: null
     }
 });
@@ -483,7 +483,7 @@ testCreateFilter({
         }
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': You cannot specify \'____accept\' or \'____types\' constraints on an \'____opaque\' namespace.',
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': You cannot specify \'____accept\' or \'____types\' constraints on an \'____opaque\' namespace.',
         result: null
     }
 });
@@ -500,7 +500,7 @@ testCreateFilter({
         }
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': You cannot specify value-based constraints on an \'____opaque\' namespace.',
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': You cannot specify value-based constraints on an \'____opaque\' namespace.',
         result: null
     }
 });
@@ -551,7 +551,7 @@ testCreateFilter({
         }
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': You cannot specifiy a default value on an optional namespace.',
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': You cannot specifiy a default value on an optional namespace.',
         result: null
     }
 });
@@ -619,7 +619,7 @@ testCreateFilter({
         }
     },
     expectedResults: {
-        error: 'jbus.common.filter.create request failed: While examining data namespace \'~.inputFilterSpec\': You cannot declare subnamespace filter spec(s) of a parent namespace declared using \'____accept\'.',
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': You cannot declare subnamespace filter spec(s) of a parent namespace declared using \'____accept\'.',
         result: null
     }
 });
@@ -640,6 +640,40 @@ testCreateFilter({
     expectedResults: {
         error: null,
         result: '{"operationID":"mM17o2-CQ-W-RNQhouMeGw","operationName":"unnamed","operationDescription":"mM17o2-CQ-W-RNQhouMeGw provides no description.","inputFilterSpec":{"____types":"jsObject","____asMap":true,"element":{"____types":"jsNumber"}}}'
+    }
+});
+
+testCreateFilter({
+    testName: "Type map: test ____asMap directive (missing subnamespace declaration)",
+    validConfig: false,
+    request: {
+        operationID: "lPD2DM0CRoGF6vUio0KPQw",
+        inputFilterSpec: {
+            ____types: 'jsObject',
+            ____asMap: true
+        }
+    },
+    expectedResults: {
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Namespaces declared using \'____asMap\' set true must declare a single subnamespace declaration.',
+        result: null,
+    }
+});
+
+testCreateFilter({
+    testName: "Type map: test ____asMap directive (more than one subnamespace declared)",
+    validConfig: false,
+    request: {
+        operationID: "lPD2DM0CRoGF6vUio0KPQw",
+        inputFilterSpec: {
+            ____types: 'jsObject',
+            ____asMap: true,
+            x: { ____accept: "jsNumber" },
+            y: { ____accept: "jsBoolean" }
+        }
+    },
+    expectedResults: {
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Namespaces declared using \'____asMap\' set true must declare a single subnamespace declaration.',
+        result: null,
     }
 });
 

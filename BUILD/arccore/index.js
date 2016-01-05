@@ -3461,22 +3461,6 @@ module.exports =
 /* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0.
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	 */
-
 	(function() {
 	  'use strict';
 	  var Filter, IDENTIFIER, verifyFilterCreateRequest, verifyFilterSpecDeclaration;
@@ -3512,7 +3496,7 @@ module.exports =
 	          outputDescription: required string
 	  
 	           * Describe your function's outputs for machine readers.
-	          
+	  
 	          outputTypeMap: object
 	  
 	          bodyFunction: function you wish to wrap in a NormalizedFunction
@@ -3564,7 +3548,7 @@ module.exports =
 	      response.result = new Filter(functionDescriptor);
 	    }
 	    if (errors.length) {
-	      errors.unshift("jbus.common.filter.create request failed:");
+	      errors.unshift("Filter factory failure:");
 	      response.error = errors.join(' ');
 	    }
 	    return response;
@@ -3805,7 +3789,7 @@ module.exports =
 	        opaqueNamespace = false;
 	        asMapNamespace = false;
 	        defaulted = false;
-	        subnamespacesDeclared = false;
+	        subnamespacesDeclared = 0;
 	        typemapDescriptor = mapQueue.shift();
 	        typepath = (typemapDescriptor.path != null) && typemapDescriptor.path || '~';
 	        typemap = typemapDescriptor.typemap;
@@ -3972,18 +3956,22 @@ module.exports =
 	                path: newPath,
 	                typemap: mapPropertyValue
 	              });
-	              subnamespacesDeclared = true;
+	              subnamespacesDeclared++;
 	              break;
-	          }
-	          if (acceptNamespace && subnamespacesDeclared) {
-	            errors.unshift("You cannot declare subnamespace filter spec(s) of a parent namespace declared using '____accept'.");
-	            break;
 	          }
 	        }
 	        if (!errors.length) {
 	          inBreakScope = false;
 	          while (!inBreakScope) {
 	            inBreakScope = true;
+	            if (acceptNamespace && subnamespacesDeclared) {
+	              errors.unshift("You cannot declare subnamespace filter spec(s) of a parent namespace declared using '____accept'.");
+	              break;
+	            }
+	            if (asMapNamespace && (subnamespacesDeclared !== 1)) {
+	              errors.unshift("Namespaces declared using '____asMap' set true must declare a single subnamespace declaration.");
+	              break;
+	            }
 	            if (!(validTypeConstraint || opaqueNamespace)) {
 	              errors.unshift("Missing required '____accept', '____types', or '_____opaque' type constraint directive.");
 	              break;

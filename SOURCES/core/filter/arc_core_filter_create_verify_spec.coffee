@@ -62,7 +62,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
             opaqueNamespace = false
             asMapNamespace = false
             defaulted = false
-            subnamespacesDeclared = false
+            subnamespacesDeclared = 0
 
             typemapDescriptor = mapQueue.shift()
             typepath = typemapDescriptor.path? and typemapDescriptor.path or '~'
@@ -200,16 +200,12 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
                             break
                         newPath = "#{typepath}.#{mapPropertyName}"
                         mapQueue.push {path: newPath, typemap: mapPropertyValue}
-                        subnamespacesDeclared = true
+                        subnamespacesDeclared++
                         break
 
                     # end of switch propertyName
 
                 # inside for mapPropertyName of typemap
-
-                if acceptNamespace and subnamespacesDeclared
-                    errors.unshift "You cannot declare subnamespace filter spec(s) of a parent namespace declared using '____accept'."
-                    break
 
             # inside while mapQueue.length
 
@@ -217,6 +213,14 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
                 inBreakScope = false
                 while not inBreakScope
                     inBreakScope = true
+
+                    if acceptNamespace and subnamespacesDeclared
+                        errors.unshift "You cannot declare subnamespace filter spec(s) of a parent namespace declared using '____accept'."
+                        break
+
+                    if asMapNamespace and (subnamespacesDeclared != 1)
+                        errors.unshift "Namespaces declared using '____asMap' set true must declare a single subnamespace declaration."
+                        break
 
                     if not (validTypeConstraint or opaqueNamespace)
                         errors.unshift "Missing required '____accept', '____types', or '_____opaque' type constraint directive."
