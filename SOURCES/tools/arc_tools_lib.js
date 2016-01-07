@@ -7,6 +7,7 @@ module.exports = {
     chalk: require('chalk'),
     handlebars: require('handlebars'),
     arccore: require('../arccore/arc_core'),
+    filterDocGenerate: require('./arc_tools_lib_filter_doc_gen'),
     fileDirEnumSync: require('./arc_tools_lib_file_dir_enum_sync'),
     jsrcFileLoaderSync: require('./arc_tools_lib_jsrc_file_loader_sync'),
     stringToFileSync: require('./arc_tools_lib_string_to_file_sync'),

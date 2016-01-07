@@ -50,17 +50,18 @@ module.exports =
 
 	module.exports = {
 	    meta: build,
-	    commander: __webpack_require__(71),
+	    commander: __webpack_require__(73),
 	    chalk: __webpack_require__(14),
-	    handlebars: __webpack_require__(72),
-	    arccore: __webpack_require__(28),
-	    fileDirEnumSync: __webpack_require__(63),
-	    jsrcFileLoaderSync: __webpack_require__(65),
-	    stringToFileSync: __webpack_require__(67),
-	    filterdagSpecLoader: __webpack_require__(64),
-	    createToolBanner: __webpack_require__(68),
+	    handlebars: __webpack_require__(27),
+	    arccore: __webpack_require__(29),
+	    filterDocGenerate: __webpack_require__(65),
+	    fileDirEnumSync: __webpack_require__(64),
+	    jsrcFileLoaderSync: __webpack_require__(67),
+	    stringToFileSync: __webpack_require__(69),
+	    filterdagSpecLoader: __webpack_require__(66),
+	    createToolBanner: __webpack_require__(70),
 	    clistyles: __webpack_require__(24),
-	    paths: __webpack_require__(66)
+	    paths: __webpack_require__(68)
 	};
 
 
@@ -87,7 +88,7 @@ module.exports =
 	(function() {
 	  var FILTER, FILTERFACTORY;
 
-	  FILTERFACTORY = __webpack_require__(35);
+	  FILTERFACTORY = __webpack_require__(36);
 
 	  FILTER = module.exports = {
 	    create: FILTERFACTORY
@@ -121,9 +122,9 @@ module.exports =
 
 	  IDENTIFIER = module.exports = {};
 
-	  IDENTIFIER.hash = __webpack_require__(54);
+	  IDENTIFIER.hash = __webpack_require__(55);
 
-	  IDENTIFIER.irut = __webpack_require__(55);
+	  IDENTIFIER.irut = __webpack_require__(56);
 
 	}).call(this);
 
@@ -502,11 +503,11 @@ module.exports =
 
 	  jbus.common.types = module.exports = {};
 
-	  jbus.common.types.codes = __webpack_require__(8);
+	  jbus.common.types.codes = __webpack_require__(9);
 
 	  jbus.common.types.convert = __webpack_require__(21);
 
-	  jbus.common.types.check = __webpack_require__(62);
+	  jbus.common.types.check = __webpack_require__(63);
 
 	}).call(this);
 
@@ -576,18 +577,18 @@ module.exports =
 	        // the edges are reverese in the result digraph. Note that if present,
 	        // vertex and edge properties in the source digraph are copied by
 	        // reference to the result digraph.
-	        transpose: __webpack_require__(31),
+	        transpose: __webpack_require__(32),
 
 	        // Directed graph breadth-first traversal visitor algorithm.
-	        breadthFirstTraverse: __webpack_require__(29),
+	        breadthFirstTraverse: __webpack_require__(30),
 
 	        // Directed graph depth-first traversal visitor algorithm.
-	        depthFirstTraverse: __webpack_require__(30),
+	        depthFirstTraverse: __webpack_require__(31),
 
 	        // ADVANCED
 
 	        // Color constant hashtable (advanced).
-	        colors: __webpack_require__(7),
+	        colors: __webpack_require__(8),
 
 	        // Directed graph traversal context factory (advanced).
 	        createTraversalContext: __webpack_require__(17)
@@ -600,159 +601,6 @@ module.exports =
 
 /***/ },
 /* 7 */
-/***/ function(module, exports) {
-
-	/*
-	  Encapsule/jsgraph/src/digraph-algorithm-common-colors.js
-
-	  Copyright (C) 2014-2015 Christopher D. Russell
-
-	  This library is published under the MIT License and is part of the
-	  Encapsule Project System in Cloud (SiC) open service architecture.
-	  Please follow https://twitter.com/Encapsule for news and updates
-	  about jsgraph and other time saving libraries that do amazing things
-	  with in-memory data on Node.js and HTML.
-	*/
-
-
-	// Encapsule/jsgraph/src/digraph-color.js
-	//
-
-	// Color ordinals used by directed graph algorithms.
-
-	module.exports = {
-	    white: 0,
-	    gray: 1,
-	    black: 2
-	};
-
-
-
-/***/ },
-/* 8 */
-/***/ function(module, exports) {
-
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	This software is licensed under the terms of the GNU Affero General
-	Public License v3.0.
-
-	Please review the included LICENSE file for specific agreement terms.
-	See also: https://opensource.org/licenses/AGPL-3.0
-
-	Source code:   https://github.com/encapsule.jbus
-	Documentation: https://encapsule.io/projects/jbus/docs/common
-	Licensing:     https://encapsule.io/licening
-
-	----------------------------------------------------------------------
-	 */
-
-	(function() {
-	  'use strict';
-	  var MODULE;
-
-	  MODULE = {
-	    __undefined: 0,
-	    __null: 1,
-	    __boolean: 2,
-	    __string: 3,
-	    __number: 4,
-	    __object: 5,
-	    __array: 6,
-	    __function: 7,
-	    __GUARD: 8
-	  };
-
-	  Object.freeze(MODULE);
-
-	  module.exports = MODULE;
-
-	}).call(this);
-
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0.
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	 */
-
-	(function() {
-	  var ARC_CORE_UTIL;
-
-	  ARC_CORE_UTIL = {};
-
-	  ARC_CORE_UTIL.deepCopy = function(ref_) {
-	    var flags, instance, key;
-	    if ((ref_ == null) || typeof ref_ !== 'object') {
-	      return ref_;
-	    }
-	    if (ref_ instanceof Date) {
-	      return new Date(ref_.getTime());
-	    }
-	    if (ref_ instanceof RegExp) {
-	      flags = '';
-	      if (object_.global != null) {
-	        flags += 'g';
-	      }
-	      if (object_.ignoreCase != null) {
-	        flags += 'i';
-	      }
-	      if (object_.multiline != null) {
-	        flags += 'm';
-	      }
-	      if (object_.sticky != null) {
-	        flags += 'y';
-	      }
-	      return new RegExp(ref_.source, flags);
-	    }
-	    instance = new ref_.constructor();
-	    for (key in ref_) {
-	      instance[key] = ARC_CORE_UTIL.deepCopy(ref_[key]);
-	    }
-	    return instance;
-	  };
-
-	  ARC_CORE_UTIL.clone = function(ref_) {
-	    return ARC_CORE_UTIL.deepCopy(ref_);
-	  };
-
-	  ARC_CORE_UTIL.dictionaryLength = function(ref_) {
-	    return Object.keys(ref_).length;
-	  };
-
-	  ARC_CORE_UTIL.getEpochTime = function() {
-	    return Math.round(new Date().getTime() / 1000.0);
-	  };
-
-	  module.exports = ARC_CORE_UTIL;
-
-	}).call(this);
-
-
-/***/ },
-/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports =
@@ -3078,7 +2926,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.5", codename: "perspective", author: "Encapsule", buildID: "kl5pKDE4QDql6YwMHdnIJA", buildTime: "1452065060"};
+		module.exports = { version: "0.0.5", codename: "perspective", author: "Encapsule", buildID: "P5XVOksXRaSdwnSLxuHjsQ", buildTime: "1452121411"};
 
 	/***/ },
 	/* 21 */
@@ -7891,6 +7739,159 @@ module.exports =
 	/******/ ]);
 
 /***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	/*
+	  Encapsule/jsgraph/src/digraph-algorithm-common-colors.js
+
+	  Copyright (C) 2014-2015 Christopher D. Russell
+
+	  This library is published under the MIT License and is part of the
+	  Encapsule Project System in Cloud (SiC) open service architecture.
+	  Please follow https://twitter.com/Encapsule for news and updates
+	  about jsgraph and other time saving libraries that do amazing things
+	  with in-memory data on Node.js and HTML.
+	*/
+
+
+	// Encapsule/jsgraph/src/digraph-color.js
+	//
+
+	// Color ordinals used by directed graph algorithms.
+
+	module.exports = {
+	    white: 0,
+	    gray: 1,
+	    black: 2
+	};
+
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	
+	/*
+	----------------------------------------------------------------------
+	 
+	           +---+---+---+---+
+	 chaos --> | J | B | U | S | --> order
+	           +---+---+---+---+
+
+	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+	This software is licensed under the terms of the GNU Affero General
+	Public License v3.0.
+
+	Please review the included LICENSE file for specific agreement terms.
+	See also: https://opensource.org/licenses/AGPL-3.0
+
+	Source code:   https://github.com/encapsule.jbus
+	Documentation: https://encapsule.io/projects/jbus/docs/common
+	Licensing:     https://encapsule.io/licening
+
+	----------------------------------------------------------------------
+	 */
+
+	(function() {
+	  'use strict';
+	  var MODULE;
+
+	  MODULE = {
+	    __undefined: 0,
+	    __null: 1,
+	    __boolean: 2,
+	    __string: 3,
+	    __number: 4,
+	    __object: 5,
+	    __array: 6,
+	    __function: 7,
+	    __GUARD: 8
+	  };
+
+	  Object.freeze(MODULE);
+
+	  module.exports = MODULE;
+
+	}).call(this);
+
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	
+	/*
+	----------------------------------------------------------------------
+	 
+	           +---+---+---+---+
+	 chaos --> | J | B | U | S | --> order
+	           +---+---+---+---+
+
+	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+	JBUS is licensed under the GNU Affero General Public License v3.0.
+	Please consult the included LICENSE file for agreement terms.
+
+	----------------------------------------------------------------------
+	 */
+
+	(function() {
+	  var ARC_CORE_UTIL;
+
+	  ARC_CORE_UTIL = {};
+
+	  ARC_CORE_UTIL.deepCopy = function(ref_) {
+	    var flags, instance, key;
+	    if ((ref_ == null) || typeof ref_ !== 'object') {
+	      return ref_;
+	    }
+	    if (ref_ instanceof Date) {
+	      return new Date(ref_.getTime());
+	    }
+	    if (ref_ instanceof RegExp) {
+	      flags = '';
+	      if (object_.global != null) {
+	        flags += 'g';
+	      }
+	      if (object_.ignoreCase != null) {
+	        flags += 'i';
+	      }
+	      if (object_.multiline != null) {
+	        flags += 'm';
+	      }
+	      if (object_.sticky != null) {
+	        flags += 'y';
+	      }
+	      return new RegExp(ref_.source, flags);
+	    }
+	    instance = new ref_.constructor();
+	    for (key in ref_) {
+	      instance[key] = ARC_CORE_UTIL.deepCopy(ref_[key]);
+	    }
+	    return instance;
+	  };
+
+	  ARC_CORE_UTIL.clone = function(ref_) {
+	    return ARC_CORE_UTIL.deepCopy(ref_);
+	  };
+
+	  ARC_CORE_UTIL.dictionaryLength = function(ref_) {
+	    return Object.keys(ref_).length;
+	  };
+
+	  ARC_CORE_UTIL.getEpochTime = function() {
+	    return Math.round(new Date().getTime() / 1000.0);
+	  };
+
+	  module.exports = ARC_CORE_UTIL;
+
+	}).call(this);
+
+
+/***/ },
 /* 11 */
 /***/ function(module, exports) {
 
@@ -7954,8 +7955,8 @@ module.exports =
 /* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var murmur3 = __webpack_require__(70)
-	var murmur2 = __webpack_require__(69)
+	var murmur3 = __webpack_require__(72)
+	var murmur2 = __webpack_require__(71)
 
 	module.exports = murmur3
 	module.exports.murmur3 = murmur3
@@ -7995,9 +7996,9 @@ module.exports =
 	// http://en.wikipedia.org/wiki/Directed_graph
 
 	var helperFunctions = __webpack_require__(4);
-	var digraphParams = __webpack_require__(34);
-	var digraphImport = __webpack_require__(33);
-	var digraphExport = __webpack_require__(32);
+	var digraphParams = __webpack_require__(35);
+	var digraphImport = __webpack_require__(34);
+	var digraphExport = __webpack_require__(33);
 
 	(function() {
 	    var __bind = function(method, scope){ return function(){ return method.apply(scope, arguments); }; };
@@ -8562,7 +8563,7 @@ module.exports =
 	*/
 
 	var helperFunctions = __webpack_require__(4);
-	var colors = __webpack_require__(7);
+	var colors = __webpack_require__(8);
 
 	module.exports = function (request_) {
 	    var response = { error: null, result: null };
@@ -8935,7 +8936,7 @@ module.exports =
 	(function() {
 	  var convert, typeCodes, typeLUTS;
 
-	  typeCodes = __webpack_require__(8);
+	  typeCodes = __webpack_require__(9);
 
 	  typeLUTS = __webpack_require__(22);
 
@@ -9084,7 +9085,7 @@ module.exports =
 	  'use strict';
 	  var MODULE, jstc, typeCodes;
 
-	  typeCodes = __webpack_require__(8);
+	  typeCodes = __webpack_require__(9);
 
 	  MODULE = {};
 
@@ -9188,7 +9189,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "perspective", author: "Encapsule", buildID: "kl5pKDE4QDql6YwMHdnIJA", buildTime: "1452065060"};
+	module.exports = { version: "0.0.5", codename: "perspective", author: "Encapsule", buildID: "P5XVOksXRaSdwnSLxuHjsQ", buildTime: "1452121411"};
 
 /***/ },
 /* 24 */
@@ -9518,16 +9519,22 @@ module.exports =
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "perspective", author: "Encapsule", buildID: "kl5pKDE4QDql6YwMHdnIJA", buildTime: "1452065060"};
+	module.exports = require("handlebars");
 
 /***/ },
 /* 28 */
+/***/ function(module, exports) {
+
+	module.exports = { version: "0.0.5", codename: "perspective", author: "Encapsule", buildID: "P5XVOksXRaSdwnSLxuHjsQ", buildTime: "1452121411"};
+
+/***/ },
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var ARC_BUILD, COMMON;
 
-	  ARC_BUILD = __webpack_require__(27);
+	  ARC_BUILD = __webpack_require__(28);
 
 	  COMMON = module.exports = {
 	    __meta: {
@@ -9542,21 +9549,21 @@ module.exports =
 	      nodeuuid: __webpack_require__(25)
 	    },
 	    discriminator: {
-	      create: __webpack_require__(57).request
+	      create: __webpack_require__(58).request
 	    },
 	    filter: __webpack_require__(1),
-	    filterDAG: __webpack_require__(38),
+	    filterDAG: __webpack_require__(39),
 	    graph: __webpack_require__(6),
 	    identifier: __webpack_require__(2),
 	    types: __webpack_require__(5),
-	    util: __webpack_require__(9)
+	    util: __webpack_require__(10)
 	  };
 
 	}).call(this);
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -9616,7 +9623,7 @@ module.exports =
 	*/
 
 	var algorithmName = "BFT"; // constant string used in error messages
-	var colors = __webpack_require__(7);
+	var colors = __webpack_require__(8);
 	var visitorCallback = __webpack_require__(19);
 	var normalizeRequest = __webpack_require__(18);
 
@@ -9863,7 +9870,7 @@ module.exports =
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -9879,7 +9886,7 @@ module.exports =
 	*/
 
 	var algorithmName = "DFT"; // used in error messages
-	var colors = __webpack_require__(7);
+	var colors = __webpack_require__(8);
 	var visitorCallback = __webpack_require__(19);
 	var normalizeRequest = __webpack_require__(18);
 
@@ -10194,7 +10201,7 @@ module.exports =
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -10268,7 +10275,7 @@ module.exports =
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -10329,7 +10336,7 @@ module.exports =
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	/*
@@ -10499,7 +10506,7 @@ module.exports =
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -10621,7 +10628,7 @@ module.exports =
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -10630,11 +10637,11 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  verifyFilterCreateRequest = __webpack_require__(36);
+	  verifyFilterCreateRequest = __webpack_require__(37);
 
-	  verifyFilterSpecDeclaration = __webpack_require__(37);
+	  verifyFilterSpecDeclaration = __webpack_require__(38);
 
-	  Filter = __webpack_require__(52);
+	  Filter = __webpack_require__(53);
 
 
 	  /*
@@ -10721,7 +10728,7 @@ module.exports =
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -10872,7 +10879,7 @@ module.exports =
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -11231,7 +11238,7 @@ module.exports =
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11253,7 +11260,7 @@ module.exports =
 	(function() {
 	  var FILTERDAGFACTORY;
 
-	  FILTERDAGFACTORY = __webpack_require__(39);
+	  FILTERDAGFACTORY = __webpack_require__(40);
 
 	  module.exports = {
 	    create: FILTERDAGFACTORY.request
@@ -11263,7 +11270,7 @@ module.exports =
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11291,11 +11298,11 @@ module.exports =
 
 	  INPUTFS = __webpack_require__(3);
 
-	  OUTPUTFS = __webpack_require__(41);
+	  OUTPUTFS = __webpack_require__(42);
 
-	  DAGSPECPROCESSOR = __webpack_require__(42);
+	  DAGSPECPROCESSOR = __webpack_require__(43);
 
-	  DAGGENERATOR = __webpack_require__(40);
+	  DAGGENERATOR = __webpack_require__(41);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: "v_R2RUU9TEacuwgxmydxGw",
@@ -11375,7 +11382,7 @@ module.exports =
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11449,7 +11456,7 @@ module.exports =
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports) {
 
 	
@@ -11504,7 +11511,7 @@ module.exports =
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11532,11 +11539,11 @@ module.exports =
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  MODELPROCESSOR = __webpack_require__(47);
+	  MODELPROCESSOR = __webpack_require__(48);
 
-	  CONSTRAINTPROCESSOR = __webpack_require__(43);
+	  CONSTRAINTPROCESSOR = __webpack_require__(44);
 
-	  SPECRECONCILER = __webpack_require__(51);
+	  SPECRECONCILER = __webpack_require__(52);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'loZ5xDoyTO-bUq77KaBk8g',
@@ -11605,7 +11612,7 @@ module.exports =
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11633,11 +11640,11 @@ module.exports =
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  CONSTRAINT_TYPES = __webpack_require__(46);
+	  CONSTRAINT_TYPES = __webpack_require__(47);
 
-	  CONSTRAINT_FUNCTIONS = __webpack_require__(44);
+	  CONSTRAINT_FUNCTIONS = __webpack_require__(45);
 
-	  CONSTRAINT_RECONCILE = __webpack_require__(45);
+	  CONSTRAINT_RECONCILE = __webpack_require__(46);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'tmhYEUdOR_yk5NRLLk3u1A',
@@ -11706,7 +11713,7 @@ module.exports =
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11805,7 +11812,7 @@ module.exports =
 
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11866,7 +11873,7 @@ module.exports =
 
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11968,7 +11975,7 @@ module.exports =
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11996,11 +12003,11 @@ module.exports =
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  MODELXFORMGEN = __webpack_require__(50);
+	  MODELXFORMGEN = __webpack_require__(51);
 
-	  MODELIOPROCESS = __webpack_require__(48);
+	  MODELIOPROCESS = __webpack_require__(49);
 
-	  MODELRECONCILE = __webpack_require__(49);
+	  MODELRECONCILE = __webpack_require__(50);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'Xke4-hLKSIChJos77JVOmg',
@@ -12077,7 +12084,7 @@ module.exports =
 
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12270,7 +12277,7 @@ module.exports =
 
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12383,7 +12390,7 @@ module.exports =
 
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12591,7 +12598,7 @@ module.exports =
 
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12690,7 +12697,7 @@ module.exports =
 
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -12700,7 +12707,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  filterRuntimeData = __webpack_require__(53);
+	  filterRuntimeData = __webpack_require__(54);
 
 	  bodyFunctionResponseFilter = {
 	    ____types: 'jsObject',
@@ -12792,7 +12799,7 @@ module.exports =
 
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -13071,7 +13078,7 @@ module.exports =
 
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -13112,7 +13119,7 @@ module.exports =
 
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -13316,7 +13323,7 @@ module.exports =
 
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -13324,7 +13331,7 @@ module.exports =
 
 	  GRAPHLIB = __webpack_require__(6);
 
-	  UTILLIB = __webpack_require__(9);
+	  UTILLIB = __webpack_require__(10);
 
 	  partitionAndColorGraphByAmbiguity = module.exports = function(mergedModelDigraph_) {
 	    var allFilters, ambiguityModelDigraph, ambiguousBlackVertices, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, innerResponse, outEdges, rbfsVertices, response, uprop, vertex;
@@ -13464,7 +13471,7 @@ module.exports =
 
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -13472,13 +13479,13 @@ module.exports =
 
 	  FILTERLIB = __webpack_require__(1);
 
-	  createMergedFilterSpecModel = __webpack_require__(58);
+	  createMergedFilterSpecModel = __webpack_require__(59);
 
-	  createAmbiguityModel = __webpack_require__(56);
+	  createAmbiguityModel = __webpack_require__(57);
 
-	  createRuntimeParseModel = __webpack_require__(61);
+	  createRuntimeParseModel = __webpack_require__(62);
 
-	  createDiscriminatorFilterRuntime = __webpack_require__(59);
+	  createDiscriminatorFilterRuntime = __webpack_require__(60);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: "5A8uDJunQUm1w-HcBPQ6Gw",
@@ -13600,13 +13607,13 @@ module.exports =
 
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var FILTERLIB, GRAPHLIB, UTILLIB, addFilterSpecToMergedDigraphModel, buildMergedFilterSpecDigraphModel, rootVertex;
 
-	  UTILLIB = __webpack_require__(9);
+	  UTILLIB = __webpack_require__(10);
 
 	  FILTERLIB = __webpack_require__(1);
 
@@ -13775,7 +13782,7 @@ module.exports =
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -13785,7 +13792,7 @@ module.exports =
 
 	  TYPELIB = __webpack_require__(5);
 
-	  checkPropConstraint = __webpack_require__(60);
+	  checkPropConstraint = __webpack_require__(61);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: "nIcFGxZeQia9GCBFbpiDZQ",
@@ -13938,7 +13945,7 @@ module.exports =
 
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -13979,7 +13986,7 @@ module.exports =
 
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -13987,7 +13994,7 @@ module.exports =
 
 	  GRAPHLIB = __webpack_require__(6);
 
-	  UTILLIB = __webpack_require__(9);
+	  UTILLIB = __webpack_require__(10);
 
 	  IDLIB = __webpack_require__(2);
 
@@ -14082,13 +14089,13 @@ module.exports =
 
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var MODULE, typeCodes, typeConvert, typeLUTS;
 
-	  typeCodes = __webpack_require__(8);
+	  typeCodes = __webpack_require__(9);
 
 	  typeLUTS = __webpack_require__(22);
 
@@ -14224,13 +14231,13 @@ module.exports =
 
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	var FS = __webpack_require__(15);
 	var PATH = __webpack_require__(11);
-	var ARC_CORE = __webpack_require__(10);
+	var ARC_CORE = __webpack_require__(7);
 
 	var response = ARC_CORE.filter.create({
 
@@ -14351,11 +14358,84 @@ module.exports =
 
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	var ARC_CORE = __webpack_require__(10);
+	var ARCCORE = __webpack_require__(7);
+	FILTERLIB = ARCCORE.filter;
+	HANDLEBARS  = __webpack_require__(27);
+
+	var filterlibResponse = FILTERLIB.create({
+	    operationID: "Unymh9rRTVaBHGah531gmQ",
+	    operationName: "Filter Documentation Generator",
+	    operationDescription: "Generates human-readable documentation from a Filter instance.",
+
+	    inputFilterSpec: {
+	        ____label: "Filter Doc Generator Request",
+	        ____description: "Input Filter and options request object.",
+	        ____types: "jsObject",
+	        filter: {
+	            ____label: "Input Filter Instance",
+	            ____description: "A reference to the Filter object to document.",
+	            ____types: "jsObject",
+	            filterDescriptor: {
+	                ____label: "Filter Runtime Parameters",
+	                ____description: "Internal representation of the filter's runtime contraints.",
+	                ____accept: "jsObject"
+	            }
+	        },
+	        template: {
+	            ____label: "Filter Documentation Template",
+	            ____description: "A handlebars template to be populated with data extracted from the Filter.",
+	            ____accept: "jsString"
+	        }
+	    },
+
+	    bodyFunction: function(request_) {
+	        var response = { error: null, result: null };
+	        var errors = [];
+	        var inBreakScope = false;
+	        while (!inBreakScope) {
+	            inBreakScope = true;
+	            try {
+	                var compiledTemplate = HANDLEBARS.compile(request_.template);
+	                var document = compiledTemplate(request_.filter);
+	                response.result = document;
+	            } catch (error_) {
+	                errors.unshift(error_.toString());
+	                errors.unshift("Fatal exception while attempting generate document:");
+	            }
+	            break;
+	        }
+	        if (errors.length) {
+	            response.error = errors.join(" ");
+	        }
+	        return response;
+	    },
+
+	    outputFilterSpec: {
+	        ____label: "Filter Documentation",
+	        ____description: "Human-readable Filter function documentation",
+	        ____accept: "jsString"
+	    }
+
+
+	});
+
+	if (filterlibResponse.error) {
+	    throw new Error(filterlibResponse.error);
+	};
+
+	module.exports = filterlibResponse.result;
+
+
+/***/ },
+/* 66 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	var ARC_CORE = __webpack_require__(7);
 
 	var response = ARC_CORE.filter.create({
 	    operationID: "XkLs1-s1SFGTchfd9eZqYA",
@@ -14407,13 +14487,13 @@ module.exports =
 
 
 /***/ },
-/* 65 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	var FS = __webpack_require__(15);
 	var PATH = __webpack_require__(11);
-	var ARC_CORE = __webpack_require__(10);
+	var ARC_CORE = __webpack_require__(7);
 
 	var response = ARC_CORE.filter.create({
 
@@ -14515,7 +14595,7 @@ module.exports =
 
 
 /***/ },
-/* 66 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -14535,13 +14615,13 @@ module.exports =
 
 
 /***/ },
-/* 67 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	var FS = __webpack_require__(15);
 	var PATH = __webpack_require__(11);
-	var ARC_CORE = __webpack_require__(10);
+	var ARC_CORE = __webpack_require__(7);
 
 	var response = ARC_CORE.filter.create({
 
@@ -14611,7 +14691,7 @@ module.exports =
 
 
 /***/ },
-/* 68 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -14638,7 +14718,7 @@ module.exports =
 
 
 /***/ },
-/* 69 */
+/* 71 */
 /***/ function(module, exports) {
 
 	/**
@@ -14698,7 +14778,7 @@ module.exports =
 
 
 /***/ },
-/* 70 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -14771,16 +14851,10 @@ module.exports =
 	}
 
 /***/ },
-/* 71 */
+/* 73 */
 /***/ function(module, exports) {
 
 	module.exports = require("commander");
-
-/***/ },
-/* 72 */
-/***/ function(module, exports) {
-
-	module.exports = require("handlebars");
 
 /***/ }
 /******/ ]);
