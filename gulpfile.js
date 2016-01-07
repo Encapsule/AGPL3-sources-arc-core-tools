@@ -8,7 +8,7 @@ var mocha = require('gulp-mocha');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var webpack = require('webpack');
- 
+
 var fs = require('fs');
 var path = require('path');
 
@@ -198,25 +198,35 @@ gulp.task("stage", [ "compress" ], function(callback_) {
         .pipe(gulp.dest('./STAGE/arccore'));
     gulp.src('README.md', { cwd: './BUILD/arccore' })
 	.pipe(gulp.dest('./STAGE/arccore'));
+
     // arctools
     gulp.src('package.json', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+
     gulp.src('README.md', { cwd: './BUILD/arctools' })
 	.pipe(gulp.dest('./STAGE/arctools'));
+
     gulp.src('arc_tools_filterdag_compiler.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+
     gulp.src('arc_tools_filterdag_factory.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+
     gulp.src('arc_tools_id_unique.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+
     gulp.src('arc_tools_project.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+
     gulp.src('arc_tools_project_construct.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+
     gulp.src('arc_tools_project_parse.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+
     gulp.src('simple-doc-test.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+
     callback_();
 });
 
@@ -224,8 +234,6 @@ gulp.task("publish", function() {
     gulp.src('./STAGE/**')
         .pipe(gulp.dest('./DISTS/'));
 });
-
-
 
 gulp.task('default', [ 'baseBuild', "test", "stage" ], function() {
     console.log("default...");

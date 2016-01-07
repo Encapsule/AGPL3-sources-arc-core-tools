@@ -1,7 +1,43 @@
 
 var ARCCORE = require('../arccore');
 FILTERLIB = ARCCORE.filter;
+TYPELIB = ARCCORE.types;
 HANDLEBARS  = require('handlebars');
+
+var filterClassificationTable = {
+    "jsUndefined:jsUndefined:jsUndefined": "passthrough (NOOP)",
+    "jsUndefined:jsUndefined:jsObject":    "response normalizer",
+    "jsUndefined:jsFunction:jsUndefined":  "unfiltered operation",
+    "jsUndefined:jsFunction:jsObject":     "subsystem output stage",
+    "jsObject:jsUndefined:jsUndefined":    "input normalizer",
+    "jsObject:jsUndefined:jsObject":       "response shaper operation",
+    "jsObject:jsFunction:jsUndefined":     "subsystem input stage",
+    "jsObject:jsFunction:jsObject":        "normalized operation"
+};
+
+var getFilterClassification = function(filterDescriptor_) {
+    var key = [];
+    var tr = TYPELIB.convert({from: "jsReference", to: "jsMoniker", value: filterDescriptor_.inputFilterSpec});
+    if (tr.error) {
+        return { error: tr.error };
+    }
+    key.push(tr.result);
+    var tr = TYPELIB.convert({from: "jsReference", to: "jsMoniker", value: filterDescriptor_.bodyFunction});
+    if (tr.error) {
+        return { error: tr.error };
+    }
+    key.push(tr.result);
+    var tr = TYPELIB.convert({from: "jsReference", to: "jsMoniker", value: filterDescriptor_.outputFilterSpec});
+    if (tr.error) {
+        return { error: tr.error };
+    }
+    key.push(tr.result);
+    var classification = filterClassificationTable[key.join(":")];
+    if (!classification) {
+        return { error: "Classification lookup failed." };
+    }
+    return { error: null, result: classification };
+};
 
 var filterlibResponse = FILTERLIB.create({
     operationID: "Unymh9rRTVaBHGah531gmQ",
@@ -23,9 +59,26 @@ var filterlibResponse = FILTERLIB.create({
             }
         },
         template: {
-            ____label: "Filter Documentation Template",
-            ____description: "A handlebars template to be populated with data extracted from the Filter.",
-            ____accept: "jsString"
+            ____label: "Handlebars Template",
+            ____description: "Optional handlebar template to override default generator behaviors.",
+            ____types: "jsString",
+            ____defaultValue: "# {{filterDescriptor.operationName}}\n\n" +
+                "**operationID:** {{filterDescriptor.operationID}} / **classification:** {{filterClassification}}\n\n" +
+                "## Summary\n\n" +
+                "{{filterDescriptor.operationDescription}}\n\n" +
+                "## Operation\n\n" +
+                "A programatically-generated summary of the filter's behavior.\n\n" +
+                "## Signature\n\n" +
+                "### Request\n\n" +
+                "```JavaScript\n" +
+                "{{{inputSummary}}}\n" +
+                "```\n\n" +
+                "### Response\n\n" +
+                "```JavaScript\n" +
+                "{{{outputSummary}}}\n" +
+                "```\n\n" +
+                "<hr>\n\n" +
+                "Generated with {{generator}}\n"
         }
     },
 
@@ -37,7 +90,14 @@ var filterlibResponse = FILTERLIB.create({
             inBreakScope = true;
             try {
                 var compiledTemplate = HANDLEBARS.compile(request_.template);
-                var document = compiledTemplate(request_.filter);
+                var templateContext = {};
+                templateContext.filterDescriptor = request_.filter.filterDescriptor;
+                templateContext.filterClassification = getFilterClassification(request_.filter.filterDescriptor).result;
+                templateContext.generator = "Encapsule/arctools v" + ARCCORE.__meta.version;
+                templateContext.inputSummary = JSON.stringify(request_.filter.filterDescriptor.inputFilterSpec, undefined, 4);
+                templateContext.outputSummary = JSON.stringify(request_.filter.filterDescriptor.outputFilterSpec, undefined, 4);
+
+                var document = compiledTemplate(templateContext);
                 response.result = document;
             } catch (error_) {
                 errors.unshift(error_.toString());
