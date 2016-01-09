@@ -1,0 +1,46 @@
+# {{filterDescriptor.operationName}}
+
+Operation: **{{filterDescriptor.operationID}}**<br>
+Input type: **{{inputSignature}}**<br>
+Output type: **{{outputSignature}}**
+
+## Description
+
+{{filterDescriptor.operationDescription}}
+
+## Request Input
+
+Operation {{filterDescriptor.operationID}} is invoked via filter object method `request`.
+
+
+### Input filter spec {{inputSignature}} JSON:
+
+
+```JavaScript
+{{{inputJSON}}}
+```
+
+## Response Output
+
+All filters return a normalized response object with the following pseudo-object format:
+
+```{ error: string | null, result: variant }```
+
+
+Iff response.error is null then response.result is valid. Otherwise, response.error is a string explaining what went wrong.
+
+
+Iff response.error is not null (i.e. an error occurred), then response.result may contain information that's useful for fault diagnosis.
+
+Iff no error occurred (i.e. response.error === null) then the format of response.result specified by the filter's output filter specification as detailed in the next section.
+
+### Output filter spec {{outputSignature}} JSON:
+
+
+```JavaScript
+{{{outputJSON}}}
+```
+
+<hr>
+Generated with {{generator}}
+

@@ -1,9 +1,8 @@
 
 var ARCCORE = require('../arccore');
-FILTERLIB = ARCCORE.filter;
-TYPELIB = ARCCORE.types;
-HANDLEBARS  = require('handlebars');
-
+var FILTERLIB = ARCCORE.filter;
+var TYPELIB = ARCCORE.types;
+var HANDLEBARS  = require('handlebars');
 
 var filterlibResponse = FILTERLIB.create({
     operationID: "Unymh9rRTVaBHGah531gmQ",
@@ -32,32 +31,8 @@ var filterlibResponse = FILTERLIB.create({
         },
         template: {
             ____label: "Handlebars Template",
-            ____description: "Optional handlebar template to override default generator behaviors.",
-            ____types: "jsString",
-            ____defaultValue: "# {{filterDescriptor.operationName}}\n\n" +
-                "Operation: **{{filterDescriptor.operationID}}**<br>\n" +
-                "Input type: **{{inputSignature}}**<br>\n" +
-                "Output type: **{{outputSignature}}**\n\n" +
-                "## Description\n\n" +
-                "{{filterDescriptor.operationDescription}}\n\n" +
-                "## Request Input\n\n" +
-                "Operation {{filterDescriptor.operationID}} is invoked via filter object method `request`.\n\n" +
-                "### Input filter spec {{inputSignature}} JSON:\n\n" +
-                "```JavaScript\n" +
-                "{{{inputJSON}}}\n" +
-                "```\n\n" +
-                "## Response Output\n\n" +
-                "All filters return a normalized response object with the following pseudo-object format:\n\n" +
-                "```{ error: string | null, result: variant }```\n\n" +
-                "Iff response.error is null then response.result is valid. Otherwise, response.error is a string explaining what went wrong.\n\n" +
-                "Iff response.error is not null (i.e. an error occurred), then response.result may contain information that's useful for fault diagnosis.\n\n" +
-                "If no error occurred the format of response.result is governed by this filter's output filter specification.\n\n" +
-                "### Output filter spec {{outputSignature}} JSON:\n\n" +
-                "```JavaScript\n" +
-                "{{{outputJSON}}}\n" +
-                "```\n\n" +
-                "<hr>\n\n" +
-                "Generated with {{generator}}\n"
+            ____description: "Handlebars template (as a UTF-8 string).",
+            ____types: "jsString"
         }
     },
 
@@ -100,8 +75,6 @@ var filterlibResponse = FILTERLIB.create({
         ____description: "Human-readable Filter function documentation",
         ____accept: "jsString"
     }
-
-
 });
 
 if (filterlibResponse.error) {

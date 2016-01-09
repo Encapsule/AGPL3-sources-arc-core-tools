@@ -117,7 +117,7 @@ gulp.task('coffee.util', function() {
 });
 
 
-gulp.task('copyjs', [ "copyjs_graph", "copyjs_tools" ], function(callback_) {
+gulp.task('copyjs', [ "copyjs_graph", "copyjs_tools", "copyjs_tools_templates" ], function(callback_) {
     console.log("copyjs...");
     callback_();
 });
@@ -130,6 +130,11 @@ gulp.task('copyjs_graph', function() {
 gulp.task('copyjs_tools', function() {
     console.log("copyjs_tools");
     return gulp.src('./SOURCES/tools/*.js').pipe(gulp.dest('./BUILD/arctools/'));
+});
+
+gulp.task('copyjs_tools_templates', function() {
+    console.log("copyjs_tools");
+    return gulp.src('./SOURCES/tools/templates/*.hbs').pipe(gulp.dest('./BUILD/arctools/templates'));
 });
 
 gulp.task("baseBuild", [ "copyjs", "coffee" ], function() {
@@ -226,6 +231,9 @@ gulp.task("stage", [ "compress" ], function(callback_) {
 
     gulp.src('simple-doc-test.js', { cwd: './BUILD/arctools' })
         .pipe(gulp.dest('./STAGE/arctools'));
+
+    gulp.src('./templates/*.hbs', { cwd: './BUILD/arctools' })
+        .pipe(gulp.dest('./STAGE/arctools/templates'));
 
     callback_();
 });

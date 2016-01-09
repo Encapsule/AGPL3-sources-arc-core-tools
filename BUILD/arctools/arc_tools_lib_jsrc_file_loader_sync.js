@@ -3,6 +3,8 @@ var FS = require('fs');
 var PATH = require('path');
 var ARC_CORE = require('../arccore');
 
+var normalizePath = require('./arc_tools_lib_paths').normalizePath;
+
 var response = ARC_CORE.filter.create({
 
     operationID: "PTKIgSxMRJ6C-3Tb53SF9w",
@@ -34,10 +36,8 @@ var response = ARC_CORE.filter.create({
                 errors.unshift("is not actually a file.");
                 break;
             }
-            if (!PATH.isAbsolute(npath)) {
-                npath = PATH.join(process.cwd(), npath);
-            }
-            npath = PATH.normalize(npath);
+
+            npath = normalizePath(npath);
 
             var fileContents = FS.readFileSync(npath);
 
@@ -58,7 +58,11 @@ var response = ARC_CORE.filter.create({
                 }
                 break;
             default:
-                errors.unshift("ends in invalid file extension '" + pathParse.ext + "'. Must be '.js' or '.json'.");
+                try {
+                    resource = fileContents.toString('utf8');
+                } catch (error_) {
+                    errors.unshift("cannot be converted to a UTF-8 string (default handling for file extension '#{pathParse.ext}'.");
+                }
                 break;
             }
             if (errors.length) {
