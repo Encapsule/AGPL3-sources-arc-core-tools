@@ -1,26 +1,27 @@
-# {{filterDescriptor.operationName}}
+# Filter '{{filterDescriptor.operationID}}'
 
 Operation: **{{filterDescriptor.operationID}}**<br>
 Input type: **{{inputSignature}}**<br>
-Output type: **{{outputSignature}}**
+Output type: **{{outputSignature}}**<br>
+Classification: **{{filterClassification}}**
 
-## Description
+## {{filterDescriptor.operationName}}
 
-{{filterDescriptor.operationDescription}}
+**{{filterDescriptor.operationDescription}}**
 
-## Request Input
+Filter '{{filterDescriptor.operationID}}' is a normalized function object constructed with the [Encapsule/arccore](https://github.com/Encapsule/arccore/) Filter Factory that implements a **{{filterClassification}}** operation via its `request` method.
 
-Operation {{filterDescriptor.operationID}} is invoked via filter object method `request`.
+## Request Format
 
+Operation '{{filterDescriptor.operationID}}' is invoked via filter object method `request`.
 
 ### Input filter spec {{inputSignature}} JSON:
-
 
 ```JavaScript
 {{{inputJSON}}}
 ```
 
-## Response Output
+## Response Format
 
 All filters return a normalized response object with the following pseudo-object format:
 
@@ -42,5 +43,7 @@ Iff no error occurred (i.e. response.error === null) then the format of response
 ```
 
 <hr>
-Generated with {{generator}}
+Generated {{generatorDate}} by {{generator}}.
+
+
 

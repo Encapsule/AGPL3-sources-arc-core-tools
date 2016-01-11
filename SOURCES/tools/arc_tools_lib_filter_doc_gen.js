@@ -47,15 +47,12 @@ var filterlibResponse = FILTERLIB.create({
                 var templateContext = {};
                 templateContext.filterDescriptor = request_.filter.filterDescriptor;
                 templateContext.filterClassification = getFilterClassification(request_.filter.filterDescriptor).result;
-                templateContext.generator =
-                    "[Encapsule/arctools](https://github.com/Encapsule/arctools/) " +
-                    "v" + ARCCORE.__meta.version + " at " +
-                    new Date().toString();
+                templateContext.generator = "[Encapsule/arctools](https://github.com/Encapsule/arctools/) " + "v" + ARCCORE.__meta.version;
+                templateContext.generatorDate = new Date().toString();
                 templateContext.inputJSON = JSON.stringify(request_.filter.filterDescriptor.inputFilterSpec, undefined, 4);
                 templateContext.inputSignature = ARCCORE.identifier.irut.fromReference(request_.filter.filterDescriptor.inputFilterSpec).result;
                 templateContext.outputJSON = JSON.stringify(request_.filter.filterDescriptor.outputFilterSpec, undefined, 4);
                 templateContext.outputSignature = ARCCORE.identifier.irut.fromReference(request_.filter.filterDescriptor.outputFilterSpec).result;
-
                 var document = compiledTemplate(templateContext);
                 response.result = document;
             } catch (error_) {
