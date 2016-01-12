@@ -22,9 +22,9 @@ program
     .version(TOOLSLIB.meta.version)
     .description("ARC Filter document generator")
     .option('--about', "Print tool information and exit.")
-    .option('--filter, -f [filename]', "CommonJS module filename that implements the filter to document (required).")
-    .option('--template, -t [filename]', "Handlebars template to use to generate the documentation (optional).")
-    .option('--output, -o [filename]', "Filename to write the generated document to. If ommitted, use stdout.")
+    .option('-f, --filter <filename>', "CommonJS module filename that implements the filter to document (required).")
+    .option('-t, --template <filename>', "Handlebars template to use to generate the documentation (optional).")
+    .option('-o, --output <filename>', "Filename to write the generated document to. If ommitted, use stdout.")
     .option('--verbose', "Log diagnostic and informational messages to console.")
     .parse(process.argv);
 
@@ -34,13 +34,67 @@ if (program.about) {
 }
 
 while (!exitProgram) {
-
+    exitProgram = true;
     if (!program.filter) {
-        errors.unshift("Missing required option --filter.");
+        errors.unshift("Missing required --filter filename.");
+        break;
+    }
+    var filterModulePath = TOOLSLIB.paths.normalizePath(program.filter);
+    if (!FS.existsSync(filterModulePath)) {
+        errors.unshift("Bad filter module path. '" + filterModulePath + "' does not exist.");
+        break;
+    }
+    if (!FS.statSync(filterModulePath).isFile()) {
+        errors.unshift("Bad filter module path. '" + filterModulePath + "' is not a file.");
         break;
     }
 
-    exitProgram = true;
+    var moduleResource = undefined;
+    var templateResource = undefined;
+
+    try {
+        moduleResource = require(filterModulePath);
+    } catch (error_) {
+        errors.unshift(error_.toString());
+        errors.unshift("Fatal exception attempting to `require` filter module '" + filterModulePath + "' into scope:");
+        break;
+    }
+    if (!program.template) {
+        var filterDocTemplatePath = PATH.resolve(__dirname, 'templates', 'filter.hbs');
+        var loaderResponse = FILELOADER.request(filterDocTemplatePath);
+        if (loaderResponse.error) {
+            errors.unshift(loaderResponse.error);
+            break;
+        }
+        templateResource = loaderResponse.result.resource;
+    } else {
+        templatePath = TOOLSLIB.paths.normalizePath(program.template);
+        if (!FS.existsSync(templatePath)) {
+            errors.unshift("Bad template path. '" + templatePath + "' does not exist.");
+            break;
+        }
+        if (!FS.statSync(templatePath).isFile()) {
+            errors.unshift("Bad template path. '" + templatePath + "' is not a file.");
+            break;
+        }
+        var loaderResponse = FILELOADER.request(templatePath);
+        if (loaderResponse.error) {
+            errors.unshift(loaderResponse.error);
+            break;
+        }
+        templateResource = loaderResponse.result.resource;
+    }
+    var generatorResponse = TOOLSLIB.filterDocGenerate.request({
+        filter: moduleResource,
+        template: templateResource
+    });
+    if (generatorResponse.error) {
+        errors.unshift(generatorResponse.error);
+        break;
+    }
+
+    console.log(generatorResponse.result);
+
     break;
 }
 
