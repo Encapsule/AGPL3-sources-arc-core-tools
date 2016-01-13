@@ -1,9 +1,9 @@
 {
     "name": "arctools",
-    "version": "0.0.5",
-    "codename": "perspective1",
-    "buildID": "21RbiN44RByA2KWawrpqog",
-    "buildTime": 1452533660,
+    "version": "0.0.6",
+    "codename": "major-tom",
+    "buildID": "dQWYaS2xSwKr9ZgoVGZC7w",
+    "buildTime": 1452665960,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arctools.git"

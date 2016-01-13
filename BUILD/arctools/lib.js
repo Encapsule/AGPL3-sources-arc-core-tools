@@ -2926,7 +2926,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.5", codename: "perspective1", author: "Encapsule", buildID: "21RbiN44RByA2KWawrpqog", buildTime: "1452533660"};
+		module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "dQWYaS2xSwKr9ZgoVGZC7w", buildTime: "1452665960"};
 
 	/***/ },
 	/* 21 */
@@ -9189,7 +9189,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "perspective1", author: "Encapsule", buildID: "21RbiN44RByA2KWawrpqog", buildTime: "1452533660"};
+	module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "dQWYaS2xSwKr9ZgoVGZC7w", buildTime: "1452665960"};
 
 /***/ },
 /* 24 */
@@ -9545,7 +9545,7 @@ module.exports =
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.5", codename: "perspective1", author: "Encapsule", buildID: "21RbiN44RByA2KWawrpqog", buildTime: "1452533660"};
+	module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "dQWYaS2xSwKr9ZgoVGZC7w", buildTime: "1452665960"};
 
 /***/ },
 /* 30 */
@@ -14432,10 +14432,12 @@ module.exports =
 	                templateContext.filterClassification = getFilterClassification(request_.filter.filterDescriptor).result;
 	                templateContext.generator = "[Encapsule/arctools](https://github.com/Encapsule/arctools/) " + "v" + ARCCORE.__meta.version;
 	                templateContext.generatorDate = new Date().toString();
-	                templateContext.inputJSON = JSON.stringify(request_.filter.filterDescriptor.inputFilterSpec, undefined, 4);
-	                templateContext.inputSignature = ARCCORE.identifier.irut.fromReference(request_.filter.filterDescriptor.inputFilterSpec).result;
-	                templateContext.outputJSON = JSON.stringify(request_.filter.filterDescriptor.outputFilterSpec, undefined, 4);
-	                templateContext.outputSignature = ARCCORE.identifier.irut.fromReference(request_.filter.filterDescriptor.outputFilterSpec).result;
+	                var inputFilterSpec = request_.filter.filterDescriptor.inputFilterSpec;
+	                templateContext.inputJSON = inputFilterSpec?JSON.stringify(inputFilterSpec, undefined, 4):"input filter disabled";
+	                templateContext.inputSignature = inputFilterSpec?ARCCORE.identifier.irut.fromReference(inputFilterSpec).result:"input filter disabled";
+	                var outputFilterSpec = request_.filter.filterDescriptor.outputFilterSpec;
+	                templateContext.outputJSON = outputFilterSpec?JSON.stringify(outputFilterSpec, undefined, 4):"output filter disabled";
+	                templateContext.outputSignature = outputFilterSpec?ARCCORE.identifier.irut.fromReference(outputFilterSpec).result:"output filter disabled";
 	                var document = compiledTemplate(templateContext);
 	                response.result = document;
 	            } catch (error_) {
