@@ -24,9 +24,10 @@ program
     .option('--about', "Print tool information and exit.")
     .option('-f, --filter <filename>', "CommonJS module filename that implements the filter to document (required).")
     .option('-t, --template <filename>', "Handlebars template to use to generate the documentation (optional).")
-    .option('-o, --output <filename>', "Filename to write the generated document to. If ommitted, use stdout.")
+    .option('-o, --output <filename>', "Filename to write the generated document to. If ommitted, write filter-operationID.md in same directory as the Filter module.")
     .option('--verbose', "Log diagnostic and informational messages to console.")
     .parse(process.argv);
+
 
 if (program.about) {
     console.log(theme.infoBody(JSON.stringify(TOOLSLIB.meta, undefined, 4)));
@@ -38,6 +39,7 @@ while (!exitProgram) {
 
     var moduleResource = undefined;
     var templateResource = undefined;
+    var outputFilename = undefined;
 
     ////
     // Load the target Filter module.
@@ -56,12 +58,20 @@ while (!exitProgram) {
         break;
     }
     try {
+        // This is a suboptimal solution that requires some additional thought/research.
+        // What we want is to only load/execute runtime code that constructs the Filter
+        // to be documented. This implementation indiscriminately executes whatever JavaScript
+        // code happens to be in the target module and this is likely to have unintended
+        // side-effects if used incorrectly. Several options are to explore the use of
+        // jQuery loadScript or possibly even RequireJS. Or write a parser that extracts
+        // what's needed from a JavaScript file without actually executing any of the script.
         moduleResource = require(filterModulePath);
     } catch (error_) {
         errors.unshift(error_.toString());
         errors.unshift("Fatal exception attempting to `require` filter module '" + filterModulePath + "' into scope:");
         break;
     }
+    console.log(theme.processStepHeader("> Loaded filter module '" + filterModulePath + "'"));
 
     ////
     // Load the target handlebars template.
@@ -92,6 +102,25 @@ while (!exitProgram) {
         }
         templateResource = loaderResponse.result.resource;
     }
+    console.log(theme.processStepHeader("> Loaded handlebars template '" + filterModulePath + "'"));
+
+    ////
+    // If an output filename was specified, ensure that it's a valid path.
+    if (program.output) {
+        outputFilename = TOOLSLIB.paths.normalizePath(program.output);
+        var pathParse = PATH.parse(outputFilename);
+        if (!FS.existsSync(pathParse.dir)) {
+            errors.unshift("Invalid output filename. The parent directory '" + pathParse.dir + "' does not exist.");
+            break;
+        }
+        if (FS.existsSync(outputFilename)) {
+            if (!FS.statSync(outputFilename).isFile()) {
+                errors.unshift("Invalid output filename. '" + outputFilename + "' exists already and is not a file.");
+                break;
+            }
+        }
+    }
+
     ////
     // Call the Filter documentation generator.
     //
@@ -103,9 +132,21 @@ while (!exitProgram) {
         errors.unshift(generatorResponse.error);
         break;
     }
+    console.log(theme.processStepHeader("> Generated documentation for filter '" + moduleResource.filterDescriptor.operationID + "'"));
 
-
-    console.log(generatorResponse.result);
+    if (outputFilename) {
+        writerResponse = TOOLSLIB.stringToFileSync.request({
+            path: outputFilename,
+            resource: generatorResponse.result
+        });
+        if (writerResponse.error) {
+            errors.unshift(writerResponse.error);
+            break;
+        }
+        console.log(theme.processStepHeader("> Wrote documentation to file '" + outputFilename + "'"));
+    } else {
+        console.log(generatorResponse.result);
+    }
 
     break;
 }
