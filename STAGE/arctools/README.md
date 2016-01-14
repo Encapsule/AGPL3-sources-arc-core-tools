@@ -2,7 +2,7 @@
 
 # Encapsule/arctools v0.0.6 "major-tom"
 
-Build ID "dQWYaS2xSwKr9ZgoVGZC7w" Tue Jan 12 2016 22:19:20 GMT-0800 (PST)
+Build ID "Ok5tx-T5QQS5Gc6wlqxOCA" Wed Jan 13 2016 14:23:43 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

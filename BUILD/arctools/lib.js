@@ -2926,7 +2926,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "dQWYaS2xSwKr9ZgoVGZC7w", buildTime: "1452665960"};
+		module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "Ok5tx-T5QQS5Gc6wlqxOCA", buildTime: "1452723823"};
 
 	/***/ },
 	/* 21 */
@@ -9189,7 +9189,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "dQWYaS2xSwKr9ZgoVGZC7w", buildTime: "1452665960"};
+	module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "Ok5tx-T5QQS5Gc6wlqxOCA", buildTime: "1452723823"};
 
 /***/ },
 /* 24 */
@@ -9545,7 +9545,7 @@ module.exports =
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "dQWYaS2xSwKr9ZgoVGZC7w", buildTime: "1452665960"};
+	module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "Ok5tx-T5QQS5Gc6wlqxOCA", buildTime: "1452723823"};
 
 /***/ },
 /* 30 */
@@ -14430,6 +14430,12 @@ module.exports =
 	                var templateContext = {};
 	                templateContext.filterDescriptor = request_.filter.filterDescriptor;
 	                templateContext.filterClassification = getFilterClassification(request_.filter.filterDescriptor).result;
+	                templateContext.filterStages = {
+	                    input: request_.filter.filterDescriptor.inputFilterSpec?"enabled":"disabled",
+	                    body: request_.filter.filterDescriptor.bodyFunction?"enabled":"disabled",
+	                    response: request_.filter.filterDescriptor.bodyFunction?"enabled":"disabled",
+	                    output: request_.filter.filterDescriptor.outputFilterSpec?"enabled":"disabled"
+	                };
 	                templateContext.generator = "[Encapsule/arctools](https://github.com/Encapsule/arctools/) " + "v" + ARCCORE.__meta.version;
 	                templateContext.generatorDate = new Date().toString();
 	                var inputFilterSpec = request_.filter.filterDescriptor.inputFilterSpec;
@@ -14466,14 +14472,14 @@ module.exports =
 	module.exports = filterlibResponse.result;
 
 	var filterClassificationTable = {
-	    "jsUndefined:jsUndefined:jsUndefined": "passthrough (NOOP)",
-	    "jsUndefined:jsUndefined:jsObject":    "response normalizer",
-	    "jsUndefined:jsFunction:jsUndefined":  "unfiltered operation",
-	    "jsUndefined:jsFunction:jsObject":     "subsystem output stage",
-	    "jsObject:jsUndefined:jsUndefined":    "input normalizer",
-	    "jsObject:jsUndefined:jsObject":       "response shaper operation",
-	    "jsObject:jsFunction:jsUndefined":     "subsystem input stage",
-	    "jsObject:jsFunction:jsObject":        "normalized operation"
+	    "jsUndefined:jsUndefined:jsUndefined": "passthrough (noop)",
+	    "jsUndefined:jsUndefined:jsObject": "output shaper",
+	    "jsUndefined:jsFunction:jsUndefined": "unfiltered operation",
+	    "jsUndefined:jsFunction:jsObject": "output processor",
+	    "jsObject:jsUndefined:jsUndefined": "input shaper",
+	    "jsObject:jsUndefined:jsObject": "input/output shaper",
+	    "jsObject:jsFunction:jsUndefined": "input processor",
+	    "jsObject:jsFunction:jsObject": "normalized operation"
 	};
 
 	var getFilterClassification = function(filterDescriptor_) {

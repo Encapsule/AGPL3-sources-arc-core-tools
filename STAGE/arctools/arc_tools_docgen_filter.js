@@ -68,7 +68,7 @@ while (!exitProgram) {
         moduleResource = require(filterModulePath);
     } catch (error_) {
         errors.unshift(error_.toString());
-        errors.unshift("Fatal exception attempting to `require` filter module '" + filterModulePath + "' into scope:");
+        errors.unshift("Fatal exception attempting to load '" + filterModulePath + "' module via `require`.");
         break;
     }
     console.log(theme.processStepHeader("> Loaded filter module '" + filterModulePath + "'"));
