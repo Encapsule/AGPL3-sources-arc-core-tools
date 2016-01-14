@@ -12,7 +12,10 @@ var filterArray = [
 
 var typeDiscriminator = testModule('arc_core_type_discriminator_factory');
 
-var response = typeDiscriminator.request(filterArray);
+var response = typeDiscriminator.request({ filters: filterArray});
+if (response.error) {
+    throw new Error(response.error);
+}
 
 console.log("ARC core type discriminator filter reponse = '" + JSON.stringify(response,undefined,4) + "'");
 

@@ -74,6 +74,36 @@ module.exports = (request_) ->
                 errors.unshift innerResponse.error
                 break
 
+        innerResponse = IDENTIFIER.irut.fromReference "#{functionDescriptor.operationID}:input"
+        if innerResponse.error
+            errors.unshift innerResponse.error
+            break
+        functionDescriptor.inputTypeVIID = innerResponse.result
+
+        innerResponse = IDENTIFIER.irut.fromReference (functionDescriptor.inputFilterSpec? and functionDescriptor.inputFilterSpec or { ____opaque: true })
+        if innerResponse.error
+            errors.unshift innerResponse.error
+            break
+        functionDescriptor.inputTypeVDID = innerResponse.result
+
+        innerResponse = IDENTIFIER.irut.fromReference "#{functionDescriptor.operationID}:output"
+        if innerResponse.error
+            errors.unshift innerResponse.error
+            break
+        functionDescriptor.outputTypeVIID = innerResponse.result
+
+        innerResponse = IDENTIFIER.irut.fromReference (functionDescriptor.outputFilterSpec? and functionDescriptor.outputFilterSpec or { ____opaque: true })
+        if innerResponse.error
+            errors.unshift innerResponse.error
+            break
+        functionDescriptor.outputTypeVDID = innerResponse.result
+
+        innerResponse = IDENTIFIER.irut.fromReference "#{functionDescriptor.operationID}:#{functionDescriptor.inputTypeVDID}:#{functionDescriptor.outputTypeVDID}"
+        if innerResponse.error
+            errors.unshift innerResponse.error
+            break
+        functionDescriptor.operationVDID = innerResponse.result
+
         # Construct a new Filter object and return it to the caller.
         Object.freeze functionDescriptor
         response.result = new Filter functionDescriptor

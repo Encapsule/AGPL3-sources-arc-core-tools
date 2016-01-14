@@ -434,7 +434,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"Test Operation","operationDescription":"This is a description of the test operation.","inputFilterSpec":{"____types":["jsObject"],"whatever":{"____types":"jsString","blue":{"____types":"jsArray"},"green":{"____types":["jsString"],"purple":{"____types":["jsNumber","jsString","jsUndefined"]}},"red":{"____types":["jsNumber","jsString","jsNull"]}}}}'
+        result: '{"operationID":"VWc08q1GQYyl4yJqC2Jg_Q","operationName":"Test Operation","operationDescription":"This is a description of the test operation.","inputFilterSpec":{"____types":["jsObject"],"whatever":{"____types":"jsString","blue":{"____types":"jsArray"},"green":{"____types":["jsString"],"purple":{"____types":["jsNumber","jsString","jsUndefined"]}},"red":{"____types":["jsNumber","jsString","jsNull"]}}},"inputTypeVIID":"7TrojPrco1xBDbw8SiEc3A","inputTypeVDID":"cmoEqadfFo3DkJkzmcU7AA","outputTypeVIID":"GqhbzK2DvDc0qWHdusz8bw","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"wo2IE3XRW1dVrybtL956tA"}'
     }
 });
 
@@ -451,7 +451,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"1234567890123456789012","operationName":"unnamed","operationDescription":"1234567890123456789012 provides no description.","inputFilterSpec":{"____opaque":true}}'
+        result: '{"operationID":"1234567890123456789012","operationName":"unnamed","operationDescription":"1234567890123456789012 provides no description.","inputFilterSpec":{"____opaque":true},"inputTypeVIID":"piTcIj0Txd1P4XZzezugKQ","inputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","outputTypeVIID":"-Is4Arz6X6OY04vtM1NPaw","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"K8r0E12kNVcKnI7txREUtA"}'
     }
 });
 
@@ -518,7 +518,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputFilterSpec":{"____types":"jsObject","____defaultValue":5}}'
+        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputFilterSpec":{"____types":"jsObject","____defaultValue":5},"inputTypeVIID":"T9f0BGfckxoDNzNw2nmdTA","inputTypeVDID":"XiflZhtnt_MSkYfU-JsIAQ","outputTypeVIID":"7EeQU7XFG_5J5rBLqFA7gg","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"jElfE--CV1fqCyntQgVmtA"}'
     }
 });
 
@@ -535,7 +535,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputFilterSpec":{"____types":"jsObject","____defaultValue":5}}'
+        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputFilterSpec":{"____types":"jsObject","____defaultValue":5},"inputTypeVIID":"T9f0BGfckxoDNzNw2nmdTA","inputTypeVDID":"XiflZhtnt_MSkYfU-JsIAQ","outputTypeVIID":"7EeQU7XFG_5J5rBLqFA7gg","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"jElfE--CV1fqCyntQgVmtA"}'
     }
 });
 
@@ -569,7 +569,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputFilterSpec":{"____opaque":true,"____defaultValue":{}}}'
+        result: '{"operationID":"77fdkgbeldbfemxlsdbffd","operationName":"unnamed","operationDescription":"77fdkgbeldbfemxlsdbffd provides no description.","inputFilterSpec":{"____opaque":true,"____defaultValue":{}},"inputTypeVIID":"T9f0BGfckxoDNzNw2nmdTA","inputTypeVDID":"8Ri6k8HsAnEuGiDWgNygHg","outputTypeVIID":"7EeQU7XFG_5J5rBLqFA7gg","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"jDC-E-90XVfq1SXtQpPXtA"}'
     }
 });
 
@@ -585,7 +585,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"ICzEt4ZrSTCaktZHERiInw","operationName":"unnamed","operationDescription":"ICzEt4ZrSTCaktZHERiInw provides no description.","inputFilterSpec":{"____accept":"jsObject"}}'
+        result: '{"operationID":"ICzEt4ZrSTCaktZHERiInw","operationName":"unnamed","operationDescription":"ICzEt4ZrSTCaktZHERiInw provides no description.","inputFilterSpec":{"____accept":"jsObject"},"inputTypeVIID":"TPTak-Pa05Ws37-NKI4Xig","inputTypeVDID":"Pn9jkiuUyFDMIvHds8fQ2A","outputTypeVIID":"frE-V01dxJSG6N32Ru-Jcg","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"6_ASE91oKVetMpPtglpStA"}'
     }
 });
 
@@ -601,7 +601,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"ICzEt4ZrSTCaktZHERiInw","operationName":"unnamed","operationDescription":"ICzEt4ZrSTCaktZHERiInw provides no description.","inputFilterSpec":{"____accept":"jsObject","____defaultValue":{"x":"whatever"}}}'
+        result: '{"operationID":"ICzEt4ZrSTCaktZHERiInw","operationName":"unnamed","operationDescription":"ICzEt4ZrSTCaktZHERiInw provides no description.","inputFilterSpec":{"____accept":"jsObject","____defaultValue":{"x":"whatever"}},"inputTypeVIID":"TPTak-Pa05Ws37-NKI4Xig","inputTypeVDID":"QETSZ17UYaQIvDlCdHjC0A","outputTypeVIID":"frE-V01dxJSG6N32Ru-Jcg","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"66kLE90ISFett5jtgkSGtA"}'
     }
 });
 
@@ -639,7 +639,7 @@ testCreateFilter({
     },
     expectedResults: {
         error: null,
-        result: '{"operationID":"mM17o2-CQ-W-RNQhouMeGw","operationName":"unnamed","operationDescription":"mM17o2-CQ-W-RNQhouMeGw provides no description.","inputFilterSpec":{"____types":"jsObject","____asMap":true,"element":{"____types":"jsNumber"}}}'
+        result: '{"operationID":"mM17o2-CQ-W-RNQhouMeGw","operationName":"unnamed","operationDescription":"mM17o2-CQ-W-RNQhouMeGw provides no description.","inputFilterSpec":{"____types":"jsObject","____asMap":true,"element":{"____types":"jsNumber"}},"inputTypeVIID":"dLRcFabeEC6f7Xn3phbCTw","inputTypeVDID":"YmVwYYTKmA_o7l1dma7J6w","outputTypeVIID":"VijU-KPr0NfY-Sg3B1r3hw","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"2deZE3LIW1frxW7tO8S1tA"}'
     }
 });
 

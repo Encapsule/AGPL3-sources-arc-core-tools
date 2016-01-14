@@ -45,7 +45,7 @@ genericFilterTestSuite({
     validConfig: true,
     expectedResults: {
         error: null,
-        result: '{"filterDescriptor":{"operationID":"XY-x390CSVmXTu0oYXlRiw","operationName":"Discrimintor Filter","operationDescription":"Discriminates between N disjunct request signatures."},"supportedFilters":["[test1:6UirSEewQLiM6VY_Uo1hSA]","[test3:tKTz14sOR4OlXpBr_zZbdA]"],"options":{"action":"getFilterID"}}'
+        result: '{"filterDescriptor":{"operationID":"XY-x390CSVmXTu0oYXlRiw","operationName":"Discrimintor Filter","operationDescription":"Discriminates between N disjunct request signatures.","inputTypeVIID":"geEpCZtPaPFY3ev_MdpegA","inputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","outputTypeVIID":"Im38VZcnJJ1uxp37ZtZiNw","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"XTL0E7NpNVerzY7t1OcUtA"},"supportedFilters":["[test1:6UirSEewQLiM6VY_Uo1hSA]","[test3:tKTz14sOR4OlXpBr_zZbdA]"],"options":{"action":"getFilterID"}}'
     }
 });
 
@@ -56,7 +56,7 @@ genericFilterTestSuite({
     validConfig: true,
     expectedResults: {
         error: null,
-        result: '{"filterDescriptor":{"operationID":"XY-x390CSVmXTu0oYXlRiw","operationName":"Discrimintor Filter","operationDescription":"Discriminates between N disjunct request signatures."},"supportedFilters":["[test1:6UirSEewQLiM6VY_Uo1hSA]","[test4:03es-GM8QdKRj0HDoOMpUQ]"],"options":{"action":"getFilterID"}}'
+        result: '{"filterDescriptor":{"operationID":"XY-x390CSVmXTu0oYXlRiw","operationName":"Discrimintor Filter","operationDescription":"Discriminates between N disjunct request signatures.","inputTypeVIID":"geEpCZtPaPFY3ev_MdpegA","inputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","outputTypeVIID":"Im38VZcnJJ1uxp37ZtZiNw","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"XTL0E7NpNVerzY7t1OcUtA"},"supportedFilters":["[test1:6UirSEewQLiM6VY_Uo1hSA]","[test4:03es-GM8QdKRj0HDoOMpUQ]"],"options":{"action":"getFilterID"}}'
     }
 });
 
@@ -67,7 +67,7 @@ genericFilterTestSuite({
     validConfig: true,
     expectedResults: {
         error: null,
-        result: '{"filterDescriptor":{"operationID":"XY-x390CSVmXTu0oYXlRiw","operationName":"Discrimintor Filter","operationDescription":"Discriminates between N disjunct request signatures."},"supportedFilters":["[test2:uiVVIMuAQlW2qkbbP9FE6w]","[test5:g_o9FSClQ52TqyJ9tESGzg]","[test6:4Q2moYjNSEmPFkvI7Pe80g]"],"options":{"action":"getFilterID"}}'
+        result: '{"filterDescriptor":{"operationID":"XY-x390CSVmXTu0oYXlRiw","operationName":"Discrimintor Filter","operationDescription":"Discriminates between N disjunct request signatures.","inputTypeVIID":"geEpCZtPaPFY3ev_MdpegA","inputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","outputTypeVIID":"Im38VZcnJJ1uxp37ZtZiNw","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"XTL0E7NpNVerzY7t1OcUtA"},"supportedFilters":["[test2:uiVVIMuAQlW2qkbbP9FE6w]","[test5:g_o9FSClQ52TqyJ9tESGzg]","[test6:4Q2moYjNSEmPFkvI7Pe80g]"],"options":{"action":"getFilterID"}}'
     }
 });
 
