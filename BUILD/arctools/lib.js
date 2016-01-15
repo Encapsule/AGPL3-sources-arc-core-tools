@@ -45,23 +45,23 @@ module.exports =
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var build = __webpack_require__(23);
+	var build = __webpack_require__(24);
 	build.name = "arctools";
 
 	module.exports = {
 	    meta: build,
 	    commander: __webpack_require__(73),
 	    chalk: __webpack_require__(14),
-	    handlebars: __webpack_require__(28),
-	    arccore: __webpack_require__(30),
+	    handlebars: __webpack_require__(29),
+	    arccore: __webpack_require__(31),
 	    filterDocGenerate: __webpack_require__(66),
 	    fileDirEnumSync: __webpack_require__(65),
 	    jsrcFileLoaderSync: __webpack_require__(68),
 	    stringToFileSync: __webpack_require__(69),
 	    filterdagSpecLoader: __webpack_require__(67),
 	    createToolBanner: __webpack_require__(70),
-	    clistyles: __webpack_require__(24),
-	    paths: __webpack_require__(25)
+	    clistyles: __webpack_require__(25),
+	    paths: __webpack_require__(26)
 	};
 
 
@@ -88,7 +88,7 @@ module.exports =
 	(function() {
 	  var FILTER, FILTERFACTORY;
 
-	  FILTERFACTORY = __webpack_require__(37);
+	  FILTERFACTORY = __webpack_require__(38);
 
 	  FILTER = module.exports = {
 	    create: FILTERFACTORY
@@ -122,9 +122,9 @@ module.exports =
 
 	  IDENTIFIER = module.exports = {};
 
-	  IDENTIFIER.hash = __webpack_require__(56);
+	  IDENTIFIER.hash = __webpack_require__(57);
 
-	  IDENTIFIER.irut = __webpack_require__(57);
+	  IDENTIFIER.irut = __webpack_require__(58);
 
 	}).call(this);
 
@@ -505,7 +505,7 @@ module.exports =
 
 	  jbus.common.types.codes = __webpack_require__(9);
 
-	  jbus.common.types.convert = __webpack_require__(21);
+	  jbus.common.types.convert = __webpack_require__(22);
 
 	  jbus.common.types.check = __webpack_require__(64);
 
@@ -577,13 +577,13 @@ module.exports =
 	        // the edges are reverese in the result digraph. Note that if present,
 	        // vertex and edge properties in the source digraph are copied by
 	        // reference to the result digraph.
-	        transpose: __webpack_require__(33),
+	        transpose: __webpack_require__(34),
 
 	        // Directed graph breadth-first traversal visitor algorithm.
-	        breadthFirstTraverse: __webpack_require__(31),
+	        breadthFirstTraverse: __webpack_require__(32),
 
 	        // Directed graph depth-first traversal visitor algorithm.
-	        depthFirstTraverse: __webpack_require__(32),
+	        depthFirstTraverse: __webpack_require__(33),
 
 	        // ADVANCED
 
@@ -4080,6 +4080,40 @@ module.exports =
 		          break;
 		        }
 		      }
+		      innerResponse = IDENTIFIER.irut.fromReference(functionDescriptor.operationID + ":input");
+		      if (innerResponse.error) {
+		        errors.unshift(innerResponse.error);
+		        break;
+		      }
+		      functionDescriptor.inputTypeVIID = innerResponse.result;
+		      innerResponse = IDENTIFIER.irut.fromReference((functionDescriptor.inputFilterSpec != null) && functionDescriptor.inputFilterSpec || {
+		        ____opaque: true
+		      });
+		      if (innerResponse.error) {
+		        errors.unshift(innerResponse.error);
+		        break;
+		      }
+		      functionDescriptor.inputTypeVDID = innerResponse.result;
+		      innerResponse = IDENTIFIER.irut.fromReference(functionDescriptor.operationID + ":output");
+		      if (innerResponse.error) {
+		        errors.unshift(innerResponse.error);
+		        break;
+		      }
+		      functionDescriptor.outputTypeVIID = innerResponse.result;
+		      innerResponse = IDENTIFIER.irut.fromReference((functionDescriptor.outputFilterSpec != null) && functionDescriptor.outputFilterSpec || {
+		        ____opaque: true
+		      });
+		      if (innerResponse.error) {
+		        errors.unshift(innerResponse.error);
+		        break;
+		      }
+		      functionDescriptor.outputTypeVDID = innerResponse.result;
+		      innerResponse = IDENTIFIER.irut.fromReference(functionDescriptor.operationID + ":" + functionDescriptor.inputTypeVDID + ":" + functionDescriptor.outputTypeVDID);
+		      if (innerResponse.error) {
+		        errors.unshift(innerResponse.error);
+		        break;
+		      }
+		      functionDescriptor.operationVDID = innerResponse.result;
 		      Object.freeze(functionDescriptor);
 		      response.result = new Filter(functionDescriptor);
 		    }
@@ -7733,7 +7767,7 @@ module.exports =
 	/* 57 */
 	/***/ function(module, exports) {
 
-		module.exports = __webpack_require__(27);
+		module.exports = __webpack_require__(28);
 
 	/***/ }
 	/******/ ]);
@@ -7996,9 +8030,9 @@ module.exports =
 	// http://en.wikipedia.org/wiki/Directed_graph
 
 	var helperFunctions = __webpack_require__(4);
-	var digraphParams = __webpack_require__(36);
-	var digraphImport = __webpack_require__(35);
-	var digraphExport = __webpack_require__(34);
+	var digraphParams = __webpack_require__(37);
+	var digraphImport = __webpack_require__(36);
+	var digraphExport = __webpack_require__(35);
 
 	(function() {
 	    var __bind = function(method, scope){ return function(){ return method.apply(scope, arguments); }; };
@@ -8934,11 +8968,186 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
+	  var FILTERLIB, GRAPHLIB, UTILLIB, addFilterSpecToMergedDigraphModel, buildMergedFilterSpecDigraphModel, rootVertex;
+
+	  UTILLIB = __webpack_require__(10);
+
+	  FILTERLIB = __webpack_require__(1);
+
+	  GRAPHLIB = __webpack_require__(6);
+
+	  rootVertex = "request";
+
+	  buildMergedFilterSpecDigraphModel = module.exports = function(request_) {
+	    var errors, filter, filters, i, inBreakScope, innerResponse, len, response, result, uprops;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      result = {
+	        digraph: null,
+	        filterTable: {}
+	      };
+	      innerResponse = GRAPHLIB.directed.create({
+	        name: "Discriminator Decission Tree Model"
+	      });
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      result.digraph = innerResponse.result;
+	      result.digraph.addVertex({
+	        u: rootVertex,
+	        p: {
+	          color: "white"
+	        }
+	      });
+	      filters = [];
+	      for (i = 0, len = request_.length; i < len; i++) {
+	        filter = request_[i];
+	        innerResponse = addFilterSpecToMergedDigraphModel({
+	          graph: result.digraph,
+	          filter: filter
+	        });
+	        if (innerResponse.error) {
+	          errors.unshift(innerResponse.error);
+	          break;
+	        }
+	        result.filterTable[filter.filterDescriptor.operationID] = filter;
+	        filters.push(filter.filterDescriptor.operationID);
+	      }
+	      if (errors.length) {
+	        errors.unshift("Unable to build merged filter specification digraph model.");
+	        break;
+	      }
+	      uprops = result.digraph.getVertexProperty(rootVertex);
+	      uprops.filters = filters;
+	      result.digraph.setVertexProperty({
+	        u: rootVertex,
+	        p: uprops
+	      });
+	      result.digraph.setGraphDescription("Models the combined input filter specifications of Filter ID's: [" + filters.join(", ") + "].");
+	      response.result = result;
+	      break;
+	    }
+	    if (errors.length) {
+	      response.error = errors.join(" ");
+	    }
+	    return response;
+	  };
+
+	  addFilterSpecToMergedDigraphModel = function(request_) {
+	    var considerSubnamespace, considerSubnamespaces, errors, i, inBreakScope, len, mapEntry, mapQueue, operationID, response, subnamespaceName, type, types, vertexId, vertexProperty;
+	    response = {
+	      error: null,
+	      result: null
+	    };
+	    errors = [];
+	    inBreakScope = false;
+	    operationID = request_.filter.filterDescriptor.operationID;
+	    while (!inBreakScope) {
+	      inBreakScope = true;
+	      mapQueue = [];
+	      mapQueue.push({
+	        parentVertex: rootVertex,
+	        parentNamespaceName: "",
+	        path: "request",
+	        namespaceDescriptor: request_.filter.filterDescriptor.inputFilterSpec
+	      });
+	      while (mapQueue.length) {
+	        mapEntry = mapQueue.shift();
+	        types = null;
+	        considerSubnamespaces = true;
+	        if (!((mapEntry.namespaceDescriptor != null) && mapEntry.namespaceDescriptor)) {
+	          mapEntry.namespaceDescriptor = {
+	            ____opaque: true
+	          };
+	        }
+	        if ((mapEntry.namespaceDescriptor.____types != null) && mapEntry.namespaceDescriptor.____types) {
+	          types = mapEntry.namespaceDescriptor.____types;
+	          if (Object.prototype.toString.call(types) === '[object String]') {
+	            types = [types];
+	          }
+	        } else {
+	          if ((mapEntry.namespaceDescriptor.____accept != null) && mapEntry.namespaceDescriptor.____accept) {
+	            types = mapEntry.namespaceDescriptor.____accept;
+	            if (Object.prototype.toString.call(types) === '[object String]') {
+	              types = [types];
+	            }
+	            considerSubnamespaces = false;
+	          } else {
+	            if ((mapEntry.namespaceDescriptor.____opaque != null) && mapEntry.namespaceDescriptor.____opaque) {
+	              types = ['jsUndefined', 'jsNull', 'jsBoolean', 'jsNumber', 'jsObject', 'jsFunction', 'jsString', 'jsArray'];
+	              considerSubnamespace = false;
+	            }
+	          }
+	        }
+	        if ((mapEntry.namespaceDescriptor.____defaultValue != null) && mapEntry.namespaceDescriptor.____defaultValue) {
+	          types.push('jsUndefined');
+	        }
+	        for (i = 0, len = types.length; i < len; i++) {
+	          type = types[i];
+	          vertexId = mapEntry.parentVertex + mapEntry.parentNamespaceName + "(" + type + ")";
+	          if (!request_.graph.isVertex(vertexId)) {
+	            request_.graph.addVertex({
+	              u: vertexId,
+	              p: {
+	                filterSpecPath: mapEntry.path,
+	                filters: [operationID],
+	                color: "white",
+	                typeConstraint: type
+	              }
+	            });
+	          } else {
+	            vertexProperty = request_.graph.getVertexProperty(vertexId);
+	            vertexProperty.filters.push(operationID);
+	            request_.graph.setVertexProperty({
+	              u: vertexId,
+	              p: vertexProperty
+	            });
+	          }
+	          request_.graph.addEdge({
+	            e: {
+	              u: mapEntry.parentVertex,
+	              v: vertexId
+	            }
+	          });
+	          if ((!considerSubnamespaces) || (type === 'jsUndefined') || (type === 'jsArray')) {
+	            continue;
+	          }
+	          for (subnamespaceName in mapEntry.namespaceDescriptor) {
+	            if (subnamespaceName.indexOf('____') !== 0) {
+	              mapQueue.push({
+	                parentVertex: vertexId,
+	                parentNamespaceName: "." + subnamespaceName,
+	                path: mapEntry.path + "." + subnamespaceName,
+	                namespaceDescriptor: mapEntry.namespaceDescriptor[subnamespaceName]
+	              });
+	            }
+	          }
+	        }
+	      }
+	    }
+	    return response;
+	  };
+
+	}).call(this);
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function() {
 	  var convert, typeCodes, typeLUTS;
 
 	  typeCodes = __webpack_require__(9);
 
-	  typeLUTS = __webpack_require__(22);
+	  typeLUTS = __webpack_require__(23);
 
 
 	  /*
@@ -9078,7 +9287,7 @@ module.exports =
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -9186,13 +9395,13 @@ module.exports =
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports) {
 
 	module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "nExsCUhiQdakcLpxOInBIw", buildTime: "1452759324"};
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var chalk = __webpack_require__(14);
@@ -9232,7 +9441,7 @@ module.exports =
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -9252,7 +9461,7 @@ module.exports =
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;//     uuid.js
@@ -9313,7 +9522,7 @@ module.exports =
 	    // Moderately fast, high quality
 	    if (true) {
 	      try {
-	        var _rb = __webpack_require__(27).randomBytes;
+	        var _rb = __webpack_require__(28).randomBytes;
 	        _nodeRNG = _rng = _rb && function() {return _rb(16);};
 	        _rng();
 	      } catch(e) {}
@@ -9530,31 +9739,31 @@ module.exports =
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports) {
 
 	module.exports = require("crypto");
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports) {
 
 	module.exports = require("handlebars");
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "nExsCUhiQdakcLpxOInBIw", buildTime: "1452759324"};
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var ARC_BUILD, COMMON;
 
-	  ARC_BUILD = __webpack_require__(29);
+	  ARC_BUILD = __webpack_require__(30);
 
 	  COMMON = module.exports = {
 	    __meta: {
@@ -9566,13 +9775,13 @@ module.exports =
 	    },
 	    __bundle: {
 	      murmurhash_js: __webpack_require__(13),
-	      nodeuuid: __webpack_require__(26)
+	      nodeuuid: __webpack_require__(27)
 	    },
 	    discriminator: {
-	      create: __webpack_require__(59).request
+	      create: __webpack_require__(60).request
 	    },
 	    filter: __webpack_require__(1),
-	    filterDAG: __webpack_require__(40),
+	    filterDAG: __webpack_require__(41),
 	    graph: __webpack_require__(6),
 	    identifier: __webpack_require__(2),
 	    types: __webpack_require__(5),
@@ -9583,7 +9792,7 @@ module.exports =
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -9890,7 +10099,7 @@ module.exports =
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -10221,7 +10430,7 @@ module.exports =
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -10295,7 +10504,7 @@ module.exports =
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -10356,7 +10565,7 @@ module.exports =
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	/*
@@ -10526,7 +10735,7 @@ module.exports =
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -10648,7 +10857,7 @@ module.exports =
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -10657,11 +10866,11 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  verifyFilterCreateRequest = __webpack_require__(38);
+	  verifyFilterCreateRequest = __webpack_require__(39);
 
-	  verifyFilterSpecDeclaration = __webpack_require__(39);
+	  verifyFilterSpecDeclaration = __webpack_require__(40);
 
-	  Filter = __webpack_require__(54);
+	  Filter = __webpack_require__(55);
 
 
 	  /*
@@ -10734,6 +10943,40 @@ module.exports =
 	          break;
 	        }
 	      }
+	      innerResponse = IDENTIFIER.irut.fromReference(functionDescriptor.operationID + ":input");
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      functionDescriptor.inputTypeVIID = innerResponse.result;
+	      innerResponse = IDENTIFIER.irut.fromReference((functionDescriptor.inputFilterSpec != null) && functionDescriptor.inputFilterSpec || {
+	        ____opaque: true
+	      });
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      functionDescriptor.inputTypeVDID = innerResponse.result;
+	      innerResponse = IDENTIFIER.irut.fromReference(functionDescriptor.operationID + ":output");
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      functionDescriptor.outputTypeVIID = innerResponse.result;
+	      innerResponse = IDENTIFIER.irut.fromReference((functionDescriptor.outputFilterSpec != null) && functionDescriptor.outputFilterSpec || {
+	        ____opaque: true
+	      });
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      functionDescriptor.outputTypeVDID = innerResponse.result;
+	      innerResponse = IDENTIFIER.irut.fromReference(functionDescriptor.operationID + ":" + functionDescriptor.inputTypeVDID + ":" + functionDescriptor.outputTypeVDID);
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      functionDescriptor.operationVDID = innerResponse.result;
 	      Object.freeze(functionDescriptor);
 	      response.result = new Filter(functionDescriptor);
 	    }
@@ -10748,7 +10991,7 @@ module.exports =
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -10899,7 +11142,7 @@ module.exports =
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -11258,7 +11501,7 @@ module.exports =
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11280,7 +11523,7 @@ module.exports =
 	(function() {
 	  var FILTERDAGFACTORY;
 
-	  FILTERDAGFACTORY = __webpack_require__(41);
+	  FILTERDAGFACTORY = __webpack_require__(42);
 
 	  module.exports = {
 	    create: FILTERDAGFACTORY.request
@@ -11290,7 +11533,7 @@ module.exports =
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11318,11 +11561,11 @@ module.exports =
 
 	  INPUTFS = __webpack_require__(3);
 
-	  OUTPUTFS = __webpack_require__(43);
+	  OUTPUTFS = __webpack_require__(44);
 
-	  DAGSPECPROCESSOR = __webpack_require__(44);
+	  DAGSPECPROCESSOR = __webpack_require__(45);
 
-	  DAGGENERATOR = __webpack_require__(42);
+	  DAGGENERATOR = __webpack_require__(43);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: "v_R2RUU9TEacuwgxmydxGw",
@@ -11402,7 +11645,7 @@ module.exports =
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11476,7 +11719,7 @@ module.exports =
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports) {
 
 	
@@ -11531,7 +11774,7 @@ module.exports =
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11559,11 +11802,11 @@ module.exports =
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  MODELPROCESSOR = __webpack_require__(49);
+	  MODELPROCESSOR = __webpack_require__(50);
 
-	  CONSTRAINTPROCESSOR = __webpack_require__(45);
+	  CONSTRAINTPROCESSOR = __webpack_require__(46);
 
-	  SPECRECONCILER = __webpack_require__(53);
+	  SPECRECONCILER = __webpack_require__(54);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'loZ5xDoyTO-bUq77KaBk8g',
@@ -11632,7 +11875,7 @@ module.exports =
 
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11660,11 +11903,11 @@ module.exports =
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  CONSTRAINT_TYPES = __webpack_require__(48);
+	  CONSTRAINT_TYPES = __webpack_require__(49);
 
-	  CONSTRAINT_FUNCTIONS = __webpack_require__(46);
+	  CONSTRAINT_FUNCTIONS = __webpack_require__(47);
 
-	  CONSTRAINT_RECONCILE = __webpack_require__(47);
+	  CONSTRAINT_RECONCILE = __webpack_require__(48);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'tmhYEUdOR_yk5NRLLk3u1A',
@@ -11733,7 +11976,7 @@ module.exports =
 
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11832,7 +12075,7 @@ module.exports =
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11893,7 +12136,7 @@ module.exports =
 
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -11995,7 +12238,7 @@ module.exports =
 
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12023,11 +12266,11 @@ module.exports =
 
 	  FILTERDAGREQFS = __webpack_require__(3);
 
-	  MODELXFORMGEN = __webpack_require__(52);
+	  MODELXFORMGEN = __webpack_require__(53);
 
-	  MODELIOPROCESS = __webpack_require__(50);
+	  MODELIOPROCESS = __webpack_require__(51);
 
-	  MODELRECONCILE = __webpack_require__(51);
+	  MODELRECONCILE = __webpack_require__(52);
 
 	  filterlibResponse = FILTERLIB.create({
 	    operationID: 'Xke4-hLKSIChJos77JVOmg',
@@ -12104,7 +12347,7 @@ module.exports =
 
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12297,7 +12540,7 @@ module.exports =
 
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12410,7 +12653,7 @@ module.exports =
 
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12618,7 +12861,7 @@ module.exports =
 
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -12717,7 +12960,7 @@ module.exports =
 
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -12727,7 +12970,7 @@ module.exports =
 
 	  IDENTIFIER = __webpack_require__(2);
 
-	  filterRuntimeData = __webpack_require__(55);
+	  filterRuntimeData = __webpack_require__(56);
 
 	  bodyFunctionResponseFilter = {
 	    ____types: 'jsObject',
@@ -12819,7 +13062,7 @@ module.exports =
 
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -13098,7 +13341,7 @@ module.exports =
 
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -13139,7 +13382,7 @@ module.exports =
 
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -13161,7 +13404,7 @@ module.exports =
 	(function() {
 	  var MODULE, MURMUR, TYPES, UUID;
 
-	  UUID = __webpack_require__(26);
+	  UUID = __webpack_require__(27);
 
 	  MURMUR = __webpack_require__(13);
 
@@ -13343,7 +13586,7 @@ module.exports =
 
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -13491,7 +13734,7 @@ module.exports =
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function() {
@@ -13499,9 +13742,9 @@ module.exports =
 
 	  FILTERLIB = __webpack_require__(1);
 
-	  createMergedFilterSpecModel = __webpack_require__(60);
+	  createMergedFilterSpecModel = __webpack_require__(21);
 
-	  createAmbiguityModel = __webpack_require__(58);
+	  createAmbiguityModel = __webpack_require__(59);
 
 	  createRuntimeParseModel = __webpack_require__(63);
 
@@ -13622,181 +13865,6 @@ module.exports =
 	  }
 
 	  module.exports = filterlibResponse.result;
-
-	}).call(this);
-
-
-/***/ },
-/* 60 */
-/***/ function(module, exports, __webpack_require__) {
-
-	(function() {
-	  var FILTERLIB, GRAPHLIB, UTILLIB, addFilterSpecToMergedDigraphModel, buildMergedFilterSpecDigraphModel, rootVertex;
-
-	  UTILLIB = __webpack_require__(10);
-
-	  FILTERLIB = __webpack_require__(1);
-
-	  GRAPHLIB = __webpack_require__(6);
-
-	  rootVertex = "request";
-
-	  buildMergedFilterSpecDigraphModel = module.exports = function(request_) {
-	    var errors, filter, filters, i, inBreakScope, innerResponse, len, response, result, uprops;
-	    response = {
-	      error: null,
-	      result: null
-	    };
-	    errors = [];
-	    inBreakScope = false;
-	    while (!inBreakScope) {
-	      inBreakScope = true;
-	      result = {
-	        digraph: null,
-	        filterTable: {}
-	      };
-	      innerResponse = GRAPHLIB.directed.create({
-	        name: "Discriminator Decission Tree Model"
-	      });
-	      if (innerResponse.error) {
-	        errors.unshift(innerResponse.error);
-	        break;
-	      }
-	      result.digraph = innerResponse.result;
-	      result.digraph.addVertex({
-	        u: rootVertex,
-	        p: {
-	          color: "white"
-	        }
-	      });
-	      filters = [];
-	      for (i = 0, len = request_.length; i < len; i++) {
-	        filter = request_[i];
-	        innerResponse = addFilterSpecToMergedDigraphModel({
-	          graph: result.digraph,
-	          filter: filter
-	        });
-	        if (innerResponse.error) {
-	          errors.unshift(innerResponse.error);
-	          break;
-	        }
-	        result.filterTable[filter.filterDescriptor.operationID] = filter;
-	        filters.push(filter.filterDescriptor.operationID);
-	      }
-	      if (errors.length) {
-	        errors.unshift("Unable to build merged filter specification digraph model.");
-	        break;
-	      }
-	      uprops = result.digraph.getVertexProperty(rootVertex);
-	      uprops.filters = filters;
-	      result.digraph.setVertexProperty({
-	        u: rootVertex,
-	        p: uprops
-	      });
-	      result.digraph.setGraphDescription("Models the combined input filter specifications of Filter ID's: [" + filters.join(", ") + "].");
-	      response.result = result;
-	      break;
-	    }
-	    if (errors.length) {
-	      response.error = errors.join(" ");
-	    }
-	    return response;
-	  };
-
-	  addFilterSpecToMergedDigraphModel = function(request_) {
-	    var considerSubnamespace, considerSubnamespaces, errors, i, inBreakScope, len, mapEntry, mapQueue, operationID, response, subnamespaceName, type, types, vertexId, vertexProperty;
-	    response = {
-	      error: null,
-	      result: null
-	    };
-	    errors = [];
-	    inBreakScope = false;
-	    operationID = request_.filter.filterDescriptor.operationID;
-	    while (!inBreakScope) {
-	      inBreakScope = true;
-	      mapQueue = [];
-	      mapQueue.push({
-	        parentVertex: rootVertex,
-	        parentNamespaceName: "",
-	        path: "request",
-	        namespaceDescriptor: request_.filter.filterDescriptor.inputFilterSpec
-	      });
-	      while (mapQueue.length) {
-	        mapEntry = mapQueue.shift();
-	        types = null;
-	        considerSubnamespaces = true;
-	        if (!((mapEntry.namespaceDescriptor != null) && mapEntry.namespaceDescriptor)) {
-	          mapEntry.namespaceDescriptor = {
-	            ____opaque: true
-	          };
-	        }
-	        if ((mapEntry.namespaceDescriptor.____types != null) && mapEntry.namespaceDescriptor.____types) {
-	          types = mapEntry.namespaceDescriptor.____types;
-	          if (Object.prototype.toString.call(types) === '[object String]') {
-	            types = [types];
-	          }
-	        } else {
-	          if ((mapEntry.namespaceDescriptor.____accept != null) && mapEntry.namespaceDescriptor.____accept) {
-	            types = mapEntry.namespaceDescriptor.____accept;
-	            if (Object.prototype.toString.call(types) === '[object String]') {
-	              types = [types];
-	            }
-	            considerSubnamespaces = false;
-	          } else {
-	            if ((mapEntry.namespaceDescriptor.____opaque != null) && mapEntry.namespaceDescriptor.____opaque) {
-	              types = ['jsUndefined', 'jsNull', 'jsBoolean', 'jsNumber', 'jsObject', 'jsFunction', 'jsString', 'jsArray'];
-	              considerSubnamespace = false;
-	            }
-	          }
-	        }
-	        if ((mapEntry.namespaceDescriptor.____defaultValue != null) && mapEntry.namespaceDescriptor.____defaultValue) {
-	          types.push('jsUndefined');
-	        }
-	        for (i = 0, len = types.length; i < len; i++) {
-	          type = types[i];
-	          vertexId = mapEntry.parentVertex + mapEntry.parentNamespaceName + "(" + type + ")";
-	          if (!request_.graph.isVertex(vertexId)) {
-	            request_.graph.addVertex({
-	              u: vertexId,
-	              p: {
-	                filterSpecPath: mapEntry.path,
-	                filters: [operationID],
-	                color: "white",
-	                typeConstraint: type
-	              }
-	            });
-	          } else {
-	            vertexProperty = request_.graph.getVertexProperty(vertexId);
-	            vertexProperty.filters.push(operationID);
-	            request_.graph.setVertexProperty({
-	              u: vertexId,
-	              p: vertexProperty
-	            });
-	          }
-	          request_.graph.addEdge({
-	            e: {
-	              u: mapEntry.parentVertex,
-	              v: vertexId
-	            }
-	          });
-	          if ((!considerSubnamespaces) || (type === 'jsUndefined') || (type === 'jsArray')) {
-	            continue;
-	          }
-	          for (subnamespaceName in mapEntry.namespaceDescriptor) {
-	            if (subnamespaceName.indexOf('____') !== 0) {
-	              mapQueue.push({
-	                parentVertex: vertexId,
-	                parentNamespaceName: "." + subnamespaceName,
-	                path: mapEntry.path + "." + subnamespaceName,
-	                namespaceDescriptor: mapEntry.namespaceDescriptor[subnamespaceName]
-	              });
-	            }
-	          }
-	        }
-	      }
-	    }
-	    return response;
-	  };
 
 	}).call(this);
 
@@ -14117,9 +14185,9 @@ module.exports =
 
 	  typeCodes = __webpack_require__(9);
 
-	  typeLUTS = __webpack_require__(22);
+	  typeLUTS = __webpack_require__(23);
 
-	  typeConvert = __webpack_require__(21);
+	  typeConvert = __webpack_require__(22);
 
 	  MODULE = {};
 
@@ -14385,7 +14453,11 @@ module.exports =
 	var ARCCORE = __webpack_require__(7);
 	var FILTERLIB = ARCCORE.filter;
 	var TYPELIB = ARCCORE.types;
-	var HANDLEBARS  = __webpack_require__(28);
+	var HANDLEBARS  = __webpack_require__(29);
+
+	var buildMergedFilterSpecDigraphModel = __webpack_require__(21);
+
+	var opaqueFilterSpec = { ____opaque: true };
 
 	var filterlibResponse = FILTERLIB.create({
 	    operationID: "Unymh9rRTVaBHGah531gmQ",
@@ -14438,12 +14510,19 @@ module.exports =
 	                };
 	                templateContext.generator = "[Encapsule/arctools](https://github.com/Encapsule/arctools/) " + "v" + ARCCORE.__meta.version;
 	                templateContext.generatorDate = new Date().toString();
+
 	                var inputFilterSpec = request_.filter.filterDescriptor.inputFilterSpec;
+	                inputFilterSpec = inputFilterSpec?inputFilterSpec:opaqueFilterSpec;
 	                templateContext.inputJSON = inputFilterSpec?JSON.stringify(inputFilterSpec, undefined, 4):"input filter disabled";
 	                templateContext.inputSignature = inputFilterSpec?ARCCORE.identifier.irut.fromReference(inputFilterSpec).result:"input filter disabled";
+
 	                var outputFilterSpec = request_.filter.filterDescriptor.outputFilterSpec;
+	                var outputFilterSpec = outputFilterSpec?outputFilterSpec:opaqueFilterSpec;
 	                templateContext.outputJSON = outputFilterSpec?JSON.stringify(outputFilterSpec, undefined, 4):"output filter disabled";
 	                templateContext.outputSignature = outputFilterSpec?ARCCORE.identifier.irut.fromReference(outputFilterSpec).result:"output filter disabled";
+
+
+
 	                var document = compiledTemplate(templateContext);
 	                response.result = document;
 	            } catch (error_) {
@@ -14572,7 +14651,7 @@ module.exports =
 	var PATH = __webpack_require__(11);
 	var ARC_CORE = __webpack_require__(7);
 
-	var normalizePath = __webpack_require__(25).normalizePath;
+	var normalizePath = __webpack_require__(26).normalizePath;
 
 	var response = ARC_CORE.filter.create({
 
@@ -14757,8 +14836,8 @@ module.exports =
 
 	
 	var chalk = __webpack_require__(14);
-	var clistyle = __webpack_require__(24);
-	var ARCBUILD = __webpack_require__(23);
+	var clistyle = __webpack_require__(25);
+	var ARCBUILD = __webpack_require__(24);
 
 	module.exports = function(toolName_) {
 

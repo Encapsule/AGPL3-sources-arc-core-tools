@@ -3475,6 +3475,40 @@ module.exports =
 	          break;
 	        }
 	      }
+	      innerResponse = IDENTIFIER.irut.fromReference(functionDescriptor.operationID + ":input");
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      functionDescriptor.inputTypeVIID = innerResponse.result;
+	      innerResponse = IDENTIFIER.irut.fromReference((functionDescriptor.inputFilterSpec != null) && functionDescriptor.inputFilterSpec || {
+	        ____opaque: true
+	      });
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      functionDescriptor.inputTypeVDID = innerResponse.result;
+	      innerResponse = IDENTIFIER.irut.fromReference(functionDescriptor.operationID + ":output");
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      functionDescriptor.outputTypeVIID = innerResponse.result;
+	      innerResponse = IDENTIFIER.irut.fromReference((functionDescriptor.outputFilterSpec != null) && functionDescriptor.outputFilterSpec || {
+	        ____opaque: true
+	      });
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      functionDescriptor.outputTypeVDID = innerResponse.result;
+	      innerResponse = IDENTIFIER.irut.fromReference(functionDescriptor.operationID + ":" + functionDescriptor.inputTypeVDID + ":" + functionDescriptor.outputTypeVDID);
+	      if (innerResponse.error) {
+	        errors.unshift(innerResponse.error);
+	        break;
+	      }
+	      functionDescriptor.operationVDID = innerResponse.result;
 	      Object.freeze(functionDescriptor);
 	      response.result = new Filter(functionDescriptor);
 	    }

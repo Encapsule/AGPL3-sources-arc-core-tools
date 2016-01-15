@@ -4,6 +4,10 @@ var FILTERLIB = ARCCORE.filter;
 var TYPELIB = ARCCORE.types;
 var HANDLEBARS  = require('handlebars');
 
+var buildMergedFilterSpecDigraphModel = require('../arccore/arc_core_type_discriminator_merged_model_digraph');
+
+var opaqueFilterSpec = { ____opaque: true };
+
 var filterlibResponse = FILTERLIB.create({
     operationID: "Unymh9rRTVaBHGah531gmQ",
     operationName: "Filter Documentation Generator",
@@ -55,12 +59,19 @@ var filterlibResponse = FILTERLIB.create({
                 };
                 templateContext.generator = "[Encapsule/arctools](https://github.com/Encapsule/arctools/) " + "v" + ARCCORE.__meta.version;
                 templateContext.generatorDate = new Date().toString();
+
                 var inputFilterSpec = request_.filter.filterDescriptor.inputFilterSpec;
+                inputFilterSpec = inputFilterSpec?inputFilterSpec:opaqueFilterSpec;
                 templateContext.inputJSON = inputFilterSpec?JSON.stringify(inputFilterSpec, undefined, 4):"input filter disabled";
                 templateContext.inputSignature = inputFilterSpec?ARCCORE.identifier.irut.fromReference(inputFilterSpec).result:"input filter disabled";
+
                 var outputFilterSpec = request_.filter.filterDescriptor.outputFilterSpec;
+                var outputFilterSpec = outputFilterSpec?outputFilterSpec:opaqueFilterSpec;
                 templateContext.outputJSON = outputFilterSpec?JSON.stringify(outputFilterSpec, undefined, 4):"output filter disabled";
                 templateContext.outputSignature = outputFilterSpec?ARCCORE.identifier.irut.fromReference(outputFilterSpec).result:"output filter disabled";
+
+
+
                 var document = compiledTemplate(templateContext);
                 response.result = document;
             } catch (error_) {

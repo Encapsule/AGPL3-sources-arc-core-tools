@@ -4,9 +4,11 @@
 
 **{{filterDescriptor.operationDescription}}**
 
-**Operation:** `{{filterDescriptor.operationID}}`<br>
-**Input signature:** `{{inputSignature}}`<br>
-**Output signature:** `{{outputSignature}}`
+| Apsect | VIID | VDID |
+|--------|---------------------|-------------------|
+| operation | `{{filterDescriptor.operationID}}` | `{{filterDescriptor.operationVDID}}` |
+| input type | `{{filterDescriptor.inputTypeVIID}}` | `{{filterDescriptor.inputTypeVDID}}` |
+| output type | `{{filterDescriptor.outputTypeVIID}}` | `{{filterDescriptor.outputTypeVDID}}` |
 
 Filter **{{filterDescriptor.operationID}}** implements a **{{filterClassification}}** (see: [Request Dispatch Configuration](#request-dispatch-configuration)).
 
