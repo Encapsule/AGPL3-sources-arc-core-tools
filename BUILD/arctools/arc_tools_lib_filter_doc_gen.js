@@ -52,12 +52,13 @@ var filterlibResponse = FILTERLIB.create({
                 templateContext.filterDescriptor = request_.filter.filterDescriptor;
                 templateContext.filterClassification = getFilterClassification(request_.filter.filterDescriptor).result;
                 templateContext.filterStages = {
-                    input: request_.filter.filterDescriptor.inputFilterSpec?"enabled":"disabled",
-                    body: request_.filter.filterDescriptor.bodyFunction?"enabled":"disabled",
-                    response: request_.filter.filterDescriptor.bodyFunction?"enabled":"disabled",
-                    output: request_.filter.filterDescriptor.outputFilterSpec?"enabled":"disabled"
+                    input: request_.filter.filterDescriptor.inputFilterSpec?true:false,
+                    body: request_.filter.filterDescriptor.bodyFunction?true:false,
+                    response: request_.filter.filterDescriptor.bodyFunction?true:false,
+                    output: request_.filter.filterDescriptor.outputFilterSpec?true:false
                 };
                 templateContext.generator = "[Encapsule/arctools](https://github.com/Encapsule/arctools/) " + "v" + ARCCORE.__meta.version;
+                templateContext.generatorBuild = "\"" + ARCCORE.__meta.codename + "\" " + ARCCORE.__meta.buildID;
                 templateContext.generatorDate = new Date().toString();
 
                 var inputFilterSpec = request_.filter.filterDescriptor.inputFilterSpec;
