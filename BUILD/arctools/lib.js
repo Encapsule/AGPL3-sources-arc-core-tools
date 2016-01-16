@@ -2926,7 +2926,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "nExsCUhiQdakcLpxOInBIw", buildTime: "1452759324"};
+		module.exports = { version: "0.0.7", codename: "ground-control", author: "Encapsule", buildID: "ftSq2BjLQfKsbqZm5b218g", buildTime: "1452901597"};
 
 	/***/ },
 	/* 21 */
@@ -9398,7 +9398,7 @@ module.exports =
 /* 24 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "nExsCUhiQdakcLpxOInBIw", buildTime: "1452759324"};
+	module.exports = { version: "0.0.7", codename: "ground-control", author: "Encapsule", buildID: "ftSq2BjLQfKsbqZm5b218g", buildTime: "1452901597"};
 
 /***/ },
 /* 25 */
@@ -9754,7 +9754,7 @@ module.exports =
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.6", codename: "major-tom", author: "Encapsule", buildID: "nExsCUhiQdakcLpxOInBIw", buildTime: "1452759324"};
+	module.exports = { version: "0.0.7", codename: "ground-control", author: "Encapsule", buildID: "ftSq2BjLQfKsbqZm5b218g", buildTime: "1452901597"};
 
 /***/ },
 /* 31 */

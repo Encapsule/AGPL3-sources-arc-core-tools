@@ -1,9 +1,9 @@
 {
     "name": "arccore",
-    "version": "0.0.6",
-    "codename": "major-tom",
-    "buildID": "nExsCUhiQdakcLpxOInBIw",
-    "buildTime": 1452759324,
+    "version": "0.0.7",
+    "codename": "ground-control",
+    "buildID": "ftSq2BjLQfKsbqZm5b218g",
+    "buildTime": 1452901597,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arccore.git"

@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.0.6",
-  "codename": "major-tom",
+  "version": "0.0.7",
+  "codename": "ground-control",
   "description": "Encapsule.io ARC protocol master repository.",
   "main": "index.js",
   "scripts": {

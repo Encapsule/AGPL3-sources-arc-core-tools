@@ -40,7 +40,7 @@ module.exports = function(request_) {
     mddoc.push("For additional information, please visit [Encapsule.io](https://encapsule.io).");
 
     mddoc.push("<hr>");
-    mddoc.push("Copyright (C) " + buildYear + " Christopher D. Russell");
+    mddoc.push("Copyright (C) " + buildYear + " Christopher D. Russell, [Encapsule.io](https://encapsule.io) Bellevue, WA USA");
 
     return mddoc.join("\n\n") + "\n";
 
