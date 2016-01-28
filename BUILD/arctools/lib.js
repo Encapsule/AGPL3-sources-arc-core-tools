@@ -2926,7 +2926,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.8", codename: "pre-release", author: "Encapsule", buildID: "mdh_FPaXTZWDmO2K-ZXDZg", buildTime: "1452910690"};
+		module.exports = { version: "0.0.8", codename: "pre-release", author: "Encapsule", buildID: "eq5wD7duSmCTB6Vc3enNNw", buildTime: "1453948819"};
 
 	/***/ },
 	/* 21 */
@@ -9398,7 +9398,7 @@ module.exports =
 /* 24 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.8", codename: "pre-release", author: "Encapsule", buildID: "mdh_FPaXTZWDmO2K-ZXDZg", buildTime: "1452910690"};
+	module.exports = { version: "0.0.8", codename: "pre-release", author: "Encapsule", buildID: "eq5wD7duSmCTB6Vc3enNNw", buildTime: "1453948819"};
 
 /***/ },
 /* 25 */
@@ -9754,7 +9754,7 @@ module.exports =
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.8", codename: "pre-release", author: "Encapsule", buildID: "mdh_FPaXTZWDmO2K-ZXDZg", buildTime: "1452910690"};
+	module.exports = { version: "0.0.8", codename: "pre-release", author: "Encapsule", buildID: "eq5wD7duSmCTB6Vc3enNNw", buildTime: "1453948819"};
 
 /***/ },
 /* 31 */
@@ -14347,6 +14347,12 @@ module.exports =
 	            ____label: "File Callback",
 	            ____description: "Optional callback for determining if a file path should be included in the search results. Return true to include, false to exclude.",
 	            ____accept: [ "jsUndefined", "jsFunction" ]
+	        },
+	        recursive: {
+	            ____label: "Recursive Flag",
+	            ____description: "Set true (default) to enable recursive search.",
+	            ____accept: "jsBoolean",
+	            ____defaultValue: true
 	        }
 	    },
 
@@ -14384,7 +14390,7 @@ module.exports =
 	                var filenames = FS.readdirSync(directory) || [];
 	                filenames.forEach(function(filename_) {
 	                    var filePath = PATH.join(directory, filename_);
-	                    if (FS.statSync(filePath).isDirectory()) {
+	                    if (request_.recursive && FS.statSync(filePath).isDirectory()) {
 	                        result.subdirectories.push(filePath);
 	                        directoryStack.push(filePath);
 	                    } else {
