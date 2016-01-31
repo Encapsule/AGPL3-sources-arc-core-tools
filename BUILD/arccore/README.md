@@ -2,7 +2,7 @@
 
 # Encapsule/arccore v0.0.8 "pre-release"
 
-Build ID "eq5wD7duSmCTB6Vc3enNNw" Wed Jan 27 2016 18:40:19 GMT-0800 (PST)
+Build ID "d_0Hd6nfRjiYPUl_AnGBYw" Sat Jan 30 2016 16:04:57 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

@@ -2,8 +2,8 @@
     "name": "arctools",
     "version": "0.0.8",
     "codename": "pre-release",
-    "buildID": "eq5wD7duSmCTB6Vc3enNNw",
-    "buildTime": 1453948819,
+    "buildID": "d_0Hd6nfRjiYPUl_AnGBYw",
+    "buildTime": 1454198697,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arctools.git"
@@ -27,5 +27,6 @@
         "arc_compileFilterDAG": "./arc_tools_filterdag_compiler.js",
         "arc_project": "./arc_tools_project.js",
         "arc_doc_filter": "./arc_tools_docgen_filter.js"
-    }
+    },
+    "main": "arc_tools_lib.js"
 }

@@ -19,7 +19,8 @@ var packageDatabase = module.exports = {
             //arc_generateFilterDAG: "./arc_tools_filterdag_factory.js"
 	    arc_project: "./arc_tools_project.js",
             arc_doc_filter: "./arc_tools_docgen_filter.js"
-        }
+        },
+        main: "arc_tools_lib.js"
     }
 };
 
