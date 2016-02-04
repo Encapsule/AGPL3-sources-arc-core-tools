@@ -241,11 +241,24 @@ gulp.task("stage", [ "compress" ], function(callback_) {
     callback_();
 });
 
+gulp.task("publish", [ 'publish_ARCcore', 'publish_ARCtools'], function() {
+});
+gulp.task("publish_ARCcore", function() {
+    gulp.src('./STAGE/arccore/**')
+        .pipe(gulp.dest('./DISTS/ARCcore/'));
+});
+gulp.task("publish_ARCtools", function() {
+    gulp.src('./STAGE/arctools/**')
+        .pipe(gulp.dest('./DISTS/ARCtools/'));
+});
+
+
+/*
 gulp.task("publish", function() {
     gulp.src('./STAGE/**')
         .pipe(gulp.dest('./DISTS/'));
 });
-
+*/
 gulp.task('default', [ 'baseBuild', "test", "stage" ], function() {
     console.log("default...");
 });
