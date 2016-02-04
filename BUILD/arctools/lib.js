@@ -14387,7 +14387,6 @@ module.exports =
 	    },
 
 	    bodyFunction: function (request_) {
-	        console.log("FILE DIR ENUM SYNC: recursive===" + request_.recursive);
 	        var response = { error: null, result: null };
 	        var errors = []
 	        var inBreakScope = false;
