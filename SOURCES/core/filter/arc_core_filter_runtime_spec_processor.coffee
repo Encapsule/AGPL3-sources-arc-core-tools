@@ -197,7 +197,8 @@ filterRuntimeData = module.exports = (request_) ->
                                 namespace: mapPropertyName
                                 path: "#{typePath}.#{mapPropertyName}"
                                 spec: mapPropertyValue
-                                inputData: inputData? and inputData and inputData[mapPropertyName] or undefined
+                                # inputData: inputData? and inputData and inputData[mapPropertyName] or undefined
+                                inputData: inputData? and inputData and inputData[mapPropertyName]
 
                 if errors.length
                     break

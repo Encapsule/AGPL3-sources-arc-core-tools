@@ -33,6 +33,7 @@ var response = ARC_CORE.filter.create({
     },
 
     bodyFunction: function (request_) {
+        console.log("FILE DIR ENUM SYNC: recursive===" + request_.recursive);
         var response = { error: null, result: null };
         var errors = []
         var inBreakScope = false;
@@ -60,15 +61,17 @@ var response = ARC_CORE.filter.create({
             } else {
                 result.directory = process.cwd();
             }
-            directoryStack = [ result.directory ];
-            while (directoryStack.length) {
-                var directory = directoryStack.shift()
+            directoryQueue = [ result.directory ];
+            while (directoryQueue.length) {
+                var directory = directoryQueue.shift()
                 var filenames = FS.readdirSync(directory) || [];
                 filenames.forEach(function(filename_) {
                     var filePath = PATH.join(directory, filename_);
-                    if (request_.recursive && FS.statSync(filePath).isDirectory()) {
+                    if (FS.statSync(filePath).isDirectory()) {
                         result.subdirectories.push(filePath);
-                        directoryStack.push(filePath);
+                        if (request_.recursive) {
+                            directoryQueue.push(filePath);
+                        }
                     } else {
                         if (request_.callback) {
                             var include = request_.callback(filePath);

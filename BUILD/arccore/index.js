@@ -2321,7 +2321,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "mqXQTXvARciLQEHeKcpX8w", buildTime: "1454199597"};
+	module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "UKsk5gIbTEGLR9qGkemm2w", buildTime: "1454575682"};
 
 /***/ },
 /* 21 */
@@ -5797,7 +5797,7 @@ module.exports =
 	                  namespace: mapPropertyName,
 	                  path: typePath + "." + mapPropertyName,
 	                  spec: mapPropertyValue,
-	                  inputData: (inputData != null) && inputData && inputData[mapPropertyName] || void 0
+	                  inputData: (inputData != null) && inputData && inputData[mapPropertyName]
 	                });
 	              }
 	          }

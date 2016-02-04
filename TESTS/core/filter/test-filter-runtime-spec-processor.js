@@ -1,4 +1,4 @@
-// test-nff-runtime-typemap.js
+
 
 var testVerifyFilterSpec = require('./runner-filter-runtime-spec');
 var assert = require('chai').assert;
@@ -261,7 +261,7 @@ testVerifyFilterSpec({
         },
         value: {}
     },
-    
+
     expectedResults: {
         error: null,
         result: '{"x":["cats","dogs"]}'
@@ -281,10 +281,225 @@ testVerifyFilterSpec({
         },
         value: { x: [ 1, 2 ,3, 4 ] }
     },
-    
+
     expectedResults: {
         error: null,
         result: '{"x":[1,2,3,4]}'
     }
 });
+
+testVerifyFilterSpec({
+    testName: "Boolean w/false default value, w/undefined input.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsBoolean",
+            ____defaultValue: false,
+        },
+        value: undefined
+    },
+    expectedResults: {
+        result: 'false'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Boolean w/false default value, w/false input.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsBoolean",
+            ____defaultValue: false,
+        },
+        value: false
+    },
+    expectedResults: {
+        result: 'false'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Boolean w/false default value, w/true input.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsBoolean",
+            ____defaultValue: false,
+        },
+        value: true
+    },
+    expectedResults: {
+        result: 'true'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Boolean w/true default value, w/undefined input.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsBoolean",
+            ____defaultValue: true,
+        },
+    },
+    expectedResults: {
+        result: 'true'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Boolean w/true default value, w/false input.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsBoolean",
+            ____defaultValue: true,
+        },
+        value: false
+    },
+    expectedResults: {
+        result: 'false'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Boolean w/true default value, w/true input.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsBoolean",
+            ____defaultValue: true,
+        },
+        value: true
+    },
+    expectedResults: {
+        result: 'true'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Object w/Boolean prop 'x' w/true default value, w/undefined 'x'.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsObject",
+            x: {
+                ____types: "jsBoolean",
+                ____defaultValue: true,
+            }
+        },
+        value: {}
+    },
+    expectedResults: {
+        result: '{"x":true}'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Object w/Boolean prop 'x' w/true default value, w/false 'x'.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsObject",
+            x: {
+                ____types: "jsBoolean",
+                ____defaultValue: true,
+            }
+        },
+        value: { x: false }
+    },
+    expectedResults: {
+        result: '{"x":false}'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Object w/Boolean prop 'x' w/true default value, w/true 'x'.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsObject",
+            x: {
+                ____types: "jsBoolean",
+                ____defaultValue: true,
+            }
+        },
+        value: { x: true }
+    },
+    expectedResults: {
+        result: '{"x":true}'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Object w/numerical prop 'x' w/6 default value, w/undefined === 'x'.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsObject",
+            x: {
+                ____types: "jsNumber",
+                ____defaultValue: 6,
+            }
+        },
+        value: {}
+    },
+    expectedResults: {
+        result: '{"x":6}'
+    }
+});
+testVerifyFilterSpec({
+    testName: "Object w/numerical prop 'x' w/6 default value, w/0 === 'x'.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsObject",
+            x: {
+                ____types: "jsNumber",
+                ____defaultValue: 6,
+            }
+        },
+        value: { x: 0 }
+    },
+    expectedResults: {
+        result: '{"x":0}'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Object w/numerical prop 'x' w/true default value, w/true 'x'.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsObject",
+            x: {
+                ____types: "jsNumber",
+                ____defaultValue: 6,
+            }
+        },
+        value: { x: -1000 }
+    },
+    expectedResults: {
+        result: '{"x":-1000}'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Object w/string prop 'x' w/'test' default value, w/''==='x'.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: "jsObject",
+            x: {
+                ____types: "jsString",
+                ____defaultValue: "This is a test"
+            }
+        },
+        value: { x:'' }
+    },
+    expectedResults: {
+        result: '{"x":""}'
+    }
+});
+
 

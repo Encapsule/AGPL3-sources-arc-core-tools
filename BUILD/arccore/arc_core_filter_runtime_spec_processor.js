@@ -198,7 +198,7 @@
                   namespace: mapPropertyName,
                   path: typePath + "." + mapPropertyName,
                   spec: mapPropertyValue,
-                  inputData: (inputData != null) && inputData && inputData[mapPropertyName] || void 0
+                  inputData: (inputData != null) && inputData && inputData[mapPropertyName]
                 });
               }
           }

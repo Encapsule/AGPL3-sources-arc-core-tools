@@ -2926,7 +2926,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "mqXQTXvARciLQEHeKcpX8w", buildTime: "1454199597"};
+		module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "UKsk5gIbTEGLR9qGkemm2w", buildTime: "1454575682"};
 
 	/***/ },
 	/* 21 */
@@ -6402,7 +6402,7 @@ module.exports =
 		                  namespace: mapPropertyName,
 		                  path: typePath + "." + mapPropertyName,
 		                  spec: mapPropertyValue,
-		                  inputData: (inputData != null) && inputData && inputData[mapPropertyName] || void 0
+		                  inputData: (inputData != null) && inputData && inputData[mapPropertyName]
 		                });
 		              }
 		          }
@@ -9413,7 +9413,7 @@ module.exports =
 /* 24 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "mqXQTXvARciLQEHeKcpX8w", buildTime: "1454199597"};
+	module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "UKsk5gIbTEGLR9qGkemm2w", buildTime: "1454575682"};
 
 /***/ },
 /* 25 */
@@ -9769,7 +9769,7 @@ module.exports =
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "mqXQTXvARciLQEHeKcpX8w", buildTime: "1454199597"};
+	module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "UKsk5gIbTEGLR9qGkemm2w", buildTime: "1454575682"};
 
 /***/ },
 /* 31 */
@@ -13280,7 +13280,7 @@ module.exports =
 	                  namespace: mapPropertyName,
 	                  path: typePath + "." + mapPropertyName,
 	                  spec: mapPropertyValue,
-	                  inputData: (inputData != null) && inputData && inputData[mapPropertyName] || void 0
+	                  inputData: (inputData != null) && inputData && inputData[mapPropertyName]
 	                });
 	              }
 	          }
@@ -14387,6 +14387,7 @@ module.exports =
 	    },
 
 	    bodyFunction: function (request_) {
+	        console.log("FILE DIR ENUM SYNC: recursive===" + request_.recursive);
 	        var response = { error: null, result: null };
 	        var errors = []
 	        var inBreakScope = false;
@@ -14414,15 +14415,17 @@ module.exports =
 	            } else {
 	                result.directory = process.cwd();
 	            }
-	            directoryStack = [ result.directory ];
-	            while (directoryStack.length) {
-	                var directory = directoryStack.shift()
+	            directoryQueue = [ result.directory ];
+	            while (directoryQueue.length) {
+	                var directory = directoryQueue.shift()
 	                var filenames = FS.readdirSync(directory) || [];
 	                filenames.forEach(function(filename_) {
 	                    var filePath = PATH.join(directory, filename_);
-	                    if (request_.recursive && FS.statSync(filePath).isDirectory()) {
+	                    if (FS.statSync(filePath).isDirectory()) {
 	                        result.subdirectories.push(filePath);
-	                        directoryStack.push(filePath);
+	                        if (request_.recursive) {
+	                            directoryQueue.push(filePath);
+	                        }
 	                    } else {
 	                        if (request_.callback) {
 	                            var include = request_.callback(filePath);
