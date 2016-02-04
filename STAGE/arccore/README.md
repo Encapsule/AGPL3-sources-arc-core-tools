@@ -1,8 +1,8 @@
 ![Encapsule.io](https://encapsule.io/images/blue-burst-encapsule.io-logo-251x64.png "Encapsule.io")
 
-# Encapsule/arccore v0.0.9 "pre-release"
+# Encapsule/arccore v0.0.10 "pre-release"
 
-Build ID "UKsk5gIbTEGLR9qGkemm2w" Thu Feb 04 2016 00:48:02 GMT-0800 (PST)
+Build ID "jagloDIPRu2vuBTpkFxPAQ" Thu Feb 04 2016 01:36:01 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

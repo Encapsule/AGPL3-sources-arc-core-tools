@@ -2926,7 +2926,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "UKsk5gIbTEGLR9qGkemm2w", buildTime: "1454575682"};
+		module.exports = { version: "0.0.10", codename: "pre-release", author: "Encapsule", buildID: "jagloDIPRu2vuBTpkFxPAQ", buildTime: "1454578561"};
 
 	/***/ },
 	/* 21 */
@@ -9413,7 +9413,7 @@ module.exports =
 /* 24 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "UKsk5gIbTEGLR9qGkemm2w", buildTime: "1454575682"};
+	module.exports = { version: "0.0.10", codename: "pre-release", author: "Encapsule", buildID: "jagloDIPRu2vuBTpkFxPAQ", buildTime: "1454578561"};
 
 /***/ },
 /* 25 */
@@ -9769,7 +9769,7 @@ module.exports =
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.9", codename: "pre-release", author: "Encapsule", buildID: "UKsk5gIbTEGLR9qGkemm2w", buildTime: "1454575682"};
+	module.exports = { version: "0.0.10", codename: "pre-release", author: "Encapsule", buildID: "jagloDIPRu2vuBTpkFxPAQ", buildTime: "1454578561"};
 
 /***/ },
 /* 31 */
