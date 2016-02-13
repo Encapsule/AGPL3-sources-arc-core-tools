@@ -694,22 +694,6 @@ module.exports =
 /* 9 */
 /***/ function(module, exports) {
 
-	
-	/*
-	----------------------------------------------------------------------
-	 
-	           +---+---+---+---+
-	 chaos --> | J | B | U | S | --> order
-	           +---+---+---+---+
-
-	Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-	JBUS is licensed under the GNU Affero General Public License v3.0.
-	Please consult the included LICENSE file for agreement terms.
-
-	----------------------------------------------------------------------
-	 */
-
 	(function() {
 	  var ARC_CORE_UTIL;
 
@@ -725,16 +709,16 @@ module.exports =
 	    }
 	    if (ref_ instanceof RegExp) {
 	      flags = '';
-	      if (object_.global != null) {
+	      if (ref_.global != null) {
 	        flags += 'g';
 	      }
-	      if (object_.ignoreCase != null) {
+	      if (ref_.ignoreCase != null) {
 	        flags += 'i';
 	      }
-	      if (object_.multiline != null) {
+	      if (ref_.multiline != null) {
 	        flags += 'm';
 	      }
-	      if (object_.sticky != null) {
+	      if (ref_.sticky != null) {
 	        flags += 'y';
 	      }
 	      return new RegExp(ref_.source, flags);
@@ -2321,7 +2305,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.10", codename: "pre-release", author: "Encapsule", buildID: "Sb6_f9eJQ6SK_zYkxrbJvg", buildTime: "1454634052"};
+	module.exports = { version: "0.0.11", codename: "pre-release", author: "Encapsule", buildID: "PoJRbOLjS3GjzV7DDBQahw", buildTime: "1455338682"};
 
 /***/ },
 /* 21 */

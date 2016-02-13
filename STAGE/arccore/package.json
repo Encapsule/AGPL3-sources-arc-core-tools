@@ -1,9 +1,9 @@
 {
     "name": "arccore",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "codename": "pre-release",
-    "buildID": "Sb6_f9eJQ6SK_zYkxrbJvg",
-    "buildTime": 1454634052,
+    "buildID": "PoJRbOLjS3GjzV7DDBQahw",
+    "buildTime": 1455338682,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arccore.git"
