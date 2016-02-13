@@ -1,20 +1,3 @@
-###
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
-###
-#
-#
-#
 
 ARC_CORE_UTIL = {}
 
@@ -25,10 +8,10 @@ ARC_CORE_UTIL.deepCopy = (ref_) ->
         return new Date ref_.getTime()
     if ref_ instanceof RegExp
         flags = ''
-        flags += 'g' if object_.global?
-        flags += 'i' if object_.ignoreCase?
-        flags += 'm' if object_.multiline?
-        flags += 'y' if object_.sticky?
+        flags += 'g' if ref_.global?
+        flags += 'i' if ref_.ignoreCase?
+        flags += 'm' if ref_.multiline?
+        flags += 'y' if ref_.sticky?
         return new RegExp ref_.source, flags
     instance = new ref_.constructor()
     for key of ref_
