@@ -881,8 +881,9 @@ module.exports =
 	            this.getRootVertices = __bind(this.getRootVertices, this);
 	            this.leafVerticesCount = __bind(this.leafVerticesCount, this);
 	            this.getLeafVertices = __bind(this.getLeafVertices, this);
-	            this.toObject = __bind(this.toObject, this);
 	            this.toJSON = __bind(this.toJSON, this);
+	            this.toObject = __bind(this.toObject, this);
+	            this.stringify = __bind(this.stringify, this);
 	            this.fromObject = __bind(this.fromObject, this);
 	            this.fromJSON = __bind(this.fromJSON, this);
 
@@ -1331,11 +1332,15 @@ module.exports =
 	            return leafVertices;
 	        };
 
-	        DirectedGraph.prototype.toObject = function () {
+	        // toJSON and toObject are identical delegations to digraphExport.exportObject.
+	        DirectedGraph.prototype.toJSON = function () {
+	            return digraphExport.exportObject(this);
+	        };
+	        DirectedGraph.prototype.toObject = function() {
 	            return digraphExport.exportObject(this);
 	        };
 
-	        DirectedGraph.prototype.toJSON = function(replacer_, space_) {
+	        DirectedGraph.prototype.stringify = function(replacer_, space_) {
 	            return digraphExport.exportJSON(this, replacer_, space_);
 	        };
 

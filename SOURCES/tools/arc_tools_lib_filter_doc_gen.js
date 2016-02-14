@@ -4,8 +4,6 @@ var FILTERLIB = ARCCORE.filter;
 var TYPELIB = ARCCORE.types;
 var HANDLEBARS  = require('handlebars');
 
-var buildMergedFilterSpecDigraphModel = require('../arccore/arc_core_type_discriminator_merged_model_digraph');
-
 var opaqueFilterSpec = { ____opaque: true };
 
 var filterlibResponse = FILTERLIB.create({

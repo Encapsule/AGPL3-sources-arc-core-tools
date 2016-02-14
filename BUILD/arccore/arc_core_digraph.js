@@ -513,21 +513,14 @@ var digraphExport = require('./arc_core_digraph_export');
             return leafVertices;
         };
 
-        // In ARCcore v0.0.11 this method was 'toObject' which is incorrect.
-        // DirectedGraph.prototype.toObject = function () {
-
-        // In ARCcore v0.0.12 this method is renamed appropriately to 'toJSON'.
+        // toJSON and toObject are identical delegations to digraphExport.exportObject.
         DirectedGraph.prototype.toJSON = function () {
             return digraphExport.exportObject(this);
         };
-
         DirectedGraph.prototype.toObject = function() {
-            return this.toJSON();
+            return digraphExport.exportObject(this);
         };
 
-        // In ARCcore v0.0.11 this method was named 'toJSON' which is incorrect.
-        // DirectedGraph.prototype.toJSON = function(replacer_, space_) {
-        // In ARCcore v0.0.12 this method is renamed appropriately to 'stringify'.
         DirectedGraph.prototype.stringify = function(replacer_, space_) {
             return digraphExport.exportJSON(this, replacer_, space_);
         };
