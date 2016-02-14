@@ -55,7 +55,7 @@ module.exports = function (testVector_) {
 
             it("the returned graph JSON should match expected control value.", function() {
                 assert.instanceOf(response.result, DirectedGraph);
-                assert.equal(response.result.toJSON(), testVector_.expectedResults.result);
+                assert.equal(response.result.stringify(), testVector_.expectedResults.result);
             });
 
         } else {
