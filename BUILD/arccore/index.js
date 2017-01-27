@@ -2310,7 +2310,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.13", codename: "orange weasel (pre-release)", author: "Encapsule", buildID: "gWEYAKY2SnKSShNUnJ9CHQ", buildTime: "1485539358"};
+	module.exports = { version: "0.0.13", codename: "orange weasel (pre-release)", author: "Encapsule", buildID: "vrGMOS8BQKmQQn-G4A_brA", buildTime: "1485550054"};
 
 /***/ },
 /* 21 */
