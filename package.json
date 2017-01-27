@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "codename": "orange weasel (pre-release)",
   "description": "Encapsule.io ARC protocol master repository.",
   "main": "index.js",
