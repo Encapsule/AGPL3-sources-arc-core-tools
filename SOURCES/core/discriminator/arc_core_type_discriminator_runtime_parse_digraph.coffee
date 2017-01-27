@@ -58,6 +58,12 @@ buildRuntimeParseModel = module.exports = (request_) ->
                             runtimeParseDigraph.addEdge({ e: gcb_.e })
                             break
 
+                        when "green:black"
+                            break
+
+                        when "black:black"
+                            break
+
                         when "gold:gold"
                             break
 

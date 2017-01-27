@@ -68,6 +68,10 @@
                   e: gcb_.e
                 });
                 break;
+              case "green:black":
+                break;
+              case "black:black":
+                break;
               case "gold:gold":
                 break;
               default:

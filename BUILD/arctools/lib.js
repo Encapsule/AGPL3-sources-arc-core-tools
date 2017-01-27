@@ -2915,7 +2915,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.13", codename: "orange weasel (pre-release)", author: "Encapsule", buildID: "VUw7i3QqSPaeF88tTzTb3Q", buildTime: "1485513640"};
+		module.exports = { version: "0.0.13", codename: "orange weasel (pre-release)", author: "Encapsule", buildID: "gWEYAKY2SnKSShNUnJ9CHQ", buildTime: "1485539358"};
 
 	/***/ },
 	/* 21 */
@@ -7483,6 +7483,10 @@ module.exports =
 		                  e: gcb_.e
 		                });
 		                break;
+		              case "green:black":
+		                break;
+		              case "black:black":
+		                break;
 		              case "gold:gold":
 		                break;
 		              default:
@@ -9236,7 +9240,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.13", codename: "orange weasel (pre-release)", author: "Encapsule", buildID: "VUw7i3QqSPaeF88tTzTb3Q", buildTime: "1485513640"};
+	module.exports = { version: "0.0.13", codename: "orange weasel (pre-release)", author: "Encapsule", buildID: "gWEYAKY2SnKSShNUnJ9CHQ", buildTime: "1485539358"};
 
 /***/ },
 /* 24 */
@@ -9592,7 +9596,7 @@ module.exports =
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.13", codename: "orange weasel (pre-release)", author: "Encapsule", buildID: "VUw7i3QqSPaeF88tTzTb3Q", buildTime: "1485513640"};
+	module.exports = { version: "0.0.13", codename: "orange weasel (pre-release)", author: "Encapsule", buildID: "gWEYAKY2SnKSShNUnJ9CHQ", buildTime: "1485539358"};
 
 /***/ },
 /* 30 */
@@ -14194,6 +14198,10 @@ module.exports =
 	                runtimeParseDigraph.addEdge({
 	                  e: gcb_.e
 	                });
+	                break;
+	              case "green:black":
+	                break;
+	              case "black:black":
 	                break;
 	              case "gold:gold":
 	                break;
