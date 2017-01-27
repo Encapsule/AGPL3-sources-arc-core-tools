@@ -2310,7 +2310,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.12", codename: "pre-release", author: "Encapsule", buildID: "Sdo8Z6iTQh-h8FV-a79h9w", buildTime: "1455419620"};
+	module.exports = { version: "0.0.13", codename: "orange weasel (pre-release)", author: "Encapsule", buildID: "VUw7i3QqSPaeF88tTzTb3Q", buildTime: "1485513640"};
 
 /***/ },
 /* 21 */
@@ -6133,7 +6133,7 @@ module.exports =
 	  UTILLIB = __webpack_require__(9);
 
 	  partitionAndColorGraphByAmbiguity = module.exports = function(mergedModelDigraph_) {
-	    var allFilters, ambiguityModelDigraph, ambiguousBlackVertices, bfsVertices, blackFilters, errors, filter_, goldFilters, inBreakScope, index, innerResponse, outEdges, rbfsVertices, response, uprop, vertex;
+	    var ambiguityModelDigraph, ambiguousBlackVertices, bfsVertices, droppedFiltersList, errors, inBreakScope, index, innerResponse, message, outEdges, rbfsVertices, response, rprops, subscribersMap, updatedColor, updatedFiltersList, uprop, vertex;
 	    response = {
 	      error: null,
 	      result: null
@@ -6160,11 +6160,13 @@ module.exports =
 	            uprop.filters.sort();
 	            if (uprop.filters.length === 1) {
 	              uprop.color = "gold";
+	              uprop.filters1 = [uprop.filters[0]];
 	            } else {
 	              if (grequest_.g.outDegree(grequest_.u)) {
 	                uprop.color = "gray";
 	              } else {
 	                uprop.color = "black";
+	                uprop.filters1 = [];
 	                ambiguousBlackVertices.push(grequest_.u);
 	              }
 	            }
@@ -6190,73 +6192,91 @@ module.exports =
 	        errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
 	        break;
 	      }
+	      console.log("AMBIGUITY MODEL BFS COLORING PHASE 2.1");
+	      console.log(ambiguityModelDigraph.stringify(void 0, 4));
 	      index = 0;
 	      while (index < bfsVertices.length) {
-	        rbfsVertices[index] = bfsVertices[bfsVertices.length - index - 1];
+	        rbfsVertices.push(bfsVertices[bfsVertices.length - index - 1]);
 	        index++;
 	      }
 	      index = 0;
 	      while (index < rbfsVertices.length) {
 	        vertex = rbfsVertices[index++];
 	        uprop = ambiguityModelDigraph.getVertexProperty(vertex);
-	        if (uprop.color !== "gray") {
+	        if ((uprop.color === "gold") || (uprop.color === "black")) {
+	          console.log("... '" + vertex + "' remains " + uprop.color);
 	          continue;
 	        }
-	        allFilters = {};
-	        blackFilters = {};
-	        goldFilters = {};
+	        subscribersMap = {};
 	        outEdges = ambiguityModelDigraph.outEdges(vertex);
 	        outEdges.forEach(function(edge_) {
 	          var vprop;
 	          vprop = ambiguityModelDigraph.getVertexProperty(edge_.v);
-	          return vprop.filters.forEach(function(filter_) {
-	            allFilters[filter_] = true;
-	            if ((vprop.color === "gold") || (vprop.color === "green")) {
-	              return goldFilters[filter_] = true;
-	            } else if (vprop.color === "black") {
-	              return blackFilters[filter_] = true;
-	            } else {
-	              return errors.unshift("Unexpected color '" + vprop.color + "' discovered analyzing vertex '" + edge_.v + "'.");
+	          if (vprop.color === "black") {
+	            return;
+	          }
+	          return vprop.filters1.forEach(function(filter_) {
+	            var subcribersMapEntry, subscribersMapEntry;
+	            subcribersMapEntry = subscribersMap[filter_];
+	            if (!((typeof subscribersMapEntry !== "undefined" && subscribersMapEntry !== null) && subscribersMapEntry)) {
+	              subscribersMapEntry = {
+	                nodes: {}
+	              };
 	            }
+	            subscribersMapEntry.nodes[edge_.v] = vprop.color;
+	            return subscribersMap[filter_] = subscribersMapEntry;
 	          });
 	        });
+	        updatedFiltersList = [];
+	        droppedFiltersList = [];
 	        uprop.filters.forEach(function(filter_) {
-	          if (!((allFilters[filter_] != null) && allFilters[filter_])) {
-	            return blackFilters[filter_] = true;
+	          if ((subscribersMap[filter_] != null) && subscribersMap[filter_]) {
+	            return updatedFiltersList.push(filter_);
+	          } else {
+	            return droppedFiltersList.push(filter_);
 	          }
 	        });
-	        for (filter_ in blackFilters) {
-	          if ((goldFilters[filter_] != null) && goldFilters[filter_]) {
-	            delete goldFilters[filter_];
-	          }
+	        updatedColor = uprop.color;
+	        switch (updatedFiltersList.length) {
+	          case 0:
+	            updatedColor = "black";
+	            break;
+	          case 1:
+	            updatedColor = "gold";
+	            break;
+	          default:
+	            updatedColor = "green";
+	            break;
 	        }
-	        if (!UTILLIB.dictionaryLength(blackFilters)) {
-	          uprop.color = "green";
-	        } else {
-	          uprop.color = "black";
-	          ambiguousBlackVertices.push(vertex);
-	        }
+	        uprop.filters1 = updatedFiltersList;
+	        uprop.color = updatedColor;
 	        ambiguityModelDigraph.setVertexProperty({
 	          u: vertex,
 	          p: uprop
 	        });
 	      }
+	      console.log("AMBIGUITY MODEL RBFS COLORING PHASE 2.2");
+	      console.log(ambiguityModelDigraph.stringify(void 0, 4));
 	      response.result = {
 	        digraph: ambiguityModelDigraph,
 	        ambigousBlackVertices: ambiguousBlackVertices,
 	        ambiguousFilterSpecificationErrors: []
 	      };
-	      if (ambiguousBlackVertices.length) {
-	        ambiguousBlackVertices.sort();
-	        ambiguousBlackVertices.forEach(function(vertex_) {
-	          var message, vertexProperty;
-	          if (vertex_ === "request") {
-	            return;
-	          }
-	          vertexProperty = ambiguityModelDigraph.getVertexProperty(vertex_);
-	          message = "Filters [" + (vertexProperty.filters.join(" and ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.";
-	          return response.result.ambiguousFilterSpecificationErrors.push(message);
-	        });
+	      rprops = ambiguityModelDigraph.getVertexProperty("request");
+	      if (rprops.filters.length !== rprops.filters1.length) {
+	        message = [];
+	        if (ambiguousBlackVertices.length) {
+	          ambiguousBlackVertices.sort();
+	          ambiguousBlackVertices.forEach(function(vertex_) {
+	            var vertexProperty;
+	            if (vertex_ === "request") {
+	              return;
+	            }
+	            vertexProperty = ambiguityModelDigraph.getVertexProperty(vertex_);
+	            return message = "Filters [" + (vertexProperty.filters.join(", ")) + "] overlap ambiguously at filter spec node '" + vertex_ + "'.";
+	          });
+	          response.result.ambiguousFilterSpecificationErrors.push(message);
+	        }
 	      }
 	      break;
 	    }
@@ -6345,7 +6365,7 @@ module.exports =
 	          break;
 	        }
 	        mergedModel = innerResponse.result;
-	        console.log(mergedModel.digraph.toJSON(void 0, 4));
+	        console.log(mergedModel.digraph.stringify(void 0, 4));
 	        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
 	        innerResponse = createAmbiguityModel(mergedModel.digraph);
 	        if (innerResponse.error) {
@@ -6354,7 +6374,7 @@ module.exports =
 	          break;
 	        }
 	        ambiguityModel = innerResponse.result;
-	        console.log(ambiguityModel.digraph.toJSON(void 0, 4));
+	        console.log(ambiguityModel.digraph.stringify(void 0, 4));
 	        console.log("... checking for ambiguities in the ambiguity model");
 	        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
 	          return errors.push(error_);
@@ -6369,7 +6389,7 @@ module.exports =
 	          break;
 	        }
 	        runtimeParseDigraph = innerResponse.result;
-	        console.log(runtimeParseDigraph.toJSON(void 0, 4));
+	        console.log(runtimeParseDigraph.stringify(void 0, 4));
 	        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
 	        innerResponse = createDiscriminatorFilterRuntime.request({
 	          filterTable: mergedModel.filterTable,

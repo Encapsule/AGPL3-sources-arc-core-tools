@@ -1,9 +1,9 @@
 {
     "name": "arccore",
-    "version": "0.0.12",
-    "codename": "pre-release",
-    "buildID": "Sdo8Z6iTQh-h8FV-a79h9w",
-    "buildTime": 1455419620,
+    "version": "0.0.13",
+    "codename": "orange weasel (pre-release)",
+    "buildID": "VUw7i3QqSPaeF88tTzTb3Q",
+    "buildTime": 1485513640,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arccore.git"

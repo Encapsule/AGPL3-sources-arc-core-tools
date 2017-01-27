@@ -69,7 +69,7 @@ filterlibResponse = FILTERLIB.create
                 errors.unshift innerResponse.error
                 break
             mergedModel = innerResponse.result
-            console.log mergedModel.digraph.toJSON(undefined, 4)
+            console.log mergedModel.digraph.stringify(undefined, 4)
 
             console.log "STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY"
             innerResponse = createAmbiguityModel mergedModel.digraph
@@ -79,7 +79,7 @@ filterlibResponse = FILTERLIB.create
                 errors.unshift "Internal error analyzing input filter array: "
                 break
             ambiguityModel = innerResponse.result
-            console.log ambiguityModel.digraph.toJSON(undefined, 4)
+            console.log ambiguityModel.digraph.stringify(undefined, 4)
 
             # Exit with error if the input filter set cannot be discriminated.
             # Note that we may relax this policy enforcement later with an options object flag.
@@ -96,7 +96,7 @@ filterlibResponse = FILTERLIB.create
                 break
 
             runtimeParseDigraph = innerResponse.result
-            console.log runtimeParseDigraph.toJSON undefined, 4
+            console.log runtimeParseDigraph.stringify(undefined, 4)
 
             console.log "STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER"
             innerResponse = createDiscriminatorFilterRuntime.request

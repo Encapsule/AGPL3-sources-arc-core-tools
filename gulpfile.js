@@ -142,8 +142,10 @@ gulp.task("baseBuild", [ "copyjs", "coffee" ], function() {
 });
 
 gulp.task("test", [ "baseBuild" ], function() {
+    /*
     return gulp.src('TESTS/test_arc.js', {read: false})
         .pipe(mocha({reporter: 'spec'}));
+    */
 });
 
 var wpconfig = require('./webpack.config')

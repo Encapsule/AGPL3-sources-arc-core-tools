@@ -20,7 +20,6 @@ partitionAndColorGraphByAmbiguity = module.exports = (mergedModelDigraph_) ->
         ambiguityModelDigraph = innerResponse.result
 
         # ROOT TO LEAVES COLORING (relatively simple)
-
         innerResponse = GRAPHLIB.directed.breadthFirstTraverse
             digraph: ambiguityModelDigraph
             visitor:
@@ -28,12 +27,19 @@ partitionAndColorGraphByAmbiguity = module.exports = (mergedModelDigraph_) ->
                     uprop = grequest_.g.getVertexProperty grequest_.u
                     uprop.filters.sort()
                     if uprop.filters.length == 1
+                        # If only a single filter subscribes to the node it is colored gold
                         uprop.color = "gold"
+                        uprop.filters1 = [ uprop.filters[0] ]
                     else
+                        # If more than one filter subscribes to the node...
+                        # ... color gray if the node has children to indicate that further evaluation is required.
                         if grequest_.g.outDegree(grequest_.u)
                             uprop.color = "gray"
                         else
+                            # ... color black if the node has no children to indicate that it is ambiguous
+                            # (i.e. cannot be used to fingerprint a specific filter)
                             uprop.color = "black"
+                            uprop.filters1 = []
                             ambiguousBlackVertices.push grequest_.u
                     grequest_.g.setVertexProperty { u: grequest_.u, p: uprop }
                     bfsVertices.push grequest_.u
@@ -51,11 +57,15 @@ partitionAndColorGraphByAmbiguity = module.exports = (mergedModelDigraph_) ->
             errors.unshift "BFS of merged filter specification graph did not discover all vertices?"
             break
 
-        # LEAVES TO ROOT LEAVES COLORING (not as simple)
+        console.log "AMBIGUITY MODEL BFS COLORING PHASE 2.1"
+        console.log ambiguityModelDigraph.stringify undefined, 4
 
+
+
+        # LEAVES TO ROOT LEAVES COLORING (not as simple)
         index = 0
         while index < bfsVertices.length
-            rbfsVertices[index] = bfsVertices[bfsVertices.length - index - 1]
+            rbfsVertices.push bfsVertices[bfsVertices.length - index - 1]
             index++
 
         index = 0
@@ -64,13 +74,13 @@ partitionAndColorGraphByAmbiguity = module.exports = (mergedModelDigraph_) ->
             uprop = ambiguityModelDigraph.getVertexProperty vertex
 
             # DO NOT TOUCH GOLD AND BLACK VERTICES
-
-            if uprop.color != "gray"
+            if (uprop.color == "gold") or (uprop.color == "black")
+                console.log "... '#{vertex}' remains #{uprop.color}"
                 continue
 
-            allFilters = {}
-            blackFilters = {}
-            goldFilters = {}
+            # GRAY VERTEX PROCESSING
+
+            subscribersMap = {}
 
             # EXAMINE THE VERTICES ADJACENT TO THE INITIALLY GRAY VERTEX
 
@@ -79,37 +89,48 @@ partitionAndColorGraphByAmbiguity = module.exports = (mergedModelDigraph_) ->
 
                 vprop = ambiguityModelDigraph.getVertexProperty edge_.v
 
-                vprop.filters.forEach (filter_) ->
+                if vprop.color == "black"
+                    # By definition nodes colored black are ambiguous and are thus excluded here.
+                    return
 
-                    allFilters[filter_] = true
-                    if (vprop.color == "gold") or (vprop.color == "green")
-                        goldFilters[filter_] = true
-                    else if vprop.color == "black"
-                        blackFilters[filter_] = true
-                    else
-                        # Fail outright if we encounter an unexpected color in the graph.
-                        errors.unshift "Unexpected color '#{vprop.color}' discovered analyzing vertex '#{edge_.v}'."
+                # Adjacent node is either gold (unambiguous), or green (evaluated resolvable).
+                vprop.filters1.forEach (filter_) ->
+                    subcribersMapEntry = subscribersMap[filter_]
+                    if not (subscribersMapEntry? and subscribersMapEntry)
+                        subscribersMapEntry = nodes: {}
+                    subscribersMapEntry.nodes[edge_.v] = vprop.color
+                    subscribersMap[filter_] = subscribersMapEntry
+
 
             # Detect filter's whose subcription tree ends on the current vertex (induced by set difference)
+
+            updatedFiltersList = []
+            droppedFiltersList = []
+
             uprop.filters.forEach (filter_) ->
-                if not (allFilters[filter_]? and allFilters[filter_])
-                    blackFilters[filter_] = true
+                if (subscribersMap[filter_]? and subscribersMap[filter_])
+                    updatedFiltersList.push filter_
+                else
+                    droppedFiltersList.push filter_
 
-            # If a filter subscribes to any of the adjacent black vertices then it's ambiguous.
-            for filter_ of blackFilters
-                if goldFilters[filter_]? and goldFilters[filter_]
-                    delete goldFilters[filter_]
+            updatedColor = uprop.color
+            switch updatedFiltersList.length
+                when 0
+                    updatedColor = "black"
+                    break
+                when 1
+                    updatedColor = "gold"
+                    break
+                else
+                    updatedColor = "green"
+                    break
 
-            # Are there any ambiguous (black) filters at or above the current vertex?
-            if not UTILLIB.dictionaryLength(blackFilters)
-                # Color the vertex green to indicate that there are no ambiguities
-                uprop.color = "green"
-            else
-                # Color the vertex black to indicate that there's one or more ambiguities
-                uprop.color = "black"
-                ambiguousBlackVertices.push vertex
-
+            uprop.filters1 = updatedFiltersList
+            uprop.color = updatedColor
             ambiguityModelDigraph.setVertexProperty { u: vertex, p: uprop }
+
+        console.log "AMBIGUITY MODEL RBFS COLORING PHASE 2.2"
+        console.log ambiguityModelDigraph.stringify undefined, 4
 
         response.result =
             digraph: ambiguityModelDigraph
@@ -125,13 +146,16 @@ partitionAndColorGraphByAmbiguity = module.exports = (mergedModelDigraph_) ->
         # exclusion set model (the input digraph model that's initially white). Rather errors
         # are reserved for non-routine problems.
 
-        if ambiguousBlackVertices.length
-            ambiguousBlackVertices.sort()
-            ambiguousBlackVertices.forEach (vertex_) ->
-                if vertex_ == "request"
-                    return
-                vertexProperty = ambiguityModelDigraph.getVertexProperty vertex_
-                message = "Filters [#{vertexProperty.filters.join(" and ")}] overlap ambiguously at filter spec node '#{vertex_}'."
+        rprops = ambiguityModelDigraph.getVertexProperty "request"
+        if rprops.filters.length != rprops.filters1.length
+            message = []
+            if ambiguousBlackVertices.length
+                ambiguousBlackVertices.sort()
+                ambiguousBlackVertices.forEach (vertex_) ->
+                    if vertex_ == "request"
+                        return
+                    vertexProperty = ambiguityModelDigraph.getVertexProperty vertex_
+                    message = "Filters [#{vertexProperty.filters.join(", ")}] overlap ambiguously at filter spec node '#{vertex_}'."
                 response.result.ambiguousFilterSpecificationErrors.push message
         break
 
