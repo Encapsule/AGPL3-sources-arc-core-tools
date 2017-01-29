@@ -2,7 +2,7 @@
   "private": true,
   "name": "arc_master",
   "version": "0.0.14",
-  "codename": "orange weasel (pre-release)",
+  "codename": "little bricks (pre-release)",
   "description": "Encapsule.io ARC protocol master repository.",
   "main": "index.js",
   "scripts": {

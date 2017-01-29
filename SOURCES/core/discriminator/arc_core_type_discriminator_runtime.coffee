@@ -1,8 +1,14 @@
 
+IDENTIFIER = require './arc_core_identifier'
 FILTERLIB = require './arc_core_filter'
 TYPELIB = require './arc_core_types'
 
 checkPropConstraint = require './arc_core_type_discriminator_runtime_check_property'
+
+discriminatorDescriptions =
+    getFilterID: "Retrieves the filter identifier of the subfilter to which this request should be routed."
+    getFilter: "Retrieves a reference to the subfilter that should be used to process this request."
+    routeRequest: "Routes the request to one of N subfilters based on request signature analysis."
 
 filterlibResponse = FILTERLIB.create
     operationID: "nIcFGxZeQia9GCBFbpiDZQ"
@@ -35,21 +41,25 @@ filterlibResponse = FILTERLIB.create
 
         runtimeContext = request_
 
-        supportedFilters = []
-        for filterID of runtimeContext.filterTable
-            filter = runtimeContext.filterTable[filterID]
-            supportedFilters.push "[#{filter.filterDescriptor.operationName}:#{filterID}]"
-
         while not inBreakScope
             inBreakScope = true
 
+            supportedFilterIDs = []
+            supportedFilters = []
+            for filterID of runtimeContext.filterTable
+                supportedFilterIDs.push filterID
+                filter = runtimeContext.filterTable[filterID]
+                supportedFilters.push "[#{filterID}::#{filter.filterDescriptor.operationName}]"
+
+            supportedFilterIDs = supportedFilters.sort().join("-");
+            discriminatorID = IDENTIFIER.irut.fromReference(supportedFilterIDs).result            
+
             innerResponse = FILTERLIB.create
-                operationID: "XY-x390CSVmXTu0oYXlRiw"
-                operationName: "Discrimintor Filter"
-                operationDescription: "Discriminates between N disjunct request signatures."
+                operationID: discriminatorID,
+                operationName: "Discriminator Filter"
+                operationDescription: discriminatorDescriptions[request_.options.action]
 
                 bodyFunction: (request_) ->
-
                     response = { error: null, response: null }
                     errors = []
                     inBreakScope = false

@@ -1,11 +1,19 @@
 (function() {
-  var FILTERLIB, TYPELIB, checkPropConstraint, filterlibResponse;
+  var FILTERLIB, IDENTIFIER, TYPELIB, checkPropConstraint, discriminatorDescriptions, filterlibResponse;
+
+  IDENTIFIER = require('./arc_core_identifier');
 
   FILTERLIB = require('./arc_core_filter');
 
   TYPELIB = require('./arc_core_types');
 
   checkPropConstraint = require('./arc_core_type_discriminator_runtime_check_property');
+
+  discriminatorDescriptions = {
+    getFilterID: "Retrieves the filter identifier of the subfilter to which this request should be routed.",
+    getFilter: "Retrieves a reference to the subfilter that should be used to process this request.",
+    routeRequest: "Routes the request to one of N subfilters based on request signature analysis."
+  };
 
   filterlibResponse = FILTERLIB.create({
     operationID: "nIcFGxZeQia9GCBFbpiDZQ",
@@ -34,7 +42,7 @@
       }
     },
     bodyFunction: function(request_) {
-      var errors, filter, filterID, inBreakScope, innerResponse, response, runtimeContext, runtimeFilter, supportedFilters;
+      var discriminatorID, errors, filter, filterID, inBreakScope, innerResponse, response, runtimeContext, runtimeFilter, supportedFilterIDs, supportedFilters;
       response = {
         error: null,
         result: null
@@ -42,17 +50,21 @@
       errors = [];
       inBreakScope = false;
       runtimeContext = request_;
-      supportedFilters = [];
-      for (filterID in runtimeContext.filterTable) {
-        filter = runtimeContext.filterTable[filterID];
-        supportedFilters.push("[" + filter.filterDescriptor.operationName + ":" + filterID + "]");
-      }
       while (!inBreakScope) {
         inBreakScope = true;
+        supportedFilterIDs = [];
+        supportedFilters = [];
+        for (filterID in runtimeContext.filterTable) {
+          supportedFilterIDs.push(filterID);
+          filter = runtimeContext.filterTable[filterID];
+          supportedFilters.push("[" + filterID + "::" + filter.filterDescriptor.operationName + "]");
+        }
+        supportedFilterIDs = supportedFilters.sort().join("-");
+        discriminatorID = IDENTIFIER.irut.fromReference(supportedFilterIDs).result;
         innerResponse = FILTERLIB.create({
-          operationID: "XY-x390CSVmXTu0oYXlRiw",
-          operationName: "Discrimintor Filter",
-          operationDescription: "Discriminates between N disjunct request signatures.",
+          operationID: discriminatorID,
+          operationName: "Discriminator Filter",
+          operationDescription: discriminatorDescriptions[request_.options.action],
           bodyFunction: function(request_) {
             var checkResponse, continueRankEnum, currentVertex, edge, index, inputNamespace, outEdges, pathParts, propertyName, routeResponse, typeConstraint, uprop, vprop;
             response = {
