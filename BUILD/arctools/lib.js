@@ -2915,7 +2915,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "c89iZxWQQhuIcuKZ-UrcDA", buildTime: "1485814962"};
+		module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "cBFTdyLuQ2KFHxSE3qjNCQ", buildTime: "1485815099"};
 
 	/***/ },
 	/* 21 */
@@ -9252,7 +9252,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "c89iZxWQQhuIcuKZ-UrcDA", buildTime: "1485814962"};
+	module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "cBFTdyLuQ2KFHxSE3qjNCQ", buildTime: "1485815099"};
 
 /***/ },
 /* 24 */
@@ -9608,7 +9608,7 @@ module.exports =
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "c89iZxWQQhuIcuKZ-UrcDA", buildTime: "1485814962"};
+	module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "cBFTdyLuQ2KFHxSE3qjNCQ", buildTime: "1485815099"};
 
 /***/ },
 /* 30 */

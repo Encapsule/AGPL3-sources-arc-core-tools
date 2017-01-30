@@ -2310,7 +2310,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "c89iZxWQQhuIcuKZ-UrcDA", buildTime: "1485814962"};
+	module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "cBFTdyLuQ2KFHxSE3qjNCQ", buildTime: "1485815099"};
 
 /***/ },
 /* 21 */
