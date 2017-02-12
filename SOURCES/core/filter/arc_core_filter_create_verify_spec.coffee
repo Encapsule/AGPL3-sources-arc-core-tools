@@ -137,6 +137,18 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
                         description = mapPropertyValue
                         break
 
+                    when '____appdsl'
+                        innerResponse = TYPES.check.inTypeSet value: mapPropertyValue, types: [ 'jsObject' ]
+                        if innerResponse.error
+                            errors.unshift innerResponse.error
+                            errors.unshift "Internal error checking directive '#{mapPropertyName}':"
+                            break
+                        if not innerResponse.result
+                            errors.unshift innerResponse.guidance
+                            errors.unshift "Error checking directive '#{mapPropertyName}':"
+                            break
+                        break
+
                     when '____inValueSet'
                         innerResponse = TYPES.check.inTypeSet value: mapPropertyValue, types: [ 'jsArray' ]
                         if innerResponse.error

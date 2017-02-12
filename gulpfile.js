@@ -254,13 +254,6 @@ gulp.task("publish_ARCtools", function() {
         .pipe(gulp.dest('./DISTS/ARCtools/'));
 });
 
-
-/*
-gulp.task("publish", function() {
-    gulp.src('./STAGE/**')
-        .pipe(gulp.dest('./DISTS/'));
-});
-*/
 gulp.task('default', [ 'baseBuild', "test", "stage" ], function() {
     console.log("default...");
 });

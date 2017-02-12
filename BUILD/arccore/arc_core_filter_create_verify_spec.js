@@ -154,6 +154,22 @@
               }
               description = mapPropertyValue;
               break;
+            case '____appdsl':
+              innerResponse = TYPES.check.inTypeSet({
+                value: mapPropertyValue,
+                types: ['jsObject']
+              });
+              if (innerResponse.error) {
+                errors.unshift(innerResponse.error);
+                errors.unshift("Internal error checking directive '" + mapPropertyName + "':");
+                break;
+              }
+              if (!innerResponse.result) {
+                errors.unshift(innerResponse.guidance);
+                errors.unshift("Error checking directive '" + mapPropertyName + "':");
+                break;
+              }
+              break;
             case '____inValueSet':
               innerResponse = TYPES.check.inTypeSet({
                 value: mapPropertyValue,

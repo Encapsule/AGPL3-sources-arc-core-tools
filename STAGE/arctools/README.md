@@ -1,8 +1,8 @@
 ![Encapsule.io](https://encapsule.io/images/blue-burst-encapsule.io-logo-251x64.png "Encapsule.io")
 
-# Encapsule/arctools v0.0.14 "hidden dragon (pre-release)"
+# Encapsule/arctools v0.0.15 "longbow (pre-release)"
 
-Build ID "c89iZxWQQhuIcuKZ-UrcDA" Mon Jan 30 2017 14:22:42 GMT-0800 (PST)
+Build ID "mGV2AgWGS96PNiGMHZB7EQ" Sat Feb 11 2017 21:58:26 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

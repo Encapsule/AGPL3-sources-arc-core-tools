@@ -1,9 +1,9 @@
 {
     "name": "arccore",
-    "version": "0.0.14",
-    "codename": "hidden dragon (pre-release)",
-    "buildID": "c89iZxWQQhuIcuKZ-UrcDA",
-    "buildTime": 1485814962,
+    "version": "0.0.15",
+    "codename": "longbow (pre-release)",
+    "buildID": "mGV2AgWGS96PNiGMHZB7EQ",
+    "buildTime": 1486879106,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arccore.git"

@@ -1,1 +1,1 @@
-module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "c89iZxWQQhuIcuKZ-UrcDA", buildTime: "1485814962"};
+module.exports = { version: "0.0.15", codename: "longbow (pre-release)", author: "Encapsule", buildID: "mGV2AgWGS96PNiGMHZB7EQ", buildTime: "1486879106"};

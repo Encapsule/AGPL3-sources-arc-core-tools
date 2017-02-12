@@ -2310,7 +2310,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "c89iZxWQQhuIcuKZ-UrcDA", buildTime: "1485814962"};
+	module.exports = { version: "0.0.15", codename: "longbow (pre-release)", author: "Encapsule", buildID: "mGV2AgWGS96PNiGMHZB7EQ", buildTime: "1486879106"};
 
 /***/ },
 /* 21 */
@@ -3821,6 +3821,22 @@ module.exports =
 	                break;
 	              }
 	              description = mapPropertyValue;
+	              break;
+	            case '____appdsl':
+	              innerResponse = TYPES.check.inTypeSet({
+	                value: mapPropertyValue,
+	                types: ['jsObject']
+	              });
+	              if (innerResponse.error) {
+	                errors.unshift(innerResponse.error);
+	                errors.unshift("Internal error checking directive '" + mapPropertyName + "':");
+	                break;
+	              }
+	              if (!innerResponse.result) {
+	                errors.unshift(innerResponse.guidance);
+	                errors.unshift("Error checking directive '" + mapPropertyName + "':");
+	                break;
+	              }
 	              break;
 	            case '____inValueSet':
 	              innerResponse = TYPES.check.inTypeSet({
