@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.0.15",
-  "codename": "longbow (pre-release)",
+  "version": "0.0.16",
+  "codename": "peregrine (pre-release)",
   "description": "Encapsule.io ARC protocol master repository.",
   "main": "index.js",
   "scripts": {
