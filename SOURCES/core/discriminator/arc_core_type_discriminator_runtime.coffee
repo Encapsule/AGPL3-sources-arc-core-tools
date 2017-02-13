@@ -51,8 +51,8 @@ filterlibResponse = FILTERLIB.create
                 filter = runtimeContext.filterTable[filterID]
                 supportedFilters.push "[#{filterID}::#{filter.filterDescriptor.operationName}]"
 
-            supportedFilterIDs = supportedFilters.sort().join("-");
-            discriminatorID = IDENTIFIER.irut.fromReference(supportedFilterIDs).result            
+            supportedFilterIDs = supportedFilters.sort().join("-")
+            discriminatorID = IDENTIFIER.irut.fromReference(supportedFilterIDs).result
 
             innerResponse = FILTERLIB.create
                 operationID: discriminatorID,

@@ -2915,7 +2915,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "cBFTdyLuQ2KFHxSE3qjNCQ", buildTime: "1485815099"};
+		module.exports = { version: "0.0.15", codename: "longbow (pre-release)", author: "Encapsule", buildID: "VM_EG6cxTAuFusEgx0Damw", buildTime: "1486951235"};
 
 	/***/ },
 	/* 21 */
@@ -4426,6 +4426,22 @@ module.exports =
 		                break;
 		              }
 		              description = mapPropertyValue;
+		              break;
+		            case '____appdsl':
+		              innerResponse = TYPES.check.inTypeSet({
+		                value: mapPropertyValue,
+		                types: ['jsObject']
+		              });
+		              if (innerResponse.error) {
+		                errors.unshift(innerResponse.error);
+		                errors.unshift("Internal error checking directive '" + mapPropertyName + "':");
+		                break;
+		              }
+		              if (!innerResponse.result) {
+		                errors.unshift(innerResponse.guidance);
+		                errors.unshift("Error checking directive '" + mapPropertyName + "':");
+		                break;
+		              }
 		              break;
 		            case '____inValueSet':
 		              innerResponse = TYPES.check.inTypeSet({
@@ -9252,7 +9268,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "cBFTdyLuQ2KFHxSE3qjNCQ", buildTime: "1485815099"};
+	module.exports = { version: "0.0.15", codename: "longbow (pre-release)", author: "Encapsule", buildID: "VM_EG6cxTAuFusEgx0Damw", buildTime: "1486951235"};
 
 /***/ },
 /* 24 */
@@ -9608,7 +9624,7 @@ module.exports =
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.14", codename: "hidden dragon (pre-release)", author: "Encapsule", buildID: "cBFTdyLuQ2KFHxSE3qjNCQ", buildTime: "1485815099"};
+	module.exports = { version: "0.0.15", codename: "longbow (pre-release)", author: "Encapsule", buildID: "VM_EG6cxTAuFusEgx0Damw", buildTime: "1486951235"};
 
 /***/ },
 /* 30 */
@@ -11154,6 +11170,22 @@ module.exports =
 	                break;
 	              }
 	              description = mapPropertyValue;
+	              break;
+	            case '____appdsl':
+	              innerResponse = TYPES.check.inTypeSet({
+	                value: mapPropertyValue,
+	                types: ['jsObject']
+	              });
+	              if (innerResponse.error) {
+	                errors.unshift(innerResponse.error);
+	                errors.unshift("Internal error checking directive '" + mapPropertyName + "':");
+	                break;
+	              }
+	              if (!innerResponse.result) {
+	                errors.unshift(innerResponse.guidance);
+	                errors.unshift("Error checking directive '" + mapPropertyName + "':");
+	                break;
+	              }
 	              break;
 	            case '____inValueSet':
 	              innerResponse = TYPES.check.inTypeSet({

@@ -677,6 +677,43 @@ testCreateFilter({
     }
 });
 
+testCreateFilter({
+    testName: "Type map: test ____appdsl directive (bad type)",
+    validConfig: false,
+    request: {
+        operationID: "lPD2DM0CRoGF6vUio0KPQw",
+        inputFilterSpec: {
+            ____types: 'jsObject',
+            ____appdsl: "This should be an object"
+        }
+    },
+    expectedResults: {
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error checking directive \'____appdsl\': Value of type \'jsString\' not in allowed type set [jsObject].',
+        result: null,
+    }
+});
+
+testCreateFilter({
+    testName: "Type map: test ____appdsl directive (valid)",
+    validConfig: true,
+    request: {
+        operationID: "lPD2DM0CRoGF6vUio0KPQw",
+        inputFilterSpec: {
+            ____types: 'jsObject',
+            ____appdsl: {
+                inputType: "password"
+            }
+        }
+    },
+    expectedResults: {
+        error: '',
+        result: '{"operationID":"lPD2DM0CRoGF6vUio0KPQw","operationName":"unnamed","operationDescription":"lPD2DM0CRoGF6vUio0KPQw provides no description.","inputFilterSpec":{"____types":"jsObject","____appdsl":{"inputType":"password"}},"inputTypeVIID":"qTAtr1euzWs5UOM_nXjOQw","inputTypeVDID":"EQwRDCgZKBmZUplS56Lnog","outputTypeVIID":"xtgewo-A44hsQ8DMva9C8A","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"V8K9E2o4ulf97azt4tnStA"}'
+    }
+});
+
+
+
+
 
 
 
