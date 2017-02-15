@@ -2915,7 +2915,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.15", codename: "longbow (pre-release)", author: "Encapsule", buildID: "VM_EG6cxTAuFusEgx0Damw", buildTime: "1486951235"};
+		module.exports = { version: "0.0.16", codename: "peregrine (pre-release)", author: "Encapsule", buildID: "-QvC-UXFQFKRjVhs0E5_8A", buildTime: "1487193803"};
 
 	/***/ },
 	/* 21 */
@@ -9270,7 +9270,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.15", codename: "longbow (pre-release)", author: "Encapsule", buildID: "VM_EG6cxTAuFusEgx0Damw", buildTime: "1486951235"};
+	module.exports = { version: "0.0.16", codename: "peregrine (pre-release)", author: "Encapsule", buildID: "-QvC-UXFQFKRjVhs0E5_8A", buildTime: "1487193803"};
 
 /***/ },
 /* 24 */
@@ -9626,7 +9626,7 @@ module.exports =
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.15", codename: "longbow (pre-release)", author: "Encapsule", buildID: "VM_EG6cxTAuFusEgx0Damw", buildTime: "1486951235"};
+	module.exports = { version: "0.0.16", codename: "peregrine (pre-release)", author: "Encapsule", buildID: "-QvC-UXFQFKRjVhs0E5_8A", buildTime: "1487193803"};
 
 /***/ },
 /* 30 */
