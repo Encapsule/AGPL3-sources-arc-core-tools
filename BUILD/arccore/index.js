@@ -5775,6 +5775,8 @@ module.exports =
 	              break;
 	            case '____description':
 	              break;
+	            case '____appdsl':
+	              break;
 	            default:
 	              if (valueJsMoniker === 'jsArray') {
 	                index = 0;

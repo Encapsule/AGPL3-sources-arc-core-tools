@@ -173,6 +173,9 @@ filterRuntimeData = module.exports = (request_) ->
                     when '____description'
                         # Ignore ____description metadata that is not used at runtime.
                         break
+                    when '____appdsl'
+                        # Ignore ____appdsl metadata that is optionally provided by developers for their own purposes and is not of relevance here
+                        break
                     else
                         # By typemap convention, a namespace property that is not one of typemap's
                         # reserved properties is taken as the declaration of subnamespace entity.

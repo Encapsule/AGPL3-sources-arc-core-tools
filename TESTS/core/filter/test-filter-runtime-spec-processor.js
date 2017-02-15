@@ -102,7 +102,7 @@ testVerifyFilterSpec({
 });
 
 testVerifyFilterSpec({
-    testName: "Request filterSpec specifies an undefined top-level type and an undefined ioReference (check theca callback)",
+    testName: "Request filterSpec specifies an undefined top-level type and an undefined ioReference (check the callback)",
     validConfig: true,
     request: {
         spec:{
@@ -501,5 +501,23 @@ testVerifyFilterSpec({
         result: '{"x":""}'
     }
 });
+
+testVerifyFilterSpec({
+    testName: "Ensure that application-defined DSL metadata is ignored at runtime by filter.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____accept: "jsString",
+            ____appdsl: {
+                test: "this data should be ignored by filter at runtime."
+            }
+        },
+        value: "Runtime input string value."
+    },
+    expectedResults: {
+        result: '"Runtime input string value."'
+    }
+});
+
 
 

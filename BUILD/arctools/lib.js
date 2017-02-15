@@ -6380,6 +6380,8 @@ module.exports =
 		              break;
 		            case '____description':
 		              break;
+		            case '____appdsl':
+		              break;
 		            default:
 		              if (valueJsMoniker === 'jsArray') {
 		                index = 0;
@@ -13123,6 +13125,8 @@ module.exports =
 	            case '____label':
 	              break;
 	            case '____description':
+	              break;
+	            case '____appdsl':
 	              break;
 	            default:
 	              if (valueJsMoniker === 'jsArray') {
