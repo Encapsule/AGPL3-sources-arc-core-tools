@@ -57,8 +57,8 @@ partitionAndColorGraphByAmbiguity = module.exports = (mergedModelDigraph_) ->
             errors.unshift "BFS of merged filter specification graph did not discover all vertices?"
             break
 
-        console.log "AMBIGUITY MODEL BFS COLORING PHASE 2.1"
-        console.log ambiguityModelDigraph.stringify undefined, 4
+        # console.log "AMBIGUITY MODEL BFS COLORING PHASE 2.1"
+        # console.log ambiguityModelDigraph.stringify undefined, 4
 
 
 
@@ -75,7 +75,7 @@ partitionAndColorGraphByAmbiguity = module.exports = (mergedModelDigraph_) ->
 
             # DO NOT TOUCH GOLD AND BLACK VERTICES
             if (uprop.color == "gold") or (uprop.color == "black")
-                console.log "... '#{vertex}' remains #{uprop.color}"
+                # console.log "... '#{vertex}' remains #{uprop.color}"
                 continue
 
             # GRAY VERTEX PROCESSING
@@ -129,8 +129,8 @@ partitionAndColorGraphByAmbiguity = module.exports = (mergedModelDigraph_) ->
             uprop.color = updatedColor
             ambiguityModelDigraph.setVertexProperty { u: vertex, p: uprop }
 
-        console.log "AMBIGUITY MODEL RBFS COLORING PHASE 2.2"
-        console.log ambiguityModelDigraph.stringify undefined, 4
+        # console.log "AMBIGUITY MODEL RBFS COLORING PHASE 2.2"
+        # console.log ambiguityModelDigraph.stringify undefined, 4
 
         response.result =
             digraph: ambiguityModelDigraph

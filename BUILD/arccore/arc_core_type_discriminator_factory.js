@@ -63,15 +63,12 @@
           errors.unshift("Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.");
           break;
         }
-        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
         innerResponse = createMergedFilterSpecModel(request_.filters);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;
         }
         mergedModel = innerResponse.result;
-        console.log(mergedModel.digraph.stringify(void 0, 4));
-        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
         innerResponse = createAmbiguityModel(mergedModel.digraph);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
@@ -79,23 +76,18 @@
           break;
         }
         ambiguityModel = innerResponse.result;
-        console.log(ambiguityModel.digraph.stringify(void 0, 4));
-        console.log("... checking for ambiguities in the ambiguity model");
         ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
           return errors.push(error_);
         });
         if (errors.length) {
           break;
         }
-        console.log("STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL");
         innerResponse = createRuntimeParseModel(ambiguityModel.digraph);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;
         }
         runtimeParseDigraph = innerResponse.result;
-        console.log(runtimeParseDigraph.stringify(void 0, 4));
-        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
         innerResponse = createDiscriminatorFilterRuntime.request({
           filterTable: mergedModel.filterTable,
           parseDigraph: runtimeParseDigraph,

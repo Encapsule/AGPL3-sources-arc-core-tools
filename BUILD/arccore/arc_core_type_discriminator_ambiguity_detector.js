@@ -65,8 +65,6 @@
         errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
         break;
       }
-      console.log("AMBIGUITY MODEL BFS COLORING PHASE 2.1");
-      console.log(ambiguityModelDigraph.stringify(void 0, 4));
       index = 0;
       while (index < bfsVertices.length) {
         rbfsVertices.push(bfsVertices[bfsVertices.length - index - 1]);
@@ -77,7 +75,6 @@
         vertex = rbfsVertices[index++];
         uprop = ambiguityModelDigraph.getVertexProperty(vertex);
         if ((uprop.color === "gold") || (uprop.color === "black")) {
-          console.log("... '" + vertex + "' remains " + uprop.color);
           continue;
         }
         subscribersMap = {};
@@ -128,8 +125,6 @@
           p: uprop
         });
       }
-      console.log("AMBIGUITY MODEL RBFS COLORING PHASE 2.2");
-      console.log(ambiguityModelDigraph.stringify(void 0, 4));
       response.result = {
         digraph: ambiguityModelDigraph,
         ambigousBlackVertices: ambiguousBlackVertices,

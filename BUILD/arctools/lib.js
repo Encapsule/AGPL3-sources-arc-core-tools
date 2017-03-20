@@ -2915,7 +2915,7 @@ module.exports =
 	/* 20 */
 	/***/ function(module, exports) {
 
-		module.exports = { version: "0.0.16", codename: "peregrine (pre-release)", author: "Encapsule", buildID: "-QvC-UXFQFKRjVhs0E5_8A", buildTime: "1487193803"};
+		module.exports = { version: "0.0.17", codename: "kestrel (pre-release)", author: "Encapsule", buildID: "DKUzGB-TTwS6RBgDInpZ2Q", buildTime: "1489971909"};
 
 	/***/ },
 	/* 21 */
@@ -6815,8 +6815,6 @@ module.exports =
 		        errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
 		        break;
 		      }
-		      console.log("AMBIGUITY MODEL BFS COLORING PHASE 2.1");
-		      console.log(ambiguityModelDigraph.stringify(void 0, 4));
 		      index = 0;
 		      while (index < bfsVertices.length) {
 		        rbfsVertices.push(bfsVertices[bfsVertices.length - index - 1]);
@@ -6827,7 +6825,6 @@ module.exports =
 		        vertex = rbfsVertices[index++];
 		        uprop = ambiguityModelDigraph.getVertexProperty(vertex);
 		        if ((uprop.color === "gold") || (uprop.color === "black")) {
-		          console.log("... '" + vertex + "' remains " + uprop.color);
 		          continue;
 		        }
 		        subscribersMap = {};
@@ -6878,8 +6875,6 @@ module.exports =
 		          p: uprop
 		        });
 		      }
-		      console.log("AMBIGUITY MODEL RBFS COLORING PHASE 2.2");
-		      console.log(ambiguityModelDigraph.stringify(void 0, 4));
 		      response.result = {
 		        digraph: ambiguityModelDigraph,
 		        ambigousBlackVertices: ambiguousBlackVertices,
@@ -6981,15 +6976,12 @@ module.exports =
 		          errors.unshift("Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.");
 		          break;
 		        }
-		        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
 		        innerResponse = createMergedFilterSpecModel(request_.filters);
 		        if (innerResponse.error) {
 		          errors.unshift(innerResponse.error);
 		          break;
 		        }
 		        mergedModel = innerResponse.result;
-		        console.log(mergedModel.digraph.stringify(void 0, 4));
-		        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
 		        innerResponse = createAmbiguityModel(mergedModel.digraph);
 		        if (innerResponse.error) {
 		          errors.unshift(innerResponse.error);
@@ -6997,23 +6989,18 @@ module.exports =
 		          break;
 		        }
 		        ambiguityModel = innerResponse.result;
-		        console.log(ambiguityModel.digraph.stringify(void 0, 4));
-		        console.log("... checking for ambiguities in the ambiguity model");
 		        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
 		          return errors.push(error_);
 		        });
 		        if (errors.length) {
 		          break;
 		        }
-		        console.log("STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL");
 		        innerResponse = createRuntimeParseModel(ambiguityModel.digraph);
 		        if (innerResponse.error) {
 		          errors.unshift(innerResponse.error);
 		          break;
 		        }
 		        runtimeParseDigraph = innerResponse.result;
-		        console.log(runtimeParseDigraph.stringify(void 0, 4));
-		        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
 		        innerResponse = createDiscriminatorFilterRuntime.request({
 		          filterTable: mergedModel.filterTable,
 		          parseDigraph: runtimeParseDigraph,
@@ -9270,7 +9257,7 @@ module.exports =
 /* 23 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.16", codename: "peregrine (pre-release)", author: "Encapsule", buildID: "-QvC-UXFQFKRjVhs0E5_8A", buildTime: "1487193803"};
+	module.exports = { version: "0.0.17", codename: "kestrel (pre-release)", author: "Encapsule", buildID: "DKUzGB-TTwS6RBgDInpZ2Q", buildTime: "1489971909"};
 
 /***/ },
 /* 24 */
@@ -9626,7 +9613,7 @@ module.exports =
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = { version: "0.0.16", codename: "peregrine (pre-release)", author: "Encapsule", buildID: "-QvC-UXFQFKRjVhs0E5_8A", buildTime: "1487193803"};
+	module.exports = { version: "0.0.17", codename: "kestrel (pre-release)", author: "Encapsule", buildID: "DKUzGB-TTwS6RBgDInpZ2Q", buildTime: "1489971909"};
 
 /***/ },
 /* 30 */
@@ -13561,8 +13548,6 @@ module.exports =
 	        errors.unshift("BFS of merged filter specification graph did not discover all vertices?");
 	        break;
 	      }
-	      console.log("AMBIGUITY MODEL BFS COLORING PHASE 2.1");
-	      console.log(ambiguityModelDigraph.stringify(void 0, 4));
 	      index = 0;
 	      while (index < bfsVertices.length) {
 	        rbfsVertices.push(bfsVertices[bfsVertices.length - index - 1]);
@@ -13573,7 +13558,6 @@ module.exports =
 	        vertex = rbfsVertices[index++];
 	        uprop = ambiguityModelDigraph.getVertexProperty(vertex);
 	        if ((uprop.color === "gold") || (uprop.color === "black")) {
-	          console.log("... '" + vertex + "' remains " + uprop.color);
 	          continue;
 	        }
 	        subscribersMap = {};
@@ -13624,8 +13608,6 @@ module.exports =
 	          p: uprop
 	        });
 	      }
-	      console.log("AMBIGUITY MODEL RBFS COLORING PHASE 2.2");
-	      console.log(ambiguityModelDigraph.stringify(void 0, 4));
 	      response.result = {
 	        digraph: ambiguityModelDigraph,
 	        ambigousBlackVertices: ambiguousBlackVertices,
@@ -13727,15 +13709,12 @@ module.exports =
 	          errors.unshift("Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter.");
 	          break;
 	        }
-	        console.log("STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT");
 	        innerResponse = createMergedFilterSpecModel(request_.filters);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
 	        mergedModel = innerResponse.result;
-	        console.log(mergedModel.digraph.stringify(void 0, 4));
-	        console.log("STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY");
 	        innerResponse = createAmbiguityModel(mergedModel.digraph);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
@@ -13743,23 +13722,18 @@ module.exports =
 	          break;
 	        }
 	        ambiguityModel = innerResponse.result;
-	        console.log(ambiguityModel.digraph.stringify(void 0, 4));
-	        console.log("... checking for ambiguities in the ambiguity model");
 	        ambiguityModel.ambiguousFilterSpecificationErrors.forEach(function(error_) {
 	          return errors.push(error_);
 	        });
 	        if (errors.length) {
 	          break;
 	        }
-	        console.log("STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL");
 	        innerResponse = createRuntimeParseModel(ambiguityModel.digraph);
 	        if (innerResponse.error) {
 	          errors.unshift(innerResponse.error);
 	          break;
 	        }
 	        runtimeParseDigraph = innerResponse.result;
-	        console.log(runtimeParseDigraph.stringify(void 0, 4));
-	        console.log("STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER");
 	        innerResponse = createDiscriminatorFilterRuntime.request({
 	          filterTable: mergedModel.filterTable,
 	          parseDigraph: runtimeParseDigraph,
