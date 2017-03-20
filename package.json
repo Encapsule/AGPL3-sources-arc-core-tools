@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.0.17",
-  "codename": "kestrel (pre-release)",
+  "version": "0.0.18",
+  "codename": "osprey (pre-release)",
   "description": "Encapsule.io ARC protocol master repository.",
   "main": "index.js",
   "scripts": {
