@@ -2,8 +2,8 @@
   "private": true,
   "name": "arc_master",
   "version": "0.0.18",
-  "codename": "osprey (pre-release)",
-  "description": "Encapsule.io ARC protocol master repository.",
+  "codename": "bagh",
+  "description": "Encapsule.io ARC project master repository.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
