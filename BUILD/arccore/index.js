@@ -43,7 +43,7 @@ module.exports =
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var ARC_BUILD, COMMON;
@@ -76,9 +76,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -108,9 +108,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -140,9 +140,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	
 	/*
@@ -415,9 +415,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* 
 	   Encapsule/jsgraph/src/helper-functions.js
@@ -501,9 +501,9 @@ module.exports =
 	};
 
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var jbus;
@@ -523,9 +523,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* --------------------------------------------------------------------------
 
@@ -610,9 +610,9 @@ module.exports =
 
 
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 	  Encapsule/jsgraph/src/digraph-algorithm-common-colors.js
@@ -640,9 +640,9 @@ module.exports =
 
 
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	
 	/*
@@ -690,9 +690,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 9 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	(function() {
 	  var ARC_CORE_UTIL;
@@ -747,9 +747,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 10 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	(function() {
 	  module.exports = {
@@ -801,9 +801,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var murmur3 = __webpack_require__(56)
 	var murmur2 = __webpack_require__(55)
@@ -813,9 +813,9 @@ module.exports =
 	module.exports.murmur2 = murmur2
 
 
-/***/ },
+/***/ }),
 /* 12 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	  Encapsule/jsgraph/src/digraph.js
@@ -1389,9 +1389,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 13 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	  Encapsule/jsgraph/src/digraph-algorithm-common-context.js
@@ -1450,9 +1450,9 @@ module.exports =
 	};
 
 
-/***/ },
+/***/ }),
 /* 14 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	  Encapsule/jsgraph/arc/digraph-algorithm-common-request.js
@@ -1619,9 +1619,9 @@ module.exports =
 	};
 
 
-/***/ },
+/***/ }),
 /* 15 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	  Encapsule/jsgraph/src/digraph-algorithm-common-visit.js
@@ -1688,9 +1688,9 @@ module.exports =
 
 
 
-/***/ },
+/***/ }),
 /* 16 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	(function() {
 	  module.exports = {
@@ -1772,9 +1772,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 17 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var convert, typeCodes, typeLUTS;
@@ -1920,9 +1920,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 18 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  'use strict';
@@ -2028,9 +2028,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 19 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;//     uuid.js
 	//
@@ -2306,15 +2306,15 @@ module.exports =
 	})('undefined' !== typeof window ? window : null);
 
 
-/***/ },
+/***/ }),
 /* 20 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	module.exports = { version: "0.0.17", codename: "kestrel (pre-release)", author: "Encapsule", buildID: "DKUzGB-TTwS6RBgDInpZ2Q", buildTime: "1489971909"};
+	module.exports = { version: "0.0.18", codename: "bagh", author: "Encapsule", buildID: "VIShgEvrThaxXwNxBJ5xhQ", buildTime: "1517687798"};
 
-/***/ },
+/***/ }),
 /* 21 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	  Encapsule/jsgraph/src/digraph-algorithm-bft.js
@@ -2619,9 +2619,9 @@ module.exports =
 	};
 
 
-/***/ },
+/***/ }),
 /* 22 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	  Encapsule/jsgraph/src/digraph-algorithm-dft.js
@@ -2950,9 +2950,9 @@ module.exports =
 
 
 
-/***/ },
+/***/ }),
 /* 23 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	  Encapsule/jsgraph/src/digraph-algorithm-transpose.js
@@ -3024,9 +3024,9 @@ module.exports =
 
 
 
-/***/ },
+/***/ }),
 /* 24 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	  Encapsule/jsgraph/src/digraph-json-export.js
@@ -3085,9 +3085,9 @@ module.exports =
 	};
 
 
-/***/ },
+/***/ }),
 /* 25 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 	  Encapsule/jsgraph/src/digraph-json-import.js
@@ -3255,9 +3255,9 @@ module.exports =
 	};
 
 
-/***/ },
+/***/ }),
 /* 26 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 	  Encapsule/jsgraph/src/digraph-in-parameters.js
@@ -3377,9 +3377,9 @@ module.exports =
 	};
 
 
-/***/ },
+/***/ }),
 /* 27 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  'use strict';
@@ -3511,9 +3511,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 28 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -3662,9 +3662,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 29 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var IDENTIFIER, TYPES, verifyCompositionTypeMapDeclaration, verifyTypeConstraintArgs;
@@ -4037,9 +4037,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 30 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -4069,9 +4069,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 31 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -4181,9 +4181,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 32 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -4255,9 +4255,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 33 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	
 	/*
@@ -4310,9 +4310,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 34 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -4411,9 +4411,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 35 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -4512,9 +4512,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 36 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -4611,9 +4611,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 37 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -4672,9 +4672,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 38 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -4774,9 +4774,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 39 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -4883,9 +4883,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 40 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -5076,9 +5076,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 41 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -5189,9 +5189,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 42 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -5397,9 +5397,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 43 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -5496,9 +5496,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 44 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  'use strict';
@@ -5598,9 +5598,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 45 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var IDENTIFIER, TYPES, filterRuntimeData;
@@ -5879,9 +5879,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 46 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -5935,9 +5935,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 47 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	
 	/*
@@ -6139,9 +6139,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 48 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var GRAPHLIB, UTILLIB, partitionAndColorGraphByAmbiguity;
@@ -6302,9 +6302,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 49 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var FILTERLIB, createAmbiguityModel, createDiscriminatorFilterRuntime, createMergedFilterSpecModel, createRuntimeParseModel, filterlibResponse;
@@ -6430,9 +6430,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 50 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var FILTERLIB, GRAPHLIB, UTILLIB, addFilterSpecToMergedDigraphModel, buildMergedFilterSpecDigraphModel, rootVertex;
@@ -6605,9 +6605,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 51 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var FILTERLIB, IDENTIFIER, TYPELIB, checkPropConstraint, discriminatorDescriptions, filterlibResponse;
@@ -6780,9 +6780,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 52 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var TYPELIB;
@@ -6821,9 +6821,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 53 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var GRAPHLIB, IDLIB, UTILLIB, buildRuntimeParseModel;
@@ -6928,9 +6928,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 54 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	(function() {
 	  var MODULE, typeCodes, typeConvert, typeLUTS;
@@ -7070,9 +7070,9 @@ module.exports =
 	}).call(this);
 
 
-/***/ },
+/***/ }),
 /* 55 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/**
 	 * JS Implementation of MurmurHash2
@@ -7130,9 +7130,9 @@ module.exports =
 	}
 
 
-/***/ },
+/***/ }),
 /* 56 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * JS Implementation of MurmurHash3 (r136) (as of May 20, 2011)
@@ -7203,11 +7203,11 @@ module.exports =
 	  module.exports = murmurhash3_32_gc
 	}
 
-/***/ },
+/***/ }),
 /* 57 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = require("crypto");
 
-/***/ }
+/***/ })
 /******/ ]);

@@ -1,8 +1,8 @@
 ![Encapsule.io](https://encapsule.io/images/blue-burst-encapsule.io-logo-251x64.png "Encapsule.io")
 
-# Encapsule/arctools v0.0.17 "kestrel (pre-release)"
+# Encapsule/arctools v0.0.18 "bagh"
 
-Build ID "DKUzGB-TTwS6RBgDInpZ2Q" Sun Mar 19 2017 18:05:09 GMT-0700 (PDT)
+Build ID "VIShgEvrThaxXwNxBJ5xhQ" Sat Feb 03 2018 11:56:38 GMT-0800 (PST)
 
 [![Join the chat at https://gitter.im/Encapsule/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Encapsule/?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -20,4 +20,4 @@ For additional information, please visit [Encapsule.io](https://encapsule.io).
 
 <hr>
 
-Copyright (C) 2017 Christopher D. Russell, [Encapsule.io](https://encapsule.io) Bellevue, WA USA
+Copyright (C) 2018 Christopher D. Russell, [Encapsule.io](https://encapsule.io) Bellevue, WA USA

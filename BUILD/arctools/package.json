@@ -1,9 +1,9 @@
 {
     "name": "arctools",
-    "version": "0.0.17",
-    "codename": "kestrel (pre-release)",
-    "buildID": "DKUzGB-TTwS6RBgDInpZ2Q",
-    "buildTime": 1489971909,
+    "version": "0.0.18",
+    "codename": "bagh",
+    "buildID": "VIShgEvrThaxXwNxBJ5xhQ",
+    "buildTime": 1517687798,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Encapsule/arctools.git"
