@@ -182,6 +182,9 @@ var generateTestFilter_Namespace3 = function() {
     return functionObject;
 };
 
+
+
+
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #1',
     validConfig: true,
@@ -214,4 +217,297 @@ testFilterRuntime({
     }
 });
 
+
+// ==========================================================================
+var generateTestFilter_Namespace4 = function() {
+    var functionObject = createFilter({
+        operationID: "4PlhPwvcQ5axocAL5M_-AQ",
+        inputFilterSpec: {
+            ____accept: [ 'jsObject' ],
+            ____defaultValue: { partOfDefaultObject: "This value should be used iff filter input is undefined." }
+        },
+        bodyFunction: function(request_) {
+            var message = "The bodyFunction was passed request='" + JSON.stringify(request_) + "'.";
+            return { error: null, result: message };
+        }
+    });
+    return functionObject;
+};
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #4a',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace4,
+    request: undefined,
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{\\"partOfDefaultObject\\":\\"This value should be used iff filter input is undefined.\\"}\'."'
+
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #4b',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace4,
+    request: {},
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{}\'."'
+
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #4c',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace4,
+    request: { whatever: "Seriously" },
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{\\"whatever\\":\\"Seriously\\"}\'."'
+
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #4d (invalid input type)',
+    validConfig: false,
+    nffGenerator: generateTestFilter_Namespace4,
+    request: null,
+    expectedResults: {
+        error: 'Filter [4PlhPwvcQ5axocAL5M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsNull\' not in allowed type set [jsObject].',
+        result: ''
+
+    }
+});
+
+// ==========================================================================
+var generateTestFilter_Namespace5 = function() {
+    var functionObject = createFilter({
+        operationID: "4PlhPwvcQ5axocAL5M_-AQ",
+        inputFilterSpec: {
+            ____types: [ 'jsObject' ],
+            ____defaultValue: { y: "This is the default value of y set by the outer object." },
+            y: {
+                ____accept: [ 'jsString' ],
+                ____defaultValue: "This is the default value of y set by y itself."
+            }
+        },
+        bodyFunction: function(request_) {
+            var message = "The bodyFunction was passed request='" + JSON.stringify(request_) + "'.";
+            return { error: null, result: message };
+        }
+    });
+    return functionObject;
+};
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #5a (request undefined -> should use default value)',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace5,
+    request: undefined,
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{\\"y\\":\\"This is the default value of y set by the outer object.\\"}\'."',
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #5b (request specifies outer object but not inner -> should use inner default)',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace5,
+    request: {},
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{\\"y\\":\\"This is the default value of y set by y itself.\\"}\'."'
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #5c (request specifies outer object w/superflous subnamespaces but not inner namespace -> should use inner default)',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace5,
+    request: { whatever: "Seriously, because this isn't in the filter spec it's superfluous" },
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{\\"y\\":\\"This is the default value of y set by y itself.\\"}\'."'
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #5d (request specifies outer object w/superflous subnamespaces but not inner namespace -> should use inner default)',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace5,
+    request: { y: "This is an actual value specified in the request." },
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{\\"y\\":\\"This is an actual value specified in the request.\\"}\'."'
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #5e (invalid input type)',
+    validConfig: false,
+    nffGenerator: generateTestFilter_Namespace5,
+    request: null,
+    expectedResults: {
+        error: 'Filter [4PlhPwvcQ5axocAL5M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsNull\' not in allowed type set [jsObject].',
+        result: ''
+
+    }
+});
+
+
+
+
+
+// ==========================================================================
+var generateTestFilter_Namespace6 = function() {
+    var functionObject = createFilter({
+        operationID: "4PlhPwvcQ6axocAL6M_-AQ",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            ep: {
+                ____accept: [ "jsObject" ],
+                ____defaultValue: { HelloWorld: { Whatever: { Test: "this string is embededed in a nested default value" } } }
+            }
+        },
+        bodyFunction: function(request_) {
+            var message = "The bodyFunction was passed request='" + JSON.stringify(request_) + "'.";
+            return { error: null, result: message };
+        }
+    });
+    return functionObject;
+};
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #6a (invalid undefined input)',
+    validConfig: false,
+    nffGenerator: generateTestFilter_Namespace6,
+    request: undefined,
+    expectedResults: {
+        error: 'Filter [4PlhPwvcQ6axocAL6M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsObject].',
+        result: ''
+
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #6b (outer object specified, inner object not specified -> should specify default value)',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace6,
+    request: {},
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{\\"ep\\":{\\"HelloWorld\\":{\\"Whatever\\":{\\"Test\\":\\"this string is embededed in a nested default value\\"}}}}\'."'
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #6c (outer object specified, inner object specified -> should override default value)',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace6,
+    request: { ep: { WhateverIWant: "Because this is an accept namespace." } },
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{\\"ep\\":{\\"WhateverIWant\\":\\"Because this is an accept namespace.\\"}}\'."'
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #6d (invalid input type)',
+    validConfig: false,
+    nffGenerator: generateTestFilter_Namespace6,
+    request: null,
+    expectedResults: {
+        error: 'Filter [4PlhPwvcQ6axocAL6M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsNull\' not in allowed type set [jsObject].',
+        result: ''
+
+    }
+});
+
+
+// ==========================================================================
+// This is an example from a derived application
+var generateTestFilter_Namespace7 = function() {
+    var functionObject = createFilter({
+        operationID: "4PlhPwvcQ7axocAL7M_-AQ",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            RUXBase_Page: {
+                ____label: "RUXBase_Page HTML View Render Request",
+                ____description: "HTML render request format for <RUXBase_Page/> React component.",
+                ____types: "jsObject",
+
+                pageHeaderEP: {
+                    ____label: "Page Header Extension Point (EP)",
+                    ____description: "The contents of this namespace is rendered dynamically via <ComponentRouter/>.",
+                    ____accept: "jsObject",
+                    ____defaultValue: { RUXBase_PageHeader: {} }
+                },
+
+                pageContentEP: {
+                    ____label: "Page Content Extension Point (EP)",
+                    ____description: "The contents of this namespace is rendered dynamically via <ComponentRouter/>.",
+                    ____accept: [ "jsObject" ],
+                    ____defaultValue: { RUXBase_PageContent: {} }
+                },
+
+                pageFooterEP: {
+                    ____label: "Page Footer Extension Point (EP)",
+                    ____description: "The contents of this namespace is rendered dynamically via <ComponentRouter/>.",
+                    ____accept: [ "jsObject" ],
+                    ____defaultValue: { RUXBase_PageFooter: {} }
+                },
+
+                pageDebugEP: {
+                    ____label: "Page Debug Extenion Point (EP)",
+                    ____description: "The contents of this namespace is rendered dynamically via <ComponentRouter/>.",
+                    ____accept: "jsObject",
+                    ____defaultValue: { RUXBase_PageDebugWidget: {} }
+                }
+            }
+        },
+        bodyFunction: function(request_) {
+            var message = "The bodyFunction was passed request='" + JSON.stringify(request_) + "'.";
+            return { error: null, result: message };
+        }
+    });
+    return functionObject;
+};
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #7a (invalid undefined input)',
+    validConfig: false,
+    nffGenerator: generateTestFilter_Namespace7,
+    request: undefined,
+    expectedResults: {
+        error: 'Filter [4PlhPwvcQ7axocAL7M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsObject].',
+        result: ''
+
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #7b (outer object specified -> should specify default value)',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace7,
+    request: { RUXBase_Page: {} },
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{\\"RUXBase_Page\\":{\\"pageHeaderEP\\":{\\"RUXBase_PageHeader\\":{}},\\"pageContentEP\\":{\\"RUXBase_PageContent\\":{}},\\"pageFooterEP\\":{\\"RUXBase_PageFooter\\":{}},\\"pageDebugEP\\":{\\"RUXBase_PageDebugWidget\\":{}}}}\'."'
+    }
+});
+
+testFilterRuntime({
+    testName: 'Advanced defaults triggers case #7c (outer object specified, inner object specified -> should override default value)',
+    validConfig: true,
+    nffGenerator: generateTestFilter_Namespace7,
+    request: { RUXBase_Page: { pageContentEP: { Test: { x: "some data" } } } },
+    expectedResults: {
+        error: null,
+        result: '"The bodyFunction was passed request=\'{\\"RUXBase_Page\\":{\\"pageHeaderEP\\":{\\"RUXBase_PageHeader\\":{}},\\"pageContentEP\\":{\\"Test\\":{\\"x\\":\\"some data\\"}},\\"pageFooterEP\\":{\\"RUXBase_PageFooter\\":{}},\\"pageDebugEP\\":{\\"RUXBase_PageDebugWidget\\":{}}}}\'."'
+    }
+});
 
