@@ -15,7 +15,7 @@ var ambiguityModelSet = {
 };
 
 testBuildRuntimeParseModel({
-    testName: "Input Ambiguity Model #1",
+    testName: "(test-type-discriminator-runtime-parse-digraph.js) Input Ambiguity Model #1",
     validConfig: true,
     request: ambiguityModelSet.test1.result.digraph,
     expectedResults: {
@@ -25,7 +25,7 @@ testBuildRuntimeParseModel({
 });
 
 testBuildRuntimeParseModel({
-    testName: "Input Ambiguity Model #2",
+    testName: "(test-type-discriminator-runtime-parse-digraph.js) Input Ambiguity Model #2",
     validConfig: true,
     request: ambiguityModelSet.test2.result.digraph,
     expectedResults: {
@@ -35,7 +35,7 @@ testBuildRuntimeParseModel({
 });
 
 testBuildRuntimeParseModel({
-    testName: "Input Ambiguity Model #3",
+    testName: "(test-type-discriminator-runtime-parse-digraph.js) Input Ambiguity Model #3",
     validConfig: true,
     request: ambiguityModelSet.test3.result.digraph,
     expectedResults: {
@@ -45,12 +45,11 @@ testBuildRuntimeParseModel({
 });
 
 testBuildRuntimeParseModel({
-    testName: "Input Ambiguity Model #4",
-    validConfig: false,
+    testName: "(test-type-discriminator-runtime-parse-digraph.js) Input Ambiguity Model #4",
+    validConfig: true,
     request: ambiguityModelSet.test4.result.digraph,
     expectedResults: {
-        error: "Invalid ambiguity model digraph. The root vertex should be color \'green\' but is \'black\'.",
-        result: null
+        result: '{"name":"Discriminator Runtime Parse Digraph","description":"","vlist":[{"u":"request(jsObject)","p":{"filterSpecPath":"request","typeConstraint":"jsObject"}},{"u":"request(jsArray)","p":{"filterSpecPath":"request","typeConstraint":"jsArray","filterID":"JuBl8bGITD2zX1wRaqPRUQ"}},{"u":"request(jsUndefined)","p":{"filterSpecPath":"request","typeConstraint":"jsUndefined","filterID":"JuBl8bGITD2zX1wRaqPRUQ"}},{"u":"request(jsObject).x(jsNumber)","p":{"filterSpecPath":"request.x","typeConstraint":"jsNumber","filterID":"uiVVIMuAQlW2qkbbP9FE6w"}},{"u":"request(jsObject).y(jsNumber)","p":{"filterSpecPath":"request.y","typeConstraint":"jsNumber","filterID":"tKTz14sOR4OlXpBr_zZbdA"}},{"u":"request(jsObject).y(jsArray)","p":{"filterSpecPath":"request.y","typeConstraint":"jsArray","filterID":"03es-GM8QdKRj0HDoOMpUQ"}},{"u":"request(jsObject).myFunction(jsFunction)","p":{"filterSpecPath":"request.myFunction","typeConstraint":"jsFunction","filterID":"g_o9FSClQ52TqyJ9tESGzg"}}],"elist":[{"e":{"u":"request","v":"request(jsObject)"}},{"e":{"u":"request","v":"request(jsArray)"}},{"e":{"u":"request","v":"request(jsUndefined)"}},{"e":{"u":"request(jsObject)","v":"request(jsObject).x(jsNumber)"}},{"e":{"u":"request(jsObject)","v":"request(jsObject).y(jsNumber)"}},{"e":{"u":"request(jsObject)","v":"request(jsObject).y(jsArray)"}},{"e":{"u":"request(jsObject)","v":"request(jsObject).myFunction(jsFunction)"}}]}'
     }
 });
 
