@@ -2310,7 +2310,7 @@ module.exports =
 /* 20 */
 /***/ (function(module, exports) {
 
-	module.exports = { version: "0.0.18", codename: "bagh", author: "Encapsule", buildID: "VIShgEvrThaxXwNxBJ5xhQ", buildTime: "1517687798"};
+	module.exports = { version: "0.0.18", codename: "bagh", author: "Encapsule", buildID: "dAeQUPY2RXKj_I86l96Bmw", buildTime: "1519093713"};
 
 /***/ }),
 /* 21 */
