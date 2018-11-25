@@ -1,22 +1,21 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
   var FILTERDAGREQFS, FILTERLIB, IDENTIFIERLIB, filterlibResponse;
 
+  
   FILTERLIB = require('./arc_core_filter');
 
   IDENTIFIERLIB = require('./arc_core_identifier');
@@ -49,7 +48,7 @@ Please consult the included LICENSE file for agreement terms.
           var innerResponse, value;
           value = typeMap[typeDescriptor_.name];
           if ((value != null) && value) {
-            errors.unshift("Illegal duplicate name value '" + typeDescriptor_.name + "' found examining constraints.types[" + index + "].");
+            errors.unshift(`Illegal duplicate name value '${typeDescriptor_.name}' found examining constraints.types[${index}].`);
             return;
           }
           value = typeMap[typeDescriptor_.name] = typeDescriptor_;
@@ -60,7 +59,7 @@ Please consult the included LICENSE file for agreement terms.
           });
           if (innerResponse.error) {
             errors.unshift(innerResponse.error);
-            errors.unshift("Invalid filter specification declared for type constraint name '" + typeDescriptor_.name + "':");
+            errors.unshift(`Invalid filter specification declared for type constraint name '${typeDescriptor_.name}':`);
             return;
           }
           innerResponse = IDENTIFIERLIB.irut.fromReference(value.filterSpec);

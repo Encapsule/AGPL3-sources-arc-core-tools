@@ -1,22 +1,21 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
   var FILTERDAGREQFS, FILTERLIB, IDENTIFIERLIB, MODELIOPROCESS, MODELRECONCILE, MODELXFORMGEN, filterlibResponse;
 
+  
   FILTERLIB = require('./arc_core_filter');
 
   IDENTIFIERLIB = require('./arc_core_identifier');
@@ -44,12 +43,14 @@ Please consult the included LICENSE file for agreement terms.
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
+        // Build the transform model directed graph.
         innerResponse = MODELXFORMGEN.request(request_.transformations);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;
         }
         transformModel = innerResponse.result;
+        // Process the I/O model declarations.
         innerResponse = MODELIOPROCESS.request({
           transformModel: transformModel,
           model: {
@@ -62,6 +63,8 @@ Please consult the included LICENSE file for agreement terms.
           break;
         }
         ioModel = innerResponse.result;
+        // Reconcile the transform and I/O models to produce the final
+        // FilterDAG specification model object.
         innerResponse = MODELRECONCILE.request({
           transformSpecs: request_.transformations,
           transformModel: transformModel,
@@ -83,6 +86,7 @@ Please consult the included LICENSE file for agreement terms.
         }
         genTag.hash = innerResponse.result;
         filterDAGModel.generator = genTag;
+        // Return the reconcilation result as the final FilterDAG model.
         response.result = filterDAGModel;
         break;
       }

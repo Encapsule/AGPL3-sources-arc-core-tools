@@ -1,20 +1,19 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
+  
   module.exports = {
     inputName: "FilterDAG Factory Request Object",
     inputDescription: "Developer-specified request object that models the system to be hosted by the generated FilterDAG object.",

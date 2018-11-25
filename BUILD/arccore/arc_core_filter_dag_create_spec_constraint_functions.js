@@ -1,22 +1,21 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
   var FILTERDAGREQFS, FILTERLIB, IDENTIFIERLIB, filterlibResponse;
 
+  
   FILTERLIB = require('./arc_core_filter');
 
   IDENTIFIERLIB = require('./arc_core_identifier');
@@ -50,7 +49,7 @@ Please consult the included LICENSE file for agreement terms.
           name = functionDescriptor_.name;
           value = functionMap[name];
           if ((value != null) && value) {
-            errors.unshift("Illegal duplicate name value '" + name + "' found examining constraints.functions[" + index + "].");
+            errors.unshift(`Illegal duplicate name value '${name}' found examining constraints.functions[${index}].`);
           } else {
             value = functionMap[name] = functionDescriptor_;
             delete value.name;
@@ -60,7 +59,7 @@ Please consult the included LICENSE file for agreement terms.
             }
             if (!innerResponse.result) {
               errors.unshift(innerResponse.guidance);
-              errors.unshift("Illegal filterBinding.id value '" + value.filterBinding.id + "' found examining constraints.functions[" + index + "]:");
+              errors.unshift(`Illegal filterBinding.id value '${value.filterBinding.id}' found examining constraints.functions[${index}]:`);
             }
             value1 = filterMap[value.filterBinding.id];
             if (!((value1 != null) && value)) {

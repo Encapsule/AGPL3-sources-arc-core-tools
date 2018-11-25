@@ -1,22 +1,21 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
   var FILTERLIB, filterlibResponse;
 
+  
   FILTERLIB = require('./arc_core_filter');
 
   filterlibResponse = FILTERLIB.create({
@@ -44,11 +43,15 @@ Please consult the included LICENSE file for agreement terms.
           filterSpecs: {},
           filters: {}
         };
+        // Enumerate the model's induced constraints and ensure that they're
+        // declared in the constraint manifest. If not, report error(s). If so
+        // take only the required contraint map entries from the contraints manifest
+        // and register them in the manifest.
         request_.model.inducedConstraints.types.forEach(function(typeName_) {
           var value, value1;
           value = request_.constraints.types.types[typeName_];
           if (!((value != null) && value)) {
-            return errors.push("System model depends on undeclared constraint type '" + typeName_ + "'.");
+            return errors.push(`System model depends on undeclared constraint type '${typeName_}'.`);
           } else {
             value1 = filterDAGManifest.inducedRuntime.filterSpecs[value.id];
             if (!((value1 != null) && value1)) {
@@ -62,7 +65,7 @@ Please consult the included LICENSE file for agreement terms.
           var value, value1;
           value = request_.constraints.functions.functions[functionName_];
           if (!((value != null) && value)) {
-            return errors.push("System model depends on undeclared constraint function '" + functionName_ + "'.");
+            return errors.push(`System model depends on undeclared constraint function '${functionName_}'.`);
           } else {
             value1 = filterDAGManifest.inducedRuntime.filters[value.filterBinding.id];
             if (!((value1 != null) && value1)) {

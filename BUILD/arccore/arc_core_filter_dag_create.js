@@ -1,22 +1,21 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
   var DAGGENERATOR, DAGSPECPROCESSOR, FILTERLIB, IDENTIFIERLIB, INPUTFS, OUTPUTFS, filterlibResponse, message;
 
+  
   FILTERLIB = require('./arc_core_filter');
 
   IDENTIFIERLIB = require('./arc_core_identifier');
@@ -53,7 +52,7 @@ Please consult the included LICENSE file for agreement terms.
         }
         if (!innerResponse.result) {
           errors.unshift(innerResponse.guidance);
-          errors.unshift("Invalid value `" + request_.dagID + "` specified for `dagID`:");
+          errors.unshift(`Invalid value \`${request_.dagID}\` specified for \`dagID\`:`);
           break;
         }
         innerResponse = DAGSPECPROCESSOR.request(request_.dagSpecification);
@@ -95,6 +94,9 @@ Please consult the included LICENSE file for agreement terms.
     }
   });
 
+  //outputName: OUTPUTFS.outputName
+  //outputDescription: OUTPUTFS.outputDescription
+  //outputFilterSpec: OUTPUTFS.outputFilterSpec
   if (filterlibResponse.error) {
     message = [filterlibResponse.error];
     message.unshift("Unable to load `jbus-common-filter-dag` module due to error:");

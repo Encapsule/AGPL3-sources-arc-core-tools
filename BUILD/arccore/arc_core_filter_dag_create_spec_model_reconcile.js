@@ -1,22 +1,21 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
   var FILTERDAGIOMODEL, FILTERDAGREQFS, FILTERDAGXFORMFS, FILTERLIB, INPUTFS, filterlibResponse;
 
+  
   FILTERLIB = require('./arc_core_filter');
 
   FILTERDAGREQFS = require('./arc_core_filter_dag_create_ifs');
@@ -49,6 +48,7 @@ Please consult the included LICENSE file for agreement terms.
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
+        // Build the final FilterDAG model representation, and return to caller.
         filterDAGModel = {
           transformDigraph: request_.transformModel.digraph,
           transformModels: {

@@ -1,27 +1,33 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
   var IDENTIFIER, TYPES, normalizeCompositionRequest;
 
+  
   IDENTIFIER = require('./arc_core_identifier');
 
   TYPES = require('./arc_core_types');
 
   normalizeCompositionRequest = module.exports = function(request_) {
+    /*
+        request =
+            ref: reference
+            types: array of jsMoniker strings
+            path: string (path corresponds to whatever ref addresses)
+            suppressError: boolean
+    */
     var errors, inBreakScope, innerResponse, localTypeCheck, nrequest, response;
     response = {
       error: null,
@@ -31,14 +37,6 @@ Please consult the included LICENSE file for agreement terms.
     inBreakScope = false;
     while (!inBreakScope) {
       inBreakScope = true;
-
-      /*
-          request =
-              ref: reference
-              types: array of jsMoniker strings
-              path: string (path corresponds to whatever ref addresses)
-              suppressError: boolean
-       */
       localTypeCheck = function(request__) {
         var innerResponse;
         innerResponse = TYPES.check.inTypeSet({
@@ -47,13 +45,13 @@ Please consult the included LICENSE file for agreement terms.
         });
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
-          errors.unshift("Internal error while checking property '" + request__.path + "'.");
+          errors.unshift(`Internal error while checking property '${request__.path}'.`);
           return false;
         }
         if (!innerResponse.result) {
           if (!((request__.suppressError != null) && request__.suppressError)) {
             errors.unshift(innerResponse.guidance);
-            errors.unshift("Invalid data type specified for property '" + request__.path + "'.");
+            errors.unshift(`Invalid data type specified for property '${request__.path}'.`);
           }
           return false;
         }

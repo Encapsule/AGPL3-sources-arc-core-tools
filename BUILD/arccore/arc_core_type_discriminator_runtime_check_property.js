@@ -3,6 +3,7 @@
 
   TYPELIB = require('./arc_core_types');
 
+  // checkPropertyNameTypeConstraint =
   module.exports = function(propertyName_, typeConstraint_, namespaceReference_) {
     var checkResponse, propertyReference, response;
     response = {

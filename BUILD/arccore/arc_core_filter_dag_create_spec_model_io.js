@@ -1,22 +1,21 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
   var FILTERDAGREQFS, FILTERDAGXFORMFS, FILTERLIB, INPUTFS, OUTPUTFS, filterlibResponse;
 
+  
   FILTERLIB = require('./arc_core_filter');
 
   FILTERDAGREQFS = require('./arc_core_filter_dag_create_ifs');
@@ -51,6 +50,17 @@ Please consult the included LICENSE file for agreement terms.
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
+        // The transform digraph contains vertices that model shared memory values,
+        // and vertices that model functions that operate on the shared memory values.
+
+        // Transform functions abstractly model a software algorithm that reads
+        // N > 1 values from shared memory, does something with them, and writes
+        // a result value back to shared memory.
+
+        // A shared memory value that is not named as the output of a transform
+        // function is considered to be an external input to the FilterDAG system.
+        // Similarly, a shared memory value that is not named as input of any transform
+        // function is considered to be a derived external output of the FilterDAG system.
         ioModelCache = {
           inputsMap: {},
           outputsMap: {},
@@ -61,7 +71,7 @@ Please consult the included LICENSE file for agreement terms.
           var value;
           value = ioModelCache.inputsMap[inputDescriptor_.name];
           if ((value != null) && value) {
-            errors.unshift("Illegal duplicate name value '" + inputDescriptor_.name + "' found examining model.inputs[" + index + "].");
+            errors.unshift(`Illegal duplicate name value '${inputDescriptor_.name}' found examining model.inputs[${index}].`);
           } else {
             ioModelCache.inputsMap[inputDescriptor_.name] = inputDescriptor_;
             if (ioModelCache.typeConstraints.indexOf(inputDescriptor_.typeContraint) === -1) {
@@ -75,7 +85,7 @@ Please consult the included LICENSE file for agreement terms.
           var value;
           value = ioModelCache.outputsMap[outputDescriptor_.name];
           if ((value != null) && value) {
-            errors.unshift("Illegal duplicate name value '" + outputDescriptor_.name + "' found examining model.outputs[" + index + "].");
+            errors.unshift(`Illegal duplicate name value '${outputDescriptor_.name}' found examining model.outputs[${index}].`);
           } else {
             ioModelCache.outputsMap[outputDescriptor_.name] = outputDescriptor_;
             if (ioModelCache.typeConstraints.indexOf(outputDescriptor_.typeConstraint) === -1) {
@@ -107,7 +117,7 @@ Please consult the included LICENSE file for agreement terms.
           if (!((value != null) && value)) {
             if (ioModelCacheReport.bad.missingInputs.indexOf(inputName_) === -1) {
               ioModelCacheReport.bad.missingInputs.push(inputName_);
-              errors.unshift("Transform model relies on undeclared input value model '" + inputName_ + "'.");
+              errors.unshift(`Transform model relies on undeclared input value model '${inputName_}'.`);
               return;
             }
           }
@@ -115,7 +125,7 @@ Please consult the included LICENSE file for agreement terms.
           if ((value != null) && value) {
             if (ioModelCacheReport.bad.mislabeledOutputs.indexOf(inputName_) === -1) {
               ioModelCacheReport.bad.mislabeledOutputs.push(inputName_);
-              errors.unshift("Transform model relies on input value model '" + inputName_ + "' that is declared as an output model.");
+              errors.unshift(`Transform model relies on input value model '${inputName_}' that is declared as an output model.`);
               return;
             }
           }
@@ -127,7 +137,7 @@ Please consult the included LICENSE file for agreement terms.
           if (!((value != null) && value)) {
             if (ioModelCacheReport.bad.missingOutputs.indexOf(outputName_) === -1) {
               ioModelCacheReport.bad.missingOutputs.push(outputName_);
-              errors.unshift("Transform model relies on undeclared output value model '" + outputName_ + "'.");
+              errors.unshift(`Transform model relies on undeclared output value model '${outputName_}'.`);
               return;
             }
           }
@@ -135,7 +145,7 @@ Please consult the included LICENSE file for agreement terms.
           if ((value != null) && value) {
             if (ioModelCacheReport.bad.mislabeledInputs.indexOf(outputName_) === -1) {
               ioModelCacheReport.bad.mislabeledInputs.push(outputName_);
-              errors.unshift("Transform model relies on output value model '" + outputName_ + "' that is declared as an input model.");
+              errors.unshift(`Transform model relies on output value model '${outputName_}' that is declared as an input model.`);
               return;
             }
           }
@@ -145,13 +155,13 @@ Please consult the included LICENSE file for agreement terms.
         for (key in ioModelCache.inputsMap) {
           if (ioModelCacheReport.good.inputs.indexOf(key) === -1) {
             ioModelCacheReport.bad.superfluousInputs.push(key);
-            guidance.unshift("Input model declares unreferenced model '" + key + "'.");
+            guidance.unshift(`Input model declares unreferenced model '${key}'.`);
           }
         }
         for (key in ioModelCache.outputsMap) {
           if (ioModelCacheReport.good.outputs.indexOf(key) === -1) {
             ioModelCacheReport.bad.superfluousOutputs.push(key);
-            guidance.unshift("Output model declared unreferenced model '" + key + "'.");
+            guidance.unshift(`Output model declared unreferenced model '${key}'.`);
           }
         }
         bad = ioModelCacheReport.bad;
@@ -168,6 +178,7 @@ Please consult the included LICENSE file for agreement terms.
           ioCache: ioModelCache,
           ioCacheReport: ioModelCacheReport
         };
+        //console.log "Reponse from #{this.operationName}:#{this.operationID}: '#{JSON.stringify(response, undefined, 4)}'."
         break;
       }
       if (errors.length) {

@@ -7,6 +7,7 @@
 
   IDLIB = require('./arc_core_identifier');
 
+  // request = object (ambiguity model digraph reference)
   buildRuntimeParseModel = module.exports = function(request_) {
     var errors, inBreakScope, innerResponse, response, runtimeParseDigraph, uprop;
     response = {
@@ -19,7 +20,7 @@
       inBreakScope = true;
       uprop = request_.getVertexProperty("request");
       if (uprop.color !== "green") {
-        errors.unshift("Invalid ambiguity model digraph. The root vertex should be color 'green' but is '" + uprop.color + "'.");
+        errors.unshift(`Invalid ambiguity model digraph. The root vertex should be color 'green' but is '${uprop.color}'.`);
         break;
       }
       innerResponse = GRAPHLIB.directed.create({
@@ -75,8 +76,8 @@
               case "gold:gold":
                 break;
               default:
-                errors.push("Illegal input digraph edge color hash '" + colorHash + "'");
-                errors.push("at edge ['" + gcb_.e.u + "' -> '" + gcb_.e.v + "'].");
+                errors.push(`Illegal input digraph edge color hash '${colorHash}'`);
+                errors.push(`at edge ['${gcb_.e.u}' -> '${gcb_.e.v}'].`);
                 continueTraversal = false;
             }
             return continueTraversal;

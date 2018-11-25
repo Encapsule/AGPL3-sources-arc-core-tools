@@ -57,7 +57,7 @@
         for (filterID in runtimeContext.filterTable) {
           supportedFilterIDs.push(filterID);
           filter = runtimeContext.filterTable[filterID];
-          supportedFilters.push("[" + filterID + "::" + filter.filterDescriptor.operationName + "]");
+          supportedFilters.push(`[${filterID}::${filter.filterDescriptor.operationName}]`);
         }
         supportedFilterIDs = supportedFilters.sort().join("-");
         discriminatorID = IDENTIFIER.irut.fromReference(supportedFilterIDs).result;
@@ -111,10 +111,11 @@
                 if (index === outEdges.length) {
                   errors.push("Unrecognized request format.");
                   errors.push("Request signature must match one of filter set");
-                  errors.push("{" + (supportedFilters.join(", ")) + "}.");
+                  errors.push(`{${supportedFilters.join(", ")}}.`);
                 }
               }
               if (!errors.length) {
+                // Take action based on the runtimeContext.options.action flag.
                 switch (runtimeContext.options.action) {
                   case "getFilterID":
                     response.result = filterID;
@@ -131,7 +132,7 @@
                     }
                     break;
                   default:
-                    errors("Internal error unrecognized discriminator action '" + runtimeContext.options.action + "'.");
+                    errors(`Internal error unrecognized discriminator action '${runtimeContext.options.action}'.`);
                     break;
                 }
               }

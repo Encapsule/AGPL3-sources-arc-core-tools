@@ -1,22 +1,21 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
   var FILTERDAGREQFS, FILTERDAGXFORMFS, FILTERLIB, GRAPHLIB, filterlibResponse;
 
+  
   FILTERLIB = require('./arc_core_filter');
 
   FILTERDAGREQFS = require('./arc_core_filter_dag_create_ifs');
@@ -40,10 +39,12 @@ Please consult the included LICENSE file for agreement terms.
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
+        // Determine is the input array contains eny elements.
         if (!request_.length) {
           errors.unshift("You must specify at least one transformation descriptor.");
           break;
         }
+        // Create the transform directed graph model.
         innerResponse = GRAPHLIB.directed.create({
           name: "Model Transformations Digraph",
           description: "Directed graph model of a FilterDAG reactive data transformation system."
@@ -67,24 +68,25 @@ Please consult the included LICENSE file for agreement terms.
         index = 0;
         request_.forEach(function(transformation_) {
           var edge, vertexProperties;
+          // Evaluate a specific transformation descriptor object.
           if (transformDigraph.isVertex(transformation_.name)) {
-            errors.unshift("Transformation '" + transformation_.name + "' illegally re-defined.");
+            errors.unshift(`Transformation '${transformation_.name}' illegally re-defined.`);
             return;
           }
           transformDigraphDependencies.models.transforms.push(transformation_.name);
           if (!transformation_.inputModels.length) {
-            errors.unshift("Transformation '" + transformation_.name + "' must declare at least one input model.");
+            errors.unshift(`Transformation '${transformation_.name}' must declare at least one input model.`);
             return;
           }
           if (transformDigraph.isVertex(transformation_.outputModel)) {
             vertexProperties = transformDigraph.getVertexProperty(transformation_.outputModel);
             if (vertexProperties.type !== "value") {
-              errors.unshift(("Transform '" + transformation_.name + "' specifies an illegal output model ") + ("'" + transformation_.outputModel + "' of type '" + vertexPropertes.type + "'."));
+              errors.unshift(`Transform '${transformation_.name}' specifies an illegal output model ` + `'${transformation_.outputModel}' of type '${vertexPropertes.type}'.`);
               return;
             }
             if (transformDigraph.inDegree(transformation_.outputModel)) {
               edge = transformDigraph.inEdges(transformation_.outputModel)[0];
-              errors.unshift(("Transformation '" + transformation_.name + "' specifies output model ") + ("'" + transformation_.outputModel + "' that is already specified as the output of transformation '" + edge.u + "'."));
+              errors.unshift(`Transformation '${transformation_.name}' specifies output model ` + `'${transformation_.outputModel}' that is already specified as the output of transformation '${edge.u}'.`);
               return;
             }
           } else {
@@ -120,7 +122,7 @@ Please consult the included LICENSE file for agreement terms.
             transformation_.inputModels.forEach(function(inputModel_) {
               if (transformDigraph.isVertex(inputModel_.inputModel)) {
                 if (transformDigraph.getVertexProperty(inputModel_.inputModel).type !== "value") {
-                  errors.unshift("Transform '" + transformation_.name + "' specifies an illegal input model '" + inputModel_.inputModel + "'.");
+                  errors.unshift(`Transform '${transformation_.name}' specifies an illegal input model '${inputModel_.inputModel}'.`);
                   return;
                 }
               } else {
@@ -153,6 +155,7 @@ Please consult the included LICENSE file for agreement terms.
         if (errors.length) {
           break;
         }
+        // Do some static analysis on the transform digraph and ensure it's acyclic
         startVertices = transformDigraph.getRootVertices();
         if (!startVertices.length) {
           errors.unshift("Illegal DAG model declares no external system input values.");
@@ -177,7 +180,7 @@ Please consult the included LICENSE file for agreement terms.
           break;
         }
         if (backEdges.length) {
-          errors.unshift("Illegal cycle in DAG model introduced by edge: '" + (JSON.stringify(backEdges)) + "'.");
+          errors.unshift(`Illegal cycle in DAG model introduced by edge: '${JSON.stringify(backEdges)}'.`);
           break;
         }
         response.result = {
@@ -185,6 +188,8 @@ Please consult the included LICENSE file for agreement terms.
           dependencies: transformDigraphDependencies
         };
       }
+      //console.log "\n\n[#{this.operationName}:#{this.operationID}]:"
+      //console.log JSON.stringify(response, undefined, 4)
       if (errors.length) {
         response.error = errors.join(" ");
       }

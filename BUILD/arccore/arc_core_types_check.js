@@ -9,7 +9,6 @@
 
   MODULE = {};
 
-
   /*
       request = {
           value: JavaScript reference
@@ -20,14 +19,14 @@
           guidance: a string explaining the false result (often used in parameter validation error messages upstream)
           result: jsMoniker string indicating the type of request.ref iff ref is in request.types. Otherwise, null.
       }
-  
+
       Note: The protocol for using refInJsTypeSet is slightly different than base request/response.
-  
+
       if response.error then, as typical, the call failed and produced no response.result. response.error is a string explaining the failure.
       if !response.error && response.result, then request.ref is in request.types and response.result is set to request.ref's jsMoniker string.
       if !response.error && !response.result, then response.guidance is a string that explains the type check failure: "found X, expected Y, Z..."
-   */
 
+  */
   MODULE.inTypeSet = function(request_) {
     var convertResponse, errors, inBreakScope, response, typeMoniker, valueMoniker;
     errors = [];
@@ -53,7 +52,7 @@
         break;
       }
       if (convertResponse.result !== '[object Object]') {
-        errors.unshift("Invalid request: Expected value of type '[object Object]' but found '" + convertResponse.result + "' instead.");
+        errors.unshift(`Invalid request: Expected value of type '[object Object]' but found '${convertResponse.result}' instead.`);
         break;
       }
       convertResponse = typeConvert({
@@ -84,14 +83,14 @@
           response.result = ((request_.types.indexOf(valueMoniker)) !== -1) && valueMoniker || false;
           break;
         default:
-          errors.unshift("Invalid request.types value type '" + typeMoniker + "'. Expected either '[object String]' (jsMoniker string) or '[object Array]' (of jsMoniker strings).");
+          errors.unshift(`Invalid request.types value type '${typeMoniker}'. Expected either '[object String]' (jsMoniker string) or '[object Array]' (of jsMoniker strings).`);
           break;
       }
       if (errors.length) {
         break;
       }
       if (!response.result) {
-        response.guidance = "Value of type '" + valueMoniker + "' not in allowed type set [" + request_.types + "].";
+        response.guidance = `Value of type '${valueMoniker}' not in allowed type set [${request_.types}].`;
       }
     }
     if (errors.length) {

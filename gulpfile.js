@@ -4,7 +4,8 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var coffee = require('gulp-coffee');
 var coffeelint = require('gulp-coffeelint');
-var mocha = require('gulp-mocha');
+// var mocha = require('gulp-mocha');
+var mocha = require('mocha');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var webpack = require('webpack');
@@ -15,7 +16,77 @@ var path = require('path');
 var genPackageManifest = require('./PROJECT/generate_dist_package_manifest');
 var genPackageREADME = require('./PROJECT/generate_dist_package_README');
 
-gulp.task('tagbuild', [ "copyjs" ], function(callback_) {
+
+gulp.task('coffee.base', function() {
+    return gulp.src('./SOURCES/core/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+
+gulp.task('coffee.discriminator', function() {
+    return gulp.src('./SOURCES/core/discriminator/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+
+gulp.task('coffee.filter', function() {
+    return gulp.src('./SOURCES/core/filter/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+gulp.task('coffee.filter-dag', function() {
+    return gulp.src('./SOURCES/core/filter-dag/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+gulp.task('coffee.identifier', function() {
+    return gulp.src('./SOURCES/core/identifier/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+gulp.task('coffee.types', function() {
+    return gulp.src('./SOURCES/core/types/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+gulp.task('coffee.util', function() {
+    return gulp.src('./SOURCES/core/util/*.coffee')
+        .pipe(coffeelint()).pipe(coffeelint.reporter())
+	.pipe(coffee().on('error', gutil.log))
+	.pipe(gulp.dest('./BUILD/arccore/'));
+});
+
+gulp.task('coffee', gulp.parallel('coffee.base', 'coffee.discriminator', 'coffee.filter', 'coffee.filter-dag', 'coffee.identifier', 'coffee.types', 'coffee.util') , function() {
+    console.log("coffee...");
+});
+
+gulp.task('copyjs_graph', function() {
+    console.log("copyjs_graph");
+    return gulp.src('./SOURCES/core/graph/*.js').pipe(gulp.dest('./BUILD/arccore/'));
+});
+
+gulp.task('copyjs_tools', function() {
+    console.log("copyjs_tools");
+    return gulp.src('./SOURCES/tools/*.js').pipe(gulp.dest('./BUILD/arctools/'));
+});
+
+gulp.task('copyjs_tools_templates', function() {
+    console.log("copyjs_tools");
+    return gulp.src('./SOURCES/tools/templates/*.hbs').pipe(gulp.dest('./BUILD/arctools/templates/'));
+});
+
+gulp.task('copyjs', gulp.parallel("copyjs_graph", "copyjs_tools", "copyjs_tools_templates"), function(callback_) {
+    console.log("copyjs...");
+    callback_();
+});
+
+gulp.task('tagbuild', gulp.parallel("copyjs"), function(callback_) {
     console.log("tagbuild...");
     var identifier = require('./BUILD/arccore/arc_core_identifier');
     var util = require('./BUILD/arccore/arc_core_util');
@@ -67,83 +138,23 @@ gulp.task('tagbuild', [ "copyjs" ], function(callback_) {
     callback_();
 });
 
-gulp.task('coffee', [ 'coffee.base', 'coffee.discriminator', 'coffee.filter', 'coffee.filter-dag', 'coffee.identifier', 'coffee.types', 'coffee.util' ], function() {
-    console.log("coffee...");
-});
-
-gulp.task('coffee.base', function() {
-    return gulp.src('./SOURCES/core/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'));
-});
-
-gulp.task('coffee.discriminator', function() {
-    return gulp.src('./SOURCES/core/discriminator/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'));
-});
-
-gulp.task('coffee.filter', function() {
-    return gulp.src('./SOURCES/core/filter/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'));
-});
-gulp.task('coffee.filter-dag', function() {
-    return gulp.src('./SOURCES/core/filter-dag/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'));
-});
-gulp.task('coffee.identifier', function() {
-    return gulp.src('./SOURCES/core/identifier/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'));
-});
-gulp.task('coffee.types', function() {
-    return gulp.src('./SOURCES/core/types/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'));
-});
-gulp.task('coffee.util', function() {
-    return gulp.src('./SOURCES/core/util/*.coffee')
-        .pipe(coffeelint()).pipe(coffeelint.reporter())
-	.pipe(coffee().on('error', gutil.log))
-	.pipe(gulp.dest('./BUILD/arccore/'));
-});
-
-
-gulp.task('copyjs', [ "copyjs_graph", "copyjs_tools", "copyjs_tools_templates" ], function(callback_) {
-    console.log("copyjs...");
-    callback_();
-});
-
-gulp.task('copyjs_graph', function() {
-    console.log("copyjs_graph");
-    return gulp.src('./SOURCES/core/graph/*.js').pipe(gulp.dest('./BUILD/arccore/'));
-});
-
-gulp.task('copyjs_tools', function() {
-    console.log("copyjs_tools");
-    return gulp.src('./SOURCES/tools/*.js').pipe(gulp.dest('./BUILD/arctools/'));
-});
-
-gulp.task('copyjs_tools_templates', function() {
-    console.log("copyjs_tools");
-    return gulp.src('./SOURCES/tools/templates/*.hbs').pipe(gulp.dest('./BUILD/arctools/templates'));
-});
-
-gulp.task("baseBuild", [ "copyjs", "coffee" ], function() {
+gulp.task("baseBuild", gulp.parallel("copyjs", "coffee"), function() {
     console.log("baseBuild...");
 });
 
-gulp.task("test", [ "baseBuild" ], function() {
-    return gulp.src('TESTS/test_arc.js', {read: false})
-        .pipe(mocha({reporter: 'spec'}));
+gulp.task("test", gulp.parallel("baseBuild"), function(callback_) {
+    var mochaInstance = new mocha({
+        ui: 'tdd',
+        reporter: 'list'
+    });
+    /*
+    mochaInstance.addFile('./TESTS/test_arc.js');
+    var runner = mochaInstance.run();
+    runner.on('end', function() { console.log("ENDING TESTS"); callback_(); });
+    runner.on('start', function() { console.log("STARTING TESTS"); });
+    */
+    // return gulp.src('TESTS/test_arc.js', {read: false})
+        // .pipe(mocha({reporter: 'spec'}));
 });
 
 var wpconfig = require('./webpack.config')
@@ -155,7 +166,7 @@ wpconfig_arctools.debug = true;
 var wpcc_arccore = webpack(wpconfig_arccore);
 var wpcc_arctools = webpack(wpconfig_arctools);
 
-gulp.task("webpack_arccore", [ "coffee", "test" ], function(callback_) {
+gulp.task("webpack_arccore", gulp.parallel("coffee", "test"), function(callback_) {
     wpcc_arccore.run(function(err, stats) {
 	if(err) throw new gutil.PluginError("webpack:build-dev", err);
 	gutil.log("[webpack:build-dev]", stats.toString({
@@ -165,7 +176,7 @@ gulp.task("webpack_arccore", [ "coffee", "test" ], function(callback_) {
     });
 });
 
-gulp.task("webpack_arctools", [ "webpack_arccore" ], function(callback_) {
+gulp.task("webpack_arctools", gulp.parallel("webpack_arccore"), function(callback_) {
     wpcc_arctools.run(function(err, stats) {
 	if(err) throw new gutil.PluginError("webpack:build-dev", err);
 	gutil.log("[webpack:build-dev]", stats.toString({
@@ -175,29 +186,29 @@ gulp.task("webpack_arctools", [ "webpack_arccore" ], function(callback_) {
     });
 });
 
-gulp.task("webpack", [ "webpack_arccore", "webpack_arctools" ], function() {
+gulp.task("webpack", gulp.parallel("webpack_arccore", "webpack_arctools"), function() {
 });
 
 
-gulp.task("compress_arccore", [ "webpack" ], function() {
+gulp.task("compress_arccore", gulp.parallel("webpack"), function() {
     gulp.src('./BUILD/arccore/index.js')
         .pipe(uglify())
         .pipe(gulp.dest('./STAGE/arccore/'));
 });
 
-gulp.task("compress_arctools", [ "compress_arccore" ], function() {
+gulp.task("compress_arctools", gulp.parallel("compress_arccore"), function() {
     gulp.src('./BUILD/arctools/lib.js')
         .pipe(uglify())
         .pipe(rename('arc_tools_lib.js'))
         .pipe(gulp.dest('./STAGE/arctools/'));
 });
 
-gulp.task("compress", [ "compress_arctools" ], function() {
+gulp.task("compress", gulp.parallel("compress_arctools"), function() {
 });
 
 
 
-gulp.task("stage", [ "compress" ], function(callback_) {
+gulp.task("stage", gulp.parallel("compress"), function(callback_) {
     // arccore
     gulp.src('package.json', { cwd: './BUILD/arccore' })
         .pipe(gulp.dest('./STAGE/arccore'));
@@ -241,8 +252,6 @@ gulp.task("stage", [ "compress" ], function(callback_) {
     callback_();
 });
 
-gulp.task("publish", [ 'publish_ARCcore', 'publish_ARCtools'], function() {
-});
 gulp.task("publish_ARCcore", function() {
     gulp.src('./STAGE/arccore/**')
         .pipe(gulp.dest('./DISTS/ARCcore/'));
@@ -252,6 +261,9 @@ gulp.task("publish_ARCtools", function() {
         .pipe(gulp.dest('./DISTS/ARCtools/'));
 });
 
-gulp.task('default', [ 'baseBuild', "test", "stage" ], function() {
+gulp.task("publish", gulp.parallel('publish_ARCcore', 'publish_ARCtools'), function() {
+});
+
+gulp.task('default', gulp.parallel('baseBuild', "test", "stage"), function() {
     console.log("default...");
 });

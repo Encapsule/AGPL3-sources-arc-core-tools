@@ -19,10 +19,12 @@
     inBreakScope = false;
     while (!inBreakScope) {
       inBreakScope = true;
+      // Initialize the result.
       result = {
         digraph: null,
         filterTable: {}
       };
+      // Create am empty digraph model.
       innerResponse = GRAPHLIB.directed.create({
         name: "Discriminator Decission Tree Model"
       });
@@ -31,15 +33,18 @@
         break;
       }
       result.digraph = innerResponse.result;
+      // Add a vertex that models the root of the disriminator decisssion tree.
       result.digraph.addVertex({
         u: rootVertex,
         p: {
           color: "white"
         }
       });
+      // Process each filter in the request array.
       filters = [];
       for (i = 0, len = request_.length; i < len; i++) {
         filter = request_[i];
+        // Add this filter's input specification to discriminator's decission tree graph.
         innerResponse = addFilterSpecToMergedDigraphModel({
           graph: result.digraph,
           filter: filter
@@ -55,6 +60,7 @@
         errors.unshift("Unable to build merged filter specification digraph model.");
         break;
       }
+      // Indicate that the discrimintor vertex must resolve all filters in the request array.
       uprops = result.digraph.getVertexProperty(rootVertex);
       uprops.filters = filters;
       result.digraph.setVertexProperty({
@@ -62,6 +68,7 @@
         p: uprops
       });
       result.digraph.setGraphDescription("Models the combined input filter specifications of Filter ID's: [" + filters.join(", ") + "].");
+      // Assign the result.
       response.result = result;
       break;
     }
@@ -71,6 +78,7 @@
     return response;
   };
 
+  // request = { filter: object, digraph: object }
   addFilterSpecToMergedDigraphModel = function(request_) {
     var considerSubnamespace, considerSubnamespaces, errors, i, inBreakScope, len, mapEntry, mapQueue, operationID, response, subnamespaceName, type, types, vertexId, vertexProperty;
     response = {
@@ -93,6 +101,7 @@
         mapEntry = mapQueue.shift();
         types = null;
         considerSubnamespaces = true;
+        // Default filters that specify no input specification.
         if (!((mapEntry.namespaceDescriptor != null) && mapEntry.namespaceDescriptor)) {
           mapEntry.namespaceDescriptor = {
             ____opaque: true
@@ -163,6 +172,11 @@
         }
       }
     }
+    // end for type
+
+    // end while
+
+    // end while
     return response;
   };
 

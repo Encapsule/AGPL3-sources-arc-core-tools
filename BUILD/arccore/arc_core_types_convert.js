@@ -5,7 +5,6 @@
 
   typeLUTS = require('./arc_core_types_luts');
 
-
   /*
       request = {
           to: dimension string used to select the result set
@@ -16,8 +15,8 @@
           error: null or string explaining by result is null
           result: integer in range 0 to 7 inclusive (jsCode) or string (jsStringType, jsMoniker, jsonMoniker) or null to indicate error
       }
-   */
-
+  */
+  // ============================================================================
   convert = function(request_) {
     var errors, forwardLookup, inBreakScope, jsCode, lookupResult, request, requestType, response, rewriteRequest, table, valueType;
     errors = [];
@@ -76,7 +75,7 @@
             break;
           }
           if ((request_.value < 0) || (request_.value >= typeCodes.__GUARD)) {
-            errors.unshift("Invalid request 'value' '" + request_.value + "' is not a valid 'jsCode' value.");
+            errors.unshift(`Invalid request 'value' '${request_.value}' is not a valid 'jsCode' value.`);
           }
           break;
         case 'jsMoniker' || 'jsonMoniker' || 'jsTypeString':
@@ -86,8 +85,8 @@
           forwardLookup = false;
           break;
         default:
-          errors.unshift("[" + typeLUTS.dimensions + "].");
-          errors.unshift("Invalid request 'from' value '" + request.from + "' is not a valid dimension string. Valid dimensions:");
+          errors.unshift(`[${typeLUTS.dimensions}].`);
+          errors.unshift(`Invalid request 'from' value '${request.from}' is not a valid dimension string. Valid dimensions:`);
           break;
       }
       if (errors.length) {
@@ -100,30 +99,30 @@
       }
       table = typeLUTS[forwardLookup && request.to || request.from];
       if (!((table != null) && table)) {
-        errors.unshift("[" + typeLUTS.dimensions + "].");
-        errors.unshift("No conversion operator from '" + request.from + "' to '" + request.to + "' available. Valid dimensions:");
+        errors.unshift(`[${typeLUTS.dimensions}].`);
+        errors.unshift(`No conversion operator from '${request.from}' to '${request.to}' available. Valid dimensions:`);
         break;
       }
       if (forwardLookup) {
         lookupResult = table[request.value];
       } else {
-        lookupResult = table.indexOf(request.value);
+        lookupResult = table.indexOf(request.value); // may not be valid as we cannot pre-validate request.value
         if (lookupResult === -1) {
-          errors.unshift("[" + typeLUTS.dimensions + "].");
-          errors.unshift("Invalid request 'value' specifies unknown " + request.to + " '" + request.value + "'. Valid dimensions:");
+          errors.unshift(`[${typeLUTS.dimensions}].`);
+          errors.unshift(`Invalid request 'value' specifies unknown ${request.to} '${request.value}'. Valid dimensions:`);
           break;
         }
         if (request.to !== 'jsCode') {
           table = typeLUTS[request.to];
           if (!((table != null) && table)) {
-            errors.unshift("Valid dimensions: [" + typeLUTS.dimensions + "].");
-            errors.unshift("No conversion to '" + request.to + "' available.");
+            errors.unshift(`Valid dimensions: [${typeLUTS.dimensions}].`);
+            errors.unshift(`No conversion to '${request.to}' available.`);
             break;
           }
           jsCode = lookupResult;
           lookupResult = table[jsCode];
           if (!((lookupResult != null) && lookupResult)) {
-            errors.unshift("No coversion from dimension '" + request.from + "' to '" + request.to + "' for value '" + request.value + "'.");
+            errors.unshift(`No coversion from dimension '${request.from}' to '${request.to}' for value '${request.value}'.`);
             break;
           }
         }

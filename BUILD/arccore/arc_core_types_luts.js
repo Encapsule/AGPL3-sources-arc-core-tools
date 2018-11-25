@@ -6,18 +6,14 @@
 
   MODULE = {};
 
-
   /*
   String identifiers used to keep track of conversion source/destination dimension type.
-   */
-
+  */
   MODULE.dimensions = ['jsReference', 'jsCode', 'jsTypeString', 'jsMoniker', 'jsonMoniker'];
-
 
   /*
   Lookup expected JavaScript type string from JavaScript Type Code (JSTC) ordinal.
-   */
-
+  */
   MODULE.jsTypeString = [];
 
   MODULE.jsTypeString[typeCodes.__undefined] = '[object Undefined]';
@@ -36,11 +32,9 @@
 
   MODULE.jsTypeString[typeCodes.__function] = '[object Function]';
 
-
   /*
   Lookup JavaScript type moniker string from its JavaScript Type Code (JSTC) ordinal.
-   */
-
+  */
   MODULE.jsMoniker = [];
 
   MODULE.jsMoniker[typeCodes.__undefined] = 'jsUndefined';
@@ -59,11 +53,9 @@
 
   MODULE.jsMoniker[typeCodes.__function] = 'jsFunction';
 
-
   /*
   Lookup JSON type moniker string from its offset JavaScript Type Code (JSTC) ordinal.
-   */
-
+  */
   MODULE.jsonMoniker = [];
 
   MODULE.jsonMoniker[typeCodes.__undefined] = null;
@@ -82,11 +74,9 @@
 
   MODULE.jsonMoniker[typeCodes.__function] = null;
 
-
   /*
   Hash table for looking up a JavaScript Type Code (JSTC) given a JavaScript Type Moniker (JSTM).
-   */
-
+  */
   MODULE.jsCodes = {};
 
   jstc = 0;

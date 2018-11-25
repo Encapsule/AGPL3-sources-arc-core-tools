@@ -1,17 +1,16 @@
 (function() {
-  var IDENTIFIER, TYPES, verifyCompositionTypeMapDeclaration, verifyTypeConstraintArgs;
-
-  IDENTIFIER = require('./arc_core_identifier');
-
-  TYPES = require('./arc_core_types');
-
 
   /*
       request = {
           path: string
           typemap: object
       }
-   */
+  */
+  var IDENTIFIER, TYPES, verifyCompositionTypeMapDeclaration, verifyTypeConstraintArgs;
+
+  IDENTIFIER = require('./arc_core_identifier');
+
+  TYPES = require('./arc_core_types');
 
   verifyCompositionTypeMapDeclaration = module.exports = function(request_) {
     var acceptNamespace, asMapNamespace, constraint, constraintOptions, constraintProp, defaulted, description, errors, inBreakScope, innerResponse, jsMonikers, label, mapPropertyName, mapPropertyValue, mapQueue, newPath, opaqueNamespace, response, subnamespacesDeclared, typemap, typemapDescriptor, typepath, validTypeConstraint;
@@ -65,6 +64,7 @@
       mapQueue = [];
       mapQueue.push(request_);
       while (mapQueue.length) {
+        // inside while mapQueue.length
         constraint = "default";
         constraintOptions = void 0;
         jsMonikers = void 0;
@@ -97,7 +97,7 @@
               break;
             case '____accept':
               if (validTypeConstraint) {
-                errors.unshift("Redundant type constraint declared on namespace '" + mapPropertyName + "'.");
+                errors.unshift(`Redundant type constraint declared on namespace '${mapPropertyName}'.`);
                 break;
               }
               innerResponse = verifyTypeConstraintArgs('____accept', mapPropertyValue);
@@ -110,7 +110,7 @@
               break;
             case '____types':
               if (validTypeConstraint) {
-                errors.unshift("Redundant type constraint declared on namespace '" + mapPropertyName + "'.");
+                errors.unshift(`Redundant type constraint declared on namespace '${mapPropertyName}'.`);
                 break;
               }
               innerResponse = verifyTypeConstraintArgs('____types', mapPropertyValue);
@@ -127,12 +127,12 @@
               });
               if (innerResponse.error) {
                 errors.unshift(innerResponse.error);
-                errors.unshift("Internal error checking directive '" + mapPropertyName + "':");
+                errors.unshift(`Internal error checking directive '${mapPropertyName}':`);
                 break;
               }
               if (!innerResponse.result) {
                 errors.unshift(innerResponse.guidance);
-                errors.unshift("Error checking directive '" + mapPropertyName + "':");
+                errors.unshift(`Error checking directive '${mapPropertyName}':`);
                 break;
               }
               label = mapPropertyValue;
@@ -144,12 +144,12 @@
               });
               if (innerResponse.error) {
                 errors.unshift(innerResponse.error);
-                errors.unshift("Internal error checking directive '" + mapPropertyName + "':");
+                errors.unshift(`Internal error checking directive '${mapPropertyName}':`);
                 break;
               }
               if (!innerResponse.result) {
                 errors.unshift(innerResponse.guidance);
-                errors.unshift("Error checking directive '" + mapPropertyName + "':");
+                errors.unshift(`Error checking directive '${mapPropertyName}':`);
                 break;
               }
               description = mapPropertyValue;
@@ -161,12 +161,12 @@
               });
               if (innerResponse.error) {
                 errors.unshift(innerResponse.error);
-                errors.unshift("Internal error checking directive '" + mapPropertyName + "':");
+                errors.unshift(`Internal error checking directive '${mapPropertyName}':`);
                 break;
               }
               if (!innerResponse.result) {
                 errors.unshift(innerResponse.guidance);
-                errors.unshift("Error checking directive '" + mapPropertyName + "':");
+                errors.unshift(`Error checking directive '${mapPropertyName}':`);
                 break;
               }
               break;
@@ -177,12 +177,12 @@
               });
               if (innerResponse.error) {
                 errors.unshift(innerResponse.error);
-                errors.unshift("Internal error checking directive '" + mapPropertyName + "':");
+                errors.unshift(`Internal error checking directive '${mapPropertyName}':`);
                 break;
               }
               if (!innerResponse.result) {
                 errors.unshift(innerResponse.guidance);
-                errors.unshift("Error checking directive '" + mapPropertyName + "':");
+                errors.unshift(`Error checking directive '${mapPropertyName}':`);
                 break;
               }
               constraint = 'inValueSet';
@@ -195,12 +195,12 @@
               });
               if (innerResponse.error) {
                 errors.unshift(innerResponse.error);
-                errors.unshift("Internal error checking directive '" + mapPropertyName + "':");
+                errors.unshift(`Internal error checking directive '${mapPropertyName}':`);
                 break;
               }
               if (!innerResponse.result) {
                 errors.unshift(innerResponse.guidance);
-                errors.unshift("Error checking directive '" + mapPropertyName + "':");
+                errors.unshift(`Error checking directive '${mapPropertyName}':`);
                 break;
               }
               innerResponse = TYPES.check.inTypeSet({
@@ -209,12 +209,12 @@
               });
               if (innerResponse.error) {
                 errors.unshift(innerResponse.error);
-                errors.unshift("Internal error checking directive '" + mapPropertyName + ".begin':");
+                errors.unshift(`Internal error checking directive '${mapPropertyName}.begin':`);
                 break;
               }
               if (!innerResponse.result) {
                 errors.unshift(innerResponse.guidance);
-                errors.unshift("Error checking directive '" + mapPropertyName + ".begin':");
+                errors.unshift(`Error checking directive '${mapPropertyName}.begin':`);
                 break;
               }
               innerResponse = TYPES.check.inTypeSet({
@@ -223,12 +223,12 @@
               });
               if (innerResponse.error) {
                 errors.unshift(innerResponse.error);
-                errors.unshift("Internal error checking directive '" + mapPropertyName + ".end':");
+                errors.unshift(`Internal error checking directive '${mapPropertyName}.end':`);
                 break;
               }
               if (!innerResponse.result) {
                 errors.unshift(innerResponse.guidance);
-                errors.unshift("Error checking directive '" + mapPropertyName + ".end':");
+                errors.unshift(`Error checking directive '${mapPropertyName}.end':`);
                 break;
               }
               constraint = 'inRangeInclusive';
@@ -236,7 +236,7 @@
               break;
             default:
               if (mapPropertyName.indexOf('____') === 0) {
-                errors.unshift("Unrecognized typemap directive '" + mapPropertyName + "' not allowed in declaration.");
+                errors.unshift(`Unrecognized typemap directive '${mapPropertyName}' not allowed in declaration.`);
                 break;
               }
               innerResponse = TYPES.check.inTypeSet({
@@ -245,15 +245,15 @@
               });
               if (innerResponse.error) {
                 errors.unshift(innerResponse.error);
-                errors.unshift("Internal error queuing typemap object '" + mapPropertyName + "':");
+                errors.unshift(`Internal error queuing typemap object '${mapPropertyName}':`);
                 break;
               }
               if (!innerResponse.result) {
                 errors.unshift(innerResponse.guidance);
-                errors.unshift("Error queuing typemap object '" + mapPropertyName + "':");
+                errors.unshift(`Error queuing typemap object '${mapPropertyName}':`);
                 break;
               }
-              newPath = typepath + "." + mapPropertyName;
+              newPath = `${typepath}.${mapPropertyName}`;
               mapQueue.push({
                 path: newPath,
                 typemap: mapPropertyValue
@@ -262,6 +262,11 @@
               break;
           }
         }
+        // end of switch propertyName
+
+        // inside for mapPropertyName of typemap
+
+        // inside while mapQueue.length
         if (!errors.length) {
           inBreakScope = false;
           while (!inBreakScope) {
@@ -296,11 +301,14 @@
           }
         }
         if (errors.length) {
-          errors.unshift("While examining data namespace '" + typepath + "':");
+          errors.unshift(`While examining data namespace '${typepath}':`);
           break;
         }
       }
     }
+    // inside break scope
+
+    // function body scope
     if (errors.length) {
       response.error = errors.join(' ');
     } else {
@@ -325,12 +333,12 @@
       });
       if (innerResponse.error) {
         errors2.unshift(innerResponse.error);
-        errors2.unshift("Internal error checking directive '" + name_ + "':");
+        errors2.unshift(`Internal error checking directive '${name_}':`);
         break;
       }
       if (!innerResponse.result) {
         errors2.unshift(innerResponse.guidance);
-        errors2.unshift("Error checking directive '" + name_ + "':");
+        errors2.unshift(`Error checking directive '${name_}':`);
         break;
       }
       if (innerResponse.result === 'jsString') {
@@ -354,10 +362,10 @@
         if (!errors2.length) {
           response.result = true;
         } else {
-          errors2.unshift("Error(s) in '" + name_ + "' directive declaration.");
+          errors2.unshift(`Error(s) in '${name_}' directive declaration.`);
         }
       } else {
-        errors2.unshift("Type specification '" + name_ + "' directive is missing argument(s).");
+        errors2.unshift(`Type specification '${name_}' directive is missing argument(s).`);
       }
     }
     if (errors2.length) {

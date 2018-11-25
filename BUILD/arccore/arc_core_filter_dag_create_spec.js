@@ -1,22 +1,21 @@
-
-/*
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
- */
-
 (function() {
+  /*
+  ----------------------------------------------------------------------
+
+             +---+---+---+---+
+   chaos --> | J | B | U | S | --> order
+             +---+---+---+---+
+
+  Copyright (C) 2015 Encapsule.io Bellevue, WA USA
+
+  JBUS is licensed under the GNU Affero General Public License v3.0.
+  Please consult the included LICENSE file for agreement terms.
+
+  ----------------------------------------------------------------------
+  */
   var CONSTRAINTPROCESSOR, FILTERDAGREQFS, FILTERLIB, IDENTIFIERLIB, MODELPROCESSOR, SPECRECONCILER, filterlibResponse;
 
+  
   FILTERLIB = require('./arc_core_filter');
 
   IDENTIFIERLIB = require('./arc_core_identifier');
@@ -44,12 +43,14 @@ Please consult the included LICENSE file for agreement terms.
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
+        // Process the FilterDAG spec's model object.
         innerResponse = MODELPROCESSOR.request(request_.model);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);
           break;
         }
         specificationModel = innerResponse.result;
+        // Process the FilterDAG spec's constraints object.
         innerResponse = CONSTRAINTPROCESSOR.request(request_.constraints);
         if (innerResponse.error) {
           errors.unshift(innerResponse.error);

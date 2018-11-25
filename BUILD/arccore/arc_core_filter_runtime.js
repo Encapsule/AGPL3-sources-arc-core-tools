@@ -1,7 +1,6 @@
 (function() {
   'use strict';
-  var Filter, IDENTIFIER, bodyFunctionResponseFilter, filterRuntimeData,
-    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var Filter, IDENTIFIER, bodyFunctionResponseFilter, filterRuntimeData;
 
   IDENTIFIER = require('./arc_core_identifier');
 
@@ -26,14 +25,14 @@
 
   Object.freeze(bodyFunctionResponseFilter);
 
-  module.exports = Filter = (function() {
-    function Filter(filterDescriptor_) {
-      this.request = bind(this.request, this);
+  module.exports = Filter = class Filter {
+    constructor(filterDescriptor_) {
+      this.request = this.request.bind(this);
       this.filterDescriptor = filterDescriptor_;
       Object.freeze(this.filterDescriptor);
     }
 
-    Filter.prototype.request = function(request_) {
+    request(request_) {
       var bodyFunctionResponse, dispatchState, errors, inBreakScope, inputFilterResponse, outputFilterResponse, response, returnSignatureCheck;
       response = {
         error: null,
@@ -43,6 +42,7 @@
       inBreakScope = false;
       while (!inBreakScope) {
         inBreakScope = true;
+        // FILTER THE INPUT REQUEST DATA
         dispatchState = "normalizing request input";
         inputFilterResponse = filterRuntimeData({
           value: request_,
@@ -53,6 +53,7 @@
           break;
         }
         if (this.filterDescriptor.bodyFunction) {
+          // CALL MAIN FUNCTION WITH FILTERED INPUT REQUEST DATA
           dispatchState = "performing main operation";
           bodyFunctionResponse = this.filterDescriptor.bodyFunction(inputFilterResponse.result);
           returnSignatureCheck = filterRuntimeData({
@@ -69,8 +70,10 @@
             break;
           }
         } else {
+          // If no bodyFunction is defined, simply pass the input filter's response through.
           bodyFunctionResponse = inputFilterResponse;
         }
+        // FILTER THE OUTPUT RESPONSE DATA OF THE MAIN FUNCTION
         dispatchState = "normalizing response result";
         outputFilterResponse = filterRuntimeData({
           value: bodyFunctionResponse.result,
@@ -83,14 +86,14 @@
         response.result = outputFilterResponse.result;
       }
       if (errors.length) {
-        errors.unshift("Filter [" + this.filterDescriptor.operationID + "::" + this.filterDescriptor.operationName + "] failed while " + dispatchState + ".");
+        // The operation failed.
+        errors.unshift(`Filter [${this.filterDescriptor.operationID}::${this.filterDescriptor.operationName}] failed while ${dispatchState}.`);
         response.error = errors.join(" ");
       }
+      // Return the response
       return response;
-    };
+    }
 
-    return Filter;
-
-  })();
+  };
 
 }).call(this);
