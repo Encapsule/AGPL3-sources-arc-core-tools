@@ -8,9 +8,6 @@
 // https://github.com/webpack/webpack/issues/864#issuecomment-77725887
 
 var webpack = require('webpack');
-
-var outputFilename = 'index.js'
-
 var fs = require('fs');
 
 // Note as of v1.0.16: I don't think filter is really doing what I think.
@@ -57,7 +54,7 @@ module.exports = {
         externals: node_modules,
         output: {
             path: './BUILD/arccore/',
-            filename: outputFilename,
+            filename: 'index.js',
             libraryTarget: "commonjs2"
         }
     },
@@ -77,4 +74,3 @@ module.exports = {
         }
     }
 };
-

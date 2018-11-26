@@ -9,6 +9,8 @@ DIR_SOURCES_ARCCORE_FILTER=$(DIR_SOURCES_ARCCORE)/filter
 DIR_SOURCES_ARCCORE_FILTERDAG=$(DIR_SOURCES_ARCCORE)/filter-dag
 DIR_SOURCES_ARCCORE_DISCRIMINATOR=$(DIR_SOURCES_ARCCORE)/discriminator
 
+DIR_SOURCES_ARCTOOLS=$(DIR_SOURCES)/tools
+
 DIR_OUT=$(DIR_ROOT)/BUILD
 DIR_OUT_ARCCORE=$(DIR_OUT)/arccore
 DIR_OUT_ARCTOOLS=$(DIR_OUT)/arctools
@@ -40,14 +42,13 @@ lib_build_tag:
 	node ./PROJECT/generate_build_tag.js
 
 
+
 # Lint all coffeescript modules in `$(SOURCES_ROOT)` per rules in `$(PROJECT_ROOT)/coffeelint.json`.
 coffee_lint:
 	$(TOOL_COFFEELINT) $(DIR_SOURCES)
 
 # Compile Coffeescript library sources to ES5 and write output to appropriate subdirs of `$(DIR_OUT)`.
-coffee_compile: coffee_lint coffee_compile_arccore
-
-coffee_compile_arccore:
+coffee_compile: coffee_lint
 	$(TOOL_COFFEECC) $(TOOL_COFFEECC_FLAGS) $(DIR_SOURCES_ARCCORE_UTIL)/*.coffee
 	$(TOOL_COFFEECC) $(TOOL_COFFEECC_FLAGS) $(DIR_SOURCES_ARCCORE_TYPES)/*.coffee
 	$(TOOL_COFFEECC) $(TOOL_COFFEECC_FLAGS) $(DIR_SOURCES_ARCCORE_IDENTIFIER)/*.coffee
@@ -56,8 +57,13 @@ coffee_compile_arccore:
 	$(TOOL_COFFEECC) $(TOOL_COFFEECC_FLAGS) $(DIR_SOURCES_ARCCORE_DISCRIMINATOR)/*.coffee
 	$(TOOL_COFFEECC) $(TOOL_COFFEECC_FLAGS) $(DIR_SOURCES_ARCCORE)/*.coffee
 
-js_copy: js_copy_graph
+js_copy: js_copy_graph js_copy_tools
 
 # jsgraph is written in native ES5 and is merely copied.
 js_copy_graph:
+	mkdir -p $(DIR_OUT_ARCCORE)
 	cp -v $(DIR_SOURCES_ARCCORE_GRAPH)/*.js $(DIR_OUT_ARCCORE)
+
+js_copy_tools:
+	mkdir -p $(DIR_OUT_ARCTOOLS)
+	cp -rv $(DIR_SOURCES_ARCTOOLS)/* $(DIR_OUT_ARCTOOLS)
