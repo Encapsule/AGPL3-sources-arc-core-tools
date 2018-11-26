@@ -12,11 +12,29 @@ const buildTag = {
     buildTime: util.getEpochTime()
 };
 
-const buildTagJSON = JSON.stringify(buildTag, undefined, 4);
+const buildTagJSON = JSON.stringify(buildTag); // , undefined, 4);
 console.log(buildTagJSON);
 
+
+const jsModule = "module.exports = JSON.parse('" + buildTagJSON + "');"
+
+fs.writeFileSync(
+    path.join(process.cwd(), './BUILD/arccore/arc_build.js'),
+    jsModule
+);
+
+fs.writeFileSync(
+    path.join(process.cwd(), './BUILD/arctools/arc_build.js'),
+    jsModule
+);
+/*
 fs.writeFileSync(
     path.join(process.cwd(), './BUILD/arccore/arc_build.json'),
     buildTagJSON
 );
 
+fs.writeFileSync(
+    path.join(process.cwd(), './BUILD/arctools/arc_build.json'),
+    buildTagJSON
+);
+*/
