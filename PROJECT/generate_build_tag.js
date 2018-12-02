@@ -1,8 +1,10 @@
+const identifier = require('../BUILD/arccore/arc_core_identifier');
+const util = require('../BUILD/arccore/arc_core_util');
 const path = require('path');
 const fs = require('fs');
 const packageMeta = require('../package.json');
-const identifier = require('../BUILD/arccore/arc_core_identifier');
-const util = require('../BUILD/arccore/arc_core_util');
+const buildDirectory = path.join(process.cwd(), './BUILD');
+const buildTagFilename = 'arc_build';
 
 const buildTag = {
     version: packageMeta.version,
@@ -13,28 +15,9 @@ const buildTag = {
 };
 
 const buildTagJSON = JSON.stringify(buildTag); // , undefined, 4);
+const buildTagJS = "module.exports = JSON.parse('" + buildTagJSON + "');"
 console.log(buildTagJSON);
 
+fs.writeFileSync(path.join(buildDirectory, (buildTagFilename + '.json')), buildTagJSON);
+fs.writeFileSync(path.join(buildDirectory, (buildTagFilename + '.js')), buildTagJS);
 
-const jsModule = "module.exports = JSON.parse('" + buildTagJSON + "');"
-
-fs.writeFileSync(
-    path.join(process.cwd(), './BUILD/arccore/arc_build.js'),
-    jsModule
-);
-
-fs.writeFileSync(
-    path.join(process.cwd(), './BUILD/arctools/arc_build.js'),
-    jsModule
-);
-/*
-fs.writeFileSync(
-    path.join(process.cwd(), './BUILD/arccore/arc_build.json'),
-    buildTagJSON
-);
-
-fs.writeFileSync(
-    path.join(process.cwd(), './BUILD/arctools/arc_build.json'),
-    buildTagJSON
-);
-*/
