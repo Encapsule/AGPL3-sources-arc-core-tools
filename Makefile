@@ -35,13 +35,22 @@ default: stages
 	@echo default
 	@echo ================================================================
 
-
 clean:
 	@echo ================================================================
 	@echo clean
 	@echo ================================================================
 	rm -rfv $(DIR_OUT_BUILD)
 	rm -rfv $(DIR_OUT_STAGE)
+
+reset: clean
+	@echo ================================================================
+	@echo reset
+	@echo ================================================================
+	rm -rfv $(DIR_MODULES)
+	@echo Reset complete. You will need to re-install module dependencies via \'yarn install\'.
+	@echo
+
+
 
 lib_modules: coffee_compile js_copy build_tag
 	@echo ================================================================
