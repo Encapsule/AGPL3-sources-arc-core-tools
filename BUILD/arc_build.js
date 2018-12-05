@@ -1,1 +1,0 @@
-module.exports = JSON.parse('{"version":"0.0.18","codename":"bagh","author":"Encapsule","buildID":"VLU1a5f4S2SYwxE5KlmSdw","buildTime":1543681184}');
