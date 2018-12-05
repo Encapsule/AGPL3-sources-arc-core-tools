@@ -24,7 +24,6 @@
     "coffeelint": "^2.1.0",
     "coffeescript": "^2.3.2",
     "commander": "^2.19.0",
-    "gulp-rename": "^1.4.0",
     "handlebars": "^4.0.12",
     "mocha": "^2.3.4",
     "murmurhash-js": "^1.0.0",
