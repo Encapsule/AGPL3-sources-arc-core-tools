@@ -65,11 +65,14 @@ convert = (request_) ->
         rewriteRequest = undefined
 
         switch request.from
+	    # Determine the 'jsTypeString' (e.g. "[object String]", "[object Object]", "[object Function]", etc...)
+	    # of the value referenced by `value`. And, then convert that string to a value in the dimension specified
+	    # by the `to` input (string) value.
             when 'jsReference'
                 rewriteRequest =
                     to: request.to
                     from: 'jsTypeString'
-                    value: Object.prototype.toString.call request_.value
+                    value: valueType
                 forwardLookup = false
                 break
             when 'jsCode'
