@@ -47,10 +47,14 @@ reset: clean
 	@echo reset
 	@echo ================================================================
 	rm -rfv $(DIR_MODULES)
-	@echo Reset complete. You will need to re-install module dependencies via \'yarn install\'.
+	@echo Reset complete. You will need to 'make dependencies' to re-install 3rd-party libs and packages.
 	@echo
 
-
+dependencies: clean
+	@echo ================================================================
+	@echo dependencies
+	@echo ================================================================
+	yarn install
 
 lib_modules: coffee_compile js_copy build_tag
 	@echo ================================================================
