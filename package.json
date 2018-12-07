@@ -30,5 +30,8 @@
     "node-uuid": "^1.4.7",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0"
   }
 }

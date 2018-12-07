@@ -29,6 +29,7 @@ TOOL_COFFEECC=$(DIR_TOOLS)/coffee
 TOOL_COFFEECC_FLAGS=--compile --no-header --output $(DIR_OUT_BUILD_ARCCORE)
 TOOL_MOCHA=$(DIR_TOOLS)/mocha
 TOOL_WEBPACK=$(DIR_TOOLS)/webpack
+TOOL_BABEL=$(DIR_TOOLS)/babel
 
 default: stages
 	@echo ================================================================
@@ -142,7 +143,8 @@ stage_arccore:
 	@echo stage_arccore
 	@echo ================================================================
 	mkdir -p $(DIR_OUT_STAGE_ARCCORE)
-	cp $(DIR_OUT_BUILD_ARCCORE)/index.js $(DIR_OUT_STAGE_ARCCORE)
+	$(TOOL_BABEL) $(DIR_OUT_BUILD_ARCCORE)/index.js --minified --compact --no-comments --out-file $(DIR_OUT_STAGE_ARCCORE)/index.js
+	# cp $(DIR_OUT_BUILD_ARCCORE)/index.js $(DIR_OUT_STAGE_ARCCORE)
 
 stage_arctools:
 	@echo ================================================================
