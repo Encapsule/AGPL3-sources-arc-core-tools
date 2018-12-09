@@ -1,5 +1,5 @@
 
-ARC_BUILD = require '../arc_build'
+ARC_BUILD = require './arc_build'
 
 COMMON = module.exports =
 

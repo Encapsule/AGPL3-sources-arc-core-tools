@@ -14,7 +14,7 @@ var PATH = require('path');
 module.exports = function(packageName_) {
 
     basedir = undefined;
-    buildDirPath = "../../BUILD/";
+    buildDirPath = "../../BUILD/STAGE01";
     switch (packageName_) {
     case "arccore":
     case "arctools":
