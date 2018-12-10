@@ -8,12 +8,12 @@ module.exports = {
         new webpack.optimize.OccurenceOrderPlugin()
     ],
     entry: {
-        main: './BUILD/arccore/arc_core.js'
+        main: './BUILD/STAGE02/arccore/arc_core.js'
     },
     target: "node",
     externals: ignoreModules,
     output: {
-        path: './BUILD/arccore/',
+        path: './BUILD/STAGE03/arccore/',
         filename: 'index.js',
         libraryTarget: "commonjs2"
     }
