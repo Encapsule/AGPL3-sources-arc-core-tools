@@ -1,5 +1,5 @@
 
-var ARC_CORE = require('../arccore');
+var ARC_CORE = require('../arccore/arc_core');
 
 var response = ARC_CORE.filter.create({
     operationID: "XkLs1-s1SFGTchfd9eZqYA",

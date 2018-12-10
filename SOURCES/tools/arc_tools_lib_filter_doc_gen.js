@@ -1,5 +1,5 @@
 
-var ARCCORE = require('../arccore');
+var ARCCORE = require('../arccore/arc_core');
 var FILTERLIB = ARCCORE.filter;
 var TYPELIB = ARCCORE.types;
 var HANDLEBARS  = require('handlebars');

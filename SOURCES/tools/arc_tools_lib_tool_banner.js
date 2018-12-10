@@ -1,5 +1,5 @@
 
-var ARCBUILD = require('../arc_build');
+var ARCBUILD = require('./arc_build');
 var chalk = require('chalk');
 var clistyle = require('./arc_tools_lib_cli_styles');
 

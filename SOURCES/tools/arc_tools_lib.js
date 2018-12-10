@@ -1,4 +1,4 @@
-var build = require('../arc_build');
+var build = require('./arc_build');
 build.name = "arctools";
 
 module.exports = {

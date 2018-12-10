@@ -161,7 +161,7 @@ if (errors.length) {
 } else {
     exitCode = 0;
 }
-return exitCode;
+process.exit(exitCode);
 // eof
 ////
 

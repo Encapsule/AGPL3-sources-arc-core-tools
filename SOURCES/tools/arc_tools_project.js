@@ -210,5 +210,5 @@ console.log(
         theme.exitCode(exitCode)
 );
 
-return exitCode;
+process.exit(exitCode);
 // eof

@@ -1,7 +1,7 @@
 
 var FS = require('fs');
 var PATH = require('path');
-var ARC_CORE = require('../arccore');
+var ARC_CORE = require('../arccore/arc_core');
 
 var response = ARC_CORE.filter.create({
 
