@@ -48,7 +48,7 @@ TOOL_COFFEECC_FLAGS=--compile --output $(DIR_OUT_BUILD_STAGE01_ARCCORE)
 TOOL_MOCHA=$(DIR_TOOLS)/mocha
 TOOL_WEBPACK=$(DIR_TOOLS)/webpack
 TOOL_BABEL=$(DIR_TOOLS)/babel
-TOOL_BABEL_FLAGS=
+TOOL_BABEL_FLAGS=--minified --compact --no-comments
 
 default:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
@@ -89,12 +89,17 @@ dependencies: reset
 	@echo dependencies
 	@echo '////////////////////////////////////////////////////////////////'
 
-stage01: stage01_coffee_compile stage01_js_copy stage01_build stage01_tests
+
+# ****************************************************************
+# ****************************************************************
+# ****************************************************************
+
+stage01: stage01_coffee_compile stage01_js_copy stage01_buildtag
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage01 - aggregation target complete.
 	@echo '////////////////////////////////////////////////////////////////'
 
-stage01_build:
+stage01_buildtag:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage01_build
 	@echo ----------------------------------------------------------------
@@ -102,17 +107,6 @@ stage01_build:
 	@echo ----------------------------------------------------------------
 	@echo stage01_build
 	@echo '////////////////////////////////////////////////////////////////'
-
-stage01_tests:
-	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
-	@echo stage01_tests
-	@echo STARTING TESTS OF LIB MODULES IN $(DIR_OUT_BUILD_STAGE01_ARCCORE)
-	@echo ----------------------------------------------------------------
-	$(TOOL_MOCHA) TESTS/test_arc.js
-	@echo ----------------------------------------------------------------
-	@echo stage01_tests
-	@echo '////////////////////////////////////////////////////////////////'
-
 
 # Lint all coffeescript modules in `$(SOURCES_ROOT)` per rules in `$(PROJECT_ROOT)/coffeelint.json`.
 stage01_coffee_lint:
@@ -167,27 +161,68 @@ stage01_js_copy_tools:
 	@echo stage01_js_copy_tools
 	@echo '////////////////////////////////////////////////////////////////'
 
-bundles: lib_tests bundle_arccore bundle_arctools
+# ****************************************************************
+# ****************************************************************
+# ****************************************************************
+
+stage02: stage01 stage02_transpile_arccore stage02_transpile_arctools stage02_tests
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
-	@echo bundles - aggregation target complete
+	@echo stage02 - aggregation target complete
 	@echo '////////////////////////////////////////////////////////////////'
 
-bundle_arccore:
+stage02_transpile_arccore:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
-	@echo bundle_arccore
+	@echo stage02_transpile_arccore
 	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE02_ARCCORE)
+	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE01_ARCCORE)/ --no-comments --out-dir $(DIR_OUT_BUILD_STAGE02_ARCCORE)/
+	@echo ----------------------------------------------------------------
+	@echo stage02_transpile_arccore
+	@echo '////////////////////////////////////////////////////////////////'
+
+stage02_transpile_arctools:
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage02_transpile_arctools
+	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)
+	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)/ --no-comments --out-dir $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/
+	@echo ----------------------------------------------------------------
+	@echo stage02_transpile_arctools
+	@echo '////////////////////////////////////////////////////////////////'
+
+stage02_tests:
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage02_tests
+	@echo STARTING TESTS OF LIB MODULES IN $(DIR_OUT_BUILD_STAGE02_ARCCORE)
+	@echo ----------------------------------------------------------------
+	$(TOOL_MOCHA) TESTS/test_arc.js
+	@echo ----------------------------------------------------------------
+	@echo stage02_tests
+	@echo '////////////////////////////////////////////////////////////////'
+
+stage03: stage02 stage03_bundle_arccore stage03_bundle_arctools
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage03 - aggregation target complete
+	@echo '////////////////////////////////////////////////////////////////'
+
+stage03_bundle_arccore:
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage03_bundle_arccore
+	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE03_ARCCORE)
 	$(TOOL_WEBPACK) --config $(DIR_PROJECT)/webpack.config.arccore.js
 	@echo ----------------------------------------------------------------
-	@echo bundle_arccore
+	@echo stage03_bundle_arccore
 	@echo '////////////////////////////////////////////////////////////////'
 
-bundle_arctools:
+stage03_bundle_arctools:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
-	@echo bundle_arctools
+	@echo stage03_bundle_arctools
 	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)
 	$(TOOL_WEBPACK) --config $(DIR_PROJECT)/webpack.config.arctools.js
 	@echo ----------------------------------------------------------------
-	@echo bundle_arctools
+	@echo stage03_bundle_arctools
 	@echo '////////////////////////////////////////////////////////////////'
 
 
