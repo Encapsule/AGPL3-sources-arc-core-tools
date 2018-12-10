@@ -18,8 +18,6 @@ const buildTagJSON = JSON.stringify(buildTag); // , undefined, 4);
 const buildTagJS = "module.exports = JSON.parse('" + buildTagJSON + "');"
 console.log(buildTagJSON);
 
-fs.writeFileSync(path.join(buildDirectory, 'arccore', (buildTagFilename + '.json')), buildTagJSON);
 fs.writeFileSync(path.join(buildDirectory, 'arccore', (buildTagFilename + '.js')), buildTagJS);
-fs.writeFileSync(path.join(buildDirectory, 'arctools', (buildTagFilename + '.json')), buildTagJSON);
 fs.writeFileSync(path.join(buildDirectory, 'arctools', (buildTagFilename + '.js')), buildTagJS);
 
