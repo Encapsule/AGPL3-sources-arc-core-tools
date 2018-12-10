@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/Encapsule/ARC_master#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
     "chai": "^3.4.1",
     "chalk": "^1.1.1",
     "coffeelint": "^2.1.0",
