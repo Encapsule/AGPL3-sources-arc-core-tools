@@ -1,9 +1,9 @@
-const identifier = require('../BUILD/STAGE01/arccore/arc_core_identifier');
-const util = require('../BUILD/STAGE01/arccore/arc_core_util');
+const identifier = require('../BUILD/stage01/arccore/arc_core_identifier');
+const util = require('../BUILD/stage01/arccore/arc_core_util');
 const path = require('path');
 const fs = require('fs');
 const packageMeta = require('../package.json');
-const buildDirectory = path.join(process.cwd(), './BUILD/STAGE01');
+const buildDirectory = path.join(process.cwd(), './BUILD/stage01');
 const buildTagFilename = 'arc_build';
 
 const buildTag = {

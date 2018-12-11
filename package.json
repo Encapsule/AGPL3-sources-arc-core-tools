@@ -1,8 +1,8 @@
-{
+  {
   "private": true,
   "name": "arc_master",
-  "version": "0.0.18",
-  "codename": "bagh",
+  "version": "0.1.0",
+  "codename": "spindrift",
   "description": "Encapsule.io ARC project master repository.",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
     "chai": "^3.4.1",
     "chalk": "^1.1.1",
     "coffeelint": "^2.1.0",

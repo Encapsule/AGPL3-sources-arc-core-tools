@@ -19,19 +19,24 @@ DIR_PROJECT=$(DIR_ROOT)/PROJECT
 DIR_OUT_BUILD=$(DIR_ROOT)/BUILD
 
 # DIR_OUT_BUILD_STAGE01 directory contains a mix of ES5 (e.g. jsgraph) and ES6 (e.g. Coffeescript compiler output) derived from SOURCES by various means.
-DIR_OUT_BUILD_STAGE01=$(DIR_OUT_BUILD)/STAGE01
+DIR_OUT_BUILD_STAGE01=$(DIR_OUT_BUILD)/stage01
 DIR_OUT_BUILD_STAGE01_ARCCORE=$(DIR_OUT_BUILD_STAGE01)/arccore
 DIR_OUT_BUILD_STAGE01_ARCTOOLS=$(DIR_OUT_BUILD_STAGE01)/arctools
 
 # DIR_OUT_BUILD_STAGE02 directory contains the output of running DIR_OUT_BUILD_STAGE02 through the babel transpiler to obtain uniform ES5 usable everywhere.
-DIR_OUT_BUILD_STAGE02=$(DIR_OUT_BUILD)/STAGE02
+DIR_OUT_BUILD_STAGE02=$(DIR_OUT_BUILD)/stage02
 DIR_OUT_BUILD_STAGE02_ARCCORE=$(DIR_OUT_BUILD_STAGE02)/arccore
 DIR_OUT_BUILD_STAGE02_ARCTOOLS=$(DIR_OUT_BUILD_STAGE02)/arctools
 
 # DIR_OUT_BUILD_STAGE03 directory contains the output of running webpack on the contents of DIR_OUT_BUILD_STAGE02 to produce release bundles for arccore and arctools packages.
-DIR_OUT_BUILD_STAGE03=$(DIR_OUT_BUILD)/STAGE03
+DIR_OUT_BUILD_STAGE03=$(DIR_OUT_BUILD)/stage03
 DIR_OUT_BUILD_STAGE03_ARCCORE=$(DIR_OUT_BUILD_STAGE03)/arccore
 DIR_OUT_BUILD_STAGE03_ARCTOOLS=$(DIR_OUT_BUILD_STAGE03)/arctools
+
+# DIR_OUT_BUILD_STAGE04 directory contains the output of minimizing/compacting webpack bundles produced for STAGE03 via another run through babel.
+DIR_OUT_BUILD_STAGE04=$(DIR_OUT_BUILD)/stage04
+DIR_OUT_BUILD_STAGE04_ARCCORE=$(DIR_OUT_BUILD_STAGE04)/arccore
+DIR_OUT_BUILD_STAGE04_ARCTOOLS=$(DIR_OUT_BUILD_STAGE04)/arctools
 
 # .gitignore'd resources managed via yarn package (as in Node.js) manager.
 DIR_MODULES=$(DIR_ROOT)/node_modules
@@ -46,9 +51,14 @@ TOOL_COFFEECC=$(DIR_TOOLS)/coffee
 TOOL_COFFEECC_FLAGS=--compile --output $(DIR_OUT_BUILD_STAGE01_ARCCORE)
 
 TOOL_MOCHA=$(DIR_TOOLS)/mocha
+
 TOOL_WEBPACK=$(DIR_TOOLS)/webpack
+
 TOOL_BABEL=$(DIR_TOOLS)/babel
-TOOL_BABEL_FLAGS=--minified --compact --no-comments
+TOOL_BABEL_FLAGS=--verbose --no-comments --compact
+
+TOOL_UGLIFY=$(DIR_TOOLS)/uglifyjs
+TOOL_UGLIFY_FLAGS=--verbose --mangle
 
 default:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
@@ -175,7 +185,7 @@ stage02_transpile_arccore:
 	@echo stage02_transpile_arccore
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE02_ARCCORE)
-	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE01_ARCCORE)/ --no-comments --out-dir $(DIR_OUT_BUILD_STAGE02_ARCCORE)/
+	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE01_ARCCORE)/ $(TOOL_BABEL_FLAGS) --out-dir $(DIR_OUT_BUILD_STAGE02_ARCCORE)/
 	@echo ----------------------------------------------------------------
 	@echo stage02_transpile_arccore
 	@echo '////////////////////////////////////////////////////////////////'
@@ -185,7 +195,7 @@ stage02_transpile_arctools:
 	@echo stage02_transpile_arctools
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)
-	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)/ --no-comments --out-dir $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/
+	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)/ $(TOOL_BABEL_FLAGS) --out-dir $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/
 	@echo ----------------------------------------------------------------
 	@echo stage02_transpile_arctools
 	@echo '////////////////////////////////////////////////////////////////'
@@ -199,6 +209,10 @@ stage02_tests:
 	@echo ----------------------------------------------------------------
 	@echo stage02_tests
 	@echo '////////////////////////////////////////////////////////////////'
+
+# ****************************************************************
+# ****************************************************************
+# ****************************************************************
 
 stage03: stage02 stage03_bundle_arccore stage03_bundle_arctools
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
@@ -226,7 +240,40 @@ stage03_bundle_arctools:
 	@echo '////////////////////////////////////////////////////////////////'
 
 
+# ****************************************************************
+# ****************************************************************
+# ****************************************************************
 
+stage04: stage03 stage04_minbundle_arccore stage04_minbundle_arctools
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage04 - aggregation target complete
+	@echo '////////////////////////////////////////////////////////////////'
+
+stage04_minbundle_arccore:
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage04_minbundle_arctools
+	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCCORE)
+#	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE03_ARCCORE)/index.js $(TOOL_BABEL_FLAGS) --out-file $(DIR_OUT_BUILD_STAGE04_ARCCORE)/index.js
+	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCCORE)/index.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCCORE)/index.js
+	@echo ----------------------------------------------------------------
+	@echo stage04_minbundle_arctools
+	@echo '////////////////////////////////////////////////////////////////'
+
+stage04_minbundle_arctools:
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage04_minbundle_arctools
+	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)
+#	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/lib.js $(TOOL_BABEL_FLAGS) --out-file $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/lib.js
+	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/lib.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/lib.js
+	@echo ----------------------------------------------------------------
+	@echo stage04_minbundle_arctools
+	@echo '////////////////////////////////////////////////////////////////'
+
+# ****************************************************************
+# ****************************************************************
+# ****************************************************************
 
 stages: bundles stage_arccore stage_arctools
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'

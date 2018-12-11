@@ -8,12 +8,12 @@ module.exports = {
         new webpack.optimize.OccurenceOrderPlugin()
     ],
     entry: {
-        lib: './BUILD/STAGE02/arctools/arc_tools_lib.js',
+        lib: './BUILD/stage02/arctools/arc_tools_lib.js',
     },
     target: "node",
     externals: ignoreModules,
     output: {
-        path: './BUILD/STAGE03/arctools/',
+        path: './BUILD/stage03/arctools/',
         filename: 'lib.js',
         libraryTarget: "commonjs2"
     }
