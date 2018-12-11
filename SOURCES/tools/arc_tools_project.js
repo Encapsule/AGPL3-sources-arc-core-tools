@@ -114,7 +114,7 @@ while (!exitProgram && !errors.length) {
 
             // If not located, look in parent directories before giving up.
             var seek = true;
-            searchDirectory = TOOLSLIB.paths.normalizePath(projectDirectory + "./..");
+            var searchDirectory = TOOLSLIB.paths.normalizePath(projectDirectory + "./..");
             while (seek) {
                 var seekProject = PATH.join(searchDirectory, projectFilename);
                 if (!FS.existsSync(seekProject)) {

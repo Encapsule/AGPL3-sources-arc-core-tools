@@ -60,10 +60,11 @@ TOOL_BABEL_FLAGS=--verbose --no-comments
 TOOL_UGLIFY=$(DIR_TOOLS)/uglifyjs
 TOOL_UGLIFY_FLAGS=--verbose --mangle
 
-default:
+# First target specified is always the default target regardless of its name.
+arc_master:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
-	@echo default
-	@echo Not going to make your day. What can I say.
+	@echo arc_master
+	@echo Default target is currently not configured.
 	@echo '////////////////////////////////////////////////////////////////'
 
 clean:
@@ -71,7 +72,7 @@ clean:
 	@echo clean
 	@echo ----------------------------------------------------------------
 	@echo Removing `find $(DIR_OUT_BUILD) | wc -l` files from $(DIR_OUT_BUILD)
-	rm -rf $(DIR_OUT_BUILD)
+	rm -rfv $(DIR_OUT_BUILD)
 	@echo ----------------------------------------------------------------
 	@echo clean
 	@echo '////////////////////////////////////////////////////////////////'
@@ -81,7 +82,8 @@ reset: clean
 	@echo reset
 	@echo ----------------------------------------------------------------
 	@echo
-	@echo "**** DO NOT PROCEED IF YOU ARE OFFLINE ****"
+	@echo "**** YOU WILL NEED TO RE-INSTALL 3RD-PARTY PACKAGE DEPENDENCIES ****"
+	@echo This can be accomplished by executing '$ make dependencies' 
 	@echo
 	@echo "Hit ENTER to proceed. CTRL-C to abort..."
 	@read aok
@@ -197,6 +199,7 @@ stage02_transpile_arctools:
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)
 	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)/ $(TOOL_BABEL_FLAGS) --out-dir $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/
+	cp -rv $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)/templates $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/
 	@echo ----------------------------------------------------------------
 	@echo stage02_transpile_arctools
 	@echo '////////////////////////////////////////////////////////////////'
@@ -236,6 +239,16 @@ stage03_bundle_arctools:
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)
 	$(TOOL_WEBPACK) --config $(DIR_PROJECT)/webpack.config.arctools.js
+	cp -r $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/templates $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_build.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_docgen_filter.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+#	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_filterdag_compiler.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+#	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_filterdag_factory.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_id_unique.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_project.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_project_construct.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_project_parse.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/simple-doc-test.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
 	@echo ----------------------------------------------------------------
 	@echo stage03_bundle_arctools
 	@echo '////////////////////////////////////////////////////////////////'
@@ -265,7 +278,8 @@ stage04_minbundle_arctools:
 	@echo stage04_minbundle_arctools
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)
-	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/lib.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/lib.js
+	cp -r $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/* $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/
+	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/arc_tools_lib.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/arc_tools_lib.js
 	@echo ----------------------------------------------------------------
 	@echo stage04_minbundle_arctools
 	@echo '////////////////////////////////////////////////////////////////'
@@ -274,31 +288,3 @@ stage04_minbundle_arctools:
 # ****************************************************************
 # ****************************************************************
 
-stages: bundles stage_arccore stage_arctools
-	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
-	@echo stages
-	@echo '////////////////////////////////////////////////////////////////'
-
-stage_arccore:
-	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
-	@echo stage_arccore
-	@echo ----------------------------------------------------------------
-	mkdir -p $(DIR_OUT_STAGE_ARCCORE)/babel/
-	$(TOOL_BABEL) --version
-	$(TOOL_BABEL) $(DIR_OUT_BUILD_ARCCORE)/index.js --minified --compact --no-comments --out-file $(DIR_OUT_STAGE_ARCCORE)/index.js
-	$(TOOL_BABEL) $(DIR_OUT_BUILD_ARCCORE)/ --out-dir $(DIR_OUT_STAGE_ARCCORE)/babel
-#	cp $(DIR_OUT_BUILD_ARCCORE)/index.js $(DIR_OUT_STAGE_ARCCORE)
-	@echo ----------------------------------------------------------------
-	@echo stage_arccore
-	@echo '////////////////////////////////////////////////////////////////'
-
-
-stage_arctools:
-	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
-	@echo stage_arctools
-	@echo ----------------------------------------------------------------
-	mkdir -p $(DIR_OUT_STAGE_ARCTOOLS)
-	cp $(DIR_OUT_BUILD_ARCTOOLS)/lib.js $(DIR_OUT_STAGE_ARCTOOLS)
-	@echo ----------------------------------------------------------------
-	@echo stage_arctools
-	@echo '////////////////////////////////////////////////////////////////'
