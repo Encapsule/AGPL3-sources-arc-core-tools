@@ -55,7 +55,7 @@ TOOL_MOCHA=$(DIR_TOOLS)/mocha
 TOOL_WEBPACK=$(DIR_TOOLS)/webpack
 
 TOOL_BABEL=$(DIR_TOOLS)/babel
-TOOL_BABEL_FLAGS=--verbose --no-comments --compact
+TOOL_BABEL_FLAGS=--verbose
 
 TOOL_UGLIFY=$(DIR_TOOLS)/uglifyjs
 TOOL_UGLIFY_FLAGS=--verbose --mangle
@@ -254,7 +254,6 @@ stage04_minbundle_arccore:
 	@echo stage04_minbundle_arctools
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCCORE)
-#	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE03_ARCCORE)/index.js $(TOOL_BABEL_FLAGS) --out-file $(DIR_OUT_BUILD_STAGE04_ARCCORE)/index.js
 	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCCORE)/index.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCCORE)/index.js
 	@echo ----------------------------------------------------------------
 	@echo stage04_minbundle_arctools
@@ -265,7 +264,6 @@ stage04_minbundle_arctools:
 	@echo stage04_minbundle_arctools
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)
-#	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/lib.js $(TOOL_BABEL_FLAGS) --out-file $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/lib.js
 	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/lib.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/lib.js
 	@echo ----------------------------------------------------------------
 	@echo stage04_minbundle_arctools

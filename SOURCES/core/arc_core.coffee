@@ -9,6 +9,7 @@ COMMON = module.exports =
         codename:      ARC_BUILD.codename
         author:        ARC_BUILD.author
         buildID:       ARC_BUILD.buildID
+        ARC_master:    ARC_BUILD.ARC_master
 
     __bundle:
         murmurhash_js: require 'murmurhash-js'
