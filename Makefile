@@ -55,7 +55,7 @@ TOOL_MOCHA=$(DIR_TOOLS)/mocha
 TOOL_WEBPACK=$(DIR_TOOLS)/webpack
 
 TOOL_BABEL=$(DIR_TOOLS)/babel
-TOOL_BABEL_FLAGS=--verbose
+TOOL_BABEL_FLAGS=--verbose --no-comments
 
 TOOL_UGLIFY=$(DIR_TOOLS)/uglifyjs
 TOOL_UGLIFY_FLAGS=--verbose --mangle
