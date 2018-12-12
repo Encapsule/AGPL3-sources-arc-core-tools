@@ -12,7 +12,13 @@
     "type": "git",
     "url": "git+https://github.com/Encapsule/ARC_master.git"
   },
-  "author": "Encapsule",
+  "author": "Encapsule Project",
+  "contributors": [
+    {
+      "name": "Christopher D. Russell",
+      "email": "cdr@encapsule.io"
+    }
+  ],
   "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/Encapsule/ARC_master/issues"

@@ -13,6 +13,7 @@ const buildTag = {
     version: packageMeta.version,
     codename: packageMeta.codename,
     author: packageMeta.author,
+    contributors: packageMeta.contributors,
     buildID: identifier.irut.fromEther(),
     buildTime: util.getEpochTime(),
     ARC_master: commitHash

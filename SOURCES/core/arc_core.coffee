@@ -8,6 +8,7 @@ COMMON = module.exports =
         version:       ARC_BUILD.version
         codename:      ARC_BUILD.codename
         author:        ARC_BUILD.author
+        contributors:  ARC_BUILD.contributors
         buildID:       ARC_BUILD.buildID
         ARC_master:    ARC_BUILD.ARC_master
 

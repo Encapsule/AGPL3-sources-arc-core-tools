@@ -52,7 +52,7 @@ var filterlibResponse = FILTERLIB.create({
         while (!inBreakScope) {
             inBreakScope = true;
 
-            innerResponse = TOOLSLIB.arccore.graph.directed.create(request_.projectState);
+            var innerResponse = TOOLSLIB.arccore.graph.directed.create(request_.projectState);
             if (innerResponse.error) {
                 errors.unshift(innerResponse.error);
                 break;

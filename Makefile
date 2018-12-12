@@ -40,11 +40,13 @@ DIR_OUT_BUILD_STAGE04_ARCTOOLS=$(DIR_OUT_BUILD_STAGE04)/arctools
 
 # .gitignore'd resources managed via yarn package (as in Node.js) manager.
 DIR_MODULES=$(DIR_ROOT)/node_modules
+DIR_PROJECT=$(DIR_ROOT)/PROJECT
 # Node.js runtime (compile and install from sources locally) and yarn pacakage
 # manager are global development environment prerequisites. All other tools
 # are expected to included in the devDependencies section of package.json
 # in order that their application be versioned
 DIR_TOOLS=$(DIR_MODULES)/.bin
+
 
 TOOL_COFFEELINT=$(DIR_TOOLS)/coffeelint
 TOOL_COFFEECC=$(DIR_TOOLS)/coffee
@@ -59,6 +61,8 @@ TOOL_BABEL_FLAGS=--verbose --no-comments
 
 TOOL_UGLIFY=$(DIR_TOOLS)/uglifyjs
 TOOL_UGLIFY_FLAGS=--verbose --mangle
+
+TOOL_MANIFEST_GEN=$(DIR_PROJECT)/generate_dist_package_manifest.js
 
 # First target specified is always the default target regardless of its name.
 arc_master:
@@ -189,6 +193,7 @@ stage02_transpile_arccore:
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE02_ARCCORE)
 	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE01_ARCCORE)/ $(TOOL_BABEL_FLAGS) --out-dir $(DIR_OUT_BUILD_STAGE02_ARCCORE)/
+	$(TOOL_MANIFEST_GEN) --packageName arccore --outputDir $(DIR_OUT_BUILD_STAGE02_ARCCORE)
 	@echo ----------------------------------------------------------------
 	@echo stage02_transpile_arccore
 	@echo '////////////////////////////////////////////////////////////////'
@@ -200,6 +205,7 @@ stage02_transpile_arctools:
 	mkdir -p $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)
 	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)/ $(TOOL_BABEL_FLAGS) --out-dir $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/
 	cp -rv $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)/templates $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/
+	$(TOOL_MANIFEST_GEN) --packageName arctools --outputDir $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)
 	@echo ----------------------------------------------------------------
 	@echo stage02_transpile_arctools
 	@echo '////////////////////////////////////////////////////////////////'
@@ -229,6 +235,8 @@ stage03_bundle_arccore:
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE03_ARCCORE)
 	$(TOOL_WEBPACK) --config $(DIR_PROJECT)/webpack.config.arccore.js
+	cp $(DIR_OUT_BUILD_STAGE02_ARCCORE)/arc_build.js $(DIR_OUT_BUILD_STAGE03_ARCCORE)/
+	$(TOOL_MANIFEST_GEN) --packageName arccore --outputDir $(DIR_OUT_BUILD_STAGE03_ARCCORE)
 	@echo ----------------------------------------------------------------
 	@echo stage03_bundle_arccore
 	@echo '////////////////////////////////////////////////////////////////'
@@ -249,6 +257,7 @@ stage03_bundle_arctools:
 	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_project_construct.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
 	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_project_parse.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
 	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/simple-doc-test.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+	$(TOOL_MANIFEST_GEN) --packageName arctools --outputDir $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)
 	@echo ----------------------------------------------------------------
 	@echo stage03_bundle_arctools
 	@echo '////////////////////////////////////////////////////////////////'
@@ -269,6 +278,8 @@ stage04_minbundle_arccore:
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCCORE)
 	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCCORE)/index.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCCORE)/index.js
+	$(TOOL_MANIFEST_GEN) --packageName arccore --outputDir $(DIR_OUT_BUILD_STAGE04_ARCCORE)
+	cp $(DIR_OUT_BUILD_STAGE03_ARCCORE)/arc_build.js $(DIR_OUT_BUILD_STAGE04_ARCCORE)/
 	@echo ----------------------------------------------------------------
 	@echo stage04_minbundle_arctools
 	@echo '////////////////////////////////////////////////////////////////'
@@ -280,6 +291,7 @@ stage04_minbundle_arctools:
 	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)
 	cp -r $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/* $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/
 	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/arc_tools_lib.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/arc_tools_lib.js
+	$(TOOL_MANIFEST_GEN) --packageName arctools --outputDir $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)
 	@echo ----------------------------------------------------------------
 	@echo stage04_minbundle_arctools
 	@echo '////////////////////////////////////////////////////////////////'
