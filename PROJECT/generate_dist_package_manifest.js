@@ -75,23 +75,25 @@ const copyrightHolder = arcBuild.contributors[0];
 // Every push is a paragraph on the tail of the markdown document modeled by 'markdown' array..
 
 var markdown = [];
-markdown.push("![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")");
+markdown.push("[![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io)");
 
 markdown.push("## " + arcBuild.author);
 markdown.push("# " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\"");
+markdown.push("```\nPackage: " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\" build ID \"" + arcBuild.buildID + "\"\n" +
+              "Sources: Encapsule/ARC_master#" + arcBuild.ARC_master + "\n" +
+              "Created: " + buildTimeLong + "\n" +
+              "License: " + packageManifest.license + "\n" +
+              "```");
 
-markdown.push("### " + packageBuildData.packageManifestFields.description);
+markdown.push("### Description");
+markdown.push("_" + packageBuildData.packageManifestFields.description + "_");
 
-markdown.push("#### Build");
-
-markdown.push("Distribution package: `" + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\" " + arcBuild.buildID + " " + buildTimeLong + "`");
-
-markdown.push("#### Sources");
-markdown.push("Sources repository: [Encapsule/ARC_master](https://github.com/Encapsule/ARC_master).");
-markdown.push("Commit hash: **[" + arcBuild.ARC_master + "](https://github.com/Encapsule/ARC_master/commit/" + arcBuild.ARC_master + ")**.");
+while (packageBuildData.readmeDocumentFields.markdownDescription.length) {
+    markdown.push(packageBuildData.readmeDocumentFields.markdownDescription.shift());
+}
 
 markdown.push("<hr>");
-markdown.push("Copyright (C) " + buildYear + " [" + copyrightHolder.name + "](mailto:" + copyrightHolder.email + ")");
+markdown.push("Copyright &copy; " + buildYear + " [" + copyrightHolder.name + "](mailto:" + copyrightHolder.email + ")");
 markdown.push("Published by [Encapsule Project](https://encapsule.io) Seattle, WA USA");
 
 const mddoc = markdown.join('\n\n');

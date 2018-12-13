@@ -3,17 +3,20 @@
 var packageDatabase = module.exports = {
     arccore: {
         packageManifestFields: {
-            description: "Encapsule/arc* library common runtime for Node.js.",
+            description: "Encapsule Project Addressable Resource Class (ARC) core runtime data modeling and processing libraries.",
             keywords: "ARC",
             main: "index.js"
         },
         readmeDocumentFields: {
+            markdownDescription: [
+                "This is a test, arccore package."
+            ]
         }
     },
     arctools: {
         packageManifestFields: {
             preferGlobal: true,
-            description: "Addressable Resource Class (ARC) command line tools.",
+            description: "Encapsule Project Addressable Resource Class (ARC) command line tools.",
             keywords: "ARC",
             dependencies: {
                 "chalk": "^1.1.1",
@@ -30,6 +33,9 @@ var packageDatabase = module.exports = {
             main: "arc_tools_lib.js"
         },
         readmeDocumentFields: {
+            markdownDescription: [
+                "This is a test, arctools package."
+            ]
         }
     }
 };
