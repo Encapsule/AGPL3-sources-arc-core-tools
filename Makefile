@@ -41,6 +41,7 @@ DIR_OUT_BUILD_STAGE04_ARCTOOLS=$(DIR_OUT_BUILD_STAGE04)/arctools
 # .gitignore'd resources managed via yarn package (as in Node.js) manager.
 DIR_MODULES=$(DIR_ROOT)/node_modules
 DIR_PROJECT=$(DIR_ROOT)/PROJECT
+DIR_PROJECT_TOOL_ARC_BUILD=$(DIR_PROJECT)/generate_arc_build.js
 # Node.js runtime (compile and install from sources locally) and yarn pacakage
 # manager are global development environment prerequisites. All other tools
 # are expected to included in the devDependencies section of package.json
@@ -65,11 +66,23 @@ TOOL_UGLIFY_FLAGS=--verbose --mangle
 TOOL_MANIFEST_GEN=$(DIR_PROJECT)/generate_dist_package_manifest.js
 
 # First target specified is always the default target regardless of its name.
-arc_master:
+arc_master: dependencies stage04
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo arc_master - aggregation target complete
+	@echo ----------------------------------------------------------------
+	@echo Default Makefile target complete.
+	@echo
+	@echo ARC Build:
+	@cat $(DIR_OUT_BUILD_STAGE01)/arccore/arc_build.js
+	@echo
+	@echo
+	@echo Output of this build process has been written to directory $(DIR_OUT_BUILD)
+	@echo ----------------------------------------------------------------
+	ls -l $(DIR_OUT_BUILD)
+	@echo ----------------------------------------------------------------
 	@echo arc_master
-	@echo Default target is currently not configured.
 	@echo '////////////////////////////////////////////////////////////////'
+	@echo make process exit...
 
 clean:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
@@ -86,8 +99,12 @@ reset: clean
 	@echo reset
 	@echo ----------------------------------------------------------------
 	@echo
+	@echo The \"reset\" Makefile target deletes the $(DIR_MODULES) directory
+	@echo and everything that it contains forcing re-installation of
+	@echo dependency packages per ARC_master/package.json declarations.
+	@echo
 	@echo "**** YOU WILL NEED TO RE-INSTALL 3RD-PARTY PACKAGE DEPENDENCIES ****"
-	@echo This can be accomplished by executing '$ make dependencies' 
+	@echo This can be accomplished by executing \"$ make dependencies\".
 	@echo
 	@echo "Hit ENTER to proceed. CTRL-C to abort..."
 	@read aok
@@ -120,7 +137,7 @@ stage01_buildtag:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage01_build
 	@echo ----------------------------------------------------------------
-	node ./PROJECT/generate_build_tag.js
+	$(DIR_PROJECT_TOOL_ARC_BUILD)
 	@echo ----------------------------------------------------------------
 	@echo stage01_build
 	@echo '////////////////////////////////////////////////////////////////'
@@ -235,7 +252,6 @@ stage03_bundle_arccore:
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE03_ARCCORE)
 	$(TOOL_WEBPACK) --config $(DIR_PROJECT)/webpack.config.arccore.js
-	cp $(DIR_OUT_BUILD_STAGE02_ARCCORE)/arc_build.js $(DIR_OUT_BUILD_STAGE03_ARCCORE)/
 	$(TOOL_MANIFEST_GEN) --packageName arccore --outputDir $(DIR_OUT_BUILD_STAGE03_ARCCORE)
 	@echo ----------------------------------------------------------------
 	@echo stage03_bundle_arccore
@@ -248,7 +264,6 @@ stage03_bundle_arctools:
 	mkdir -p $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)
 	$(TOOL_WEBPACK) --config $(DIR_PROJECT)/webpack.config.arctools.js
 	cp -r $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/templates $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
-	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_build.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
 	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_docgen_filter.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
 #	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_filterdag_compiler.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
 #	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_filterdag_factory.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
@@ -277,9 +292,8 @@ stage04_minbundle_arccore:
 	@echo stage04_minbundle_arctools
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCCORE)
-	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCCORE)/index.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCCORE)/index.js
+	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCCORE)/arc_core_lib.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCCORE)/arc_core_lib.js
 	$(TOOL_MANIFEST_GEN) --packageName arccore --outputDir $(DIR_OUT_BUILD_STAGE04_ARCCORE)
-	cp $(DIR_OUT_BUILD_STAGE03_ARCCORE)/arc_build.js $(DIR_OUT_BUILD_STAGE04_ARCCORE)/
 	@echo ----------------------------------------------------------------
 	@echo stage04_minbundle_arctools
 	@echo '////////////////////////////////////////////////////////////////'

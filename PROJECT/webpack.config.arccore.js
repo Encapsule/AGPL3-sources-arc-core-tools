@@ -14,7 +14,7 @@ module.exports = {
     externals: ignoreModules,
     output: {
         path: './BUILD/stage03/arccore/',
-        filename: 'index.js',
+        filename: 'arc_core_lib.js',
         libraryTarget: "commonjs2"
     }
 };

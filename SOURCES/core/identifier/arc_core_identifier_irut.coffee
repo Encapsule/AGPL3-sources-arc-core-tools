@@ -51,7 +51,8 @@ MODULE = module.exports = {}
 ###
 MODULE.fromEther = ->
     r1 = UUID.v4 null, new Uint8Array 16, 0
-    r2 = (new Buffer r1).toString 'base64'
+    #    r2 = (new Buffer r1).toString 'base64'
+    r2 = (Buffer.from r1).toString 'base64'
     tail = r2.length
     pads = 0
     while r2.charAt(tail - 1) == '='
@@ -98,7 +99,7 @@ MODULE.fromReference = (ref_) ->
             errors.unshift "Input reference must address top-level data convertible directly to JSON."
             break
         r0 = (checkResponse.result == 'jsonString') and ref_ or JSON.stringify ref_
-        r0Buffer = new Buffer r0, 'utf-8'
+        r0Buffer = Buffer.from r0, 'utf-8'
         r1 = r0Buffer.toString 'ascii'
         if not r1.length
             errors.unshift "No data to hash!"
@@ -119,7 +120,7 @@ MODULE.fromReference = (ref_) ->
             rangeStart += chunkLength
             index++
 
-        r2 = (new Buffer r2hashes).toString 'base64'
+        r2 = (Buffer.from r2hashes).toString 'base64'
         pads = 0
         while r2.charAt(r2.length - pads - 1) == '='
             pads++

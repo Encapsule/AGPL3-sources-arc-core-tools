@@ -27,7 +27,7 @@ if (!program.outputDir) {
 
 const packageBuildData = packagesBuildData[program.packageName];
 if (!packageBuildData) {
-    console.error('Invalid --packageName option value.');
+    console.error('Invalid --packageName option value \'' + program.packageName + '\'.');
     process.exit(1);
 }
 
@@ -85,11 +85,23 @@ markdown.push("```\nPackage: " + program.packageName + " v" + arcBuild.version +
               "License: " + packageManifest.license + "\n" +
               "```");
 
-markdown.push("### Description");
-markdown.push("_" + packageBuildData.packageManifestFields.description + "_");
+markdown.push("### Summary");
+markdown.push(packageBuildData.packageManifestFields.description);
 
-while (packageBuildData.readmeDocumentFields.markdownDescription.length) {
-    markdown.push(packageBuildData.readmeDocumentFields.markdownDescription.shift());
+function injectReadmeSection(sectionDescriptor_) { // heading_, markdownArrayFieldName_) {
+    if (sectionDescriptor_.heading) {
+        markdown.push(sectionDescriptor_.heading);
+    }
+    if (sectionDescriptor_.markdown.length) {
+        for (var i = 0 ; i < sectionDescriptor_.markdown.length ; i++) {
+            markdown.push(sectionDescriptor_.markdown[i]);
+        }
+    }
+    return;
+}
+
+while (packageBuildData.readmeDocumentContent.length) {
+    injectReadmeSection(packageBuildData.readmeDocumentContent.shift());
 }
 
 markdown.push("<hr>");

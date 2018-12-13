@@ -5,13 +5,25 @@ var packageDatabase = module.exports = {
         packageManifestFields: {
             description: "Encapsule Project Addressable Resource Class (ARC) core runtime data modeling and processing libraries.",
             keywords: "ARC",
-            main: "index.js"
+            main: "arc_core_lib.js"
         },
-        readmeDocumentFields: {
-            markdownDescription: [
-                "This is a test, arccore package."
-            ]
-        }
+        readmeDocumentContent: [
+            {
+                heading: "# Test Section 1",
+                markdown: [
+                    "This is line one of content.",
+                    "This is line two of content."
+                ]
+            },
+            {
+                heading: "## Test Section 2",
+                markdown: [
+                    "This is line one of content.",
+                    "This is line two of content."
+                ]
+            }
+        ]
+
     },
     arctools: {
         packageManifestFields: {
@@ -32,11 +44,22 @@ var packageDatabase = module.exports = {
             },
             main: "arc_tools_lib.js"
         },
-        readmeDocumentFields: {
-            markdownDescription: [
-                "This is a test, arctools package."
-            ]
-        }
+        readmeDocumentContent: [
+            {
+                heading: "# Test Section 1",
+                markdown: [
+                    "This is line one of content.",
+                    "This is line two of content."
+                ]
+            },
+            {
+                heading: "## Test Section 2",
+                markdown: [
+                    "This is line one of content.",
+                    "This is line two of content."
+                ]
+            }
+        ]
     }
 };
 
