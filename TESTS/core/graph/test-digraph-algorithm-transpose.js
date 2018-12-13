@@ -2,7 +2,6 @@
 var assert = require('chai').assert;
 var expect = require('chai').expect;
 var should = require('chai').should;
-var uuid = require('node-uuid');
 
 var testModule = require('./module-under-test');
 

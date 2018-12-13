@@ -16,7 +16,7 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-UUID = require 'node-uuid'
+UUIDV4 = require 'uuid/v4'
 MURMUR = require 'murmurhash-js'
 
 TYPES = require './arc_core_types'
@@ -50,7 +50,7 @@ MODULE = module.exports = {}
     primarily.
 ###
 MODULE.fromEther = ->
-    r1 = UUID.v4 null, new Uint8Array 16, 0
+    r1 = UUIDV4 null, new Uint8Array 16, 0
     #    r2 = (new Buffer r1).toString 'base64'
     r2 = (Buffer.from r1).toString 'base64'
     tail = r2.length

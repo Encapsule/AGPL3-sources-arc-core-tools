@@ -24,9 +24,9 @@ describe("arc_core top-level package tests:", function() {
             assert.isFunction(CORE.__bundle.murmurhash_js);
         });
 
-        it("arc_core.__bundle.nodeuuid should be a function.", function() {
-            assert.property(CORE.__bundle, "nodeuuid");
-            assert.isFunction(CORE.__bundle.nodeuuid);
+        it("arc_core.__bundle.uuid should be a function.", function() {
+            assert.property(CORE.__bundle, "uuid");
+            assert.isFunction(CORE.__bundle.uuid);
         });
 
     });

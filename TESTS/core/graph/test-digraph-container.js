@@ -1,7 +1,6 @@
 // digraph-test.js
 
 var assert = require('chai').assert;
-var uuid = require('node-uuid');
 
 var testModule = require('./module-under-test');
 

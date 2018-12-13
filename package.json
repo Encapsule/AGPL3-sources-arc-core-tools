@@ -1,4 +1,4 @@
-  {
+{
   "private": true,
   "name": "arc_master",
   "version": "0.1.0",
@@ -36,8 +36,9 @@
     "handlebars": "^4.0.12",
     "mocha": "^2.3.4",
     "murmurhash-js": "^1.0.0",
-    "node-uuid": "^1.4.7",
+    "uuid": "^3.3.2",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
-  }
+  },
+  "dependencies": {}
 }

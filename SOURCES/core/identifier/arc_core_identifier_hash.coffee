@@ -21,7 +21,7 @@ MURMUR = require 'murmurhash-js'
 MODULE = module.exports = {}
 
 MODULE.fromUTF8 = (utf8_) ->
-    utf8 = new Buffer utf8_, 'utf-8'
+    utf8 = Buffer.from utf8_, 'utf-8'
     ascii = utf8.toString 'ascii'
     MURMUR ascii
 
@@ -29,7 +29,7 @@ MODULE.fromReference = (ref_) ->
     MODULE.fromUTF8 JSON.stringify ref_
 
 MODULE.toIRUT = (hash_) ->
-    buffer = new Buffer 4
+    buffer = Buffer.alloc 4
     buffer.writeUInt32LE hash_, 0
     r1 = buffer.toString 'base64'
     pads = 0

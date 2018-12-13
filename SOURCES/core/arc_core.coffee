@@ -14,11 +14,11 @@ COMMON = module.exports =
 
     __bundle:
         murmurhash_js: require 'murmurhash-js'
-        nodeuuid:      require 'node-uuid'
+        uuid:          require 'uuid'
 
     discriminator:     { create: require('./arc_core_type_discriminator_factory').request }
     filter:            require './arc_core_filter'
-    # filterDAG:         require './arc_core_filter_dag'
+    # filterDAG:       require './arc_core_filter_dag'
     graph:             require './arc_core_graph'
     identifier:        require './arc_core_identifier'
     types:             require './arc_core_types'
