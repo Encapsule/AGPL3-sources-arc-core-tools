@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const identifier = require('../BUILD/stage01/arccore/arc_core_identifier');
 const util = require('../BUILD/stage01/arccore/arc_core_util');
 const childProcess = require('child_process');
