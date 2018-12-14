@@ -16,7 +16,8 @@
   "contributors": [
     {
       "name": "Christopher D. Russell",
-      "email": "cdr@encapsule.io"
+      "email": "cdr@encapsule.io",
+      "url": "http://chrisrussell.net"
     }
   ],
   "license": "AGPL-3.0",

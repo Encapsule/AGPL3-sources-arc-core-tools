@@ -2,30 +2,34 @@
 
 var packageDatabase = module.exports = {
     arccore: {
+        packageType: "library",
+        browserSafe: true,
         packageManifestFields: {
             description: "Encapsule Project Addressable Resource Class (ARC) core runtime data modeling and processing libraries.",
             keywords: "ARC",
             main: "arc_core_lib.js"
         },
-        readmeDocumentContent: [
-            {
-                heading: "# Test Section 1",
+        readmeDocumentContent: {
+            summaryDescriptor: {
                 markdown: [
-                    "This is line one of content.",
-                    "This is line two of content."
+                    "### arccore.filter",
+                    "Build self-documenting functions with strong data type and value constraint enforcement provided automatically at runtime.",
+                    "### arccore.discriminator",
+                    "Build specialized \"discriminator\" filter instances that route their incoming `request` to one of N developer-specified filters. " +
+                        "Useful for building extensible message processing systems.",
+                    "### arccore.graph",
+                    "Directed graph container class and algorithms for modeling and analyzing complex digraph datasets in memory.",
+                    "### arccore.identifier",
+                    "Generate non-cryptographic object signatures and random keys in 22-character (128-bit), or 6-character (32-bit) Internet Routable Unique Token (IRUT) string format."
                 ]
             },
-            {
-                heading: "## Test Section 2",
-                markdown: [
-                    "This is line one of content.",
-                    "This is line two of content."
-                ]
-            }
-        ]
-
+            markdownBody: [
+            ]
+        }
     },
     arctools: {
+        packageType: "tools",
+        browserSafe: false,
         packageManifestFields: {
             preferGlobal: true,
             description: "Encapsule Project Addressable Resource Class (ARC) command line tools.",
@@ -44,22 +48,8 @@ var packageDatabase = module.exports = {
             },
             main: "arc_tools_lib.js"
         },
-        readmeDocumentContent: [
-            {
-                heading: "# Test Section 1",
-                markdown: [
-                    "This is line one of content.",
-                    "This is line two of content."
-                ]
-            },
-            {
-                heading: "## Test Section 2",
-                markdown: [
-                    "This is line one of content.",
-                    "This is line two of content."
-                ]
-            }
-        ]
+        readmeDocumentContent: {
+        }
     }
 };
 

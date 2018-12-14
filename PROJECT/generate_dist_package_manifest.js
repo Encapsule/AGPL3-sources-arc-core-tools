@@ -75,20 +75,8 @@ const copyrightHolder = arcBuild.contributors[0];
 // Every push is a paragraph on the tail of the markdown document modeled by 'markdown' array..
 
 var markdown = [];
-markdown.push("[![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io)");
 
-markdown.push("## " + arcBuild.author);
-markdown.push("# " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\"");
-markdown.push("```\nPackage: " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\" build ID \"" + arcBuild.buildID + "\"\n" +
-              "Sources: Encapsule/ARC_master#" + arcBuild.ARC_master + "\n" +
-              "Created: " + buildTimeLong + "\n" +
-              "License: " + packageManifest.license + "\n" +
-              "```");
-
-markdown.push("### Summary");
-markdown.push(packageBuildData.packageManifestFields.description);
-
-function injectReadmeSection(sectionDescriptor_) { // heading_, markdownArrayFieldName_) {
+function injectReadmeSection(sectionDescriptor_) {
     if (sectionDescriptor_.heading) {
         markdown.push(sectionDescriptor_.heading);
     }
@@ -98,14 +86,71 @@ function injectReadmeSection(sectionDescriptor_) { // heading_, markdownArrayFie
         }
     }
     return;
+} // function injectReadmeSection
+
+markdown.push("[![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io)");
+
+markdown.push("### " + arcBuild.author + "");
+markdown.push("# " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\"");
+markdown.push("```\n" +
+              "Package: " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\" build ID \"" + arcBuild.buildID + "\"\n" +
+              "Sources: Encapsule/ARC_master#" + arcBuild.ARC_master + "\n" +
+              "Purpose: " + packageBuildData.packageType + " (" + (packageBuildData.browserSafe?"Node.js + modern browsers (via package bundler)":"Node.js") + ")\n" +
+              "Created: " + buildTimeLong + "\n" +
+              "License: " + packageManifest.license + "\n" +
+              "```");
+
+
+
+markdown.push("# Summary");
+markdown.push(packageBuildData.packageManifestFields.description);
+if (packageBuildData.readmeDocumentContent.summaryDescriptor) {
+    injectReadmeSection(packageBuildData.readmeDocumentContent.summaryDescriptor);
 }
 
-while (packageBuildData.readmeDocumentContent.length) {
-    injectReadmeSection(packageBuildData.readmeDocumentContent.shift());
+markdown.push("## Distribution");
+markdown.push("The `" + program.packageName + "` " + packageBuildData.packageType + " package is published on [npmjs](https://npmjs.com).");
+markdown.push([
+    "- [" + program.packageName + " Package Distribution](https://npmjs.com/package/" + program.packageName + "/v/" + packageManifest.version + ") ([npm](https://www.npmjs.com/~chrisrus))",
+    "- [" + program.packageName + " Package Repository](https://github.com/Encapsule/" + program.packageName + ") ([GitHub](https://github.com/Encapsule))"
+].join("\n"));
+
+switch (packageBuildData.packageType) {
+case 'library':
+    injectReadmeSection({
+        heading: "## Usage",
+        markdown: [
+            "From within your project's root directory...",
+            "```\n$ npm install " + program.packageName + " --save-dev\n```",
+            "... or if you use `yarn`:",
+            "```\n$ yarn add " + program.packageName + " --dev\n```",
+            "... to declare and install the `" + program.packageName + "` package as a dependency of your project.",
+            "Subsequently, import/require `" + program.packageName + "` into module scope as follows:",
+            "```JavaScript\nconst " + program.packageName + " = require('" + program.packageName + "');\n```"
+        ]
+    });
+    break;
+case 'tools':
+    injectReadmeSection({
+        heading: "## Usage",
+        markdown: [
+            "The `" + program.packageName + "` "  + packageBuildData.packageType + " package is typically installed globally.",
+            "```\n$ npm install --global " + program.packageName + "\n```"
+        ]
+    });
+    break;
+default:
+    throw new Error("Unknown packageType declaration value '" + packageBuildData.packageType + "'!");
+}
+
+
+// Body content (after summary section typically).
+while (packageBuildData.readmeDocumentContent.markdownBody && packageBuildData.readmeDocumentContent.markdownBody.length) {
+    injectReadmeSection(packageBuildData.readmeDocumentContent.markdownBody.shift());
 }
 
 markdown.push("<hr>");
-markdown.push("Copyright &copy; " + buildYear + " [" + copyrightHolder.name + "](mailto:" + copyrightHolder.email + ")");
+markdown.push("Copyright &copy; " + buildYear + " [" + copyrightHolder.name + "](" + copyrightHolder.url + ")");
 markdown.push("Published by [Encapsule Project](https://encapsule.io) Seattle, WA USA");
 
 const mddoc = markdown.join('\n\n');

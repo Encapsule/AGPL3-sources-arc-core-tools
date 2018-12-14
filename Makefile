@@ -48,7 +48,6 @@ DIR_PROJECT_TOOL_ARC_BUILD=$(DIR_PROJECT)/generate_arc_build.js
 # in order that their application be versioned
 DIR_TOOLS=$(DIR_MODULES)/.bin
 
-
 TOOL_COFFEELINT=$(DIR_TOOLS)/coffeelint
 TOOL_COFFEECC=$(DIR_TOOLS)/coffee
 TOOL_COFFEECC_FLAGS=--compile --output $(DIR_OUT_BUILD_STAGE01_ARCCORE)
