@@ -76,6 +76,7 @@ const copyrightHolder = arcBuild.contributors[0];
 
 var markdown = [];
 
+// injectReadmeSection handles sectionDescriptor objects w/heading markdown string & markdown array properties.
 function injectReadmeSection(sectionDescriptor_) {
     if (sectionDescriptor_.heading) {
         markdown.push(sectionDescriptor_.heading);
@@ -88,9 +89,11 @@ function injectReadmeSection(sectionDescriptor_) {
     return;
 } // function injectReadmeSection
 
+// Start of the markdown document...
 markdown.push("[![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io)");
 
 markdown.push("### " + arcBuild.author + "");
+
 markdown.push("# " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\"");
 markdown.push("```\n" +
               "Package: " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\" build ID \"" + arcBuild.buildID + "\"\n" +
@@ -100,33 +103,27 @@ markdown.push("```\n" +
               "License: " + packageManifest.license + "\n" +
               "```");
 
-
-
 markdown.push("# Summary");
+
+
 markdown.push(packageBuildData.packageManifestFields.description);
+
+// Insert optional package-specific content to the Summary section body.
 if (packageBuildData.readmeDocumentContent.summaryDescriptor) {
     injectReadmeSection(packageBuildData.readmeDocumentContent.summaryDescriptor);
 }
-
-markdown.push("## Distribution");
-markdown.push("The `" + program.packageName + "` " + packageBuildData.packageType + " package is published on [npmjs](https://npmjs.com).");
-markdown.push([
-    "- [" + program.packageName + " Package Distribution](https://npmjs.com/package/" + program.packageName + "/v/" + packageManifest.version + ") ([npm](https://www.npmjs.com/~chrisrus))",
-    "- [" + program.packageName + " Package Repository](https://github.com/Encapsule/" + program.packageName + ") ([GitHub](https://github.com/Encapsule))"
-].join("\n"));
 
 switch (packageBuildData.packageType) {
 case 'library':
     injectReadmeSection({
         heading: "## Usage",
         markdown: [
-            "From within your project's root directory...",
-            "```\n$ npm install " + program.packageName + " --save-dev\n```",
-            "... or if you use `yarn`:",
-            "```\n$ yarn add " + program.packageName + " --dev\n```",
-            "... to declare and install the `" + program.packageName + "` package as a dependency of your project.",
-            "Subsequently, import/require `" + program.packageName + "` into module scope as follows:",
-            "```JavaScript\nconst " + program.packageName + " = require('" + program.packageName + "');\n```"
+            "This package's contained library functionality is intended for use in derived projects.",
+            "For example:",
+            "1. Create simple test project, declare a dependency and install `" + program.packageName + "` package:",
+            "```\n$ mkdir testProject && cd testProject\n$ yarn init\n$ yarn add " + program.packageName + " --dev\n```",
+            "2. Create a simple script `index.js`:",
+            "```JavaScript\nconst " + program.packageName + " = require('" + program.packageName + "');\nconsole.log(JSON.stringify(" + program.packageName + ".__meta));\n/* ... your derived code here ... */\n```"
         ]
     });
     break;
@@ -142,6 +139,13 @@ case 'tools':
 default:
     throw new Error("Unknown packageType declaration value '" + packageBuildData.packageType + "'!");
 }
+
+markdown.push("## Distribution");
+markdown.push("The `" + program.packageName + "` " + packageBuildData.packageType + " package is published on [npmjs](https://npmjs.com).");
+markdown.push([
+    "- [" + program.packageName + " Package Distribution](https://npmjs.com/package/" + program.packageName + "/v/" + packageManifest.version + ") ([npm](https://www.npmjs.com/~chrisrus))",
+    "- [" + program.packageName + " Package Repository](https://github.com/Encapsule/" + program.packageName + ") ([GitHub](https://github.com/Encapsule))"
+].join("\n"));
 
 
 // Body content (after summary section typically).
