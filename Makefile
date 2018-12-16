@@ -40,13 +40,14 @@ DIR_OUT_BUILD_STAGE04_ARCTOOLS=$(DIR_OUT_BUILD_STAGE04)/arctools
 
 # .gitignore'd resources managed via yarn package (as in Node.js) manager.
 DIR_MODULES=$(DIR_ROOT)/node_modules
-DIR_PROJECT=$(DIR_ROOT)/PROJECT
-DIR_PROJECT_TOOL_ARC_BUILD=$(DIR_PROJECT)/generate_arc_build.js
+
 # Node.js runtime (compile and install from sources locally) and yarn pacakage
 # manager are global development environment prerequisites. All other tools
 # are expected to included in the devDependencies section of package.json
 # in order that their application be versioned
 DIR_TOOLS=$(DIR_MODULES)/.bin
+
+TOOL_ARC_BUILD=$(DIR_PROJECT)/generate_arc_build.js
 
 TOOL_COFFEELINT=$(DIR_TOOLS)/coffeelint
 TOOL_COFFEECC=$(DIR_TOOLS)/coffee
@@ -63,6 +64,7 @@ TOOL_UGLIFY=$(DIR_TOOLS)/uglifyjs
 TOOL_UGLIFY_FLAGS=--verbose --mangle
 
 TOOL_MANIFEST_GEN=$(DIR_PROJECT)/generate_dist_package_manifest.js
+TOOL_LICENSE_GEN=$(DIR_PROJECT)/generate_dist_package_license.js
 
 # First target specified is always the default target regardless of its name.
 arc_master: dependencies stage04
@@ -136,7 +138,7 @@ stage01_buildtag:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage01_build
 	@echo ----------------------------------------------------------------
-	$(DIR_PROJECT_TOOL_ARC_BUILD)
+	$(TOOL_ARC_BUILD)
 	@echo ----------------------------------------------------------------
 	@echo stage01_build
 	@echo '////////////////////////////////////////////////////////////////'

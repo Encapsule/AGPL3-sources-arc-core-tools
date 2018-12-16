@@ -9,10 +9,10 @@ const packagesBuildData = require('./packages-build-data');
 
 program
     .name('generate_dist_package_manifest')
-    .description('Used to synthesize distribution package.json manifests from predefined values and current build information.')
+    .description('Generates package.json and README.md files for a distribution package.')
     .version(arcBuild.version)
     .option('--packageName <packageName>', 'Use <packageName> to select package database entry.')
-    .option('--outputDir <outputDir>', 'Write the generated package.json document to <outputDirectory>.')
+    .option('--outputDir <outputDir>', 'Write the generated files to <outputDir>.')
     .parse(process.argv);
 
 if (!program.packageName) {
