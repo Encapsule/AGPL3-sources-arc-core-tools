@@ -2,8 +2,12 @@
 # ARC project Makefile.
 #
 DIR_ROOT=$(CURDIR)
-
 DIR_SOURCES=$(DIR_ROOT)/SOURCES
+DIR_PROJECT=$(DIR_ROOT)/PROJECT
+DIR_MODULES=$(DIR_ROOT)/node_modules
+DIR_OUT_BUILD=$(DIR_ROOT)/BUILD
+
+
 DIR_SOURCES_ARCCORE=$(DIR_SOURCES)/core
 DIR_SOURCES_ARCCORE_UTIL=$(DIR_SOURCES_ARCCORE)/util
 DIR_SOURCES_ARCCORE_TYPES=$(DIR_SOURCES_ARCCORE)/types
@@ -14,9 +18,6 @@ DIR_SOURCES_ARCCORE_FILTERDAG=$(DIR_SOURCES_ARCCORE)/filter-dag
 DIR_SOURCES_ARCCORE_DISCRIMINATOR=$(DIR_SOURCES_ARCCORE)/discriminator
 DIR_SOURCES_ARCTOOLS=$(DIR_SOURCES)/tools
 
-DIR_PROJECT=$(DIR_ROOT)/PROJECT
-
-DIR_OUT_BUILD=$(DIR_ROOT)/BUILD
 
 # DIR_OUT_BUILD_STAGE01 directory contains a mix of ES5 (e.g. jsgraph) and ES6 (e.g. Coffeescript compiler output) derived from SOURCES by various means.
 DIR_OUT_BUILD_STAGE01=$(DIR_OUT_BUILD)/stage01
@@ -37,9 +38,6 @@ DIR_OUT_BUILD_STAGE03_ARCTOOLS=$(DIR_OUT_BUILD_STAGE03)/arctools
 DIR_OUT_BUILD_STAGE04=$(DIR_OUT_BUILD)/stage04
 DIR_OUT_BUILD_STAGE04_ARCCORE=$(DIR_OUT_BUILD_STAGE04)/arccore
 DIR_OUT_BUILD_STAGE04_ARCTOOLS=$(DIR_OUT_BUILD_STAGE04)/arctools
-
-# .gitignore'd resources managed via yarn package (as in Node.js) manager.
-DIR_MODULES=$(DIR_ROOT)/node_modules
 
 # Node.js runtime (compile and install from sources locally) and yarn pacakage
 # manager are global development environment prerequisites. All other tools
@@ -363,4 +361,23 @@ stage04_license:
 # ****************************************************************
 # ****************************************************************
 # ****************************************************************
+
+distributions_reset:
+	rm -rfv ./DISTS/*
+
+distributions_initialize: distributions_reset
+	git clone git@github.com:Encapsule/arccore.git DISTS/arccore
+	git clone git@github.com:Encapsule/arctools.git DISTS/arctools
+	git clone git@github.com:Encapsule/jsgraph.git DISTS/jsgraph
+
+publish_distributions: publish_arccore_dist publish_arctools_dist
+
+publish_arccore_dist:
+	cp -rv $(DIR_OUT_BUILD_STAGE04_ARCCORE)/* DISTS/arccore
+
+publish_arctools_dist:
+	cp -rv $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)* DISTS/arctools
+
+publish_jsgraph_dist:
+
 
