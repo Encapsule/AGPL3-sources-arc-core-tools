@@ -52,6 +52,8 @@ const licenseDocument = compiledLicenseTemplate(templateContext);
 const licenseDocumentFilename = path.resolve(program.outputDir, 'LICENSE');
 fs.writeFileSync(licenseDocumentFilename, licenseDocument);
 
+console.log("Wrote '" + licenseDocumentFilename + "'.");
+
 
 
 

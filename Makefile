@@ -129,9 +129,21 @@ dependencies: reset
 # ****************************************************************
 # ****************************************************************
 
-stage01: stage01_coffee_compile stage01_js_copy stage01_buildtag
+stage01: stage01_coffee_compile stage01_js_copy stage01_buildtag stage01_license
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage01 - aggregation target complete.
+	@echo '////////////////////////////////////////////////////////////////'
+
+stage01_license:
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage01_license
+	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE01_ARCCORE)
+	$(TOOL_LICENSE_GEN) --outputDir $(DIR_OUT_BUILD_STAGE01_ARCCORE)
+	mkdir -p $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)
+	$(TOOL_LICENSE_GEN) --outputDir $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)
+	@echo ----------------------------------------------------------------
+	@echo stage01_license
 	@echo '////////////////////////////////////////////////////////////////'
 
 stage01_buildtag:
@@ -192,6 +204,7 @@ stage01_js_copy_tools:
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)
 	cp -rv $(DIR_SOURCES_ARCTOOLS)/* $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)
+	$(TOOL_LICENSE_GEN) --outputDir $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)
 	@echo ----------------------------------------------------------------
 	@echo stage01_js_copy_tools
 	@echo '////////////////////////////////////////////////////////////////'
@@ -200,7 +213,7 @@ stage01_js_copy_tools:
 # ****************************************************************
 # ****************************************************************
 
-stage02: stage01 stage02_transpile_arccore stage02_transpile_arctools stage02_tests
+stage02: stage01 stage02_transpile_arccore stage02_transpile_arctools stage02_tests stage02_license
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage02 - aggregation target complete
 	@echo '////////////////////////////////////////////////////////////////'
@@ -238,11 +251,23 @@ stage02_tests:
 	@echo stage02_tests
 	@echo '////////////////////////////////////////////////////////////////'
 
+stage02_license:
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage02_license
+	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE02_ARCCORE)
+	$(TOOL_LICENSE_GEN) --outputDir $(DIR_OUT_BUILD_STAGE02_ARCCORE)
+	mkdir -p $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)
+	$(TOOL_LICENSE_GEN) --outputDir $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)
+	@echo ----------------------------------------------------------------
+	@echo stage02_license
+	@echo '////////////////////////////////////////////////////////////////'
+
 # ****************************************************************
 # ****************************************************************
 # ****************************************************************
 
-stage03: stage02 stage03_bundle_arccore stage03_bundle_arctools
+stage03: stage02 stage03_bundle_arccore stage03_bundle_arctools stage03_license
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage03 - aggregation target complete
 	@echo '////////////////////////////////////////////////////////////////'
@@ -278,12 +303,23 @@ stage03_bundle_arctools:
 	@echo stage03_bundle_arctools
 	@echo '////////////////////////////////////////////////////////////////'
 
+stage03_license:
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage03_license
+	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE03_ARCCORE)
+	$(TOOL_LICENSE_GEN) --outputDir $(DIR_OUT_BUILD_STAGE03_ARCCORE)
+	mkdir -p $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)
+	$(TOOL_LICENSE_GEN) --outputDir $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)
+	@echo ----------------------------------------------------------------
+	@echo stage03_license
+	@echo '////////////////////////////////////////////////////////////////'
 
 # ****************************************************************
 # ****************************************************************
 # ****************************************************************
 
-stage04: stage03 stage04_minbundle_arccore stage04_minbundle_arctools
+stage04: stage03 stage04_minbundle_arccore stage04_minbundle_arctools stage04_license
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage04 - aggregation target complete
 	@echo '////////////////////////////////////////////////////////////////'
@@ -309,6 +345,18 @@ stage04_minbundle_arctools:
 	$(TOOL_MANIFEST_GEN) --packageName arctools --outputDir $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)
 	@echo ----------------------------------------------------------------
 	@echo stage04_minbundle_arctools
+	@echo '////////////////////////////////////////////////////////////////'
+
+stage04_license:
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage04_license
+	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCCORE)
+	$(TOOL_LICENSE_GEN) --outputDir $(DIR_OUT_BUILD_STAGE04_ARCCORE)
+	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)
+	$(TOOL_LICENSE_GEN) --outputDir $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)
+	@echo ----------------------------------------------------------------
+	@echo stage04_license
 	@echo '////////////////////////////////////////////////////////////////'
 
 # ****************************************************************
