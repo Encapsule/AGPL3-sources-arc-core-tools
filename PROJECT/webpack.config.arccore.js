@@ -2,18 +2,25 @@
 
 const webpack = require('webpack');
 const ignoreModules = require('./webpack-ignore-modules');
+const path = require('path');
+
+const entryPath = path.normalize(path.join(__dirname, '../BUILD/stage02/arccore/arc_core.js'));
+const outputPath = path.normalize(path.join(__dirname, '../BUILD/stage03/arccore/'));
+
+console.log("webpack entry module path: " + entryPath);
+console.log("webpack output path: " + outputPath);
 
 module.exports = {
+    mode: 'production',
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin()
     ],
     entry: {
-        main: './BUILD/stage02/arccore/arc_core.js'
+        main: entryPath
     },
     target: "node",
     externals: ignoreModules,
     output: {
-        path: './BUILD/stage03/arccore/',
+        path: outputPath,
         filename: 'arc_core_lib.js',
         libraryTarget: "commonjs2"
     }

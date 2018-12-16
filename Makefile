@@ -1,7 +1,7 @@
 ####
 # ARC project Makefile.
 #
-DIR_ROOT=.
+DIR_ROOT=$(CURDIR)
 
 DIR_SOURCES=$(DIR_ROOT)/SOURCES
 DIR_SOURCES_ARCCORE=$(DIR_SOURCES)/core
@@ -65,6 +65,7 @@ TOOL_UGLIFY_FLAGS=--verbose --mangle
 
 TOOL_MANIFEST_GEN=$(DIR_PROJECT)/generate_dist_package_manifest.js
 TOOL_LICENSE_GEN=$(DIR_PROJECT)/generate_dist_package_license.js
+
 
 # First target specified is always the default target regardless of its name.
 arc_master: dependencies stage04
