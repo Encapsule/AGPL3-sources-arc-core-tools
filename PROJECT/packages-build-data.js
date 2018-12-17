@@ -49,7 +49,7 @@ var packageDatabase = module.exports = {
                 },
 
                 {
-                    heading: "## arccore.util",
+                    heading: "### arccore.util",
                     markdown: [ "A collection of utility functions used primarily by other libraries contained in the arccore package." ]
                 }
 

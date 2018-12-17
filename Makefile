@@ -373,10 +373,10 @@ distributions_initialize: distributions_reset
 publish_distributions: publish_arccore_dist publish_arctools_dist
 
 publish_arccore_dist:
-	cp -rv $(DIR_OUT_BUILD_STAGE04_ARCCORE)/* DISTS/arccore
+	cp -rv $(DIR_OUT_BUILD_STAGE04_ARCCORE)/* DISTS/arccore/
 
 publish_arctools_dist:
-	cp -rv $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)* DISTS/arctools
+	cp -rv $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/* DISTS/arctools/
 
 publish_jsgraph_dist:
 
