@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.1.0",
-  "codename": "spindrift",
+  "version": "0.1.1",
+  "codename": "spindrift1",
   "description": "Encapsule.io ARC project master repository.",
   "main": "index.js",
   "scripts": {

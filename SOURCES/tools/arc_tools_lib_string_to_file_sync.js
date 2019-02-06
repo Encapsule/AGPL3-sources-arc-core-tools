@@ -31,7 +31,6 @@ var response = ARC_CORE.filter.create({
         var inBreakScope = false;
         while (!inBreakScope) {
             inBreakScope = true;
-            var resource = undefined;
             var npath = request_.path
             if (!PATH.isAbsolute(npath)) {
                 npath = PATH.join(process.cwd(), npath);
@@ -42,18 +41,14 @@ var response = ARC_CORE.filter.create({
                 FS.writeFileSync(npath, request_.resource);
             } catch (error_) {
                 errors.unshift(error_.toString());
-            }
-
-            if (errors.length) {
                 break;
-            } else {
-                response.result = {
-                    origin: npath,
-                    resource: resource
-                };
             }
+            response.result = {
+                origin: npath,
+                resource: resource
+            };
             break;
-        }
+        } // inBreakScope
         if (errors.length) {
             response.error = errors.join(" ");
         }
