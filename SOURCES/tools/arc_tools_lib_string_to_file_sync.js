@@ -45,7 +45,7 @@ var response = ARC_CORE.filter.create({
             }
             response.result = {
                 origin: npath,
-                resource: resource
+                resource: request_.resource
             };
             break;
         } // inBreakScope
