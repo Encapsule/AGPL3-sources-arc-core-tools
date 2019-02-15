@@ -123,7 +123,7 @@ case 'library':
             "1. Create simple test project, declare a dependency and install `" + program.packageName + "` package:",
             "```\n$ mkdir testProject && cd testProject\n$ yarn init\n$ yarn add " + program.packageName + " --dev\n```",
             "2. Create a simple script `index.js`:",
-            "```JavaScript\nconst " + program.packageName + " = require('" + program.packageName + "');\nconsole.log(JSON.stringify(" + program.packageName + ".__meta));\n/* ... your derived code here ... */\n```"
+            "```JavaScript\nconst lib = require('" + program.packageName + "');\nconsole.log(JSON.stringify(lib.__meta));\n/* ... your derived code here ... */\n```"
         ]
     });
     break;

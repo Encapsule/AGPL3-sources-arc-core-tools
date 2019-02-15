@@ -2,7 +2,7 @@
   "private": true,
   "name": "arc_master",
   "version": "0.1.2",
-  "codename": "spindrift2",
+  "codename": "snowpocalypse",
   "description": "Encapsule.io ARC project master repository.",
   "main": "index.js",
   "scripts": {
