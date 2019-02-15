@@ -20,6 +20,11 @@ if (!program.packageName) {
     process.exit(1);
 }
 
+const fullPackageName = program.packageName;
+const fullPackageNameSplit = fullPackageName.split("/");
+const packageOrgURI = fullPackageNameSplit[0];
+const tersePackageName = fullPackageNameSplit[1];
+
 if (!program.outputDir) {
     console.error("Missing --outputDir option value.");
     process.exit(1);
@@ -35,7 +40,7 @@ if (!packageBuildData) {
 // package.json generation
 
 var packageManifest = {
-    name: program.packageName,
+    name: fullPackageName,
     version: arcBuild.version,
     codename: arcBuild.codename,
     buildID: arcBuild.buildID,
@@ -43,15 +48,15 @@ var packageManifest = {
     ARC_master: arcBuild.ARC_master,
     repository: {
         type: "git",
-        url: "git+https://github.com/Encapsule/" + program.packageName + ".git",
+        url: "git+https://github.com/Encapsule/" + tersePackageName + ".git",
     },
     author: arcBuild.author,
     contributors: arcBuild.contributors,
     license: "MIT",
     bugs: {
-        url: "https://github.com/Encapsule/" + program.packageName + "/issues"
+        url: "https://github.com/Encapsule/" + tersePackageName + "/issues"
     },
-    homepage: "https://github.com/Encapsule/" + program.packageName + "#readme",
+    homepage: "https://github.com/Encapsule/" + tersePackageName + "#readme",
 };
 
 for (var key in packageBuildData.packageManifestFields) {
@@ -120,10 +125,10 @@ case 'library':
         markdown: [
             "This package's contained library functionality is intended for use in derived projects.",
             "For example:",
-            "1. Create simple test project, declare a dependency and install `" + program.packageName + "` package:",
-            "```\n$ mkdir testProject && cd testProject\n$ yarn init\n$ yarn add " + program.packageName + " --dev\n```",
+            "1. Create simple test project, declare a dependency and install `" + fullPackageName + "` package:",
+            "```\n$ mkdir testProject && cd testProject\n$ yarn init\n$ yarn add " + fullPackageName + " --dev\n```",
             "2. Create a simple script `index.js`:",
-            "```JavaScript\nconst lib = require('" + program.packageName + "');\nconsole.log(JSON.stringify(lib.__meta));\n/* ... your derived code here ... */\n```"
+            "```JavaScript\nconst " + tersePackageName + " = require('" + fullPackageName + "');\nconsole.log(JSON.stringify(" + tersePackageName + ".__meta));\n/* ... your derived code here ... */\n```"
         ]
     });
     break;
@@ -131,8 +136,10 @@ case 'tools':
     injectReadmeSection({
         heading: "## Usage",
         markdown: [
-            "The `" + program.packageName + "` "  + packageBuildData.packageType + " package is typically installed globally.",
-            "```\n$ npm install --global " + program.packageName + "\n```"
+            "The `" + fullPackageName + "` "  + packageBuildData.packageType + " package is typically installed globally.",
+            "```\n$ yarn global add " + fullPackageName + "\n```",
+            "or...\n",
+            "```\n$ npm install -g " + fullPackageName + "\n'''"
         ]
     });
     break;
@@ -141,10 +148,10 @@ default:
 }
 
 markdown.push("## Distribution");
-markdown.push("The `" + program.packageName + "` " + packageBuildData.packageType + " package is published on [npmjs](https://npmjs.com).");
+markdown.push("The `" + fullPackageName + "` " + packageBuildData.packageType + " package is published on [npmjs](https://npmjs.com).");
 markdown.push([
-    "- [" + program.packageName + " Package Distribution](https://npmjs.com/package/" + program.packageName + "/v/" + packageManifest.version + ") ([npm](https://www.npmjs.com/~chrisrus))",
-    "- [" + program.packageName + " Package Repository](https://github.com/Encapsule/" + program.packageName + ") ([GitHub](https://github.com/Encapsule))"
+    "- [" + fullPackageName + " Package Distribution](https://npmjs.com/package/" + fullPackageName + "/v/" + packageManifest.version + ") ([npm](https://www.npmjs.com/" + packageOrgURI + "))",
+    "- [" + fullPackageName + " Package Repository](https://github.com/Encapsule/" + tersePackageName + ") ([GitHub](https://github.com/Encapsule))"
 ].join("\n"));
 
 

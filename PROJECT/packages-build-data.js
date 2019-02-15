@@ -1,7 +1,7 @@
 // packages-build-data.js
 
 var packageDatabase = module.exports = {
-    "encapsule@arccore": {
+    "@encapsule/arccore": {
         packageType: "library",
         browserSafe: true,
         packageManifestFields: {
@@ -56,7 +56,7 @@ var packageDatabase = module.exports = {
             ]
         }
     },
-    "encapsule@arctools": {
+    "@encapsule/arctools": {
         packageType: "tools",
         browserSafe: false,
         packageManifestFields: {
