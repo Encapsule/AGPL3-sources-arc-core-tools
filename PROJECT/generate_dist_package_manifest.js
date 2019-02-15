@@ -97,7 +97,7 @@ function injectReadmeSection(sectionDescriptor_) {
 // Start of the markdown document...
 markdown.push("[![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io)");
 
-markdown.push("### " + arcBuild.author + "");
+markdown.push("### Encapsule Project");
 
 markdown.push("# " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\"");
 markdown.push("```\n" +
@@ -139,7 +139,7 @@ case 'tools':
             "The `" + fullPackageName + "` "  + packageBuildData.packageType + " package is typically installed globally.",
             "```\n$ yarn global add " + fullPackageName + "\n```",
             "or...\n",
-            "```\n$ npm install -g " + fullPackageName + "\n'''"
+            "```\n$ npm install -g " + fullPackageName + "\n```"
         ]
     });
     break;
