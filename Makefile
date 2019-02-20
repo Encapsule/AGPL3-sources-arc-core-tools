@@ -202,7 +202,7 @@ stage01_js_copy_tools:
 	@echo stage01_js_copy_tools
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)
-	cp -rv $(DIR_SOURCES_ARCTOOLS)/* $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)
+	cp -Rv $(DIR_SOURCES_ARCTOOLS)/* $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)
 	$(TOOL_LICENSE_GEN) --outputDir $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)
 	@echo ----------------------------------------------------------------
 	@echo stage01_js_copy_tools
@@ -234,7 +234,7 @@ stage02_transpile_arctools:
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)
 	$(TOOL_BABEL) $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)/ $(TOOL_BABEL_FLAGS) --out-dir $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/
-	cp -rv $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)/templates $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/
+	cp -Rv $(DIR_OUT_BUILD_STAGE01_ARCTOOLS)/templates $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/
 	$(TOOL_MANIFEST_GEN) --packageName "@encapsule/arctools" --outputDir $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)
 	@echo ----------------------------------------------------------------
 	@echo stage02_transpile_arctools
@@ -288,7 +288,7 @@ stage03_bundle_arctools:
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)
 	$(TOOL_WEBPACK) --config $(DIR_PROJECT)/webpack.config.arctools.js
-	cp -r $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/templates $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
+	cp -R $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/templates $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
 	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_docgen_filter.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
 #	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_filterdag_compiler.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
 #	cp $(DIR_OUT_BUILD_STAGE02_ARCTOOLS)/arc_tools_filterdag_factory.js $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/
@@ -339,7 +339,7 @@ stage04_minbundle_arctools:
 	@echo stage04_minbundle_arctools
 	@echo ----------------------------------------------------------------
 	mkdir -p $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)
-	cp -r $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/* $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/
+	cp -R $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/* $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/
 	$(TOOL_UGLIFY) $(DIR_OUT_BUILD_STAGE03_ARCTOOLS)/arc_tools_lib.js $(TOOL_UGLIFY_FLAGS) --output $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/arc_tools_lib.js
 	$(TOOL_MANIFEST_GEN) --packageName "@encapsule/arctools" --outputDir $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)
 	@echo ----------------------------------------------------------------
@@ -373,11 +373,12 @@ distributions_initialize: distributions_reset
 publish_distributions: publish_arccore_dist publish_arctools_dist
 
 publish_arccore_dist:
-	cp -rv $(DIR_OUT_BUILD_STAGE04_ARCCORE)/* DISTS/arccore/
+	cp -Rv $(DIR_OUT_BUILD_STAGE04_ARCCORE)/* DISTS/arccore/
 
 publish_arctools_dist:
-	cp -rv $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/* DISTS/arctools/
+	cp -Rv $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/* DISTS/arctools/
 
 publish_jsgraph_dist:
+	@echo WHOOPS - This is not implemented yet. And, may never be implemented....?
 
 
