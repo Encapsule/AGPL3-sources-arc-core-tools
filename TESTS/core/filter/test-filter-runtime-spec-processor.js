@@ -519,5 +519,55 @@ testVerifyFilterSpec({
     }
 });
 
+testVerifyFilterSpec({
+    testName: "Variant filter spec namespace runtime handling #1: Allow POD or container, test with container value.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: [ "jsNumber", "jsObject" ],
+            objectProperty: {
+                ____accept: "jsString"
+            }
+        },
+        value: { objectProperty: "whatever" }
+    },
+    expectedResults: {
+        result: '{"objectProperty":"whatever"}'
+    }
+});
 
 
+testVerifyFilterSpec({
+    testName: "Variant filter spec namespace runtime handling #2: Allow POD or container, test with POD value.",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: [ "jsNumber", "jsObject" ],
+            objectProperty: {
+                ____accept: "jsString"
+            }
+        },
+        value: 5
+    },
+    expectedResults: {
+        result: 5
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Ensure correct handling of request input value with variant filter spec case #2.",
+    validConfig: false,
+    request: {
+        spec: {
+            ____types: [ "jsNumber", "jsObject" ],
+            objectProperty: {
+                ____accept: "jsString"
+            }
+        },
+        value: {}
+    },
+    expectedResults: {
+        result: null,
+        error: "Error at path \'~.objectProperty\': Value of type \'jsUndefined\' not in allowed type set [jsString]."
+    }
+});

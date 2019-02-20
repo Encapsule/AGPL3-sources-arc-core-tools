@@ -2,6 +2,8 @@
 IDENTIFIER = require './arc_core_identifier'
 TYPES = require './arc_core_types'
 
+podTypes = [ "jsUndefined", "jsNull", "jsBoolean", "jsNumber", "jsString", "jsFunction" ]
+
 ###
     request = {
         value: variant
@@ -195,7 +197,8 @@ filterRuntimeData = module.exports = (request_) ->
                                     path: "#{typePath}.#{key}"
                                     spec: mapPropertyValue,
                                     inputData: element
-                        else
+                        else if (0 > podTypes.indexOf(valueJsMoniker))
+
                             mapQueueCache.push
                                 namespace: mapPropertyName
                                 path: "#{typePath}.#{mapPropertyName}"
