@@ -520,11 +520,11 @@ testVerifyFilterSpec({
 });
 
 testVerifyFilterSpec({
-    testName: "Variant filter spec namespace runtime handling #1: Allow POD or container, test with container value.",
+    testName: "Variant filter spec namespace runtime handling #1: Allow POD or container, test with valid container value.",
     validConfig: true,
     request: {
         spec: {
-            ____types: [ "jsNumber", "jsObject" ],
+            ____types: [ "jsUndefined", "jsObject" ],
             objectProperty: {
                 ____accept: "jsString"
             }
@@ -536,30 +536,12 @@ testVerifyFilterSpec({
     }
 });
 
-
 testVerifyFilterSpec({
-    testName: "Variant filter spec namespace runtime handling #2: Allow POD or container, test with POD value.",
-    validConfig: true,
-    request: {
-        spec: {
-            ____types: [ "jsNumber", "jsObject" ],
-            objectProperty: {
-                ____accept: "jsString"
-            }
-        },
-        value: 5
-    },
-    expectedResults: {
-        result: 5
-    }
-});
-
-testVerifyFilterSpec({
-    testName: "Ensure correct handling of request input value with variant filter spec case #2.",
+    testName: "Variant filter spec namespace runtime handling #2: Allow POD or container, test with invalid container value.",
     validConfig: false,
     request: {
         spec: {
-            ____types: [ "jsNumber", "jsObject" ],
+            ____types: [ "jsUndefined", "jsObject" ],
             objectProperty: {
                 ____accept: "jsString"
             }
@@ -571,3 +553,106 @@ testVerifyFilterSpec({
         error: "Error at path \'~.objectProperty\': Value of type \'jsUndefined\' not in allowed type set [jsString]."
     }
 });
+
+testVerifyFilterSpec({
+    testName: "Variant filter spec namespace runtime handling #3: Allow POD or container, test with POD value (undefined).",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: [ "jsUndefined", "jsObject" ],
+            objectProperty: {
+                ____accept: "jsString"
+            }
+        },
+        value: undefined
+    },
+    expectedResults: {
+        result: undefined
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Variant filter spec namespace runtime handling #4: Allow POD or container, test with POD value (null).",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: [ "jsNull", "jsObject" ],
+            objectProperty: {
+                ____accept: "jsString"
+            }
+        },
+        value: null
+    },
+    expectedResults: {
+        result: 'null'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Variant filter spec namespace runtime handling #5: Allow POD or container, test with POD value (Boolean).",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: [ "jsBoolean", "jsObject" ],
+            objectProperty: {
+                ____accept: "jsString"
+            }
+        },
+        value: true
+    },
+    expectedResults: {
+        result: 'true'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Variant filter spec namespace runtime handling #6: Allow POD or container, test with POD value (number).",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: [ "jsNumber", "jsObject" ],
+            objectProperty: {
+                ____accept: "jsString"
+            }
+        },
+        value: 5
+    },
+    expectedResults: {
+        result: '5'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Variant filter spec namespace runtime handling #7: Allow POD or container, test with POD value (string).",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: [ "jsString", "jsObject" ],
+            objectProperty: {
+                ____accept: "jsString"
+            }
+        },
+        value: "This is a test string."
+    },
+    expectedResults: {
+        result: '"This is a test string."'
+    }
+});
+
+testVerifyFilterSpec({
+    testName: "Variant filter spec namespace runtime handling #8: Allow POD or container, test with POD value (function).",
+    validConfig: true,
+    request: {
+        spec: {
+            ____types: [ "jsFunction", "jsObject" ],
+            objectProperty: {
+                ____accept: "jsString"
+            }
+        },
+        value: function() {}
+    },
+    expectedResults: {
+        result: undefined // because JSON.stringify doesn't serialize functions
+    }
+});
+
