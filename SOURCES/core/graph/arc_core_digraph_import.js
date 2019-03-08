@@ -1,7 +1,7 @@
 /*
   Encapsule/jsgraph/src/digraph-json-import.js
 
-  Copyright (C) 2014-2015 Christopher D. Russell
+  Copyright (C) 2014-2019 Christopher D. Russell
 
   This library is published under the MIT License and is part of the
   Encapsule Project System in Cloud (SiC) open service architecture.
@@ -96,7 +96,7 @@ module.exports = function (digraph_, jsonOrObject_) {
             break;
         }
         digraph_.setGraphName(jsonParse.name);
-        
+
         type = getType(jsonParse.description);
         switch (type) {
         case '[object Undefined]':
@@ -109,7 +109,7 @@ module.exports = function (digraph_, jsonOrObject_) {
             break;
         }
         digraph_.setGraphDescription(jsonParse.description);
-            
+
         type = getType(jsonParse.vlist);
         switch (type) {
         case '[object Undefined]':

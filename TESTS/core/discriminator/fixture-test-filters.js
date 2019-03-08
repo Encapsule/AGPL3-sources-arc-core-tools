@@ -138,7 +138,44 @@ module.exports = testFilter = {
                 }
             }
         }
-    })
+    }),
 
+    testDefaultValueHandling1: FILTERLIB.create({
+        operationID: "1L3mkL33TLaxbagz6iJmPg",
+        operationName: "Default value test filter #1",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            testInput1: {
+                ____types: "jsObject"
+            },
+            styles: {
+                ____types: "jsObject",
+                ____defaultValue: {},
+                x: {
+                    ____accept: "jsString",
+                    ____defaultValue: "this is the default value of x"
+                }
+            }
+        }
+    }),
+
+    testDefaultValueHandling2: FILTERLIB.create({
+        operationID: "N3CjJ8DwT9qMpK0d7qAWlg",
+        operationName: "Default value test filter #2",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            testInput2: {
+                ____types: "jsObject"
+            },
+            styles: {
+                ____types: "jsObject",
+                ____defaultValue: {},
+                z: {
+                    ____accept: "jsString",
+                    ____defaultValue: "this is the default value of z"
+                }
+            }
+        }
+    })
 
 };

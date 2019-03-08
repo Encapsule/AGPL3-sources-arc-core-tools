@@ -63,15 +63,15 @@ filterlibResponse = FILTERLIB.create
                 errors.unshift "Invalid request. You must specify an array of two or more Filter objects to construct a Discriminator Filter."
                 break
 
-            # console.log "STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT"
+            console.log "STAGE 1: MERGED FILTER SPEC GRAPH BUILDER OUTPUT"
             innerResponse = createMergedFilterSpecModel request_.filters
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
             mergedModel = innerResponse.result
-            # console.log mergedModel.digraph.stringify(undefined, 4)
+            console.log mergedModel.digraph.stringify(undefined, 4)
 
-            # console.log "STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY"
+            console.log "STAGE 2: PARTITION AND COLOR GRAPH BY AMBIGUITY"
             innerResponse = createAmbiguityModel mergedModel.digraph
 
             if innerResponse.error
@@ -79,26 +79,26 @@ filterlibResponse = FILTERLIB.create
                 errors.unshift "Internal error analyzing input filter array: "
                 break
             ambiguityModel = innerResponse.result
-            # console.log ambiguityModel.digraph.stringify(undefined, 4)
+            console.log ambiguityModel.digraph.stringify(undefined, 4)
 
             # Exit with error if the input filter set cannot be discriminated.
             # Note that we may relax this policy enforcement later with an options object flag.
 
-            # console.log "... checking for ambiguities in the ambiguity model"
+            console.log "... checking for ambiguities in the ambiguity model"
             ambiguityModel.ambiguousFilterSpecificationErrors.forEach (error_) -> errors.push error_
             if errors.length
                 break
 
-            # console.log "STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL"
+            console.log "STAGE 3: GIVEN AN UNAMBIGUOUS MODEL DIGRAPH CREATE RUNTIME MODEL"
             innerResponse = createRuntimeParseModel ambiguityModel.digraph
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
 
             runtimeParseDigraph = innerResponse.result
-            # console.log runtimeParseDigraph.stringify(undefined, 4)
+            console.log runtimeParseDigraph.stringify(undefined, 4)
 
-            # console.log "STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER"
+            console.log "STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER"
             innerResponse = createDiscriminatorFilterRuntime.request
                 filterTable: mergedModel.filterTable
                 parseDigraph: runtimeParseDigraph

@@ -3,7 +3,6 @@ var testModule = require('./module-under-test');
 var specGraphBuilder = testModule('arc_core_type_discriminator_merged_model_digraph');
 var testFilters = require('./fixture-test-filters')
 
-
 var testAmbiguityDetector = require('./runner-ambiguity-detector')
 
 testAmbiguityDetector({
@@ -663,3 +662,12 @@ testAmbiguityDetector({
     }
 });
 
+testAmbiguityDetector({
+    testName: "Default value handling single object test 1",
+    validConfig: true,
+    request: specGraphBuilder([ testFilters.testDefaultValueHandling1.result ]).result.digraph,
+    expectedResults: {
+        error: null,
+        result: null
+    }
+});
