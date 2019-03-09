@@ -671,3 +671,23 @@ testAmbiguityDetector({
         result: null
     }
 });
+
+testAmbiguityDetector({
+    testName: "Default value handling single object test 2",
+    validConfig: true,
+    request: specGraphBuilder([ testFilters.testDefaultValueHandling2.result ]).result.digraph,
+    expectedResults: {
+        error: null,
+        result: null
+    }
+});
+
+testAmbiguityDetector({
+    testName: "Default value handling test objects 1 + 2 merged",
+    validConfig: true,
+    request: specGraphBuilder([ testFilters.testDefaultValueHandling1.result, testFilters.testDefaultValueHandling2.result ]).result.digraph,
+    expectedResults: {
+        error: null,
+        result: null
+    }
+});

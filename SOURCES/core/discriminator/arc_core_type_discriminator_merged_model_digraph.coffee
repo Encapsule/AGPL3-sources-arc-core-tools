@@ -84,11 +84,16 @@ addFilterSpecToMergedDigraphModel = (request_) ->
             mapEntry = mapQueue.shift()
 
             types =  null
+            addThisNamespaceToTheDigraph = true
             considerSubnamespaces = true
 
             # Default filters that specify no input specification.
             if not (mapEntry.namespaceDescriptor? and mapEntry.namespaceDescriptor)
-                mapEntry.namespaceDescriptor = { ____opaque: true }
+                # An opaque namespace may be undefined which means that it cannot be used to
+                # positively discriminate a specific message vs another message.
+                # NO... mapEntry.namespaceDescriptor = { ____opaque: true }
+                addThisNamespaceToTheDigraph = false
+                continue
 
             if (mapEntry.namespaceDescriptor.____types? and mapEntry.namespaceDescriptor.____types)
                 types = mapEntry.namespaceDescriptor.____types
@@ -100,13 +105,19 @@ addFilterSpecToMergedDigraphModel = (request_) ->
                     if Object.prototype.toString.call(types) == '[object String]'
                         types = [ types ]
                     considerSubnamespaces = false
-                else
-                    if (mapEntry.namespaceDescriptor.____opaque? and mapEntry.namespaceDescriptor.____opaque)
-                        types = [ 'jsUndefined', 'jsNull', 'jsBoolean', 'jsNumber', 'jsObject', 'jsFunction', 'jsString', 'jsArray' ]
-                        considerSubnamespace = false
 
-            if (mapEntry.namespaceDescriptor.____defaultValue? and mapEntry.namespaceDescriptor.____defaultValue)
-                types.push 'jsUndefined'
+            includesUndefined = types.indexOf "jsUndefined"
+            if includesUndefined < 0
+                # An optional namespace may be undefined in a runtime filter request. So, similar to
+                # opaque namespaces, we cannot use optional namespaces to discriminate messages.
+                addThisNamespaceToTheDigraph = false
+                continue
+
+            if (mapEntry.namespaceDescriptor.____defaultValue? and (mapEntry.namespaceDescriptor.____defaultValue or (mapEntry.namespaceDescriptor.____defaultValue == null)))
+                # An namespace that specifies a default value is by definition optional in a runtime filter request.
+                # So, similar to opaque namespaces, we cannot use optional namespaces to discriminate messages.
+                addThisNamespaceToTheDigraph = false
+                continue
 
             for type in types
                 vertexId = mapEntry.parentVertex + mapEntry.parentNamespaceName + "(" + type + ")"
