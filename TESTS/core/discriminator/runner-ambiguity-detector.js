@@ -54,8 +54,11 @@ var testAmbiguityDetector = module.exports = function (testVector_) {
                 it("The response result should be null.", function() {
                     assert.isNull(response.result);
                 });
+                it("The request is expected to have produced an error.", function() {
+                    assert.isNotNull(response.error);
+                    assert.isString(response.error);
+                });
                 it("The response error should match expected control value.", function() {
-                    assert.isNotNull(response.erro);
                     assert.equal(response.error, testVector_.expectedResults.error);
                 });
             });

@@ -22,7 +22,7 @@ var specGraphBuilder = testModule('arc_core_type_discriminator_merged_model_digr
 
 module.exports = function (testVector_) {
     response = null;
-    describe("ARC core type discriminator spec graph test use case: " + testVector_.testName, function() {
+    describe("ARC core type discriminator merged spec graph test use case: " + testVector_.testName, function() {
         before(function() {
             var functionUnderTestWrapper = function() {
                 response = specGraphBuilder(testVector_.request);
@@ -68,7 +68,10 @@ module.exports = function (testVector_) {
                 it("The request is expected to have produced an error.", function() {
                     assert.isNotNull(response.error);
                     assert.isString(response.error);
-                })
+                });
+                it("The response error should match expected control value.", function() {
+                    assert.equal(response.error, testVector_.expectedResults.error);
+                });
             });
         }
     });

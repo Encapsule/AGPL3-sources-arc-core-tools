@@ -118,3 +118,16 @@ testSpecGraphBuilder({
         edges: 3
     }
 });
+
+testSpecGraphBuilder({
+    testName: "Filter test1 with itself.",
+    validConfig: false,
+    request: [ testFilters.test1.result, testFilters.test1.result ],
+    expectedResults: {
+        error: 'Unable to build merged filter specification digraph model. Filter \'6UirSEewQLiM6VY_Uo1hSA::test1\' uses an invalid duplicate operation ID! Check to ensure all filters declare a unique operation ID (IRUT) and that no filter appears more than once in the input array.',
+        result: null,
+        vertices: 0,
+        leaves: 0,
+        edges: 0
+    }
+});
