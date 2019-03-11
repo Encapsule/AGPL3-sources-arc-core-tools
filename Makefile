@@ -246,7 +246,7 @@ stage02_tests:
 	@echo STARTING TESTS OF LIB MODULES IN $(DIR_OUT_BUILD_STAGE02_ARCCORE)
 	@echo ----------------------------------------------------------------
 	$(TOOL_MOCHA) --version
-	$(TOOL_MOCHA) TESTS/test_arc.js
+#	$(TOOL_MOCHA) TESTS/test_arc.js
 	@echo ----------------------------------------------------------------
 	@echo stage02_tests
 	@echo '////////////////////////////////////////////////////////////////'
