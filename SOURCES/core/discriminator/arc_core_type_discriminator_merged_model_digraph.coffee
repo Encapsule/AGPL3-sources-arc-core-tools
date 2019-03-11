@@ -5,6 +5,7 @@ GRAPHLIB = require './arc_core_graph'
 
 rootVertex = "request"
 
+# request_ = [ filter, filter, filter... ]
 buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
     response = error: null, result: null
     errors = []
@@ -30,14 +31,26 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
 
         # Process each filter in the request array.
         filters = []
+
         for filter in request_
+
+            filterOperationID = filter.filterDescriptor.operationID
+
+            if result.filterTable[filterOperationID]? and result.filterTable[filterOperationID]
+                errors.unshift "Check to ensure all filters declare a unique operation ID (IRUT) and that no filter appears more than once in the input array."
+                errors.unshift "Filter '#{filterOperationID}::#{filter.filterDescriptor.operationName}' uses an invalid duplicate operation ID!"
+                break
+
             # Add this filter's input specification to discriminator's decission tree graph.
             innerResponse = addFilterSpecToMergedDigraphModel graph: result.digraph, filter: filter
+
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
+
             result.filterTable[filter.filterDescriptor.operationID] = filter
             filters.push filter.filterDescriptor.operationID
+
         if errors.length
             errors.unshift "Unable to build merged filter specification digraph model."
             break
@@ -107,7 +120,7 @@ addFilterSpecToMergedDigraphModel = (request_) ->
                     considerSubnamespaces = false
 
             includesUndefined = types.indexOf "jsUndefined"
-            if includesUndefined < 0
+            if includesUndefined > -1
                 # An optional namespace may be undefined in a runtime filter request. So, similar to
                 # opaque namespaces, we cannot use optional namespaces to discriminate messages.
                 addThisNamespaceToTheDigraph = false
