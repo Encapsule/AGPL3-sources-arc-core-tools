@@ -69,9 +69,6 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
         response.error = errors.join " "
     response
 
-
-
-
 # request = { filter: object, digraph: object }
 addFilterSpecToMergedDigraphModel = (request_) ->
 
