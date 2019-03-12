@@ -14,17 +14,21 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
         inBreakScope = true
 
         # Initialize the result.
-        result =
-            digraph: null
-            filterTable: {}
+        result = digraph: null, digraph2: null, filterTable: {}
 
         # Create am empty digraph model.
-        innerResponse = GRAPHLIB.directed.create
-            name: "Discriminator Decission Tree Model"
+        innerResponse = GRAPHLIB.directed.create name: "Discriminator Decission Tree Model"
         if innerResponse.error
             errors.unshift innerResponse.error
             break
         result.digraph = innerResponse.result
+
+        # Create am empty digraph model #2
+        innerResponse = GRAPHLIB.directed.create name: "Filter Set Merged Input Spec Model"
+        if innerResponse.error
+            errors.unshift innerResponse.error
+            break
+        result.digraph2 = innerResponse.result
 
         # Add a vertex that models the root of the disriminator decisssion tree.
         result.digraph.addVertex { u: rootVertex, p: { color: "white" } }
@@ -42,11 +46,15 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
                 break
 
             # Add this filter's input specification to discriminator's decission tree graph.
-            innerResponse = addFilterSpecToMergedDigraphModel graph: result.digraph, filter: filter
+            innerResponse = addFilterSpecToMergedDigraphModel filter: filter, graph: result.digraph
 
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
+
+            # A slightly different approach...
+            innerResponse = addFilterSpecToMergedModel2  filter: filter, digraph: result.digraph2
+
 
             result.filterTable[filter.filterDescriptor.operationID] = filter
             filters.push filter.filterDescriptor.operationID
@@ -163,4 +171,78 @@ addFilterSpecToMergedDigraphModel = (request_) ->
 
         # end while
 
+    response
+
+
+
+# ================================================================
+
+jsMonikerList = [ "jsUndefined", "jsNull", "jsBoolean", "jsString", "jsNumber", "jsObject", "jsArray", "jsFunction" ]
+
+# request = { filter: object, digraph: object }
+addFilterSpecToMergedModel2 = (request_) ->
+
+    response = error: null, result: null
+    errors = []
+    inBreakScope = false
+
+    while not inBreakScope
+
+        inBreakScope = true
+
+        operationID = request_.filter.filterDescriptor.operationID
+        namespaceDescriptor = request_.filter.filterDescriptor.inputFilterSpec? and request_.filter.filterDescriptor.inputFilterSpec or { ____opaque: true }
+        namespacePath = "~"
+
+        namespaceDescriptorQueue = [ { namespaceDescriptor: namespaceDescriptor, namespacePath: namespacePath } ]
+
+        while namespaceDescriptorQueue.length > 0
+
+            queueEntry = namespaceDescriptorQueue.shift()
+
+            namespaceTypes = null
+            while not namespaceTypes
+                if queueEntry.namespaceDescriptor.____opaque? and queueEntry.namespaceDescriptor.____opaque
+                    namespaceTypes = jsMonikerList
+                    break
+
+                if queueEntry.namespaceDescriptor.____types? and queueEntry.namespaceDescriptor.____types
+                    namespaceTypes = queueEntry.namespaceDescriptor.____types
+                else
+                    namespaceTypes = queueEntry.namespaceDescriptor.____accept
+
+                if Object.prototype.toString.call(namespaceTypes) != "[object Array]"
+                    namespaceTypes = [ namespaceTypes ]
+
+            if not request_.digraph.isVertex queueEntry.namespacePath
+                request_.digraph.addVertex {
+                    u: queueEntry.namespacePath
+                    p:
+                        jsUndefined: []
+                        jsNull: []
+                        jsBoolean: []
+                        jsString: []
+                        jsNumber: []
+                        jsObject: []
+                        jsArray: []
+                        jsFunction: [] }
+
+            namespaceProps = request_.digraph.getVertexProperty queueEntry.namespacePath
+
+            for type in namespaceTypes
+                console.log "Push type '#{type}'"
+                namespaceProps[type].push operationID
+
+            request_.digraph.setVertexProperty
+                u: queueEntry.namespacePath
+                p: namespaceProps
+
+
+
+        break
+
+    if errors.length
+        response.error = errors.join " "
+
+    console.log request_.digraph.stringify()
     response
