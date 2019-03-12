@@ -23,12 +23,14 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
             break
         result.digraph = innerResponse.result
 
+        #### EXPERIMENTAL
         # Create am empty digraph model #2
         innerResponse = GRAPHLIB.directed.create name: "Filter Set Merged Input Spec Model"
         if innerResponse.error
             errors.unshift innerResponse.error
             break
         result.digraph2 = innerResponse.result
+        #### EXPERIMENTAL
 
         # Add a vertex that models the root of the disriminator decisssion tree.
         result.digraph.addVertex { u: rootVertex, p: { color: "white" } }
@@ -52,9 +54,10 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
                 errors.unshift innerResponse.error
                 break
 
+            #### EXPERIMENTAL
             # A slightly different approach...
             innerResponse = addFilterSpecToMergedModel2  filter: filter, digraph: result.digraph2
-
+            #### EXPERIMENTAL
 
             result.filterTable[filter.filterDescriptor.operationID] = filter
             filters.push filter.filterDescriptor.operationID
@@ -75,6 +78,11 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
 
     if errors.length
         response.error = errors.join " "
+    #### EXPERIMENTAL
+    else
+        console.log response.result.digraph2.stringify(undefined, 4)
+    #### EXPERIMENTAL
+
     response
 
 # request = { filter: object, digraph: object }
@@ -194,7 +202,7 @@ addFilterSpecToMergedModel2 = (request_) ->
         namespaceDescriptor = request_.filter.filterDescriptor.inputFilterSpec? and request_.filter.filterDescriptor.inputFilterSpec or { ____opaque: true }
         namespacePath = "~"
 
-        namespaceDescriptorQueue = [ { namespaceDescriptor: namespaceDescriptor, namespacePath: namespacePath } ]
+        namespaceDescriptorQueue = [ { namespaceDescriptor: namespaceDescriptor, namespacePath: namespacePath, parentNamespacePath: null } ]
 
         while namespaceDescriptorQueue.length > 0
 
@@ -229,14 +237,25 @@ addFilterSpecToMergedModel2 = (request_) ->
 
             namespaceProps = request_.digraph.getVertexProperty queueEntry.namespacePath
 
+            if queueEntry.parentNamespacePath
+                request_.digraph.addEdge { e: { u: queueEntry.parentNamespacePath, v: queueEntry.namespacePath } }
+
             for type in namespaceTypes
                 console.log "Push type '#{type}'"
-                namespaceProps[type].push operationID
+                namespaceProps[type].push operationID: operationID, typesCount: namespaceTypes.length
 
             request_.digraph.setVertexProperty
                 u: queueEntry.namespacePath
                 p: namespaceProps
 
+            for subnamespaceName of queueEntry.namespaceDescriptor
+                if subnamespaceName.indexOf("____") != 0
+                    newQueueEntry =
+                        namespaceDescriptor: queueEntry.namespaceDescriptor[subnamespaceName]
+                        namespacePath: "#{queueEntry.namespacePath}.#{subnamespaceName}"
+                        parentNamespacePath: queueEntry.namespacePath
+
+                    namespaceDescriptorQueue.push newQueueEntry
 
 
         break
@@ -244,5 +263,4 @@ addFilterSpecToMergedModel2 = (request_) ->
     if errors.length
         response.error = errors.join " "
 
-    console.log request_.digraph.stringify()
     response
