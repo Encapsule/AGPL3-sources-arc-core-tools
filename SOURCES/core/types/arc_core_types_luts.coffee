@@ -5,6 +5,9 @@ typeCodes = require './arc_core_types_codes'
 
 MODULE = {}
 
+# TODO: In 2019 this module is starting to look a lot like rubbish.
+# Burn arccore.types to the ground and rebuild smaller, faster arccore.types.
+
 ###
 String identifiers used to keep track of conversion source/destination dimension type.
 ###
@@ -57,7 +60,6 @@ MODULE.jsCodes = {}
 jstc = 0
 while jstc < typeCodes.__GUARD
     MODULE.jsCodes[MODULE.jsMoniker[jstc]] = jstc++
-    
 
 Object.freeze MODULE
 
