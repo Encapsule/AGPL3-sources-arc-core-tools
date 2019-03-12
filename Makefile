@@ -246,7 +246,10 @@ stage02_tests:
 	@echo STARTING TESTS OF LIB MODULES IN $(DIR_OUT_BUILD_STAGE02_ARCCORE)
 	@echo ----------------------------------------------------------------
 	$(TOOL_MOCHA) --version
-#	$(TOOL_MOCHA) TESTS/test_arc.js
+#	MINUS ON NEXT LINE ALLOWS THIS PHONY TARGET TO EXECUTE AS PART OF THE
+#	NORMAL FLOW OF THIS MAKEFILE BUT IGNORES THE KNOWN ERRORS IN v0.1.4
+#	DISCRIMINATOR LIB.
+	-$(TOOL_MOCHA) TESTS/test_arc.js
 	@echo ----------------------------------------------------------------
 	@echo stage02_tests
 	@echo '////////////////////////////////////////////////////////////////'
