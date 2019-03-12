@@ -138,7 +138,96 @@ module.exports = testFilter = {
                 }
             }
         }
-    })
+    }),
 
+    testDefaultValueHandling1: FILTERLIB.create({
+        operationID: "1L3mkL33TLaxbagz6iJmPg",
+        operationName: "Default value test filter #1",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            testInput1: {
+                ____types: "jsObject"
+            },
+            styles: {
+                ____types: "jsObject",
+                ____defaultValue: {},
+                x: {
+                    ____accept: "jsString",
+                    ____defaultValue: "this is the default value of x"
+                }
+            }
+        }
+    }),
+
+    testDefaultValueHandling2: FILTERLIB.create({
+        operationID: "N3CjJ8DwT9qMpK0d7qAWlg",
+        operationName: "Default value test filter #2",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            testInput2: {
+                ____types: "jsObject"
+            },
+            styles: {
+                ____types: "jsObject",
+                ____defaultValue: {},
+                z: {
+                    ____accept: "jsString",
+                    ____defaultValue: "this is the default value of z"
+                }
+            }
+        }
+    }),
+
+    // Added to v0.1.3-derived branch after releasing what I think is an inadequate patch for discriminator in v0.1.4
+    testSameFilterDifferentId1: FILTERLIB.create({
+        operationID: "EFlOt5aQTwW7ysFmD5th4A",
+        operationName: "Same Filter Different ID #1",
+        inputFilterSpec: {
+            ____types: "jsObject"
+        }
+    }),
+
+    testSameFilterDifferentId2: FILTERLIB.create({
+        operationID: "mUYaCIQJRa21n-xFQJGUVg",
+        operationName: "Same Filter Different ID #2",
+        inputFilterSpec: {
+            ____types: "jsObject"
+        }
+    }),
+
+    testSameFilterDifferentId3a: FILTERLIB.create({
+        operationID: "ImalngYZTISWB_r_EKkt0A",
+        operationName: "Same Filter Different ID #3a",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            x: { ____accept: "jsString" }
+        }
+    }),
+
+    testSameFilterDifferentId3b: FILTERLIB.create({
+        operationID: "2aHh-mEnTAawx-1ag2l45A",
+        operationName: "Same Filter Different ID #3b",
+        inputFilterSpec: {
+            ____types: "jsObject",
+        }
+    }),
+
+    testSameFilterDifferentId3c: FILTERLIB.create({
+        operationID: "-c8LsY_6QTKK5c4XPGMfog",
+        operationName: "Same Filter Different ID #3c",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            x: { ____accept: "jsString" }
+        }
+    }),
+
+    testSameFilterDifferentId3d: FILTERLIB.create({
+        operationID: "NyQTC1yVQt6BjkkCFGwXGg",
+        operationName: "Same Filter Different ID #3d",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            z: { ____accept: "jsString" }
+        }
+    })
 
 };

@@ -37,7 +37,7 @@ module.exports = function (testVector_) {
         });
 
         if (testVector_.validConfig) {
-            describe("Verify expected valid result.", function() {
+            describe("Verify expected response.result.", function() {
                 it("The request should not have returned an error.", function() {
                     assert.isNull(response.error);
                 });
@@ -47,7 +47,7 @@ module.exports = function (testVector_) {
                 });
             });
         } else {
-            describe("Verify expected invalid result.", function() {
+            describe("Verify expected response.error.", function() {
                 it("The request should not have returned a result object.", function() {
                     assert.isNull(response.result);
                 });

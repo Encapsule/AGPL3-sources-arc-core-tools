@@ -22,5 +22,13 @@ describe("ARC core type discriminator test suite.", function() {
         require('./discriminator/test-type-discriminator-runtime');
     });
 
+    // Some experiments added post v0.1.4 to v0.1.3-derived branch
+    describe("Same filter different ID merge model/ambiguity test suite:", function() {
+        require('./discriminator/test-same-filter-different-id');
+    });
+
+    describe("Same filter different ID discriminator factory test suite:", function() {
+        require('./discriminator/test-same-filter-different-id-construct');
+    });
 });
 

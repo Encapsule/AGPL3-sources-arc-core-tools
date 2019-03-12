@@ -118,3 +118,17 @@ testSpecGraphBuilder({
         edges: 3
     }
 });
+
+// New in arccore v0.1.5
+testSpecGraphBuilder({
+    testName: "Test same filter with different ID's #1 + #2",
+    validConfig: true,
+    request: [ testFilters.testSameFilterDifferentId1.result, testFilters.testSameFilterDifferentId2.result ],
+    expectedResults: {
+        error: null,
+        result: '{"digraph":{"name":"Discriminator Decission Tree Model","description":"Models the combined input filter specifications of Filter ID\'s: [EFlOt5aQTwW7ysFmD5th4A, mUYaCIQJRa21n-xFQJGUVg].","vlist":[{"u":"request","p":{"color":"white","filters":["EFlOt5aQTwW7ysFmD5th4A","mUYaCIQJRa21n-xFQJGUVg"]}},{"u":"request(jsObject)","p":{"filterSpecPath":"request","filters":["EFlOt5aQTwW7ysFmD5th4A","mUYaCIQJRa21n-xFQJGUVg"],"color":"white","typeConstraint":"jsObject"}}],"elist":[{"e":{"u":"request","v":"request(jsObject)"}}]},"filterTable":{"EFlOt5aQTwW7ysFmD5th4A":{"filterDescriptor":{"operationID":"EFlOt5aQTwW7ysFmD5th4A","operationName":"Same Filter Different ID #1","operationDescription":"EFlOt5aQTwW7ysFmD5th4A provides no description.","inputFilterSpec":{"____types":"jsObject"},"inputTypeVIID":"yPrdBwoIW1NTPksABUJkhg","inputTypeVDID":"7NzfCLYAdEOqnYzn5N59fA","outputTypeVIID":"6KYXfawcMa9nvYmB2kX44w","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"Ua_bE_ajgVevvFTtmrLUtA"}},"mUYaCIQJRa21n-xFQJGUVg":{"filterDescriptor":{"operationID":"mUYaCIQJRa21n-xFQJGUVg","operationName":"Same Filter Different ID #2","operationDescription":"mUYaCIQJRa21n-xFQJGUVg provides no description.","inputFilterSpec":{"____types":"jsObject"},"inputTypeVIID":"JDh6GXm0rBlIC1VDI_U-_A","inputTypeVDID":"7NzfCLYAdEOqnYzn5N59fA","outputTypeVIID":"b99bkqeC2qT4KwyHjCqPwA","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"utHbEz-KgVdpcVTthvfUtA"}}}}',
+        vertices: 2,
+        leaves: 1,
+        edges: 1
+    }
+});
