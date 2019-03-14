@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.1.4",
-  "codename": "ellisforde",
+  "version": "0.1.5",
+  "codename": "kamloops",
   "description": "Encapsule.io ARC project master repository.",
   "main": "index.js",
   "scripts": {
