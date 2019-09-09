@@ -177,3 +177,17 @@ testSpecGraphBuilder({
     }
 });
 
+// New in arccore v0.1.6 grasslands
+
+testSpecGraphBuilder({
+    testName: "Opaque Namespace Declarations Test",
+    validConfig: true,
+    request: [ testFilters.testOpaqueInputFilter1.result, testFilters.testOpaqueInputFilter2.result ],
+    expectedResults: {
+        error: null,
+        result: '{"digraph":{"name":"Discriminator Decission Tree Model","description":"Models the combined input filter specifications of Filter ID\'s: [mgHKQBB5Qo2uqRGN-wffbA, DhvL6whLSNCwzD1HVj7Slw].","vlist":[{"u":"request","p":{"color":"white","filters":["mgHKQBB5Qo2uqRGN-wffbA","DhvL6whLSNCwzD1HVj7Slw"]}}],"elist":[]},"digraph2":{"name":"Filter Set Merged Input Spec Model","description":"","vlist":[{"u":"~","p":{"jsUndefined":[{"operationID":"mgHKQBB5Qo2uqRGN-wffbA","typesCount":8},{"operationID":"DhvL6whLSNCwzD1HVj7Slw","typesCount":8}],"jsNull":[{"operationID":"mgHKQBB5Qo2uqRGN-wffbA","typesCount":8},{"operationID":"DhvL6whLSNCwzD1HVj7Slw","typesCount":8}],"jsBoolean":[{"operationID":"mgHKQBB5Qo2uqRGN-wffbA","typesCount":8},{"operationID":"DhvL6whLSNCwzD1HVj7Slw","typesCount":8}],"jsString":[{"operationID":"mgHKQBB5Qo2uqRGN-wffbA","typesCount":8},{"operationID":"DhvL6whLSNCwzD1HVj7Slw","typesCount":8}],"jsNumber":[{"operationID":"mgHKQBB5Qo2uqRGN-wffbA","typesCount":8},{"operationID":"DhvL6whLSNCwzD1HVj7Slw","typesCount":8}],"jsObject":[{"operationID":"mgHKQBB5Qo2uqRGN-wffbA","typesCount":8},{"operationID":"DhvL6whLSNCwzD1HVj7Slw","typesCount":8}],"jsArray":[{"operationID":"mgHKQBB5Qo2uqRGN-wffbA","typesCount":8},{"operationID":"DhvL6whLSNCwzD1HVj7Slw","typesCount":8}],"jsFunction":[{"operationID":"mgHKQBB5Qo2uqRGN-wffbA","typesCount":8},{"operationID":"DhvL6whLSNCwzD1HVj7Slw","typesCount":8}]}}],"elist":[]},"filterTable":{"mgHKQBB5Qo2uqRGN-wffbA":{"filterDescriptor":{"operationID":"mgHKQBB5Qo2uqRGN-wffbA","operationName":"Opaque Input Spec Filter #1","operationDescription":"This filter specifies no input filter specification whatsoever so tests the default behavior.","inputTypeVIID":"olUZRYVEsMpSO-7GFTvVeg","inputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","outputTypeVIID":"GK9GNqv0heOFbrtLA4eKrw","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"Ijr0E3SZNVd9_47t-qcUtA"}},"DhvL6whLSNCwzD1HVj7Slw":{"filterDescriptor":{"operationID":"DhvL6whLSNCwzD1HVj7Slw","operationName":"Opaque Input Spec Filter #2","operationDescription":"This filter specifies an input filter specification that declares the namespace opaque explicitly.","inputFilterSpec":{"____opaque":true},"inputTypeVIID":"NcChZdlahpX40XmWCbO4oA","inputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","outputTypeVIID":"EJgYD1u_AovY9MqDlZKPxQ","outputTypeVDID":"dHR0dNnZ2dlUVFRUyMjIyA","operationVDID":"Wb_0Ex5YNVfOF47tJXkUtA"}}}}',
+        vertices: 1,
+        leaves: 1,
+        edges: 0
+    }
+});

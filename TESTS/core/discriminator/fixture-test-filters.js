@@ -176,6 +176,21 @@ module.exports = testFilter = {
                 }
             }
         }
+    }),
+
+
+    testOpaqueInputFilter1: FILTERLIB.create({
+        operationID: "mgHKQBB5Qo2uqRGN-wffbA",
+        operationName: "Opaque Input Spec Filter #1",
+        operationDescription: "This filter specifies no input filter specification whatsoever so tests the default behavior."
+    }),
+
+    testOpaqueInputFilter2: FILTERLIB.create({
+        operationID: "DhvL6whLSNCwzD1HVj7Slw",
+        operationName: "Opaque Input Spec Filter #2",
+        operationDescription: "This filter specifies an input filter specification that declares the namespace opaque explicitly.",
+        inputFilterSpec: { ____opaque: true }
     })
+
 
 };

@@ -121,6 +121,11 @@ addFilterSpecToMergedDigraphModel = (request_) ->
                 addThisNamespaceToTheDigraph = false
                 continue
 
+            # Explicitly declared opaque...
+            if (mapEntry.namespaceDescriptor.____opaque)
+                addThisNamespaceToTheDigraph = false
+                continue
+
             if (mapEntry.namespaceDescriptor.____types? and mapEntry.namespaceDescriptor.____types)
                 types = mapEntry.namespaceDescriptor.____types
                 if Object.prototype.toString.call(types) == '[object String]'
