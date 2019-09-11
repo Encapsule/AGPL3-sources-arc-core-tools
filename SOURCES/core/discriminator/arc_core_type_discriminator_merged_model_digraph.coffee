@@ -80,8 +80,8 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
         response.error = errors.join " "
     ### EXPERIMENTAL
     else
-        console.log response.result.digraph2.stringify(undefined, 4)
-    ###
+        # console.log response.result.digraph2.stringify(undefined, 4)
+    #### EXPERIMENTAL
 
     response
 
@@ -241,7 +241,6 @@ addFilterSpecToMergedModel2 = (request_) ->
                 request_.digraph.addEdge { e: { u: queueEntry.parentNamespacePath, v: queueEntry.namespacePath } }
 
             for type in namespaceTypes
-                console.log "Push type '#{type}'"
                 namespaceProps[type].push operationID: operationID, typesCount: namespaceTypes.length
 
             request_.digraph.setVertexProperty
