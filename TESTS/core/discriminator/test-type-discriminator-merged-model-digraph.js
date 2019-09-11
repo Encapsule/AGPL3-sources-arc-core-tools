@@ -177,3 +177,16 @@ testSpecGraphBuilder({
     }
 });
 
+// New in arccore v0.1.5
+testSpecGraphBuilder({
+    testName: "Test same filter with different ID's",
+    validConfig: true,
+    request: [ testFilters.testSameFilterDifferentId1.result, testFilters.testSameFilterDifferentId2.result ],
+    expectedResults: {
+        error: null,
+        result: null,
+        vertices: 0,
+        leaves: 0,
+        edges: 0
+    }
+});

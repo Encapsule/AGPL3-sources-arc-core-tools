@@ -176,6 +176,37 @@ module.exports = testFilter = {
                 }
             }
         }
+    }),
+
+    testSameFilterDifferentId1: FILTERLIB.create({
+        operationID: "EFlOt5aQTwW7ysFmD5th4A",
+        operationName: "Same Filter Different ID #1",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            property1: {
+                ____accept: "jsString"
+            },
+            property2: {
+                ____accept: "jsString"
+            }
+        }
+    }),
+
+    testSameFilterDifferentId2: FILTERLIB.create({
+        operationID: "mUYaCIQJRa21n-xFQJGUVg",
+        operationName: "Same Filter Different ID #2",
+        inputFilterSpec: {
+            ____types: "jsObject",
+            property1: {
+                ____accept: "jsString"
+            },
+            property2y: {
+                ____accept: "jsString"
+            },
+            breakLogJam: {
+                ____accept: "jsNumber"
+            }
+        }
     })
 
 };

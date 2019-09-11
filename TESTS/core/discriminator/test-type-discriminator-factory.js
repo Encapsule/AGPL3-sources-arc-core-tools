@@ -71,3 +71,13 @@ genericFilterTestSuite({
     }
 });
 
+genericFilterTestSuite({
+    testName: "(test-type-discriminator-factory.js) Same Filter Different ID's",
+    filter: discriminatorFactoryFilter,
+    request: { filters: [ testFilters.testSameFilterDifferentId1.result, testFilters.testSameFilterDifferentId2.result ] },
+    validConfig: false,
+    expectedResults: {
+        error: null,
+        result: null
+    }
+});

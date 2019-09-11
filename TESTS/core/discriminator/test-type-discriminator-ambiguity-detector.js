@@ -694,3 +694,14 @@ testAmbiguityDetector({
         result: '{"digraph":{"name":"Discriminator Decission Tree Model","description":"Models the combined input filter specifications of Filter ID\'s: [1L3mkL33TLaxbagz6iJmPg, N3CjJ8DwT9qMpK0d7qAWlg].","vlist":[{"u":"request","p":{"color":"green","filters":["1L3mkL33TLaxbagz6iJmPg","N3CjJ8DwT9qMpK0d7qAWlg"],"filters1":["1L3mkL33TLaxbagz6iJmPg","N3CjJ8DwT9qMpK0d7qAWlg"]}},{"u":"request(jsObject)","p":{"filterSpecPath":"request","filters":["1L3mkL33TLaxbagz6iJmPg","N3CjJ8DwT9qMpK0d7qAWlg"],"color":"green","typeConstraint":"jsObject","filters1":["1L3mkL33TLaxbagz6iJmPg","N3CjJ8DwT9qMpK0d7qAWlg"]}},{"u":"request(jsObject).testInput1(jsObject)","p":{"filterSpecPath":"request.testInput1","filters":["1L3mkL33TLaxbagz6iJmPg"],"color":"gold","typeConstraint":"jsObject","filters1":["1L3mkL33TLaxbagz6iJmPg"]}},{"u":"request(jsObject).testInput2(jsObject)","p":{"filterSpecPath":"request.testInput2","filters":["N3CjJ8DwT9qMpK0d7qAWlg"],"color":"gold","typeConstraint":"jsObject","filters1":["N3CjJ8DwT9qMpK0d7qAWlg"]}}],"elist":[{"e":{"u":"request","v":"request(jsObject)"}},{"e":{"u":"request(jsObject)","v":"request(jsObject).testInput1(jsObject)"}},{"e":{"u":"request(jsObject)","v":"request(jsObject).testInput2(jsObject)"}}]},"ambigousBlackVertices":[],"ambiguousFilterSpecificationErrors":[]}'
     }
 });
+
+// New in arccore v0.1.5 - BIG PROBLEMS. I DON'T TRUST MYSELF IN HERE TODAY...
+testAmbiguityDetector({
+    testName: "Same filter different ID's",
+    validConfig: true,
+    request: specGraphBuilder([ testFilters.testSameFilterDifferentId1.result, testFilters.testSameFilterDifferentId2.result ]),
+    expectedResults: {
+        error: null,
+        result: null
+    }
+});
