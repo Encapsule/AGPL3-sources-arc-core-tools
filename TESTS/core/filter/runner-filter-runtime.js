@@ -48,15 +48,18 @@ module.exports = function(testVector_) {
                 assert.equal(JSON.stringify(innerResponse.result), testVector_.expectedResults.result);
             });
         } else {
-            it("Filter.request call should not have returned a result.", function() {
-                assert.isNull(innerResponse.result);
-            });
-            it("Filter.request call should have returned an error.", function() {
-                assert.isNotNull(innerResponse.error);
-                assert.isString(innerResponse.error);
-            });
-            it("Filter.request call response.error should match control value.", function() {
-                assert.equal(innerResponse.error, testVector_.expectedResults.error);
+            describe("Examine the expected runtime failure.", function() {
+                it("The request is expected to have produced a response.error.", function() {
+                    assert.isNotNull(innerResponse.error);
+                    assert.isString(innerResponse.error);
+                });
+                it("The response.error is expected to match control value.", function() {
+                    assert.equal(innerResponse.error, testVector_.expectedResults.error);
+                });
+                it("The response.result should match expected value.", function() {
+                    assert.deepEqual(innerResponse.result, testVector_.expectedResults.result);
+                });
+
             });
         }
     });

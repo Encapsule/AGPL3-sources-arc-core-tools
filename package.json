@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.1.6",
-  "codename": "grasslands",
+  "version": "0.1.7",
+  "codename": "halfmoon",
   "description": "Encapsule.io ARC project master repository.",
   "main": "index.js",
   "scripts": {

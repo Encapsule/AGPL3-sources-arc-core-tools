@@ -11,6 +11,7 @@ var composeFunction = testModule('arc_core_filter_create');
 var generateTestFilter1 = require('./fixture-gen-filter-1');
 var generateTestFilter2 = require('./fixture-gen-filter-2');
 var generateTestFilter3 = require('./fixture-gen-filter-3');
+var generateTestFilter4 = require('./fixture-gen-filter-4');
 // ==========================================================================
 
 testFilterRuntime({
@@ -44,7 +45,7 @@ testFilterRuntime({
     request: "The input type map specifies jsObject constraint so this should fail.",
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~\': Value of type \'jsString\' not in allowed type set [jsObject].',
-        result: ''
+        result: null
     }
 });
 
@@ -56,7 +57,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.inStringValueSetTest\': Value of type \'jsUndefined\' not in allowed type set [jsString].',
-        result: ''
+        result: null
     }
 });
 
@@ -69,7 +70,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.inStringValueSetTest\': Invalid value \'error\' not in allowed value set: [red,blue,green].',
-        result: ''
+        result: null
     }
 });
 
@@ -83,7 +84,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.inNumericalValueSetTest\': Value of type \'jsUndefined\' not in allowed type set [jsNumber].',
-        result: ''
+        result: null
     }
 });
 
@@ -97,7 +98,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.inNumericalValueSetTest\': Value of type \'jsString\' not in allowed type set [jsNumber].',
-        result: ''
+        result: null
     }
 });
 
@@ -111,7 +112,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.inStringRangeTest\': Value of type \'jsUndefined\' not in allowed type set [jsString].',
-        result: ''
+        result: null
     }
 });
 
@@ -126,7 +127,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.inStringRangeTest\': Value of type \'jsNumber\' not in allowed type set [jsString].',
-        result: ''
+        result: null
     }
 });
 
@@ -141,7 +142,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.inStringRangeTest\': Value of type \'jsNumber\' not in allowed type set [jsString].',
-        result: ''
+        result: null
     }
 });
 
@@ -157,7 +158,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.inNumericalRangeTest\': Value of type \'jsString\' not in allowed type set [jsNumber].',
-        result: ''
+        result: null
     }
 });
 
@@ -177,7 +178,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.arrayContentsVerifyTest[0]\': Value of type \'jsNumber\' not in allowed type set [jsString].',
-        result: ''
+        result: null
     }
 });
 
@@ -195,7 +196,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.arrayContentsVerifyTest[2]\': Value of type \'jsObject\' not in allowed type set [jsString].',
-        result: ''
+        result: null
     }
 });
 
@@ -212,7 +213,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.inStringRangeTest\': Invalid value \'0\' below allowed value range \'A\',\'Z\'.',
-        result: ''
+        result: null
     }
 });
 
@@ -229,7 +230,7 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.inStringRangeTest\': Invalid value \'a\' above allowed value range \'A\',\'Z\'.',
-        result: ''
+        result: null
     }
 });
 
@@ -245,7 +246,7 @@ testFilterRuntime({
         arrayContentsVerifyTest: [ "okay", "good", "great" ]
     },
     expectedResults: {
-        error: '',
+        error: null,
         result: '{"inStringValueSetTest":"blue","inNumericalValueSetTest":11,"inStringRangeTest":"L","inNumericalRangeTest":7,"arrayContentsVerifyTest":["okay","good","great"]}'
     }
 });
@@ -266,11 +267,9 @@ testFilterRuntime({
     },
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~.arrayContentsVerifyTest[2]\': Value of type \'jsNumber\' not in allowed type set [jsString].',
-        result: ''
+        result: null
     }
 });
-
-
 
 
 testFilterRuntime({
@@ -282,9 +281,18 @@ testFilterRuntime({
         error: '',
         result: '"It\'s all fun and games until someone loses an eye."'
     }
-
 });
 
+testFilterRuntime({
+    testName: "Call a filter that violates its output filter spec.",
+    validConfig: false,
+    nffGenerator: generateTestFilter4,
+    request: {}, // ignored
+    expectedResults: {
+        error: 'Filter [VR6DAqmQSM6ygo8s-nrB9w::Test Output Spec] failed while normalizing response result. Error at path \'~.rightProperty\': Value of type \'jsUndefined\' not in allowed type set [jsString].',
+        result: { wrongProperty: 5 }
+    }
+});
 
 
 

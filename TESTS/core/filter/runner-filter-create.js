@@ -75,16 +75,21 @@ var testFilterComposeFunction = module.exports = function(testVector_) {
             });
 
         } else {
-            it("The request should not have produced a result.", function() {
-                assert.isNull(callResponse.result);
+            describe("Examine the expected runtime failure.", function() {
+
+                it("The request is expected to have produced a response.error.", function() {
+                    assert.isNotNull(callResponse.error);
+                    assert.isString(callResponse.error);
+                });
+                it("The response.error is expected to match control value.", function() {
+                    assert.equal(callResponse.error, testVector_.expectedResults.error);
+                });
+                it("The response.result should match expected value.", function() {
+                    assert.equal(callResponse.result, testVector_.expectedResults.result);
+                });
+
             });
-            it("The request is expected to have produced an error.", function() {
-                assert.isNotNull(callResponse.error);
-                assert.isString(callResponse.error);
-            });
-            it("The request error is expected to match control value.", function() {
-                assert.equal(callResponse.error, testVector_.expectedResults.error);
-            });
+
         }
     });
 

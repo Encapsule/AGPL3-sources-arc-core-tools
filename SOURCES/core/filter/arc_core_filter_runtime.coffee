@@ -16,7 +16,7 @@ bodyFunctionResponseFilter =
     result:
         ____opaque: true
         ____label: "Result"
-        ____description: "Null if an error occurred. Otherwise, some opaque JavaScript value reference."
+        ____description: "Untouched regardless of error. Valid per output filter spec iff ~error."
 
 Object.freeze bodyFunctionResponseFilter
 
@@ -52,6 +52,8 @@ module.exports = class Filter
                     dispatchState = "verifying response signature of main operation"
                     errors.unshift returnSignatureCheck.error
                     break
+
+                response.result = bodyFunctionResponse.result
 
                 if bodyFunctionResponse.error
                     errors.unshift bodyFunctionResponse.error

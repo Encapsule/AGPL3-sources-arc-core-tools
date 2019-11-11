@@ -277,7 +277,7 @@ testFilterRuntime({
     request: null,
     expectedResults: {
         error: 'Filter [4PlhPwvcQ5axocAL5M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsNull\' not in allowed type set [jsObject].',
-        result: ''
+        result: null
 
     }
 });
@@ -353,7 +353,7 @@ testFilterRuntime({
     request: null,
     expectedResults: {
         error: 'Filter [4PlhPwvcQ5axocAL5M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsNull\' not in allowed type set [jsObject].',
-        result: ''
+        result: null
 
     }
 });
@@ -388,7 +388,7 @@ testFilterRuntime({
     request: undefined,
     expectedResults: {
         error: 'Filter [4PlhPwvcQ6axocAL6M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsObject].',
-        result: ''
+        result: null
 
     }
 });
@@ -422,7 +422,7 @@ testFilterRuntime({
     request: null,
     expectedResults: {
         error: 'Filter [4PlhPwvcQ6axocAL6M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsNull\' not in allowed type set [jsObject].',
-        result: ''
+        result: null
 
     }
 });
@@ -484,7 +484,7 @@ testFilterRuntime({
     request: undefined,
     expectedResults: {
         error: 'Filter [4PlhPwvcQ7axocAL7M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsObject].',
-        result: ''
+        result: null
 
     }
 });
