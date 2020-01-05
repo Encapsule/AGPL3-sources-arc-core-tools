@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.1.7",
-  "codename": "halfmoon",
+  "version": "0.1.8",
+  "codename": "sagelands",
   "description": "Encapsule.io ARC project master repository.",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     {
       "name": "Christopher D. Russell",
       "email": "cdr@encapsule.io",
-      "url": "http://chrisrussell.net"
+      "url": "https://encapsule.io"
     }
   ],
   "license": "AGPL-3.0",
