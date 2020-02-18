@@ -63,7 +63,7 @@ module.exports = function (request_) {
         for (index in nrequest.options.startVector) {
 
             vertexId = nrequest.options.startVector[index];
-            
+
             // Ensure the starting vertex is actually in the graph.
             if (!nrequest.digraph.isVertex(vertexId)) {
                 errors.unshift("DFT request failed. Vertex '" + vertexId + "' not found in specified directed graph container.");
@@ -91,7 +91,7 @@ module.exports = function (request_) {
 
             // searchStack is a FILO of FIFO's (or stack of queues if you prefer)
             // initialized with starting vertex set member under-evaluation's ID.
-            var searchStack = [ [ vertexId ] ]; 
+            var searchStack = [ [ vertexId ] ];
 
             // Iterate until search stack is empty, a client visitor method returns false, or an error occurs.
             while (searchStack.length && continueSearch && !errors.length) {
@@ -206,7 +206,7 @@ module.exports = function (request_) {
                     }
                     if (adjacentVertices.length) {
                         searchStack.push(adjacentVertices);
-                    }                                
+                    }
 
                     break;
 
@@ -245,7 +245,7 @@ module.exports = function (request_) {
                     // The black sheep. The only way for a vertex to end up in this state
                     // is for it to be queued after another adjacent vertex that reaches
                     // it first in the depth-first search tree. By definition it's already
-                    // been 'finished'. 
+                    // been 'finished'.
 
                     if (searchStack.length > 1) {
                         innerRequest = { e: { u: (searchStack[searchStack.length - 2])[0], v: currentVertexId }, g: nrequest.digraph };
@@ -279,7 +279,7 @@ module.exports = function (request_) {
             if (errors.length || !continueSearch) {
                 break;
             }
-            
+
         } // end while outer depth-first search loop
 
         if (errors.length || !continueSearch) {
@@ -319,7 +319,6 @@ module.exports = function (request_) {
         response.result = nrequest.options.traverseContext;
     }
     return response;
-    
 
 };
 

@@ -1,7 +1,7 @@
 /*
   Encapsule/jsgraph/src/digraph-algorithm-bft.js
 
-  Copyright (C) 2014-2015 Christopher D. Russell
+  Copyright (C) 2014-2020 Christopher D. Russell
 
   This library is published under the MIT License and is part of the
   Encapsule Project System in Cloud (SiC) open service architecture.
@@ -100,7 +100,7 @@ module.exports = function (request_) {
         if (errors.length || !continueSearch) {
             break;
         }
-        
+
         // Initialize the BF visit or search.
         // Note that all that distinguishes visit from search is the number of starting vertices. One -> visit, N -> search.
 
@@ -126,7 +126,7 @@ module.exports = function (request_) {
                 }
                 continueSearch = innerResponse.result;
             }
-            
+
             // Conditionally exit the loop if discoverVertex returned false.
             if (errors.length || !continueSearch) {
                 break;
@@ -265,7 +265,7 @@ module.exports = function (request_) {
                 if (errors.length || !continueSearch) {
                     break;
                 }
-                
+
             } // for (outEdge in outEdges)
 
             if (errors.length || !continueSearch) {
