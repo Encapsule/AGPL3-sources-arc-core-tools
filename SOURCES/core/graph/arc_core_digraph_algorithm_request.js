@@ -29,10 +29,6 @@ var TRAVERSE_CONTEXT = require('./arc_core_digraph_algorithm_context');
               the caller. In advanced scenarios you may wish to provide a pre-initialized
               (or potentially pre-colored) traversal context object.
           }
-          getEdgeWeight: optional function called by BFT and DFT algorithm to obtain
-              some developer-defined weight value that can be compared with the weight
-              values of adjacent edges via compareEdgeWeights
-          compareEdgeWeights: optional edge weight comparator function called by BFT/DFT
       }
   }
 
@@ -139,32 +135,6 @@ module.exports = function (request_) {
             }
             if (innerResponse === '[object Object]') {
                 nrequest.options.traverseContext = request_.options.traverseContext;
-            }
-
-            innerResponse = helperFunctions.JSType(request_.options.getEdgeWeight);
-            if ((innerResponse !== '[object Undefined]') && (innerResponse !== '[object Function]')) {
-                errors.unshift("Options object property ~.options.getEdgeWeight is the wrong type. Expected either '[object Function]' or '[object Undefined]'. Found type '" + innerResponse + "'.");
-                break;
-            }
-            if (innerResponse === '[object Function]') {
-                nrequest.options.getEdgeWeight = request_.options.getEdgeWeight;
-                edgeWeighting = true;
-            }
-
-            innerResponse = helperFunctions.JSType(request_.options.compareEdgeWeights);
-            if ((innerResponse !== '[object Undefined]') && (innerResponse !== '[object Function]')) {
-                errors.unshift("Options object property ~.options.compareEdgeWeights is the wrong type. Expected either '[object Function]' or '[object Undefined'. Found type '" + innerResponse + "'.");
-                break;
-            }
-            if (innerResponse === '[object Function]') {
-                nrequest.options.compareEdgeWeights= request_.options.compareEdgeWeights;
-            }
-
-            if (nrequest.options.getEdgeWeight || nrequest.options.compareEdgeWeights) {
-                if (!(nrequest.optionsgetEdgeWeight && nrequest.options.compareEdgeWeights)) {
-                    errors.unshift("Options object properties ~.options.getEdgeWeight and ~.options.compareEdgeWeight functions must be specified together. Or, not at all.");
-                    break;
-                }
             }
 
         } // end if options object specified
