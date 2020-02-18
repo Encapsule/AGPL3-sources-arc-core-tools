@@ -33,7 +33,7 @@ if (fs.existsSync(packageManifestPath)) {
 } else {
     packageManifest = arcMasterManifest;
 }
- 
+
 // Load and compile the appropriate license template.
 const licenseTemplatePath = path.resolve(__dirname, 'LICENSES', (licenseType + '.hbs'));
 const licenseTemplate = fs.readFileSync(licenseTemplatePath).toString('utf-8');

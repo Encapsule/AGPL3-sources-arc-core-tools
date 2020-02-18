@@ -2,7 +2,7 @@
   "private": true,
   "name": "arc_master",
   "version": "0.1.9",
-  "codename": "bennu",
+  "codename": "crescent",
   "description": "Encapsule.io ARC project master repository.",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     {
       "name": "Christopher D. Russell",
       "email": "cdr@encapsule.io",
-      "url": "https://encapsule.io"
+      "url": "https://github.com/ChrisRus"
     }
   ],
   "license": "AGPL-3.0",

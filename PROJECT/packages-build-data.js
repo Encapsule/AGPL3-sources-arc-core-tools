@@ -5,21 +5,23 @@ var packageDatabase = module.exports = {
         packageType: "library",
         browserSafe: true,
         packageManifestFields: {
-            description: "Encapsule Project Addressable Resource Class (ARC) core runtime data modeling and processing libraries.",
-            keywords: "ARC",
+            description: "This package is a collection of low-level runtime libraries for modeling, filtering, and routing runtime application state data in JavaScript applications.",
+            keywords: "Encapsule, ARC, in-memory, functional, holistic, filter, discriminator, routing, MDR, graph, DirectedGraph, data, algorithms, models, modeling, library, RTL, cell, cell processor",
             main: "arc_core_lib.js"
         },
         readmeDocumentContent: {
             summaryDescriptor: {
                 markdown: [
+                    "The @encapsule/arccore package's main consumers are [@encapsule/arccore](https://github.com/Encapsule/ARCtools) and **[@encapsule/holistic](https://github.com/Encapsule/holistic)** (as well as apps and services derived from the @encapsule/holistic app platform distribution).",
+                    "The moniker **ARC** stands for **A**addressable **R**esource **C**ell (ARC) which is an abstraction related to celluar automata systems modeling and disitributed application state management. @encapsule/arccore is a toolkit for building such systems in JavaScript. These topics are further explored in the derived  [@encapsule/holistic](https://github.com/Encapsule/holistic) platform distribution."
                 ]
             },
             markdownBody: [
                 {
                     heading: "## Contents",
                     markdown: [
-                        "Please visit [ARCcore Package Documentation](https://encapsule.io/docs/ARCcore) for more information and detailed developer documentation.",
-                        "The following sections provide a short overview of the libraries contained in the `arccore` package."
+                        "The sections below provide a brief summary of the runtime library packages included in the @encapsule/arccore distribution package.",
+                        "Please visit **[ARCcore Package Docs](https://encapsule.io/docs/ARCcore)** for complete @encapsule/arccore API documentation.",
                     ]
                 },
 
@@ -61,8 +63,8 @@ var packageDatabase = module.exports = {
         browserSafe: false,
         packageManifestFields: {
             preferGlobal: true,
-            description: "Encapsule Project Addressable Resource Class (ARC) command line tools.",
-            keywords: "ARC",
+            description: "ARC stands for Addressable Resource Cell. @encapsule/arctools contains a small collection of command-line utilities derived from @encapsule/arccore. Used primarily by @encapsule/holistic package.",
+            keywords: "Encapsule, holistic, filter, discriminator, routing, MDR, graph, DirectedGraph, data, algorithms, models, modeling, library",
             dependencies: {
                 "chalk": "^1.1.1",
                 "commander": "^2.9.0",

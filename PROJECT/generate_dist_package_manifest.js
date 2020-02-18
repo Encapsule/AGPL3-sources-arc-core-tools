@@ -95,9 +95,7 @@ function injectReadmeSection(sectionDescriptor_) {
 } // function injectReadmeSection
 
 // Start of the markdown document...
-markdown.push("[![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io)");
-
-markdown.push("### Encapsule Project");
+markdown.push("# [![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io) Encapsule Project");
 
 markdown.push("# " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\"");
 markdown.push("```\n" +
@@ -110,7 +108,7 @@ markdown.push("```\n" +
 
 markdown.push("# Summary");
 
-
+markdown.push("## Description");
 markdown.push(packageBuildData.packageManifestFields.description);
 
 // Insert optional package-specific content to the Summary section body.
@@ -161,8 +159,11 @@ while (packageBuildData.readmeDocumentContent.markdownBody && packageBuildData.r
 }
 
 markdown.push("<hr>");
-markdown.push("Copyright &copy; " + buildYear + " [" + copyrightHolder.name + "](" + copyrightHolder.url + ")");
-markdown.push("Published by [Encapsule Project](https://encapsule.io) Seattle, WA USA");
+markdown.push("[![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io)");
+markdown.push("Copyright &copy; " + buildYear + " [" + copyrightHolder.name + "](" + copyrightHolder.url + ") Seattle, Washington USA");
+markdown.push("Published under [" + packageManifest.license + "](./LICENSE) license by [Encapsule Project](https://encapsule.io)");
+markdown.push("Please follow [@Encapsule](https://twitter.com/Encapsule) on Twitter for news and updates.");
+markdown.push("<hr>");
 
 const mddoc = markdown.join('\n\n');
 
