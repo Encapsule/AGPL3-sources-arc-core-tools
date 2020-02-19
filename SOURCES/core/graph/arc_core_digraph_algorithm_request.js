@@ -16,7 +16,11 @@ var TRAVERSE_CONTEXT = require('./arc_core_digraph_algorithm_context');
 /*
   request = {
       digraph: reference to jsgraph.DirectedGraph container object (required)
-      visitor: reference to jsgraph BFV visitor object (required)
+      visitor: reference to jsgraph xFT visitor object (required) (where X is BREADTH or DEPTH-First Transform (xFT)
+      context: reference to a developer-defined in-memory structure (typically an object but whatever)
+               that is passed to all visitor callbacks if specified. This is useful for passing external property
+               maps to a visitor. And, for accumulating intermediate information and/or results during the execution
+               of the traversal algorithm.
       options: {
           startVector: reference to a vertex ID string, or an array of vertex ID strings (optional)
               Note: if ommitted, BFT uses the digraph's root vertex set as the start vertex set
@@ -149,6 +153,8 @@ module.exports = function (request_) {
             errors.unshift("Traversal aborted because we don't know which vertex to start on. Specify a graph that has at least one root vertex, explicity specify the start vertex (or vertices) via `request.options.startVector` array, or suppress this error by setting `request.options.allowEmptyStartVector` to Boolean true.");
             break;
         }
+
+        nrequest.context = request_.context; // Just take a reference if the developer specified any context data for the traversal
 
         response.result = nrequest;
 

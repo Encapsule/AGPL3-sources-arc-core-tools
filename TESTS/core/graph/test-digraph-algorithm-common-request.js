@@ -155,3 +155,30 @@ testTraverseRequestNormalizer({
     });
 
 })();
+
+(function() {
+
+    var digraph = new DirectedGraph({elist:[{e:{u:'A',v:'B'}}, {e:{u:'B',v:'C'}}]});
+
+    var context = {
+        inputs: {
+            weights: {
+                foo: 5,
+                bar: 6
+            }
+        },
+        outputs: {}
+    };
+
+    testTraverseRequestNormalizer({
+        testName: "Test new visitor context facility.",
+        validConfig: true,
+        request: { digraph: digraph, context: context, visitor: nullVisitor },
+        expectedResults: {
+            error: '',
+            json: '{"digraph":{"name":"","description":"","vlist":[],"elist":[{"e":{"u":"A","v":"B"}},{"e":{"u":"B","v":"C"}}]},"visitor":{},"options":{"startVector":["A"],"allowEmptyStartVector":false,"signalStart":true,"traverseContext":{"searchStatus":"pending","colorMap":{"A":0,"B":0,"C":0},"undiscoveredMap":{"A":true,"B":true,"C":true}}},"context":{"inputs":{"weights":{"foo":5,"bar":6}},"outputs":{}}}'
+        }
+    });
+
+})();
+
