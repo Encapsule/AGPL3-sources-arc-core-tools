@@ -61,7 +61,6 @@ var colors = require('./arc_core_digraph_algorithm_colors');
 var visitorCallback = require('./arc_core_digraph_algorithm_visit');
 var normalizeRequest = require('./arc_core_digraph_algorithm_request');
 
-
 module.exports = function (request_) {
 
     var nrequest = null; // normalized request object
@@ -264,7 +263,7 @@ module.exports = function (request_) {
                     return compareResponse.result;
 
                 });
-            } // if weighted start vector
+            } // if weight-sorted outEdges
 
             for (index in outEdges) {
 
