@@ -100,7 +100,7 @@ module.exports = function (request_) {
                     algorithm: algorithmName,
                     visitor: nrequest.visitor,
                     method: 'compareEdgeWeights',
-                    request: { a: weightA, b: weightB }
+                    request: { a: weightA, b: weightB, context: nrequest.context }
                 });
                 if (compareResponse.error) {
                     return 0;
@@ -237,7 +237,7 @@ module.exports = function (request_) {
                                 algorithm: algorithmName,
                                 visitor: nrequest.visitor,
                                 method: 'compareEdgeWeights',
-                                request: { a: weightA, b: weightB }
+                                request: { a: weightA, b: weightB, context: nrequest.context }
                             });
                             if (compareResponse.error) {
                                 return 0;
