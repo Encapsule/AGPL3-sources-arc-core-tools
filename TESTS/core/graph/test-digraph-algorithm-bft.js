@@ -298,7 +298,7 @@ testBFT({ testName: "Empty request", validConfig: false,
             path: '["0 initializeVertex transportation","1 initializeVertex planes","2 initializeVertex trains","3 initializeVertex automobiles","4 initializeVertex Audi","5 initializeVertex TT RS","6 initializeVertex RS 5","7 initializeVertex R8","8 initializeVertex BMW","9 initializeVertex Z4","10 initializeVertex M3","11 initializeVertex Porsche","12 initializeVertex 911 Turbo S","13 initializeVertex 918 Spyder","14 discoverVertex transportation","15 examineVertex transportation","16 examineEdge [transportation,planes]","17 discoverVertex planes","18 treeEdge [transportation,planes]","19 examineEdge [transportation,trains]","20 discoverVertex trains","21 treeEdge [transportation,trains]","22 examineEdge [transportation,automobiles]","23 discoverVertex automobiles","24 treeEdge [transportation,automobiles]","25 finishVertex transportation","26 examineVertex planes","27 finishVertex planes","28 examineVertex trains","29 finishVertex trains","30 examineVertex automobiles","31 examineEdge [automobiles,Audi]","32 discoverVertex Audi","33 treeEdge [automobiles,Audi]","34 examineEdge [automobiles,BMW]","35 discoverVertex BMW","36 treeEdge [automobiles,BMW]","37 examineEdge [automobiles,Porsche]","38 discoverVertex Porsche","39 treeEdge [automobiles,Porsche]","40 finishVertex automobiles","41 examineVertex Audi","42 examineEdge [Audi,TT RS]","43 discoverVertex TT RS","44 treeEdge [Audi,TT RS]","45 examineEdge [Audi,RS 5]","46 discoverVertex RS 5","47 treeEdge [Audi,RS 5]","48 examineEdge [Audi,R8]","49 discoverVertex R8","50 treeEdge [Audi,R8]","51 finishVertex Audi","52 examineVertex BMW","53 examineEdge [BMW,Z4]","54 discoverVertex Z4","55 treeEdge [BMW,Z4]","56 examineEdge [BMW,M3]","57 discoverVertex M3","58 treeEdge [BMW,M3]","59 finishVertex BMW","60 examineVertex Porsche","61 examineEdge [Porsche,911 Turbo S]","62 discoverVertex 911 Turbo S","63 treeEdge [Porsche,911 Turbo S]","64 examineEdge [Porsche,918 Spyder]","65 discoverVertex 918 Spyder","66 treeEdge [Porsche,918 Spyder]","67 finishVertex Porsche","68 examineVertex TT RS","69 finishVertex TT RS","70 examineVertex RS 5","71 finishVertex RS 5","72 examineVertex R8","73 finishVertex R8","74 examineVertex Z4","75 finishVertex Z4","76 examineVertex M3","77 finishVertex M3","78 examineVertex 911 Turbo S","79 finishVertex 911 Turbo S","80 examineVertex 918 Spyder","81 finishVertex 918 Spyder"]'
         }
     });
-    
+
 })();
 
 
@@ -508,7 +508,6 @@ testBFT({ testName: "Empty request", validConfig: false,
                 path: '["0 initializeVertex A","1 initializeVertex B","2 initializeVertex C","3 initializeVertex D","4 initializeVertex E","5 startVertex A","6 discoverVertex A","7 startVertex B","8 discoverVertex B","9 examineVertex A","10 examineEdge [A,B]","11 nonTreeEdge [A,B]"]'
             }
         });
-        
 
         testBFT({
             testName: "Breadth-first traverse terminate on 'grayTarget'", validConfig: true,
@@ -529,7 +528,7 @@ testBFT({ testName: "Empty request", validConfig: false,
                 path: '["0 initializeVertex A","1 initializeVertex B","2 initializeVertex C","3 initializeVertex D","4 initializeVertex E","5 startVertex A","6 discoverVertex A","7 startVertex B","8 discoverVertex B","9 examineVertex A","10 examineEdge [A,B]","11 nonTreeEdge [A,B]","12 grayTarget [A,B]"]'
             }
         });
-        
+
         testBFT({
             testName: "Breadth-first traverse terminate on 'blackTarget'", validConfig: true,
             request: {
@@ -549,7 +548,7 @@ testBFT({ testName: "Empty request", validConfig: false,
                 path: '["0 initializeVertex A","1 initializeVertex B","2 initializeVertex C","3 initializeVertex D","4 initializeVertex E","5 startVertex A","6 discoverVertex A","7 startVertex B","8 discoverVertex B","9 examineVertex A","10 examineEdge [A,B]","11 nonTreeEdge [A,B]","12 grayTarget [A,B]","13 examineEdge [A,E]","14 discoverVertex E","15 treeEdge [A,E]","16 finishVertex A","17 examineVertex B","18 examineEdge [B,C]","19 discoverVertex C","20 treeEdge [B,C]","21 examineEdge [B,D]","22 discoverVertex D","23 treeEdge [B,D]","24 finishVertex B","25 examineVertex E","26 finishVertex E","27 examineVertex C","28 finishVertex C","29 examineVertex D","30 examineEdge [D,A]","31 nonTreeEdge [D,A]","32 blackTarget [D,A]"]'
             }
         });
-        
+
         testBFT({
             testName: "Breadth-first traverse terminate on 'finishVertex'", validConfig: true,
             request: {
@@ -569,7 +568,92 @@ testBFT({ testName: "Empty request", validConfig: false,
                 path: '["0 initializeVertex A","1 initializeVertex B","2 initializeVertex C","3 initializeVertex D","4 initializeVertex E","5 startVertex A","6 discoverVertex A","7 startVertex B","8 discoverVertex B","9 examineVertex A","10 examineEdge [A,B]","11 nonTreeEdge [A,B]","12 grayTarget [A,B]","13 examineEdge [A,E]","14 discoverVertex E","15 treeEdge [A,E]","16 finishVertex A"]'
             }
         });
-        
+
+
+    });
+})();
+
+(function() {
+    describe("Breadth-first traverse termination tests.", function() {
+
+        var digraph = new DirectedGraph({
+            vlist: [
+                { u: "orange" },
+                { u: "cherry" },
+                { u: "bannana" },
+                { u: "pineapple" },
+                { u: "mango" },
+                { u: "papaya" },
+                { u: "blueberry" },
+                { u: "kiwi" },
+                { u: "grape" },
+                { u: "mellon" }
+            ],
+            elist: [
+                { e: { u: "grape", v: "mellon" } },
+                { e: { u: "grape", v: "bannana" } }
+            ]
+        });
+
+        testBFT({
+            testName: "Breadth-first traverse weight-order test #1",
+            validConfig: true,
+            request: {
+                digraph: digraph,
+                visitor: {
+                    getEdgeWeight: function(request_) {
+                        return request_.e.v; // return the head vertex ID string as the weight of the edge
+                    },
+                    compareEdgeWeights: function(request_) {
+                        return ((request_.a > request_.b)?1:(request_.a < request_.b)?-1:0);
+                    },
+                    discoverVertex: function(request_) {
+                        console.log("discover vertex " + request_.u);
+                        return true;
+                    },
+                    finishVertex: function(request_) {
+                        console.log("finish vertex " + request_.u);
+                        return true;
+                    }
+                },
+                options: { startVector: undefined }
+            },
+            expectedResults: {
+                error: null,
+                result: '{"searchStatus":"completed","colorMap":{"orange":2,"cherry":2,"bannana":2,"pineapple":2,"mango":2,"papaya":2,"blueberry":2,"kiwi":2,"grape":2,"mellon":2},"undiscoveredMap":{}}',
+                path: '["0 initializeVertex orange","1 initializeVertex cherry","2 initializeVertex bannana","3 initializeVertex pineapple","4 initializeVertex mango","5 initializeVertex papaya","6 initializeVertex blueberry","7 initializeVertex kiwi","8 initializeVertex grape","9 initializeVertex mellon","10 getEdgeWeight [undefined,orange]","11 getEdgeWeight [undefined,cherry]","12 compareEdgeWeights","13 getEdgeWeight [undefined,orange]","14 getEdgeWeight [undefined,pineapple]","15 compareEdgeWeights","16 getEdgeWeight [undefined,pineapple]","17 getEdgeWeight [undefined,mango]","18 compareEdgeWeights","19 getEdgeWeight [undefined,orange]","20 getEdgeWeight [undefined,mango]","21 compareEdgeWeights","22 getEdgeWeight [undefined,cherry]","23 getEdgeWeight [undefined,mango]","24 compareEdgeWeights","25 getEdgeWeight [undefined,pineapple]","26 getEdgeWeight [undefined,papaya]","27 compareEdgeWeights","28 getEdgeWeight [undefined,orange]","29 getEdgeWeight [undefined,papaya]","30 compareEdgeWeights","31 getEdgeWeight [undefined,pineapple]","32 getEdgeWeight [undefined,blueberry]","33 compareEdgeWeights","34 getEdgeWeight [undefined,papaya]","35 getEdgeWeight [undefined,blueberry]","36 compareEdgeWeights","37 getEdgeWeight [undefined,orange]","38 getEdgeWeight [undefined,blueberry]","39 compareEdgeWeights","40 getEdgeWeight [undefined,mango]","41 getEdgeWeight [undefined,blueberry]","42 compareEdgeWeights","43 getEdgeWeight [undefined,cherry]","44 getEdgeWeight [undefined,blueberry]","45 compareEdgeWeights","46 getEdgeWeight [undefined,pineapple]","47 getEdgeWeight [undefined,kiwi]","48 compareEdgeWeights","49 getEdgeWeight [undefined,papaya]","50 getEdgeWeight [undefined,kiwi]","51 compareEdgeWeights","52 getEdgeWeight [undefined,orange]","53 getEdgeWeight [undefined,kiwi]","54 compareEdgeWeights","55 getEdgeWeight [undefined,mango]","56 getEdgeWeight [undefined,kiwi]","57 compareEdgeWeights","58 getEdgeWeight [undefined,cherry]","59 getEdgeWeight [undefined,kiwi]","60 compareEdgeWeights","61 getEdgeWeight [undefined,pineapple]","62 getEdgeWeight [undefined,grape]","63 compareEdgeWeights","64 getEdgeWeight [undefined,papaya]","65 getEdgeWeight [undefined,grape]","66 compareEdgeWeights","67 getEdgeWeight [undefined,orange]","68 getEdgeWeight [undefined,grape]","69 compareEdgeWeights","70 getEdgeWeight [undefined,mango]","71 getEdgeWeight [undefined,grape]","72 compareEdgeWeights","73 getEdgeWeight [undefined,kiwi]","74 getEdgeWeight [undefined,grape]","75 compareEdgeWeights","76 getEdgeWeight [undefined,cherry]","77 getEdgeWeight [undefined,grape]","78 compareEdgeWeights","79 startVertex blueberry","80 discoverVertex blueberry","81 startVertex cherry","82 discoverVertex cherry","83 startVertex grape","84 discoverVertex grape","85 startVertex kiwi","86 discoverVertex kiwi","87 startVertex mango","88 discoverVertex mango","89 startVertex orange","90 discoverVertex orange","91 startVertex papaya","92 discoverVertex papaya","93 startVertex pineapple","94 discoverVertex pineapple","95 examineVertex blueberry","96 finishVertex blueberry","97 examineVertex cherry","98 finishVertex cherry","99 examineVertex grape","100 getEdgeWeight [grape,mellon]","101 getEdgeWeight [grape,bannana]","102 compareEdgeWeights","103 examineEdge [grape,bannana]","104 discoverVertex bannana","105 treeEdge [grape,bannana]","106 examineEdge [grape,mellon]","107 discoverVertex mellon","108 treeEdge [grape,mellon]","109 finishVertex grape","110 examineVertex kiwi","111 finishVertex kiwi","112 examineVertex mango","113 finishVertex mango","114 examineVertex orange","115 finishVertex orange","116 examineVertex papaya","117 finishVertex papaya","118 examineVertex pineapple","119 finishVertex pineapple","120 examineVertex bannana","121 finishVertex bannana","122 examineVertex mellon","123 finishVertex mellon"]'
+            }
+        });
+
+        testBFT({
+            testName: "Breadth-first traverse weight-order test #2",
+            validConfig: true,
+            request: {
+                digraph: digraph,
+                visitor: {
+                    getEdgeWeight: function(request_) {
+                        return request_.e.v; // return the head vertex ID string as the weight of the edge
+                    },
+                    compareEdgeWeights: function(request_) {
+                        return (-1 * ((request_.a > request_.b)?1:(request_.a < request_.b)?-1:0));
+                    },
+                    discoverVertex: function(request_) {
+                        console.log("discover vertex " + request_.u);
+                        return true;
+                    },
+                    finishVertex: function(request_) {
+                        console.log("finish vertex " + request_.u);
+                        return true;
+                    }
+                },
+                options: { startVector: undefined }
+            },
+            expectedResults: {
+                error: '',
+                result: '{"searchStatus":"completed","colorMap":{"orange":2,"cherry":2,"bannana":2,"pineapple":2,"mango":2,"papaya":2,"blueberry":2,"kiwi":2,"grape":2,"mellon":2},"undiscoveredMap":{}}',
+                path: '["0 initializeVertex orange","1 initializeVertex cherry","2 initializeVertex bannana","3 initializeVertex pineapple","4 initializeVertex mango","5 initializeVertex papaya","6 initializeVertex blueberry","7 initializeVertex kiwi","8 initializeVertex grape","9 initializeVertex mellon","10 getEdgeWeight [undefined,orange]","11 getEdgeWeight [undefined,cherry]","12 compareEdgeWeights","13 getEdgeWeight [undefined,cherry]","14 getEdgeWeight [undefined,pineapple]","15 compareEdgeWeights","16 getEdgeWeight [undefined,orange]","17 getEdgeWeight [undefined,pineapple]","18 compareEdgeWeights","19 getEdgeWeight [undefined,cherry]","20 getEdgeWeight [undefined,mango]","21 compareEdgeWeights","22 getEdgeWeight [undefined,orange]","23 getEdgeWeight [undefined,mango]","24 compareEdgeWeights","25 getEdgeWeight [undefined,cherry]","26 getEdgeWeight [undefined,papaya]","27 compareEdgeWeights","28 getEdgeWeight [undefined,mango]","29 getEdgeWeight [undefined,papaya]","30 compareEdgeWeights","31 getEdgeWeight [undefined,orange]","32 getEdgeWeight [undefined,papaya]","33 compareEdgeWeights","34 getEdgeWeight [undefined,pineapple]","35 getEdgeWeight [undefined,papaya]","36 compareEdgeWeights","37 getEdgeWeight [undefined,cherry]","38 getEdgeWeight [undefined,blueberry]","39 compareEdgeWeights","40 getEdgeWeight [undefined,blueberry]","41 getEdgeWeight [undefined,kiwi]","42 compareEdgeWeights","43 getEdgeWeight [undefined,cherry]","44 getEdgeWeight [undefined,kiwi]","45 compareEdgeWeights","46 getEdgeWeight [undefined,mango]","47 getEdgeWeight [undefined,kiwi]","48 compareEdgeWeights","49 getEdgeWeight [undefined,blueberry]","50 getEdgeWeight [undefined,grape]","51 compareEdgeWeights","52 getEdgeWeight [undefined,cherry]","53 getEdgeWeight [undefined,grape]","54 compareEdgeWeights","55 getEdgeWeight [undefined,kiwi]","56 getEdgeWeight [undefined,grape]","57 compareEdgeWeights","58 startVertex pineapple","59 discoverVertex pineapple","60 startVertex papaya","61 discoverVertex papaya","62 startVertex orange","63 discoverVertex orange","64 startVertex mango","65 discoverVertex mango","66 startVertex kiwi","67 discoverVertex kiwi","68 startVertex grape","69 discoverVertex grape","70 startVertex cherry","71 discoverVertex cherry","72 startVertex blueberry","73 discoverVertex blueberry","74 examineVertex pineapple","75 finishVertex pineapple","76 examineVertex papaya","77 finishVertex papaya","78 examineVertex orange","79 finishVertex orange","80 examineVertex mango","81 finishVertex mango","82 examineVertex kiwi","83 finishVertex kiwi","84 examineVertex grape","85 getEdgeWeight [grape,mellon]","86 getEdgeWeight [grape,bannana]","87 compareEdgeWeights","88 examineEdge [grape,mellon]","89 discoverVertex mellon","90 treeEdge [grape,mellon]","91 examineEdge [grape,bannana]","92 discoverVertex bannana","93 treeEdge [grape,bannana]","94 finishVertex grape","95 examineVertex cherry","96 finishVertex cherry","97 examineVertex blueberry","98 finishVertex blueberry","99 examineVertex mellon","100 finishVertex mellon","101 examineVertex bannana","102 finishVertex bannana"]'
+            }
+        });
 
 
     });

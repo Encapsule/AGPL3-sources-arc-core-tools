@@ -36,6 +36,7 @@ module.exports = function (request_) {
         inBreakScope = true;
         var visitorCallback = request_.visitor[request_.method];
         var jstype = helperFunctions.JSType(visitorCallback);
+
         // If the visitor function is not defined on the visitor object, return true to continue the search.
         if (jstype !== '[object Function]') {
             if (jstype !== '[object Undefined]') {
@@ -45,17 +46,38 @@ module.exports = function (request_) {
             response.result = true;
             break;
         }
-        var continueSearch = visitorCallback(request_.request);
-        jstype = helperFunctions.JSType(continueSearch);
-        if (jstype !== '[object Boolean]') {
-            errors.unshift(request_.algorithm + " visitor interface error in callback function '" + request_.method + "'. Function returned type '" + jstype + "' instead of expected '[object Boolean]'.");
+        // Call the visitor method (just a function):
+        var visitorResult = visitorCallback(request_.request);
+        jstype = helperFunctions.JSType(visitorResult)
+
+        switch (request_.method) {
+        case "getEdgeWeight":
+            // We do not know or care about this type - it's entirely developer-defined
+            response.result = visitorResult;
+            break;
+        case "compareEdgeWeights":
+            if (jstype !== "[object Number]") {
+                errors.unshift(request_.algorithm + " vistor interface error in callback function '" + request_.method + "'. Function returned type '" + jstype + "' instead of expected '[object Number]'.");
+            } else {
+                response.result = visitorResult;
+            }
+            break;
+        default:
+            if (jstype !== "[object Boolean]") {
+                errors.unshift(request_.algorithm + " visitor interface error in callback function '" + request_.method + "'. Function returned type '" + jstype + "' instead of expected '[object Boolean]'.");
+            } else {
+                response.result = visitorResult;
+            }
             break;
         }
-        response.result = continueSearch;
+
+        break;
     }
+
     if (errors.length) {
         response.error = errors.join(' ');
     }
+
     return response;
 };
 

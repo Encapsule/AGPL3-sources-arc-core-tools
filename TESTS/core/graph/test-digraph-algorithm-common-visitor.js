@@ -116,5 +116,3 @@ var testAlgorithmVisitorCallback = require('./fixture/test-runner-algorithm-comm
 
 
 
-        
-
