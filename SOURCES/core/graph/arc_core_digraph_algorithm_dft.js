@@ -69,7 +69,7 @@ module.exports = function (request_) {
            ) {
 
             // We need to sort the startVector contents.
-            nrequest.options.startVector.sort(function (vertexA_, elementB_) {
+            nrequest.options.startVector.sort(function (vertexA_, vertexB_) {
 
                 var compareResponse = visitorCallback({
                     algorithm: algorithmName,
@@ -81,7 +81,7 @@ module.exports = function (request_) {
                     return 0;
                 }
                 var weightA = compareResponse.result;
-                compareResponse = vistorCallback({
+                compareResponse = visitorCallback({
                     algorithm: algorithmName,
                     visitor: nrequest.visitor,
                     method: 'getEdgeWeight',
@@ -91,7 +91,7 @@ module.exports = function (request_) {
                     return 0;
                 }
                 var weightB = compareResponse.result;
-                compareResponse = vistorCallback({
+                compareResponse = visitorCallback({
                     algorithm: algorithmName,
                     visitor: nrequest.visitor,
                     method: 'compareEdgeWeights',
@@ -199,7 +199,7 @@ module.exports = function (request_) {
                        ) {
 
                         // We need to sort the startVector contents.
-                        outEdges.sort(function (edgeA_, edgeB_) {
+                        vertexOutEdges.sort(function (edgeA_, edgeB_) {
 
                             var compareResponse = visitorCallback({
                                 algorithm: algorithmName,
@@ -212,7 +212,7 @@ module.exports = function (request_) {
                             }
                             var weightA = compareResponse.result;
 
-                            compareResponse = vistorCallback({
+                            compareResponse = visitorCallback({
                                 algorithm: algorithmName,
                                 visitor: nrequest.visitor,
                                 method: 'getEdgeWeight',
@@ -223,7 +223,7 @@ module.exports = function (request_) {
                             }
                             var weightB = compareResponse.result;
 
-                            compareResponse = vistorCallback({
+                            compareResponse = visitorCallback({
                                 algorithm: algorithmName,
                                 visitor: nrequest.visitor,
                                 method: 'compareEdgeWeights',
@@ -236,10 +236,6 @@ module.exports = function (request_) {
 
                         });
                     } // if weight-sorted outEdges
-
-
-
-
 
                     var adjacentVertices = [];
 

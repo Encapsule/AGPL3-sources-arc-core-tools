@@ -574,26 +574,27 @@ testBFT({ testName: "Empty request", validConfig: false,
 })();
 
 (function() {
-    describe("Breadth-first traverse termination tests.", function() {
 
-        var digraph = new DirectedGraph({
-            vlist: [
-                { u: "orange" },
-                { u: "cherry" },
-                { u: "bannana" },
-                { u: "pineapple" },
-                { u: "mango" },
-                { u: "papaya" },
-                { u: "blueberry" },
-                { u: "kiwi" },
-                { u: "grape" },
-                { u: "mellon" }
-            ],
-            elist: [
-                { e: { u: "grape", v: "mellon" } },
-                { e: { u: "grape", v: "bannana" } }
-            ]
-        });
+    var digraph = new DirectedGraph({
+        vlist: [
+            { u: "orange" },
+            { u: "cherry" },
+            { u: "bannana" },
+            { u: "pineapple" },
+            { u: "mango" },
+            { u: "papaya" },
+            { u: "blueberry" },
+            { u: "kiwi" },
+            { u: "grape" },
+            { u: "mellon" }
+        ],
+        elist: [
+            { e: { u: "grape", v: "mellon" } },
+            { e: { u: "grape", v: "bannana" } }
+        ]
+    });
+
+    describe("Breadth-first traverse weighted edge tests.", function() {
 
         testBFT({
             testName: "Breadth-first traverse weight-order test #1",

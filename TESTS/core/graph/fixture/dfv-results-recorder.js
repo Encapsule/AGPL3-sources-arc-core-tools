@@ -80,12 +80,36 @@ module.exports = SearchPathRecorder = (function() {
             finishEdge: function(request) {
                 self.results.push(self.step++ + " finishEdge [" + request.e.u + "," + request.e.v + "]");
                 self.time++;
-                if (self.chainedVisitor.finishVertex) {
-                    return self.chainedVisitor.finishVertex(request);
+                if (self.chainedVisitor.finishEdge) {
+                    return self.chainedVisitor.finishEdge(request);
                 }
                 return true;
             }
         };
+
+        if (self.chainedVisitor.getEdgeWeight) {
+            // request = { e: { u: vertexId, v: vertexId }, g: DirectedGraph }
+            this.visitorInterface.getEdgeWeight = function(request) {
+                self.results.push(self.step++ + " getEdgeWeight [" + request.e.u + "," + request.e.v + "]");
+                if (self.chainedVisitor.getEdgeWeight) {
+                    return self.chainedVisitor.getEdgeWeight(request);
+                } else {
+                    return 0;
+                }
+            }
+        }
+
+        if (self.chainedVisitor.compareEdgeWeights) {
+            // request = { e: { u: vertexId, v: vertexId }, g: DirectedGraph }
+            this.visitorInterface.compareEdgeWeights = function(request) {
+                self.results.push(self.step++ + " compareEdgeWeights");
+                if (self.chainedVisitor.compareEdgeWeights) {
+                    return self.chainedVisitor.compareEdgeWeights(request);
+                } else {
+                    return 0;
+                }
+            }
+        }
 
         this.toJSON = function() {
             return JSON.stringify(self.results);
