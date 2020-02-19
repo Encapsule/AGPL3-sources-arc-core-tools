@@ -54,6 +54,8 @@
   }
 */
 
+var helperFunctions = require('./arc_core_graph_util');
+
 var algorithmName = "BFT"; // constant string used in error messages
 var colors = require('./arc_core_digraph_algorithm_colors');
 var visitorCallback = require('./arc_core_digraph_algorithm_visit');
@@ -100,6 +102,49 @@ module.exports = function (request_) {
         if (errors.length || !continueSearch) {
             break;
         }
+
+        // Before we even get started, decide if this BFT is to be
+        // guided by the comparison of edge weights or not.
+
+        if ((helperFunctions.JSType(nrequest.visitor.getEdgeWeight) === "[object Function]") &&
+            (helperFunctions.JSType(nrequest.visitor.compareEdgeWeights) === "[object Function]")
+           ) {
+
+            // We need to sort the startVector contents.
+            nrequest.options.startVector.sort(function (vertexA_, elementB_) {
+
+                var compareResponse = visitorCallback({
+                    algorithm: algorithmName,
+                    visitor: nrequest.visitor,
+                    method: 'getEdgeWeight',
+                    request: { e: { u: undefined, v: vertexA_ }, g: nrequest.digraph }
+                });
+                if (compareResponse.error) {
+                    return 0;
+                }
+                var weightA = compareResponse.result;
+                compareResponse = vistorCallback({
+                    algorithm: algorithmName,
+                    visitor: nrequest.visitor,
+                    method: 'getEdgeWeight',
+                    request: { e: { u: undefined, v: vertexB_ }, g: nrequest.digraph }
+                });
+                if (compareResponse.error) {
+                    return 0;
+                }
+                var weightB = compareResponse.result;
+                compareResponse = vistorCallback({
+                    algorithm: algorithmName,
+                    visitor: nrequest.visitor,
+                    method: 'compareEdgeWeights',
+                    request: { a: weightA, b: weightB }
+                });
+                if (compareResponse.error) {
+                    return 0;
+                }
+                return compareResponse.result;
+            });
+        } // if weighted start vector
 
         // Initialize the BF visit or search.
         // Note that all that distinguishes visit from search is the number of starting vertices. One -> visit, N -> search.
@@ -176,6 +221,50 @@ module.exports = function (request_) {
             }
 
             var outEdges = nrequest.digraph.outEdges(vertexId);
+
+            // Conditionally order the examination of edges based on weights comparison.
+            if ((helperFunctions.JSType(nrequest.visitor.getEdgeWeight) === "[object Function]") &&
+                (helperFunctions.JSType(nrequest.visitor.compareEdgeWeights) === "[object Function]")
+               ) {
+
+                // We need to sort the startVector contents.
+                outEdges.sort(function (edgeA_, edgeB_) {
+
+                    var compareResponse = visitorCallback({
+                        algorithm: algorithmName,
+                        visitor: nrequest.visitor,
+                        method: 'getEdgeWeight',
+                        request: { e: edgeA_, g: nrequest.digraph }
+                    });
+                    if (compareResponse.error) {
+                        return 0;
+                    }
+                    var weightA = compareResponse.result;
+
+                    compareResponse = vistorCallback({
+                        algorithm: algorithmName,
+                        visitor: nrequest.visitor,
+                        method: 'getEdgeWeight',
+                        request: { e: edgeB_, g: nrequest.digraph }
+                    });
+                    if (compareResponse.error) {
+                        return 0;
+                    }
+                    var weightB = compareResponse.result;
+
+                    compareResponse = vistorCallback({
+                        algorithm: algorithmName,
+                        visitor: nrequest.visitor,
+                        method: 'compareEdgeWeights',
+                        request: { a: weightA, b: weightB }
+                    });
+                    if (compareResponse.error) {
+                        return 0;
+                    }
+                    return compareResponse.result;
+
+                });
+            } // if weighted start vector
 
             for (index in outEdges) {
 
