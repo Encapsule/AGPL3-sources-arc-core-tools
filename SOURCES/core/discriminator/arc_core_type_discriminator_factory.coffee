@@ -101,6 +101,7 @@ filterlibResponse = FILTERLIB.create
             # console.log "STAGE 4: GENERATE DISCRIMINATOR RUNTIME FILTER"
             innerResponse = createDiscriminatorFilterRuntime.request
                 filterTable: mergedModel.filterTable
+                mergedDigraph: mergedModel.digraph
                 parseDigraph: runtimeParseDigraph
                 options: request_.options
 

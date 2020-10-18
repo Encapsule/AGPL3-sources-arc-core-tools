@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.1.9",
-  "codename": "crescent",
+  "version": "0.1.10",
+  "codename": "stardust",
   "description": "Encapsule.io ARC project master repository.",
   "main": "index.js",
   "scripts": {

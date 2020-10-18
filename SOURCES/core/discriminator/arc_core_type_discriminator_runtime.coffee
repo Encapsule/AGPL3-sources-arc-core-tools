@@ -19,6 +19,8 @@ filterlibResponse = FILTERLIB.create
         ____types: "jsObject"
         filterTable:
             ____accept: "jsObject"
+        mergedDigraph:
+            ____accept: "jsObject"
         parseDigraph:
             ____accept: "jsObject"
         options:
@@ -51,7 +53,7 @@ filterlibResponse = FILTERLIB.create
                 filter = runtimeContext.filterTable[filterID]
                 supportedFilters.push "[#{filterID}::#{filter.filterDescriptor.operationName}]"
 
-            supportedFilterIDs = supportedFilters.sort().join("-")
+            supportedFilterIDs = supportedFilters.sort((a_, b_) -> ((a_.operationName < b_.operationName) ? -1 : ( (a_.operationName == b_.operationName) ? 0 : 1)) ).join("-")
             discriminatorID = IDENTIFIER.irut.fromReference(supportedFilterIDs).result
 
             innerResponse = FILTERLIB.create
@@ -142,6 +144,7 @@ filterlibResponse = FILTERLIB.create
 
             runtimeFilter = innerResponse.result
             runtimeFilter.supportedFilters = supportedFilters
+            runtimeFilter.requestSpace = request_.mergedDigraph
             runtimeFilter.options = runtimeContext.options
 
             response.result = innerResponse.result
