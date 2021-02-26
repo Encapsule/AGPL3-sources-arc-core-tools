@@ -17,7 +17,7 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
         result = digraph: null, digraph2: null, filterTable: {}
 
         # Create am empty digraph model.
-        innerResponse = GRAPHLIB.directed.create name: "Discriminator Decission Tree Model"
+        innerResponse = GRAPHLIB.directed.create name: "Discriminator Decision Tree Model"
         if innerResponse.error
             errors.unshift innerResponse.error
             break
@@ -47,7 +47,7 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
                 errors.unshift "Filter '#{filterOperationID}::#{filter.filterDescriptor.operationName}' uses an invalid duplicate operation ID!"
                 break
 
-            # Add this filter's input specification to discriminator's decission tree graph.
+            # Add this filter's input specification to discriminator's decision tree graph.
             innerResponse = addFilterSpecToMergedDigraphModel filter: filter, graph: result.digraph
 
             if innerResponse.error

@@ -64,6 +64,11 @@ MODULE.fromEther = ->
 
 
 ###
+    2021.02.25 --- YES WE ARE STILL USING THIS EVERY DAY :-)
+    Circling back here after all this time this IRUT idea works very well in practice.
+    TODO: WE ARE CURRENTLY WASTING 4-BITS! IRUT is now 128-bit unique but could be 132-bit
+    without any change in memory use.
+
     Request/response-style generator returns an IRUT format 128-bit
     hybrid Murmur3 hash of whatever ref_ refers to (so long as its a string,
     object, or array). Note that if object or arry, the reference is serialized
