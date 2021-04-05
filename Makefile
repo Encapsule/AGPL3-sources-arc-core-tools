@@ -371,8 +371,8 @@ distributions_reset:
 	rm -rfv ./DISTS/*
 
 distributions_initialize: distributions_reset
-	git clone git@gitlab.com:Encapsule/distributions/arccore.git DISTS/arccore
-	git clone git@gitlab.com:Encapsule/distributions/arctools.git DISTS/arctools
+	git clone git@gitlab.com:alpinelakes/arccore.git DISTS/arccore
+	git clone git@gitlab.com:alpinelakes/arctools.git DISTS/arctools
 
 publish_distributions: publish_arccore_dist publish_arctools_dist
 
@@ -381,7 +381,4 @@ publish_arccore_dist:
 
 publish_arctools_dist:
 	cp -Rv $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/* DISTS/arctools/
-
-publish_jsgraph_dist:
-	@echo WHOOPS - This is not implemented yet. And, may never be implemented....?
 
