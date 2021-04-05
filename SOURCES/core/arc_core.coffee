@@ -11,7 +11,7 @@ COMMON = module.exports =
         contributors:  ARC_BUILD.contributors
         buildID:       ARC_BUILD.buildID
         buildTime:     ARC_BUILD.buildTime
-        ARC_master:    ARC_BUILD.ARC_master
+        buildSource:   ARC_BUILD.buildSource
 
     __bundle:
         murmurhash_js: require 'murmurhash-js'

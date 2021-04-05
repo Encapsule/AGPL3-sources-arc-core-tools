@@ -45,18 +45,18 @@ var packageManifest = {
     codename: arcBuild.codename,
     buildID: arcBuild.buildID,
     buildTime: arcBuild.buildTime,
-    ARC_master: arcBuild.ARC_master,
+    buildSource: arcBuild.buildSource,
     repository: {
         type: "git",
-        url: "git+https://github.com/Encapsule/" + tersePackageName + ".git",
+        url: "git+https://gitlab.com/Encapsule/distributions/" + tersePackageName + ".git",
     },
     author: arcBuild.author,
     contributors: arcBuild.contributors,
     license: "MIT",
     bugs: {
-        url: "https://github.com/Encapsule/" + tersePackageName + "/issues"
+        url: "https://gitlab.com/Encapsule/distributions/" + tersePackageName + "/issues"
     },
-    homepage: "https://github.com/Encapsule/" + tersePackageName + "#readme",
+    homepage: "https://gitlab.com/Encapsule/distributions/" + tersePackageName + "#readme",
 };
 
 for (var key in packageBuildData.packageManifestFields) {
@@ -100,7 +100,7 @@ markdown.push("# [![Encapsule Project](https://encapsule.io/images/blue-burst-en
 markdown.push("# " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\"");
 markdown.push("```\n" +
               "Package: " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\" build ID \"" + arcBuild.buildID + "\"\n" +
-              "Sources: Encapsule/ARC_master#" + arcBuild.ARC_master + "\n" +
+              "Sources: Encapsule/monorepos/arc_core_algorithms_tools#" + arcBuild.buildSource + "\n" +
               "Purpose: " + packageBuildData.packageType + " (" + (packageBuildData.browserSafe?"Node.js + modern browsers (via package bundler)":"Node.js") + ")\n" +
               "Created: " + buildTimeLong + "\n" +
               "License: " + packageManifest.license + "\n" +

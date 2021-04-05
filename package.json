@@ -1,8 +1,8 @@
 {
   "private": true,
   "name": "arc_master",
-  "version": "0.1.11",
-  "codename": "woodlands",
+  "version": "0.2.00",
+  "codename": "three-worlds",
   "description": "Encapsule.io ARC project master repository.",
   "main": "index.js",
   "scripts": {

@@ -18,7 +18,7 @@ const buildTag = {
     contributors: packageMeta.contributors,
     buildID: identifier.irut.fromEther(),
     buildTime: util.getEpochTime(),
-    ARC_master: commitHash
+    buildSource: commitHash
 };
 
 const buildTagJSON = JSON.stringify(buildTag); // , undefined, 4);
