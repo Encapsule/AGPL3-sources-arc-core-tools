@@ -40,10 +40,11 @@ DIR_OUT_BUILD_STAGE04=$(DIR_OUT_BUILD)/stage04
 DIR_OUT_BUILD_STAGE04_ARCCORE=$(DIR_OUT_BUILD_STAGE04)/arccore
 DIR_OUT_BUILD_STAGE04_ARCTOOLS=$(DIR_OUT_BUILD_STAGE04)/arctools
 
-# Node.js runtime (compile and install from sources locally) and yarn pacakage
-# manager are global development environment prerequisites. All other tools
-# are expected to included in the devDependencies section of package.json
-# in order that their application be versioned
+# Node.js + npm package manager + GNU make are presumed to be installed globally
+# as a prerequisite of evaluation targets in this Makefile. All other dependencies
+# are presumed to be installed via npm given declarations made in package.json
+# devDependencies array.
+
 DIR_TOOLS=$(DIR_MODULES)/.bin
 
 TOOL_ARC_BUILD=$(DIR_PROJECT)/generate_arc_build.js
@@ -119,7 +120,7 @@ dependencies: reset
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo dependencies
 	@echo ----------------------------------------------------------------
-	yarn install
+	npm install
 	@echo ----------------------------------------------------------------
 	@echo dependencies
 	@echo '////////////////////////////////////////////////////////////////'

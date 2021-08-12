@@ -16,7 +16,7 @@ Please consult the included LICENSE file for agreement terms.
 #
 #
 
-UUIDV4 = require 'uuid/v4'
+UUIDV4 = (require 'uuid').v4
 MURMUR = require 'murmurhash-js'
 
 TYPES = require './arc_core_types'
