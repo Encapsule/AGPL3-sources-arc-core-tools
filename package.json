@@ -2,7 +2,7 @@
   "private": true,
   "name": "dpmr-arc-core-at",
   "version": "0.2.01",
-  "codename": "three-worlds",
+  "codename": "firestorm",
   "description": "Encapsule Project private AGPLv3-licensed build sources for @encapsule/arccore and @encapsule/arctools distribution packages.",
   "main": "index.js",
   "scripts": {
