@@ -22,7 +22,7 @@ if (!program.packageName) {
 
 const fullPackageName = program.packageName;
 const fullPackageNameSplit = fullPackageName.split("/");
-const packageOrgURI = fullPackageNameSplit[0];
+const packageOrgURI = "org/" + fullPackageNameSplit[0].slice(1);
 const tersePackageName = fullPackageNameSplit[1];
 
 if (!program.outputDir) {
@@ -94,22 +94,25 @@ function injectReadmeSection(sectionDescriptor_) {
     return;
 } // function injectReadmeSection
 
+const usageContextString = (packageBuildData.browserSafe?"Node.js + HTML5":"Node.js");
+
 // Start of the markdown document...
 markdown.push("# [![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io) Encapsule Project");
 
-markdown.push("# " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\"");
+markdown.push("## " + program.packageName + " v" + arcBuild.version + "-" + arcBuild.codename);
+
+markdown.push("**" + packageManifest.description + "**");
+
 markdown.push("```\n" +
-              "Package: " + program.packageName + " v" + arcBuild.version + " \"" + arcBuild.codename + "\" build ID \"" + arcBuild.buildID + "\"\n" +
-              "Sources: Encapsule/monorepos/arc_core_algorithms_tools#" + arcBuild.buildSource + "\n" +
-              "Purpose: " + packageBuildData.packageType + " (" + (packageBuildData.browserSafe?"Node.js + modern browsers (via package bundler)":"Node.js") + ")\n" +
+              "Package: " + program.packageName + " v" + arcBuild.version + "-" + arcBuild.codename + " build " + arcBuild.buildID + "\n" +
+              "Sources: @encapsule/dpmr-arc-core-at#" + arcBuild.buildSource + "\n" +
+              "Purpose: " + packageBuildData.packageType + " (" + usageContextString + ")\n" +
               "Created: " + buildTimeLong + "\n" +
               "License: " + packageManifest.license + "\n" +
               "```");
 
-markdown.push("# Summary");
 
-markdown.push("## Description");
-markdown.push(packageBuildData.packageManifestFields.description);
+
 
 // Insert optional package-specific content to the Summary section body.
 if (packageBuildData.readmeDocumentContent.summaryDescriptor) {
@@ -119,25 +122,23 @@ if (packageBuildData.readmeDocumentContent.summaryDescriptor) {
 switch (packageBuildData.packageType) {
 case 'library':
     injectReadmeSection({
-        heading: "## Usage",
+        heading: "# Use",
         markdown: [
-            "This package's contained library functionality is intended for use in derived projects.",
-            "For example:",
+            "Add the `" + fullPackageName + "` the runtime library distribution package to your project's `package.json`:",
+
             "1. Create simple test project, declare a dependency and install `" + fullPackageName + "` package:",
-            "```\n$ mkdir testProject && cd testProject\n$ yarn init\n$ yarn add " + fullPackageName + " --dev\n```",
+            "```\n$ mkdir testProject && cd testProject\n$ npm init --yes\n$ npm install " + fullPackageName + " --save-dev\n```",
             "2. Create a simple script `index.js`:",
-            "```JavaScript\nconst " + tersePackageName + " = require('" + fullPackageName + "');\nconsole.log(JSON.stringify(" + tersePackageName + ".__meta));\n/* ... your derived code here ... */\n```"
+            "```JavaScript\nconst " + tersePackageName + " = require('" + fullPackageName + "');\nconsole.log(JSON.stringify(" + tersePackageName + ".__meta));\n/* ... your derived code here ... */\n```",
         ]
     });
     break;
 case 'tools':
     injectReadmeSection({
-        heading: "## Usage",
+        heading: "# Use",
         markdown: [
-            "The `" + fullPackageName + "` "  + packageBuildData.packageType + " package is typically installed globally.",
-            "```\n$ yarn global add " + fullPackageName + "\n```",
-            "or...\n",
-            "```\n$ npm install -g " + fullPackageName + "\n```"
+            "Typically, the `" + fullPackageName + "` "  + packageBuildData.packageType + " package is registered via `npm` so that its exported script(s) are available at the command line of your OS:",
+            "```\n$ npm install --global " + fullPackageName + "\n```"
         ]
     });
     break;
@@ -145,24 +146,26 @@ default:
     throw new Error("Unknown packageType declaration value '" + packageBuildData.packageType + "'!");
 }
 
-markdown.push("## Distribution");
-markdown.push("The `" + fullPackageName + "` " + packageBuildData.packageType + " package is published on [npmjs](https://npmjs.com).");
-markdown.push([
-    "- [" + fullPackageName + " Package Distribution](https://npmjs.com/package/" + fullPackageName + "/v/" + packageManifest.version + ") ([npm](https://www.npmjs.com/" + packageOrgURI + "))",
-    "- [" + fullPackageName + " Package Repository](https://github.com/Encapsule/" + tersePackageName + ") ([GitHub](https://github.com/Encapsule))"
-].join("\n"));
-
-
 // Body content (after summary section typically).
 while (packageBuildData.readmeDocumentContent.markdownBody && packageBuildData.readmeDocumentContent.markdownBody.length) {
     injectReadmeSection(packageBuildData.readmeDocumentContent.markdownBody.shift());
 }
 
+
+markdown.push("# Sources");
+const npmjsPackageLink = `https://npmjs.com/package/${fullPackageName}/v/${packageManifest.version}`;
+const githubPackageLink = `https://github.com/Encapsule/${tersePackageName}`;
+
+markdown.push([
+    `- [${npmjsPackageLink}](${npmjsPackageLink})`,
+    `- [${githubPackageLink}](${githubPackageLink})`
+].join("\n"));
+
 markdown.push("<hr>");
 markdown.push("[![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io)");
-markdown.push("Copyright &copy; " + buildYear + " [" + copyrightHolder.name + "](" + copyrightHolder.url + ") Seattle, Washington USA");
-markdown.push("Published under [" + packageManifest.license + "](./LICENSE) license by [Encapsule Project](https://encapsule.io)");
-markdown.push("Please follow [@Encapsule](https://twitter.com/Encapsule) on Twitter for news and updates.");
+markdown.push("Published under [" + packageManifest.license + "](./LICENSE) license by [Encapsule Project](https://github.com/Encapsule)");
+markdown.push("Copyright &copy; " + buildYear + " [" + copyrightHolder.name + "](" + copyrightHolder.url + ")");
+markdown.push("Updates and releases are Tweeted [@Encapsule](https://twitter.com/Encapsule)");
 markdown.push("<hr>");
 
 const mddoc = markdown.join('\n\n');
