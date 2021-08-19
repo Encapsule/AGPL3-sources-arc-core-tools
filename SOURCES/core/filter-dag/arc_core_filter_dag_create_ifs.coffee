@@ -78,11 +78,11 @@ module.exports =
                             ____accept: [ "jsNull", "jsString" ]
                             ____defaultValue: null
 
-                         filterSpec:
-                             ____label: "Type Specification"
-                             ____description: "JBUS Filter-format Filter Spec object."
-                             ____accept: "jsObject"
-                             ____defaultValue: { ____opaque: true }
+                        filterSpec:
+                            ____label: "Type Specification"
+                            ____description: "JBUS Filter-format Filter Spec object."
+                            ____accept: "jsObject"
+                            ____defaultValue: { ____opaque: true }
 
                 functions:
                     ____label: "System Functions"

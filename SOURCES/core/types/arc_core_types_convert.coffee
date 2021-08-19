@@ -92,46 +92,46 @@ convert = (request_) ->
                 errors.unshift "Invalid request 'from' value '#{request.from}' is not a valid dimension string. Valid dimensions:"
                 break
 
-         if errors.length
-             break
+        if errors.length
+            break
 
-         if not (rewriteRequest? and rewriteRequest)
-             request.value = request_.value
-         else
-             request = rewriteRequest
+        if not (rewriteRequest? and rewriteRequest)
+            request.value = request_.value
+        else
+            request = rewriteRequest
 
-         table = typeLUTS[forwardLookup and request.to or request.from]
+        table = typeLUTS[forwardLookup and request.to or request.from]
 
-         if not (table? and table)
-             errors.unshift "[#{typeLUTS.dimensions}]."
-             errors.unshift "No conversion operator from '#{request.from}' to '#{request.to}' available. Valid dimensions:"
-             break
+        if not (table? and table)
+            errors.unshift "[#{typeLUTS.dimensions}]."
+            errors.unshift "No conversion operator from '#{request.from}' to '#{request.to}' available. Valid dimensions:"
+            break
 
-         if forwardLookup
-             lookupResult = table[request.value] # expected always good as request.value is range validated
-         else
-             lookupResult = table.indexOf request.value # may not be valid as we cannot pre-validate request.value
-             if lookupResult == -1
-                 errors.unshift "[#{typeLUTS.dimensions}]."
-                 errors.unshift "Invalid request 'value' specifies unknown #{request.to} '#{request.value}'. Valid dimensions:"
-                 break
+        if forwardLookup
+            lookupResult = table[request.value] # expected always good as request.value is range validated
+        else
+            lookupResult = table.indexOf request.value # may not be valid as we cannot pre-validate request.value
+            if lookupResult == -1
+                errors.unshift "[#{typeLUTS.dimensions}]."
+                errors.unshift "Invalid request 'value' specifies unknown #{request.to} '#{request.value}'. Valid dimensions:"
+                break
 
-             if request.to != 'jsCode'
+            if request.to != 'jsCode'
 
-                 table = typeLUTS[request.to]
-                 if not (table? and table)
-                     errors.unshift "Valid dimensions: [#{typeLUTS.dimensions}]."
-                     errors.unshift "No conversion to '#{request.to}' available."
-                     break
+                table = typeLUTS[request.to]
+                if not (table? and table)
+                    errors.unshift "Valid dimensions: [#{typeLUTS.dimensions}]."
+                    errors.unshift "No conversion to '#{request.to}' available."
+                    break
 
-                 jsCode = lookupResult
-                 lookupResult = table[jsCode]
+                jsCode = lookupResult
+                lookupResult = table[jsCode]
 
-                 if not (lookupResult? and lookupResult)
-                     errors.unshift "No coversion from dimension '#{request.from}' to '#{request.to}' for value '#{request.value}'."
-                     break
+                if not (lookupResult? and lookupResult)
+                    errors.unshift "No coversion from dimension '#{request.from}' to '#{request.to}' for value '#{request.value}'."
+                    break
 
-         response.result = lookupResult
+        response.result = lookupResult
 
     if errors.length
         errors.unshift "Type conversion failed:"
