@@ -48,15 +48,15 @@ var packageManifest = {
     buildSource: arcBuild.buildSource,
     repository: {
         type: "git",
-        url: "git+https://gitlab.com/Encapsule/distributions/" + tersePackageName + ".git",
+        url: "git+https://gitlab.com/encapsule/" + tersePackageName + ".git",
     },
     author: arcBuild.author,
     contributors: arcBuild.contributors,
     license: "MIT",
     bugs: {
-        url: "https://gitlab.com/Encapsule/distributions/" + tersePackageName + "/issues"
+        url: "https://gitlab.com/encapsule/" + tersePackageName + "/-/issues"
     },
-    homepage: "https://gitlab.com/Encapsule/distributions/" + tersePackageName + "#readme",
+    homepage: "https://gitlab.com/encapsule/" + tersePackageName
 };
 
 for (var key in packageBuildData.packageManifestFields) {
@@ -97,7 +97,12 @@ function injectReadmeSection(sectionDescriptor_) {
 const usageContextString = (packageBuildData.browserSafe?"Node.js + HTML5":"Node.js");
 
 // Start of the markdown document...
-markdown.push("# [![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io) Encapsule Project");
+const encapsuleProjectBannerMarkdown = "# [![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io) Encapsule Project";
+
+const npmjsPackageLink = `https://npmjs.com/package/${fullPackageName}/v/${packageManifest.version}`;
+const gitlabPackageLink = `https://github.com/Encapsule/${tersePackageName}`;
+
+markdown.push(encapsuleProjectBannerMarkdown);
 
 markdown.push("## " + program.packageName + " v" + arcBuild.version + "-" + arcBuild.codename);
 
@@ -111,7 +116,7 @@ markdown.push("```\n" +
               "License: " + packageManifest.license + "\n" +
               "```");
 
-
+markdown.push("> **[Package Sources + Issues on GitLab](gitlabPackageLink)**");
 
 
 // Insert optional package-specific content to the Summary section body.
@@ -124,7 +129,7 @@ case 'library':
     injectReadmeSection({
         heading: "# Use",
         markdown: [
-            "Add the `" + fullPackageName + "` the runtime library distribution package to your project's `package.json`:",
+            "Add the `" + fullPackageName + "` package to your Node.js project's `package.json` manifest:",
 
             "1. Create simple test project, declare a dependency and install `" + fullPackageName + "` package:",
             "```\n$ mkdir testProject && cd testProject\n$ npm init --yes\n$ npm install " + fullPackageName + " --save-dev\n```",
@@ -153,20 +158,18 @@ while (packageBuildData.readmeDocumentContent.markdownBody && packageBuildData.r
 
 
 markdown.push("# Sources");
-const npmjsPackageLink = `https://npmjs.com/package/${fullPackageName}/v/${packageManifest.version}`;
-const githubPackageLink = `https://github.com/Encapsule/${tersePackageName}`;
 
 markdown.push([
     `- [${npmjsPackageLink}](${npmjsPackageLink})`,
-    `- [${githubPackageLink}](${githubPackageLink})`
+    `- [${gitlabPackageLink}](${gitlabPackageLink})`
 ].join("\n"));
 
-markdown.push("<hr>");
-markdown.push("[![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io)");
-markdown.push("Published under [" + packageManifest.license + "](./LICENSE) license by [Encapsule Project](https://github.com/Encapsule)");
-markdown.push("Copyright &copy; " + buildYear + " [" + copyrightHolder.name + "](" + copyrightHolder.url + ")");
-markdown.push("Updates and releases are Tweeted [@Encapsule](https://twitter.com/Encapsule)");
-markdown.push("<hr>");
+markdown.push(encapsuleProjectBannerMarkdown);
+
+markdown.push("Published under [" + packageManifest.license + "](./LICENSE) license by [Encapsule Project](https://encapsule.io)");
+markdown.push("Copyright &copy; " + buildYear + " " + copyrightHolder.name);
+markdown.push("GitLab: [https://gitlab/encapsule](https://gitlab.encapsule)");
+markdown.push("Twitter: [https://twitter.com/encapsule](https://twitter.com/encapsule)");
 
 const mddoc = markdown.join('\n\n');
 
