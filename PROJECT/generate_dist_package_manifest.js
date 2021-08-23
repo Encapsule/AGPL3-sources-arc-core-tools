@@ -2,7 +2,8 @@
 
 const fs = require('fs');
 const path = require('path');
-const program = require('commander');
+const { Command } = require('commander');
+const program = new Command();
 
 const arcBuild = require('../BUILD/stage01/arccore/arc_build');
 const packagesBuildData = require('./packages-build-data');
@@ -15,24 +16,27 @@ program
     .option('--outputDir <outputDir>', 'Write the generated files to <outputDir>.')
     .parse(process.argv);
 
-if (!program.packageName) {
+
+const options = program.opts();
+
+if (!options.packageName) {
     console.error("Missing --packageName option value.");
     process.exit(1);
 }
 
-const fullPackageName = program.packageName;
+const fullPackageName = options.packageName;
 const fullPackageNameSplit = fullPackageName.split("/");
 const packageOrgURI = "org/" + fullPackageNameSplit[0].slice(1);
 const tersePackageName = fullPackageNameSplit[1];
 
-if (!program.outputDir) {
+if (!options.outputDir) {
     console.error("Missing --outputDir option value.");
     process.exit(1);
 }
 
-const packageBuildData = packagesBuildData[program.packageName];
+const packageBuildData = packagesBuildData[options.packageName];
 if (!packageBuildData) {
-    console.error('Invalid --packageName option value \'' + program.packageName + '\'.');
+    console.error('Invalid --packageName option value \'' + options.packageName + '\'.');
     process.exit(1);
 }
 
@@ -63,7 +67,7 @@ for (var key in packageBuildData.packageManifestFields) {
     packageManifest[key] = packageBuildData.packageManifestFields[key];
 }
 
-const packageManifestFilename = path.join(program.outputDir, 'package.json');
+const packageManifestFilename = path.join(options.outputDir, 'package.json');
 fs.writeFileSync(packageManifestFilename, JSON.stringify(packageManifest, undefined, 4));
 console.log("Wrote '" + packageManifestFilename + "':");
 console.log(JSON.stringify(packageManifest));
@@ -100,24 +104,23 @@ const usageContextString = (packageBuildData.browserSafe?"Node.js + HTML5":"Node
 const encapsuleProjectBannerMarkdown = "# [![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io) Encapsule Project";
 
 const npmjsPackageLink = `https://npmjs.com/package/${fullPackageName}/v/${packageManifest.version}`;
-const gitlabPackageLink = `https://github.com/Encapsule/${tersePackageName}`;
+const gitlabPackageLink = `https://gitlab.com/encapsule/${tersePackageName}`;
+const gitlabPackageIssues = `${gitlabPackageLink}/-/issues`;
 
 markdown.push(encapsuleProjectBannerMarkdown);
 
-markdown.push("## " + program.packageName + " v" + arcBuild.version + "-" + arcBuild.codename);
-
-markdown.push("**" + packageManifest.description + "**");
+markdown.push("## " + options.packageName + " v" + arcBuild.version + "-" + arcBuild.codename);
 
 markdown.push("```\n" +
-              "Package: " + program.packageName + " v" + arcBuild.version + "-" + arcBuild.codename + " build " + arcBuild.buildID + "\n" +
+              "Package: " + options.packageName + " v" + arcBuild.version + "-" + arcBuild.codename + " build " + arcBuild.buildID + "\n" +
               "Sources: @encapsule/dpmr-arc-core-at#" + arcBuild.buildSource + "\n" +
               "Purpose: " + packageBuildData.packageType + " (" + usageContextString + ")\n" +
               "Created: " + buildTimeLong + "\n" +
               "License: " + packageManifest.license + "\n" +
               "```");
 
-markdown.push("> **[Package Sources + Issues on GitLab](gitlabPackageLink)**");
-
+markdown.push("# Description");
+markdown.push(packageManifest.description);
 
 // Insert optional package-specific content to the Summary section body.
 if (packageBuildData.readmeDocumentContent.summaryDescriptor) {
@@ -157,11 +160,12 @@ while (packageBuildData.readmeDocumentContent.markdownBody && packageBuildData.r
 }
 
 
-markdown.push("# Sources");
+markdown.push("# Package Links");
 
 markdown.push([
-    `- [${npmjsPackageLink}](${npmjsPackageLink})`,
-    `- [${gitlabPackageLink}](${gitlabPackageLink})`
+    `- [${options.packageName} Package Distribution](${npmjsPackageLink}) (npmjs)`,
+    `- [${options.packageName} Package Repo](${gitlabPackageLink}) (GitLab)`,
+    `- [${options.packageName} Package Issues](${gitlabPackageIssues}) (GitLab)`,
 ].join("\n"));
 
 markdown.push(encapsuleProjectBannerMarkdown);
@@ -174,7 +178,7 @@ markdown.push("Twitter: [https://twitter.com/encapsule](https://twitter.com/enca
 const mddoc = markdown.join('\n\n');
 
 
-const packageReadmeFilename = path.join(program.outputDir, 'README.md');
+const packageReadmeFilename = path.join(options.outputDir, 'README.md');
 fs.writeFileSync(packageReadmeFilename, mddoc);
 console.log("Wrote '" + packageReadmeFilename + "':");
 console.log(mddoc);

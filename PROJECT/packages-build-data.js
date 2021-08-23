@@ -70,21 +70,6 @@ var packageDatabase = module.exports = {
                         "> **[ARCcore.util Documentation](https://encapsule.io/docs/ARCcore/identifier)**",
                         "A collection of utility functions used primarily by other libraries contained in the arccore package."
                     ]
-                },
-
-                {
-                    heading: "# Release Notes",
-                    markdown: []
-                },
-
-                {
-                    heading: "## v0.2.01-firestorm",
-                    markdown: [
-                        [
-                            "- Rebuild and test on Node.js v16.6.1.",
-                            "- Update all build and runtime dependency packages to latest versions."
-                        ].join("\n")
-                    ]
                 }
 
             ]
@@ -95,7 +80,7 @@ var packageDatabase = module.exports = {
         browserSafe: false,
         packageManifestFields: {
             preferGlobal: true,
-            description: "@encapsule/arctools contains a small collection of command-line utilities derived from the @encapsule/arccore package.",
+            description: "Encapsule Project command line tools and filter function utilities derived from @encapsule/arccore package.",
             keywords: "Encapsule, holistic, filter, discriminator, routing, MDR, graph, DirectedGraph, data, algorithms, models, modeling, library",
             dependencies: {
                 "chalk": "^1.1.1",
@@ -113,9 +98,10 @@ var packageDatabase = module.exports = {
         },
         readmeDocumentContent: {
             summaryDescriptor: {
+                heading: "# Overview",
                 markdown: [
-                    "This package contains experimental (i.e. undocumented) tools that are _optional_.",
-                    "You do not need to install this package to work with the `@encapsule/arccore` package."
+                    "This package contains command line utilities + resuable filter function libraries that are used in the build/production/test of other Encapsule Project software works.",
+                    "I don't have time to document it right now and you don't need it probably. So, just ignore."
                 ]
             },
             markdownBody: [
@@ -127,10 +113,12 @@ var packageDatabase = module.exports = {
                     heading: "## arc_generateIRUT",
                     markdown: [
                         "Command line utilty that generates and array of v4 UUID encoded as 22-character Internet Routable Unique Token (IRUT) strings.",
-                        "```",
-                        "$ arc_generateIRUT",
-                        "```",
-                    ].join("")
+                        [
+                            "```",
+                            "$ arc_generateIRUT",
+                            "```",
+                        ].join("\n")
+                    ]
                 }
             ]
         }

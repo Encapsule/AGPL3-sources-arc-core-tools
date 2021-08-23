@@ -3,7 +3,8 @@
 const fs = require('fs');
 const handlebars = require('handlebars');
 const path = require('path');
-const program = require('commander');
+const { Command } = require('commander');
+const program = new Command();
 
 const arcMasterManifest = require('../package.json');
 
@@ -13,16 +14,19 @@ program
     .name('generate_dist_package_license')
     .description('Generates LICENSE file for a distribution package given its package.json')
     .version(arcMasterManifest.version)
-    .option('--outputDir <outputDir>', 'Write the generated file to <outputDir>.')
+    .option('-o, --outputDir <outputDir>', 'Write the generated file to <outputDir>.')
     .parse(process.argv);
 
-if (!program.outputDir) {
+const options = program.opts();
+
+
+if (!options.outputDir) {
     console.error("Missing --outputDir option value.");
     process.exit(1);
 }
 
 // If the target package has a generated package.json, override the licenseType w/its value.
-const packageManifestPath = path.resolve(program.outputDir, 'package.json');
+const packageManifestPath = path.resolve(options.outputDir, 'package.json');
 
 var packageManifest = null;
 
@@ -49,7 +53,7 @@ const templateContext = {
 const licenseDocument = compiledLicenseTemplate(templateContext);
 
 // Write the LICENSE document to the outputDir
-const licenseDocumentFilename = path.resolve(program.outputDir, 'LICENSE');
+const licenseDocumentFilename = path.resolve(options.outputDir, 'LICENSE');
 fs.writeFileSync(licenseDocumentFilename, licenseDocument);
 
 console.log("Wrote '" + licenseDocumentFilename + "'.");
