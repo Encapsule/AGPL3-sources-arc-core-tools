@@ -251,10 +251,26 @@ stage02_tests:
 #	MINUS ON NEXT LINE ALLOWS THIS PHONY TARGET TO EXECUTE AS PART OF THE
 #	NORMAL FLOW OF THIS MAKEFILE BUT IGNORES THE KNOWN ERRORS IN v0.1.4
 #	DISCRIMINATOR LIB.
-	-$(TOOL_MOCHA) TESTS/test_arc.js
+	$(TOOL_MOCHA) TESTS/test_arc.js
 	@echo ----------------------------------------------------------------
 	@echo stage02_tests
 	@echo '////////////////////////////////////////////////////////////////'
+
+test_discriminator:
+	$(TOOL_MOCHA) TESTS/core/test_arc_core_discriminator.js
+
+test_filter:
+	$(TOOL_MOCHA) TESTS/core/test_arc_core_filter.js
+
+test_graph:
+	$(TOOL_MOCHA) TESTS/core/test_arc_core_graph.js
+
+test_identifier:
+	$(TOOL_MOCHA) TESTS/core/test_arc_core_identifier.js
+
+test_types:
+	$(TOOL_MOCHA) TESTS/core/test_arc_core_types.js
+
 
 stage02_license:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
