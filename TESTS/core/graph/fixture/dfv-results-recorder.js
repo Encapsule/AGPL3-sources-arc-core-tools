@@ -102,7 +102,7 @@ module.exports = SearchPathRecorder = (function() {
         if (self.chainedVisitor.compareEdgeWeights) {
             // request = { e: { u: vertexId, v: vertexId }, g: DirectedGraph }
             this.visitorInterface.compareEdgeWeights = function(request) {
-                self.results.push(self.step++ + " compareEdgeWeights");
+                self.results.push(self.step++ + " compareEdgeWeights [" + request.a + "," + request.b + "]");
                 if (self.chainedVisitor.compareEdgeWeights) {
                     return self.chainedVisitor.compareEdgeWeights(request);
                 } else {
