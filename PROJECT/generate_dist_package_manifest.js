@@ -111,6 +111,8 @@ markdown.push(encapsuleProjectBannerMarkdown);
 
 markdown.push("## " + options.packageName + " v" + arcBuild.version + "-" + arcBuild.codename);
 
+markdown.push("_" + packageManifest.description + "_");
+
 markdown.push("```\n" +
               "Package: " + options.packageName + " v" + arcBuild.version + "-" + arcBuild.codename + " build " + arcBuild.buildID + "\n" +
               "Sources: @encapsule/dpmr-arc-core-at#" + arcBuild.buildSource + "\n" +
@@ -119,8 +121,6 @@ markdown.push("```\n" +
               "License: " + packageManifest.license + "\n" +
               "```");
 
-markdown.push("# Description");
-markdown.push(packageManifest.description);
 
 // Insert optional package-specific content to the Summary section body.
 if (packageBuildData.readmeDocumentContent.summaryDescriptor) {
