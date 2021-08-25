@@ -256,6 +256,8 @@ stage02_tests:
 	@echo stage02_tests
 	@echo '////////////////////////////////////////////////////////////////'
 
+test: stage02_tests
+
 test_discriminator:
 	$(TOOL_MOCHA) TESTS/core/test_arc_core_discriminator.js
 

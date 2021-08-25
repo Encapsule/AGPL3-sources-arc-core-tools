@@ -24,9 +24,9 @@ describe("arc_core top-level package tests:", function() {
             assert.isFunction(CORE.__bundle.murmurhash_js);
         });
 
-        it("arc_core.__bundle.uuid should be a function.", function() {
+        it("arc_core.__bundle.uuid should be an object.", function() {
             assert.property(CORE.__bundle, "uuid");
-            assert.isFunction(CORE.__bundle.uuid);
+            assert.isObject(CORE.__bundle.uuid);
         });
 
     });
@@ -86,7 +86,7 @@ describe("arc_core top-level package tests:", function() {
                 assert.property(CORE.identifier.irut, 'isIRUT');
                 assert.isFunction(CORE.identifier.irut.isIRUT);
             });
-            
+
         });
 
     });
