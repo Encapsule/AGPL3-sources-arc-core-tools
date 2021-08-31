@@ -14,7 +14,7 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
         inBreakScope = true
 
         # Initialize the result.
-        result = digraph: null, digraph2: null, filterTable: {}
+        result = digraph: null, filterTable: {}
 
         # Create am empty digraph model.
         innerResponse = GRAPHLIB.directed.create name: "Discriminator Decision Tree Model"
@@ -23,16 +23,7 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
             break
         result.digraph = innerResponse.result
 
-        #### EXPERIMENTAL
-        # Create am empty digraph model #2
-        innerResponse = GRAPHLIB.directed.create name: "Filter Set Merged Input Spec Model"
-        if innerResponse.error
-            errors.unshift innerResponse.error
-            break
-        result.digraph2 = innerResponse.result
-        #### EXPERIMENTAL
-
-        # Add a vertex that models the root of the disriminator decisssion tree.
+        # Add a vertex that models the root of the disriminator decision tree.
         result.digraph.addVertex { u: rootVertex, p: { color: "white" } }
 
         # Process each filter in the request array.
@@ -54,11 +45,6 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
                 errors.unshift innerResponse.error
                 break
 
-            #### EXPERIMENTAL
-            # A slightly different approach...
-            innerResponse = addFilterSpecToMergedModel2  filter: filter, digraph: result.digraph2
-            #### EXPERIMENTAL
-
             result.filterTable[filter.filterDescriptor.operationID] = filter
             filters.push filter.filterDescriptor.operationID
 
@@ -78,14 +64,13 @@ buildMergedFilterSpecDigraphModel = module.exports = (request_) ->
 
     if errors.length
         response.error = errors.join " "
-    #### EXPERIMENTAL
-    else
-        # console.log response.result.digraph2.stringify(undefined, 4)
-    #### EXPERIMENTAL
 
     response
 
+
+# ================================================================
 # request = { filter: object, digraph: object }
+
 addFilterSpecToMergedDigraphModel = (request_) ->
 
     response = error: null, result: null

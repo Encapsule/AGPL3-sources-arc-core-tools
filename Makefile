@@ -182,9 +182,19 @@ stage01_coffee_compile: stage01_coffee_lint
 	@echo stage01_coffee_compile
 	@echo '////////////////////////////////////////////////////////////////'
 
-stage01_js_copy: stage01_js_copy_graph stage01_js_copy_tools
+stage01_js_copy: stage01_js_copy_graph stage01_js_copy_discriminator stage01_js_copy_tools
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage01_js_copy - aggregation target complete.
+	@echo '////////////////////////////////////////////////////////////////'
+
+stage01_js_copy_discriminator:
+	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	@echo stage01_js_copy_discriminator
+	@echo ----------------------------------------------------------------
+	mkdir -p $(DIR_OUT_BUILD_STAGE01_ARCCORE)
+	cp -v $(DIR_SOURCES_ARCCORE_DISCRIMINATOR)/*.js $(DIR_OUT_BUILD_STAGE01_ARCCORE)
+	@echo ----------------------------------------------------------------
+	@echo stage01_js_copy_discriminator
 	@echo '////////////////////////////////////////////////////////////////'
 
 # jsgraph is written in native ES5 and is merely copied.
