@@ -1,0 +1,72 @@
+{
+    "testID": "1anTb9dNR5u0PI6KsaMsUg",
+    "testName": "Single filter, accept number case 1",
+    "testDescrpition": "Model single filter that accepts a number (case 1).",
+    "testRequest": {
+        "id": "1anTb9dNR5u0PI6KsaMsUg",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "cQxrFzvmTcigJg9tFvJJIw",
+                    "operationName": "unnamed",
+                    "operationDescription": "cQxrFzvmTcigJg9tFvJJIw provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber"
+                    },
+                    "inputTypeVIID": "LYrz6E2W63syRAWRBIJgwg",
+                    "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                    "outputTypeVIID": "5WE0EzwMosXTVtNqwHIPXA",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "iJBLE7JM9FdyH1LtqfTEtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "test",
+                "description": "test",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "jsFunction": [],
+                            "jsObject": [],
+                            "jsArray": [],
+                            "jsNumber": [
+                                "cQxrFzvmTcigJg9tFvJJIw"
+                            ],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": [],
+                            "jsAny": []
+                        }
+                    }
+                ],
+                "elist": []
+            },
+            "filters": {
+                "cQxrFzvmTcigJg9tFvJJIw": {
+                    "filterDescriptor": {
+                        "operationID": "cQxrFzvmTcigJg9tFvJJIw",
+                        "operationName": "unnamed",
+                        "operationDescription": "cQxrFzvmTcigJg9tFvJJIw provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": "jsNumber"
+                        },
+                        "inputTypeVIID": "LYrz6E2W63syRAWRBIJgwg",
+                        "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                        "outputTypeVIID": "5WE0EzwMosXTVtNqwHIPXA",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "iJBLE7JM9FdyH1LtqfTEtA"
+                    }
+                }
+            }
+        }
+    }
+}

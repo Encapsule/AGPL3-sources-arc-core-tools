@@ -271,6 +271,9 @@ test: stage02_tests
 test_discriminator:
 	$(TOOL_MOCHA) TESTS/core/test_arc_core_discriminator.js
 
+test_discrim2:
+	$(TOOL_MOCHA) TESTS/core/discriminator/test-discrim2-merged.js
+
 test_filter:
 	$(TOOL_MOCHA) TESTS/core/test_arc_core_filter.js
 

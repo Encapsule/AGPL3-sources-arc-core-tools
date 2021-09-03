@@ -92,8 +92,8 @@
         testDescription: "Model single filter w/no inputFilterSpec specified.",
         testRequest: {
             id: "RkaTLdCrQmW_L-QGW3y4hQ",
-            name: "Single Filter No Input Spec",
-            description: "Process single filter that accepts anything.",
+            name: "test",
+            description: "test",
             filters: [
                 FILTERLIB.create({
                     operationID: "efRs_oPzR8un89bA4LqawA",
@@ -122,32 +122,65 @@
         }
     });
 
-
-    /*
-
-
     // ----------------------------------------------------------------
     testMergedSpecDigraphFactory({
-        testName: "Base Test Case 2: Single Filter Accept Number",
-        validConfig: true,
-        request: {
-            id: "RkaTLdCrQmW_L-QGW3y4hQ",
-            name: "Base #2: Single Filter Accept Number",
-            description: "Process single filter that accepts a number.",
+        testID: "1anTb9dNR5u0PI6KsaMsUg",
+        testName: "Single filter, accept number case 1",
+        testDescrpition: "Model single filter that accepts a number (case 1).",
+        testRequest: {
+            id: "1anTb9dNR5u0PI6KsaMsUg",
+            name: "test",
+            description: "test",
             filters: [
                 FILTERLIB.create({
-                    operationID: "fXCw0hjBSH2_KvMnjwxBfA",
+                    operationID: "cQxrFzvmTcigJg9tFvJJIw",
                     inputFilterSpec: { ____accept: "jsNumber" }
                 }).result
             ]
-        },
-        expectedResults: {
-            response: {
-                error: null,
-                result: ''
-            }
         }
     });
+
+    // ----------------------------------------------------------------
+    testMergedSpecDigraphFactory({
+        testID: "KIxKI8ZoQhSleY-dIBn8dw",
+        testName: "Single filter, accept number case 2",
+        testDescription: "Model single filter that accepts a number (case 2).",
+        testRequest: {
+            id: "KIxKI8ZoQhSleY-dIBn8dw",
+            name: "test",
+            description: "test",
+            filters: [
+                FILTERLIB.create({
+                    operationID:  "3vf-aoHOQkKkKuXZGtfhHg",
+                    inputFilterSpec: { ____accept: [ "jsNumber" ] }
+                }).result
+            ]
+        }
+    });
+
+    /*
+
+    "3f2jUso8TfeAQ708tTEoCw",
+    "IlB1RIIzRqe_IDfS0uhLUQ",
+    "Gx68stlNQ3W4vSmCXSXpzA",
+    "WR-jLmIRRFWaoU_QXYGmJA",
+    "ePs7cIfeS2WyEnqZ4wJ1Jg",
+    "ZI5UERDRR6-6Oj8yhJOkng",
+    "U-Nyd-SJQOWnisOM5LClDw",
+    "ewj-Hb3fRFqkd5G3liTs6A",
+    "fN09WZOySqiUyIXaoeX0PQ",
+    "nwZEHl7YR2eVb2ZMwo8sYA",
+    "B3gIdEzMRBCD_hOPEkJ-Ig",
+    "EubAX3InS6eKy5Ck5n2n-w",
+    "5INQ3snpQO2ru2_eAP5JvQ",
+    "EpxfUsN0SK2-l7Il-vmpEg",
+    "Z9UF5obhT4ipV4qrBD08-Q",
+    "jrjKFxslQsuNwGKcppgM1w",
+    "GUoh4cgSRrG-_R4GFM1Wlg",
+    "lbSUE3jSRt-ftj3NkzlbgA",
+    "S4B_hMO0S7iWB_NNZNgM2A",
+    "BvJ5Oh_7RB-NoGacsBxeCw",
+    "aMn6M3hwReSs4iAKlOdGEw"
 
     // ----------------------------------------------------------------
     testMergedSpecDigraphFactory({
