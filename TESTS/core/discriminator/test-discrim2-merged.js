@@ -151,19 +151,55 @@
             description: "test",
             filters: [
                 FILTERLIB.create({
-                    operationID:  "3vf-aoHOQkKkKuXZGtfhHg",
+                    operationID: "3vf-aoHOQkKkKuXZGtfhHg",
                     inputFilterSpec: { ____accept: [ "jsNumber" ] }
                 }).result
             ]
         }
     });
 
+    // ----------------------------------------------------------------
+    testMergedSpecDigraphFactory({
+        testID: "3f2jUso8TfeAQ708tTEoCw",
+        testName: "Single filter, type number case 1",
+        testDescription: "Model single filter of type number (case 1).",
+        testRequest: {
+            id: "3f2jUso8TfeAQ708tTEoCw",
+            name: "test",
+            description: "test",
+            filters: [
+                FILTERLIB.create({
+                    operationID: "IlB1RIIzRqe_IDfS0uhLUQ",
+                    inputFilterSpec: { ____types: "jsNumber" }
+                }).result
+            ]
+        }
+    });
+
+    // ----------------------------------------------------------------
+    testMergedSpecDigraphFactory({
+        testID:  "Gx68stlNQ3W4vSmCXSXpzA",
+        testName: "Single filter, type number case 2",
+        testDescription: "Model single filter of type number (case 2).",
+        testRequest: {
+            id:  "Gx68stlNQ3W4vSmCXSXpzA",
+            name: "test",
+            description: "test",
+            filters: [
+                FILTERLIB.create({
+                    operationID: "WR-jLmIRRFWaoU_QXYGmJA",
+                    inputFilterSpec: { ____types: [ "jsNumber" ] }
+                }).result
+            ]
+        }
+    });
+
+
     /*
 
-    "3f2jUso8TfeAQ708tTEoCw",
-    "IlB1RIIzRqe_IDfS0uhLUQ",
-    "Gx68stlNQ3W4vSmCXSXpzA",
-    "WR-jLmIRRFWaoU_QXYGmJA",
+
+   ,
+    ,
     "ePs7cIfeS2WyEnqZ4wJ1Jg",
     "ZI5UERDRR6-6Oj8yhJOkng",
     "U-Nyd-SJQOWnisOM5LClDw",

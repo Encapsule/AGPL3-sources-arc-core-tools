@@ -1,0 +1,76 @@
+{
+    "testID": "Gx68stlNQ3W4vSmCXSXpzA",
+    "testName": "Single filter, type number case 2",
+    "testDescription": "Model single filter of type number (case 2).",
+    "testRequest": {
+        "id": "Gx68stlNQ3W4vSmCXSXpzA",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "WR-jLmIRRFWaoU_QXYGmJA",
+                    "operationName": "unnamed",
+                    "operationDescription": "WR-jLmIRRFWaoU_QXYGmJA provides no description.",
+                    "inputFilterSpec": {
+                        "____types": [
+                            "jsNumber"
+                        ]
+                    },
+                    "inputTypeVIID": "t8i1aZPhJoAuIltp8P8e0A",
+                    "inputTypeVDID": "T4_SQCOZBKJORdE5rywPxw",
+                    "outputTypeVIID": "OOxKIMomhDlviftsEm6hNQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "Cpy9Ew4syFd2B4TtiNIDtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "test",
+                "description": "test",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "jsFunction": [],
+                            "jsObject": [],
+                            "jsArray": [],
+                            "jsNumber": [
+                                "WR-jLmIRRFWaoU_QXYGmJA"
+                            ],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": [],
+                            "jsAny": []
+                        }
+                    }
+                ],
+                "elist": []
+            },
+            "filters": {
+                "WR-jLmIRRFWaoU_QXYGmJA": {
+                    "filterDescriptor": {
+                        "operationID": "WR-jLmIRRFWaoU_QXYGmJA",
+                        "operationName": "unnamed",
+                        "operationDescription": "WR-jLmIRRFWaoU_QXYGmJA provides no description.",
+                        "inputFilterSpec": {
+                            "____types": [
+                                "jsNumber"
+                            ]
+                        },
+                        "inputTypeVIID": "t8i1aZPhJoAuIltp8P8e0A",
+                        "inputTypeVDID": "T4_SQCOZBKJORdE5rywPxw",
+                        "outputTypeVIID": "OOxKIMomhDlviftsEm6hNQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "Cpy9Ew4syFd2B4TtiNIDtA"
+                    }
+                }
+            }
+        }
+    }
+}

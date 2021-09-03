@@ -1,0 +1,72 @@
+{
+    "testID": "3f2jUso8TfeAQ708tTEoCw",
+    "testName": "Single filter, type number case 1",
+    "testDescription": "Model single filter of type number (case 1).",
+    "testRequest": {
+        "id": "3f2jUso8TfeAQ708tTEoCw",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "IlB1RIIzRqe_IDfS0uhLUQ",
+                    "operationName": "unnamed",
+                    "operationDescription": "IlB1RIIzRqe_IDfS0uhLUQ provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsNumber"
+                    },
+                    "inputTypeVIID": "aR1l1UuaFIbT0N-_AGI6BA",
+                    "inputTypeVDID": "bnb3ZBRjMorlsJDYOWcTSw",
+                    "outputTypeVIID": "NPtiHW3ZyKmX1ug9jxt4bw",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "rhURE1AWiVdKNDjtcrr8tA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "test",
+                "description": "test",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "jsFunction": [],
+                            "jsObject": [],
+                            "jsArray": [],
+                            "jsNumber": [
+                                "IlB1RIIzRqe_IDfS0uhLUQ"
+                            ],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": [],
+                            "jsAny": []
+                        }
+                    }
+                ],
+                "elist": []
+            },
+            "filters": {
+                "IlB1RIIzRqe_IDfS0uhLUQ": {
+                    "filterDescriptor": {
+                        "operationID": "IlB1RIIzRqe_IDfS0uhLUQ",
+                        "operationName": "unnamed",
+                        "operationDescription": "IlB1RIIzRqe_IDfS0uhLUQ provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsNumber"
+                        },
+                        "inputTypeVIID": "aR1l1UuaFIbT0N-_AGI6BA",
+                        "inputTypeVDID": "bnb3ZBRjMorlsJDYOWcTSw",
+                        "outputTypeVIID": "NPtiHW3ZyKmX1ug9jxt4bw",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "rhURE1AWiVdKNDjtcrr8tA"
+                    }
+                }
+            }
+        }
+    }
+}
