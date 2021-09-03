@@ -1,0 +1,66 @@
+{
+    "testID": "RkaTLdCrQmW_L-QGW3y4hQ",
+    "testName": "Single filter, no inputFilterSpec",
+    "testDescription": "Model single filter w/no inputFilterSpec specified.",
+    "testRequest": {
+        "id": "RkaTLdCrQmW_L-QGW3y4hQ",
+        "name": "Single Filter No Input Spec",
+        "description": "Process single filter that accepts anything.",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "efRs_oPzR8un89bA4LqawA",
+                    "operationName": "unnamed",
+                    "operationDescription": "efRs_oPzR8un89bA4LqawA provides no description.",
+                    "inputTypeVIID": "zGsUNI1QLwxPvvsoARZycg",
+                    "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "outputTypeVIID": "az5HbA8wi7afgjd5bUZOhw",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "JYv0E-o5NVcXr47tZR4UtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "Single Filter No Input Spec",
+                "description": "Process single filter that accepts anything.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "jsFunction": [],
+                            "jsObject": [],
+                            "jsArray": [],
+                            "jsNumber": [],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": [],
+                            "jsAny": [
+                                "efRs_oPzR8un89bA4LqawA"
+                            ]
+                        }
+                    }
+                ],
+                "elist": []
+            },
+            "filters": {
+                "efRs_oPzR8un89bA4LqawA": {
+                    "filterDescriptor": {
+                        "operationID": "efRs_oPzR8un89bA4LqawA",
+                        "operationName": "unnamed",
+                        "operationDescription": "efRs_oPzR8un89bA4LqawA provides no description.",
+                        "inputTypeVIID": "zGsUNI1QLwxPvvsoARZycg",
+                        "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "outputTypeVIID": "az5HbA8wi7afgjd5bUZOhw",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "JYv0E-o5NVcXr47tZR4UtA"
+                    }
+                }
+            }
+        }
+    }
+}

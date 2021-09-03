@@ -1,0 +1,9 @@
+{
+    "testID": "fXCw0hjBSH2_KvMnjwxBfA",
+    "testName": "Bad Input Test",
+    "testDescription": "Provide no testRequest (undefined) value.",
+    "testResponse": {
+        "error": "Filter [7WtZ3CGLROGWSEDeA-jU6Q::Merged Filter Spec Digraph Factory] failed while normalizing request input. Error at path '~': Value of type 'jsUndefined' not in allowed type set [jsObject].",
+        "result": null
+    }
+}

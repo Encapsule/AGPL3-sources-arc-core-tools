@@ -1,0 +1,22 @@
+{
+    "testID": "L6Oao8XSSLepZMb93oPTBg",
+    "testName": "No Filters",
+    "testDescription": "Simple test case that specifies no input filters to merge. Tests ability to produce default digraph result.",
+    "testRequest": {
+        "id": "L6Oao8XSSLepZMb93oPTBg",
+        "name": "No Filters",
+        "description": "Simple test case w/no specified filters to merge whatsover."
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "No Filters",
+                "description": "Simple test case w/no specified filters to merge whatsover.",
+                "vlist": [],
+                "elist": []
+            },
+            "filters": {}
+        }
+    }
+}

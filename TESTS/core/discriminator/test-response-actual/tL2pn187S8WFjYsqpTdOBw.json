@@ -1,0 +1,72 @@
+{
+    "testID": "tL2pn187S8WFjYsqpTdOBw",
+    "testName": "Single filter, opaque inputFilterSpec",
+    "testDescription": "Model single filter w/explicit opaque inputFilterSpec.",
+    "testRequest": {
+        "id": "tL2pn187S8WFjYsqpTdOBw",
+        "name": "Single Filter No Input Spec",
+        "description": "Process single filter that accepts anything.",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "Zt9i_3yRQfucaMmBiSbUmw",
+                    "operationName": "unnamed",
+                    "operationDescription": "Zt9i_3yRQfucaMmBiSbUmw provides no description.",
+                    "inputFilterSpec": {
+                        "____opaque": true
+                    },
+                    "inputTypeVIID": "tAnIr_gQiiTo66w9aBfr9w",
+                    "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "outputTypeVIID": "IoRcQShSKfHZk-tyzOPaEg",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "8Af0EzuVNVfGW47tKCQUtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "Single Filter No Input Spec",
+                "description": "Process single filter that accepts anything.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "jsFunction": [],
+                            "jsObject": [],
+                            "jsArray": [],
+                            "jsNumber": [],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": [],
+                            "jsAny": [
+                                "Zt9i_3yRQfucaMmBiSbUmw"
+                            ]
+                        }
+                    }
+                ],
+                "elist": []
+            },
+            "filters": {
+                "Zt9i_3yRQfucaMmBiSbUmw": {
+                    "filterDescriptor": {
+                        "operationID": "Zt9i_3yRQfucaMmBiSbUmw",
+                        "operationName": "unnamed",
+                        "operationDescription": "Zt9i_3yRQfucaMmBiSbUmw provides no description.",
+                        "inputFilterSpec": {
+                            "____opaque": true
+                        },
+                        "inputTypeVIID": "tAnIr_gQiiTo66w9aBfr9w",
+                        "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "outputTypeVIID": "IoRcQShSKfHZk-tyzOPaEg",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "8Af0EzuVNVfGW47tKCQUtA"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -2,6 +2,9 @@
 
 (function() {
 
+    const fs = require("fs");
+    const path = require("path");
+
     const assert = require("chai").assert;
 
     const testModule = require("./module-under-test");
@@ -10,27 +13,67 @@
 
     /*
       testVector = {
+
+          testID: string (IRUT)
+          testName: string,
+          testDescription: string,
+
+          testRequest: variant (passed to the digraph factory filter)
+
+          testOptions: {
+              // ... none, currently.
+          }
+
+
+
           testName: string,
           validConfig: Boolean,
           request: filter request
           expectedResults: {
               response: { error: null|string, result: digraph }
           }
-     */
+    */
 
     module.exports = function(testVector_) {
 
-        response = null;
-        exception = null;
+        // Actual
+        let responseActual = undefined;
 
-        describe(`ARC core type discriminator v2 merged filter spec digraph factory test name: "${testVector_.testName}"`, function() {
+        // Expected ...
+        let responseExpected = undefined;
+
+        let exception = null;
+
+        describe(`ARC core type discriminator v2 merged filter spec digraph factory test name: [${testVector_.testID}::${testVector_.testName}]`, function() {
 
             before(function() {
                 try {
-                    response = mergedSpecDigraphFactoryFilter.request(testVector_.request);
+
+                    const responseFilename = `${testVector_.testID}.json`;
+                    const expectedFilename = path.resolve(path.join(__dirname, "test-response-expected", responseFilename));
+                    const actualFilename = path.resolve(path.join(__dirname, "test-response-actual", responseFilename));
+
+                    if (fs.existsSync(expectedFilename)) {
+                        const fileBuffer = fs.readFileSync(expectedFilename);
+                        responseExpected = JSON.parse(fileBuffer.toString('utf8'));
+                    }
+
+                    const digraphFactoryResponse = mergedSpecDigraphFactoryFilter.request(testVector_.testRequest);
+
+                    responseActualJSON = JSON.stringify({
+                        ...testVector_,
+                        testResponse: digraphFactoryResponse
+                    }, undefined, 4);
+
+
+                    fs.writeFileSync(actualFilename, responseActualJSON);
+
+                    responseActual = JSON.parse(responseActualJSON);
+
                 } catch (exception_) {
                     exception = exception_;
                 }
+
             });
 
             it("Merged filter spec digraph factory should not throw.", function() {
@@ -38,25 +81,17 @@
             });
 
             it("Merged filter spec digraph factory should return a response object.", function() {
-                assert.isObject(response);
+                assert.isObject(responseActual.testResponse);
             });
 
-            if (testVector_.validConfig) {
+            it("Actual runtime response value should be deepEqual to the expected response control value specified by this test.", function() {
 
-                it("Merged filter spec digraph factory response.error is not expected.", function() {
-                    assert.isNull(response.error, "Actual response.error is expected to be equal to null.");
+                assert.deepEqual(
+                    responseActual,
+                    responseExpected
+                );
+            });
 
-
-                });
-
-            } else {
-
-                it("Merged filter spec digraph factory response.error is expected.", function() {
-                    assert.isString(response.error, "The response.error value should be a string type.");
-                    assert.equal(/*actual*/response.error, /*expected*/testVector_.expectedResults.response.error, "The response.error string value should match the value specified by this test.");
-                });
-
-            }
 
         });
     }
