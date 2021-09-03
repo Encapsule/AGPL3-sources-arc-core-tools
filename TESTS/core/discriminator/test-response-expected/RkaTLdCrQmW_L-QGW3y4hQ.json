@@ -4,8 +4,8 @@
     "testDescription": "Model single filter w/no inputFilterSpec specified.",
     "testRequest": {
         "id": "RkaTLdCrQmW_L-QGW3y4hQ",
-        "name": "Single Filter No Input Spec",
-        "description": "Process single filter that accepts anything.",
+        "name": "test",
+        "description": "test",
         "filters": [
             {
                 "filterDescriptor": {
@@ -25,8 +25,8 @@
         "error": null,
         "result": {
             "digraph": {
-                "name": "Single Filter No Input Spec",
-                "description": "Process single filter that accepts anything.",
+                "name": "test",
+                "description": "test",
                 "vlist": [
                     {
                         "u": "~",
