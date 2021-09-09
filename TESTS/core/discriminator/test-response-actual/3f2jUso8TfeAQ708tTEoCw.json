@@ -34,6 +34,8 @@
                     {
                         "u": "~",
                         "p": {
+                            "isOpaque": [],
+                            "isDefaulted": [],
                             "jsFunction": [],
                             "jsObject": [],
                             "jsArray": [],
@@ -43,8 +45,7 @@
                             "jsNull": [],
                             "jsUndefined": [],
                             "jsBoolean": [],
-                            "jsString": [],
-                            "jsAny": []
+                            "jsString": []
                         }
                     }
                 ],

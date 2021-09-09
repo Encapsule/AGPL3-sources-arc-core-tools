@@ -31,6 +31,10 @@
                     {
                         "u": "~",
                         "p": {
+                            "isOpaque": [
+                                "efRs_oPzR8un89bA4LqawA"
+                            ],
+                            "isDefaulted": [],
                             "jsFunction": [],
                             "jsObject": [],
                             "jsArray": [],
@@ -38,10 +42,7 @@
                             "jsNull": [],
                             "jsUndefined": [],
                             "jsBoolean": [],
-                            "jsString": [],
-                            "jsAny": [
-                                "efRs_oPzR8un89bA4LqawA"
-                            ]
+                            "jsString": []
                         }
                     }
                 ],

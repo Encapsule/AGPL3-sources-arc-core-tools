@@ -1,0 +1,105 @@
+{
+    "testID": "ePs7cIfeS2WyEnqZ4wJ1Jg",
+    "testName": "Single filter, variant type case 1",
+    "testDescription": "Verify behavior if inputFilterSpec accepts a number of different POD types (case 1).",
+    "testRequest": {
+        "id": "ePs7cIfeS2WyEnqZ4wJ1Jg",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "ZI5UERDRR6-6Oj8yhJOkng",
+                    "operationName": "unnamed",
+                    "operationDescription": "ZI5UERDRR6-6Oj8yhJOkng provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": [
+                            "jsFunction",
+                            "jsObject",
+                            "jsArray",
+                            "jsNull",
+                            "jsNumber",
+                            "jsUndefined",
+                            "jsBoolean",
+                            "jsString"
+                        ]
+                    },
+                    "inputTypeVIID": "HvbPhXnMr9aWoyz3s9jE8g",
+                    "inputTypeVDID": "N0Dj5BK-pi5ymM_sYAAGCw",
+                    "outputTypeVIID": "XBkLdzg3lmDZt5c1vMhYUQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "hqegE2QuyFciaIjtE6PRtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "test",
+                "description": "test",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "isOpaque": [],
+                            "isDefaulted": [],
+                            "jsFunction": [
+                                "ZI5UERDRR6-6Oj8yhJOkng"
+                            ],
+                            "jsObject": [
+                                "ZI5UERDRR6-6Oj8yhJOkng"
+                            ],
+                            "jsArray": [
+                                "ZI5UERDRR6-6Oj8yhJOkng"
+                            ],
+                            "jsNumber": [
+                                "ZI5UERDRR6-6Oj8yhJOkng"
+                            ],
+                            "jsNull": [
+                                "ZI5UERDRR6-6Oj8yhJOkng"
+                            ],
+                            "jsUndefined": [
+                                "ZI5UERDRR6-6Oj8yhJOkng"
+                            ],
+                            "jsBoolean": [
+                                "ZI5UERDRR6-6Oj8yhJOkng"
+                            ],
+                            "jsString": [
+                                "ZI5UERDRR6-6Oj8yhJOkng"
+                            ]
+                        }
+                    }
+                ],
+                "elist": []
+            },
+            "filters": {
+                "ZI5UERDRR6-6Oj8yhJOkng": {
+                    "filterDescriptor": {
+                        "operationID": "ZI5UERDRR6-6Oj8yhJOkng",
+                        "operationName": "unnamed",
+                        "operationDescription": "ZI5UERDRR6-6Oj8yhJOkng provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": [
+                                "jsFunction",
+                                "jsObject",
+                                "jsArray",
+                                "jsNull",
+                                "jsNumber",
+                                "jsUndefined",
+                                "jsBoolean",
+                                "jsString"
+                            ]
+                        },
+                        "inputTypeVIID": "HvbPhXnMr9aWoyz3s9jE8g",
+                        "inputTypeVDID": "N0Dj5BK-pi5ymM_sYAAGCw",
+                        "outputTypeVIID": "XBkLdzg3lmDZt5c1vMhYUQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "hqegE2QuyFciaIjtE6PRtA"
+                    }
+                }
+            }
+        }
+    }
+}

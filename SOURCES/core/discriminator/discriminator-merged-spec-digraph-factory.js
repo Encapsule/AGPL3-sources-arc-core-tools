@@ -139,15 +139,16 @@
                             response.result.digraph.addVertex({
                                 u: nsWorkItem.specRefPath,
                                 p: {
-                                    jsFunction: [],
-                                    jsObject: [],
-                                    jsArray: [],
-                                    jsNumber: [],
-                                    jsNull: [],
-                                    jsUndefined: [],
-                                    jsBoolean: [],
-                                    jsString: [],
-                                    jsAny: []
+                                    isOpaque: [],    // Declared as literally anything (including jsUndefined value). So, of no interest to discriminator algorithm.
+                                    isDefaulted: [], // Declared w/default value that is applied by filter library if the caller does not provide a value (i.e. specifies an undefined value w/type moniker jsUndefined)
+                                    jsFunction: [],  // F
+                                    jsObject: [],    // O
+                                    jsArray: [],     // A
+                                    jsNumber: [],    // N
+                                    jsNull: [],      // N
+                                    jsUndefined: [], // U
+                                    jsBoolean: [],   // B
+                                    jsString: [],    // S
                                 }
                             });
                         }
@@ -155,16 +156,17 @@
                         let nsProperty = response.result.digraph.getVertexProperty(nsWorkItem.specRefPath);
 
                         if (nsWorkItemFeatures.isOpaque) {
-                            nsProperty.jsAny.push(filter.filterDescriptor.operationID);
+                            nsProperty.isOpaque.push(filter.filterDescriptor.operationID);
                         } else {
                             nsWorkItemFeatures.typeConstraints.forEach(typeConstraint_ => {
                                 nsProperty[typeConstraint_].push(filter.filterDescriptor.operationID);
                             });
                             if (nsWorkItemFeatures.isDefaulted) {
-                                nsProperty.jsUndefined.push(filter.filterDescriptor.operationID);
+                                nsProperty.isDefaulted.push(filter.filterDescriptor.operationID);
                             }
                         }
 
+                        // Set the vertex property.
                         response.result.digraph.setVertexProperty({ u: nsWorkItem.specRefRef, p: nsProperty });
 
                         // Tree edge create...
@@ -172,7 +174,13 @@
                             response.result.digraph.addEdge({ e: { u: nsWorkItem.parentRefPath, v: nsWorkItem.specRefPath } });
                         }
 
-
+                        if (nsWorkItemFeatures.processSubnamespaces) {
+                            for (let key_ in nsWorkItem.specRef) {
+                                if (!key_.startsWith("____")) {
+                                    nsWorkQueue.push({ parentRefPath: nsWorkItem.specRefPath, specRefPath: `${nsWorkItem.specRefPath}.${key_}`, specRef: nsWorkItem.specRef[key_] });
+                                }
+                            }
+                        }
 
                     } // while namespaceSpecQueue.length
 

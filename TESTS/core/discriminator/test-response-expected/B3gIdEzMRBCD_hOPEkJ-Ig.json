@@ -1,0 +1,77 @@
+{
+    "testID": "B3gIdEzMRBCD_hOPEkJ-Ig",
+    "testName": "Single Filter Accept Number w/Default Value",
+    "testDescription": "Model single filter that accepts a numerical value and that specifies a default value.",
+    "testRequest": {
+        "id": "B3gIdEzMRBCD_hOPEkJ-Ig",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "EubAX3InS6eKy5Ck5n2n-w",
+                    "operationName": "unnamed",
+                    "operationDescription": "EubAX3InS6eKy5Ck5n2n-w provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber",
+                        "____defaultValue": 666
+                    },
+                    "inputTypeVIID": "c9jtxfTfq_D1HxCyn19pUQ",
+                    "inputTypeVDID": "DpgOmPIc8hxC8kLyUn9Sfw",
+                    "outputTypeVIID": "Dq3X3zVt2nJbxH41Bk_ROQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "sMQ2ExUBlFdvan7t2RzytA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "test",
+                "description": "test",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "isOpaque": [],
+                            "isDefaulted": [
+                                "EubAX3InS6eKy5Ck5n2n-w"
+                            ],
+                            "jsFunction": [],
+                            "jsObject": [],
+                            "jsArray": [],
+                            "jsNumber": [
+                                "EubAX3InS6eKy5Ck5n2n-w"
+                            ],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": []
+                        }
+                    }
+                ],
+                "elist": []
+            },
+            "filters": {
+                "EubAX3InS6eKy5Ck5n2n-w": {
+                    "filterDescriptor": {
+                        "operationID": "EubAX3InS6eKy5Ck5n2n-w",
+                        "operationName": "unnamed",
+                        "operationDescription": "EubAX3InS6eKy5Ck5n2n-w provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": "jsNumber",
+                            "____defaultValue": 666
+                        },
+                        "inputTypeVIID": "c9jtxfTfq_D1HxCyn19pUQ",
+                        "inputTypeVDID": "DpgOmPIc8hxC8kLyUn9Sfw",
+                        "outputTypeVIID": "Dq3X3zVt2nJbxH41Bk_ROQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "sMQ2ExUBlFdvan7t2RzytA"
+                    }
+                }
+            }
+        }
+    }
+}

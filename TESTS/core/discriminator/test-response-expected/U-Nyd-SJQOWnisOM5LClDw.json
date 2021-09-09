@@ -1,0 +1,103 @@
+{
+    "testID": "U-Nyd-SJQOWnisOM5LClDw",
+    "testName": "Single filter, object w/property case 1",
+    "testDescription": "Verify behavior if inputFilterSpec is an object type w/a single property (case 1).",
+    "testRequest": {
+        "id": "U-Nyd-SJQOWnisOM5LClDw",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "ewj-Hb3fRFqkd5G3liTs6A",
+                    "operationName": "unnamed",
+                    "operationDescription": "ewj-Hb3fRFqkd5G3liTs6A provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "someProperty": {
+                            "____accept": "jsString"
+                        }
+                    },
+                    "inputTypeVIID": "uiHu-IzO28q4AhlY9V9ONA",
+                    "inputTypeVDID": "7c41XFt_G4p7smBX485qBw",
+                    "outputTypeVIID": "CiWzRwVg1j-yIFyle3KQPg",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "5WvlE4uU7Vc9-c3t_Q07tA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "test",
+                "description": "test",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "isOpaque": [],
+                            "isDefaulted": [],
+                            "jsFunction": [],
+                            "jsObject": [
+                                "ewj-Hb3fRFqkd5G3liTs6A"
+                            ],
+                            "jsArray": [],
+                            "jsNumber": [],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": []
+                        }
+                    },
+                    {
+                        "u": "~.someProperty",
+                        "p": {
+                            "isOpaque": [],
+                            "isDefaulted": [],
+                            "jsFunction": [],
+                            "jsObject": [],
+                            "jsArray": [],
+                            "jsNumber": [],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": [
+                                "ewj-Hb3fRFqkd5G3liTs6A"
+                            ]
+                        }
+                    }
+                ],
+                "elist": [
+                    {
+                        "e": {
+                            "u": "~",
+                            "v": "~.someProperty"
+                        }
+                    }
+                ]
+            },
+            "filters": {
+                "ewj-Hb3fRFqkd5G3liTs6A": {
+                    "filterDescriptor": {
+                        "operationID": "ewj-Hb3fRFqkd5G3liTs6A",
+                        "operationName": "unnamed",
+                        "operationDescription": "ewj-Hb3fRFqkd5G3liTs6A provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "someProperty": {
+                                "____accept": "jsString"
+                            }
+                        },
+                        "inputTypeVIID": "uiHu-IzO28q4AhlY9V9ONA",
+                        "inputTypeVDID": "7c41XFt_G4p7smBX485qBw",
+                        "outputTypeVIID": "CiWzRwVg1j-yIFyle3KQPg",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "5WvlE4uU7Vc9-c3t_Q07tA"
+                    }
+                }
+            }
+        }
+    }
+}

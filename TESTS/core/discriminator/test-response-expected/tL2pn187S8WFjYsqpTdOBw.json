@@ -34,6 +34,10 @@
                     {
                         "u": "~",
                         "p": {
+                            "isOpaque": [
+                                "Zt9i_3yRQfucaMmBiSbUmw"
+                            ],
+                            "isDefaulted": [],
                             "jsFunction": [],
                             "jsObject": [],
                             "jsArray": [],
@@ -41,10 +45,7 @@
                             "jsNull": [],
                             "jsUndefined": [],
                             "jsBoolean": [],
-                            "jsString": [],
-                            "jsAny": [
-                                "Zt9i_3yRQfucaMmBiSbUmw"
-                            ]
+                            "jsString": []
                         }
                     }
                 ],

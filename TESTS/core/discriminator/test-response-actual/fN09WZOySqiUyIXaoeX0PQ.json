@@ -1,27 +1,28 @@
 {
-    "testID": "KIxKI8ZoQhSleY-dIBn8dw",
-    "testName": "Single filter, accept number case 2",
-    "testDescription": "Model single filter that accepts a number (case 2).",
+    "testID": "fN09WZOySqiUyIXaoeX0PQ",
+    "testName": "Single Filter Accept Optional Number",
+    "testDescription": "Model single filter that accepts an optional numerical value.",
     "testRequest": {
-        "id": "KIxKI8ZoQhSleY-dIBn8dw",
+        "id": "fN09WZOySqiUyIXaoeX0PQ",
         "name": "test",
         "description": "test",
         "filters": [
             {
                 "filterDescriptor": {
-                    "operationID": "3vf-aoHOQkKkKuXZGtfhHg",
+                    "operationID": "nwZEHl7YR2eVb2ZMwo8sYA",
                     "operationName": "unnamed",
-                    "operationDescription": "3vf-aoHOQkKkKuXZGtfhHg provides no description.",
+                    "operationDescription": "nwZEHl7YR2eVb2ZMwo8sYA provides no description.",
                     "inputFilterSpec": {
                         "____accept": [
+                            "jsUndefined",
                             "jsNumber"
                         ]
                     },
-                    "inputTypeVIID": "qV7XII4-JSCG_NNwi_xFjg",
-                    "inputTypeVDID": "Ivvu9BxR6z14Y40wSXbE5A",
-                    "outputTypeVIID": "3f9lOiQnIrq489EaHVlQWA",
+                    "inputTypeVIID": "vdwsC6MxUCysE72S4Y8xrw",
+                    "inputTypeVDID": "3ufZwQF1kiJ-OwUKIiJzqA",
+                    "outputTypeVIID": "BD793bwXpqOQzPyHtKuNsw",
                     "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                    "operationVDID": "Jhj4E_R77leJkU7torrTtA"
+                    "operationVDID": "RAF-E41JwVctti_t3t3gtA"
                 }
             }
         ]
@@ -42,10 +43,12 @@
                             "jsObject": [],
                             "jsArray": [],
                             "jsNumber": [
-                                "3vf-aoHOQkKkKuXZGtfhHg"
+                                "nwZEHl7YR2eVb2ZMwo8sYA"
                             ],
                             "jsNull": [],
-                            "jsUndefined": [],
+                            "jsUndefined": [
+                                "nwZEHl7YR2eVb2ZMwo8sYA"
+                            ],
                             "jsBoolean": [],
                             "jsString": []
                         }
@@ -54,21 +57,22 @@
                 "elist": []
             },
             "filters": {
-                "3vf-aoHOQkKkKuXZGtfhHg": {
+                "nwZEHl7YR2eVb2ZMwo8sYA": {
                     "filterDescriptor": {
-                        "operationID": "3vf-aoHOQkKkKuXZGtfhHg",
+                        "operationID": "nwZEHl7YR2eVb2ZMwo8sYA",
                         "operationName": "unnamed",
-                        "operationDescription": "3vf-aoHOQkKkKuXZGtfhHg provides no description.",
+                        "operationDescription": "nwZEHl7YR2eVb2ZMwo8sYA provides no description.",
                         "inputFilterSpec": {
                             "____accept": [
+                                "jsUndefined",
                                 "jsNumber"
                             ]
                         },
-                        "inputTypeVIID": "qV7XII4-JSCG_NNwi_xFjg",
-                        "inputTypeVDID": "Ivvu9BxR6z14Y40wSXbE5A",
-                        "outputTypeVIID": "3f9lOiQnIrq489EaHVlQWA",
+                        "inputTypeVIID": "vdwsC6MxUCysE72S4Y8xrw",
+                        "inputTypeVDID": "3ufZwQF1kiJ-OwUKIiJzqA",
+                        "outputTypeVIID": "BD793bwXpqOQzPyHtKuNsw",
                         "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "operationVDID": "Jhj4E_R77leJkU7torrTtA"
+                        "operationVDID": "RAF-E41JwVctti_t3t3gtA"
                     }
                 }
             }
