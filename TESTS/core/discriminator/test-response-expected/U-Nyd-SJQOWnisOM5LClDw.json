@@ -40,9 +40,10 @@
                             "isOpaque": [],
                             "isDefaulted": [],
                             "jsFunction": [],
-                            "jsObject": [
+                            "jsObjectD": [
                                 "ewj-Hb3fRFqkd5G3liTs6A"
                             ],
+                            "jsObjectM": [],
                             "jsArray": [],
                             "jsNumber": [],
                             "jsNull": [],
@@ -57,7 +58,8 @@
                             "isOpaque": [],
                             "isDefaulted": [],
                             "jsFunction": [],
-                            "jsObject": [],
+                            "jsObjectD": [],
+                            "jsObjectM": [],
                             "jsArray": [],
                             "jsNumber": [],
                             "jsNull": [],

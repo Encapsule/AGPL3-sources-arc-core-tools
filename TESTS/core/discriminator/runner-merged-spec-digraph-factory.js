@@ -71,7 +71,7 @@
                     responseActual = JSON.parse(responseActualJSON);
 
                 } catch (exception_) {
-                    exception = exception_;
+                    exception = exception_.stack;
                 }
 
             });

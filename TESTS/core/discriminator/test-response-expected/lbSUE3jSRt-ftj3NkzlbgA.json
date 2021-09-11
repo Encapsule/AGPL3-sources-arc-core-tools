@@ -1,28 +1,29 @@
 {
-    "testID": "U-Nyd-SJQOWnisOM5LClDw",
-    "testName": "Single filter, object w/property case 1",
-    "testDescription": "Verify behavior if inputFilterSpec is an object type w/a single property (case 1).",
+    "testID": "lbSUE3jSRt-ftj3NkzlbgA",
+    "testName": "Single Filter, Map Object Case #1",
+    "testDescription": "Verify behavior if inputFilterSpec accepts a map object.",
     "testRequest": {
-        "id": "U-Nyd-SJQOWnisOM5LClDw",
+        "id": "lbSUE3jSRt-ftj3NkzlbgA",
         "name": "test",
         "description": "test",
         "filters": [
             {
                 "filterDescriptor": {
-                    "operationID": "ewj-Hb3fRFqkd5G3liTs6A",
+                    "operationID": "aMn6M3hwReSs4iAKlOdGEw",
                     "operationName": "unnamed",
-                    "operationDescription": "ewj-Hb3fRFqkd5G3liTs6A provides no description.",
+                    "operationDescription": "aMn6M3hwReSs4iAKlOdGEw provides no description.",
                     "inputFilterSpec": {
                         "____types": "jsObject",
-                        "someProperty": {
-                            "____accept": "jsString"
+                        "____asMap": true,
+                        "propertyA": {
+                            "____accept": "jsNumber"
                         }
                     },
-                    "inputTypeVIID": "uiHu-IzO28q4AhlY9V9ONA",
-                    "inputTypeVDID": "7c41XFt_G4p7smBX485qBw",
-                    "outputTypeVIID": "CiWzRwVg1j-yIFyle3KQPg",
+                    "inputTypeVIID": "KEPsNvvAWGMpgXEJ4JkZ4g",
+                    "inputTypeVDID": "VpX9pWihQ5-bYywUXptrdw",
+                    "outputTypeVIID": "9iFkFY1lEnIKWR2PahEhEQ",
                     "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                    "operationVDID": "5WvlE4uU7Vc9-c3t_Q07tA"
+                    "operationVDID": "9kQHEzzL-1fFiaPtuSqHtA"
                 }
             }
         ]
@@ -40,10 +41,10 @@
                             "isOpaque": [],
                             "isDefaulted": [],
                             "jsFunction": [],
-                            "jsObjectD": [
-                                "ewj-Hb3fRFqkd5G3liTs6A"
+                            "jsObjectD": [],
+                            "jsObjectM": [
+                                "aMn6M3hwReSs4iAKlOdGEw"
                             ],
-                            "jsObjectM": [],
                             "jsArray": [],
                             "jsNumber": [],
                             "jsNull": [],
@@ -53,7 +54,7 @@
                         }
                     },
                     {
-                        "u": "~.someProperty",
+                        "u": "~.propertyA",
                         "p": {
                             "isOpaque": [],
                             "isDefaulted": [],
@@ -61,13 +62,13 @@
                             "jsObjectD": [],
                             "jsObjectM": [],
                             "jsArray": [],
-                            "jsNumber": [],
+                            "jsNumber": [
+                                "aMn6M3hwReSs4iAKlOdGEw"
+                            ],
                             "jsNull": [],
                             "jsUndefined": [],
                             "jsBoolean": [],
-                            "jsString": [
-                                "ewj-Hb3fRFqkd5G3liTs6A"
-                            ]
+                            "jsString": []
                         }
                     }
                 ],
@@ -75,28 +76,29 @@
                     {
                         "e": {
                             "u": "~",
-                            "v": "~.someProperty"
+                            "v": "~.propertyA"
                         }
                     }
                 ]
             },
             "filters": {
-                "ewj-Hb3fRFqkd5G3liTs6A": {
+                "aMn6M3hwReSs4iAKlOdGEw": {
                     "filterDescriptor": {
-                        "operationID": "ewj-Hb3fRFqkd5G3liTs6A",
+                        "operationID": "aMn6M3hwReSs4iAKlOdGEw",
                         "operationName": "unnamed",
-                        "operationDescription": "ewj-Hb3fRFqkd5G3liTs6A provides no description.",
+                        "operationDescription": "aMn6M3hwReSs4iAKlOdGEw provides no description.",
                         "inputFilterSpec": {
                             "____types": "jsObject",
-                            "someProperty": {
-                                "____accept": "jsString"
+                            "____asMap": true,
+                            "propertyA": {
+                                "____accept": "jsNumber"
                             }
                         },
-                        "inputTypeVIID": "uiHu-IzO28q4AhlY9V9ONA",
-                        "inputTypeVDID": "7c41XFt_G4p7smBX485qBw",
-                        "outputTypeVIID": "CiWzRwVg1j-yIFyle3KQPg",
+                        "inputTypeVIID": "KEPsNvvAWGMpgXEJ4JkZ4g",
+                        "inputTypeVDID": "VpX9pWihQ5-bYywUXptrdw",
+                        "outputTypeVIID": "9iFkFY1lEnIKWR2PahEhEQ",
                         "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "operationVDID": "5WvlE4uU7Vc9-c3t_Q07tA"
+                        "operationVDID": "9kQHEzzL-1fFiaPtuSqHtA"
                     }
                 }
             }

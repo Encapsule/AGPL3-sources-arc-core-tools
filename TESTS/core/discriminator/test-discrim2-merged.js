@@ -181,6 +181,61 @@
 
 
     // ----------------------------------------------------------------
+
+    testMergedSpecDigraphFactory({
+        testID: "GUoh4cgSRrG-_R4GFM1Wlg",
+        testName: "Single Filter, Descriptor Object Case #1",
+        testDescription: "Verify behavior if inputFilterSpec accepts a descriptor object.",
+        testRequest: {
+            id: "GUoh4cgSRrG-_R4GFM1Wlg",
+            name: "test", description: "test",
+            filters: [
+                FILTERLIB.create({
+                    operationID: "BvJ5Oh_7RB-NoGacsBxeCw",
+                    inputFilterSpec: {
+                        ____types: "jsObject",
+                        propertyA: {
+                            ____accept: "jsNumber"
+                        }
+                    }
+                }).result
+            ]
+        }
+    });
+
+    testMergedSpecDigraphFactory({
+        testID: "lbSUE3jSRt-ftj3NkzlbgA",
+        testName: "Single Filter, Map Object Case #1",
+        testDescription: "Verify behavior if inputFilterSpec accepts a map object.",
+        testRequest: {
+            id: "lbSUE3jSRt-ftj3NkzlbgA",
+            name: "test", description: "test",
+            filters: [
+                FILTERLIB.create({
+                    operationID: "aMn6M3hwReSs4iAKlOdGEw",
+                    inputFilterSpec: {
+                        ____types: "jsObject",
+                        ____asMap: true,
+                        propertyA: {
+                            ____accept: "jsNumber"
+                        }
+                    }
+                }).result
+            ]
+        }
+    });
+
+    testMergedSpecDigraphFactory({
+        testID: "S4B_hMO0S7iWB_NNZNgM2A",
+        testName: "Single Filter, Array Case #1",
+        testDescription: "Verify behavior if inputFilterSpec accepts an array.",
+        testRequest: {
+            id:  "S4B_hMO0S7iWB_NNZNgM2A",
+            name: "test", description: "test",
+        }
+    });
+
+    // ----------------------------------------------------------------
     testMergedSpecDigraphFactory({
         testID: "ePs7cIfeS2WyEnqZ4wJ1Jg",
         testName: "Single filter, variant type case 1",
@@ -223,19 +278,92 @@
         }
     });
 
+    // ----------------------------------------------------------------
+    testMergedSpecDigraphFactory({
+        testID: "5INQ3snpQO2ru2_eAP5JvQ",
+        testName: "Single filter, object w/properties case 2",
+        testDescription: "Verify behavior if inputFilterSpec is an object w/a mix of different property types (case 2).",
+        testRequest: {
+            id: "5INQ3snpQO2ru2_eAP5JvQ",
+            name: "test",
+            description: "test",
+            filters: [
+
+                // A COMPLETE CLUSTERFUCK OF OVERLOADED BULLSHIT
+
+                FILTERLIB.create({
+                    operationID: "EpxfUsN0SK2-l7Il-vmpEg",
+                    inputFilterSpec: {
+                        ____label: "Descriptor Object",
+                        ____description: "A descriptor object is an object w/some or another predefined key(s) type(s).",
+                        ____types: "jsObject",
+                        key: {
+                            ____label: "Descriptor Object 'key' Property Value",
+                            ____accept: "jsString"
+                        }
+                    }
+                }).result,
+
+                FILTERLIB.create({
+                    operationID: "Z9UF5obhT4ipV4qrBD08-Q",
+                    inputFilterSpec: {
+                        ____label: "Map Object",
+                        ____description: "A map object is an object used to associate (i.e. map) string key(s) to element value(s) of some type or another.",
+                        ____types: "jsObject",
+                        ____asMap: true,
+                        key: { // 'key' is considered a placeholder for any string value in the set Object.keys(mapObject).
+                            ____label: "Map Object Element Value",
+                            ____accept: "jsString"
+                        }
+                    }
+                }).result,
+
+                FILTERLIB.create({
+                    operationID:  "jrjKFxslQsuNwGKcppgM1w",
+                    inputFilterSpec: {
+                        ____label: "Array",
+                        ____description: "An array of string elements.",
+                        ____types: "jsArray",
+                        key: { // 'key' is considered a placeholder for any numerical index value in range [0, array.length)
+                            ____label: "Array Element Value",
+                            ____accept: "jsString"
+                        }
+                    }
+                }).result
+            ]
+        }
+    });
+
+
+
 
     /*
 
-    "5INQ3snpQO2ru2_eAP5JvQ",
-    "EpxfUsN0SK2-l7Il-vmpEg",
-    "Z9UF5obhT4ipV4qrBD08-Q",
-    "jrjKFxslQsuNwGKcppgM1w",
-    "GUoh4cgSRrG-_R4GFM1Wlg",
-    "lbSUE3jSRt-ftj3NkzlbgA",
-    "S4B_hMO0S7iWB_NNZNgM2A",
-    "BvJ5Oh_7RB-NoGacsBxeCw",
-    "aMn6M3hwReSs4iAKlOdGEw"
-
+    "P6WYyQZVRfWNV0ejqwVqAg",
+    "W9WYUw7BTe-pi3Ru-aBOJA",
+    "25u5isQMQTi-QZLTfYGE6g",
+    "IsgdMX1JSbCfM1hKC4ihqw",
+    "8wmrrwcwQFWDNF-7Ewodyg",
+    "Gwb62JopQ-yyv2M3-I93zA",
+    "1jAImxyKTmuMt7n41l9vCA",
+    "bHxrmMCCT6ee1g8nrIbjew",
+    "fz8Q1VBKR_6JnivwZIpajw",
+    "ODWX3q14Sz6qt4kovZ9hIA",
+    "f0HSLypGQwyk7V5yHhSl6A",
+    "T7GtadaYRmS1Z61TUHusRw",
+    "PLRxNhGgSLOx-z11ADIWig",
+    "2gIbCJgsTwOlcxPOsJWlUg",
+    "lU7ADA3fRt2JeON5kps2dg",
+    "H57pO7KeQN2sfkM4_VBHrQ",
+    "_DBLZ5qJRp-PMbK5s3U9VA",
+    "19FUsLSZS-O2O0R_hrcVlg",
+    "F25HZdSmSCKeOohZjoDhVQ",
+    "kia65IIrRS2yMWf-Tt-JWw",
+    "NJXYuUyJRHC29b8awio2ZQ",
+    "XFKjKT1bSpusp-fymXI-wQ",
+    "q-nsxDYiRrK8kp51Oqp8Gw",
+    "pdVxHUjiSgGC_OTsmGXRfA",
+    "vry01huPSIWMTJDGzQfaZA"
 
     // ----------------------------------------------------------------
     // ----------------------------------------------------------------

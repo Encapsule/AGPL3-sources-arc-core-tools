@@ -1,0 +1,22 @@
+{
+    "testID": "S4B_hMO0S7iWB_NNZNgM2A",
+    "testName": "Single Filter, Array Case #1",
+    "testDescription": "Verify behavior if inputFilterSpec accepts an array.",
+    "testRequest": {
+        "id": "S4B_hMO0S7iWB_NNZNgM2A",
+        "name": "test",
+        "description": "test"
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "test",
+                "description": "test",
+                "vlist": [],
+                "elist": []
+            },
+            "filters": {}
+        }
+    }
+}

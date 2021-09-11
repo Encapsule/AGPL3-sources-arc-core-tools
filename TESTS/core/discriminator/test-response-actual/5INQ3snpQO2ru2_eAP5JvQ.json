@@ -1,0 +1,203 @@
+{
+    "testID": "5INQ3snpQO2ru2_eAP5JvQ",
+    "testName": "Single filter, object w/properties case 2",
+    "testDescription": "Verify behavior if inputFilterSpec is an object w/a mix of different property types (case 2).",
+    "testRequest": {
+        "id": "5INQ3snpQO2ru2_eAP5JvQ",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "EpxfUsN0SK2-l7Il-vmpEg",
+                    "operationName": "unnamed",
+                    "operationDescription": "EpxfUsN0SK2-l7Il-vmpEg provides no description.",
+                    "inputFilterSpec": {
+                        "____label": "Descriptor Object",
+                        "____description": "A descriptor object is an object w/some or another predefined key(s) type(s).",
+                        "____types": "jsObject",
+                        "key": {
+                            "____label": "Descriptor Object 'key' Property Value",
+                            "____accept": "jsString"
+                        }
+                    },
+                    "inputTypeVIID": "ObK2x0U3I2FLOyYvPKC20A",
+                    "inputTypeVDID": "BrNBKF76XeQ3Pjv1zP-_PQ",
+                    "outputTypeVIID": "r3t0M4a0E5LJL4yt0OzPkg",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "e1IWE4SxtleGGsrtTLMatA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "Z9UF5obhT4ipV4qrBD08-Q",
+                    "operationName": "unnamed",
+                    "operationDescription": "Z9UF5obhT4ipV4qrBD08-Q provides no description.",
+                    "inputFilterSpec": {
+                        "____label": "Map Object",
+                        "____description": "A map object is an object used to associate (i.e. map) string key(s) to element value(s) of some type or another.",
+                        "____types": "jsObject",
+                        "____asMap": true,
+                        "key": {
+                            "____label": "Map Object Element Value",
+                            "____accept": "jsString"
+                        }
+                    },
+                    "inputTypeVIID": "W_C3Ha6DFyFFfAoasPmx8g",
+                    "inputTypeVDID": "WjeRnjjlq9F-TGkcImgmAg",
+                    "outputTypeVIID": "q7e2bfXjO_6WAwAh6cb9HQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "SlJLE6Cbi1dLaM_tbXRZtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "jrjKFxslQsuNwGKcppgM1w",
+                    "operationName": "unnamed",
+                    "operationDescription": "jrjKFxslQsuNwGKcppgM1w provides no description.",
+                    "inputFilterSpec": {
+                        "____label": "Array",
+                        "____description": "An array of string elements.",
+                        "____types": "jsArray",
+                        "key": {
+                            "____label": "Array Element Value",
+                            "____accept": "jsString"
+                        }
+                    },
+                    "inputTypeVIID": "fMn6NiM0QbxrtuCMeZxdFw",
+                    "inputTypeVDID": "y2k-K_brXf4BTP7wf6awvw",
+                    "outputTypeVIID": "BxQP5aFON2FV2zq3Yd8k9A",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "uq4hEx0t3FegkAbtF9qKtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "digraph": {
+                "name": "test",
+                "description": "test",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "isOpaque": [],
+                            "isDefaulted": [],
+                            "jsFunction": [],
+                            "jsObjectD": [
+                                "EpxfUsN0SK2-l7Il-vmpEg"
+                            ],
+                            "jsObjectM": [
+                                "Z9UF5obhT4ipV4qrBD08-Q"
+                            ],
+                            "jsArray": [
+                                "jrjKFxslQsuNwGKcppgM1w"
+                            ],
+                            "jsNumber": [],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": []
+                        }
+                    },
+                    {
+                        "u": "~.key",
+                        "p": {
+                            "isOpaque": [],
+                            "isDefaulted": [],
+                            "jsFunction": [],
+                            "jsObjectD": [],
+                            "jsObjectM": [],
+                            "jsArray": [],
+                            "jsNumber": [],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": [
+                                "EpxfUsN0SK2-l7Il-vmpEg",
+                                "Z9UF5obhT4ipV4qrBD08-Q",
+                                "jrjKFxslQsuNwGKcppgM1w"
+                            ]
+                        }
+                    }
+                ],
+                "elist": [
+                    {
+                        "e": {
+                            "u": "~",
+                            "v": "~.key"
+                        }
+                    }
+                ]
+            },
+            "filters": {
+                "EpxfUsN0SK2-l7Il-vmpEg": {
+                    "filterDescriptor": {
+                        "operationID": "EpxfUsN0SK2-l7Il-vmpEg",
+                        "operationName": "unnamed",
+                        "operationDescription": "EpxfUsN0SK2-l7Il-vmpEg provides no description.",
+                        "inputFilterSpec": {
+                            "____label": "Descriptor Object",
+                            "____description": "A descriptor object is an object w/some or another predefined key(s) type(s).",
+                            "____types": "jsObject",
+                            "key": {
+                                "____label": "Descriptor Object 'key' Property Value",
+                                "____accept": "jsString"
+                            }
+                        },
+                        "inputTypeVIID": "ObK2x0U3I2FLOyYvPKC20A",
+                        "inputTypeVDID": "BrNBKF76XeQ3Pjv1zP-_PQ",
+                        "outputTypeVIID": "r3t0M4a0E5LJL4yt0OzPkg",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "e1IWE4SxtleGGsrtTLMatA"
+                    }
+                },
+                "Z9UF5obhT4ipV4qrBD08-Q": {
+                    "filterDescriptor": {
+                        "operationID": "Z9UF5obhT4ipV4qrBD08-Q",
+                        "operationName": "unnamed",
+                        "operationDescription": "Z9UF5obhT4ipV4qrBD08-Q provides no description.",
+                        "inputFilterSpec": {
+                            "____label": "Map Object",
+                            "____description": "A map object is an object used to associate (i.e. map) string key(s) to element value(s) of some type or another.",
+                            "____types": "jsObject",
+                            "____asMap": true,
+                            "key": {
+                                "____label": "Map Object Element Value",
+                                "____accept": "jsString"
+                            }
+                        },
+                        "inputTypeVIID": "W_C3Ha6DFyFFfAoasPmx8g",
+                        "inputTypeVDID": "WjeRnjjlq9F-TGkcImgmAg",
+                        "outputTypeVIID": "q7e2bfXjO_6WAwAh6cb9HQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "SlJLE6Cbi1dLaM_tbXRZtA"
+                    }
+                },
+                "jrjKFxslQsuNwGKcppgM1w": {
+                    "filterDescriptor": {
+                        "operationID": "jrjKFxslQsuNwGKcppgM1w",
+                        "operationName": "unnamed",
+                        "operationDescription": "jrjKFxslQsuNwGKcppgM1w provides no description.",
+                        "inputFilterSpec": {
+                            "____label": "Array",
+                            "____description": "An array of string elements.",
+                            "____types": "jsArray",
+                            "key": {
+                                "____label": "Array Element Value",
+                                "____accept": "jsString"
+                            }
+                        },
+                        "inputTypeVIID": "fMn6NiM0QbxrtuCMeZxdFw",
+                        "inputTypeVDID": "y2k-K_brXf4BTP7wf6awvw",
+                        "outputTypeVIID": "BxQP5aFON2FV2zq3Yd8k9A",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "uq4hEx0t3FegkAbtF9qKtA"
+                    }
+                }
+            }
+        }
+    }
+}

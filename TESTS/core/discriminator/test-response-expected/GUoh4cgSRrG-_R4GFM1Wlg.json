@@ -1,28 +1,28 @@
 {
-    "testID": "U-Nyd-SJQOWnisOM5LClDw",
-    "testName": "Single filter, object w/property case 1",
-    "testDescription": "Verify behavior if inputFilterSpec is an object type w/a single property (case 1).",
+    "testID": "GUoh4cgSRrG-_R4GFM1Wlg",
+    "testName": "Single Filter, Descriptor Object Case #1",
+    "testDescription": "Verify behavior if inputFilterSpec accepts a descriptor object.",
     "testRequest": {
-        "id": "U-Nyd-SJQOWnisOM5LClDw",
+        "id": "GUoh4cgSRrG-_R4GFM1Wlg",
         "name": "test",
         "description": "test",
         "filters": [
             {
                 "filterDescriptor": {
-                    "operationID": "ewj-Hb3fRFqkd5G3liTs6A",
+                    "operationID": "BvJ5Oh_7RB-NoGacsBxeCw",
                     "operationName": "unnamed",
-                    "operationDescription": "ewj-Hb3fRFqkd5G3liTs6A provides no description.",
+                    "operationDescription": "BvJ5Oh_7RB-NoGacsBxeCw provides no description.",
                     "inputFilterSpec": {
                         "____types": "jsObject",
-                        "someProperty": {
-                            "____accept": "jsString"
+                        "propertyA": {
+                            "____accept": "jsNumber"
                         }
                     },
-                    "inputTypeVIID": "uiHu-IzO28q4AhlY9V9ONA",
-                    "inputTypeVDID": "7c41XFt_G4p7smBX485qBw",
-                    "outputTypeVIID": "CiWzRwVg1j-yIFyle3KQPg",
+                    "inputTypeVIID": "ZCqSGSomFA2qpszBCvnN0w",
+                    "inputTypeVDID": "xYDFgK9Mr0zzyvPKaXJpcg",
+                    "outputTypeVIID": "nCdCQDSwksd_BTWRmoeWEQ",
                     "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                    "operationVDID": "5WvlE4uU7Vc9-c3t_Q07tA"
+                    "operationVDID": "j2kkEyr861eb76zt2ws9tA"
                 }
             }
         ]
@@ -41,7 +41,7 @@
                             "isDefaulted": [],
                             "jsFunction": [],
                             "jsObjectD": [
-                                "ewj-Hb3fRFqkd5G3liTs6A"
+                                "BvJ5Oh_7RB-NoGacsBxeCw"
                             ],
                             "jsObjectM": [],
                             "jsArray": [],
@@ -53,7 +53,7 @@
                         }
                     },
                     {
-                        "u": "~.someProperty",
+                        "u": "~.propertyA",
                         "p": {
                             "isOpaque": [],
                             "isDefaulted": [],
@@ -61,13 +61,13 @@
                             "jsObjectD": [],
                             "jsObjectM": [],
                             "jsArray": [],
-                            "jsNumber": [],
+                            "jsNumber": [
+                                "BvJ5Oh_7RB-NoGacsBxeCw"
+                            ],
                             "jsNull": [],
                             "jsUndefined": [],
                             "jsBoolean": [],
-                            "jsString": [
-                                "ewj-Hb3fRFqkd5G3liTs6A"
-                            ]
+                            "jsString": []
                         }
                     }
                 ],
@@ -75,28 +75,28 @@
                     {
                         "e": {
                             "u": "~",
-                            "v": "~.someProperty"
+                            "v": "~.propertyA"
                         }
                     }
                 ]
             },
             "filters": {
-                "ewj-Hb3fRFqkd5G3liTs6A": {
+                "BvJ5Oh_7RB-NoGacsBxeCw": {
                     "filterDescriptor": {
-                        "operationID": "ewj-Hb3fRFqkd5G3liTs6A",
+                        "operationID": "BvJ5Oh_7RB-NoGacsBxeCw",
                         "operationName": "unnamed",
-                        "operationDescription": "ewj-Hb3fRFqkd5G3liTs6A provides no description.",
+                        "operationDescription": "BvJ5Oh_7RB-NoGacsBxeCw provides no description.",
                         "inputFilterSpec": {
                             "____types": "jsObject",
-                            "someProperty": {
-                                "____accept": "jsString"
+                            "propertyA": {
+                                "____accept": "jsNumber"
                             }
                         },
-                        "inputTypeVIID": "uiHu-IzO28q4AhlY9V9ONA",
-                        "inputTypeVDID": "7c41XFt_G4p7smBX485qBw",
-                        "outputTypeVIID": "CiWzRwVg1j-yIFyle3KQPg",
+                        "inputTypeVIID": "ZCqSGSomFA2qpszBCvnN0w",
+                        "inputTypeVDID": "xYDFgK9Mr0zzyvPKaXJpcg",
+                        "outputTypeVIID": "nCdCQDSwksd_BTWRmoeWEQ",
                         "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "operationVDID": "5WvlE4uU7Vc9-c3t_Q07tA"
+                        "operationVDID": "j2kkEyr861eb76zt2ws9tA"
                     }
                 }
             }

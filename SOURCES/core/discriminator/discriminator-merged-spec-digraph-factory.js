@@ -102,6 +102,7 @@
                         const nsWorkItemFeatures = {
                             typeConstraints: [],
                             processSubnamespaces: false,
+                            asMap: false,
                             isOpaque: false,
                             isOptional: false,
                             isDefaulted: false
@@ -110,6 +111,8 @@
                         nsWorkItemFeatures.isOpaque = ((nsWorkItem.specRef === undefined) || (nsWorkItem.specRef.____opaque === true))?true:false;
 
                         if (!nsWorkItemFeatures.isOpaque) {
+
+                            nsWorkItemFeatures.asMap = nsWorkItem.specRef.____asMap?true:false;
 
                             if (nsWorkItem.specRef.____types) {
 
@@ -125,7 +128,6 @@
                             }
 
                             if (!nsWorkItemFeatures.typeConstraints.length) {
-
                                 errors.push("Cannot resolve types/accept constraints?");
                                 break;
                             }
@@ -141,14 +143,15 @@
                                 p: {
                                     isOpaque: [],    // Declared as literally anything (including jsUndefined value). So, of no interest to discriminator algorithm.
                                     isDefaulted: [], // Declared w/default value that is applied by filter library if the caller does not provide a value (i.e. specifies an undefined value w/type moniker jsUndefined)
-                                    jsFunction: [],  // F
-                                    jsObject: [],    // O
-                                    jsArray: [],     // A
-                                    jsNumber: [],    // N
-                                    jsNull: [],      // N
-                                    jsUndefined: [], // U
-                                    jsBoolean: [],   // B
-                                    jsString: [],    // S
+                                    jsFunction: [],  // Function
+                                    jsObjectD: [],   // Object used as a descriptor
+                                    jsObjectM: [],   // Object used as a map
+                                    jsArray: [],     // Array
+                                    jsNumber: [],    // Number
+                                    jsNull: [],      // Null
+                                    jsUndefined: [], // Undefined
+                                    jsBoolean: [],   // Boolean
+                                    jsString: [],    // String
                                 }
                             });
                         }
@@ -159,7 +162,11 @@
                             nsProperty.isOpaque.push(filter.filterDescriptor.operationID);
                         } else {
                             nsWorkItemFeatures.typeConstraints.forEach(typeConstraint_ => {
-                                nsProperty[typeConstraint_].push(filter.filterDescriptor.operationID);
+                                if ("jsObject" === typeConstraint_) {
+                                    nsProperty[nsWorkItemFeatures.asMap?"jsObjectM":"jsObjectD"].push(filter.filterDescriptor.operationID);
+                                } else {
+                                    nsProperty[typeConstraint_].push(filter.filterDescriptor.operationID);
+                                }
                             });
                             if (nsWorkItemFeatures.isDefaulted) {
                                 nsProperty.isDefaulted.push(filter.filterDescriptor.operationID);
