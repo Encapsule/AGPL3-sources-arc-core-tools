@@ -289,7 +289,7 @@
             description: "test",
             filters: [
 
-                // A COMPLETE CLUSTERFUCK OF OVERLOADED BULLSHIT
+                // This produces a rather convoluted snarl (which is the point).
 
                 FILTERLIB.create({
                     operationID: "EpxfUsN0SK2-l7Il-vmpEg",

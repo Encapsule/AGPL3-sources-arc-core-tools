@@ -10,7 +10,7 @@
 
         operationID: "7WtZ3CGLROGWSEDeA-jU6Q",
         operationName: "Merged Filter Spec Digraph Factory",
-        operationDescription: "Processes an array of @encapsule/arccore.filter objects and returns a digraph-encoded model that represents their merged input filter specifications.",
+        operationDescription: "Accepts an array of @encapsule/arccore.filter objects and returns a digraph-encoded model that represents their merged input filter specifications.",
 
         inputFilterSpec: {
             ____label: "Merged Filter Spec Digraph Factory Request",
@@ -40,6 +40,7 @@
         outputFilterSpec: {
             ____label: "Merged Filter Spec Digraph Model",
             ____types: "jsObject",
+
             digraph: {
                 ____accept: "jsObject"
             },
@@ -183,15 +184,16 @@
 
                         if (nsWorkItemFeatures.processSubnamespaces) {
                             for (let key_ in nsWorkItem.specRef) {
+                                // TODO: There are corner cases associated w/this simple implementation. e.g. user subnames that begins in five underscores would be misclassified and skipped entirely...
                                 if (!key_.startsWith("____")) {
                                     nsWorkQueue.push({ parentRefPath: nsWorkItem.specRefPath, specRefPath: `${nsWorkItem.specRefPath}.${key_}`, specRef: nsWorkItem.specRef[key_] });
                                 }
                             }
                         }
 
-                    } // while namespaceSpecQueue.length
+                    } // while nsWorkQueue.length
 
-                    // Save iff not previously processed...
+                    // Cache the caller-specified filter in the response.result.filters map.
                     response.result.filters[filter.filterDescriptor.operationID] = filter;
 
                 } // for each filter in the caller-specified set
