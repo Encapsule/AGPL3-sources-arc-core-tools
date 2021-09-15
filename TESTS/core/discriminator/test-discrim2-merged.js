@@ -8,6 +8,8 @@
 
     const testMergedSpecDigraphFactory = require("./runner-merged-spec-digraph-factory");
 
+    const testEssentialFeaturesFactory = require("./runner-discrim2-essential");
+
 
 
     // ----------------------------------------------------------------
@@ -335,12 +337,27 @@
     });
 
 
-
+    testEssentialFeaturesFactory({
+        testID: "P6WYyQZVRfWNV0ejqwVqAg",
+        testName: "Single Filter Accepts Number",
+        testDescriptor: "Confirm and verify the behavior of a single filter that accepts a number.",
+        testRequest: {
+            id: "P6WYyQZVRfWNV0ejqwVqAg",
+            name: "test",
+            description: "test",
+            filters: [
+                FILTERLIB.create({
+                    operationID: "W9WYUw7BTe-pi3Ru-aBOJA",
+                    inputFilterSpec: {
+                        ____accept: "jsNumber"
+                    }
+                }).result
+            ]
+        }
+    });
 
     /*
 
-    "P6WYyQZVRfWNV0ejqwVqAg",
-    "W9WYUw7BTe-pi3Ru-aBOJA",
     "25u5isQMQTi-QZLTfYGE6g",
     "IsgdMX1JSbCfM1hKC4ihqw",
     "8wmrrwcwQFWDNF-7Ewodyg",

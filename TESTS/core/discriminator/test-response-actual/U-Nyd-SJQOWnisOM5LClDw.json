@@ -30,9 +30,32 @@
     "testResponse": {
         "error": null,
         "result": {
+            "id": "U-Nyd-SJQOWnisOM5LClDw",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "ewj-Hb3fRFqkd5G3liTs6A": {
+                    "filterDescriptor": {
+                        "operationID": "ewj-Hb3fRFqkd5G3liTs6A",
+                        "operationName": "unnamed",
+                        "operationDescription": "ewj-Hb3fRFqkd5G3liTs6A provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "someProperty": {
+                                "____accept": "jsString"
+                            }
+                        },
+                        "inputTypeVIID": "uiHu-IzO28q4AhlY9V9ONA",
+                        "inputTypeVDID": "7c41XFt_G4p7smBX485qBw",
+                        "outputTypeVIID": "CiWzRwVg1j-yIFyle3KQPg",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "5WvlE4uU7Vc9-c3t_Q07tA"
+                    }
+                }
+            },
             "digraph": {
-                "name": "test",
-                "description": "test",
+                "name": "[U-Nyd-SJQOWnisOM5LClDw::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 1 filter object input specs merged together for analysis.",
                 "vlist": [
                     {
                         "u": "~",
@@ -79,26 +102,6 @@
                         }
                     }
                 ]
-            },
-            "filters": {
-                "ewj-Hb3fRFqkd5G3liTs6A": {
-                    "filterDescriptor": {
-                        "operationID": "ewj-Hb3fRFqkd5G3liTs6A",
-                        "operationName": "unnamed",
-                        "operationDescription": "ewj-Hb3fRFqkd5G3liTs6A provides no description.",
-                        "inputFilterSpec": {
-                            "____types": "jsObject",
-                            "someProperty": {
-                                "____accept": "jsString"
-                            }
-                        },
-                        "inputTypeVIID": "uiHu-IzO28q4AhlY9V9ONA",
-                        "inputTypeVDID": "7c41XFt_G4p7smBX485qBw",
-                        "outputTypeVIID": "CiWzRwVg1j-yIFyle3KQPg",
-                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "operationVDID": "5WvlE4uU7Vc9-c3t_Q07tA"
-                    }
-                }
             }
         }
     }

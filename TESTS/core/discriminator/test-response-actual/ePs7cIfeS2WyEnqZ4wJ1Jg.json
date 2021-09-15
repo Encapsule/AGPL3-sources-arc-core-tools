@@ -36,9 +36,38 @@
     "testResponse": {
         "error": null,
         "result": {
+            "id": "ePs7cIfeS2WyEnqZ4wJ1Jg",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "ZI5UERDRR6-6Oj8yhJOkng": {
+                    "filterDescriptor": {
+                        "operationID": "ZI5UERDRR6-6Oj8yhJOkng",
+                        "operationName": "unnamed",
+                        "operationDescription": "ZI5UERDRR6-6Oj8yhJOkng provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": [
+                                "jsFunction",
+                                "jsObject",
+                                "jsArray",
+                                "jsNull",
+                                "jsNumber",
+                                "jsUndefined",
+                                "jsBoolean",
+                                "jsString"
+                            ]
+                        },
+                        "inputTypeVIID": "HvbPhXnMr9aWoyz3s9jE8g",
+                        "inputTypeVDID": "N0Dj5BK-pi5ymM_sYAAGCw",
+                        "outputTypeVIID": "XBkLdzg3lmDZt5c1vMhYUQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "hqegE2QuyFciaIjtE6PRtA"
+                    }
+                }
+            },
             "digraph": {
-                "name": "test",
-                "description": "test",
+                "name": "[ePs7cIfeS2WyEnqZ4wJ1Jg::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 1 filter object input specs merged together for analysis.",
                 "vlist": [
                     {
                         "u": "~",
@@ -74,32 +103,6 @@
                     }
                 ],
                 "elist": []
-            },
-            "filters": {
-                "ZI5UERDRR6-6Oj8yhJOkng": {
-                    "filterDescriptor": {
-                        "operationID": "ZI5UERDRR6-6Oj8yhJOkng",
-                        "operationName": "unnamed",
-                        "operationDescription": "ZI5UERDRR6-6Oj8yhJOkng provides no description.",
-                        "inputFilterSpec": {
-                            "____accept": [
-                                "jsFunction",
-                                "jsObject",
-                                "jsArray",
-                                "jsNull",
-                                "jsNumber",
-                                "jsUndefined",
-                                "jsBoolean",
-                                "jsString"
-                            ]
-                        },
-                        "inputTypeVIID": "HvbPhXnMr9aWoyz3s9jE8g",
-                        "inputTypeVDID": "N0Dj5BK-pi5ymM_sYAAGCw",
-                        "outputTypeVIID": "XBkLdzg3lmDZt5c1vMhYUQ",
-                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "operationVDID": "hqegE2QuyFciaIjtE6PRtA"
-                    }
-                }
             }
         }
     }

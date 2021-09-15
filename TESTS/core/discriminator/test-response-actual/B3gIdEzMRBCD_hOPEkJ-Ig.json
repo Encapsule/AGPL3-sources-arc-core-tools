@@ -28,9 +28,30 @@
     "testResponse": {
         "error": null,
         "result": {
+            "id": "B3gIdEzMRBCD_hOPEkJ-Ig",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "EubAX3InS6eKy5Ck5n2n-w": {
+                    "filterDescriptor": {
+                        "operationID": "EubAX3InS6eKy5Ck5n2n-w",
+                        "operationName": "unnamed",
+                        "operationDescription": "EubAX3InS6eKy5Ck5n2n-w provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": "jsNumber",
+                            "____defaultValue": 666
+                        },
+                        "inputTypeVIID": "c9jtxfTfq_D1HxCyn19pUQ",
+                        "inputTypeVDID": "DpgOmPIc8hxC8kLyUn9Sfw",
+                        "outputTypeVIID": "Dq3X3zVt2nJbxH41Bk_ROQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "sMQ2ExUBlFdvan7t2RzytA"
+                    }
+                }
+            },
             "digraph": {
-                "name": "test",
-                "description": "test",
+                "name": "[B3gIdEzMRBCD_hOPEkJ-Ig::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 1 filter object input specs merged together for analysis.",
                 "vlist": [
                     {
                         "u": "~",
@@ -54,24 +75,6 @@
                     }
                 ],
                 "elist": []
-            },
-            "filters": {
-                "EubAX3InS6eKy5Ck5n2n-w": {
-                    "filterDescriptor": {
-                        "operationID": "EubAX3InS6eKy5Ck5n2n-w",
-                        "operationName": "unnamed",
-                        "operationDescription": "EubAX3InS6eKy5Ck5n2n-w provides no description.",
-                        "inputFilterSpec": {
-                            "____accept": "jsNumber",
-                            "____defaultValue": 666
-                        },
-                        "inputTypeVIID": "c9jtxfTfq_D1HxCyn19pUQ",
-                        "inputTypeVDID": "DpgOmPIc8hxC8kLyUn9Sfw",
-                        "outputTypeVIID": "Dq3X3zVt2nJbxH41Bk_ROQ",
-                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "operationVDID": "sMQ2ExUBlFdvan7t2RzytA"
-                    }
-                }
             }
         }
     }

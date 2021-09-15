@@ -31,9 +31,33 @@
     "testResponse": {
         "error": null,
         "result": {
+            "id": "lbSUE3jSRt-ftj3NkzlbgA",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "aMn6M3hwReSs4iAKlOdGEw": {
+                    "filterDescriptor": {
+                        "operationID": "aMn6M3hwReSs4iAKlOdGEw",
+                        "operationName": "unnamed",
+                        "operationDescription": "aMn6M3hwReSs4iAKlOdGEw provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "____asMap": true,
+                            "propertyA": {
+                                "____accept": "jsNumber"
+                            }
+                        },
+                        "inputTypeVIID": "KEPsNvvAWGMpgXEJ4JkZ4g",
+                        "inputTypeVDID": "VpX9pWihQ5-bYywUXptrdw",
+                        "outputTypeVIID": "9iFkFY1lEnIKWR2PahEhEQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "9kQHEzzL-1fFiaPtuSqHtA"
+                    }
+                }
+            },
             "digraph": {
-                "name": "test",
-                "description": "test",
+                "name": "[lbSUE3jSRt-ftj3NkzlbgA::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 1 filter object input specs merged together for analysis.",
                 "vlist": [
                     {
                         "u": "~",
@@ -80,27 +104,6 @@
                         }
                     }
                 ]
-            },
-            "filters": {
-                "aMn6M3hwReSs4iAKlOdGEw": {
-                    "filterDescriptor": {
-                        "operationID": "aMn6M3hwReSs4iAKlOdGEw",
-                        "operationName": "unnamed",
-                        "operationDescription": "aMn6M3hwReSs4iAKlOdGEw provides no description.",
-                        "inputFilterSpec": {
-                            "____types": "jsObject",
-                            "____asMap": true,
-                            "propertyA": {
-                                "____accept": "jsNumber"
-                            }
-                        },
-                        "inputTypeVIID": "KEPsNvvAWGMpgXEJ4JkZ4g",
-                        "inputTypeVDID": "VpX9pWihQ5-bYywUXptrdw",
-                        "outputTypeVIID": "9iFkFY1lEnIKWR2PahEhEQ",
-                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "operationVDID": "9kQHEzzL-1fFiaPtuSqHtA"
-                    }
-                }
             }
         }
     }

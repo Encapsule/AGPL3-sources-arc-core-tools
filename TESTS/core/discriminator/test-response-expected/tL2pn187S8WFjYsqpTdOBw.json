@@ -27,9 +27,29 @@
     "testResponse": {
         "error": null,
         "result": {
+            "id": "tL2pn187S8WFjYsqpTdOBw",
+            "name": "Single Filter No Input Spec",
+            "description": "Process single filter that accepts anything.",
+            "filters": {
+                "Zt9i_3yRQfucaMmBiSbUmw": {
+                    "filterDescriptor": {
+                        "operationID": "Zt9i_3yRQfucaMmBiSbUmw",
+                        "operationName": "unnamed",
+                        "operationDescription": "Zt9i_3yRQfucaMmBiSbUmw provides no description.",
+                        "inputFilterSpec": {
+                            "____opaque": true
+                        },
+                        "inputTypeVIID": "tAnIr_gQiiTo66w9aBfr9w",
+                        "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "outputTypeVIID": "IoRcQShSKfHZk-tyzOPaEg",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "8Af0EzuVNVfGW47tKCQUtA"
+                    }
+                }
+            },
             "digraph": {
-                "name": "Single Filter No Input Spec",
-                "description": "Process single filter that accepts anything.",
+                "name": "[tL2pn187S8WFjYsqpTdOBw::Single Filter No Input Spec] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 1 filter object input specs merged together for analysis.",
                 "vlist": [
                     {
                         "u": "~",
@@ -51,23 +71,6 @@
                     }
                 ],
                 "elist": []
-            },
-            "filters": {
-                "Zt9i_3yRQfucaMmBiSbUmw": {
-                    "filterDescriptor": {
-                        "operationID": "Zt9i_3yRQfucaMmBiSbUmw",
-                        "operationName": "unnamed",
-                        "operationDescription": "Zt9i_3yRQfucaMmBiSbUmw provides no description.",
-                        "inputFilterSpec": {
-                            "____opaque": true
-                        },
-                        "inputTypeVIID": "tAnIr_gQiiTo66w9aBfr9w",
-                        "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "outputTypeVIID": "IoRcQShSKfHZk-tyzOPaEg",
-                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "operationVDID": "8Af0EzuVNVfGW47tKCQUtA"
-                    }
-                }
             }
         }
     }

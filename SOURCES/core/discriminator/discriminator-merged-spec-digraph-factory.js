@@ -3,55 +3,18 @@
 
 (function() {
 
-    const arccoreFilterFactory = require("./arc_core_filter_create");
-    const arccoreGraph = require("./arc_core_graph");
+    const arccore = {
+        filter: require("./arc_core_filter"),
+        graph: require("./arc_core_graph")
+    };
 
-    const factoryResponse = arccoreFilterFactory({
+    const factoryResponse = arccore.filter.create({
 
         operationID: "7WtZ3CGLROGWSEDeA-jU6Q",
         operationName: "Merged Filter Spec Digraph Factory",
         operationDescription: "Accepts an array of @encapsule/arccore.filter objects and returns a digraph-encoded model that represents their merged input filter specifications.",
-
-        inputFilterSpec: {
-            ____label: "Merged Filter Spec Digraph Factory Request",
-            ____types: "jsObject",
-            id: {
-                ____label: "Discriminator Identifier",
-                ____description: "A 22-character IRUT identifier that the newly created @encapsule/arccore.discriminator filter will use as its operationID.",
-                ____accept: "jsString"
-            },
-            name: {
-                ____label: "Discriminator Name",
-                ____accept: "jsString"
-            },
-            description: {
-                ____label: "Discrminator Description",
-                ____accept: "jsString"
-            },
-            filters: {
-                ____types: "jsArray",
-                ____defaultValue: [],
-                filter: {
-                    ____accept: "jsObject" // @encapsule/arccore.filter object
-                }
-            }
-        },
-
-        outputFilterSpec: {
-            ____label: "Merged Filter Spec Digraph Model",
-            ____types: "jsObject",
-
-            digraph: {
-                ____accept: "jsObject"
-            },
-            filters: {
-                ____types: "jsObject",
-                ____asMap: true,
-                filter: {
-                    ____accept: "jsObject" // @encapsule/arccore.filter object
-                }
-            }
-        },
+        inputFilterSpec:  require("./discriminator2-merged-spec-model-factory-input-spec"),
+        outputFilterSpec: require("./discriminator2-merged-spec-model-factory-output-spec"),
 
         bodyFunction: function(request_) {
 
@@ -63,9 +26,9 @@
                 inBreakScope = true;
 
                 // Instantiate a new DirectedGraph class instance.
-                let factoryResponse = arccoreGraph.directed.create({
-                    name: request_.name,
-                    description: request_.description
+                let factoryResponse = arccore.graph.directed.create({
+                    name: `[${request_.id}::${request_.name}] Merged Filter Spec Digraph Model`,
+                    description: `Digraph model of ${request_.filters.length} filter object input specs merged together for analysis.`,
                 });
 
                 if (factoryResponse.error) {
@@ -197,6 +160,10 @@
                     response.result.filters[filter.filterDescriptor.operationID] = filter;
 
                 } // for each filter in the caller-specified set
+
+                response.result.id = request_.id;
+                response.result.name = request_.name;
+                response.result.description = request_.description;
 
                 break;
 

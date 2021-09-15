@@ -30,9 +30,32 @@
     "testResponse": {
         "error": null,
         "result": {
+            "id": "GUoh4cgSRrG-_R4GFM1Wlg",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "BvJ5Oh_7RB-NoGacsBxeCw": {
+                    "filterDescriptor": {
+                        "operationID": "BvJ5Oh_7RB-NoGacsBxeCw",
+                        "operationName": "unnamed",
+                        "operationDescription": "BvJ5Oh_7RB-NoGacsBxeCw provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "propertyA": {
+                                "____accept": "jsNumber"
+                            }
+                        },
+                        "inputTypeVIID": "ZCqSGSomFA2qpszBCvnN0w",
+                        "inputTypeVDID": "xYDFgK9Mr0zzyvPKaXJpcg",
+                        "outputTypeVIID": "nCdCQDSwksd_BTWRmoeWEQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "j2kkEyr861eb76zt2ws9tA"
+                    }
+                }
+            },
             "digraph": {
-                "name": "test",
-                "description": "test",
+                "name": "[GUoh4cgSRrG-_R4GFM1Wlg::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 1 filter object input specs merged together for analysis.",
                 "vlist": [
                     {
                         "u": "~",
@@ -79,26 +102,6 @@
                         }
                     }
                 ]
-            },
-            "filters": {
-                "BvJ5Oh_7RB-NoGacsBxeCw": {
-                    "filterDescriptor": {
-                        "operationID": "BvJ5Oh_7RB-NoGacsBxeCw",
-                        "operationName": "unnamed",
-                        "operationDescription": "BvJ5Oh_7RB-NoGacsBxeCw provides no description.",
-                        "inputFilterSpec": {
-                            "____types": "jsObject",
-                            "propertyA": {
-                                "____accept": "jsNumber"
-                            }
-                        },
-                        "inputTypeVIID": "ZCqSGSomFA2qpszBCvnN0w",
-                        "inputTypeVDID": "xYDFgK9Mr0zzyvPKaXJpcg",
-                        "outputTypeVIID": "nCdCQDSwksd_BTWRmoeWEQ",
-                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "operationVDID": "j2kkEyr861eb76zt2ws9tA"
-                    }
-                }
             }
         }
     }

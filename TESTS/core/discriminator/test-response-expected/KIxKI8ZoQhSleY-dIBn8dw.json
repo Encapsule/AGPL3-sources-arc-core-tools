@@ -29,9 +29,31 @@
     "testResponse": {
         "error": null,
         "result": {
+            "id": "KIxKI8ZoQhSleY-dIBn8dw",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "3vf-aoHOQkKkKuXZGtfhHg": {
+                    "filterDescriptor": {
+                        "operationID": "3vf-aoHOQkKkKuXZGtfhHg",
+                        "operationName": "unnamed",
+                        "operationDescription": "3vf-aoHOQkKkKuXZGtfhHg provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": [
+                                "jsNumber"
+                            ]
+                        },
+                        "inputTypeVIID": "qV7XII4-JSCG_NNwi_xFjg",
+                        "inputTypeVDID": "Ivvu9BxR6z14Y40wSXbE5A",
+                        "outputTypeVIID": "3f9lOiQnIrq489EaHVlQWA",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "Jhj4E_R77leJkU7torrTtA"
+                    }
+                }
+            },
             "digraph": {
-                "name": "test",
-                "description": "test",
+                "name": "[KIxKI8ZoQhSleY-dIBn8dw::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 1 filter object input specs merged together for analysis.",
                 "vlist": [
                     {
                         "u": "~",
@@ -53,25 +75,6 @@
                     }
                 ],
                 "elist": []
-            },
-            "filters": {
-                "3vf-aoHOQkKkKuXZGtfhHg": {
-                    "filterDescriptor": {
-                        "operationID": "3vf-aoHOQkKkKuXZGtfhHg",
-                        "operationName": "unnamed",
-                        "operationDescription": "3vf-aoHOQkKkKuXZGtfhHg provides no description.",
-                        "inputFilterSpec": {
-                            "____accept": [
-                                "jsNumber"
-                            ]
-                        },
-                        "inputTypeVIID": "qV7XII4-JSCG_NNwi_xFjg",
-                        "inputTypeVDID": "Ivvu9BxR6z14Y40wSXbE5A",
-                        "outputTypeVIID": "3f9lOiQnIrq489EaHVlQWA",
-                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
-                        "operationVDID": "Jhj4E_R77leJkU7torrTtA"
-                    }
-                }
             }
         }
     }

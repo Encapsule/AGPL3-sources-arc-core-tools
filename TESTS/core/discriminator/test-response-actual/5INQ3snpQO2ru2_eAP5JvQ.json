@@ -76,62 +76,9 @@
     "testResponse": {
         "error": null,
         "result": {
-            "digraph": {
-                "name": "test",
-                "description": "test",
-                "vlist": [
-                    {
-                        "u": "~",
-                        "p": {
-                            "isOpaque": [],
-                            "isDefaulted": [],
-                            "jsFunction": [],
-                            "jsObjectD": [
-                                "EpxfUsN0SK2-l7Il-vmpEg"
-                            ],
-                            "jsObjectM": [
-                                "Z9UF5obhT4ipV4qrBD08-Q"
-                            ],
-                            "jsArray": [
-                                "jrjKFxslQsuNwGKcppgM1w"
-                            ],
-                            "jsNumber": [],
-                            "jsNull": [],
-                            "jsUndefined": [],
-                            "jsBoolean": [],
-                            "jsString": []
-                        }
-                    },
-                    {
-                        "u": "~.key",
-                        "p": {
-                            "isOpaque": [],
-                            "isDefaulted": [],
-                            "jsFunction": [],
-                            "jsObjectD": [],
-                            "jsObjectM": [],
-                            "jsArray": [],
-                            "jsNumber": [],
-                            "jsNull": [],
-                            "jsUndefined": [],
-                            "jsBoolean": [],
-                            "jsString": [
-                                "EpxfUsN0SK2-l7Il-vmpEg",
-                                "Z9UF5obhT4ipV4qrBD08-Q",
-                                "jrjKFxslQsuNwGKcppgM1w"
-                            ]
-                        }
-                    }
-                ],
-                "elist": [
-                    {
-                        "e": {
-                            "u": "~",
-                            "v": "~.key"
-                        }
-                    }
-                ]
-            },
+            "id": "5INQ3snpQO2ru2_eAP5JvQ",
+            "name": "test",
+            "description": "test",
             "filters": {
                 "EpxfUsN0SK2-l7Il-vmpEg": {
                     "filterDescriptor": {
@@ -197,6 +144,62 @@
                         "operationVDID": "uq4hEx0t3FegkAbtF9qKtA"
                     }
                 }
+            },
+            "digraph": {
+                "name": "[5INQ3snpQO2ru2_eAP5JvQ::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 3 filter object input specs merged together for analysis.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "isOpaque": [],
+                            "isDefaulted": [],
+                            "jsFunction": [],
+                            "jsObjectD": [
+                                "EpxfUsN0SK2-l7Il-vmpEg"
+                            ],
+                            "jsObjectM": [
+                                "Z9UF5obhT4ipV4qrBD08-Q"
+                            ],
+                            "jsArray": [
+                                "jrjKFxslQsuNwGKcppgM1w"
+                            ],
+                            "jsNumber": [],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": []
+                        }
+                    },
+                    {
+                        "u": "~.key",
+                        "p": {
+                            "isOpaque": [],
+                            "isDefaulted": [],
+                            "jsFunction": [],
+                            "jsObjectD": [],
+                            "jsObjectM": [],
+                            "jsArray": [],
+                            "jsNumber": [],
+                            "jsNull": [],
+                            "jsUndefined": [],
+                            "jsBoolean": [],
+                            "jsString": [
+                                "EpxfUsN0SK2-l7Il-vmpEg",
+                                "Z9UF5obhT4ipV4qrBD08-Q",
+                                "jrjKFxslQsuNwGKcppgM1w"
+                            ]
+                        }
+                    }
+                ],
+                "elist": [
+                    {
+                        "e": {
+                            "u": "~",
+                            "v": "~.key"
+                        }
+                    }
+                ]
             }
         }
     }
