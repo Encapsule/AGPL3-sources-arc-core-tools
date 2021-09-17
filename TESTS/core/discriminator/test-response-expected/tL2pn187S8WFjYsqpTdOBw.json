@@ -54,19 +54,54 @@
                     {
                         "u": "~",
                         "p": {
-                            "isOpaque": [
-                                "Zt9i_3yRQfucaMmBiSbUmw"
+                            "name": "[tL2pn187S8WFjYsqpTdOBw::Single Filter No Input Spec](~)",
+                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                            "vlist": [
+                                {
+                                    "u": "isDefaulted"
+                                },
+                                {
+                                    "u": "jsFunction"
+                                },
+                                {
+                                    "u": "jsDescriptorObject"
+                                },
+                                {
+                                    "u": "jsMapObject"
+                                },
+                                {
+                                    "u": "jsArray"
+                                },
+                                {
+                                    "u": "jsNumber"
+                                },
+                                {
+                                    "u": "jsNull"
+                                },
+                                {
+                                    "u": "jsUndefined"
+                                },
+                                {
+                                    "u": "jsBoolean"
+                                },
+                                {
+                                    "u": "jsString"
+                                }
                             ],
-                            "isDefaulted": [],
-                            "jsFunction": [],
-                            "jsObjectD": [],
-                            "jsObjectM": [],
-                            "jsArray": [],
-                            "jsNumber": [],
-                            "jsNull": [],
-                            "jsUndefined": [],
-                            "jsBoolean": [],
-                            "jsString": []
+                            "elist": [
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "Zt9i_3yRQfucaMmBiSbUmw"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "Zt9i_3yRQfucaMmBiSbUmw",
+                                        "v": "isOpaque"
+                                    }
+                                }
+                            ]
                         }
                     }
                 ],
