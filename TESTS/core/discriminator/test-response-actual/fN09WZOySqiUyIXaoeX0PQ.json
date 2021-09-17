@@ -60,21 +60,57 @@
                     {
                         "u": "~",
                         "p": {
-                            "isOpaque": [],
-                            "isDefaulted": [],
-                            "jsFunction": [],
-                            "jsObjectD": [],
-                            "jsObjectM": [],
-                            "jsArray": [],
-                            "jsNumber": [
-                                "nwZEHl7YR2eVb2ZMwo8sYA"
+                            "name": "[fN09WZOySqiUyIXaoeX0PQ::test](~)",
+                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                            "vlist": [
+                                {
+                                    "u": "isOpaque"
+                                },
+                                {
+                                    "u": "isDefaulted"
+                                },
+                                {
+                                    "u": "jsFunction"
+                                },
+                                {
+                                    "u": "jsDescriptorObject"
+                                },
+                                {
+                                    "u": "jsMapObject"
+                                },
+                                {
+                                    "u": "jsArray"
+                                },
+                                {
+                                    "u": "jsNull"
+                                },
+                                {
+                                    "u": "jsBoolean"
+                                },
+                                {
+                                    "u": "jsString"
+                                }
                             ],
-                            "jsNull": [],
-                            "jsUndefined": [
-                                "nwZEHl7YR2eVb2ZMwo8sYA"
-                            ],
-                            "jsBoolean": [],
-                            "jsString": []
+                            "elist": [
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "nwZEHl7YR2eVb2ZMwo8sYA"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "nwZEHl7YR2eVb2ZMwo8sYA",
+                                        "v": "jsUndefined"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "nwZEHl7YR2eVb2ZMwo8sYA",
+                                        "v": "jsNumber"
+                                    }
+                                }
+                            ]
                         }
                     }
                 ],

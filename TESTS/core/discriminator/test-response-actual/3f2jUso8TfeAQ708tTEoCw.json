@@ -54,19 +54,54 @@
                     {
                         "u": "~",
                         "p": {
-                            "isOpaque": [],
-                            "isDefaulted": [],
-                            "jsFunction": [],
-                            "jsObjectD": [],
-                            "jsObjectM": [],
-                            "jsArray": [],
-                            "jsNumber": [
-                                "IlB1RIIzRqe_IDfS0uhLUQ"
+                            "name": "[3f2jUso8TfeAQ708tTEoCw::test](~)",
+                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                            "vlist": [
+                                {
+                                    "u": "isOpaque"
+                                },
+                                {
+                                    "u": "isDefaulted"
+                                },
+                                {
+                                    "u": "jsFunction"
+                                },
+                                {
+                                    "u": "jsDescriptorObject"
+                                },
+                                {
+                                    "u": "jsMapObject"
+                                },
+                                {
+                                    "u": "jsArray"
+                                },
+                                {
+                                    "u": "jsNull"
+                                },
+                                {
+                                    "u": "jsUndefined"
+                                },
+                                {
+                                    "u": "jsBoolean"
+                                },
+                                {
+                                    "u": "jsString"
+                                }
                             ],
-                            "jsNull": [],
-                            "jsUndefined": [],
-                            "jsBoolean": [],
-                            "jsString": []
+                            "elist": [
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "IlB1RIIzRqe_IDfS0uhLUQ"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "IlB1RIIzRqe_IDfS0uhLUQ",
+                                        "v": "jsNumber"
+                                    }
+                                }
+                            ]
                         }
                     }
                 ],

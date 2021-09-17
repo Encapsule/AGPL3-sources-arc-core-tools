@@ -25,7 +25,7 @@
             while (!inBreakScope) {
                 inBreakScope = true;
 
-                // Instantiate a new DirectedGraph class instance.
+                // Instantiate a new DirectedGraph class instance that models all the namespace(s) defined by all the filter(s).
                 let factoryResponse = arccore.graph.directed.create({
                     name: `[${request_.id}::${request_.name}] Merged Filter Spec Digraph Model`,
                     description: `Digraph model of ${request_.filters.length} filter object input specs merged together for analysis.`,
@@ -102,43 +102,73 @@
                         }
 
                         if (!response.result.digraph.isVertex(nsWorkItem.specRefPath)) {
-                            response.result.digraph.addVertex({
-                                u: nsWorkItem.specRefPath,
-                                p: {
-                                    isOpaque: [],    // Declared as literally anything (including jsUndefined value). So, of no interest to discriminator algorithm.
-                                    isDefaulted: [], // Declared w/default value that is applied by filter library if the caller does not provide a value (i.e. specifies an undefined value w/type moniker jsUndefined)
-                                    jsFunction: [],  // Function
-                                    jsObjectD: [],   // Object used as a descriptor
-                                    jsObjectM: [],   // Object used as a map
-                                    jsArray: [],     // Array
-                                    jsNumber: [],    // Number
-                                    jsNull: [],      // Null
-                                    jsUndefined: [], // Undefined
-                                    jsBoolean: [],   // Boolean
-                                    jsString: [],    // String
-                                }
+
+                            factoryResponse = arccore.graph.directed.create({
+                                name: `[${request_.id}::${request_.name}](${nsWorkItem.specRefPath})`,
+                                description: `Digraph model of type constraint(s) declared by filter(s) for merged request namespace '${nsWorkItem.specRefPath}'.`,
+                                vlist: [
+                                    { u: "FILTERS" },
+                                    { u: "isOpaque" },
+                                    { u: "isDefaulted" },
+                                    { u: "jsFunction" },
+                                    { u: "jsDescriptorObject" }, // jsObject
+                                    { u: "jsMapObject" }, // jsObject
+                                    { u: "jsArray" },
+                                    { u: "jsNumber" },
+                                    { u: "jsNull" },
+                                    { u: "jsUndefined" },
+                                    { u: "jsBoolean" },
+                                    { u: "jsString" }
+                                ]
                             });
+
+                            if (factoryResponse.error) {
+                                errors.push(factoryResponse.error);
+                                break;
+                            }
+
+                            const scoreboardDigraph = factoryResponse.result;
+
+                            response.result.digraph.addVertex({ u: nsWorkItem.specRefPath, p: scoreboardDigraph });
                         }
 
                         let nsProperty = response.result.digraph.getVertexProperty(nsWorkItem.specRefPath);
 
+                        nsProperty.addEdge({ e: { u: "FILTERS", v: filter.filterDescriptor.operationID } });
+
                         if (nsWorkItemFeatures.isOpaque) {
-                            nsProperty.isOpaque.push(filter.filterDescriptor.operationID);
+
+                            // new scoreboard
+                            nsProperty.addEdge({ e: { u: filter.filterDescriptor.operationID, v: "isOpaque" } });
+                            // old scoreboard
+                            // nsProperty.isOpaque.push(filter.filterDescriptor.operationID);
+
                         } else {
+
                             nsWorkItemFeatures.typeConstraints.forEach(typeConstraint_ => {
                                 if ("jsObject" === typeConstraint_) {
-                                    nsProperty[nsWorkItemFeatures.asMap?"jsObjectM":"jsObjectD"].push(filter.filterDescriptor.operationID);
+                                    nsProperty.addEdge({ e: { u: filter.filterDescriptor.operationID, v: nsWorkItemFeatures.asMap?"jsMapObject":"jsDescriptorObject" } });
+                                    // old scoreboard
+                                    // nsProperty[nsWorkItemFeatures.asMap?"jsObjectM":"jsObjectD"].push(filter.filterDescriptor.operationID);
                                 } else {
-                                    nsProperty[typeConstraint_].push(filter.filterDescriptor.operationID);
+                                    // new scoreboard
+                                    nsProperty.addEdge({ e: { u: filter.filterDescriptor.operationID, v: typeConstraint_ } });
+                                    // old scoreboard
+                                    // nsProperty[typeConstraint_].push(filter.filterDescriptor.operationID);
                                 }
                             });
+
                             if (nsWorkItemFeatures.isDefaulted) {
-                                nsProperty.isDefaulted.push(filter.filterDescriptor.operationID);
+                                // new scoreboard
+                                nsProperty.addEdge({ e: { u: filter.filterDescriptor.operationID, v: "isDefaulted" } });
+                                // old scoreboard
+                                // nsProperty.isDefaulted.push(filter.filterDescriptor.operationID);
                             }
+
                         }
 
-                        // Set the vertex property.
-                        response.result.digraph.setVertexProperty({ u: nsWorkItem.specRefRef, p: nsProperty });
+                        // TODO: THIS IS NOT NECESSARY I THINK (so I remove it it).
+                        // response.result.digraph.setVertexProperty({ u: nsWorkItem.specRefRef, p: nsProperty });
 
                         // Tree edge create...
                         if (nsWorkItem.parentRefPath !== null) {
@@ -156,10 +186,18 @@
 
                     } // while nsWorkQueue.length
 
+                    if (errors.length) {
+                        break;
+                    }
+
                     // Cache the caller-specified filter in the response.result.filters map.
                     response.result.filters[filter.filterDescriptor.operationID] = filter;
 
                 } // for each filter in the caller-specified set
+
+                if (errors.length) {
+                    break;
+                }
 
                 response.result.id = request_.id;
                 response.result.name = request_.name;

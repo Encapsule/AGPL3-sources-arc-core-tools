@@ -152,42 +152,148 @@
                     {
                         "u": "~",
                         "p": {
-                            "isOpaque": [],
-                            "isDefaulted": [],
-                            "jsFunction": [],
-                            "jsObjectD": [
-                                "EpxfUsN0SK2-l7Il-vmpEg"
+                            "name": "[5INQ3snpQO2ru2_eAP5JvQ::test](~)",
+                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                            "vlist": [
+                                {
+                                    "u": "isOpaque"
+                                },
+                                {
+                                    "u": "isDefaulted"
+                                },
+                                {
+                                    "u": "jsFunction"
+                                },
+                                {
+                                    "u": "jsNumber"
+                                },
+                                {
+                                    "u": "jsNull"
+                                },
+                                {
+                                    "u": "jsUndefined"
+                                },
+                                {
+                                    "u": "jsBoolean"
+                                },
+                                {
+                                    "u": "jsString"
+                                }
                             ],
-                            "jsObjectM": [
-                                "Z9UF5obhT4ipV4qrBD08-Q"
-                            ],
-                            "jsArray": [
-                                "jrjKFxslQsuNwGKcppgM1w"
-                            ],
-                            "jsNumber": [],
-                            "jsNull": [],
-                            "jsUndefined": [],
-                            "jsBoolean": [],
-                            "jsString": []
+                            "elist": [
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "EpxfUsN0SK2-l7Il-vmpEg"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "Z9UF5obhT4ipV4qrBD08-Q"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "jrjKFxslQsuNwGKcppgM1w"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "EpxfUsN0SK2-l7Il-vmpEg",
+                                        "v": "jsDescriptorObject"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "Z9UF5obhT4ipV4qrBD08-Q",
+                                        "v": "jsMapObject"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "jrjKFxslQsuNwGKcppgM1w",
+                                        "v": "jsArray"
+                                    }
+                                }
+                            ]
                         }
                     },
                     {
                         "u": "~.key",
                         "p": {
-                            "isOpaque": [],
-                            "isDefaulted": [],
-                            "jsFunction": [],
-                            "jsObjectD": [],
-                            "jsObjectM": [],
-                            "jsArray": [],
-                            "jsNumber": [],
-                            "jsNull": [],
-                            "jsUndefined": [],
-                            "jsBoolean": [],
-                            "jsString": [
-                                "EpxfUsN0SK2-l7Il-vmpEg",
-                                "Z9UF5obhT4ipV4qrBD08-Q",
-                                "jrjKFxslQsuNwGKcppgM1w"
+                            "name": "[5INQ3snpQO2ru2_eAP5JvQ::test](~.key)",
+                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.key'.",
+                            "vlist": [
+                                {
+                                    "u": "isOpaque"
+                                },
+                                {
+                                    "u": "isDefaulted"
+                                },
+                                {
+                                    "u": "jsFunction"
+                                },
+                                {
+                                    "u": "jsDescriptorObject"
+                                },
+                                {
+                                    "u": "jsMapObject"
+                                },
+                                {
+                                    "u": "jsArray"
+                                },
+                                {
+                                    "u": "jsNumber"
+                                },
+                                {
+                                    "u": "jsNull"
+                                },
+                                {
+                                    "u": "jsUndefined"
+                                },
+                                {
+                                    "u": "jsBoolean"
+                                }
+                            ],
+                            "elist": [
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "EpxfUsN0SK2-l7Il-vmpEg"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "Z9UF5obhT4ipV4qrBD08-Q"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "jrjKFxslQsuNwGKcppgM1w"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "EpxfUsN0SK2-l7Il-vmpEg",
+                                        "v": "jsString"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "Z9UF5obhT4ipV4qrBD08-Q",
+                                        "v": "jsString"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "jrjKFxslQsuNwGKcppgM1w",
+                                        "v": "jsString"
+                                    }
+                                }
                             ]
                         }
                     }

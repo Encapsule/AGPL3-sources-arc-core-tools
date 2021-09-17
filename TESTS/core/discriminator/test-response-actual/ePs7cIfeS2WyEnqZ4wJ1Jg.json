@@ -72,32 +72,74 @@
                     {
                         "u": "~",
                         "p": {
-                            "isOpaque": [],
-                            "isDefaulted": [],
-                            "jsFunction": [
-                                "ZI5UERDRR6-6Oj8yhJOkng"
+                            "name": "[ePs7cIfeS2WyEnqZ4wJ1Jg::test](~)",
+                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                            "vlist": [
+                                {
+                                    "u": "isOpaque"
+                                },
+                                {
+                                    "u": "isDefaulted"
+                                },
+                                {
+                                    "u": "jsMapObject"
+                                }
                             ],
-                            "jsObjectD": [
-                                "ZI5UERDRR6-6Oj8yhJOkng"
-                            ],
-                            "jsObjectM": [],
-                            "jsArray": [
-                                "ZI5UERDRR6-6Oj8yhJOkng"
-                            ],
-                            "jsNumber": [
-                                "ZI5UERDRR6-6Oj8yhJOkng"
-                            ],
-                            "jsNull": [
-                                "ZI5UERDRR6-6Oj8yhJOkng"
-                            ],
-                            "jsUndefined": [
-                                "ZI5UERDRR6-6Oj8yhJOkng"
-                            ],
-                            "jsBoolean": [
-                                "ZI5UERDRR6-6Oj8yhJOkng"
-                            ],
-                            "jsString": [
-                                "ZI5UERDRR6-6Oj8yhJOkng"
+                            "elist": [
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "ZI5UERDRR6-6Oj8yhJOkng"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                        "v": "jsFunction"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                        "v": "jsDescriptorObject"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                        "v": "jsArray"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                        "v": "jsNull"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                        "v": "jsNumber"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                        "v": "jsUndefined"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                        "v": "jsBoolean"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                        "v": "jsString"
+                                    }
+                                }
                             ]
                         }
                     }

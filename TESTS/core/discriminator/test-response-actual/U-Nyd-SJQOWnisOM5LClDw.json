@@ -60,36 +60,106 @@
                     {
                         "u": "~",
                         "p": {
-                            "isOpaque": [],
-                            "isDefaulted": [],
-                            "jsFunction": [],
-                            "jsObjectD": [
-                                "ewj-Hb3fRFqkd5G3liTs6A"
+                            "name": "[U-Nyd-SJQOWnisOM5LClDw::test](~)",
+                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                            "vlist": [
+                                {
+                                    "u": "isOpaque"
+                                },
+                                {
+                                    "u": "isDefaulted"
+                                },
+                                {
+                                    "u": "jsFunction"
+                                },
+                                {
+                                    "u": "jsMapObject"
+                                },
+                                {
+                                    "u": "jsArray"
+                                },
+                                {
+                                    "u": "jsNumber"
+                                },
+                                {
+                                    "u": "jsNull"
+                                },
+                                {
+                                    "u": "jsUndefined"
+                                },
+                                {
+                                    "u": "jsBoolean"
+                                },
+                                {
+                                    "u": "jsString"
+                                }
                             ],
-                            "jsObjectM": [],
-                            "jsArray": [],
-                            "jsNumber": [],
-                            "jsNull": [],
-                            "jsUndefined": [],
-                            "jsBoolean": [],
-                            "jsString": []
+                            "elist": [
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "ewj-Hb3fRFqkd5G3liTs6A"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "ewj-Hb3fRFqkd5G3liTs6A",
+                                        "v": "jsDescriptorObject"
+                                    }
+                                }
+                            ]
                         }
                     },
                     {
                         "u": "~.someProperty",
                         "p": {
-                            "isOpaque": [],
-                            "isDefaulted": [],
-                            "jsFunction": [],
-                            "jsObjectD": [],
-                            "jsObjectM": [],
-                            "jsArray": [],
-                            "jsNumber": [],
-                            "jsNull": [],
-                            "jsUndefined": [],
-                            "jsBoolean": [],
-                            "jsString": [
-                                "ewj-Hb3fRFqkd5G3liTs6A"
+                            "name": "[U-Nyd-SJQOWnisOM5LClDw::test](~.someProperty)",
+                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.someProperty'.",
+                            "vlist": [
+                                {
+                                    "u": "isOpaque"
+                                },
+                                {
+                                    "u": "isDefaulted"
+                                },
+                                {
+                                    "u": "jsFunction"
+                                },
+                                {
+                                    "u": "jsDescriptorObject"
+                                },
+                                {
+                                    "u": "jsMapObject"
+                                },
+                                {
+                                    "u": "jsArray"
+                                },
+                                {
+                                    "u": "jsNumber"
+                                },
+                                {
+                                    "u": "jsNull"
+                                },
+                                {
+                                    "u": "jsUndefined"
+                                },
+                                {
+                                    "u": "jsBoolean"
+                                }
+                            ],
+                            "elist": [
+                                {
+                                    "e": {
+                                        "u": "FILTERS",
+                                        "v": "ewj-Hb3fRFqkd5G3liTs6A"
+                                    }
+                                },
+                                {
+                                    "e": {
+                                        "u": "ewj-Hb3fRFqkd5G3liTs6A",
+                                        "v": "jsString"
+                                    }
+                                }
                             ]
                         }
                     }

@@ -1,0 +1,36 @@
+{
+    "testID": "P6WYyQZVRfWNV0ejqwVqAg",
+    "testName": "Single Filter Accepts Number",
+    "testDescriptor": "Confirm and verify the behavior of a single filter that accepts a number.",
+    "testRequest": {
+        "id": "P6WYyQZVRfWNV0ejqwVqAg",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "W9WYUw7BTe-pi3Ru-aBOJA",
+                    "operationName": "unnamed",
+                    "operationDescription": "W9WYUw7BTe-pi3Ru-aBOJA provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber"
+                    },
+                    "inputTypeVIID": "wn0NXWeN5OCDaIc9imj00Q",
+                    "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                    "outputTypeVIID": "-EOEsDp8oyKj_XQCUOdYQg",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "HPRLE1e39FcFblLtNWDEtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "name": "Essential Forest Model: test",
+            "description": "TODO",
+            "vlist": [],
+            "elist": []
+        }
+    }
+}
