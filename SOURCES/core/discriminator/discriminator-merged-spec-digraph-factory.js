@@ -127,48 +127,34 @@
                                 break;
                             }
 
-                            const scoreboardDigraph = factoryResponse.result;
-
-                            response.result.digraph.addVertex({ u: nsWorkItem.specRefPath, p: scoreboardDigraph });
+                            const nsTypeScoreboardDigraph = factoryResponse.result;
+                            response.result.digraph.addVertex({ u: nsWorkItem.specRefPath, p: nsTypeScoreboardDigraph });
                         }
 
-                        let nsProperty = response.result.digraph.getVertexProperty(nsWorkItem.specRefPath);
 
-                        nsProperty.addEdge({ e: { u: "FILTERS", v: filter.filterDescriptor.operationID } });
+                        let nsTypeScoreboardDigraph = response.result.digraph.getVertexProperty(nsWorkItem.specRefPath);
+
+                        nsTypeScoreboardDigraph.addEdge({ e: { u: "FILTERS", v: filter.filterDescriptor.operationID } });
 
                         if (nsWorkItemFeatures.isOpaque) {
 
-                            // new scoreboard
-                            nsProperty.addEdge({ e: { u: filter.filterDescriptor.operationID, v: "isOpaque" } });
-                            // old scoreboard
-                            // nsProperty.isOpaque.push(filter.filterDescriptor.operationID);
+                            nsTypeScoreboardDigraph.addEdge({ e: { u: filter.filterDescriptor.operationID, v: "isOpaque" } });
 
                         } else {
 
                             nsWorkItemFeatures.typeConstraints.forEach(typeConstraint_ => {
                                 if ("jsObject" === typeConstraint_) {
-                                    nsProperty.addEdge({ e: { u: filter.filterDescriptor.operationID, v: nsWorkItemFeatures.asMap?"jsMapObject":"jsDescriptorObject" } });
-                                    // old scoreboard
-                                    // nsProperty[nsWorkItemFeatures.asMap?"jsObjectM":"jsObjectD"].push(filter.filterDescriptor.operationID);
+                                    nsTypeScoreboardDigraph.addEdge({ e: { u: filter.filterDescriptor.operationID, v: nsWorkItemFeatures.asMap?"jsMapObject":"jsDescriptorObject" } });
                                 } else {
-                                    // new scoreboard
-                                    nsProperty.addEdge({ e: { u: filter.filterDescriptor.operationID, v: typeConstraint_ } });
-                                    // old scoreboard
-                                    // nsProperty[typeConstraint_].push(filter.filterDescriptor.operationID);
+                                    nsTypeScoreboardDigraph.addEdge({ e: { u: filter.filterDescriptor.operationID, v: typeConstraint_ } });
                                 }
                             });
 
                             if (nsWorkItemFeatures.isDefaulted) {
-                                // new scoreboard
-                                nsProperty.addEdge({ e: { u: filter.filterDescriptor.operationID, v: "isDefaulted" } });
-                                // old scoreboard
-                                // nsProperty.isDefaulted.push(filter.filterDescriptor.operationID);
+                                nsTypeScoreboardDigraph.addEdge({ e: { u: filter.filterDescriptor.operationID, v: "isDefaulted" } });
                             }
 
                         }
-
-                        // TODO: THIS IS NOT NECESSARY I THINK (so I remove it it).
-                        // response.result.digraph.setVertexProperty({ u: nsWorkItem.specRefRef, p: nsProperty });
 
                         // Tree edge create...
                         if (nsWorkItem.parentRefPath !== null) {
