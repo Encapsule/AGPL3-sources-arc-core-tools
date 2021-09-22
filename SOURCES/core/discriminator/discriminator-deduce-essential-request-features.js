@@ -40,18 +40,50 @@
                     break;
                 }
 
-                // 
                 const essentialNamespacesDigraph = response.result = factoryResponse.result;
 
                 // Depth-first traverse the merge filter spec digraph passed to us by the caller.
                 let traverseResponse = arccore.graph.directed.depthFirstTraverse({
                     digraph: request_.digraph,
+                    context: {
+                        count: 0
+                    },
                     visitor: {
+
                         discoverVertex: function(visitorRequest_) {
-                            const inputVertexProperty = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
+
+                            const nsTypeScoreboardDigraph = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
+
+                            const nsValueRequired = ( nsTypeScoreboardDigraph.inDegree("jsUndefined") || // ... if any filter(s) accept a reference to value undefined explicitly (aka as an optional value)
+                                                      nsTypeScoreboardDigraph.inDegree("isDefaulted") || // ... if any filter(s) declare a default value to be used if a reference to value undefined is provided
+                                                      nsTypeScoreboardDigraph.inDegree("isOpaque")       // ... if any filter(s) accept a reference to anything (including a reference to value undefined)
+                                                    )?false:true;
+
+                            const filtersInScoreboard = nsTypeScoreboardDigraph.outDegree("FILTERS");
+
+
+
+
+                            console.log(`${visitorRequest_.u} -> required is ${nsValueRequired?"YES":"NO"} filtersInScoreboard=${filtersInScoreboard}`);
+
+                            essentialNamespacesDigraph.addVertex({
+                                u: visitorRequest_.u,
+                                p: {
+                                    filters: filtersInScoreboard,
+                                    valueRequired: nsValueRequired
+                                }
+                            });
+
+                            return true;
+
+                        }, // visitor callback function: discoverVertex
+
+                        finishVertex: function(visitorRequest_) {
                             return true;
                         }
+
                     }
+
                 });
 
 

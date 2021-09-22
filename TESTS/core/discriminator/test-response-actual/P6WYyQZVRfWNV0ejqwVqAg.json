@@ -29,7 +29,15 @@
         "result": {
             "name": "Essential Forest Model: test",
             "description": "TODO",
-            "vlist": [],
+            "vlist": [
+                {
+                    "u": "~",
+                    "p": {
+                        "filters": 1,
+                        "valueRequired": true
+                    }
+                }
+            ],
             "elist": []
         }
     }

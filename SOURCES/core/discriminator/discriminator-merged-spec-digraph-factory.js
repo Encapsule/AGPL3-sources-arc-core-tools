@@ -131,7 +131,6 @@
                             response.result.digraph.addVertex({ u: nsWorkItem.specRefPath, p: nsTypeScoreboardDigraph });
                         }
 
-
                         let nsTypeScoreboardDigraph = response.result.digraph.getVertexProperty(nsWorkItem.specRefPath);
 
                         nsTypeScoreboardDigraph.addEdge({ e: { u: "FILTERS", v: filter.filterDescriptor.operationID } });
