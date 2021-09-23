@@ -1,5 +1,5 @@
 
-// discriminator-deduce-essential-request-features.js
+// discriminator2-feature-model-factory-filter.js
 
 (function() {
 
@@ -12,8 +12,8 @@
 
     const factoryResponse = arccore.filter.create({
         operationID: "RHDfGJZETgyNidDpcLHnpw",
-        operationName: "Essential Request Features Digraph Factory Filter",
-        operationDescription: "Accepts a merged filter spec digraph model and produces another similar model containing only the _essential_ (i.e. must be specified per filter spec rules) features.",
+        operationName: "Message Discriminator Feature Model Factory",
+        operationDescription: "Accepts a merged filter spec model (digraph) and produces a model (digraph) of message features that uniquely identify each of N request type(s) from one another.",
 
         inputFilterSpec: mergedFilterSpecModelDescriptorSpec, // ... expect to be called w/output response.result of merged filter spec model factory filter
 

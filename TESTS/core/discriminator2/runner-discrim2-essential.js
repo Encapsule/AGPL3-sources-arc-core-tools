@@ -9,7 +9,7 @@
     const testModule = require("./module-under-test");
 
     const mergedSpecDigraphFactoryFilter = testModule("discriminator2-merged-model-factory-filter");
-    const essentialFeaturesDigraphFactoryFilter = testModule("discriminator-deduce-essential-request-features");
+    const essentialFeaturesDigraphFactoryFilter = testModule("discriminator2-feature-model-factory-filter");
 
     /*
       NOTE: THIS IS COPIED FROM AND IS DELIBERATELY THE SAME REQUEST FORMAT
