@@ -4,7 +4,7 @@
     const testModule = require("./module-under-test");
     const FILTERLIB = testModule("arc_core_filter");
 
-    const testMergedSpecDigraphFactory = require("./runner-merged-spec-digraph-factory");
+    const testMergedSpecDigraphFactory = require("./harness-discriminator2-merged-model-factory-filter");
 
     // ----------------------------------------------------------------
     testMergedSpecDigraphFactory({
