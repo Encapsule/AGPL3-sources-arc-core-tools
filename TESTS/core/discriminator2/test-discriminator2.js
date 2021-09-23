@@ -6,6 +6,7 @@
     describe("ARC core discriminator v2 tests:", function() {
 
         require("./test-discriminator2-merged-model");
+        require("./test-discriminator2-feature-model");
 
     });
 

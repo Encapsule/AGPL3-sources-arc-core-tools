@@ -3,7 +3,7 @@
 
 (function() {
 
-    const mergedFilterSpecModelFactoryInputSpec = require("./discriminator2-merged-spec-model-factory-input-spec");
+    const mergedFilterSpecModelFactoryInputSpec = require("./discriminator2-merged-model-factory-input-spec");
 
     module.exports = {
         ...mergedFilterSpecModelFactoryInputSpec,

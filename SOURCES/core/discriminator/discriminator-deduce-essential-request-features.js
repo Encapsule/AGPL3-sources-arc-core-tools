@@ -8,7 +8,7 @@
         graph: require("./arc_core_graph")
     };
 
-    const mergedFilterSpecModelDescriptorSpec = require("./discriminator2-merged-spec-model-factory-output-spec");
+    const mergedFilterSpecModelDescriptorSpec = require("./discriminator2-merged-model-factory-output-spec");
 
     const factoryResponse = arccore.filter.create({
         operationID: "RHDfGJZETgyNidDpcLHnpw",

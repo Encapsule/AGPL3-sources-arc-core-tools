@@ -6,7 +6,7 @@
     const path = require("path");
     const assert = require("chai").assert;
     const testModule = require("./module-under-test");
-    const mergedSpecDigraphFactoryFilter = testModule("discriminator-merged-spec-digraph-factory");
+    const mergedSpecDigraphFactoryFilter = testModule("discriminator2-merged-model-factory-filter");
 
     /*
       testVector = {
