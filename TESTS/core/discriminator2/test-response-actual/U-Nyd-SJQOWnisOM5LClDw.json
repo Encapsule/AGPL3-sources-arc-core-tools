@@ -62,38 +62,7 @@
                         "p": {
                             "name": "[U-Nyd-SJQOWnisOM5LClDw::test](~)",
                             "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [
-                                {
-                                    "u": "isOpaque"
-                                },
-                                {
-                                    "u": "isDefaulted"
-                                },
-                                {
-                                    "u": "jsFunction"
-                                },
-                                {
-                                    "u": "jsMapObject"
-                                },
-                                {
-                                    "u": "jsArray"
-                                },
-                                {
-                                    "u": "jsNumber"
-                                },
-                                {
-                                    "u": "jsNull"
-                                },
-                                {
-                                    "u": "jsUndefined"
-                                },
-                                {
-                                    "u": "jsBoolean"
-                                },
-                                {
-                                    "u": "jsString"
-                                }
-                            ],
+                            "vlist": [],
                             "elist": [
                                 {
                                     "e": {
@@ -115,38 +84,7 @@
                         "p": {
                             "name": "[U-Nyd-SJQOWnisOM5LClDw::test](~.someProperty)",
                             "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.someProperty'.",
-                            "vlist": [
-                                {
-                                    "u": "isOpaque"
-                                },
-                                {
-                                    "u": "isDefaulted"
-                                },
-                                {
-                                    "u": "jsFunction"
-                                },
-                                {
-                                    "u": "jsDescriptorObject"
-                                },
-                                {
-                                    "u": "jsMapObject"
-                                },
-                                {
-                                    "u": "jsArray"
-                                },
-                                {
-                                    "u": "jsNumber"
-                                },
-                                {
-                                    "u": "jsNull"
-                                },
-                                {
-                                    "u": "jsUndefined"
-                                },
-                                {
-                                    "u": "jsBoolean"
-                                }
-                            ],
+                            "vlist": [],
                             "elist": [
                                 {
                                     "e": {

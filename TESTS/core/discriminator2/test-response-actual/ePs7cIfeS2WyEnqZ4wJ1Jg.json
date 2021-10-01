@@ -74,17 +74,7 @@
                         "p": {
                             "name": "[ePs7cIfeS2WyEnqZ4wJ1Jg::test](~)",
                             "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [
-                                {
-                                    "u": "isOpaque"
-                                },
-                                {
-                                    "u": "isDefaulted"
-                                },
-                                {
-                                    "u": "jsMapObject"
-                                }
-                            ],
+                            "vlist": [],
                             "elist": [
                                 {
                                     "e": {

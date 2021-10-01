@@ -154,32 +154,7 @@
                         "p": {
                             "name": "[5INQ3snpQO2ru2_eAP5JvQ::test](~)",
                             "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [
-                                {
-                                    "u": "isOpaque"
-                                },
-                                {
-                                    "u": "isDefaulted"
-                                },
-                                {
-                                    "u": "jsFunction"
-                                },
-                                {
-                                    "u": "jsNumber"
-                                },
-                                {
-                                    "u": "jsNull"
-                                },
-                                {
-                                    "u": "jsUndefined"
-                                },
-                                {
-                                    "u": "jsBoolean"
-                                },
-                                {
-                                    "u": "jsString"
-                                }
-                            ],
+                            "vlist": [],
                             "elist": [
                                 {
                                     "e": {
@@ -225,38 +200,7 @@
                         "p": {
                             "name": "[5INQ3snpQO2ru2_eAP5JvQ::test](~.key)",
                             "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.key'.",
-                            "vlist": [
-                                {
-                                    "u": "isOpaque"
-                                },
-                                {
-                                    "u": "isDefaulted"
-                                },
-                                {
-                                    "u": "jsFunction"
-                                },
-                                {
-                                    "u": "jsDescriptorObject"
-                                },
-                                {
-                                    "u": "jsMapObject"
-                                },
-                                {
-                                    "u": "jsArray"
-                                },
-                                {
-                                    "u": "jsNumber"
-                                },
-                                {
-                                    "u": "jsNull"
-                                },
-                                {
-                                    "u": "jsUndefined"
-                                },
-                                {
-                                    "u": "jsBoolean"
-                                }
-                            ],
+                            "vlist": [],
                             "elist": [
                                 {
                                     "e": {

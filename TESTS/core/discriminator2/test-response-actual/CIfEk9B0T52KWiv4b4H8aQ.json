@@ -1,0 +1,103 @@
+{
+    "testID": "CIfEk9B0T52KWiv4b4H8aQ",
+    "testName": "Accept Object + Accept Object w/Default Filter Pair",
+    "testDescription": "Two filters that both accept descriptor objects. One filter's object is defaulted.",
+    "testRequest": {
+        "id": "CIfEk9B0T52KWiv4b4H8aQ",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "FcMsfGWFTdinHS2MY2Tn5g",
+                    "operationName": "unnamed",
+                    "operationDescription": "FcMsfGWFTdinHS2MY2Tn5g provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsObject"
+                    },
+                    "inputTypeVIID": "a6Uu6GEQf1AO8g1rVk8A7Q",
+                    "inputTypeVDID": "Pn9jkiuUyFDMIvHds8fQ2A",
+                    "outputTypeVIID": "jt2GX4BEMlLEUHJJL7dKtQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "H_4SE5kyKVeVoZPtOK5StA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "B_AUumpxQneXDjEBXwy_5Q",
+                    "operationName": "unnamed",
+                    "operationDescription": "B_AUumpxQneXDjEBXwy_5Q provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsObject",
+                        "____defaultValue": {}
+                    },
+                    "inputTypeVIID": "3nrzkIVdJmkhC7JejgE1lQ",
+                    "inputTypeVDID": "nL9RASxdihPoc-Yh3Imb2Q",
+                    "outputTypeVIID": "JY-M2L_xwJiM1KOb3nBzQQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "7u3EEzSLfFdhua7tIBWFtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "models": {
+                "merged": {
+                    "name": "[CIfEk9B0T52KWiv4b4H8aQ::test] Merged Filter Spec Digraph Model",
+                    "description": "Digraph model of 2 filter object input specs merged together for analysis.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "name": "[CIfEk9B0T52KWiv4b4H8aQ::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "FcMsfGWFTdinHS2MY2Tn5g"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "B_AUumpxQneXDjEBXwy_5Q"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FcMsfGWFTdinHS2MY2Tn5g",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "B_AUumpxQneXDjEBXwy_5Q",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "B_AUumpxQneXDjEBXwy_5Q",
+                                            "v": "isDefaulted"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "elist": []
+                },
+                "features": {
+                    "name": "Essential Forest Model: test",
+                    "description": "TODO",
+                    "vlist": [],
+                    "elist": []
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,622 @@
+{
+    "testID": "pb4-BLLKSIyg303KRex8Zg",
+    "testName": "Complex Test Case 1",
+    "testDescription": "More complex test case #1.",
+    "testRequest": {
+        "id": "pb4-BLLKSIyg303KRex8Zg",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "GxEgF5iaRWOTD7CW5XRgAQ",
+                    "operationName": "Test Filter A",
+                    "operationDescription": "GxEgF5iaRWOTD7CW5XRgAQ provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "mapX": {
+                            "____types": "jsObject",
+                            "____asMap": true,
+                            "element": {
+                                "____accept": "jsNumber"
+                            }
+                        },
+                        "propertyA": {
+                            "____types": "jsObject",
+                            "subproperty1": {
+                                "____accept": "jsString"
+                            },
+                            "subproperty2": {
+                                "____accept": "jsNumber"
+                            },
+                            "subproperty4": {
+                                "____accept": [
+                                    "jsNull",
+                                    "jsString"
+                                ]
+                            }
+                        },
+                        "propertyB": {
+                            "____accept": [
+                                "jsNumber",
+                                "jsString"
+                            ]
+                        },
+                        "propertyD": {
+                            "____accept": "jsNumber"
+                        }
+                    },
+                    "inputTypeVIID": "fqEYguf8PmSFzKCXJb7wJA",
+                    "inputTypeVDID": "gWXWd1Fu708dpmPlwBGFnA",
+                    "outputTypeVIID": "908O38hHD-q2_2wTnGvV-Q",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "PfC2E3uYIleDwn3tbBW4tA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "6Z7y_J7cQc-3iZC6YlNMdQ",
+                    "operationName": "Test Filter B",
+                    "operationDescription": "6Z7y_J7cQc-3iZC6YlNMdQ provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "mapY": {
+                            "____types": "jsObject",
+                            "____asMap": true,
+                            "element": {
+                                "____accept": "jsNumber"
+                            }
+                        },
+                        "propertyA": {
+                            "____types": "jsObject",
+                            "subproperty1": {
+                                "____accept": "jsString"
+                            },
+                            "subproperty3": {
+                                "____accept": "jsNumber"
+                            },
+                            "subproperty4": {
+                                "____accept": "jsString"
+                            }
+                        },
+                        "propertyB": {
+                            "____accept": "jsNumber"
+                        }
+                    },
+                    "inputTypeVIID": "_EdpI14OxfHzKbpUHx1_9Q",
+                    "inputTypeVDID": "sIETGDRCY3xPwdtRlBR63g",
+                    "outputTypeVIID": "iIfaOG1-WjImtZE8fWkCOA",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "e2WnE7YJAld9zzDtl1sitA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "FkmSSKieTuuUBlRAnoPAqA",
+                    "operationName": "Test Filter C",
+                    "operationDescription": "FkmSSKieTuuUBlRAnoPAqA provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "mapY": {
+                            "____types": "jsObject",
+                            "____asMap": true,
+                            "element": {
+                                "____accept": "jsNumber"
+                            }
+                        },
+                        "propertyC": {
+                            "____accept": "jsNumber"
+                        },
+                        "propertyD": {
+                            "____accept": "jsNumber"
+                        }
+                    },
+                    "inputTypeVIID": "S5D7F3YqmUSkfEBj_qeARQ",
+                    "inputTypeVDID": "qt_N6OX7akwlnzwfWZhS0A",
+                    "outputTypeVIID": "szINhcMq1jbqD3dNylPzSg",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "gWj5E6nmhFfgy1jtO0N8tA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "models": {
+                "merged": {
+                    "name": "[pb4-BLLKSIyg303KRex8Zg::test] Merged Filter Spec Digraph Model",
+                    "description": "Digraph model of 3 filter object input specs merged together for analysis.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "GxEgF5iaRWOTD7CW5XRgAQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "6Z7y_J7cQc-3iZC6YlNMdQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "FkmSSKieTuuUBlRAnoPAqA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "6Z7y_J7cQc-3iZC6YlNMdQ",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FkmSSKieTuuUBlRAnoPAqA",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.mapX",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.mapX)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.mapX'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "GxEgF5iaRWOTD7CW5XRgAQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsMapObject"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.propertyA",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.propertyA)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyA'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "GxEgF5iaRWOTD7CW5XRgAQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "6Z7y_J7cQc-3iZC6YlNMdQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "6Z7y_J7cQc-3iZC6YlNMdQ",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.propertyB",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.propertyB)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyB'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "GxEgF5iaRWOTD7CW5XRgAQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "6Z7y_J7cQc-3iZC6YlNMdQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "6Z7y_J7cQc-3iZC6YlNMdQ",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.propertyD",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.propertyD)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyD'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "GxEgF5iaRWOTD7CW5XRgAQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "FkmSSKieTuuUBlRAnoPAqA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FkmSSKieTuuUBlRAnoPAqA",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.mapX.element",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.mapX.element)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.mapX.element'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "GxEgF5iaRWOTD7CW5XRgAQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.propertyA.subproperty1",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.propertyA.subproperty1)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyA.subproperty1'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "GxEgF5iaRWOTD7CW5XRgAQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "6Z7y_J7cQc-3iZC6YlNMdQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "6Z7y_J7cQc-3iZC6YlNMdQ",
+                                            "v": "jsString"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.propertyA.subproperty2",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.propertyA.subproperty2)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyA.subproperty2'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "GxEgF5iaRWOTD7CW5XRgAQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.propertyA.subproperty4",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.propertyA.subproperty4)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyA.subproperty4'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "GxEgF5iaRWOTD7CW5XRgAQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "6Z7y_J7cQc-3iZC6YlNMdQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsNull"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "GxEgF5iaRWOTD7CW5XRgAQ",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "6Z7y_J7cQc-3iZC6YlNMdQ",
+                                            "v": "jsString"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.mapY",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.mapY)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.mapY'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "6Z7y_J7cQc-3iZC6YlNMdQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "FkmSSKieTuuUBlRAnoPAqA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "6Z7y_J7cQc-3iZC6YlNMdQ",
+                                            "v": "jsMapObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FkmSSKieTuuUBlRAnoPAqA",
+                                            "v": "jsMapObject"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.mapY.element",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.mapY.element)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.mapY.element'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "6Z7y_J7cQc-3iZC6YlNMdQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "FkmSSKieTuuUBlRAnoPAqA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "6Z7y_J7cQc-3iZC6YlNMdQ",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FkmSSKieTuuUBlRAnoPAqA",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.propertyA.subproperty3",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.propertyA.subproperty3)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyA.subproperty3'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "6Z7y_J7cQc-3iZC6YlNMdQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "6Z7y_J7cQc-3iZC6YlNMdQ",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.propertyC",
+                            "p": {
+                                "name": "[pb4-BLLKSIyg303KRex8Zg::test](~.propertyC)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyC'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "FkmSSKieTuuUBlRAnoPAqA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FkmSSKieTuuUBlRAnoPAqA",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "elist": [
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.mapX"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyA"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyB"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyD"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.mapY"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyC"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.mapX",
+                                "v": "~.mapX.element"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.subproperty1"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.subproperty2"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.subproperty4"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.subproperty3"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.mapY",
+                                "v": "~.mapY.element"
+                            }
+                        }
+                    ]
+                },
+                "features": {
+                    "name": "Essential Forest Model: test",
+                    "description": "TODO",
+                    "vlist": [],
+                    "elist": []
+                }
+            }
+        }
+    }
+}

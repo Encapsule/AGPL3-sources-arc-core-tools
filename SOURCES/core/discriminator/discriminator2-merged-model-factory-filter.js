@@ -106,6 +106,7 @@
                             factoryResponse = arccore.graph.directed.create({
                                 name: `[${request_.id}::${request_.name}](${nsWorkItem.specRefPath})`,
                                 description: `Digraph model of type constraint(s) declared by filter(s) for merged request namespace '${nsWorkItem.specRefPath}'.`,
+                                /* TRY DISABLING
                                 vlist: [
                                     { u: "FILTERS" },
                                     { u: "isOpaque" },
@@ -120,6 +121,7 @@
                                     { u: "jsBoolean" },
                                     { u: "jsString" }
                                 ]
+                                */
                             });
 
                             if (factoryResponse.error) {

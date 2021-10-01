@@ -66,6 +66,8 @@ TOOL_UGLIFY_FLAGS=--verbose --mangle
 TOOL_MANIFEST_GEN=$(DIR_PROJECT)/generate_dist_package_manifest.js
 TOOL_LICENSE_GEN=$(DIR_PROJECT)/generate_dist_package_license.js
 
+TOOL_MAKE_IRUTS=./DISTS/arctools/arc_tools_id_unique.js
+
 
 # First target specified is always the default target regardless of its name.
 arc_master: dependencies stage04
@@ -414,3 +416,5 @@ publish_arccore_dist:
 publish_arctools_dist:
 	cp -Rv $(DIR_OUT_BUILD_STAGE04_ARCTOOLS)/* DISTS/arctools/
 
+iruts:
+	node $(TOOL_MAKE_IRUTS)

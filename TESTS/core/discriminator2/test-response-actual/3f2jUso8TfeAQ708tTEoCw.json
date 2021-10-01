@@ -56,38 +56,7 @@
                         "p": {
                             "name": "[3f2jUso8TfeAQ708tTEoCw::test](~)",
                             "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [
-                                {
-                                    "u": "isOpaque"
-                                },
-                                {
-                                    "u": "isDefaulted"
-                                },
-                                {
-                                    "u": "jsFunction"
-                                },
-                                {
-                                    "u": "jsDescriptorObject"
-                                },
-                                {
-                                    "u": "jsMapObject"
-                                },
-                                {
-                                    "u": "jsArray"
-                                },
-                                {
-                                    "u": "jsNull"
-                                },
-                                {
-                                    "u": "jsUndefined"
-                                },
-                                {
-                                    "u": "jsBoolean"
-                                },
-                                {
-                                    "u": "jsString"
-                                }
-                            ],
+                            "vlist": [],
                             "elist": [
                                 {
                                     "e": {
