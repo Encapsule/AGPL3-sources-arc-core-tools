@@ -58,35 +58,7 @@
                         "p": {
                             "name": "[B3gIdEzMRBCD_hOPEkJ-Ig::test](~)",
                             "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [
-                                {
-                                    "u": "isOpaque"
-                                },
-                                {
-                                    "u": "jsFunction"
-                                },
-                                {
-                                    "u": "jsDescriptorObject"
-                                },
-                                {
-                                    "u": "jsMapObject"
-                                },
-                                {
-                                    "u": "jsArray"
-                                },
-                                {
-                                    "u": "jsNull"
-                                },
-                                {
-                                    "u": "jsUndefined"
-                                },
-                                {
-                                    "u": "jsBoolean"
-                                },
-                                {
-                                    "u": "jsString"
-                                }
-                            ],
+                            "vlist": [],
                             "elist": [
                                 {
                                     "e": {

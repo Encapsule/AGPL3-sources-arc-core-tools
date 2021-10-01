@@ -1,0 +1,159 @@
+{
+    "testID": "PgIA36VvT4uZPfSjeRfwuA",
+    "testName": "Two Descriptor Objects w/Unique Props",
+    "testDescrption": "Two filters that each accept different descriptor objects.",
+    "testRequest": {
+        "id": "PgIA36VvT4uZPfSjeRfwuA",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "w_Er_dlQQYCb6_Z57aEr7A",
+                    "operationName": "unnamed",
+                    "operationDescription": "w_Er_dlQQYCb6_Z57aEr7A provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "propertyA": {
+                            "____accept": "jsNumber"
+                        }
+                    },
+                    "inputTypeVIID": "baN7fLtm2HebX4mv_3eFbQ",
+                    "inputTypeVDID": "xYDFgK9Mr0zzyvPKaXJpcg",
+                    "outputTypeVIID": "GAn2MixKRKzhJeJvJdfN8g",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "0sokE0-N61df4aztoFY9tA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "uKxF0ZWORNuSGpQtZcsMhA",
+                    "operationName": "unnamed",
+                    "operationDescription": "uKxF0ZWORNuSGpQtZcsMhA provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "propertyB": {
+                            "____accept": "jsNumber"
+                        }
+                    },
+                    "inputTypeVIID": "fu477HlrVHpjJyX4du_ZqQ",
+                    "inputTypeVDID": "xV_FX6-vr6_za_NradFp0Q",
+                    "outputTypeVIID": "EUsP2ALMcbRHB96iZ4CwzQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "GDQiE_JkLFfrCvrt2uO_tA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "models": {
+                "merged": {
+                    "name": "[PgIA36VvT4uZPfSjeRfwuA::test] Merged Filter Spec Digraph Model",
+                    "description": "Digraph model of 2 filter object input specs merged together for analysis.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "name": "[PgIA36VvT4uZPfSjeRfwuA::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "w_Er_dlQQYCb6_Z57aEr7A"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "uKxF0ZWORNuSGpQtZcsMhA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "w_Er_dlQQYCb6_Z57aEr7A",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "uKxF0ZWORNuSGpQtZcsMhA",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.propertyA",
+                            "p": {
+                                "name": "[PgIA36VvT4uZPfSjeRfwuA::test](~.propertyA)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyA'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "w_Er_dlQQYCb6_Z57aEr7A"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "w_Er_dlQQYCb6_Z57aEr7A",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "u": "~.propertyB",
+                            "p": {
+                                "name": "[PgIA36VvT4uZPfSjeRfwuA::test](~.propertyB)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyB'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "uKxF0ZWORNuSGpQtZcsMhA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "uKxF0ZWORNuSGpQtZcsMhA",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "elist": [
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyA"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyB"
+                            }
+                        }
+                    ]
+                },
+                "features": {
+                    "name": "Essential Forest Model: test",
+                    "description": "TODO",
+                    "vlist": [],
+                    "elist": []
+                }
+            }
+        }
+    }
+}

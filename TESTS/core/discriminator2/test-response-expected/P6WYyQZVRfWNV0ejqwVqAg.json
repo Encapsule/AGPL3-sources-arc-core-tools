@@ -1,0 +1,69 @@
+{
+    "testID": "P6WYyQZVRfWNV0ejqwVqAg",
+    "testName": "Single Filter Accepts Number Baseline",
+    "testDescriptor": "Single filter accepts a required number.",
+    "testRequest": {
+        "id": "P6WYyQZVRfWNV0ejqwVqAg",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "W9WYUw7BTe-pi3Ru-aBOJA",
+                    "operationName": "unnamed",
+                    "operationDescription": "W9WYUw7BTe-pi3Ru-aBOJA provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber"
+                    },
+                    "inputTypeVIID": "wn0NXWeN5OCDaIc9imj00Q",
+                    "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                    "outputTypeVIID": "-EOEsDp8oyKj_XQCUOdYQg",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "HPRLE1e39FcFblLtNWDEtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "models": {
+                "merged": {
+                    "name": "[P6WYyQZVRfWNV0ejqwVqAg::test] Merged Filter Spec Digraph Model",
+                    "description": "Digraph model of 1 filter object input specs merged together for analysis.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "name": "[P6WYyQZVRfWNV0ejqwVqAg::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "W9WYUw7BTe-pi3Ru-aBOJA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "W9WYUw7BTe-pi3Ru-aBOJA",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "elist": []
+                },
+                "features": {
+                    "name": "Essential Forest Model: test",
+                    "description": "TODO",
+                    "vlist": [],
+                    "elist": []
+                }
+            }
+        }
+    }
+}

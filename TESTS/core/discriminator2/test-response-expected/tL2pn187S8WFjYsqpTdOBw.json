@@ -56,38 +56,7 @@
                         "p": {
                             "name": "[tL2pn187S8WFjYsqpTdOBw::Single Filter No Input Spec](~)",
                             "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [
-                                {
-                                    "u": "isDefaulted"
-                                },
-                                {
-                                    "u": "jsFunction"
-                                },
-                                {
-                                    "u": "jsDescriptorObject"
-                                },
-                                {
-                                    "u": "jsMapObject"
-                                },
-                                {
-                                    "u": "jsArray"
-                                },
-                                {
-                                    "u": "jsNumber"
-                                },
-                                {
-                                    "u": "jsNull"
-                                },
-                                {
-                                    "u": "jsUndefined"
-                                },
-                                {
-                                    "u": "jsBoolean"
-                                },
-                                {
-                                    "u": "jsString"
-                                }
-                            ],
+                            "vlist": [],
                             "elist": [
                                 {
                                     "e": {

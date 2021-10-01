@@ -1,0 +1,105 @@
+{
+    "testID": "s3Dvc4eQSbmdaj80knDc4A",
+    "testName": "Accept Object Filters w/One Optional",
+    "testDescription": "Two filters that both accept descriptor objects. One filter's object is optional.",
+    "testRequest": {
+        "id": "s3Dvc4eQSbmdaj80knDc4A",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "A4Dn2NJDShSDu0QN5QQd7A",
+                    "operationName": "unnamed",
+                    "operationDescription": "A4Dn2NJDShSDu0QN5QQd7A provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsObject"
+                    },
+                    "inputTypeVIID": "LGIyvisO3n7ewA8ST_f2yg",
+                    "inputTypeVDID": "Pn9jkiuUyFDMIvHds8fQ2A",
+                    "outputTypeVIID": "HPgiO9NFPJ8tkh_nXEDRtQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "rQYSE1LiKVenGJPtj6NStA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "n68PiZG3Rf6G41Wdlr9Usg",
+                    "operationName": "unnamed",
+                    "operationDescription": "n68PiZG3Rf6G41Wdlr9Usg provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": [
+                            "jsObject",
+                            "jsUndefined"
+                        ]
+                    },
+                    "inputTypeVIID": "-OICqznqcqo3mxh_k0WC2w",
+                    "inputTypeVDID": "Ds5vZqcCEr95WyRVvkSM2g",
+                    "outputTypeVIID": "XilXiIHpgqfF8VzPCLX63g",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "zjZPE_8m8VdYiM3tHDGctA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "models": {
+                "merged": {
+                    "name": "[s3Dvc4eQSbmdaj80knDc4A::test] Merged Filter Spec Digraph Model",
+                    "description": "Digraph model of 2 filter object input specs merged together for analysis.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "name": "[s3Dvc4eQSbmdaj80knDc4A::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "A4Dn2NJDShSDu0QN5QQd7A"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "n68PiZG3Rf6G41Wdlr9Usg"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "A4Dn2NJDShSDu0QN5QQd7A",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "n68PiZG3Rf6G41Wdlr9Usg",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "n68PiZG3Rf6G41Wdlr9Usg",
+                                            "v": "jsUndefined"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "elist": []
+                },
+                "features": {
+                    "name": "Essential Forest Model: test",
+                    "description": "TODO",
+                    "vlist": [],
+                    "elist": []
+                }
+            }
+        }
+    }
+}
