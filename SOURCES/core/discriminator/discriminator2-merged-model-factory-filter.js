@@ -106,21 +106,22 @@
                             factoryResponse = arccore.graph.directed.create({
                                 name: `[${request_.id}::${request_.name}](${nsWorkItem.specRefPath})`,
                                 description: `Digraph model of type constraint(s) declared by filter(s) for merged request namespace '${nsWorkItem.specRefPath}'.`,
-                                /* TRY DISABLING
-                                vlist: [
-                                    { u: "FILTERS" },
-                                    { u: "isOpaque" },
-                                    { u: "isDefaulted" },
-                                    { u: "jsFunction" },
-                                    { u: "jsDescriptorObject" }, // jsObject
-                                    { u: "jsMapObject" }, // jsObject
-                                    { u: "jsArray" },
-                                    { u: "jsNumber" },
-                                    { u: "jsNull" },
-                                    { u: "jsUndefined" },
-                                    { u: "jsBoolean" },
-                                    { u: "jsString" }
-                                ]
+                                /*
+                                   The scoreboard could be initialized as follows (shows all the vertices currently in use).
+                                   vlist: [
+                                   { u: "FILTERS" },
+                                   { u: "isOpaque" },
+                                   { u: "isDefaulted" },
+                                   { u: "jsFunction" },
+                                   { u: "jsDescriptorObject" }, // jsObject
+                                   { u: "jsMapObject" }, // jsObject
+                                   { u: "jsArray" },
+                                   { u: "jsNumber" },
+                                   { u: "jsNull" },
+                                   { u: "jsUndefined" },
+                                   { u: "jsBoolean" },
+                                   { u: "jsString" }
+                                   ]
                                 */
                             });
 

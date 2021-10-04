@@ -32,7 +32,7 @@
                 // Create a new @encapsule/arccore.graph.directed.DirectedGraph class instance.
                 let factoryResponse = arccore.graph.directed.create({
                     name: `Essential Forest Model: ${request_.name}`,
-                    description: "TODO"
+                    description: "Per request namespace / filter feature tree digraph model."
                 });
 
                 if (factoryResponse.error) {
@@ -46,39 +46,82 @@
                 let traverseResponse = arccore.graph.directed.depthFirstTraverse({
                     digraph: request_.digraph,
                     context: {
-                        count: 0
+                        count: 0,
+                        paths: {}
                     },
                     visitor: {
 
                         discoverVertex: function(visitorRequest_) {
 
-                            /*
+                            // visitorRequest_.context.paths[visitorRequest_.u] = {};
 
-                            const nsTypeScoreboardDigraph = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
+                            const scoreboard = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
 
-                            const nsValueRequired = ( nsTypeScoreboardDigraph.inDegree("jsUndefined") || // ... if any filter(s) accept a reference to value undefined explicitly (aka as an optional value)
-                                                      nsTypeScoreboardDigraph.inDegree("isDefaulted") || // ... if any filter(s) declare a default value to be used if a reference to value undefined is provided
-                                                      nsTypeScoreboardDigraph.inDegree("isOpaque")       // ... if any filter(s) accept a reference to anything (including a reference to value undefined)
-                                                    )?false:true;
+                            // Determine if any of the filter(s) that declare type constraint(s) for this namespace have declared the namespace as opaque        // (i.e. the filter will accept any value type passed for the namespace).
+                            const anyFilterOpaque = (scoreboard.inDegree("isOpaque") > 0);
 
-                            const filtersInScoreboard = nsTypeScoreboardDigraph.outDegree("FILTERS");
+                            // Find out which filter(s) have scoreboard registrations...
+                            let filterOperationIDs = scoreboard.outEdges("FILTERS").map(e_ => { return e_.v; }); // We use the "FILTERS" vertex as an index.
 
-                            essentialNamespacesDigraph.addVertex({
-                                u: visitorRequest_.u,
-                                p: {
-                                    filters: filtersInScoreboard,
-                                    scoreboard: nsTypeScoreboardDigraph,
-                                    valueRequired: nsValueRequired
+                            const filterColorMap = {};
+
+                            filterOperationIDs.forEach(filterOperationID_ => {
+
+                                // A namespace that is declared opaque by any filter, or a namespace that is declared as optional or is defaulted by a specific filter
+                                // will be accepted for ambiguous undefined value types.
+                                if (anyFilterOpaque ||  scoreboard.isEdge({ u: filterOperationID_, v: "jsUndefined" }) || scoreboard.isEdge({ u: filterOperationID_, v: "isDefaulted" }) ) {
+                                    filterColorMap[filterOperationID_] = "white"; // excluded from further analysis
+                                    return; // ...from forEach, process next filterOperationID_
+                                } else {
+                                    // filterColorMap[filterOperationID_] = null;
                                 }
+
+                                // Find the type constraints registered for the current filter's filterOperationID_.
+
+                                // Determine which type constraint(s) are declared by the filter identified by filterID_ by examining the scoreboard digraph.
+                                const typeConstraints = scoreboard.outEdges(filterOperationID_).map(e_ => { return e_.v; });
+
+                                typeConstraints.forEach(typeConstraint_ => {
+
+                                    switch(typeConstraint_) {
+                                    case "jsDescriptorObject":
+                                        if (scoreboard.inDegree("jsMapObject") > 0) {
+                                            filterColorMap[filterOperationID_] = "chalk";
+                                            return;
+                                        }
+                                        break;
+                                    case "jsMapObject":
+                                        if (scoreboard.inDegree("jsDescriptorObject") > 0) {
+                                            filterColorMap[filterOperationID_] = "chalk";
+                                            return;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                    }
+
+                                    if (!filterColorMap[filterOperationID_]) {
+                                        switch (typeConstraint_) {
+                                        case "jsDescriptorObject":
+                                            filterColorMap[filterOperationID_] = "sage";
+                                            break;
+                                        default:
+                                            filterColorMap[filterOperationID_] = (scoreboard.inDegree(typeConstraint_) > 1)?"gray":"gold";
+                                            break;
+                                        }
+                                    }
+                                });
+
                             });
 
-                            */
+                            featuresDigraph.addVertex({ u: visitorRequest_.u, p: filterColorMap });
 
                             return true;
 
                         }, // discoverVertex
 
                         finishVertex: function(visitorRequest_) {
+
 
                             const nsTypeScoreboardDigraph = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
 
@@ -93,10 +136,26 @@
 
                             */
 
-                            const nsValueRequired = ( nsTypeScoreboardDigraph.inDegree("jsUndefined") || // ... if any filter(s) accept a reference to value undefined explicitly (aka as an optional value)
-                                                      nsTypeScoreboardDigraph.inDegree("isDefaulted") || // ... if any filter(s) declare a default value to be used if a reference to value undefined is provided
-                                                      nsTypeScoreboardDigraph.inDegree("isOpaque")       // ... if any filter(s) accept a reference to anything (including a reference to value undefined)
-                                                    )?false:true;
+                            // VVVV---- YO TODO
+                            // This is not the correct way to think about things...
+
+                            // If any filter declares a namespace as opaque explicitly, then the filter
+                            // will accept any reference value type passed for that namespace.
+                            // And, any value type conflicts potentially w/any and every other value type.
+                            // So, basically if any filter tags the namespace as opaque in the scoreboard then
+                            // the whole namespace is dead to us insofar as there's nothing we can test, nothing
+                            // we can look at to determine anything useful.
+
+
+
+
+                            const nsValueRequired = (
+                                (nsTypeScoreboardDigraph.inDegree("jsUndefined") > 0) // ........ if any filter(s) accept a reference to value undefined explicitly (aka as an optional value)
+                                    ||
+                                    (nsTypeScoreboardDigraph.inDegree("isDefaulted")  > 0) // ... if any filter(s) declare a default value to be used if a reference to value undefined is provided
+                                    ||
+                                    (nsTypeScoreboardDigraph.inDegree("isOpaque") > 0) // ....... if any filter(s) accept a reference to anything (including a reference to value undefined)
+                            )?false:true;
 
                             const filtersInScoreboard = nsTypeScoreboardDigraph.outDegree("FILTERS");
 
