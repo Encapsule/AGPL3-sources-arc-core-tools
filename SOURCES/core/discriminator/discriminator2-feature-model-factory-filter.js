@@ -31,7 +31,7 @@
 
                 // Create a new @encapsule/arccore.graph.directed.DirectedGraph class instance.
                 let factoryResponse = arccore.graph.directed.create({
-                    name: `Essential Forest Model: ${request_.name}`,
+                    name: `[${request_.id}::${request_.name}] Request Namespace Feature Digraph Model`,
                     description: "Per request namespace / filter feature tree digraph model."
                 });
 
@@ -72,47 +72,44 @@
                                 if (anyFilterOpaque ||  scoreboard.isEdge({ u: filterOperationID_, v: "jsUndefined" }) || scoreboard.isEdge({ u: filterOperationID_, v: "isDefaulted" }) ) {
                                     filterColorMap[filterOperationID_] = "white"; // excluded from further analysis
                                     return; // ...from forEach, process next filterOperationID_
-                                } else {
-                                    // filterColorMap[filterOperationID_] = null;
                                 }
 
-                                // Find the type constraints registered for the current filter's filterOperationID_.
-
-                                // Determine which type constraint(s) are declared by the filter identified by filterID_ by examining the scoreboard digraph.
+                                // Determine which type constraint(s) are declared by the filter identified by filterOperationID_.
                                 const typeConstraints = scoreboard.outEdges(filterOperationID_).map(e_ => { return e_.v; });
 
-                                typeConstraints.forEach(typeConstraint_ => {
+                                while (typeConstraints.length && !filterColorMap[filterOperationID_]) {
 
-                                    switch(typeConstraint_) {
+                                    const typeConstraint = typeConstraints.pop();
+
+                                    switch(typeConstraint) {
                                     case "jsDescriptorObject":
                                         if (scoreboard.inDegree("jsMapObject") > 0) {
                                             filterColorMap[filterOperationID_] = "chalk";
-                                            return;
+                                            continue;
                                         }
                                         break;
                                     case "jsMapObject":
                                         if (scoreboard.inDegree("jsDescriptorObject") > 0) {
                                             filterColorMap[filterOperationID_] = "chalk";
-                                            return;
+                                            continue;
                                         }
                                         break;
                                     default:
                                         break;
-                                    }
+                                    } // end switch
 
-                                    if (!filterColorMap[filterOperationID_]) {
-                                        switch (typeConstraint_) {
-                                        case "jsDescriptorObject":
-                                            filterColorMap[filterOperationID_] = "sage";
-                                            break;
-                                        default:
-                                            filterColorMap[filterOperationID_] = (scoreboard.inDegree(typeConstraint_) > 1)?"gray":"gold";
-                                            break;
-                                        }
-                                    }
-                                });
+                                    switch (typeConstraint) {
+                                    case "jsDescriptorObject":
+                                        filterColorMap[filterOperationID_] = "sage";
+                                        break;
+                                    default:
+                                        filterColorMap[filterOperationID_] = (scoreboard.inDegree(typeConstraint) > 1)?"gray":"gold";
+                                        break;
+                                    } // end switch
 
-                            });
+                                } // end while
+
+                            }); // forEach
 
                             featuresDigraph.addVertex({ u: visitorRequest_.u, p: filterColorMap });
 
@@ -120,67 +117,11 @@
 
                         }, // discoverVertex
 
-                        finishVertex: function(visitorRequest_) {
+                        finishEdge: function(visitorRequest_) {
 
-
-                            const nsTypeScoreboardDigraph = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
-
-                            /*
-                              Here we seek to identify namespaces (vertices) in the merged model digraph that ...
-
-                              a) require that a value of some or another type(s) be passed via the namespace's path
-
-                              and
-
-                              b) that the identify of the target filter may be deduced via examining the type of the value passed
-
-                            */
-
-                            // VVVV---- YO TODO
-                            // This is not the correct way to think about things...
-
-                            // If any filter declares a namespace as opaque explicitly, then the filter
-                            // will accept any reference value type passed for that namespace.
-                            // And, any value type conflicts potentially w/any and every other value type.
-                            // So, basically if any filter tags the namespace as opaque in the scoreboard then
-                            // the whole namespace is dead to us insofar as there's nothing we can test, nothing
-                            // we can look at to determine anything useful.
-
-
-
-
-                            const nsValueRequired = (
-                                (nsTypeScoreboardDigraph.inDegree("jsUndefined") > 0) // ........ if any filter(s) accept a reference to value undefined explicitly (aka as an optional value)
-                                    ||
-                                    (nsTypeScoreboardDigraph.inDegree("isDefaulted")  > 0) // ... if any filter(s) declare a default value to be used if a reference to value undefined is provided
-                                    ||
-                                    (nsTypeScoreboardDigraph.inDegree("isOpaque") > 0) // ....... if any filter(s) accept a reference to anything (including a reference to value undefined)
-                            )?false:true;
-
-                            const filtersInScoreboard = nsTypeScoreboardDigraph.outDegree("FILTERS");
-
-                            let vertexColor = null;
-
-                            if (!nsValueRequired) {
-
-                                vertexColor = "white"; // the set of permissible value types registered in the scoreboard for this namespace includes the undefined value type (i.e. 
-
-                            } else {
-
-                                if (filtersInScoreboard === 1) {
-
-                                    vertexColor = "gold"; // if you have a value of a type registered in the scoreboard then you can identify the target filter
-
-                                } else {
-
-
-                                }
-
-                            }
-
+                            console.log(JSON.stringify(visitorRequest_.e));
                             return true;
-
-                        } // finishVertex
+                        }
 
                     } // visitor
 
