@@ -132,9 +132,24 @@
                     ]
                 },
                 "features": {
-                    "name": "Essential Forest Model: test",
-                    "description": "TODO",
-                    "vlist": [],
+                    "name": "[x4GG6wwBSba3pQEoqlolcA::test] Request Namespace Feature Digraph Model",
+                    "description": "Per request namespace / filter feature tree digraph model.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "PG-46ajURRCJE-OfpNFsEQ": "sage",
+                                "3Ze1w1JZRbOJYrCEZNn8gA": "sage"
+                            }
+                        },
+                        {
+                            "u": "~.property1",
+                            "p": {
+                                "PG-46ajURRCJE-OfpNFsEQ": "gray",
+                                "3Ze1w1JZRbOJYrCEZNn8gA": "gray"
+                            }
+                        }
+                    ],
                     "elist": []
                 }
             }

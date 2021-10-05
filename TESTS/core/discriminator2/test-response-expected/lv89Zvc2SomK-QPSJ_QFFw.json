@@ -85,9 +85,17 @@
                     "elist": []
                 },
                 "features": {
-                    "name": "Essential Forest Model: test",
-                    "description": "TODO",
-                    "vlist": [],
+                    "name": "[lv89Zvc2SomK-QPSJ_QFFw::test] Request Namespace Feature Digraph Model",
+                    "description": "Per request namespace / filter feature tree digraph model.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "Piqs15cKRY-vupMj9POJhA": "white",
+                                "EgTbljXJTy2eWbX84S24Pw": "white"
+                            }
+                        }
+                    ],
                     "elist": []
                 }
             }
