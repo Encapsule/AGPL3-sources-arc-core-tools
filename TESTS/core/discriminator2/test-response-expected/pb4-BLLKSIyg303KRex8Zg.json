@@ -702,7 +702,80 @@
                             }
                         }
                     ],
-                    "elist": []
+                    "elist": [
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.mapX"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyA"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyB"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyD"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.mapY"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyC"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.mapX",
+                                "v": "~.mapX.element"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.subproperty1"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.subproperty2"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.subproperty4"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.subproperty3"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.mapY",
+                                "v": "~.mapY.element"
+                            }
+                        }
+                    ]
                 }
             }
         }
