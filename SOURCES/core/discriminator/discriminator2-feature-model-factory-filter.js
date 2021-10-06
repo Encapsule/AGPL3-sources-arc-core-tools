@@ -46,14 +46,11 @@
                 let traverseResponse = arccore.graph.directed.depthFirstTraverse({
                     digraph: request_.digraph,
                     context: {
-                        count: 0,
-                        paths: {}
+                        featureVertexKillList: []
                     },
                     visitor: {
 
                         discoverVertex: function(visitorRequest_) {
-
-                            // visitorRequest_.context.paths[visitorRequest_.u] = {};
 
                             const scoreboard = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
 
@@ -98,18 +95,11 @@
                                         break;
                                     } // end switch
 
-                                    switch (typeConstraint) {
-                                    case "jsDescriptorObject":
-                                        filterColorMap[filterOperationID_] = "sage";
-                                        break;
-                                    default:
-                                        filterColorMap[filterOperationID_] = (scoreboard.inDegree(typeConstraint) > 1)?"gray":"gold";
-                                        break;
-                                    } // end switch
+                                    filterColorMap[filterOperationID_] = (scoreboard.inDegree(typeConstraint) > 1)?((typeConstraint === "jsDescriptorObject")?"sage":"gray"):"gold";
 
-                                } // end while
+                                } // end while typeConstraints.length
 
-                            }); // forEach
+                            }); // forEach filterOperationID_
 
                             featuresDigraph.addVertex({ u: visitorRequest_.u, p: filterColorMap });
 
@@ -119,7 +109,11 @@
 
                         finishEdge: function(visitorRequest_) {
 
-                            console.log(JSON.stringify(visitorRequest_.e));
+                            featuresDigraph.addEdge({ e: visitorRequest_.e });
+
+                            const parentColorMap = featuresDigraph.getVertexProperty(visitorRequest_.e.u);
+                            const childColorMap = featuresDigraph.getVertexProperty(visitorRequest_.e.v);
+
                             return true;
                         }
 
