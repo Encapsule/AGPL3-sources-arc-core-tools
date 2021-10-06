@@ -52,6 +52,8 @@
 
                         discoverVertex: function(visitorRequest_) {
 
+                            console.log(`> discoverVertex("${visitorRequest_.u}")`);
+
                             const scoreboard = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
 
                             // Determine if any of the filter(s) that declare type constraint(s) for this namespace have declared the namespace as opaque        // (i.e. the filter will accept any value type passed for the namespace).
@@ -107,13 +109,64 @@
 
                         }, // discoverVertex
 
+                        finishVertex: function(visitorRequest_) {
+
+                            console.log(`> finishVertex("${visitorRequest_.u}")`);
+
+                            if (visitorRequest_.g.outDegree(visitorRequest_.u) < 1) {
+                                // We do not care about vertices in the feature digraph that model leaf vertices in
+                                // the merge digraph (that model a set of type constraints imposed by N different filters).
+                                return true;
+                            }
+
+                            let subnamespaces = null; // Oftentimes we do not even need this information.
+
+                            const filterColorMap = featuresDigraph.getVertexProperty(visitorRequest_.u);
+
+                            for (let filterOperationID_ in filterColorMap) {
+
+                                if (filterColorMap[filterOperationID_] === "sage") {
+
+                                    // Let's presume it's not resolvable...
+                                    filterColorMap[filterOperationID_] = "smoke";
+
+                                    if (subnamespaces === null) {
+                                        subnamespaces = visitorRequest_.g.outEdges(visitorRequest_.u).map(e_ => { return e_.v; });
+                                    }
+
+                                    subnamespaces.forEach(subnamespace_ => {
+
+                                        const subfilterColorMap = featuresDigraph.getVertexProperty(subnamespace_);
+
+                                        const subfilterColor = subfilterColorMap[filterOperationID_];
+
+                                        console.log(subfilterColor);
+
+                                        switch (subfilterColor) {
+                                        case "gold":
+                                        case "green":
+                                            filterColorMap[filterOperationID_] = "green";
+                                            break;
+                                        default:
+                                            break;
+                                        }
+
+                                    }); // forEach subnamespace path
+
+                                } // if sage
+
+                                console.log(filterOperationID_);
+
+                            } // for filterOperationID_ in filterColorMap
+
+                            featuresDigraph.setVertexProperty({ u: visitorRequest_.u, p: filterColorMap });
+
+                            return true;
+                        },
+
                         finishEdge: function(visitorRequest_) {
-
+                            console.log(`> finishEdge({ e: { u: "${visitorRequest_.e.u}", v: "${visitorRequest_.e.v}" }})`);
                             featuresDigraph.addEdge({ e: visitorRequest_.e });
-
-                            const parentColorMap = featuresDigraph.getVertexProperty(visitorRequest_.e.u);
-                            const childColorMap = featuresDigraph.getVertexProperty(visitorRequest_.e.v);
-
                             return true;
                         }
 
