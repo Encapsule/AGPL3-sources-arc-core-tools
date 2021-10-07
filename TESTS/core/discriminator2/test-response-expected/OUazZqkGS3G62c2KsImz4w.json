@@ -156,15 +156,15 @@
                         {
                             "u": "~",
                             "p": {
-                                "lL7b1oT4Q0CPsAtTQMyIRA": "sage",
-                                "A6E5dItHTzGRCAFMbqBHfA": "sage"
+                                "lL7b1oT4Q0CPsAtTQMyIRA": "smoke",
+                                "A6E5dItHTzGRCAFMbqBHfA": "smoke"
                             }
                         },
                         {
                             "u": "~.property1",
                             "p": {
-                                "lL7b1oT4Q0CPsAtTQMyIRA": "gold",
-                                "A6E5dItHTzGRCAFMbqBHfA": "gold"
+                                "lL7b1oT4Q0CPsAtTQMyIRA": "gray",
+                                "A6E5dItHTzGRCAFMbqBHfA": "gray"
                             }
                         }
                     ],

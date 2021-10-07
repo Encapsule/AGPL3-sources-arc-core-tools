@@ -148,8 +148,6 @@
         }
     });
 
-    
-
     /*
       jsNull, jsNumber, jsBoolean, jsString
       A       A         B          B
@@ -171,10 +169,11 @@
     });
 
     /*
-      jsNull, jsNumber, jsBoolean, jsString, jsUndefined
+      jsNull, jsNumber, jsBoolean, jsString, jsUndefined, jsFunction
       A       A
               B         B
                                    C         C
+                                                           D
     */
 
     testFeaturesFactory({
@@ -216,7 +215,6 @@
             ]
         }
     });
-
 
     /*
       isOpaque, jsDescriptorObject
