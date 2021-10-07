@@ -1,0 +1,132 @@
+{
+    "testID": "igBpGGlZQxq7iLdlvpSowA",
+    "testName": "Three Filters Collision on jsNumber",
+    "testDescription": "Deliberately make it impossible to determine if a request is intended for one or the other filter.",
+    "testRequest": {
+        "id": "igBpGGlZQxq7iLdlvpSowA",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "t-tEJFCnRTycL2Z4XZgH5w",
+                    "operationName": "unnamed",
+                    "operationDescription": "t-tEJFCnRTycL2Z4XZgH5w provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber"
+                    },
+                    "inputTypeVIID": "ktScW-PIQuIOM3DT4xq5iw",
+                    "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                    "outputTypeVIID": "__q7Sj82UWT-68ixZCxyhw",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "lIBLE7hW9FeF_1LtRGXEtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "xr2R_TlPQVuH5QRLcAa7DQ",
+                    "operationName": "unnamed",
+                    "operationDescription": "xr2R_TlPQVuH5QRLcAa7DQ provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber"
+                    },
+                    "inputTypeVIID": "-WFF8yxgsR-gaJLyxl54nQ",
+                    "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                    "outputTypeVIID": "gLVQiBxOqujFzNtwFF8pUQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "yg9LEwtd9FcFpFLt1MDEtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "1kVzkIbSTbmMULyk-i8Aww",
+                    "operationName": "unnamed",
+                    "operationDescription": "1kVzkIbSTbmMULyk-i8Aww provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber"
+                    },
+                    "inputTypeVIID": "D_Lc2lz4ZcROWwetvuF66w",
+                    "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                    "outputTypeVIID": "FiyaSWeuS4c2ZeUgzoDBTQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "hShLE_8X9FfQF1Ltkm3EtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "models": {
+                "merged": {
+                    "name": "[igBpGGlZQxq7iLdlvpSowA::test] Merged Filter Spec Digraph Model",
+                    "description": "Digraph model of 3 filter object input specs merged together for analysis.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "name": "[igBpGGlZQxq7iLdlvpSowA::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "t-tEJFCnRTycL2Z4XZgH5w"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "xr2R_TlPQVuH5QRLcAa7DQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "1kVzkIbSTbmMULyk-i8Aww"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "t-tEJFCnRTycL2Z4XZgH5w",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "xr2R_TlPQVuH5QRLcAa7DQ",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "1kVzkIbSTbmMULyk-i8Aww",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "elist": []
+                },
+                "features": {
+                    "name": "[igBpGGlZQxq7iLdlvpSowA::test] Request Namespace Feature Digraph Model",
+                    "description": "Per request namespace / filter feature tree digraph model.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "t-tEJFCnRTycL2Z4XZgH5w": "gray",
+                                "xr2R_TlPQVuH5QRLcAa7DQ": "gray",
+                                "1kVzkIbSTbmMULyk-i8Aww": "gray"
+                            }
+                        }
+                    ],
+                    "elist": []
+                }
+            }
+        }
+    }
+}

@@ -56,7 +56,8 @@
 
                             const scoreboard = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
 
-                            // Determine if any of the filter(s) that declare type constraint(s) for this namespace have declared the namespace as opaque        // (i.e. the filter will accept any value type passed for the namespace).
+                            // Determine if any of the filter(s) that declare type constraint(s) for this namespace have declared the namespace as opaque
+                            // (i.e. the filter will accept any value type passed for the namespace).
                             const anyFilterOpaque = (scoreboard.inDegree("isOpaque") > 0);
 
                             // Find out which filter(s) have scoreboard registrations...
@@ -66,15 +67,67 @@
 
                             filterOperationIDs.forEach(filterOperationID_ => {
 
-                                // A namespace that is declared opaque by any filter, or a namespace that is declared as optional or is defaulted by a specific filter
-                                // will be accepted for ambiguous undefined value types.
                                 if (anyFilterOpaque ||  scoreboard.isEdge({ u: filterOperationID_, v: "jsUndefined" }) || scoreboard.isEdge({ u: filterOperationID_, v: "isDefaulted" }) ) {
-                                    filterColorMap[filterOperationID_] = "white"; // excluded from further analysis
+                                    filterColorMap[filterOperationID_] = "white"; // excluded from runtime analysis
                                     return; // ...from forEach, process next filterOperationID_
                                 }
 
                                 // Determine which type constraint(s) are declared by the filter identified by filterOperationID_.
+
                                 const typeConstraints = scoreboard.outEdges(filterOperationID_).map(e_ => { return e_.v; });
+
+                                let inDegreeMaxPOD = -1;
+
+                                typeConstraints.forEach(typeConstraint_ => {
+
+                                    const inDegree = scoreboard.inDegree(typeConstraint_);
+
+                                    switch (typeConstraint_) {
+                                    case "jsFunction":
+                                    case "jsArray":
+                                    case "jsNumber":
+                                    case "jsNull":
+                                    case "jsBoolean":
+                                    case "jsString":
+                                    case "jsMapObject":
+                                        if (inDegreeMaxPOD < inDegree) {
+                                            inDegreeMaxPOD = inDegree;
+                                        }
+                                        break;
+
+                                    case "jsDescriptorObject":
+                                        break;
+
+                                    default:
+                                        throw new Error(`Unexpected typeConstraint value "${typeConstraint_}".`);
+                                    }
+                                });
+
+                                const hasDescriptorConstraint = scoreboard.isEdge({ u: filterOperationID_, v: "jsDescriptorObject" });
+                                const hasMapConstraint = scoreboard.isEdge({ u: filterOperationID_, v: "jsMapObject" });
+
+                                if (!hasDescriptorConstraint && !hasMapConstraint) {
+                                    filterColorMap[filterOperationID_] = (inDegreeMaxPOD === 1)?"gold":"gray";
+                                } else {
+
+                                    if (hasDescriptorConstraint) {
+                                        if (scoreboard.inDegree("jsMapObject") > 0) {
+                                            filterColorMap[filterOperationID_] = "chalk";
+                                        } else {
+                                            filterColorMap[filterOperationID_] = (inDegreeMaxPOD === 1)?"gold":"sage";
+                                        }
+                                    } else {
+                                        if (hasMapConstraint) {
+                                            if (scoreboard.inDegree("jsDescriptorObject") > 0) {
+                                                filterColorMap[filterOperationID_] = chalk;
+                                            }
+                                        }
+                                    }
+
+                                }
+
+
+                                /* OLD
 
                                 while (typeConstraints.length && !filterColorMap[filterOperationID_]) {
 
@@ -101,7 +154,10 @@
 
                                 } // end while typeConstraints.length
 
+                                OLD */
+
                             }); // forEach filterOperationID_
+
 
                             featuresDigraph.addVertex({ u: visitorRequest_.u, p: filterColorMap });
 

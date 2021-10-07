@@ -27,6 +27,106 @@
         }
     });
 
+    /*
+      jsNumber
+      A
+      B
+    */
+
+    testFeaturesFactory({
+        testID: "c_qR76X6RzqxTjiEux93qw",
+        testName: "Two Filters Collision on jsNumber",
+        testDescription: "Deliberately make it impossible to determine if a request is intended for one or the other filter.",
+        testRequest: {
+            id: "c_qR76X6RzqxTjiEux93qw",
+            name: "test",
+            description: "test",
+            filters: [
+                FILTERLIB.create({ operationID: "dQfVXlOnQnOk5khXVCmsSw", inputFilterSpec: { ____accept: "jsNumber" } }).result,
+                FILTERLIB.create({ operationID: "lqVgkDstQ3iK8yem2P82Jw", inputFilterSpec: { ____accept: "jsNumber" } }).result
+            ]
+        }
+    });
+
+
+    /*
+      jsNumber
+      A
+      B
+      C
+    */
+
+    testFeaturesFactory({
+        testID: "igBpGGlZQxq7iLdlvpSowA",
+        testName: "Three Filters Collision on jsNumber",
+        testDescription: "Deliberately make it impossible to determine if a request is intended for one or the other filter.",
+        testRequest: {
+            id: "igBpGGlZQxq7iLdlvpSowA",
+            name: "test",
+            description: "test",
+            filters: [
+                FILTERLIB.create({ operationID: "t-tEJFCnRTycL2Z4XZgH5w", inputFilterSpec: { ____accept: "jsNumber" } }).result,
+                FILTERLIB.create({ operationID: "xr2R_TlPQVuH5QRLcAa7DQ", inputFilterSpec: { ____accept: "jsNumber" } }).result,
+                FILTERLIB.create({ operationID: "1kVzkIbSTbmMULyk-i8Aww", inputFilterSpec: { ____accept: "jsNumber" } }).result
+            ]
+
+        }
+    });
+
+
+    /*
+      jsNumber jsString
+      A        A
+      B
+      C
+      D
+    */
+
+    testFeaturesFactory({
+        testID: "4obVpKp_R5aO_5ythukj2A",
+        testName: "Four Filters Collision on jsNumber w/a Twist 1",
+        testDescription: "A variation on jsNumber collision w/four filters.",
+        testRequest: {
+            id:  "4obVpKp_R5aO_5ythukj2A",
+            name: "test",
+            description: "test",
+            filters: [
+                FILTERLIB.create({ operationID: "2H9Ar6I3TtmtMlXURl4WdQ", inputFilterSpec: { ____accept: [ "jsString", "jsNumber" ] } }).result, // twist 1
+                FILTERLIB.create({ operationID: "2_PwAunVT4CABhKNE4hiMg", inputFilterSpec: { ____accept: "jsNumber" } }).result,
+                FILTERLIB.create({ operationID: "OMSjzbRHT62evzma3UETSQ", inputFilterSpec: { ____accept: "jsNumber" } }).result,
+                FILTERLIB.create({ operationID: "pH7p8ifLQq-l-cfR6TvUsA", inputFilterSpec: { ____accept: "jsNumber" } }).result,
+            ]
+        }
+
+    });
+
+
+    /*
+      jsNumber jsString
+      A        A
+      B
+      C
+      D
+    */
+
+    testFeaturesFactory({
+        testID: "NRTCjz4STv6VdHIgjAX-Ig",
+        testName: "Four Filters Collisions on jsNumber w/a Twist 2",
+        testDescription: "A variation on jsNumber collision w/four filters.",
+        testRequest: {
+            id: "NRTCjz4STv6VdHIgjAX-Ig",
+            name: "test",
+            description: "test",
+            filters: [
+                FILTERLIB.create({ operationID: "MszGMe3OSWyg8UiJPjA67Q", inputFilterSpec: { ____accept: [ "jsNumber", "jsString" ] } }).result, // twist 2
+                FILTERLIB.create({ operationID: "Cbd0ID87SYiTd_IDNyHL4g", inputFilterSpec: { ____accept: "jsNumber" } }).result,
+                FILTERLIB.create({ operationID: "A0a97ztXTv2VxjGW_lmFLw", inputFilterSpec: { ____accept: "jsNumber" } }).result,
+                FILTERLIB.create({ operationID: "t_ANu7S4TbGe-g4Dl6kbNQ", inputFilterSpec: { ____accept: "jsNumber" } }).result
+            ]
+        }
+    });
+
+
     //
     /*
       jsNumber jsString
@@ -47,6 +147,8 @@
             ]
         }
     });
+
+    
 
     /*
       jsNull, jsNumber, jsBoolean, jsString

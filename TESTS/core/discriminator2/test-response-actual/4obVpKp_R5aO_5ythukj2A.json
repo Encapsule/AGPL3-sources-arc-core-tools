@@ -1,0 +1,169 @@
+{
+    "testID": "4obVpKp_R5aO_5ythukj2A",
+    "testName": "Four Filters Collision on jsNumber w/a Twist 1",
+    "testDescription": "A variation on jsNumber collision w/four filters.",
+    "testRequest": {
+        "id": "4obVpKp_R5aO_5ythukj2A",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "2H9Ar6I3TtmtMlXURl4WdQ",
+                    "operationName": "unnamed",
+                    "operationDescription": "2H9Ar6I3TtmtMlXURl4WdQ provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": [
+                            "jsString",
+                            "jsNumber"
+                        ]
+                    },
+                    "inputTypeVIID": "gxd6yh7ShqrHuctm4v3enw",
+                    "inputTypeVDID": "kkGSQVWvVa93aXdpntme2Q",
+                    "outputTypeVIID": "1hD_Z9K2RWOMmEvM1yrAxg",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "c2ATE739DVeQWmXtN_o3tA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "2_PwAunVT4CABhKNE4hiMg",
+                    "operationName": "unnamed",
+                    "operationDescription": "2_PwAunVT4CABhKNE4hiMg provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber"
+                    },
+                    "inputTypeVIID": "PL9KJwIDFxl5PXUfMaN41Q",
+                    "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                    "outputTypeVIID": "c3x9Dqs03h-spb7mLNnOiw",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "0cZLE_l89FfgF1LtoLnEtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "OMSjzbRHT62evzma3UETSQ",
+                    "operationName": "unnamed",
+                    "operationDescription": "OMSjzbRHT62evzma3UETSQ provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber"
+                    },
+                    "inputTypeVIID": "CgZn98DBL3S5yEV5jsb74w",
+                    "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                    "outputTypeVIID": "CWob1_rr_vLFOjDd3Sdz8Q",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "FStLE01a9FfRSVLtEH3EtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "pH7p8ifLQq-l-cfR6TvUsA",
+                    "operationName": "unnamed",
+                    "operationDescription": "pH7p8ifLQq-l-cfR6TvUsA provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber"
+                    },
+                    "inputTypeVIID": "VNwoY733ABsck8ysIxGY3g",
+                    "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                    "outputTypeVIID": "z2b9e4lo9Ge7QIVV0ZWhAg",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "F7ZLE9Sw9Fdv_VLtVbzEtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "models": {
+                "merged": {
+                    "name": "[4obVpKp_R5aO_5ythukj2A::test] Merged Filter Spec Digraph Model",
+                    "description": "Digraph model of 4 filter object input specs merged together for analysis.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "name": "[4obVpKp_R5aO_5ythukj2A::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "2H9Ar6I3TtmtMlXURl4WdQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "2_PwAunVT4CABhKNE4hiMg"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "OMSjzbRHT62evzma3UETSQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "pH7p8ifLQq-l-cfR6TvUsA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "2H9Ar6I3TtmtMlXURl4WdQ",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "2H9Ar6I3TtmtMlXURl4WdQ",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "2_PwAunVT4CABhKNE4hiMg",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "OMSjzbRHT62evzma3UETSQ",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "pH7p8ifLQq-l-cfR6TvUsA",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "elist": []
+                },
+                "features": {
+                    "name": "[4obVpKp_R5aO_5ythukj2A::test] Request Namespace Feature Digraph Model",
+                    "description": "Per request namespace / filter feature tree digraph model.",
+                    "vlist": [
+                        {
+                            "u": "~",
+                            "p": {
+                                "2H9Ar6I3TtmtMlXURl4WdQ": "gray",
+                                "2_PwAunVT4CABhKNE4hiMg": "gray",
+                                "OMSjzbRHT62evzma3UETSQ": "gray",
+                                "pH7p8ifLQq-l-cfR6TvUsA": "gray"
+                            }
+                        }
+                    ],
+                    "elist": []
+                }
+            }
+        }
+    }
+}
