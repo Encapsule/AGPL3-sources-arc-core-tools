@@ -617,9 +617,9 @@
                         {
                             "u": "~",
                             "p": {
-                                "GxEgF5iaRWOTD7CW5XRgAQ": "sage",
-                                "6Z7y_J7cQc-3iZC6YlNMdQ": "sage",
-                                "FkmSSKieTuuUBlRAnoPAqA": "sage"
+                                "GxEgF5iaRWOTD7CW5XRgAQ": "green",
+                                "6Z7y_J7cQc-3iZC6YlNMdQ": "green",
+                                "FkmSSKieTuuUBlRAnoPAqA": "green"
                             }
                         },
                         {
@@ -637,8 +637,8 @@
                         {
                             "u": "~.propertyA",
                             "p": {
-                                "GxEgF5iaRWOTD7CW5XRgAQ": "sage",
-                                "6Z7y_J7cQc-3iZC6YlNMdQ": "sage"
+                                "GxEgF5iaRWOTD7CW5XRgAQ": "green",
+                                "6Z7y_J7cQc-3iZC6YlNMdQ": "green"
                             }
                         },
                         {
@@ -670,7 +670,7 @@
                         {
                             "u": "~.propertyB",
                             "p": {
-                                "GxEgF5iaRWOTD7CW5XRgAQ": "gold",
+                                "GxEgF5iaRWOTD7CW5XRgAQ": "gray",
                                 "6Z7y_J7cQc-3iZC6YlNMdQ": "gray"
                             }
                         },

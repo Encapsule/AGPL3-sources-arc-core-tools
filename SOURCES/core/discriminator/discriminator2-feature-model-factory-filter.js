@@ -52,8 +52,6 @@
 
                         discoverVertex: function(visitorRequest_) {
 
-                            console.log(`> discoverVertex("${visitorRequest_.u}")`);
-
                             const scoreboard = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
 
                             // Determine if any of the filter(s) that declare type constraint(s) for this namespace have declared the namespace as opaque
@@ -79,9 +77,7 @@
                                 let inDegreeMaxPOD = -1;
 
                                 typeConstraints.forEach(typeConstraint_ => {
-
                                     const inDegree = scoreboard.inDegree(typeConstraint_);
-
                                     switch (typeConstraint_) {
                                     case "jsFunction":
                                     case "jsArray":
@@ -94,67 +90,24 @@
                                             inDegreeMaxPOD = inDegree;
                                         }
                                         break;
-
                                     case "jsDescriptorObject":
                                         break;
-
                                     default:
                                         throw new Error(`Unexpected typeConstraint value "${typeConstraint_}".`);
-                                    }
-                                });
-
-                                const hasDescriptorConstraint = scoreboard.isEdge({ u: filterOperationID_, v: "jsDescriptorObject" });
-                                const hasMapConstraint = scoreboard.isEdge({ u: filterOperationID_, v: "jsMapObject" });
-
-                                if (!hasDescriptorConstraint && !hasMapConstraint) {
-                                    filterColorMap[filterOperationID_] = (inDegreeMaxPOD === 1)?"gold":"gray";
-                                } else {
-
-                                    if (hasDescriptorConstraint) {
-                                        if (scoreboard.inDegree("jsMapObject") > 0) {
-                                            filterColorMap[filterOperationID_] = "chalk";
-                                        } else {
-                                            filterColorMap[filterOperationID_] = (inDegreeMaxPOD === 1)?"gold":"sage";
-                                        }
-                                    } else {
-                                        if (hasMapConstraint) {
-                                            if (scoreboard.inDegree("jsDescriptorObject") > 0) {
-                                                filterColorMap[filterOperationID_] = chalk;
-                                            }
-                                        }
-                                    }
-
-                                }
-
-
-                                /* OLD
-
-                                while (typeConstraints.length && !filterColorMap[filterOperationID_]) {
-
-                                    const typeConstraint = typeConstraints.pop();
-
-                                    switch(typeConstraint) {
-                                    case "jsDescriptorObject":
-                                        if (scoreboard.inDegree("jsMapObject") > 0) {
-                                            filterColorMap[filterOperationID_] = "chalk";
-                                            continue;
-                                        }
-                                        break;
-                                    case "jsMapObject":
-                                        if (scoreboard.inDegree("jsDescriptorObject") > 0) {
-                                            filterColorMap[filterOperationID_] = "chalk";
-                                            continue;
-                                        }
-                                        break;
-                                    default:
-                                        break;
                                     } // end switch
 
-                                    filterColorMap[filterOperationID_] = (scoreboard.inDegree(typeConstraint) > 1)?((typeConstraint === "jsDescriptorObject")?"sage":"gray"):"gold";
+                                }); // forEach typeConstraint_
 
-                                } // end while typeConstraints.length
-
-                                OLD */
+                                if (inDegreeMaxPOD > 1) {
+                                    filterColorMap[filterOperationID_] = "gray";
+                                } else {
+                                    if ((scoreboard.isEdge({ u: filterOperationID_, v: "jsMapObject" }) && (scoreboard.inDegree("jsDescriptorObject") > 0)) ||
+                                        (scoreboard.isEdge({ u: filterOperationID_, v: "jsDescriptorObject" }) && (scoreboard.inDegree("jsMapObject") > 0))) {
+                                        filterColorMap[filterOperationID_] = "chalk";
+                                    } else {
+                                        filterColorMap[filterOperationID_] = (scoreboard.inDegree("jsDescriptorObject") > 1)?"sage":"gold";
+                                    }
+                                }
 
                             }); // forEach filterOperationID_
 
@@ -166,8 +119,6 @@
                         }, // discoverVertex
 
                         finishVertex: function(visitorRequest_) {
-
-                            console.log(`> finishVertex("${visitorRequest_.u}")`);
 
                             if (visitorRequest_.g.outDegree(visitorRequest_.u) < 1) {
                                 // We do not care about vertices in the feature digraph that model leaf vertices in
@@ -196,8 +147,6 @@
 
                                         const subfilterColor = subfilterColorMap[filterOperationID_];
 
-                                        console.log(subfilterColor);
-
                                         switch (subfilterColor) {
                                         case "gold":
                                         case "green":
@@ -211,8 +160,6 @@
 
                                 } // if sage
 
-                                console.log(filterOperationID_);
-
                             } // for filterOperationID_ in filterColorMap
 
                             featuresDigraph.setVertexProperty({ u: visitorRequest_.u, p: filterColorMap });
@@ -221,7 +168,6 @@
                         },
 
                         finishEdge: function(visitorRequest_) {
-                            console.log(`> finishEdge({ e: { u: "${visitorRequest_.e.u}", v: "${visitorRequest_.e.v}" }})`);
                             featuresDigraph.addEdge({ e: visitorRequest_.e });
                             return true;
                         }
