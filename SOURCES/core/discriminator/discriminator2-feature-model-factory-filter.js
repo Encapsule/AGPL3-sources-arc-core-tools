@@ -172,7 +172,7 @@
                             if (visitorRequest_.g.outDegree(visitorRequest_.u) < 1) {
                                 // We do not care about vertices in the feature digraph that model leaf vertices in
                                 // the merge digraph (that model a set of type constraints imposed by N different filters).
-                                return true;
+                                // return true;
                             }
 
                             let subnamespaces = null; // Oftentimes we do not even need this information.
