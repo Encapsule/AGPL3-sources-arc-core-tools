@@ -65,47 +65,49 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[igBpGGlZQxq7iLdlvpSowA::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "t-tEJFCnRTycL2Z4XZgH5w"
+                                "typeScoreboard": {
+                                    "name": "[igBpGGlZQxq7iLdlvpSowA::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "t-tEJFCnRTycL2Z4XZgH5w"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "xr2R_TlPQVuH5QRLcAa7DQ"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "1kVzkIbSTbmMULyk-i8Aww"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "t-tEJFCnRTycL2Z4XZgH5w",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "xr2R_TlPQVuH5QRLcAa7DQ",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "1kVzkIbSTbmMULyk-i8Aww",
+                                                "v": "jsNumber"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "xr2R_TlPQVuH5QRLcAa7DQ"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "1kVzkIbSTbmMULyk-i8Aww"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "t-tEJFCnRTycL2Z4XZgH5w",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "xr2R_TlPQVuH5QRLcAa7DQ",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "1kVzkIbSTbmMULyk-i8Aww",
-                                            "v": "jsNumber"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],

@@ -131,10 +131,10 @@
                             }
 
                             const nsTypeScoreboardDigraph = factoryResponse.result;
-                            response.result.digraph.addVertex({ u: nsWorkItem.specRefPath, p: nsTypeScoreboardDigraph });
+                            response.result.digraph.addVertex({ u: nsWorkItem.specRefPath, p: { typeScoreboard: nsTypeScoreboardDigraph } });
                         }
 
-                        let nsTypeScoreboardDigraph = response.result.digraph.getVertexProperty(nsWorkItem.specRefPath);
+                        let nsTypeScoreboardDigraph = response.result.digraph.getVertexProperty(nsWorkItem.specRefPath).typeScoreboard;
 
                         nsTypeScoreboardDigraph.addEdge({ e: { u: "FILTERS", v: filter.filterDescriptor.operationID } });
 

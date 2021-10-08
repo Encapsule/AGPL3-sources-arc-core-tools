@@ -89,77 +89,79 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[Z8haMjv3T8y9VQzSDev6wQ::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "pMnCB8mISHC36Gt1c0VFlQ"
+                                "typeScoreboard": {
+                                    "name": "[Z8haMjv3T8y9VQzSDev6wQ::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "pMnCB8mISHC36Gt1c0VFlQ"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "cw00pj4WRMGzyyQca6ltBw"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "mPqVG4IFQbiM689QR8Nakg"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "HT0jaizpQmagS5FrAvh_UQ"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "pMnCB8mISHC36Gt1c0VFlQ",
+                                                "v": "jsNull"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "pMnCB8mISHC36Gt1c0VFlQ",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "cw00pj4WRMGzyyQca6ltBw",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "cw00pj4WRMGzyyQca6ltBw",
+                                                "v": "jsBoolean"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "mPqVG4IFQbiM689QR8Nakg",
+                                                "v": "jsString"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "mPqVG4IFQbiM689QR8Nakg",
+                                                "v": "jsUndefined"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "HT0jaizpQmagS5FrAvh_UQ",
+                                                "v": "jsFunction"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "cw00pj4WRMGzyyQca6ltBw"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "mPqVG4IFQbiM689QR8Nakg"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "HT0jaizpQmagS5FrAvh_UQ"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "pMnCB8mISHC36Gt1c0VFlQ",
-                                            "v": "jsNull"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "pMnCB8mISHC36Gt1c0VFlQ",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "cw00pj4WRMGzyyQca6ltBw",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "cw00pj4WRMGzyyQca6ltBw",
-                                            "v": "jsBoolean"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "mPqVG4IFQbiM689QR8Nakg",
-                                            "v": "jsString"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "mPqVG4IFQbiM689QR8Nakg",
-                                            "v": "jsUndefined"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "HT0jaizpQmagS5FrAvh_UQ",
-                                            "v": "jsFunction"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],

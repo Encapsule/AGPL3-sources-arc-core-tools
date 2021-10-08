@@ -56,69 +56,73 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[x4GG6wwBSba3pQEoqlolcA::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "PG-46ajURRCJE-OfpNFsEQ"
+                                "typeScoreboard": {
+                                    "name": "[x4GG6wwBSba3pQEoqlolcA::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "PG-46ajURRCJE-OfpNFsEQ"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "3Ze1w1JZRbOJYrCEZNn8gA"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "PG-46ajURRCJE-OfpNFsEQ",
+                                                "v": "jsDescriptorObject"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "3Ze1w1JZRbOJYrCEZNn8gA",
+                                                "v": "jsDescriptorObject"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "3Ze1w1JZRbOJYrCEZNn8gA"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "PG-46ajURRCJE-OfpNFsEQ",
-                                            "v": "jsDescriptorObject"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "3Ze1w1JZRbOJYrCEZNn8gA",
-                                            "v": "jsDescriptorObject"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         },
                         {
                             "u": "~.property1",
                             "p": {
-                                "name": "[x4GG6wwBSba3pQEoqlolcA::test](~.property1)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.property1'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "PG-46ajURRCJE-OfpNFsEQ"
+                                "typeScoreboard": {
+                                    "name": "[x4GG6wwBSba3pQEoqlolcA::test](~.property1)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.property1'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "PG-46ajURRCJE-OfpNFsEQ"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "3Ze1w1JZRbOJYrCEZNn8gA"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "PG-46ajURRCJE-OfpNFsEQ",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "3Ze1w1JZRbOJYrCEZNn8gA",
+                                                "v": "jsNumber"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "3Ze1w1JZRbOJYrCEZNn8gA"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "PG-46ajURRCJE-OfpNFsEQ",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "3Ze1w1JZRbOJYrCEZNn8gA",
-                                            "v": "jsNumber"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],

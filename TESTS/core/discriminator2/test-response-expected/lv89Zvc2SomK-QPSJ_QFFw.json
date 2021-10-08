@@ -50,35 +50,37 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[lv89Zvc2SomK-QPSJ_QFFw::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "Piqs15cKRY-vupMj9POJhA"
+                                "typeScoreboard": {
+                                    "name": "[lv89Zvc2SomK-QPSJ_QFFw::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "Piqs15cKRY-vupMj9POJhA"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "EgTbljXJTy2eWbX84S24Pw"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "Piqs15cKRY-vupMj9POJhA",
+                                                "v": "isOpaque"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "EgTbljXJTy2eWbX84S24Pw",
+                                                "v": "jsDescriptorObject"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "EgTbljXJTy2eWbX84S24Pw"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "Piqs15cKRY-vupMj9POJhA",
-                                            "v": "isOpaque"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "EgTbljXJTy2eWbX84S24Pw",
-                                            "v": "jsDescriptorObject"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],

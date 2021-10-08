@@ -83,65 +83,67 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[NRTCjz4STv6VdHIgjAX-Ig::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "MszGMe3OSWyg8UiJPjA67Q"
+                                "typeScoreboard": {
+                                    "name": "[NRTCjz4STv6VdHIgjAX-Ig::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "MszGMe3OSWyg8UiJPjA67Q"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "Cbd0ID87SYiTd_IDNyHL4g"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "A0a97ztXTv2VxjGW_lmFLw"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "t_ANu7S4TbGe-g4Dl6kbNQ"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "MszGMe3OSWyg8UiJPjA67Q",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "MszGMe3OSWyg8UiJPjA67Q",
+                                                "v": "jsString"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "Cbd0ID87SYiTd_IDNyHL4g",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "A0a97ztXTv2VxjGW_lmFLw",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "t_ANu7S4TbGe-g4Dl6kbNQ",
+                                                "v": "jsNumber"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "Cbd0ID87SYiTd_IDNyHL4g"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "A0a97ztXTv2VxjGW_lmFLw"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "t_ANu7S4TbGe-g4Dl6kbNQ"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "MszGMe3OSWyg8UiJPjA67Q",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "MszGMe3OSWyg8UiJPjA67Q",
-                                            "v": "jsString"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "Cbd0ID87SYiTd_IDNyHL4g",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "A0a97ztXTv2VxjGW_lmFLw",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "t_ANu7S4TbGe-g4Dl6kbNQ",
-                                            "v": "jsNumber"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],

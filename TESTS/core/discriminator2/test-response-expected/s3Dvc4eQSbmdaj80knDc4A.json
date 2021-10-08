@@ -53,41 +53,43 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[s3Dvc4eQSbmdaj80knDc4A::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "A4Dn2NJDShSDu0QN5QQd7A"
+                                "typeScoreboard": {
+                                    "name": "[s3Dvc4eQSbmdaj80knDc4A::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "A4Dn2NJDShSDu0QN5QQd7A"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "n68PiZG3Rf6G41Wdlr9Usg"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "A4Dn2NJDShSDu0QN5QQd7A",
+                                                "v": "jsDescriptorObject"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "n68PiZG3Rf6G41Wdlr9Usg",
+                                                "v": "jsDescriptorObject"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "n68PiZG3Rf6G41Wdlr9Usg",
+                                                "v": "jsUndefined"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "n68PiZG3Rf6G41Wdlr9Usg"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "A4Dn2NJDShSDu0QN5QQd7A",
-                                            "v": "jsDescriptorObject"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "n68PiZG3Rf6G41Wdlr9Usg",
-                                            "v": "jsDescriptorObject"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "n68PiZG3Rf6G41Wdlr9Usg",
-                                            "v": "jsUndefined"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],

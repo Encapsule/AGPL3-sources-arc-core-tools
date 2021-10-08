@@ -60,29 +60,31 @@
                     {
                         "u": "~",
                         "p": {
-                            "name": "[fN09WZOySqiUyIXaoeX0PQ::test](~)",
-                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [],
-                            "elist": [
-                                {
-                                    "e": {
-                                        "u": "FILTERS",
-                                        "v": "nwZEHl7YR2eVb2ZMwo8sYA"
+                            "typeScoreboard": {
+                                "name": "[fN09WZOySqiUyIXaoeX0PQ::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "nwZEHl7YR2eVb2ZMwo8sYA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "nwZEHl7YR2eVb2ZMwo8sYA",
+                                            "v": "jsUndefined"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "nwZEHl7YR2eVb2ZMwo8sYA",
+                                            "v": "jsNumber"
+                                        }
                                     }
-                                },
-                                {
-                                    "e": {
-                                        "u": "nwZEHl7YR2eVb2ZMwo8sYA",
-                                        "v": "jsUndefined"
-                                    }
-                                },
-                                {
-                                    "e": {
-                                        "u": "nwZEHl7YR2eVb2ZMwo8sYA",
-                                        "v": "jsNumber"
-                                    }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     }
                 ],

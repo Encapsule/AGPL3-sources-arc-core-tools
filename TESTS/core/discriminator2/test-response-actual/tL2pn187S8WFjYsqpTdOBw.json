@@ -54,23 +54,25 @@
                     {
                         "u": "~",
                         "p": {
-                            "name": "[tL2pn187S8WFjYsqpTdOBw::Single Filter No Input Spec](~)",
-                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [],
-                            "elist": [
-                                {
-                                    "e": {
-                                        "u": "FILTERS",
-                                        "v": "Zt9i_3yRQfucaMmBiSbUmw"
+                            "typeScoreboard": {
+                                "name": "[tL2pn187S8WFjYsqpTdOBw::Single Filter No Input Spec](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "Zt9i_3yRQfucaMmBiSbUmw"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "Zt9i_3yRQfucaMmBiSbUmw",
+                                            "v": "isOpaque"
+                                        }
                                     }
-                                },
-                                {
-                                    "e": {
-                                        "u": "Zt9i_3yRQfucaMmBiSbUmw",
-                                        "v": "isOpaque"
-                                    }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     }
                 ],

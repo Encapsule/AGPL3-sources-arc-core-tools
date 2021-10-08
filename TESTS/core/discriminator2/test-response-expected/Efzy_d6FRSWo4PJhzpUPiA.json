@@ -56,69 +56,73 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[Efzy_d6FRSWo4PJhzpUPiA::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "7IhPZu36QcKLxD68qmm8jg"
+                                "typeScoreboard": {
+                                    "name": "[Efzy_d6FRSWo4PJhzpUPiA::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "7IhPZu36QcKLxD68qmm8jg"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "d5obnu3TStyulNuffz-Zjw"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "7IhPZu36QcKLxD68qmm8jg",
+                                                "v": "jsArray"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "d5obnu3TStyulNuffz-Zjw",
+                                                "v": "jsArray"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "d5obnu3TStyulNuffz-Zjw"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "7IhPZu36QcKLxD68qmm8jg",
-                                            "v": "jsArray"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "d5obnu3TStyulNuffz-Zjw",
-                                            "v": "jsArray"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         },
                         {
                             "u": "~.element",
                             "p": {
-                                "name": "[Efzy_d6FRSWo4PJhzpUPiA::test](~.element)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.element'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "7IhPZu36QcKLxD68qmm8jg"
+                                "typeScoreboard": {
+                                    "name": "[Efzy_d6FRSWo4PJhzpUPiA::test](~.element)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.element'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "7IhPZu36QcKLxD68qmm8jg"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "d5obnu3TStyulNuffz-Zjw"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "7IhPZu36QcKLxD68qmm8jg",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "d5obnu3TStyulNuffz-Zjw",
+                                                "v": "jsNumber"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "d5obnu3TStyulNuffz-Zjw"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "7IhPZu36QcKLxD68qmm8jg",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "d5obnu3TStyulNuffz-Zjw",
-                                            "v": "jsNumber"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],

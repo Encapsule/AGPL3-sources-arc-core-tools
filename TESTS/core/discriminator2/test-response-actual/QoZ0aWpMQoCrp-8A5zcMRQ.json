@@ -56,47 +56,49 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[QoZ0aWpMQoCrp-8A5zcMRQ::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "6Ie8EyYdQZaSfnwMbM6ivg"
+                                "typeScoreboard": {
+                                    "name": "[QoZ0aWpMQoCrp-8A5zcMRQ::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "6Ie8EyYdQZaSfnwMbM6ivg"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "KR35F9MHSmazIzbs65CyyQ"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "6Ie8EyYdQZaSfnwMbM6ivg",
+                                                "v": "jsNull"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "6Ie8EyYdQZaSfnwMbM6ivg",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "KR35F9MHSmazIzbs65CyyQ",
+                                                "v": "jsBoolean"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "KR35F9MHSmazIzbs65CyyQ",
+                                                "v": "jsString"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "KR35F9MHSmazIzbs65CyyQ"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "6Ie8EyYdQZaSfnwMbM6ivg",
-                                            "v": "jsNull"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "6Ie8EyYdQZaSfnwMbM6ivg",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "KR35F9MHSmazIzbs65CyyQ",
-                                            "v": "jsBoolean"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "KR35F9MHSmazIzbs65CyyQ",
-                                            "v": "jsString"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],

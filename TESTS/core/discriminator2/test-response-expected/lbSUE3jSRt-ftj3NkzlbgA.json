@@ -62,45 +62,49 @@
                     {
                         "u": "~",
                         "p": {
-                            "name": "[lbSUE3jSRt-ftj3NkzlbgA::test](~)",
-                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [],
-                            "elist": [
-                                {
-                                    "e": {
-                                        "u": "FILTERS",
-                                        "v": "aMn6M3hwReSs4iAKlOdGEw"
+                            "typeScoreboard": {
+                                "name": "[lbSUE3jSRt-ftj3NkzlbgA::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "aMn6M3hwReSs4iAKlOdGEw"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "aMn6M3hwReSs4iAKlOdGEw",
+                                            "v": "jsMapObject"
+                                        }
                                     }
-                                },
-                                {
-                                    "e": {
-                                        "u": "aMn6M3hwReSs4iAKlOdGEw",
-                                        "v": "jsMapObject"
-                                    }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     },
                     {
                         "u": "~.propertyA",
                         "p": {
-                            "name": "[lbSUE3jSRt-ftj3NkzlbgA::test](~.propertyA)",
-                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyA'.",
-                            "vlist": [],
-                            "elist": [
-                                {
-                                    "e": {
-                                        "u": "FILTERS",
-                                        "v": "aMn6M3hwReSs4iAKlOdGEw"
+                            "typeScoreboard": {
+                                "name": "[lbSUE3jSRt-ftj3NkzlbgA::test](~.propertyA)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyA'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "aMn6M3hwReSs4iAKlOdGEw"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "aMn6M3hwReSs4iAKlOdGEw",
+                                            "v": "jsNumber"
+                                        }
                                     }
-                                },
-                                {
-                                    "e": {
-                                        "u": "aMn6M3hwReSs4iAKlOdGEw",
-                                        "v": "jsNumber"
-                                    }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     }
                 ],

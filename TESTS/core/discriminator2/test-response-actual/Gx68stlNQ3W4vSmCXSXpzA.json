@@ -58,23 +58,25 @@
                     {
                         "u": "~",
                         "p": {
-                            "name": "[Gx68stlNQ3W4vSmCXSXpzA::test](~)",
-                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [],
-                            "elist": [
-                                {
-                                    "e": {
-                                        "u": "FILTERS",
-                                        "v": "WR-jLmIRRFWaoU_QXYGmJA"
+                            "typeScoreboard": {
+                                "name": "[Gx68stlNQ3W4vSmCXSXpzA::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "WR-jLmIRRFWaoU_QXYGmJA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "WR-jLmIRRFWaoU_QXYGmJA",
+                                            "v": "jsNumber"
+                                        }
                                     }
-                                },
-                                {
-                                    "e": {
-                                        "u": "WR-jLmIRRFWaoU_QXYGmJA",
-                                        "v": "jsNumber"
-                                    }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     }
                 ],

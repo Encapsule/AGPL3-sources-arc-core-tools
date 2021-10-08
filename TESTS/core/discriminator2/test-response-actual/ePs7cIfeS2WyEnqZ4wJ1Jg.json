@@ -72,65 +72,67 @@
                     {
                         "u": "~",
                         "p": {
-                            "name": "[ePs7cIfeS2WyEnqZ4wJ1Jg::test](~)",
-                            "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                            "vlist": [],
-                            "elist": [
-                                {
-                                    "e": {
-                                        "u": "FILTERS",
-                                        "v": "ZI5UERDRR6-6Oj8yhJOkng"
+                            "typeScoreboard": {
+                                "name": "[ePs7cIfeS2WyEnqZ4wJ1Jg::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "ZI5UERDRR6-6Oj8yhJOkng"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                            "v": "jsFunction"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                            "v": "jsArray"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                            "v": "jsNull"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                            "v": "jsUndefined"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                            "v": "jsBoolean"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ZI5UERDRR6-6Oj8yhJOkng",
+                                            "v": "jsString"
+                                        }
                                     }
-                                },
-                                {
-                                    "e": {
-                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
-                                        "v": "jsFunction"
-                                    }
-                                },
-                                {
-                                    "e": {
-                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
-                                        "v": "jsDescriptorObject"
-                                    }
-                                },
-                                {
-                                    "e": {
-                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
-                                        "v": "jsArray"
-                                    }
-                                },
-                                {
-                                    "e": {
-                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
-                                        "v": "jsNull"
-                                    }
-                                },
-                                {
-                                    "e": {
-                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
-                                        "v": "jsNumber"
-                                    }
-                                },
-                                {
-                                    "e": {
-                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
-                                        "v": "jsUndefined"
-                                    }
-                                },
-                                {
-                                    "e": {
-                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
-                                        "v": "jsBoolean"
-                                    }
-                                },
-                                {
-                                    "e": {
-                                        "u": "ZI5UERDRR6-6Oj8yhJOkng",
-                                        "v": "jsString"
-                                    }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     }
                 ],

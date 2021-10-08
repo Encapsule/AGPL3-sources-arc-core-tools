@@ -52,7 +52,7 @@
 
                         discoverVertex: function(visitorRequest_) {
 
-                            const scoreboard = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
+                            const scoreboard = visitorRequest_.g.getVertexProperty(visitorRequest_.u).typeScoreboard;
 
                             // Determine if any of the filter(s) that declare type constraint(s) for this namespace have declared the namespace as opaque
                             // (i.e. the filter will accept any value type passed for the namespace).

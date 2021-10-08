@@ -83,65 +83,67 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[4obVpKp_R5aO_5ythukj2A::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "2H9Ar6I3TtmtMlXURl4WdQ"
+                                "typeScoreboard": {
+                                    "name": "[4obVpKp_R5aO_5ythukj2A::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "2H9Ar6I3TtmtMlXURl4WdQ"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "2_PwAunVT4CABhKNE4hiMg"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "OMSjzbRHT62evzma3UETSQ"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "pH7p8ifLQq-l-cfR6TvUsA"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "2H9Ar6I3TtmtMlXURl4WdQ",
+                                                "v": "jsString"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "2H9Ar6I3TtmtMlXURl4WdQ",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "2_PwAunVT4CABhKNE4hiMg",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "OMSjzbRHT62evzma3UETSQ",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "pH7p8ifLQq-l-cfR6TvUsA",
+                                                "v": "jsNumber"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "2_PwAunVT4CABhKNE4hiMg"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "OMSjzbRHT62evzma3UETSQ"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "pH7p8ifLQq-l-cfR6TvUsA"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "2H9Ar6I3TtmtMlXURl4WdQ",
-                                            "v": "jsString"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "2H9Ar6I3TtmtMlXURl4WdQ",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "2_PwAunVT4CABhKNE4hiMg",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "OMSjzbRHT62evzma3UETSQ",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "pH7p8ifLQq-l-cfR6TvUsA",
-                                            "v": "jsNumber"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],

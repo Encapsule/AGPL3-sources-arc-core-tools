@@ -35,23 +35,25 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[P6WYyQZVRfWNV0ejqwVqAg::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "W9WYUw7BTe-pi3Ru-aBOJA"
+                                "typeScoreboard": {
+                                    "name": "[P6WYyQZVRfWNV0ejqwVqAg::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "W9WYUw7BTe-pi3Ru-aBOJA"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "W9WYUw7BTe-pi3Ru-aBOJA",
+                                                "v": "jsNumber"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "W9WYUw7BTe-pi3Ru-aBOJA",
-                                            "v": "jsNumber"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],

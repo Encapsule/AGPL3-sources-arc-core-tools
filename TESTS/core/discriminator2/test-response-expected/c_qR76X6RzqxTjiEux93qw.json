@@ -50,35 +50,37 @@
                         {
                             "u": "~",
                             "p": {
-                                "name": "[c_qR76X6RzqxTjiEux93qw::test](~)",
-                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                "vlist": [],
-                                "elist": [
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "dQfVXlOnQnOk5khXVCmsSw"
+                                "typeScoreboard": {
+                                    "name": "[c_qR76X6RzqxTjiEux93qw::test](~)",
+                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                    "vlist": [],
+                                    "elist": [
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "dQfVXlOnQnOk5khXVCmsSw"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "FILTERS",
+                                                "v": "lqVgkDstQ3iK8yem2P82Jw"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "dQfVXlOnQnOk5khXVCmsSw",
+                                                "v": "jsNumber"
+                                            }
+                                        },
+                                        {
+                                            "e": {
+                                                "u": "lqVgkDstQ3iK8yem2P82Jw",
+                                                "v": "jsNumber"
+                                            }
                                         }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "FILTERS",
-                                            "v": "lqVgkDstQ3iK8yem2P82Jw"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "dQfVXlOnQnOk5khXVCmsSw",
-                                            "v": "jsNumber"
-                                        }
-                                    },
-                                    {
-                                        "e": {
-                                            "u": "lqVgkDstQ3iK8yem2P82Jw",
-                                            "v": "jsNumber"
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         }
                     ],
