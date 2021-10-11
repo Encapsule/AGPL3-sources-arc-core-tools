@@ -42,64 +42,87 @@
     "testResponse": {
         "error": null,
         "result": {
-            "models": {
-                "merged": {
-                    "name": "[c_qR76X6RzqxTjiEux93qw::test] Merged Filter Spec Digraph Model",
-                    "description": "Digraph model of 2 filter object input specs merged together for analysis.",
-                    "vlist": [
-                        {
-                            "u": "~",
-                            "p": {
-                                "typeScoreboard": {
-                                    "name": "[c_qR76X6RzqxTjiEux93qw::test](~)",
-                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                    "vlist": [],
-                                    "elist": [
-                                        {
-                                            "e": {
-                                                "u": "FILTERS",
-                                                "v": "dQfVXlOnQnOk5khXVCmsSw"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "FILTERS",
-                                                "v": "lqVgkDstQ3iK8yem2P82Jw"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "dQfVXlOnQnOk5khXVCmsSw",
-                                                "v": "jsNumber"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "lqVgkDstQ3iK8yem2P82Jw",
-                                                "v": "jsNumber"
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    ],
-                    "elist": []
+            "id": "c_qR76X6RzqxTjiEux93qw",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "dQfVXlOnQnOk5khXVCmsSw": {
+                    "filterDescriptor": {
+                        "operationID": "dQfVXlOnQnOk5khXVCmsSw",
+                        "operationName": "unnamed",
+                        "operationDescription": "dQfVXlOnQnOk5khXVCmsSw provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": "jsNumber"
+                        },
+                        "inputTypeVIID": "GIaiAxwry0Z1q7z2_8phvg",
+                        "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                        "outputTypeVIID": "x6MlU3W7cbGMRo9hutcj5g",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "0hFLE-iy9FcpalLticTEtA"
+                    }
                 },
-                "features": {
-                    "name": "[c_qR76X6RzqxTjiEux93qw::test] Request Namespace Feature Digraph Model",
-                    "description": "Per request namespace / filter feature tree digraph model.",
-                    "vlist": [
-                        {
-                            "u": "~",
-                            "p": {
+                "lqVgkDstQ3iK8yem2P82Jw": {
+                    "filterDescriptor": {
+                        "operationID": "lqVgkDstQ3iK8yem2P82Jw",
+                        "operationName": "unnamed",
+                        "operationDescription": "lqVgkDstQ3iK8yem2P82Jw provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": "jsNumber"
+                        },
+                        "inputTypeVIID": "2o_iu4lH_0JnFFsgm1kxDw",
+                        "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                        "outputTypeVIID": "uzuLhELBBPm9AD_1uVV_mA",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "MfNLE4yR9Fds3FLt9_vEtA"
+                    }
+                }
+            },
+            "digraph": {
+                "name": "[c_qR76X6RzqxTjiEux93qw::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 2 filter object input specs merged together for analysis.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[c_qR76X6RzqxTjiEux93qw::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "dQfVXlOnQnOk5khXVCmsSw"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "lqVgkDstQ3iK8yem2P82Jw"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "dQfVXlOnQnOk5khXVCmsSw",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "lqVgkDstQ3iK8yem2P82Jw",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            },
+                            "filterColorMap": {
                                 "dQfVXlOnQnOk5khXVCmsSw": "gray",
                                 "lqVgkDstQ3iK8yem2P82Jw": "gray"
                             }
                         }
-                    ],
-                    "elist": []
-                }
+                    }
+                ],
+                "elist": []
             }
         }
     }

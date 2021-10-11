@@ -17,9 +17,7 @@
 
         inputFilterSpec: mergedFilterSpecModelDescriptorSpec, // ... expect to be called w/output response.result of merged filter spec model factory filter
 
-        outputFilterSpec: {
-            ____accept: "jsObject" // TODO
-        },
+        outputFilterSpec:  mergedFilterSpecModelDescriptorSpec, // .. this algorithm adds the { filterColorMap: {...} } to every vertex in the merged filter spec digraph
 
         bodyFunction: function(request_) {
 
@@ -29,30 +27,16 @@
             while (!inBreakScope) {
                 inBreakScope = true;
 
-                // Create a new @encapsule/arccore.graph.directed.DirectedGraph class instance.
-                let factoryResponse = arccore.graph.directed.create({
-                    name: `[${request_.id}::${request_.name}] Request Namespace Feature Digraph Model`,
-                    description: "Per request namespace / filter feature tree digraph model."
-                });
-
-                if (factoryResponse.error) {
-                    errors.push(factoryRepsonse.error);
-                    break;
-                }
-
-                const featuresDigraph = factoryResponse.result;
-
                 // Depth-first traverse the merge filter spec digraph passed to us by the caller.
                 let traverseResponse = arccore.graph.directed.depthFirstTraverse({
                     digraph: request_.digraph,
-                    context: {
-                        featureVertexKillList: []
-                    },
+                    context: {}, // not used here...
                     visitor: {
 
                         discoverVertex: function(visitorRequest_) {
 
-                            const scoreboard = visitorRequest_.g.getVertexProperty(visitorRequest_.u).typeScoreboard;
+                            const nsprop = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
+                            const scoreboard = nsprop.typeScoreboard;
 
                             // Determine if any of the filter(s) that declare type constraint(s) for this namespace have declared the namespace as opaque
                             // (i.e. the filter will accept any value type passed for the namespace).
@@ -112,7 +96,9 @@
                             }); // forEach filterOperationID_
 
 
-                            featuresDigraph.addVertex({ u: visitorRequest_.u, p: filterColorMap });
+                            nsprop.filterColorMap = filterColorMap;
+
+                            // featuresDigraph.addVertex({ u: visitorRequest_.u, p: filterColorMap });
 
                             return true;
 
@@ -120,15 +106,12 @@
 
                         finishVertex: function(visitorRequest_) {
 
-                            if (visitorRequest_.g.outDegree(visitorRequest_.u) < 1) {
-                                // We do not care about vertices in the feature digraph that model leaf vertices in
-                                // the merge digraph (that model a set of type constraints imposed by N different filters).
-                                // return true;
-                            }
+                            const nsprop = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
+                            const filterColorMap = nsprop.filterColorMap;
 
                             let subnamespaces = null; // Oftentimes we do not even need this information.
 
-                            const filterColorMap = featuresDigraph.getVertexProperty(visitorRequest_.u);
+                            // const filterColorMap = featuresDigraph.getVertexProperty(visitorRequest_.u);
 
                             for (let filterOperationID_ in filterColorMap) {
 
@@ -143,7 +126,7 @@
 
                                     subnamespaces.forEach(subnamespace_ => {
 
-                                        const subfilterColorMap = featuresDigraph.getVertexProperty(subnamespace_);
+                                        const subfilterColorMap = visitorRequest_.g.getVertexProperty(subnamespace_);
 
                                         const subfilterColor = subfilterColorMap[filterOperationID_];
 
@@ -162,13 +145,6 @@
 
                             } // for filterOperationID_ in filterColorMap
 
-                            featuresDigraph.setVertexProperty({ u: visitorRequest_.u, p: filterColorMap });
-
-                            return true;
-                        },
-
-                        finishEdge: function(visitorRequest_) {
-                            featuresDigraph.addEdge({ e: visitorRequest_.e });
                             return true;
                         }
 
@@ -186,12 +162,12 @@
                     break;
                 }
 
-                response.result = {
+                response.result = request_; /*{
                     models: {
                         merged: request_.digraph,
-                        features: featuresDigraph
+                        // features: featuresDigraph
                     }
-                };
+                };*/
 
                 break;
             }

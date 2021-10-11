@@ -81,108 +81,170 @@
     "testResponse": {
         "error": null,
         "result": {
-            "models": {
-                "merged": {
-                    "name": "[Z8haMjv3T8y9VQzSDev6wQ::test] Merged Filter Spec Digraph Model",
-                    "description": "Digraph model of 4 filter object input specs merged together for analysis.",
-                    "vlist": [
-                        {
-                            "u": "~",
-                            "p": {
-                                "typeScoreboard": {
-                                    "name": "[Z8haMjv3T8y9VQzSDev6wQ::test](~)",
-                                    "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
-                                    "vlist": [],
-                                    "elist": [
-                                        {
-                                            "e": {
-                                                "u": "FILTERS",
-                                                "v": "pMnCB8mISHC36Gt1c0VFlQ"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "FILTERS",
-                                                "v": "cw00pj4WRMGzyyQca6ltBw"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "FILTERS",
-                                                "v": "mPqVG4IFQbiM689QR8Nakg"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "FILTERS",
-                                                "v": "HT0jaizpQmagS5FrAvh_UQ"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "pMnCB8mISHC36Gt1c0VFlQ",
-                                                "v": "jsNull"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "pMnCB8mISHC36Gt1c0VFlQ",
-                                                "v": "jsNumber"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "cw00pj4WRMGzyyQca6ltBw",
-                                                "v": "jsNumber"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "cw00pj4WRMGzyyQca6ltBw",
-                                                "v": "jsBoolean"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "mPqVG4IFQbiM689QR8Nakg",
-                                                "v": "jsString"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "mPqVG4IFQbiM689QR8Nakg",
-                                                "v": "jsUndefined"
-                                            }
-                                        },
-                                        {
-                                            "e": {
-                                                "u": "HT0jaizpQmagS5FrAvh_UQ",
-                                                "v": "jsFunction"
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    ],
-                    "elist": []
+            "id": "Z8haMjv3T8y9VQzSDev6wQ",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "pMnCB8mISHC36Gt1c0VFlQ": {
+                    "filterDescriptor": {
+                        "operationID": "pMnCB8mISHC36Gt1c0VFlQ",
+                        "operationName": "unnamed",
+                        "operationDescription": "pMnCB8mISHC36Gt1c0VFlQ provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": [
+                                "jsNull",
+                                "jsNumber"
+                            ]
+                        },
+                        "inputTypeVIID": "GNITJJSs6w2wB3Bzu7k5JQ",
+                        "inputTypeVDID": "b7tvu6Xfpd_pz-nPtTG1MQ",
+                        "outputTypeVIID": "7ASBAehvHzP7FD5npThghw",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "99sqE6cl41eV4xHtxYtStA"
+                    }
                 },
-                "features": {
-                    "name": "[Z8haMjv3T8y9VQzSDev6wQ::test] Request Namespace Feature Digraph Model",
-                    "description": "Per request namespace / filter feature tree digraph model.",
-                    "vlist": [
-                        {
-                            "u": "~",
-                            "p": {
+                "cw00pj4WRMGzyyQca6ltBw": {
+                    "filterDescriptor": {
+                        "operationID": "cw00pj4WRMGzyyQca6ltBw",
+                        "operationName": "unnamed",
+                        "operationDescription": "cw00pj4WRMGzyyQca6ltBw provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": [
+                                "jsNumber",
+                                "jsBoolean"
+                            ]
+                        },
+                        "inputTypeVIID": "nUU-cY-rQ-6xQiEsTZPOkg",
+                        "inputTypeVDID": "Lmqm0kbsWC2bP1b0_o5FIQ",
+                        "outputTypeVIID": "b9XjqLtAv_-HWuf-GlNBQQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "Tz2xE7xOPFfUuAPtsW0btA"
+                    }
+                },
+                "mPqVG4IFQbiM689QR8Nakg": {
+                    "filterDescriptor": {
+                        "operationID": "mPqVG4IFQbiM689QR8Nakg",
+                        "operationName": "unnamed",
+                        "operationDescription": "mPqVG4IFQbiM689QR8Nakg provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": [
+                                "jsString",
+                                "jsUndefined"
+                            ]
+                        },
+                        "inputTypeVIID": "RMayIOyyPm3e29JUNx2JRg",
+                        "inputTypeVDID": "Mgy35GcViZac2_RLJ3mLwA",
+                        "outputTypeVIID": "DQiSMtKbQEEKP4G8lYxqeg",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "oUKBE8Gqi1e0dOTtiSR9tA"
+                    }
+                },
+                "HT0jaizpQmagS5FrAvh_UQ": {
+                    "filterDescriptor": {
+                        "operationID": "HT0jaizpQmagS5FrAvh_UQ",
+                        "operationName": "unnamed",
+                        "operationDescription": "HT0jaizpQmagS5FrAvh_UQ provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": "jsFunction"
+                        },
+                        "inputTypeVIID": "LUqexs29Kb95rnUxtuzPDQ",
+                        "inputTypeVDID": "DJuwrUAm7GmPrtXaLgUKnQ",
+                        "outputTypeVIID": "VSQ-HJ4F0w5mz_3_2wiqKA",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "5q6jE8eOalfBV9zt3U97tA"
+                    }
+                }
+            },
+            "digraph": {
+                "name": "[Z8haMjv3T8y9VQzSDev6wQ::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 4 filter object input specs merged together for analysis.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[Z8haMjv3T8y9VQzSDev6wQ::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "pMnCB8mISHC36Gt1c0VFlQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "cw00pj4WRMGzyyQca6ltBw"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "mPqVG4IFQbiM689QR8Nakg"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "HT0jaizpQmagS5FrAvh_UQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "pMnCB8mISHC36Gt1c0VFlQ",
+                                            "v": "jsNull"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "pMnCB8mISHC36Gt1c0VFlQ",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "cw00pj4WRMGzyyQca6ltBw",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "cw00pj4WRMGzyyQca6ltBw",
+                                            "v": "jsBoolean"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "mPqVG4IFQbiM689QR8Nakg",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "mPqVG4IFQbiM689QR8Nakg",
+                                            "v": "jsUndefined"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "HT0jaizpQmagS5FrAvh_UQ",
+                                            "v": "jsFunction"
+                                        }
+                                    }
+                                ]
+                            },
+                            "filterColorMap": {
                                 "pMnCB8mISHC36Gt1c0VFlQ": "gray",
                                 "cw00pj4WRMGzyyQca6ltBw": "gray",
                                 "mPqVG4IFQbiM689QR8Nakg": "white",
                                 "HT0jaizpQmagS5FrAvh_UQ": "gold"
                             }
                         }
-                    ],
-                    "elist": []
-                }
+                    }
+                ],
+                "elist": []
             }
         }
     }
