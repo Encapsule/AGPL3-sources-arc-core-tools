@@ -30,7 +30,7 @@
                 // Depth-first traverse the merge filter spec digraph passed to us by the caller.
                 let traverseResponse = arccore.graph.directed.depthFirstTraverse({
                     digraph: request_.digraph,
-                    context: {}, // not used here...
+                    context: {},
                     visitor: {
 
                         discoverVertex: function(visitorRequest_) {
@@ -95,10 +95,7 @@
 
                             }); // forEach filterOperationID_
 
-
                             nsprop.filterColorMap = filterColorMap;
-
-                            // featuresDigraph.addVertex({ u: visitorRequest_.u, p: filterColorMap });
 
                             return true;
 
@@ -126,7 +123,7 @@
 
                                     subnamespaces.forEach(subnamespace_ => {
 
-                                        const subfilterColorMap = visitorRequest_.g.getVertexProperty(subnamespace_);
+                                        const subfilterColorMap = visitorRequest_.g.getVertexProperty(subnamespace_).filterColorMap;
 
                                         const subfilterColor = subfilterColorMap[filterOperationID_];
 
@@ -162,12 +159,7 @@
                     break;
                 }
 
-                response.result = request_; /*{
-                    models: {
-                        merged: request_.digraph,
-                        // features: featuresDigraph
-                    }
-                };*/
+                response.result = request_;
 
                 break;
             }
@@ -189,3 +181,4 @@
     module.exports = factoryResponse.result;
 
 })();
+

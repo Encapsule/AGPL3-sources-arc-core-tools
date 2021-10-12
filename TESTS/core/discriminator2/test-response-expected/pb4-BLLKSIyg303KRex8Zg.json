@@ -290,9 +290,9 @@
                                 ]
                             },
                             "filterColorMap": {
-                                "GxEgF5iaRWOTD7CW5XRgAQ": "smoke",
-                                "6Z7y_J7cQc-3iZC6YlNMdQ": "smoke",
-                                "FkmSSKieTuuUBlRAnoPAqA": "smoke"
+                                "GxEgF5iaRWOTD7CW5XRgAQ": "green",
+                                "6Z7y_J7cQc-3iZC6YlNMdQ": "green",
+                                "FkmSSKieTuuUBlRAnoPAqA": "green"
                             }
                         }
                     },
@@ -358,8 +358,8 @@
                                 ]
                             },
                             "filterColorMap": {
-                                "GxEgF5iaRWOTD7CW5XRgAQ": "smoke",
-                                "6Z7y_J7cQc-3iZC6YlNMdQ": "smoke"
+                                "GxEgF5iaRWOTD7CW5XRgAQ": "green",
+                                "6Z7y_J7cQc-3iZC6YlNMdQ": "green"
                             }
                         }
                     },
