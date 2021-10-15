@@ -143,7 +143,8 @@
                             } // for filterOperationID_ in filterColorMap
 
                             return true;
-                        }
+
+                        } // finishVertex
 
                     } // visitor
 
@@ -155,7 +156,7 @@
                 }
 
                 if (traverseResponse.result.searchStatus !== "completed") {
-                    errors.push(`Unexpected depth-first traversal status "${traverseResponse.result.searchStatus}".`);
+                    errors.push(`Unexpected depth-first traversal status==="${traverseResponse.result.searchStatus}".`);
                     break;
                 }
 
