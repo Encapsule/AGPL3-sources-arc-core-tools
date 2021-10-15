@@ -1,4 +1,4 @@
-// runner-merged-spec-digraph-factory.js
+// harness-discriminator2-merged-model-factory-filter.js
 
 (function() {
 
