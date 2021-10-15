@@ -127,6 +127,7 @@
                                     }
                                 ]
                             },
+                            "depth": 0,
                             "filterColorMap": {
                                 "9pXXheaNQgO9YyyqYAnusA": "green",
                                 "o2B3jCbRSeaEbary6MIhjQ": "green"
@@ -167,6 +168,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "9pXXheaNQgO9YyyqYAnusA": "gold",
                                 "o2B3jCbRSeaEbary6MIhjQ": "gold"

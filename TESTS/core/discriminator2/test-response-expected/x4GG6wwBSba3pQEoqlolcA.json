@@ -127,6 +127,7 @@
                                     }
                                 ]
                             },
+                            "depth": 0,
                             "filterColorMap": {
                                 "PG-46ajURRCJE-OfpNFsEQ": "smoke",
                                 "3Ze1w1JZRbOJYrCEZNn8gA": "smoke"
@@ -167,6 +168,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "PG-46ajURRCJE-OfpNFsEQ": "gray",
                                 "3Ze1w1JZRbOJYrCEZNn8gA": "gray"

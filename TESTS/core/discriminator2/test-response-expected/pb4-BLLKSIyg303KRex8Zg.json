@@ -289,6 +289,7 @@
                                     }
                                 ]
                             },
+                            "depth": 0,
                             "filterColorMap": {
                                 "GxEgF5iaRWOTD7CW5XRgAQ": "green",
                                 "6Z7y_J7cQc-3iZC6YlNMdQ": "green",
@@ -318,6 +319,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "GxEgF5iaRWOTD7CW5XRgAQ": "gold"
                             }
@@ -357,6 +359,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "GxEgF5iaRWOTD7CW5XRgAQ": "green",
                                 "6Z7y_J7cQc-3iZC6YlNMdQ": "green"
@@ -403,6 +406,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "GxEgF5iaRWOTD7CW5XRgAQ": "gray",
                                 "6Z7y_J7cQc-3iZC6YlNMdQ": "gray"
@@ -443,6 +447,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "GxEgF5iaRWOTD7CW5XRgAQ": "gray",
                                 "FkmSSKieTuuUBlRAnoPAqA": "gray"
@@ -471,6 +476,7 @@
                                     }
                                 ]
                             },
+                            "depth": 2,
                             "filterColorMap": {
                                 "GxEgF5iaRWOTD7CW5XRgAQ": "gold"
                             }
@@ -510,6 +516,7 @@
                                     }
                                 ]
                             },
+                            "depth": 2,
                             "filterColorMap": {
                                 "GxEgF5iaRWOTD7CW5XRgAQ": "gray",
                                 "6Z7y_J7cQc-3iZC6YlNMdQ": "gray"
@@ -538,6 +545,7 @@
                                     }
                                 ]
                             },
+                            "depth": 2,
                             "filterColorMap": {
                                 "GxEgF5iaRWOTD7CW5XRgAQ": "gold"
                             }
@@ -583,6 +591,7 @@
                                     }
                                 ]
                             },
+                            "depth": 2,
                             "filterColorMap": {
                                 "GxEgF5iaRWOTD7CW5XRgAQ": "gray",
                                 "6Z7y_J7cQc-3iZC6YlNMdQ": "gray"
@@ -623,6 +632,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "6Z7y_J7cQc-3iZC6YlNMdQ": "gray",
                                 "FkmSSKieTuuUBlRAnoPAqA": "gray"
@@ -663,6 +673,7 @@
                                     }
                                 ]
                             },
+                            "depth": 2,
                             "filterColorMap": {
                                 "6Z7y_J7cQc-3iZC6YlNMdQ": "gray",
                                 "FkmSSKieTuuUBlRAnoPAqA": "gray"
@@ -691,6 +702,7 @@
                                     }
                                 ]
                             },
+                            "depth": 2,
                             "filterColorMap": {
                                 "6Z7y_J7cQc-3iZC6YlNMdQ": "gold"
                             }
@@ -718,6 +730,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "FkmSSKieTuuUBlRAnoPAqA": "gold"
                             }

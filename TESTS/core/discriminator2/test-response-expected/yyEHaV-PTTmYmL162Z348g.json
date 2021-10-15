@@ -131,6 +131,7 @@
                                     }
                                 ]
                             },
+                            "depth": 0,
                             "filterColorMap": {
                                 "-SJZxNtdSeOYYMR3uc69AA": "gray",
                                 "-XjlfqaIRpqtfl1dpAU21Q": "gray"
@@ -171,6 +172,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "-SJZxNtdSeOYYMR3uc69AA": "gold",
                                 "-XjlfqaIRpqtfl1dpAU21Q": "gold"

@@ -123,6 +123,7 @@
                                     }
                                 ]
                             },
+                            "depth": 0,
                             "filterColorMap": {
                                 "FcMsfGWFTdinHS2MY2Tn5g": "smoke",
                                 "B_AUumpxQneXDjEBXwy_5Q": "white"
