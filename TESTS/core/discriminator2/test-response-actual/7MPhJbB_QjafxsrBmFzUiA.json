@@ -1,0 +1,118 @@
+{
+    "testID": "7MPhJbB_QjafxsrBmFzUiA",
+    "testName": "Basic Runtime Model Test 1 (Ambiguous)",
+    "testDescription": "Test model generation for case w/two filters that cannot be discriminated from one another.",
+    "testRequest": {
+        "id": "7MPhJbB_QjafxsrBmFzUiA",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "rpHkQbtASOqDly1MgibS0A",
+                    "operationName": "unnamed",
+                    "operationDescription": "rpHkQbtASOqDly1MgibS0A provides no description.",
+                    "inputTypeVIID": "OmwYLWFyngV6i9iDrxYgXg",
+                    "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "outputTypeVIID": "2l2MKGVVMqp9FqhOct5dlQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "DVr0E0SDNVdIbY7tOecUtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "diej_MetTuaEYGMU46zXWg",
+                    "operationName": "unnamed",
+                    "operationDescription": "diej_MetTuaEYGMU46zXWg provides no description.",
+                    "inputTypeVIID": "iS59gkXgxn_A0TLcJJGKPQ",
+                    "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "outputTypeVIID": "KS9llteN1wIID0YMdaEQpw",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "L-b0E-XhNVdPHY7tXQ4UtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": "Filter [sCpSMi4fTOW_Lbl5_GXnPA::Message Descriminator Runtime Model Factory] failed while performing main operation. Cannot construct new discriminator due to request space namespace name / type constraint overlaps. Issues detected w/the following filter(s): [rpHkQbtASOqDly1MgibS0A::unnamed](white), [diej_MetTuaEYGMU46zXWg::unnamed](white)",
+        "result": {
+            "id": "7MPhJbB_QjafxsrBmFzUiA",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "rpHkQbtASOqDly1MgibS0A": {
+                    "filterDescriptor": {
+                        "operationID": "rpHkQbtASOqDly1MgibS0A",
+                        "operationName": "unnamed",
+                        "operationDescription": "rpHkQbtASOqDly1MgibS0A provides no description.",
+                        "inputTypeVIID": "OmwYLWFyngV6i9iDrxYgXg",
+                        "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "outputTypeVIID": "2l2MKGVVMqp9FqhOct5dlQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "DVr0E0SDNVdIbY7tOecUtA"
+                    }
+                },
+                "diej_MetTuaEYGMU46zXWg": {
+                    "filterDescriptor": {
+                        "operationID": "diej_MetTuaEYGMU46zXWg",
+                        "operationName": "unnamed",
+                        "operationDescription": "diej_MetTuaEYGMU46zXWg provides no description.",
+                        "inputTypeVIID": "iS59gkXgxn_A0TLcJJGKPQ",
+                        "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "outputTypeVIID": "KS9llteN1wIID0YMdaEQpw",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "L-b0E-XhNVdPHY7tXQ4UtA"
+                    }
+                }
+            },
+            "digraph": {
+                "name": "[7MPhJbB_QjafxsrBmFzUiA::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 2 filter object input specs merged together for analysis.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[7MPhJbB_QjafxsrBmFzUiA::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "rpHkQbtASOqDly1MgibS0A"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "diej_MetTuaEYGMU46zXWg"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "rpHkQbtASOqDly1MgibS0A",
+                                            "v": "isOpaque"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "diej_MetTuaEYGMU46zXWg",
+                                            "v": "isOpaque"
+                                        }
+                                    }
+                                ]
+                            },
+                            "filterColorMap": {
+                                "rpHkQbtASOqDly1MgibS0A": "white",
+                                "diej_MetTuaEYGMU46zXWg": "white"
+                            }
+                        }
+                    }
+                ],
+                "elist": []
+            },
+            "resolvedFilters": {}
+        }
+    }
+}

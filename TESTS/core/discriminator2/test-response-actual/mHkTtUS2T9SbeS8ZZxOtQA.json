@@ -1,0 +1,352 @@
+{
+    "testID": "mHkTtUS2T9SbeS8ZZxOtQA",
+    "testName": "Basic Runtime Model Test 3 (Unambiguous)",
+    "testDescription": "Test model generation for case w/three filters taht can be trivially discriminated from one another.",
+    "testRequest": {
+        "id": "mHkTtUS2T9SbeS8ZZxOtQA",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "i-iVzIrgTDSFDp1-BMiH5Q",
+                    "operationName": "unnamed",
+                    "operationDescription": "i-iVzIrgTDSFDp1-BMiH5Q provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "property1": {
+                            "____accept": "jsNumber"
+                        }
+                    },
+                    "inputTypeVIID": "2RqlzKTaLd2oBL9h5Izpfg",
+                    "inputTypeVDID": "xR3FHa9Kr0rzcPNwaZFpkQ",
+                    "outputTypeVIID": "hjmD3yiKSuT12Ssww56nXQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "c3hLE4vqUFepC-HtOhqNtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "NtSuwG2ySH-1v4l1o--Keg",
+                    "operationName": "unnamed",
+                    "operationDescription": "NtSuwG2ySH-1v4l1o--Keg provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "property1": {
+                            "____accept": "jsString"
+                        },
+                        "property2": {
+                            "____accept": "jsString"
+                        }
+                    },
+                    "inputTypeVIID": "e2hgs7nS-rlydLmIK5RCYA",
+                    "inputTypeVDID": "vcNG_-MwqBJNQNMU59P37Q",
+                    "outputTypeVIID": "hryQHjY664ENDtsHdOV3SA",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "7AN9E2gHeVfs4Znt4KQTtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "dqZVkckBSOSP-KsDm1QxZA",
+                    "operationName": "unnamed",
+                    "operationDescription": "dqZVkckBSOSP-KsDm1QxZA provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "property1": {
+                            "____accept": "jsString"
+                        },
+                        "property2": {
+                            "____types": "jsObject",
+                            "property1": {
+                                "____accept": "jsNumber"
+                            }
+                        }
+                    },
+                    "inputTypeVIID": "-nGTALrQ5f50q4GiLdn4Ag",
+                    "inputTypeVDID": "qW-6LhWS4MDMkLq43BBXOQ",
+                    "outputTypeVIID": "KOHR_PDhoicD2tWoN6GkxA",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "B71-E0OikVe6T7Dt3EROtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "id": "mHkTtUS2T9SbeS8ZZxOtQA",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "i-iVzIrgTDSFDp1-BMiH5Q": {
+                    "filterDescriptor": {
+                        "operationID": "i-iVzIrgTDSFDp1-BMiH5Q",
+                        "operationName": "unnamed",
+                        "operationDescription": "i-iVzIrgTDSFDp1-BMiH5Q provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "property1": {
+                                "____accept": "jsNumber"
+                            }
+                        },
+                        "inputTypeVIID": "2RqlzKTaLd2oBL9h5Izpfg",
+                        "inputTypeVDID": "xR3FHa9Kr0rzcPNwaZFpkQ",
+                        "outputTypeVIID": "hjmD3yiKSuT12Ssww56nXQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "c3hLE4vqUFepC-HtOhqNtA"
+                    }
+                },
+                "NtSuwG2ySH-1v4l1o--Keg": {
+                    "filterDescriptor": {
+                        "operationID": "NtSuwG2ySH-1v4l1o--Keg",
+                        "operationName": "unnamed",
+                        "operationDescription": "NtSuwG2ySH-1v4l1o--Keg provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "property1": {
+                                "____accept": "jsString"
+                            },
+                            "property2": {
+                                "____accept": "jsString"
+                            }
+                        },
+                        "inputTypeVIID": "e2hgs7nS-rlydLmIK5RCYA",
+                        "inputTypeVDID": "vcNG_-MwqBJNQNMU59P37Q",
+                        "outputTypeVIID": "hryQHjY664ENDtsHdOV3SA",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "7AN9E2gHeVfs4Znt4KQTtA"
+                    }
+                },
+                "dqZVkckBSOSP-KsDm1QxZA": {
+                    "filterDescriptor": {
+                        "operationID": "dqZVkckBSOSP-KsDm1QxZA",
+                        "operationName": "unnamed",
+                        "operationDescription": "dqZVkckBSOSP-KsDm1QxZA provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "property1": {
+                                "____accept": "jsString"
+                            },
+                            "property2": {
+                                "____types": "jsObject",
+                                "property1": {
+                                    "____accept": "jsNumber"
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "-nGTALrQ5f50q4GiLdn4Ag",
+                        "inputTypeVDID": "qW-6LhWS4MDMkLq43BBXOQ",
+                        "outputTypeVIID": "KOHR_PDhoicD2tWoN6GkxA",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "B71-E0OikVe6T7Dt3EROtA"
+                    }
+                }
+            },
+            "digraph": {
+                "name": "[mHkTtUS2T9SbeS8ZZxOtQA::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 3 filter object input specs merged together for analysis.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[mHkTtUS2T9SbeS8ZZxOtQA::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "i-iVzIrgTDSFDp1-BMiH5Q"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "NtSuwG2ySH-1v4l1o--Keg"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "dqZVkckBSOSP-KsDm1QxZA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "i-iVzIrgTDSFDp1-BMiH5Q",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "NtSuwG2ySH-1v4l1o--Keg",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "dqZVkckBSOSP-KsDm1QxZA",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            },
+                            "filterColorMap": {
+                                "i-iVzIrgTDSFDp1-BMiH5Q": "green",
+                                "NtSuwG2ySH-1v4l1o--Keg": "green",
+                                "dqZVkckBSOSP-KsDm1QxZA": "green"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.property1",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[mHkTtUS2T9SbeS8ZZxOtQA::test](~.property1)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.property1'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "i-iVzIrgTDSFDp1-BMiH5Q"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "NtSuwG2ySH-1v4l1o--Keg"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "dqZVkckBSOSP-KsDm1QxZA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "i-iVzIrgTDSFDp1-BMiH5Q",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "NtSuwG2ySH-1v4l1o--Keg",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "dqZVkckBSOSP-KsDm1QxZA",
+                                            "v": "jsString"
+                                        }
+                                    }
+                                ]
+                            },
+                            "filterColorMap": {
+                                "i-iVzIrgTDSFDp1-BMiH5Q": "gold",
+                                "NtSuwG2ySH-1v4l1o--Keg": "gray",
+                                "dqZVkckBSOSP-KsDm1QxZA": "gray"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.property2",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[mHkTtUS2T9SbeS8ZZxOtQA::test](~.property2)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.property2'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "NtSuwG2ySH-1v4l1o--Keg"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "dqZVkckBSOSP-KsDm1QxZA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "NtSuwG2ySH-1v4l1o--Keg",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "dqZVkckBSOSP-KsDm1QxZA",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            },
+                            "filterColorMap": {
+                                "NtSuwG2ySH-1v4l1o--Keg": "gold",
+                                "dqZVkckBSOSP-KsDm1QxZA": "gold"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.property2.property1",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[mHkTtUS2T9SbeS8ZZxOtQA::test](~.property2.property1)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.property2.property1'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "dqZVkckBSOSP-KsDm1QxZA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "dqZVkckBSOSP-KsDm1QxZA",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            },
+                            "filterColorMap": {
+                                "dqZVkckBSOSP-KsDm1QxZA": "gold"
+                            }
+                        }
+                    }
+                ],
+                "elist": [
+                    {
+                        "e": {
+                            "u": "~",
+                            "v": "~.property1"
+                        }
+                    },
+                    {
+                        "e": {
+                            "u": "~",
+                            "v": "~.property2"
+                        }
+                    },
+                    {
+                        "e": {
+                            "u": "~.property2",
+                            "v": "~.property2.property1"
+                        }
+                    }
+                ]
+            },
+            "resolvedFilters": {
+                "i-iVzIrgTDSFDp1-BMiH5Q": "~.property1",
+                "NtSuwG2ySH-1v4l1o--Keg": "~.property2",
+                "dqZVkckBSOSP-KsDm1QxZA": "~.property2"
+            }
+        }
+    }
+}

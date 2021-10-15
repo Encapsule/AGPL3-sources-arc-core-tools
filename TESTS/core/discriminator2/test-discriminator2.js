@@ -7,6 +7,7 @@
 
         require("./test-discriminator2-merged-model");
         require("./test-discriminator2-feature-model");
+        require("./test-discriminator2-runtime-model");
 
     });
 

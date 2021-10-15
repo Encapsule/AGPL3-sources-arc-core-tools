@@ -1,0 +1,133 @@
+{
+    "testID": "x4KY6jUCTAu_yCA1c2q5JQ",
+    "testName": "Basic Runtime Model Test 2 (Unambiguous)",
+    "testDescription": "Test model generation for case w/two filters that can be trivially discriminated from one another.",
+    "testRequest": {
+        "id": "x4KY6jUCTAu_yCA1c2q5JQ",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "ZjpcwTDdTaKcsMWxNTHvmg",
+                    "operationName": "unnamed",
+                    "operationDescription": "ZjpcwTDdTaKcsMWxNTHvmg provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsNumber"
+                    },
+                    "inputTypeVIID": "tsoLAHuesCBEd1aIIMMQsg",
+                    "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                    "outputTypeVIID": "4sspLQBfxHpbR4hp-Y97OA",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "UbdLE5wS9FeoBFLtEDLEtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "FAo7VeNTT0ahLvquToBr7A",
+                    "operationName": "unnamed",
+                    "operationDescription": "FAo7VeNTT0ahLvquToBr7A provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": "jsString"
+                    },
+                    "inputTypeVIID": "jsqN-0tnPg5GLXBArTH0rA",
+                    "inputTypeVDID": "A2LDjL1TLElA_kBvbpTo-w",
+                    "outputTypeVIID": "eC-uYe3C5Zb67P-iV03E-g",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "4wVwE6lHglcd8wXtwy_FtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "id": "x4KY6jUCTAu_yCA1c2q5JQ",
+            "name": "test",
+            "description": "test",
+            "filters": {
+                "ZjpcwTDdTaKcsMWxNTHvmg": {
+                    "filterDescriptor": {
+                        "operationID": "ZjpcwTDdTaKcsMWxNTHvmg",
+                        "operationName": "unnamed",
+                        "operationDescription": "ZjpcwTDdTaKcsMWxNTHvmg provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": "jsNumber"
+                        },
+                        "inputTypeVIID": "tsoLAHuesCBEd1aIIMMQsg",
+                        "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                        "outputTypeVIID": "4sspLQBfxHpbR4hp-Y97OA",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "UbdLE5wS9FeoBFLtEDLEtA"
+                    }
+                },
+                "FAo7VeNTT0ahLvquToBr7A": {
+                    "filterDescriptor": {
+                        "operationID": "FAo7VeNTT0ahLvquToBr7A",
+                        "operationName": "unnamed",
+                        "operationDescription": "FAo7VeNTT0ahLvquToBr7A provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": "jsString"
+                        },
+                        "inputTypeVIID": "jsqN-0tnPg5GLXBArTH0rA",
+                        "inputTypeVDID": "A2LDjL1TLElA_kBvbpTo-w",
+                        "outputTypeVIID": "eC-uYe3C5Zb67P-iV03E-g",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "4wVwE6lHglcd8wXtwy_FtA"
+                    }
+                }
+            },
+            "digraph": {
+                "name": "[x4KY6jUCTAu_yCA1c2q5JQ::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 2 filter object input specs merged together for analysis.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[x4KY6jUCTAu_yCA1c2q5JQ::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "ZjpcwTDdTaKcsMWxNTHvmg"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "FAo7VeNTT0ahLvquToBr7A"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ZjpcwTDdTaKcsMWxNTHvmg",
+                                            "v": "jsNumber"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FAo7VeNTT0ahLvquToBr7A",
+                                            "v": "jsString"
+                                        }
+                                    }
+                                ]
+                            },
+                            "filterColorMap": {
+                                "ZjpcwTDdTaKcsMWxNTHvmg": "gold",
+                                "FAo7VeNTT0ahLvquToBr7A": "gold"
+                            }
+                        }
+                    }
+                ],
+                "elist": []
+            },
+            "resolvedFilters": {
+                "ZjpcwTDdTaKcsMWxNTHvmg": "~",
+                "FAo7VeNTT0ahLvquToBr7A": "~"
+            }
+        }
+    }
+}
