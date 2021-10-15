@@ -115,6 +115,7 @@
                                     }
                                 ]
                             },
+                            "depth": 0,
                             "filterColorMap": {
                                 "Piqs15cKRY-vupMj9POJhA": "white",
                                 "EgTbljXJTy2eWbX84S24Pw": "white"

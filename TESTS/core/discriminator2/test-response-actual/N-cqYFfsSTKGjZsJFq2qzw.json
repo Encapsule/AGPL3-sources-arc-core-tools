@@ -121,6 +121,7 @@
                                     }
                                 ]
                             },
+                            "depth": 0,
                             "filterColorMap": {
                                 "de0B9XsvQC-4fUpYSvRllQ": "smoke",
                                 "PLiK-cYEQsGrgkXlfDYv4w": "green"
@@ -149,6 +150,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "PLiK-cYEQsGrgkXlfDYv4w": "gold"
                             }

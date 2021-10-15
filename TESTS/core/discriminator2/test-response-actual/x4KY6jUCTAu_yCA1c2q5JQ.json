@@ -115,6 +115,7 @@
                                     }
                                 ]
                             },
+                            "depth": 0,
                             "filterColorMap": {
                                 "ZjpcwTDdTaKcsMWxNTHvmg": "gold",
                                 "FAo7VeNTT0ahLvquToBr7A": "gold"

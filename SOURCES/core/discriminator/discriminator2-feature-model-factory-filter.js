@@ -33,6 +33,19 @@
                     context: {},
                     visitor: {
 
+                        initializeVertex: function(visitorRequest_) {
+                            const nsprop = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
+                            nsprop.depth = 0;
+                            return true;
+                        },
+
+                        treeEdge: function(visitorRequest_) {
+                            const nspropU = visitorRequest_.g.getVertexProperty(visitorRequest_.e.u);
+                            const nspropV = visitorRequest_.g.getVertexProperty(visitorRequest_.e.v);
+                            nspropV.depth = nspropU.depth + 1;
+                            return true;
+                        },
+
                         discoverVertex: function(visitorRequest_) {
 
                             const nsprop = visitorRequest_.g.getVertexProperty(visitorRequest_.u);

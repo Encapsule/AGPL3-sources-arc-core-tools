@@ -193,6 +193,7 @@
                                     }
                                 ]
                             },
+                            "depth": 0,
                             "filterColorMap": {
                                 "i-iVzIrgTDSFDp1-BMiH5Q": "green",
                                 "NtSuwG2ySH-1v4l1o--Keg": "green",
@@ -246,6 +247,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "i-iVzIrgTDSFDp1-BMiH5Q": "gold",
                                 "NtSuwG2ySH-1v4l1o--Keg": "gray",
@@ -287,6 +289,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "NtSuwG2ySH-1v4l1o--Keg": "gold",
                                 "dqZVkckBSOSP-KsDm1QxZA": "gold"
@@ -315,6 +318,7 @@
                                     }
                                 ]
                             },
+                            "depth": 2,
                             "filterColorMap": {
                                 "dqZVkckBSOSP-KsDm1QxZA": "gold"
                             }

@@ -139,6 +139,7 @@
                                     }
                                 ]
                             },
+                            "depth": 0,
                             "filterColorMap": {
                                 "lL7b1oT4Q0CPsAtTQMyIRA": "smoke",
                                 "A6E5dItHTzGRCAFMbqBHfA": "smoke"
@@ -191,6 +192,7 @@
                                     }
                                 ]
                             },
+                            "depth": 1,
                             "filterColorMap": {
                                 "lL7b1oT4Q0CPsAtTQMyIRA": "gray",
                                 "A6E5dItHTzGRCAFMbqBHfA": "gray"
