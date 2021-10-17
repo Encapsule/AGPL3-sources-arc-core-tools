@@ -127,7 +127,11 @@
                                     }
                                 ]
                             },
-                            "depth": 0,
+                            "height": 0,
+                            "ts": {
+                                "d": 0,
+                                "f": 5
+                            },
                             "filterColorMap": {
                                 "w_Er_dlQQYCb6_Z57aEr7A": "green",
                                 "uKxF0ZWORNuSGpQtZcsMhA": "green"
@@ -156,7 +160,11 @@
                                     }
                                 ]
                             },
-                            "depth": 1,
+                            "height": 1,
+                            "ts": {
+                                "d": 1,
+                                "f": 2
+                            },
                             "filterColorMap": {
                                 "w_Er_dlQQYCb6_Z57aEr7A": "gold"
                             }
@@ -184,7 +192,11 @@
                                     }
                                 ]
                             },
-                            "depth": 1,
+                            "height": 1,
+                            "ts": {
+                                "d": 3,
+                                "f": 4
+                            },
                             "filterColorMap": {
                                 "uKxF0ZWORNuSGpQtZcsMhA": "gold"
                             }

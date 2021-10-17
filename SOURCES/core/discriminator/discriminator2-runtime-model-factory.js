@@ -29,6 +29,7 @@
                 inBreakScope = true;
 
                 const resolvedFilters = {};
+                const resolvedNamespaces = {};
 
                 let traverseResponse = arccore.graph.directed.breadthFirstTraverse({
                     digraph: request_.digraph,

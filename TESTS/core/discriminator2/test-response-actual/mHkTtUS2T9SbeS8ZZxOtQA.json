@@ -193,7 +193,11 @@
                                     }
                                 ]
                             },
-                            "depth": 0,
+                            "height": 0,
+                            "ts": {
+                                "d": 0,
+                                "f": 7
+                            },
                             "filterColorMap": {
                                 "i-iVzIrgTDSFDp1-BMiH5Q": "green",
                                 "NtSuwG2ySH-1v4l1o--Keg": "green",
@@ -247,7 +251,11 @@
                                     }
                                 ]
                             },
-                            "depth": 1,
+                            "height": 1,
+                            "ts": {
+                                "d": 1,
+                                "f": 2
+                            },
                             "filterColorMap": {
                                 "i-iVzIrgTDSFDp1-BMiH5Q": "gold",
                                 "NtSuwG2ySH-1v4l1o--Keg": "gray",
@@ -289,7 +297,11 @@
                                     }
                                 ]
                             },
-                            "depth": 1,
+                            "height": 1,
+                            "ts": {
+                                "d": 3,
+                                "f": 6
+                            },
                             "filterColorMap": {
                                 "NtSuwG2ySH-1v4l1o--Keg": "gold",
                                 "dqZVkckBSOSP-KsDm1QxZA": "gold"
@@ -318,7 +330,11 @@
                                     }
                                 ]
                             },
-                            "depth": 2,
+                            "height": 2,
+                            "ts": {
+                                "d": 4,
+                                "f": 5
+                            },
                             "filterColorMap": {
                                 "dqZVkckBSOSP-KsDm1QxZA": "gold"
                             }

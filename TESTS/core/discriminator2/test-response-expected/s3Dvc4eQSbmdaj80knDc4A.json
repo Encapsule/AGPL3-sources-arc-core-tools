@@ -127,7 +127,11 @@
                                     }
                                 ]
                             },
-                            "depth": 0,
+                            "height": 0,
+                            "ts": {
+                                "d": 0,
+                                "f": 1
+                            },
                             "filterColorMap": {
                                 "A4Dn2NJDShSDu0QN5QQd7A": "smoke",
                                 "n68PiZG3Rf6G41Wdlr9Usg": "white"

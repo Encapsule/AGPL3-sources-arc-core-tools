@@ -123,7 +123,11 @@
                                     }
                                 ]
                             },
-                            "depth": 0,
+                            "height": 0,
+                            "ts": {
+                                "d": 0,
+                                "f": 3
+                            },
                             "filterColorMap": {
                                 "DSklY7-XTfOHpNpzCiAFnA": "chalk",
                                 "uk4BnGf7TseFjlm--yV6fg": "chalk"
@@ -152,7 +156,11 @@
                                     }
                                 ]
                             },
-                            "depth": 1,
+                            "height": 1,
+                            "ts": {
+                                "d": 1,
+                                "f": 2
+                            },
                             "filterColorMap": {
                                 "uk4BnGf7TseFjlm--yV6fg": "gold"
                             }

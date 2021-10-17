@@ -235,7 +235,11 @@
                                     }
                                 ]
                             },
-                            "depth": 0,
+                            "height": 0,
+                            "ts": {
+                                "d": 0,
+                                "f": 1
+                            },
                             "filterColorMap": {
                                 "pMnCB8mISHC36Gt1c0VFlQ": "gray",
                                 "cw00pj4WRMGzyyQca6ltBw": "gray",

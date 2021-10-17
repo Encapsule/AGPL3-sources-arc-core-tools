@@ -139,7 +139,11 @@
                                     }
                                 ]
                             },
-                            "depth": 0,
+                            "height": 0,
+                            "ts": {
+                                "d": 0,
+                                "f": 1
+                            },
                             "filterColorMap": {
                                 "6Ie8EyYdQZaSfnwMbM6ivg": "gold",
                                 "KR35F9MHSmazIzbs65CyyQ": "gold"
