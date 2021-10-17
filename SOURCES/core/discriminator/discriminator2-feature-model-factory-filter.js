@@ -30,19 +30,20 @@
                 // Depth-first traverse the merge filter spec digraph passed to us by the caller.
                 let traverseResponse = arccore.graph.directed.depthFirstTraverse({
                     digraph: request_.digraph,
-                    context: {},
+                    context: { tsCount: 0 },
                     visitor: {
 
                         initializeVertex: function(visitorRequest_) {
                             const nsprop = visitorRequest_.g.getVertexProperty(visitorRequest_.u);
-                            nsprop.depth = 0;
+                            nsprop.height = 0;
+                            nsprop.ts = { d: -1, f: -1 };
                             return true;
                         },
 
                         treeEdge: function(visitorRequest_) {
-                            const nspropU = visitorRequest_.g.getVertexProperty(visitorRequest_.e.u);
-                            const nspropV = visitorRequest_.g.getVertexProperty(visitorRequest_.e.v);
-                            nspropV.depth = nspropU.depth + 1;
+                            const uProp = visitorRequest_.g.getVertexProperty(visitorRequest_.e.u);
+                            const vProp = visitorRequest_.g.getVertexProperty(visitorRequest_.e.v);
+                            vProp.height = uProp.height + 1;
                             return true;
                         },
 
@@ -109,6 +110,7 @@
                             }); // forEach filterOperationID_
 
                             nsprop.filterColorMap = filterColorMap;
+                            nsprop.ts.d = visitorRequest_.context.tsCount++;
 
                             return true;
 
@@ -155,6 +157,8 @@
 
                             } // for filterOperationID_ in filterColorMap
 
+                            nsprop.ts.f = visitorRequest_.context.tsCount++;
+
                             return true;
 
                         } // finishVertex
@@ -179,7 +183,7 @@
             }
 
             if (errors.length) {
-                   response.error = errors.join(" ");
+                response.error = errors.join(" ");
             }
 
             return response;
