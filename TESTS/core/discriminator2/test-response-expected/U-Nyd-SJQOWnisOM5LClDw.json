@@ -33,6 +33,9 @@
             "id": "U-Nyd-SJQOWnisOM5LClDw",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "ewj-Hb3fRFqkd5G3liTs6A": {
                     "filterDescriptor": {

@@ -78,6 +78,9 @@
             "id": "NRTCjz4STv6VdHIgjAX-Ig",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "MszGMe3OSWyg8UiJPjA67Q": {
                     "filterDescriptor": {

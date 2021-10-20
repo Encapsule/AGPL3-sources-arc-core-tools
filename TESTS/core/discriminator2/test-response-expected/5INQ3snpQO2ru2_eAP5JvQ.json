@@ -79,6 +79,9 @@
             "id": "5INQ3snpQO2ru2_eAP5JvQ",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "EpxfUsN0SK2-l7Il-vmpEg": {
                     "filterDescriptor": {

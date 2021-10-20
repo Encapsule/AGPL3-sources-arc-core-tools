@@ -126,6 +126,9 @@
             "id": "pb4-BLLKSIyg303KRex8Zg",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "GxEgF5iaRWOTD7CW5XRgAQ": {
                     "filterDescriptor": {

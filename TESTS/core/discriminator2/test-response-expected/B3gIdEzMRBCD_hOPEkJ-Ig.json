@@ -31,6 +31,9 @@
             "id": "B3gIdEzMRBCD_hOPEkJ-Ig",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "EubAX3InS6eKy5Ck5n2n-w": {
                     "filterDescriptor": {

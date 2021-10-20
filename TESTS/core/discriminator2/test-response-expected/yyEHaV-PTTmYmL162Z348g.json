@@ -53,6 +53,9 @@
             "id": "yyEHaV-PTTmYmL162Z348g",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "-SJZxNtdSeOYYMR3uc69AA": {
                     "filterDescriptor": {

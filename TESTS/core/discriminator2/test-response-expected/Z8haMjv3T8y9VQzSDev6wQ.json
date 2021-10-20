@@ -84,6 +84,9 @@
             "id": "Z8haMjv3T8y9VQzSDev6wQ",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "pMnCB8mISHC36Gt1c0VFlQ": {
                     "filterDescriptor": {

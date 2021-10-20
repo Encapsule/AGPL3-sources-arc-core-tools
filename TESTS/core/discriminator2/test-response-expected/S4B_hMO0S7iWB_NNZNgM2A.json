@@ -13,6 +13,9 @@
             "id": "S4B_hMO0S7iWB_NNZNgM2A",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {},
             "digraph": {
                 "name": "[S4B_hMO0S7iWB_NNZNgM2A::test] Merged Filter Spec Digraph Model",

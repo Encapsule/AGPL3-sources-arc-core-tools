@@ -30,6 +30,9 @@
             "id": "tL2pn187S8WFjYsqpTdOBw",
             "name": "Single Filter No Input Spec",
             "description": "Process single filter that accepts anything.",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "Zt9i_3yRQfucaMmBiSbUmw": {
                     "filterDescriptor": {
