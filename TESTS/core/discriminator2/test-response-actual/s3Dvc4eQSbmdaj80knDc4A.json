@@ -48,6 +48,9 @@
             "id": "s3Dvc4eQSbmdaj80knDc4A",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "A4Dn2NJDShSDu0QN5QQd7A": {
                     "filterDescriptor": {

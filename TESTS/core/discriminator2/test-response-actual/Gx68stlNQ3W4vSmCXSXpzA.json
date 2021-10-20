@@ -32,6 +32,9 @@
             "id": "Gx68stlNQ3W4vSmCXSXpzA",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "WR-jLmIRRFWaoU_QXYGmJA": {
                     "filterDescriptor": {

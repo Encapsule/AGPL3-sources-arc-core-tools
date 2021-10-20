@@ -78,6 +78,9 @@
             "id": "4obVpKp_R5aO_5ythukj2A",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "2H9Ar6I3TtmtMlXURl4WdQ": {
                     "filterDescriptor": {

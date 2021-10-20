@@ -27,6 +27,9 @@
             "id": "RkaTLdCrQmW_L-QGW3y4hQ",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "efRs_oPzR8un89bA4LqawA": {
                     "filterDescriptor": {

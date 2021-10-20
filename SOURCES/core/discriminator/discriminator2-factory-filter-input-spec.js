@@ -1,5 +1,5 @@
 
-// merged-spec-model-factory-input-spec.js
+// discriminator2-factory-filter-input-spec.js
 
 (function() {
 

@@ -45,6 +45,9 @@
             "id": "x4KY6jUCTAu_yCA1c2q5JQ",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "ZjpcwTDdTaKcsMWxNTHvmg": {
                     "filterDescriptor": {

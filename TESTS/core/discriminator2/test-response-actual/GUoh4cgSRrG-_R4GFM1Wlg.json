@@ -33,6 +33,9 @@
             "id": "GUoh4cgSRrG-_R4GFM1Wlg",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "BvJ5Oh_7RB-NoGacsBxeCw": {
                     "filterDescriptor": {

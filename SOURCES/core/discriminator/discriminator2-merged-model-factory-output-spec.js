@@ -3,10 +3,8 @@
 
 (function() {
 
-    const mergedFilterSpecModelFactoryInputSpec = require("./discriminator2-merged-model-factory-input-spec");
-
     module.exports = {
-        ...mergedFilterSpecModelFactoryInputSpec,
+        ...require("./discriminator2-factory-filter-input-spec"),
 
         ____label: "Merged Filter Spec Model Descriptor",
         ____description: "An object that models a forest of N filter spec object trees.",

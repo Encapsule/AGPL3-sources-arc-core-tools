@@ -13,6 +13,9 @@
             "id": "L6Oao8XSSLepZMb93oPTBg",
             "name": "No Filters",
             "description": "Simple test case w/no specified filters to merge whatsover.",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {},
             "digraph": {
                 "name": "[L6Oao8XSSLepZMb93oPTBg::No Filters] Merged Filter Spec Digraph Model",

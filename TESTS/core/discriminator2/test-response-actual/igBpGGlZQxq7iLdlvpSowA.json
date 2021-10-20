@@ -60,6 +60,9 @@
             "id": "igBpGGlZQxq7iLdlvpSowA",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "t-tEJFCnRTycL2Z4XZgH5w": {
                     "filterDescriptor": {

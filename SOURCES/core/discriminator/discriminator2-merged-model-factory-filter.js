@@ -13,7 +13,7 @@
         operationID: "7WtZ3CGLROGWSEDeA-jU6Q",
         operationName: "Merged Filter Spec Model Factory",
         operationDescription: "Accepts an array of @encapsule/arccore.filter objects and returns a digraph-encoded model that represents their merged input filter specifications.",
-        inputFilterSpec:  require("./discriminator2-merged-model-factory-input-spec"),
+        inputFilterSpec:  require("./discriminator2-factory-filter-input-spec"),
         outputFilterSpec: require("./discriminator2-merged-model-factory-output-spec"),
 
         bodyFunction: function(request_) {

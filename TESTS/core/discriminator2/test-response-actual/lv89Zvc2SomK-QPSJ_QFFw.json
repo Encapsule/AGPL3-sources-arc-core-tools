@@ -45,6 +45,9 @@
             "id": "lv89Zvc2SomK-QPSJ_QFFw",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "Piqs15cKRY-vupMj9POJhA": {
                     "filterDescriptor": {

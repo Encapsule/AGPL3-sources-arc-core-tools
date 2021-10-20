@@ -30,6 +30,9 @@
             "id": "3f2jUso8TfeAQ708tTEoCw",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "IlB1RIIzRqe_IDfS0uhLUQ": {
                     "filterDescriptor": {

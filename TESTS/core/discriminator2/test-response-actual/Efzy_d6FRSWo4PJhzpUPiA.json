@@ -51,6 +51,9 @@
             "id": "Efzy_d6FRSWo4PJhzpUPiA",
             "name": "test",
             "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
             "filters": {
                 "7IhPZu36QcKLxD68qmm8jg": {
                     "filterDescriptor": {
