@@ -8,21 +8,10 @@
         "description": "Simple test case w/no specified filters to merge whatsover."
     },
     "testResponse": {
-        "error": null,
+        "error": "Filter [7WtZ3CGLROGWSEDeA-jU6Q::Merged Filter Spec Model Factory] failed while performing main operation. You must include at least one filter in the request.filters array to construct a discriminator instance.",
         "result": {
-            "id": "L6Oao8XSSLepZMb93oPTBg",
-            "name": "No Filters",
-            "description": "Simple test case w/no specified filters to merge whatsover.",
-            "options": {
-                "action": "getFilterID"
-            },
-            "filters": {},
-            "digraph": {
-                "name": "[L6Oao8XSSLepZMb93oPTBg::No Filters] Merged Filter Spec Digraph Model",
-                "description": "Digraph model of 0 filter object input specs merged together for analysis.",
-                "vlist": [],
-                "elist": []
-            }
+            "digraph": null,
+            "filters": {}
         }
     }
 }

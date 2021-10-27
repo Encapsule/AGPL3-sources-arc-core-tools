@@ -25,6 +25,11 @@
             while (!inBreakScope) {
                 inBreakScope = true;
 
+                if (!request_.filters.length) {
+                    errors.push("You must include at least one filter in the request.filters array to construct a discriminator instance.");
+                    break;
+                }
+
                 // Instantiate a new DirectedGraph class instance that models all the namespace(s) defined by all the filter(s).
                 let factoryResponse = arccore.graph.directed.create({
                     name: `[${request_.id}::${request_.name}] Merged Filter Spec Digraph Model`,
