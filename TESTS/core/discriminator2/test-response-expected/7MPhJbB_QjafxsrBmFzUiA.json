@@ -1,6 +1,6 @@
 {
     "testID": "7MPhJbB_QjafxsrBmFzUiA",
-    "testName": "Basic Runtime Model Test 1 (Ambiguous)",
+    "testName": "Basic Runtime Model Test 1",
     "testDescription": "Test model generation for case w/two filters that cannot be discriminated from one another.",
     "testRequest": {
         "id": "7MPhJbB_QjafxsrBmFzUiA",
@@ -120,7 +120,8 @@
                 ],
                 "elist": []
             },
-            "resolvedFilters": {}
+            "resolvedFilters": {},
+            "resolvedNamespaces": {}
         }
     }
 }

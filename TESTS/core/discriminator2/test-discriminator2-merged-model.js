@@ -228,6 +228,12 @@
         testRequest: {
             id:  "S4B_hMO0S7iWB_NNZNgM2A",
             name: "test", description: "test",
+            filters: [
+                FILTERLIB.create({
+                    operationID: "roxSUgjaQTCJuXcqNHxtww",
+                    inputFilterSpec: { ____accept: "jsArray" }
+                }).result
+            ]
         }
     });
 

@@ -1,0 +1,13 @@
+{
+    "testID": "nOOp9Z3rTWSuLf1pB92bZQ",
+    "testName": "Basic Test A",
+    "testDescription": "This is the description for Basic Test A...",
+    "testRequest": {
+        "id": "nOOp9Z3rTWSuLf1pB92bZQ",
+        "name": "test",
+        "description": "test"
+    },
+    "testResponse": {
+        "error": "Filter [jNWiDDr0Tie_1fskDUa7XQ::Request Discriminator Filter Factory] failed while performing main operation. Filter [7WtZ3CGLROGWSEDeA-jU6Q::Merged Filter Spec Model Factory] failed while performing main operation. You must include at least one filter in the request.filters array to construct a discriminator instance."
+    }
+}

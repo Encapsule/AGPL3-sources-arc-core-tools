@@ -59,7 +59,7 @@
     testRuntimeFactory({
         testID: "S4aEUwTeR_S9AuMcls8ELw",
         testName: "PODs vs Object",
-        testDescription: "Seems to be some issue with this?",
+        testDescription: "Ensure that POD constraints work w/descriptor objects that cannot be trivially discriminated.",
         testRequest: {
             id: "S4aEUwTeR_S9AuMcls8ELw",
             name: "test",

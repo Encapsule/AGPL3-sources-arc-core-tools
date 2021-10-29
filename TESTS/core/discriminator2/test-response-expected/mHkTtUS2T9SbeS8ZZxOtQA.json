@@ -1,7 +1,7 @@
 {
     "testID": "mHkTtUS2T9SbeS8ZZxOtQA",
-    "testName": "Basic Runtime Model Test 3 (Unambiguous)",
-    "testDescription": "Test model generation for case w/three filters taht can be trivially discriminated from one another.",
+    "testName": "Basic Runtime Model Test 3",
+    "testDescription": "Test model generation for case w/three filters that can be trivially discriminated from one another.",
     "testRequest": {
         "id": "mHkTtUS2T9SbeS8ZZxOtQA",
         "name": "test",
@@ -369,6 +369,15 @@
                 "i-iVzIrgTDSFDp1-BMiH5Q": "~.property1",
                 "NtSuwG2ySH-1v4l1o--Keg": "~.property2",
                 "dqZVkckBSOSP-KsDm1QxZA": "~.property2"
+            },
+            "resolvedNamespaces": {
+                "~.property1": [
+                    "i-iVzIrgTDSFDp1-BMiH5Q"
+                ],
+                "~.property2": [
+                    "NtSuwG2ySH-1v4l1o--Keg",
+                    "dqZVkckBSOSP-KsDm1QxZA"
+                ]
             }
         }
     }
