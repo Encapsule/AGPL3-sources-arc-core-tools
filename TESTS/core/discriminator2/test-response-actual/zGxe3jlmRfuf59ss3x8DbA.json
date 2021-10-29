@@ -1,0 +1,577 @@
+{
+    "testID": "zGxe3jlmRfuf59ss3x8DbA",
+    "testName": "Basic Runtime Model Test 4",
+    "testDescription": "Test model generation for case w/4 filters that can only be discriminated by traversing branches of the merged model tree.",
+    "testRequest": {
+        "id": "zGxe3jlmRfuf59ss3x8DbA",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "XMyhQfBNQoCA5A9spSkdSA",
+                    "operationName": "unnamed",
+                    "operationDescription": "XMyhQfBNQoCA5A9spSkdSA provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": [
+                            "jsString",
+                            "jsNull"
+                        ]
+                    },
+                    "inputTypeVIID": "cR2V9IWrmh072wc5_9HamQ",
+                    "inputTypeVDID": "b7pvuqVCpULp2-nbtTC1MA",
+                    "outputTypeVIID": "DMtouA24sya7VSK540DjOw",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "-WwsE1LiDVdAgLDthlbltA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "LxTrf16LTMuHpVxo_zfM2Q",
+                    "operationName": "unnamed",
+                    "operationDescription": "LxTrf16LTMuHpVxo_zfM2Q provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "apple": {
+                            "____types": "jsObject",
+                            "grape": {
+                                "____types": "jsObject",
+                                "yyy": {
+                                    "____accept": "jsBoolean"
+                                }
+                            }
+                        }
+                    },
+                    "inputTypeVIID": "nXV19_v13e1pk1nN0AoduQ",
+                    "inputTypeVDID": "cOtBTtVKbLR5kmDLVVgoIg",
+                    "outputTypeVIID": "Kw57mWrQrbjbeFuYryN0EQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "c1SfE9rP5VcG4bntrOR-tA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "lbOM9DHeT-6OOuHDqSvC7A",
+                    "operationName": "unnamed",
+                    "operationDescription": "lbOM9DHeT-6OOuHDqSvC7A provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "apple": {
+                            "____types": "jsObject",
+                            "cherry": {
+                                "____accept": "jsString"
+                            },
+                            "grape": {
+                                "____types": "jsObject",
+                                "zzz": {
+                                    "____accept": "jsBoolean"
+                                }
+                            }
+                        }
+                    },
+                    "inputTypeVIID": "HTSOZqtruQfpkUNXS2NuJQ",
+                    "inputTypeVDID": "uk78-Vy_3VE8j7zcTRnDjg",
+                    "outputTypeVIID": "IYo1om3inl0W4QYHuXWapA",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "epUJE7NRlVdi1gftAJoJtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "VoYqq6z1TDWUwq7uydluSA",
+                    "operationName": "unnamed",
+                    "operationDescription": "VoYqq6z1TDWUwq7uydluSA provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "apple": {
+                            "____types": "jsObject",
+                            "orange": {
+                                "____accept": "jsString"
+                            }
+                        }
+                    },
+                    "inputTypeVIID": "XTpkSlOVgFk8dLHG54fAZg",
+                    "inputTypeVDID": "XuizeBttkzESj2Pm-PFlwQ",
+                    "outputTypeVIID": "fuI31-e3duwwMmz2zRkQdw",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "xEBGE1f_e1f-FNntDHxmtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "id": "zGxe3jlmRfuf59ss3x8DbA",
+            "name": "test",
+            "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
+            "filters": {
+                "XMyhQfBNQoCA5A9spSkdSA": {
+                    "filterDescriptor": {
+                        "operationID": "XMyhQfBNQoCA5A9spSkdSA",
+                        "operationName": "unnamed",
+                        "operationDescription": "XMyhQfBNQoCA5A9spSkdSA provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": [
+                                "jsString",
+                                "jsNull"
+                            ]
+                        },
+                        "inputTypeVIID": "cR2V9IWrmh072wc5_9HamQ",
+                        "inputTypeVDID": "b7pvuqVCpULp2-nbtTC1MA",
+                        "outputTypeVIID": "DMtouA24sya7VSK540DjOw",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "-WwsE1LiDVdAgLDthlbltA"
+                    }
+                },
+                "LxTrf16LTMuHpVxo_zfM2Q": {
+                    "filterDescriptor": {
+                        "operationID": "LxTrf16LTMuHpVxo_zfM2Q",
+                        "operationName": "unnamed",
+                        "operationDescription": "LxTrf16LTMuHpVxo_zfM2Q provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "apple": {
+                                "____types": "jsObject",
+                                "grape": {
+                                    "____types": "jsObject",
+                                    "yyy": {
+                                        "____accept": "jsBoolean"
+                                    }
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "nXV19_v13e1pk1nN0AoduQ",
+                        "inputTypeVDID": "cOtBTtVKbLR5kmDLVVgoIg",
+                        "outputTypeVIID": "Kw57mWrQrbjbeFuYryN0EQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "c1SfE9rP5VcG4bntrOR-tA"
+                    }
+                },
+                "lbOM9DHeT-6OOuHDqSvC7A": {
+                    "filterDescriptor": {
+                        "operationID": "lbOM9DHeT-6OOuHDqSvC7A",
+                        "operationName": "unnamed",
+                        "operationDescription": "lbOM9DHeT-6OOuHDqSvC7A provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "apple": {
+                                "____types": "jsObject",
+                                "cherry": {
+                                    "____accept": "jsString"
+                                },
+                                "grape": {
+                                    "____types": "jsObject",
+                                    "zzz": {
+                                        "____accept": "jsBoolean"
+                                    }
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "HTSOZqtruQfpkUNXS2NuJQ",
+                        "inputTypeVDID": "uk78-Vy_3VE8j7zcTRnDjg",
+                        "outputTypeVIID": "IYo1om3inl0W4QYHuXWapA",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "epUJE7NRlVdi1gftAJoJtA"
+                    }
+                },
+                "VoYqq6z1TDWUwq7uydluSA": {
+                    "filterDescriptor": {
+                        "operationID": "VoYqq6z1TDWUwq7uydluSA",
+                        "operationName": "unnamed",
+                        "operationDescription": "VoYqq6z1TDWUwq7uydluSA provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "apple": {
+                                "____types": "jsObject",
+                                "orange": {
+                                    "____accept": "jsString"
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "XTpkSlOVgFk8dLHG54fAZg",
+                        "inputTypeVDID": "XuizeBttkzESj2Pm-PFlwQ",
+                        "outputTypeVIID": "fuI31-e3duwwMmz2zRkQdw",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "xEBGE1f_e1f-FNntDHxmtA"
+                    }
+                }
+            },
+            "digraph": {
+                "name": "[zGxe3jlmRfuf59ss3x8DbA::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 4 filter object input specs merged together for analysis.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[zGxe3jlmRfuf59ss3x8DbA::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "XMyhQfBNQoCA5A9spSkdSA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "LxTrf16LTMuHpVxo_zfM2Q"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "lbOM9DHeT-6OOuHDqSvC7A"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "VoYqq6z1TDWUwq7uydluSA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "XMyhQfBNQoCA5A9spSkdSA",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "XMyhQfBNQoCA5A9spSkdSA",
+                                            "v": "jsNull"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "LxTrf16LTMuHpVxo_zfM2Q",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "lbOM9DHeT-6OOuHDqSvC7A",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "VoYqq6z1TDWUwq7uydluSA",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 0,
+                            "ts": {
+                                "d": 0,
+                                "f": 13
+                            },
+                            "filterColorMap": {
+                                "XMyhQfBNQoCA5A9spSkdSA": "gold",
+                                "LxTrf16LTMuHpVxo_zfM2Q": "green",
+                                "lbOM9DHeT-6OOuHDqSvC7A": "green",
+                                "VoYqq6z1TDWUwq7uydluSA": "green"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.apple",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[zGxe3jlmRfuf59ss3x8DbA::test](~.apple)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.apple'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "LxTrf16LTMuHpVxo_zfM2Q"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "lbOM9DHeT-6OOuHDqSvC7A"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "VoYqq6z1TDWUwq7uydluSA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "LxTrf16LTMuHpVxo_zfM2Q",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "lbOM9DHeT-6OOuHDqSvC7A",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "VoYqq6z1TDWUwq7uydluSA",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 1,
+                            "ts": {
+                                "d": 1,
+                                "f": 12
+                            },
+                            "filterColorMap": {
+                                "LxTrf16LTMuHpVxo_zfM2Q": "green",
+                                "lbOM9DHeT-6OOuHDqSvC7A": "green",
+                                "VoYqq6z1TDWUwq7uydluSA": "green"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.apple.grape",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[zGxe3jlmRfuf59ss3x8DbA::test](~.apple.grape)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.apple.grape'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "LxTrf16LTMuHpVxo_zfM2Q"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "lbOM9DHeT-6OOuHDqSvC7A"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "LxTrf16LTMuHpVxo_zfM2Q",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "lbOM9DHeT-6OOuHDqSvC7A",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 2,
+                            "ts": {
+                                "d": 2,
+                                "f": 7
+                            },
+                            "filterColorMap": {
+                                "LxTrf16LTMuHpVxo_zfM2Q": "green",
+                                "lbOM9DHeT-6OOuHDqSvC7A": "green"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.apple.grape.yyy",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[zGxe3jlmRfuf59ss3x8DbA::test](~.apple.grape.yyy)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.apple.grape.yyy'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "LxTrf16LTMuHpVxo_zfM2Q"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "LxTrf16LTMuHpVxo_zfM2Q",
+                                            "v": "jsBoolean"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 3,
+                            "ts": {
+                                "d": 3,
+                                "f": 4
+                            },
+                            "filterColorMap": {
+                                "LxTrf16LTMuHpVxo_zfM2Q": "gold"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.apple.cherry",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[zGxe3jlmRfuf59ss3x8DbA::test](~.apple.cherry)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.apple.cherry'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "lbOM9DHeT-6OOuHDqSvC7A"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "lbOM9DHeT-6OOuHDqSvC7A",
+                                            "v": "jsString"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 2,
+                            "ts": {
+                                "d": 8,
+                                "f": 9
+                            },
+                            "filterColorMap": {
+                                "lbOM9DHeT-6OOuHDqSvC7A": "gold"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.apple.grape.zzz",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[zGxe3jlmRfuf59ss3x8DbA::test](~.apple.grape.zzz)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.apple.grape.zzz'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "lbOM9DHeT-6OOuHDqSvC7A"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "lbOM9DHeT-6OOuHDqSvC7A",
+                                            "v": "jsBoolean"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 3,
+                            "ts": {
+                                "d": 5,
+                                "f": 6
+                            },
+                            "filterColorMap": {
+                                "lbOM9DHeT-6OOuHDqSvC7A": "gold"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.apple.orange",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[zGxe3jlmRfuf59ss3x8DbA::test](~.apple.orange)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.apple.orange'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "VoYqq6z1TDWUwq7uydluSA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "VoYqq6z1TDWUwq7uydluSA",
+                                            "v": "jsString"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 2,
+                            "ts": {
+                                "d": 10,
+                                "f": 11
+                            },
+                            "filterColorMap": {
+                                "VoYqq6z1TDWUwq7uydluSA": "gold"
+                            }
+                        }
+                    }
+                ],
+                "elist": [
+                    {
+                        "e": {
+                            "u": "~",
+                            "v": "~.apple"
+                        }
+                    },
+                    {
+                        "e": {
+                            "u": "~.apple",
+                            "v": "~.apple.grape"
+                        }
+                    },
+                    {
+                        "e": {
+                            "u": "~.apple",
+                            "v": "~.apple.cherry"
+                        }
+                    },
+                    {
+                        "e": {
+                            "u": "~.apple",
+                            "v": "~.apple.orange"
+                        }
+                    },
+                    {
+                        "e": {
+                            "u": "~.apple.grape",
+                            "v": "~.apple.grape.yyy"
+                        }
+                    },
+                    {
+                        "e": {
+                            "u": "~.apple.grape",
+                            "v": "~.apple.grape.zzz"
+                        }
+                    }
+                ]
+            },
+            "resolvedFilters": {
+                "XMyhQfBNQoCA5A9spSkdSA": "~",
+                "lbOM9DHeT-6OOuHDqSvC7A": "~.apple.cherry",
+                "VoYqq6z1TDWUwq7uydluSA": "~.apple.orange",
+                "LxTrf16LTMuHpVxo_zfM2Q": "~.apple.grape.yyy"
+            },
+            "resolvedNamespaces": {
+                "~": [
+                    "XMyhQfBNQoCA5A9spSkdSA"
+                ],
+                "~.apple.cherry": [
+                    "lbOM9DHeT-6OOuHDqSvC7A"
+                ],
+                "~.apple.orange": [
+                    "VoYqq6z1TDWUwq7uydluSA"
+                ],
+                "~.apple.grape.yyy": [
+                    "LxTrf16LTMuHpVxo_zfM2Q"
+                ]
+            }
+        }
+    }
+}

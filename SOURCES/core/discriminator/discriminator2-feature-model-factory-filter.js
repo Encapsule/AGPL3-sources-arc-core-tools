@@ -97,13 +97,25 @@
                                 }); // forEach typeConstraint_
 
                                 if (inDegreeMaxPOD > 1) {
+                                    // The filter declares at least one POD type constraint that's shared w/another filter.
                                     filterColorMap[filterOperationID_] = "gray";
                                 } else {
-                                    if ((scoreboard.isEdge({ u: filterOperationID_, v: "jsMapObject" }) && (scoreboard.inDegree("jsDescriptorObject") > 0)) ||
-                                        (scoreboard.isEdge({ u: filterOperationID_, v: "jsDescriptorObject" }) && (scoreboard.inDegree("jsMapObject") > 0))) {
-                                        filterColorMap[filterOperationID_] = "chalk";
+                                    // None of the filter's POD constraint(s) are ambiguous.
+                                    // If there are zero descriptor object(s) constraints on this namespace, then we can discriminate this filter at this namespace.
+                                    if (scoreboard.inDegree("jsDescriptorObject") < 1) {
+                                        filterColorMap[filterOperationID_] = "gold";
                                     } else {
-                                        filterColorMap[filterOperationID_] = (scoreboard.inDegree("jsDescriptorObject") > 1)?"sage":"gold";
+                                        // There is at least one filter in this namespace that declares a descriptor object constraint.
+                                        if (scoreboard.inDegree("jsMapObject") > 0) {
+                                            filterColorMap[filterOperationID_] = "chalk";
+                                        } else {
+                                            // None of the filter's POD constraint(s) are ambiguous for this namespace.
+                                            // There is at least one descriptor object type constraint made by a filter(s) on this namespace.
+                                            // There is no conflict with map object(s) (that we consider as POD type constraints) and descriptor object(s).
+                                            // So... if this filter declares a descriptor object constraint AND other filter(s) also do
+                                            // then we need to arbitrate in finishVertex (sage). If it does not, then it is unambiguous (gold).
+                                            filterColorMap[filterOperationID_] =  (scoreboard.isEdge({ u: filterOperationID_, v: "jsDescriptorObject" }))?((scoreboard.inDegree("jsDescriptorObject") === 1)?"gold":"sage"):"gold";
+                                        }
                                     }
                                 }
 

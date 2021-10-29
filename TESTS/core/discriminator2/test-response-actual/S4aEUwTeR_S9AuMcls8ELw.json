@@ -1,0 +1,270 @@
+{
+    "testID": "S4aEUwTeR_S9AuMcls8ELw",
+    "testName": "PODs vs Object",
+    "testDescription": "Seems to be some issue with this?",
+    "testRequest": {
+        "id": "S4aEUwTeR_S9AuMcls8ELw",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "2GNd5Mm8QyW6NXekFT9s5w",
+                    "operationName": "unnamed",
+                    "operationDescription": "2GNd5Mm8QyW6NXekFT9s5w provides no description.",
+                    "inputFilterSpec": {
+                        "____accept": [
+                            "jsString",
+                            "jsNull"
+                        ]
+                    },
+                    "inputTypeVIID": "mjbnZoiZSo7U6CoyYmlsCQ",
+                    "inputTypeVDID": "b7pvuqVCpULp2-nbtTC1MA",
+                    "outputTypeVIID": "n8J1bumvCIXQ4bmzn9IWgg",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "2DYsEzNVDVc6_bDtBmfltA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "ijEFLr16RdOoWIQWAZ-cnw",
+                    "operationName": "unnamed",
+                    "operationDescription": "ijEFLr16RdOoWIQWAZ-cnw provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "x": {
+                            "____accept": "jsString"
+                        }
+                    },
+                    "inputTypeVIID": "jvr-vDaxW60wu51W4ttjgQ",
+                    "inputTypeVDID": "B8UHxSp9Kn1NY01jcMVwxQ",
+                    "outputTypeVIID": "M9tGWJ4bf--t_dUkEQ4MXw",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "pKruE64sI1f5aC7tJ8B_tA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "szH--6bwQJaTAJIyZoy-Fw",
+                    "operationName": "unnamed",
+                    "operationDescription": "szH--6bwQJaTAJIyZoy-Fw provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "x": {
+                            "____accept": "jsNumber"
+                        }
+                    },
+                    "inputTypeVIID": "aiW5-BFxpNzkoDWxYcBQ2A",
+                    "inputTypeVDID": "BxwHHCpWKlZNQ01DcExwTA",
+                    "outputTypeVIID": "EWDzbK5hvQZFP8tpOmzNGQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "J6pkEzDrqVeUEEvtd-7NtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": null,
+        "result": {
+            "id": "S4aEUwTeR_S9AuMcls8ELw",
+            "name": "test",
+            "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
+            "filters": {
+                "2GNd5Mm8QyW6NXekFT9s5w": {
+                    "filterDescriptor": {
+                        "operationID": "2GNd5Mm8QyW6NXekFT9s5w",
+                        "operationName": "unnamed",
+                        "operationDescription": "2GNd5Mm8QyW6NXekFT9s5w provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": [
+                                "jsString",
+                                "jsNull"
+                            ]
+                        },
+                        "inputTypeVIID": "mjbnZoiZSo7U6CoyYmlsCQ",
+                        "inputTypeVDID": "b7pvuqVCpULp2-nbtTC1MA",
+                        "outputTypeVIID": "n8J1bumvCIXQ4bmzn9IWgg",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "2DYsEzNVDVc6_bDtBmfltA"
+                    }
+                },
+                "ijEFLr16RdOoWIQWAZ-cnw": {
+                    "filterDescriptor": {
+                        "operationID": "ijEFLr16RdOoWIQWAZ-cnw",
+                        "operationName": "unnamed",
+                        "operationDescription": "ijEFLr16RdOoWIQWAZ-cnw provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "x": {
+                                "____accept": "jsString"
+                            }
+                        },
+                        "inputTypeVIID": "jvr-vDaxW60wu51W4ttjgQ",
+                        "inputTypeVDID": "B8UHxSp9Kn1NY01jcMVwxQ",
+                        "outputTypeVIID": "M9tGWJ4bf--t_dUkEQ4MXw",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "pKruE64sI1f5aC7tJ8B_tA"
+                    }
+                },
+                "szH--6bwQJaTAJIyZoy-Fw": {
+                    "filterDescriptor": {
+                        "operationID": "szH--6bwQJaTAJIyZoy-Fw",
+                        "operationName": "unnamed",
+                        "operationDescription": "szH--6bwQJaTAJIyZoy-Fw provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "x": {
+                                "____accept": "jsNumber"
+                            }
+                        },
+                        "inputTypeVIID": "aiW5-BFxpNzkoDWxYcBQ2A",
+                        "inputTypeVDID": "BxwHHCpWKlZNQ01DcExwTA",
+                        "outputTypeVIID": "EWDzbK5hvQZFP8tpOmzNGQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "J6pkEzDrqVeUEEvtd-7NtA"
+                    }
+                }
+            },
+            "digraph": {
+                "name": "[S4aEUwTeR_S9AuMcls8ELw::test] Merged Filter Spec Digraph Model",
+                "description": "Digraph model of 3 filter object input specs merged together for analysis.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[S4aEUwTeR_S9AuMcls8ELw::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "2GNd5Mm8QyW6NXekFT9s5w"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "ijEFLr16RdOoWIQWAZ-cnw"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "szH--6bwQJaTAJIyZoy-Fw"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "2GNd5Mm8QyW6NXekFT9s5w",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "2GNd5Mm8QyW6NXekFT9s5w",
+                                            "v": "jsNull"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ijEFLr16RdOoWIQWAZ-cnw",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "szH--6bwQJaTAJIyZoy-Fw",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 0,
+                            "ts": {
+                                "d": 0,
+                                "f": 3
+                            },
+                            "filterColorMap": {
+                                "2GNd5Mm8QyW6NXekFT9s5w": "gold",
+                                "ijEFLr16RdOoWIQWAZ-cnw": "green",
+                                "szH--6bwQJaTAJIyZoy-Fw": "green"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.x",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[S4aEUwTeR_S9AuMcls8ELw::test](~.x)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.x'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "ijEFLr16RdOoWIQWAZ-cnw"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "szH--6bwQJaTAJIyZoy-Fw"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "ijEFLr16RdOoWIQWAZ-cnw",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "szH--6bwQJaTAJIyZoy-Fw",
+                                            "v": "jsNumber"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 1,
+                            "ts": {
+                                "d": 1,
+                                "f": 2
+                            },
+                            "filterColorMap": {
+                                "ijEFLr16RdOoWIQWAZ-cnw": "gold",
+                                "szH--6bwQJaTAJIyZoy-Fw": "gold"
+                            }
+                        }
+                    }
+                ],
+                "elist": [
+                    {
+                        "e": {
+                            "u": "~",
+                            "v": "~.x"
+                        }
+                    }
+                ]
+            },
+            "resolvedFilters": {
+                "2GNd5Mm8QyW6NXekFT9s5w": "~",
+                "ijEFLr16RdOoWIQWAZ-cnw": "~.x",
+                "szH--6bwQJaTAJIyZoy-Fw": "~.x"
+            },
+            "resolvedNamespaces": {
+                "~": [
+                    "2GNd5Mm8QyW6NXekFT9s5w"
+                ],
+                "~.x": [
+                    "ijEFLr16RdOoWIQWAZ-cnw",
+                    "szH--6bwQJaTAJIyZoy-Fw"
+                ]
+            }
+        }
+    }
+}
