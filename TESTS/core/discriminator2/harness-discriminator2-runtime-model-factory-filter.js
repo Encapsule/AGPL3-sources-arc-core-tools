@@ -84,6 +84,7 @@
 
                 } catch (exception_) {
                     exception = exception_.stack;
+                    responseActual = { testResponse: { error: exception_.message } };
                 }
 
             });

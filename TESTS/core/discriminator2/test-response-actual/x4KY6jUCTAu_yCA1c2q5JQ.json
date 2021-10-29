@@ -1,6 +1,6 @@
 {
     "testID": "x4KY6jUCTAu_yCA1c2q5JQ",
-    "testName": "Basic Runtime Model Test 2 (Unambiguous)",
+    "testName": "Basic Runtime Model Test 2",
     "testDescription": "Test model generation for case w/two filters that can be trivially discriminated from one another.",
     "testRequest": {
         "id": "x4KY6jUCTAu_yCA1c2q5JQ",
@@ -135,6 +135,12 @@
             "resolvedFilters": {
                 "ZjpcwTDdTaKcsMWxNTHvmg": "~",
                 "FAo7VeNTT0ahLvquToBr7A": "~"
+            },
+            "resolvedNamespaces": {
+                "~": [
+                    "ZjpcwTDdTaKcsMWxNTHvmg",
+                    "FAo7VeNTT0ahLvquToBr7A"
+                ]
             }
         }
     }

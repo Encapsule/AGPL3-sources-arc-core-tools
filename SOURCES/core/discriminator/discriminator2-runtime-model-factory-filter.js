@@ -44,9 +44,12 @@
                             console.log(`examineVertex: u="${visitorRequest_.u}"`);
                             const filterColorMap = visitorRequest_.g.getVertexProperty(visitorRequest_.u).filterColorMap;
                             for (let filterOperationID_ in filterColorMap) {
-                                
                                 if ((filterColorMap[filterOperationID_] === "gold") && !resolvedFilters[filterOperationID_]) {
                                     resolvedFilters[filterOperationID_] = visitorRequest_.u;
+                                    if (!resolvedNamespaces[visitorRequest_.u]) {
+                                        resolvedNamespaces[visitorRequest_.u] = [];
+                                    }
+                                    resolvedNamespaces[visitorRequest_.u].push(filterOperationID_);
                                 }
                             }
                             return true;
@@ -89,7 +92,15 @@
 
                 } // end if error condition
 
-                response.result = { ...request_, resolvedFilters };
+                // What we actually want to return via response.result is a filtered (i.e. modified per predicates)
+                // version of the merged filter spec model digraph that includes only namespaces that we need to check
+                // at runtime such that each namespace's scoreboard contains only entries for filters that have unique
+                // namespace name/type features.
+
+                
+
+
+                response.result = { ...request_, resolvedFilters, resolvedNamespaces };
 
                 break;
             }
