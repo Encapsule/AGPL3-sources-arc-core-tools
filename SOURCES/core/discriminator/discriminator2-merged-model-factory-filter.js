@@ -32,7 +32,7 @@
 
                 // Instantiate a new DirectedGraph class instance that models all the namespace(s) defined by all the filter(s).
                 let factoryResponse = arccore.graph.directed.create({
-                    name: `[${request_.id}::${request_.name}] Merged Filter Spec Digraph Model`,
+                    name: `[${request_.id}::${request_.name}] Filter Set Input Constraints Model`,
                     description: `Digraph model of ${request_.filters.length} filter object input specs merged together for analysis.`,
                 });
 

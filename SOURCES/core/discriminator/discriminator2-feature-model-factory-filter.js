@@ -189,6 +189,9 @@
                     break;
                 }
 
+                request_.digraph.setGraphName(`[${request_.id}::${request_.name}] Filter Set Input Constraints Features Model`);
+                request_.digraph.setGraphDescription(`Digraph model of ${request_.filters.length} filter object input specs analyzed to identify unambiguous namespace/name type features.`);
+
                 response.result = request_;
 
                 break;

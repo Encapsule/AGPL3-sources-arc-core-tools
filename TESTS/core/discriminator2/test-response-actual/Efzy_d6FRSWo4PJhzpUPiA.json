@@ -93,8 +93,8 @@
                 }
             },
             "digraph": {
-                "name": "[Efzy_d6FRSWo4PJhzpUPiA::test] Merged Filter Spec Digraph Model",
-                "description": "Digraph model of 2 filter object input specs merged together for analysis.",
+                "name": "[Efzy_d6FRSWo4PJhzpUPiA::test] Filter Set Input Constraints Features Model",
+                "description": "Digraph model of undefined filter object input specs analyzed to identify unambiguous namespace/name type features.",
                 "vlist": [
                     {
                         "u": "~",
