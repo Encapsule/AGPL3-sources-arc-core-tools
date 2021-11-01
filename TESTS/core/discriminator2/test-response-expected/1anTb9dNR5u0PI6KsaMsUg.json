@@ -51,7 +51,7 @@
                 }
             },
             "digraph": {
-                "name": "[1anTb9dNR5u0PI6KsaMsUg::test] Merged Filter Spec Digraph Model",
+                "name": "[1anTb9dNR5u0PI6KsaMsUg::test] Filter Set Input Constraints Model",
                 "description": "Digraph model of 1 filter object input specs merged together for analysis.",
                 "vlist": [
                     {

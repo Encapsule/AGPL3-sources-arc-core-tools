@@ -147,8 +147,8 @@
                 }
             },
             "digraph": {
-                "name": "[NRTCjz4STv6VdHIgjAX-Ig::test] Merged Filter Spec Digraph Model",
-                "description": "Digraph model of 4 filter object input specs merged together for analysis.",
+                "name": "[NRTCjz4STv6VdHIgjAX-Ig::test] Filter Set Input Constraints Features Model",
+                "description": "Digraph model of undefined filter object input specs analyzed to identify unambiguous namespace/name type features.",
                 "vlist": [
                     {
                         "u": "~",

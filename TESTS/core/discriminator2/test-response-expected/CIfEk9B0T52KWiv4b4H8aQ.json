@@ -83,8 +83,8 @@
                 }
             },
             "digraph": {
-                "name": "[CIfEk9B0T52KWiv4b4H8aQ::test] Merged Filter Spec Digraph Model",
-                "description": "Digraph model of 2 filter object input specs merged together for analysis.",
+                "name": "[CIfEk9B0T52KWiv4b4H8aQ::test] Filter Set Input Constraints Features Model",
+                "description": "Digraph model of undefined filter object input specs analyzed to identify unambiguous namespace/name type features.",
                 "vlist": [
                     {
                         "u": "~",

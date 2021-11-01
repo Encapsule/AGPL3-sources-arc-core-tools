@@ -81,8 +81,8 @@
                 }
             },
             "digraph": {
-                "name": "[lv89Zvc2SomK-QPSJ_QFFw::test] Merged Filter Spec Digraph Model",
-                "description": "Digraph model of 2 filter object input specs merged together for analysis.",
+                "name": "[lv89Zvc2SomK-QPSJ_QFFw::test] Filter Set Input Constraints Features Model",
+                "description": "Digraph model of undefined filter object input specs analyzed to identify unambiguous namespace/name type features.",
                 "vlist": [
                     {
                         "u": "~",
