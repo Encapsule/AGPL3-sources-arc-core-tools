@@ -59,13 +59,14 @@
 
                 // If the digraph traverse failed...
                 if (traverseResponse.error) {
+                    errors.push("Unable to analyze the feature model due to error:");
                     errors.push(traverseResponse.error);
                     break;
                 }
 
                 // If the digraph traverse succeeded but ended in unexpected search state (status)...
                 if (traverseResponse.result.searchStatus !== "completed") {
-                    errors.push(`Unexpected depth-first traversal status==="${traverseResponse.result.searchStatus}".`);
+                    errors.push(`Unexpected depth-first traversal status==="${traverseResponse.result.searchStatus}" while analyzing feature model..`);
                     break;
                 }
 
@@ -92,18 +93,87 @@
 
                 } // end if error condition
 
+                if (errors.length) {
+                    // The result is not valid but is useful for diagnosing the details of why the error occurred.
+                    response.result = { ...request_, resolvedFilters, resolvedNamespaces };
+                    break;
+                }
+
                 // What we actually want to return via response.result is a filtered (i.e. modified per predicates)
                 // version of the merged filter spec model digraph that includes only namespaces that we need to check
                 // at runtime such that each namespace's scoreboard contains only entries for filters that have unique
                 // namespace name/type features.
 
-
                 let innerResponse = arccore.graph.directed.create({
-
+                    name: `[${request_.id}::${request_.name}] Filter Set Runtime Discriminator Model`,
+                    description: `Digraph model of ${request_.filters.length} filter object input specs merged together for analysis.`,
                 });
 
+                if (innerResponse.error) {
+                    errors.push(innerResponse.error);
+                    break;
+                }
 
-                response.result = { ...request_, resolvedFilters, resolvedNamespaces };
+                const runtimeDiscriminatorModel = innerResponse.result;
+
+                // Transpose the features model digraph (i.e. reverse the edge directions) in order to partition the graph.
+
+                innerResponse = arccore.graph.directed.transpose(request_.digraph);
+                if (innerResponse.error) {
+                    errors.push(innerResponse.error);
+                    break;
+                }
+
+                const transposedFeaturesModel = innerResponse.result;
+
+                traverseResponse = arccore.graph.directed.depthFirstTraverse({
+                    digraph: transposedFeaturesModel,
+                    options: { startVector: Object.keys(resolvedNamespaces), signalStart: false },
+                    visitor: {
+
+                        discoverVertex: function(visitorRequest_) {
+
+                            const typeToFilterMap = {};
+
+                            // Are there filter(s) that resolve unambiguously (gold) on this namespace?
+                            if (resolvedNamespaces[visitorRequest_.u]) {
+
+                                const nsProp = request_.digraph.getVertexProperty(visitorRequest_.u);
+                                const resolvedFilters = resolvedNamespaces[visitorRequest_.u];
+
+                                resolvedFilters.forEach(filterID_ => {
+                                    const edges = nsProp.typeScoreboard.outEdges(filterID_);
+                                    edges.forEach(edge_ => {
+                                        typeToFilterMap[edge_.v] = filterID_;
+                                    });
+                                });
+
+                            }
+
+                            runtimeDiscriminatorModel.addVertex({ u: visitorRequest_.u, p: typeToFilterMap });
+                            return true;
+                        },
+
+                        examineEdge: function(visitorRequest_) {
+                            runtimeDiscriminatorModel.addEdge({ e: { u: visitorRequest_.e.v, v: visitorRequest_.e.u } });
+                            return true;
+                        },
+
+                    },
+                });
+
+                if (traverseResponse.error) {
+                    errors.push(traverseResponse.error);
+                    break;
+                }
+
+                // If the digraph traverse succeeded but ended in unexpected search state (status)...
+                if (traverseResponse.result.searchStatus !== "completed") {
+                    errors.push(`Unexpected depth-first traversal status==="${traverseResponse.result.searchStatus}" while trying to build the runtime model.`);
+                    break;
+                }
+
+                response.result = { ...request_, resolvedFilters, resolvedNamespaces, runtimeDiscriminatorModel };
 
                 break;
             }
