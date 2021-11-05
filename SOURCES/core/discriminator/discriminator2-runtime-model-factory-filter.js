@@ -28,6 +28,9 @@
             while (!inBreakScope) {
                 inBreakScope = true;
 
+                // A filter may have any number of namespace(s) that are both required (not optional) and unique wrt to other filters in the set.
+                // We keep track of the specific namespace choosen by the algorithm to identifiy each filter in the set; we do not use them all.
+
                 const resolvedFilters = {};
                 const resolvedNamespaces = {};
 
@@ -44,6 +47,9 @@
                             console.log(`examineVertex: u="${visitorRequest_.u}"`);
                             const filterColorMap = visitorRequest_.g.getVertexProperty(visitorRequest_.u).filterColorMap;
                             for (let filterOperationID_ in filterColorMap) {
+                                // Here we select and lock-in the the first required and unique namespace discovered for each filter in the set.
+                                // Note that because we're traversing the feature model breadth-first this has the affect of minimizing the
+                                // depth of each namespace selection. And, this in turn saves cycles when examing any specific inbound request.
                                 if ((filterColorMap[filterOperationID_] === "gold") && !resolvedFilters[filterOperationID_]) {
                                     resolvedFilters[filterOperationID_] = visitorRequest_.u;
                                     if (!resolvedNamespaces[visitorRequest_.u]) {
@@ -144,7 +150,8 @@
                                 resolvedFilters.forEach(filterID_ => {
                                     const edges = nsProp.typeScoreboard.outEdges(filterID_);
                                     edges.forEach(edge_ => {
-                                        typeToFilterMap[edge_.v] = filterID_;
+                                        const typeConstraintMoniker = ((edge_.v === "jsDescriptorObject") || (edge_.v === "jsMapObject"))?"jsObject":edge_.v;
+                                        typeToFilterMap[typeConstraintMoniker] = filterID_;
                                     });
                                 });
 

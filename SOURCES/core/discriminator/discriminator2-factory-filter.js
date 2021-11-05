@@ -4,7 +4,8 @@
 
     const arccore = {
         filter: require("./arc_core_filter"),
-        graph: require("./arc_core_graph")
+        graph: require("./arc_core_graph"),
+        types: require("./arc_core_types")
     };
 
     const mergeFilterSpecs = require("./discriminator2-merged-model-factory-filter");
@@ -52,6 +53,7 @@
                     break;
                 }
 
+                // runtimeModelDescriptor is referenced inside the actual runtime discriminator2 filter's bodyFunction.
                 const runtimeModelDescriptor = innerResponse.result;
 
                 innerResponse = arccore.filter.create({
@@ -60,14 +62,12 @@
                     operationDescription: `This is a specialized @encapsule/arccore.discriminator filter instance described as "${request_.description}".`,
 
                     inputFilterSpec: {
-                        // We could synthesize an aggregate filter spec.
-                        // But, it provides no extra value and costs cycles needlessly.
+                        // We could synthesize an aggregate filter spec. But, I can't see that it provides much value.
                         ____opaque: true
                     },
 
                     outputFilterSpec: {
-                        // We could make this conditional on the routing option action.
-                        // But, it's not clear anyone would ever notice either way.
+                        // We could make this conditional on the routing option action. But, why bother?
                         ____opaque: true
                     },
 
@@ -78,11 +78,27 @@
                         let inBreakScope = false;
                         while (!inBreakScope) {
                             inBreakScope = true;
+                            const rtModel = runtimeModelDescriptor.runtimeDiscriminatorModel; // reference out to closure scope
+                            let traverseResponse = arccore.graph.directed.breadthFirstTraverse({
+                                context: { valueStack: [ runtimeRequest_  ] },
+                                digraph: rtModel, options: { signalStart: false, startVector: "~" },
+                                visitor: {
+                                    examineVertex: function(visitorRequest_) {
 
-                            const rtm = runtimeModelDescriptor; // reference out to closure scope
+                                        let response = arccore.types.convert({ from: "jsReference", to: "jsMoniker", value: visitorRequest_.context.valueStack[visitorRequest_.context.valueStack.length - 1] })
+                                        if (response.error) {
+                                            errors.push(response.error);
+                                            return false;
+                                        }
 
+                                        const nsTypeMoniker = response.result;
+
+                                        
+
+                                    }
+                                }
+                            });
                             response.result = "THIS IS A DISCRIMINATOR2 RUNTIME FILTER INSTANCE (not yet implemented)";
-
                             break;
                         }
                         if (errors.length) {
