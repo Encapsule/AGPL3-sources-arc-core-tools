@@ -35,12 +35,34 @@
                     FILTERLIB.create({
                         operationID: "kdumvDSfSZCorqLJbBtAnw",
                         inputFilterSpec: { ____accept: "jsString" }
+                    }).result,
+                    FILTERLIB.create({
+                        operationID: "7F8tCIrjT_-8iMC5GHWY1A",
+                        inputFilterSpec: {
+                            ____types: "jsObject",
+                            namespaceA: {
+                                ____types: "jsObject",
+                                propertyA: { ____accept: "jsNumber" }
+                            }
+                        }
+                    }).result,
+                    FILTERLIB.create({
+                        operationID: "4zR7NU1tSRCPCqPgGF7HkQ",
+                        inputFilterSpec: {
+                            ____types: "jsObject",
+                            namespaceA: {
+                                ____types: "jsObject",
+                                propertyB: { ____accept: "jsNumber" }
+                            }
+                        }
                     }).result
                 ]
             },
             runtimeRequests: [
                 3.14,
-                "This is a test."
+                "This is a test.",
+                { namespaceA: { propertyA: 5 } },
+                { namespaceA: { propertyB: 6 } }
             ]
         }
     });

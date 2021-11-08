@@ -12,7 +12,6 @@
     const analyzeMergedSpecs = require("./discriminator2-feature-model-factory-filter");
     const buildRuntimeModel = require("./discriminator2-runtime-model-factory-filter");
 
-
     const factoryResponse = arccore.filter.create({
         operationID: "jNWiDDr0Tie_1fskDUa7XQ",
         operationName: "Request Discriminator Filter Factory",
@@ -59,7 +58,7 @@
                 innerResponse = arccore.filter.create({
                     operationID: request_.id,
                     operationName: `${request_.name} Request Discriminator`,
-                    operationDescription: `This is a specialized @encapsule/arccore.discriminator filter instance described as "${request_.description}".`,
+                    operationDescription: `Specialized @encapsule/arccore.discriminator filter instance: "${request_.description}".`,
 
                     inputFilterSpec: {
                         // We could synthesize an aggregate filter spec. But, I can't see that it provides much value.
@@ -73,38 +72,46 @@
 
                     bodyFunction: function(runtimeRequest_) {
 
-                        const response = { error: null };
-                        const errors = [];
-                        let inBreakScope = false;
-                        while (!inBreakScope) {
-                            inBreakScope = true;
-                            const rtModel = runtimeModelDescriptor.runtimeDiscriminatorModel; // reference out to closure scope
-                            let traverseResponse = arccore.graph.directed.breadthFirstTraverse({
-                                context: { valueStack: [ runtimeRequest_  ] },
-                                digraph: rtModel, options: { signalStart: false, startVector: "~" },
-                                visitor: {
-                                    examineVertex: function(visitorRequest_) {
+                        const rtdModel = runtimeModelDescriptor.runtimeDiscriminatorModel; // reference out to closure scope
 
-                                        let response = arccore.types.convert({ from: "jsReference", to: "jsMoniker", value: visitorRequest_.context.valueStack[visitorRequest_.context.valueStack.length - 1] })
-                                        if (response.error) {
-                                            errors.push(response.error);
-                                            return false;
-                                        }
+                        // Returns { error: null | string, result: null (filter operation ID not found) | or string (filter operation ID) }
+                        function evaluateNamespacePathValue(nsValueRef_, nsPath_) {
 
-                                        const nsTypeMoniker = response.result;
+                            let innerResponse = arccore.types.convert({ from: "jsReference", to: "jsMoniker", value: nsValueRef_ });
+                            if (innerResponse.error) {
+                                return innerResponse;
+                            }
+                            const nsTypeMoniker = innerResponse.result;
 
-                                        
+                            const nsTypeToFilterMap = rtdModel.getVertexProperty(nsPath_);
 
+                            if (nsTypeToFilterMap[nsTypeMoniker]) {
+                                return { error: null, result: nsTypeToFilterMap[nsTypeMoniker] };
+                            }
+
+                            if ("jsObject" === nsTypeMoniker) {
+
+                                const childNamespacePaths = rtdModel.outEdges(nsPath_).map(edge_ => { return edge_.v });
+
+                                while (childNamespacePaths.length) {
+
+                                    const childNamespacePath = childNamespacePaths.pop();
+                                    const childNamespaceTokens = childNamespacePath.split(".");
+
+                                    innerResponse = evaluateNamespacePathValue(nsValueRef_[childNamespaceTokens[childNamespaceTokens.length - 1]], childNamespacePath);
+                                    if (innerResponse.error || innerResponse.result) {
+                                        return innerResponse;
                                     }
+
                                 }
-                            });
-                            response.result = "THIS IS A DISCRIMINATOR2 RUNTIME FILTER INSTANCE (not yet implemented)";
-                            break;
-                        }
-                        if (errors.length) {
-                            response.error = errors.join(" ");
-                        }
-                        return response;
+
+                            }
+
+                            return { error: null, result: null };
+
+                        } // evaluateNamespaceValue
+
+                        return evaluateNamespacePathValue(runtimeRequest_, "~");
 
                     } // bodyFunction
 
