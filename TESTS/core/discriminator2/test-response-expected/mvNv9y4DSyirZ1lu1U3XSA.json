@@ -1,0 +1,507 @@
+{
+    "testID": "mvNv9y4DSyirZ1lu1U3XSA",
+    "testName": "Runtime Discriminator Basic Test Case B",
+    "testDescription": "Construct runtime discriminator filter to return the actual filter object, discriminate several requests to confirm we get the correct filter returned for each request.",
+    "testRequest": {
+        "factoryRequest": {
+            "id": "mvNv9y4DSyirZ1lu1U3XSA",
+            "name": "Test Case B",
+            "description": "This is a description of Test Case B",
+            "options": {
+                "action": "getFilter"
+            },
+            "filters": [
+                {
+                    "filterDescriptor": {
+                        "operationID": "s_1N1CcrRHuNwDdpq2vd1Q",
+                        "operationName": "unnamed",
+                        "operationDescription": "s_1N1CcrRHuNwDdpq2vd1Q provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "propertyA": {
+                                "____types": "jsObject",
+                                "____defaultValue": {}
+                            },
+                            "propertyB": {
+                                "____types": "jsObject",
+                                "propertyC": {
+                                    "____types": "jsObject",
+                                    "xxx": {
+                                        "____types": "jsArray",
+                                        "element": {
+                                            "____accept": "jsNumber"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "cl86nagSY74zu5wJNEh3Hg",
+                        "inputTypeVDID": "kUF_jWDrnUlsvazpjFHh-A",
+                        "outputTypeVIID": "I5KdKcwdXimtvZ1YXuGRIQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "gRE6Ez2ntldnq2bteYzltA"
+                    }
+                },
+                {
+                    "filterDescriptor": {
+                        "operationID": "ocUo2gktSxatIU-jXvrTzg",
+                        "operationName": "unnamed",
+                        "operationDescription": "ocUo2gktSxatIU-jXvrTzg provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "propertyA": {
+                                "____types": "jsObject",
+                                "yyy": {
+                                    "____accept": "jsNumber"
+                                }
+                            },
+                            "propertyB": {
+                                "____types": "jsObject",
+                                "propertyC": {
+                                    "____types": "jsObject",
+                                    "xxx": {
+                                        "____types": "jsObject",
+                                        "____asMap": true,
+                                        "element": {
+                                            "____accept": "jsNumber"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "C9zsbiKdZdTk17r2P0gRqg",
+                        "inputTypeVDID": "34yL2Z7PzqvO1b4aJiY7tA",
+                        "outputTypeVIID": "Us0702EAEYw1tz_5nctvhQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "B1i2E0gZdlfnUfDtvStdtA"
+                    }
+                }
+            ]
+        },
+        "runtimeRequests": [
+            5,
+            "no filter",
+            {},
+            {
+                "propertyA": {
+                    "yyy": 57
+                },
+                "propertyB": {
+                    "propertyC": {
+                        "xxx": [
+                            1,
+                            2,
+                            3
+                        ]
+                    }
+                }
+            },
+            {
+                "propertyB": {
+                    "propertyC": {
+                        "xxx": [
+                            "Not of interest to discriminator so it will work to return the filter."
+                        ]
+                    }
+                }
+            },
+            {
+                "propertyA": {
+                    "yyy": 5
+                },
+                "propertyB": {
+                    "propertyC": {
+                        "xxx": {
+                            "x": 5
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "factoryResponse": {
+        "error": null,
+        "result": {
+            "filterDescriptor": {
+                "operationID": "mvNv9y4DSyirZ1lu1U3XSA",
+                "operationName": "Test Case B Request Discriminator",
+                "operationDescription": "Specialized @encapsule/arccore.discriminator filter instance: \"This is a description of Test Case B\".",
+                "inputFilterSpec": {
+                    "____opaque": true
+                },
+                "outputFilterSpec": {
+                    "____opaque": true
+                },
+                "inputTypeVIID": "rXWB14BlczalUUUGgySBKw",
+                "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                "outputTypeVIID": "Wm-UdywLJf66EqmwM6VI5w",
+                "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                "operationVDID": "5T_0E0iENVe4rY7tm4QUtA"
+            }
+        }
+    },
+    "runtimeResponses": [
+        {
+            "runtimeRequest": 5,
+            "runtimeResponse": {
+                "error": "Filter [mvNv9y4DSyirZ1lu1U3XSA::Test Case B Request Discriminator] failed while performing main operation. Sorry. There is no filter registered that will accept a request of the provided type.",
+                "result": {
+                    "name": "[mvNv9y4DSyirZ1lu1U3XSA::Test Case B] Filter Set Runtime Discriminator Model",
+                    "description": "Digraph model of undefined filter object input specs merged together for analysis.",
+                    "vlist": [
+                        {
+                            "u": "~.propertyA.yyy",
+                            "p": {
+                                "jsNumber": "ocUo2gktSxatIU-jXvrTzg"
+                            }
+                        },
+                        {
+                            "u": "~.propertyA",
+                            "p": {}
+                        },
+                        {
+                            "u": "~",
+                            "p": {}
+                        },
+                        {
+                            "u": "~.propertyB.propertyC.xxx",
+                            "p": {
+                                "jsArray": "s_1N1CcrRHuNwDdpq2vd1Q"
+                            }
+                        },
+                        {
+                            "u": "~.propertyB.propertyC",
+                            "p": {}
+                        },
+                        {
+                            "u": "~.propertyB",
+                            "p": {}
+                        }
+                    ],
+                    "elist": [
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.yyy"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyA"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyB"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyB.propertyC",
+                                "v": "~.propertyB.propertyC.xxx"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyB",
+                                "v": "~.propertyB.propertyC"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "runtimeRequest": "no filter",
+            "runtimeResponse": {
+                "error": "Filter [mvNv9y4DSyirZ1lu1U3XSA::Test Case B Request Discriminator] failed while performing main operation. Sorry. There is no filter registered that will accept a request of the provided type.",
+                "result": {
+                    "name": "[mvNv9y4DSyirZ1lu1U3XSA::Test Case B] Filter Set Runtime Discriminator Model",
+                    "description": "Digraph model of undefined filter object input specs merged together for analysis.",
+                    "vlist": [
+                        {
+                            "u": "~.propertyA.yyy",
+                            "p": {
+                                "jsNumber": "ocUo2gktSxatIU-jXvrTzg"
+                            }
+                        },
+                        {
+                            "u": "~.propertyA",
+                            "p": {}
+                        },
+                        {
+                            "u": "~",
+                            "p": {}
+                        },
+                        {
+                            "u": "~.propertyB.propertyC.xxx",
+                            "p": {
+                                "jsArray": "s_1N1CcrRHuNwDdpq2vd1Q"
+                            }
+                        },
+                        {
+                            "u": "~.propertyB.propertyC",
+                            "p": {}
+                        },
+                        {
+                            "u": "~.propertyB",
+                            "p": {}
+                        }
+                    ],
+                    "elist": [
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.yyy"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyA"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyB"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyB.propertyC",
+                                "v": "~.propertyB.propertyC.xxx"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyB",
+                                "v": "~.propertyB.propertyC"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "runtimeRequest": {},
+            "runtimeResponse": {
+                "error": "Filter [mvNv9y4DSyirZ1lu1U3XSA::Test Case B Request Discriminator] failed while performing main operation. Sorry. There is no filter registered that will accept a request of the provided type.",
+                "result": {
+                    "name": "[mvNv9y4DSyirZ1lu1U3XSA::Test Case B] Filter Set Runtime Discriminator Model",
+                    "description": "Digraph model of undefined filter object input specs merged together for analysis.",
+                    "vlist": [
+                        {
+                            "u": "~.propertyA.yyy",
+                            "p": {
+                                "jsNumber": "ocUo2gktSxatIU-jXvrTzg"
+                            }
+                        },
+                        {
+                            "u": "~.propertyA",
+                            "p": {}
+                        },
+                        {
+                            "u": "~",
+                            "p": {}
+                        },
+                        {
+                            "u": "~.propertyB.propertyC.xxx",
+                            "p": {
+                                "jsArray": "s_1N1CcrRHuNwDdpq2vd1Q"
+                            }
+                        },
+                        {
+                            "u": "~.propertyB.propertyC",
+                            "p": {}
+                        },
+                        {
+                            "u": "~.propertyB",
+                            "p": {}
+                        }
+                    ],
+                    "elist": [
+                        {
+                            "e": {
+                                "u": "~.propertyA",
+                                "v": "~.propertyA.yyy"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyA"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~",
+                                "v": "~.propertyB"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyB.propertyC",
+                                "v": "~.propertyB.propertyC.xxx"
+                            }
+                        },
+                        {
+                            "e": {
+                                "u": "~.propertyB",
+                                "v": "~.propertyB.propertyC"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "runtimeRequest": {
+                "propertyA": {
+                    "yyy": 57
+                },
+                "propertyB": {
+                    "propertyC": {
+                        "xxx": [
+                            1,
+                            2,
+                            3
+                        ]
+                    }
+                }
+            },
+            "runtimeResponse": {
+                "error": null,
+                "result": {
+                    "filterDescriptor": {
+                        "operationID": "s_1N1CcrRHuNwDdpq2vd1Q",
+                        "operationName": "unnamed",
+                        "operationDescription": "s_1N1CcrRHuNwDdpq2vd1Q provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "propertyA": {
+                                "____types": "jsObject",
+                                "____defaultValue": {}
+                            },
+                            "propertyB": {
+                                "____types": "jsObject",
+                                "propertyC": {
+                                    "____types": "jsObject",
+                                    "xxx": {
+                                        "____types": "jsArray",
+                                        "element": {
+                                            "____accept": "jsNumber"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "cl86nagSY74zu5wJNEh3Hg",
+                        "inputTypeVDID": "kUF_jWDrnUlsvazpjFHh-A",
+                        "outputTypeVIID": "I5KdKcwdXimtvZ1YXuGRIQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "gRE6Ez2ntldnq2bteYzltA"
+                    }
+                }
+            }
+        },
+        {
+            "runtimeRequest": {
+                "propertyB": {
+                    "propertyC": {
+                        "xxx": [
+                            "Not of interest to discriminator so it will work to return the filter."
+                        ]
+                    }
+                }
+            },
+            "runtimeResponse": {
+                "error": null,
+                "result": {
+                    "filterDescriptor": {
+                        "operationID": "s_1N1CcrRHuNwDdpq2vd1Q",
+                        "operationName": "unnamed",
+                        "operationDescription": "s_1N1CcrRHuNwDdpq2vd1Q provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "propertyA": {
+                                "____types": "jsObject",
+                                "____defaultValue": {}
+                            },
+                            "propertyB": {
+                                "____types": "jsObject",
+                                "propertyC": {
+                                    "____types": "jsObject",
+                                    "xxx": {
+                                        "____types": "jsArray",
+                                        "element": {
+                                            "____accept": "jsNumber"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "cl86nagSY74zu5wJNEh3Hg",
+                        "inputTypeVDID": "kUF_jWDrnUlsvazpjFHh-A",
+                        "outputTypeVIID": "I5KdKcwdXimtvZ1YXuGRIQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "gRE6Ez2ntldnq2bteYzltA"
+                    }
+                }
+            }
+        },
+        {
+            "runtimeRequest": {
+                "propertyA": {
+                    "yyy": 5
+                },
+                "propertyB": {
+                    "propertyC": {
+                        "xxx": {
+                            "x": 5
+                        }
+                    }
+                }
+            },
+            "runtimeResponse": {
+                "error": null,
+                "result": {
+                    "filterDescriptor": {
+                        "operationID": "ocUo2gktSxatIU-jXvrTzg",
+                        "operationName": "unnamed",
+                        "operationDescription": "ocUo2gktSxatIU-jXvrTzg provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "propertyA": {
+                                "____types": "jsObject",
+                                "yyy": {
+                                    "____accept": "jsNumber"
+                                }
+                            },
+                            "propertyB": {
+                                "____types": "jsObject",
+                                "propertyC": {
+                                    "____types": "jsObject",
+                                    "xxx": {
+                                        "____types": "jsObject",
+                                        "____asMap": true,
+                                        "element": {
+                                            "____accept": "jsNumber"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "C9zsbiKdZdTk17r2P0gRqg",
+                        "inputTypeVDID": "34yL2Z7PzqvO1b4aJiY7tA",
+                        "outputTypeVIID": "Us0702EAEYw1tz_5nctvhQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "B1i2E0gZdlfnUfDtvStdtA"
+                    }
+                }
+            }
+        }
+    ]
+}

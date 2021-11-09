@@ -1,0 +1,274 @@
+{
+    "testID": "2bxOMb4QToWRrDqyzTQ-7w",
+    "testName": "Basic Runtime Test 5",
+    "testDescription": "Test runtime model generation for a tricky case involving filters that should not be able to be discriminated.",
+    "testRequest": {
+        "id": "2bxOMb4QToWRrDqyzTQ-7w",
+        "name": "test",
+        "description": "test",
+        "filters": [
+            {
+                "filterDescriptor": {
+                    "operationID": "EXIUcCi6QxGscDzcR1LGwQ",
+                    "operationName": "unnamed",
+                    "operationDescription": "EXIUcCi6QxGscDzcR1LGwQ provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "propertyA": {
+                            "____types": "jsObject",
+                            "propertyB": {
+                                "____accept": "jsString"
+                            }
+                        }
+                    },
+                    "inputTypeVIID": "_eW_BbitXm5CVDj-CE6yuw",
+                    "inputTypeVDID": "vQS4MOPqX-lNpUIA5zTiXw",
+                    "outputTypeVIID": "InlwEHxNRfP61Xd86aS4eQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "lEgHE4vraVcgSbTt0l0UtA"
+                }
+            },
+            {
+                "filterDescriptor": {
+                    "operationID": "8r1fyNnlRUO41NYE64-gdA",
+                    "operationName": "unnamed",
+                    "operationDescription": "8r1fyNnlRUO41NYE64-gdA provides no description.",
+                    "inputFilterSpec": {
+                        "____types": "jsObject",
+                        "propertyA": {
+                            "____types": "jsObject",
+                            "propertyB": {
+                                "____accept": "jsString",
+                                "____defaultValue": "whatever"
+                            }
+                        }
+                    },
+                    "inputTypeVIID": "5Jvci7rcC8Ulae01MwLPNg",
+                    "inputTypeVDID": "Wcc5T4xEbVSkAd0DSsvaTQ",
+                    "outputTypeVIID": "G4XZMUEX6qt9YtWVSwIcNQ",
+                    "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                    "operationVDID": "QvVpE3gAR1d2cY_tE_6AtA"
+                }
+            }
+        ]
+    },
+    "testResponse": {
+        "error": "Filter [sCpSMi4fTOW_Lbl5_GXnPA::Message Descriminator Runtime Model Factory] failed while performing main operation. Cannot construct new discriminator due to request space namespace name / type constraint overlaps. Issues detected w/the following filter(s): [EXIUcCi6QxGscDzcR1LGwQ::unnamed](smoke), [8r1fyNnlRUO41NYE64-gdA::unnamed](smoke)",
+        "result": {
+            "id": "2bxOMb4QToWRrDqyzTQ-7w",
+            "name": "test",
+            "description": "test",
+            "options": {
+                "action": "getFilterID"
+            },
+            "filters": {
+                "EXIUcCi6QxGscDzcR1LGwQ": {
+                    "filterDescriptor": {
+                        "operationID": "EXIUcCi6QxGscDzcR1LGwQ",
+                        "operationName": "unnamed",
+                        "operationDescription": "EXIUcCi6QxGscDzcR1LGwQ provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "propertyA": {
+                                "____types": "jsObject",
+                                "propertyB": {
+                                    "____accept": "jsString"
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "_eW_BbitXm5CVDj-CE6yuw",
+                        "inputTypeVDID": "vQS4MOPqX-lNpUIA5zTiXw",
+                        "outputTypeVIID": "InlwEHxNRfP61Xd86aS4eQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "lEgHE4vraVcgSbTt0l0UtA"
+                    }
+                },
+                "8r1fyNnlRUO41NYE64-gdA": {
+                    "filterDescriptor": {
+                        "operationID": "8r1fyNnlRUO41NYE64-gdA",
+                        "operationName": "unnamed",
+                        "operationDescription": "8r1fyNnlRUO41NYE64-gdA provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "propertyA": {
+                                "____types": "jsObject",
+                                "propertyB": {
+                                    "____accept": "jsString",
+                                    "____defaultValue": "whatever"
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "5Jvci7rcC8Ulae01MwLPNg",
+                        "inputTypeVDID": "Wcc5T4xEbVSkAd0DSsvaTQ",
+                        "outputTypeVIID": "G4XZMUEX6qt9YtWVSwIcNQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "QvVpE3gAR1d2cY_tE_6AtA"
+                    }
+                }
+            },
+            "digraph": {
+                "name": "[2bxOMb4QToWRrDqyzTQ-7w::test] Filter Set Input Constraints Features Model",
+                "description": "Digraph model of undefined filter object input specs analyzed to identify unambiguous namespace/name type features.",
+                "vlist": [
+                    {
+                        "u": "~",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[2bxOMb4QToWRrDqyzTQ-7w::test](~)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "EXIUcCi6QxGscDzcR1LGwQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "8r1fyNnlRUO41NYE64-gdA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "EXIUcCi6QxGscDzcR1LGwQ",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "8r1fyNnlRUO41NYE64-gdA",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 0,
+                            "ts": {
+                                "d": 0,
+                                "f": 5
+                            },
+                            "filterColorMap": {
+                                "EXIUcCi6QxGscDzcR1LGwQ": "smoke",
+                                "8r1fyNnlRUO41NYE64-gdA": "smoke"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.propertyA",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[2bxOMb4QToWRrDqyzTQ-7w::test](~.propertyA)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyA'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "EXIUcCi6QxGscDzcR1LGwQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "8r1fyNnlRUO41NYE64-gdA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "EXIUcCi6QxGscDzcR1LGwQ",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "8r1fyNnlRUO41NYE64-gdA",
+                                            "v": "jsDescriptorObject"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 1,
+                            "ts": {
+                                "d": 1,
+                                "f": 4
+                            },
+                            "filterColorMap": {
+                                "EXIUcCi6QxGscDzcR1LGwQ": "smoke",
+                                "8r1fyNnlRUO41NYE64-gdA": "smoke"
+                            }
+                        }
+                    },
+                    {
+                        "u": "~.propertyA.propertyB",
+                        "p": {
+                            "typeScoreboard": {
+                                "name": "[2bxOMb4QToWRrDqyzTQ-7w::test](~.propertyA.propertyB)",
+                                "description": "Digraph model of type constraint(s) declared by filter(s) for merged request namespace '~.propertyA.propertyB'.",
+                                "vlist": [],
+                                "elist": [
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "EXIUcCi6QxGscDzcR1LGwQ"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "FILTERS",
+                                            "v": "8r1fyNnlRUO41NYE64-gdA"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "EXIUcCi6QxGscDzcR1LGwQ",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "8r1fyNnlRUO41NYE64-gdA",
+                                            "v": "jsString"
+                                        }
+                                    },
+                                    {
+                                        "e": {
+                                            "u": "8r1fyNnlRUO41NYE64-gdA",
+                                            "v": "isDefaulted"
+                                        }
+                                    }
+                                ]
+                            },
+                            "height": 2,
+                            "ts": {
+                                "d": 2,
+                                "f": 3
+                            },
+                            "filterColorMap": {
+                                "EXIUcCi6QxGscDzcR1LGwQ": "gray",
+                                "8r1fyNnlRUO41NYE64-gdA": "white"
+                            }
+                        }
+                    }
+                ],
+                "elist": [
+                    {
+                        "e": {
+                            "u": "~",
+                            "v": "~.propertyA"
+                        }
+                    },
+                    {
+                        "e": {
+                            "u": "~.propertyA",
+                            "v": "~.propertyA.propertyB"
+                        }
+                    }
+                ]
+            },
+            "resolvedFilters": {},
+            "resolvedNamespaces": {}
+        }
+    }
+}

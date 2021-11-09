@@ -1,0 +1,159 @@
+{
+    "testID": "ElDQGKKfSDO-TAT08BPAQA",
+    "testName": "Runtime Discriminator Basic Test Case A",
+    "testDescription": "Construct runtime discriminator filter to return filter operationID, discriminate several requests to confirm correct resolution.",
+    "testRequest": {
+        "factoryRequest": {
+            "id": "ElDQGKKfSDO-TAT08BPAQA",
+            "name": "test",
+            "description": "test",
+            "filters": [
+                {
+                    "filterDescriptor": {
+                        "operationID": "smmz3bHsTgi_xqvvQb7QyA",
+                        "operationName": "unnamed",
+                        "operationDescription": "smmz3bHsTgi_xqvvQb7QyA provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": "jsNumber"
+                        },
+                        "inputTypeVIID": "MPDRnaqpRZ7r-1yW0shDDQ",
+                        "inputTypeVDID": "NDyQT742PRNcEB89b7BTLw",
+                        "outputTypeVIID": "gfu3Geo-kXqsgFa4Xrw9tQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "2ndLEymG9FeA2VLtbSnEtA"
+                    }
+                },
+                {
+                    "filterDescriptor": {
+                        "operationID": "kdumvDSfSZCorqLJbBtAnw",
+                        "operationName": "unnamed",
+                        "operationDescription": "kdumvDSfSZCorqLJbBtAnw provides no description.",
+                        "inputFilterSpec": {
+                            "____accept": "jsString"
+                        },
+                        "inputTypeVIID": "v_96YUeP6zdhyY6K_Ro6fA",
+                        "inputTypeVDID": "A2LDjL1TLElA_kBvbpTo-w",
+                        "outputTypeVIID": "Rv7oG0V8hycPy8A4hMsJSg",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "FCdwE24wglfbHQXtlkHFtA"
+                    }
+                },
+                {
+                    "filterDescriptor": {
+                        "operationID": "7F8tCIrjT_-8iMC5GHWY1A",
+                        "operationName": "unnamed",
+                        "operationDescription": "7F8tCIrjT_-8iMC5GHWY1A provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "namespaceA": {
+                                "____types": "jsObject",
+                                "propertyA": {
+                                    "____accept": "jsNumber"
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "G3D-xSwxqwahlkr5nwNV8Q",
+                        "inputTypeVDID": "vU-P0eOX-j9N3-VM5xVevw",
+                        "outputTypeVIID": "ehjUVqK3ks33eCc9yJ-xyQ",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "mmN-E7fS3VfkFrDtmTIGtA"
+                    }
+                },
+                {
+                    "filterDescriptor": {
+                        "operationID": "4zR7NU1tSRCPCqPgGF7HkQ",
+                        "operationName": "unnamed",
+                        "operationDescription": "4zR7NU1tSRCPCqPgGF7HkQ provides no description.",
+                        "inputFilterSpec": {
+                            "____types": "jsObject",
+                            "namespaceA": {
+                                "____types": "jsObject",
+                                "propertyB": {
+                                    "____accept": "jsNumber"
+                                }
+                            }
+                        },
+                        "inputTypeVIID": "tVwg7g6Qhq-OufsgwLvxjA",
+                        "inputTypeVDID": "vU-Q0eOXrT9N359M5xXXvw",
+                        "outputTypeVIID": "IbO81YXItiymR2Cv2AbrOA",
+                        "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                        "operationVDID": "HqwvE3kWEFeRFZbtAOwxtA"
+                    }
+                }
+            ]
+        },
+        "runtimeRequests": [
+            3.14,
+            "This is a test.",
+            {
+                "namespaceA": {
+                    "propertyA": 5
+                }
+            },
+            {
+                "namespaceA": {
+                    "propertyB": 6
+                }
+            }
+        ]
+    },
+    "factoryResponse": {
+        "error": null,
+        "result": {
+            "filterDescriptor": {
+                "operationID": "ElDQGKKfSDO-TAT08BPAQA",
+                "operationName": "test Request Discriminator",
+                "operationDescription": "Specialized @encapsule/arccore.discriminator filter instance: \"test\".",
+                "inputFilterSpec": {
+                    "____opaque": true
+                },
+                "outputFilterSpec": {
+                    "____opaque": true
+                },
+                "inputTypeVIID": "sH4DDGsQhPCVtL_sHoNxtA",
+                "inputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                "outputTypeVIID": "-MtiDH5X4TjoADS5DzQ6zw",
+                "outputTypeVDID": "dHR0dNnZ2dlUVFRUyMjIyA",
+                "operationVDID": "sdD0ExnjNVeIzo7tLiQUtA"
+            }
+        }
+    },
+    "runtimeResponses": [
+        {
+            "runtimeRequest": 3.14,
+            "runtimeResponse": {
+                "error": null,
+                "result": "smmz3bHsTgi_xqvvQb7QyA"
+            }
+        },
+        {
+            "runtimeRequest": "This is a test.",
+            "runtimeResponse": {
+                "error": null,
+                "result": "kdumvDSfSZCorqLJbBtAnw"
+            }
+        },
+        {
+            "runtimeRequest": {
+                "namespaceA": {
+                    "propertyA": 5
+                }
+            },
+            "runtimeResponse": {
+                "error": null,
+                "result": "7F8tCIrjT_-8iMC5GHWY1A"
+            }
+        },
+        {
+            "runtimeRequest": {
+                "namespaceA": {
+                    "propertyB": 6
+                }
+            },
+            "runtimeResponse": {
+                "error": null,
+                "result": "4zR7NU1tSRCPCqPgGF7HkQ"
+            }
+        }
+    ]
+}
