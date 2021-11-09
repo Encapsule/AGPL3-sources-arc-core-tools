@@ -22,7 +22,7 @@
         // TODO: Be more specific?
         outputFilterSpec: { ____accept: "jsObject" }, // specialized filter object instance
 
-        bodyFunction: function(request_) {
+        bodyFunction: function(factoryRequest_) {
 
             let response = { error: null };
             let errors = [];
@@ -30,7 +30,7 @@
             while (!inBreakScope) {
                 inBreakScope = true;
 
-                let innerResponse = mergeFilterSpecs.request(request_);
+                let innerResponse = mergeFilterSpecs.request(factoryRequest_);
                 if (innerResponse.error) {
                     errors.push(innerResponse.error);
                     break;
@@ -56,9 +56,9 @@
                 const runtimeModelDescriptor = innerResponse.result;
 
                 innerResponse = arccore.filter.create({
-                    operationID: request_.id,
-                    operationName: `${request_.name} Request Discriminator`,
-                    operationDescription: `Specialized @encapsule/arccore.discriminator filter instance: "${request_.description}".`,
+                    operationID: factoryRequest_.id,
+                    operationName: `${factoryRequest_.name} Request Discriminator`,
+                    operationDescription: `Specialized @encapsule/arccore.discriminator filter instance: "${factoryRequest_.description}".`,
 
                     inputFilterSpec: {
                         // We could synthesize an aggregate filter spec. But, I can't see that it provides much value.
@@ -107,11 +107,44 @@
 
                             }
 
+                            // No error. But, no resolution on which filter the request should be routed to.
                             return { error: null, result: null };
 
                         } // evaluateNamespaceValue
 
-                        return evaluateNamespacePathValue(runtimeRequest_, "~");
+                        const namespaceEvaluationResponse = evaluateNamespacePathValue(runtimeRequest_, "~");
+
+                        if (namespaceEvaluationResponse.error) {
+                            return namespaceEvaluationResponse;
+                        }
+
+                        if (!namespaceEvaluationResponse.result) {
+                            return { error: "Sorry. There is no filter registered that will accept a request of the provided type.", result: rtdModel };
+                        }
+
+                        let discriminatorResponse = null;
+
+                        switch (factoryRequest_.options.action) {
+
+                        case "getFilterID":
+                            discriminatorResponse = namespaceEvaluationResponse;
+                            break;
+
+                        case "getFilter":
+                            discriminatorResponse = { error: null, result: runtimeModelDescriptor.filters[namespaceEvaluationResponse.result] };
+                            break;
+
+                        case "routeRequest":
+                            discriminatorResponse = runtimeModelDescriptor.filters[namespaceEvaluationResponse.result].request(runtimeRequest_);
+                            break;
+
+                        default:
+                            discriminatorResponse = { error: `Internal error: unhandled options.action value "${factoryRequest_.options.action}".` };
+                            break;
+
+                        } // end switch
+
+                        return discriminatorResponse;
 
                     } // bodyFunction
 
