@@ -10,8 +10,12 @@ describe(testSuiteName, function() {
     require('./test_arc_core_types');
     require('./test_arc_core_identifier');
     require('./test_arc_core_filter');
-    require('./test_arc_core_discriminator');
-    // require('./test_arc_core_filter_dag');
+
+    require('./discriminator2/test-discriminator2');
+
+    // require('./test_arc_core_discriminator');
+    // require('./test_arc_core_filter_dag'); // Never implemented and not currently published
+
     require('./test_arc_core_package');
 
 });
