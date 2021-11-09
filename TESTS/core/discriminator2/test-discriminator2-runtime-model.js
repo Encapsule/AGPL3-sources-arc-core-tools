@@ -140,5 +140,83 @@
         }
     });
 
+    testRuntimeFactory({
+        testID: "2bxOMb4QToWRrDqyzTQ-7w",
+        testName: "Basic Runtime Test 5",
+        testDescription: "Test runtime model generation for a tricky case involving filters that should not be able to be discriminated.",
+        testRequest: {
+            id: "2bxOMb4QToWRrDqyzTQ-7w",
+            name: "test", description: "test",
+            filters: [
+                FILTERLIB.create({
+                    operationID: "EXIUcCi6QxGscDzcR1LGwQ",
+                    inputFilterSpec: {
+                        ____types: "jsObject",
+                        propertyA: {
+                            ____types: "jsObject",
+                            propertyB: {
+                                ____accept: "jsString"
+                            }
+                        }
+                    }
+                }).result,
+                FILTERLIB.create({
+                    operationID: "8r1fyNnlRUO41NYE64-gdA",
+                    inputFilterSpec: {
+                        ____types: "jsObject",
+                        propertyA: {
+                            ____types: "jsObject",
+                            propertyB: {
+                                ____accept: "jsString",
+                                ____defaultValue: "whatever"
+                            }
+                        }
+                    }
+                }).result
+            ]
+        }
+    });
+
+    testRuntimeFactory({
+        testID: "eUYxNlAORqSNc2PXuIeE9g",
+        testName: "Basic Runtime Test 6",
+        testDescription: "Test runtime model generation for another tricky case involving filters that should not be able to be discriminated.",
+        testRequest: {
+            id: "eUYxNlAORqSNc2PXuIeE9g",
+            name: "test", description: "test",
+            filters: [
+                FILTERLIB.create({
+                    operationID: "kCdjzkl8TJGWw4Psz5k3UA",
+                    inputFilterSpec: {
+                        ____types: "jsObject",
+                        ____defaultValue: {},
+                        propertyA: {
+                            ____types: "jsObject",
+                            propertyB: {
+                                ____accept: "jsString"
+                            }
+                        }
+                    }
+                }).result,
+                FILTERLIB.create({
+                    operationID: "MzsgwxebThazdudVAswbxA",
+                    inputFilterSpec: {
+                        ____types: "jsObject",
+                        ____asMap: true,
+                        element: {
+                            ____accept: "jsNumber"
+                        }
+                    }
+                }).result,
+                FILTERLIB.create({
+                    operationID: "PuIlyCo1SdqvUnWhEMf4RQ",
+                    inputFilterSpec: {
+                        ____accept: [ "jsNull", "jsString", "jsNumber" ]
+                    }
+                }).result
+            ]
+        }
+    });
+
 })();
 
