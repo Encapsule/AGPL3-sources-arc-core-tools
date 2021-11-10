@@ -13,8 +13,8 @@ describe(testSuiteName, function() {
 
     require('./discriminator2/test-discriminator2');
 
-    // require('./test_arc_core_discriminator');
-    // require('./test_arc_core_filter_dag'); // Never implemented and not currently published
+    // SLATED FOR DEPRECATION in v0.3.x: Currently there are 390 passing / 37 failing tests (we do not care actually) --- just keeping track.
+    require('./test_arc_core_discriminator');
 
     require('./test_arc_core_package');
 

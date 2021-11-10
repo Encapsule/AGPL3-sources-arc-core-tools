@@ -288,6 +288,9 @@ test_identifier:
 test_types:
 	$(TOOL_MOCHA) TESTS/core/test_arc_core_types.js
 
+test_package_exports:
+	$(TOOL_MOCHA) TESTS/core/test_arc_core_package.js
+
 
 stage02_license:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'

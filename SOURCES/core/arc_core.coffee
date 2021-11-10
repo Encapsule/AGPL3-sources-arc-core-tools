@@ -17,8 +17,8 @@ COMMON = module.exports =
         murmurhash_js: require 'murmurhash-js'
         uuid:          require 'uuid'
 
-    # discriminator:     { create: require('./arc_core_type_discriminator_factory').request }
-    discriminator:    { create: require('./discriminator2-factory-filter').request }
+    discriminator:     { create: require('./arc_core_type_discriminator_factory').request }
+    discriminator2:    { create: require('./discriminator2-factory-filter').request }
     filter:            require './arc_core_filter'
     # filterDAG:       require './arc_core_filter_dag'
     graph:             require './arc_core_graph'
