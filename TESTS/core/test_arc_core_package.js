@@ -42,15 +42,6 @@ describe("arc_core top-level package tests:", function() {
         });
     });
 
-    // Check export object "discriminator2"
-
-    describe("@encapsule/arccore.discrminator2 export namespace tests.", function() {
-        it("@encapsule/arccore.discrminator2 should be an object.", function() {
-            assert.property(CORE, 'discriminator2');
-            assert.isObject(CORE.discriminator2);
-        });
-    });
-
     // Check export object "graph"
 
     describe("@encapsule/arccore.graph export namespace tests.", function() {

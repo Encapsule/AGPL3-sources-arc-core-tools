@@ -10,12 +10,7 @@ describe(testSuiteName, function() {
     require('./test_arc_core_types');
     require('./test_arc_core_identifier');
     require('./test_arc_core_filter');
-
-    require('./discriminator2/test-discriminator2');
-
-    // SLATED FOR DEPRECATION in v0.3.x: Currently there are 390 passing / 37 failing tests (we do not care actually) --- just keeping track.
-    require('./test_arc_core_discriminator');
-
+    require('./test_arc_core_discriminator'); // v2 discriminator re-implemented in 2021/09-2021-11
     require('./test_arc_core_package');
 
 });

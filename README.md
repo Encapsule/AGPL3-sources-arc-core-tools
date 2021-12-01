@@ -1,6 +1,10 @@
-# Encapsule/ARC_master Repo
+# Encapsule/dpmr-arc-core-at
 
 **Copyright &copy; 2011-2021 Christopher D. Russell <cdr@encapsule.io>**
+
+> Distribution Package Mono Repo (DPMR) Addressable Resource Cell (ARC) core Algoritms/Tools (AT)
+
+## OVERVIEW
 
 This git repository contains the sources for Encapsule Project `@encapsule/arccore` and `@encapsule/arctools` npm packages as well several as-yet-unpublished MIT-licensed open source libraries (e.g. `filterDAG`).
 
@@ -10,7 +14,7 @@ Sources included in this git repository are subject to the terms of the included
 
 > See also: [AGPL-3.0](https://opensource.org/licenses/AGPL-3.0).
 
-And, so too are the specific builds of `@encapsule/arccore` and `@encapsule/arctools` that may be produced by installing, configuring, and executing the Makefile included with this software.
+And, so too are the specific builds of `@encapsule/arccore` and `@encapsule/arctools` that may be produced by installing, configuring, and executing the Makefile included with this git repository.
 
 ## USE
 
@@ -25,17 +29,4 @@ Humans involved in the software package dependency selection process are encoura
 - [**npmjs.com/org/encapsule**](https://www.npmjs.com/org/encapsule)
     - [npmjs.com/package/@encapsule/arccore](https://www.npmjs.com/package/@encapsule/arccore)
     - [npmjs.com/package/@encapsule/arctools](https://www.npmjs.com/package/@encapsule/arctools)
-
-
-For example:
-
-```
-$ mkdir myproject
-$ cd myproject
-$ git init
-$ yarn init
-$ yarn add --dev @encapsule/arccore
-$ yarn add --dev @encapsule/arctools
-```
-
 

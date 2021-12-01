@@ -1,26 +1,23 @@
 
+(function() {
 
-describe("ARC core type discriminator test suite.", function() {
+    // It's assumed this module is loaded by the mocha test runner.
 
-    describe("Merged specification graph builder test suite:", function() {
-        require('./discriminator/test-type-discriminator-merged-model-digraph');
+    describe("ARC core discriminator v2 tests:", function() {
+
+        // Test the algorithm for merging filter specs together...
+        require("./discriminator/test-discriminator2-merged-model");
+
+        // Test the algorithm for identifying unique constraint features...
+        require("./discriminator/test-discriminator2-feature-model");
+
+        // Test the algorithm for pruning the request space feature model for runtime...
+        require("./discriminator/test-discriminator2-runtime-model");
+
+        // The the algorithm the combines all of the above to produce a specialized discriminator2 instance...
+        require("./discriminator/test-discriminator2-factory");
+
     });
 
-    describe("Ambiguity detector unit test suite:", function() {
-        require('./discriminator/test-type-discriminator-ambiguity-detector');
-    });
-
-    describe("Runtime parse model unit test suite:", function() {
-        require('./discriminator/test-type-discriminator-runtime-parse-digraph');
-    });
-
-    describe("Discriminator Filter Factory unit test suite:", function() {
-        require('./discriminator/test-type-discriminator-factory')
-    });
-
-    describe("Discriminator Filter runtime unit test suite:", function() {
-        require('./discriminator/test-type-discriminator-runtime');
-    });
-
-});
+})();
 

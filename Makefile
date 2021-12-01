@@ -178,7 +178,6 @@ stage01_coffee_compile: stage01_coffee_lint
 	$(TOOL_COFFEECC) $(TOOL_COFFEECC_FLAGS) $(DIR_SOURCES_ARCCORE_IDENTIFIER)/*.coffee
 	$(TOOL_COFFEECC) $(TOOL_COFFEECC_FLAGS) $(DIR_SOURCES_ARCCORE_FILTER)/*.coffee
 	$(TOOL_COFFEECC) $(TOOL_COFFEECC_FLAGS) $(DIR_SOURCES_ARCCORE_FILTERDAG)/*.coffee
-	$(TOOL_COFFEECC) $(TOOL_COFFEECC_FLAGS) $(DIR_SOURCES_ARCCORE_DISCRIMINATOR)/*.coffee
 	$(TOOL_COFFEECC) $(TOOL_COFFEECC_FLAGS) $(DIR_SOURCES_ARCCORE)/*.coffee
 	@echo ----------------------------------------------------------------
 	@echo stage01_coffee_compile
@@ -189,6 +188,7 @@ stage01_js_copy: stage01_js_copy_graph stage01_js_copy_discriminator stage01_js_
 	@echo stage01_js_copy - aggregation target complete.
 	@echo '////////////////////////////////////////////////////////////////'
 
+# discriminator (v2) is written in native JavaScript and is merely copied.
 stage01_js_copy_discriminator:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage01_js_copy_discriminator
@@ -199,7 +199,7 @@ stage01_js_copy_discriminator:
 	@echo stage01_js_copy_discriminator
 	@echo '////////////////////////////////////////////////////////////////'
 
-# jsgraph is written in native ES5 and is merely copied.
+# graph is written in native JavaScript and is merely copied.
 stage01_js_copy_graph:
 	@echo '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
 	@echo stage01_js_copy_graph
@@ -260,10 +260,7 @@ stage02_tests:
 	@echo STARTING TESTS OF LIB MODULES IN $(DIR_OUT_BUILD_STAGE02_ARCCORE)
 	@echo ----------------------------------------------------------------
 	$(TOOL_MOCHA) --version
-#	MINUS ON NEXT LINE ALLOWS THIS PHONY TARGET TO EXECUTE AS PART OF THE
-#	NORMAL FLOW OF THIS MAKEFILE BUT IGNORES THE KNOWN ERRORS IN v0.1.4
-#	DISCRIMINATOR LIB.
-	-$(TOOL_MOCHA) TESTS/test_arc.js
+	$(TOOL_MOCHA) TESTS/test_arc.js
 	@echo ----------------------------------------------------------------
 	@echo stage02_tests
 	@echo '////////////////////////////////////////////////////////////////'
@@ -272,9 +269,6 @@ test: stage02_tests
 
 test_discriminator:
 	$(TOOL_MOCHA) TESTS/core/test_arc_core_discriminator.js
-
-test_discrim2:
-	$(TOOL_MOCHA) TESTS/core/discriminator2/test-discriminator2.js
 
 test_filter:
 	$(TOOL_MOCHA) TESTS/core/test_arc_core_filter.js
