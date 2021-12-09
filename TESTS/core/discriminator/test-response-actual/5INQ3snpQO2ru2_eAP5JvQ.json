@@ -1,6 +1,6 @@
 {
     "testID": "5INQ3snpQO2ru2_eAP5JvQ",
-    "testName": "Single filter, object w/properties case 2",
+    "testName": "Multiple filter object w/properties case 2",
     "testDescription": "Verify behavior if inputFilterSpec is an object w/a mix of different property types (case 2).",
     "testRequest": {
         "id": "5INQ3snpQO2ru2_eAP5JvQ",

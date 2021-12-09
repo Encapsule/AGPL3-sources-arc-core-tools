@@ -38,13 +38,7 @@
                     digraph: request_.digraph,
                     visitor: {
 
-                        discoverVertex: function(visitorRequest_) {
-                            console.log(`discoverVertex: u="${visitorRequest_.u}"`);
-                            return true;
-                        },
-
                         examineVertex: function(visitorRequest_) {
-                            console.log(`examineVertex: u="${visitorRequest_.u}"`);
                             const filterColorMap = visitorRequest_.g.getVertexProperty(visitorRequest_.u).filterColorMap;
                             for (let filterOperationID_ in filterColorMap) {
                                 // Here we select and lock-in the the first required and unique namespace discovered for each filter in the set.

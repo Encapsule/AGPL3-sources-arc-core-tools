@@ -58,7 +58,7 @@
 
                     // Reject iff duplicate operation ID...
                     if (response.result.filters[filter.filterDescriptor.operationID]) {
-                        errors.push(`Illegal duplicate filter.filterDescriptor.operationID="${filter.filterDescriptor.operationID}" discovered in input request array.`);
+                        errors.push(`Illegal duplicate filter operationID "${filter.filterDescriptor.operationID}". Every filter in the input filter array must have a unique operationID.`);
                         break;
                     }
 

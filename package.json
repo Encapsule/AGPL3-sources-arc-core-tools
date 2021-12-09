@@ -1,8 +1,8 @@
 {
     "private": true,
     "name": "dpmr-arc-core-at",
-    "version": "0.3.0",
-    "codename": "atmosphere",
+    "version": "0.3.1",
+    "codename": "revontulet",
     "description": "Encapsule Project private AGPLv3-licensed build sources for @encapsule/arccore and @encapsule/arctools distribution packages.",
     "main": "index.js",
     "scripts": {

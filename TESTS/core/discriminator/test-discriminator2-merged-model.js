@@ -199,6 +199,7 @@
         }
     });
 
+    // ----------------------------------------------------------------
     testMergedSpecDigraphFactory({
         testID: "lbSUE3jSRt-ftj3NkzlbgA",
         testName: "Single Filter, Map Object Case #1",
@@ -221,6 +222,7 @@
         }
     });
 
+    // ----------------------------------------------------------------
     testMergedSpecDigraphFactory({
         testID: "S4B_hMO0S7iWB_NNZNgM2A",
         testName: "Single Filter, Array Case #1",
@@ -282,8 +284,35 @@
 
     // ----------------------------------------------------------------
     testMergedSpecDigraphFactory({
+        testID: "25u5isQMQTi-QZLTfYGE6g",
+        testName: "Reject Duplicate Filter IDs",
+        testDescription: "Ensure that duplicated filter operationID IRUTs are rejected.",
+        testRequest: {
+            id: "25u5isQMQTi-QZLTfYGE6g",
+            name: "test",
+            description: "test",
+            filters: [
+                FILTERLIB.create({
+                    operationID: "IsgdMX1JSbCfM1hKC4ihqw",
+                    inputFilterSpec: { ____accept: "jsNull" }
+                }).result,
+                FILTERLIB.create({
+                    operationID: "IsgdMX1JSbCfM1hKC4ihqw",
+                    inputFilterSpec: { ____accept: "jsString" }
+                }).result,
+                FILTERLIB.create({
+                    operationID: "8wmrrwcwQFWDNF-7Ewodyg",
+                    inputFilterSpec: { ____accept: "jsNumber" }
+                }).result
+            ]
+        }
+    });
+
+
+    // ----------------------------------------------------------------
+    testMergedSpecDigraphFactory({
         testID: "5INQ3snpQO2ru2_eAP5JvQ",
-        testName: "Single filter, object w/properties case 2",
+        testName: "Multiple filter object w/properties case 2",
         testDescription: "Verify behavior if inputFilterSpec is an object w/a mix of different property types (case 2).",
         testRequest: {
             id: "5INQ3snpQO2ru2_eAP5JvQ",
@@ -340,9 +369,6 @@
 
     /*
 
-    "25u5isQMQTi-QZLTfYGE6g",
-    "IsgdMX1JSbCfM1hKC4ihqw",
-    "8wmrrwcwQFWDNF-7Ewodyg",
     "Gwb62JopQ-yyv2M3-I93zA",
     "1jAImxyKTmuMt7n41l9vCA",
     "bHxrmMCCT6ee1g8nrIbjew",
