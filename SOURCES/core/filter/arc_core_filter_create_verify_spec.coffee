@@ -235,7 +235,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
                         break
 
                     if not (validTypeConstraint or opaqueNamespace)
-                        errors.unshift "Missing required '____accept', '____types', or '_____opaque' type constraint directive."
+                        errors.unshift "Missing required '____accept', '____types', or '____opaque' type constraint directive."
                         break
 
                     if validTypeConstraint and opaqueNamespace

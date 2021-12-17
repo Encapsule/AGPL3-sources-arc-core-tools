@@ -44,7 +44,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'Filter factory failure: While examining data namespace \'~.outputFilterSpec\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
+        error: 'Filter factory failure: While examining data namespace \'~.outputFilterSpec\': Missing required \'____accept\', \'____types\', or \'____opaque\' type constraint directive.'
     }
 });
 
@@ -82,7 +82,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Missing required \'____accept\', \'____types\', or \'____opaque\' type constraint directive.'
     }
 });
 
@@ -224,7 +224,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec.whatever\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec.whatever\': Missing required \'____accept\', \'____types\', or \'____opaque\' type constraint directive.'
     }
 });
 
@@ -256,7 +256,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec.whatever.green\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec.whatever.green\': Missing required \'____accept\', \'____types\', or \'____opaque\' type constraint directive.'
     }
 });
 
@@ -466,7 +466,7 @@ testCreateFilter({
         }
     },
     expectedResults: {
-        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Missing required \'____accept\', \'____types\', or \'_____opaque\' type constraint directive.',
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Missing required \'____accept\', \'____types\', or \'____opaque\' type constraint directive.',
         result: null
     }
 });

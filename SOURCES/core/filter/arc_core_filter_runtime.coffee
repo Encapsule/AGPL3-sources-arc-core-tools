@@ -1,7 +1,6 @@
 
 'use strict'
 
-IDENTIFIER = require './arc_core_identifier'
 filterRuntimeData = require './arc_core_filter_runtime_spec_processor'
 
 bodyFunctionResponseFilter =
@@ -45,7 +44,7 @@ module.exports = class Filter
 
                 # CALL MAIN FUNCTION WITH FILTERED INPUT REQUEST DATA
                 dispatchState = "performing main operation"
-                bodyFunctionResponse = @filterDescriptor.bodyFunction inputFilterResponse.result
+                bodyFunctionResponse = @filterDescriptor.bodyFunction.call @, inputFilterResponse.result
 
                 returnSignatureCheck = filterRuntimeData value: bodyFunctionResponse, spec: bodyFunctionResponseFilter
                 if returnSignatureCheck.error
