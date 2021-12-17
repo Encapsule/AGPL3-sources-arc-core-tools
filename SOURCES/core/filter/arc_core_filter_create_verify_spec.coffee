@@ -1,11 +1,10 @@
 
-IDENTIFIER = require './arc_core_identifier'
 TYPES = require './arc_core_types'
 
 ###
     request = {
         path: string
-        typemap: object
+        filterSpec: object
     }
 ###
 
@@ -34,7 +33,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
             errors.unshift "Invalid request:"
             break
 
-        innerResponse = TYPES.check.inTypeSet value: request_.typemap, types: 'jsObject'
+        innerResponse = TYPES.check.inTypeSet value: request_.filterSpec, types: 'jsObject'
         if innerResponse.error
             errors.unshift innerResponse.error
             break
@@ -66,11 +65,11 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
 
             typemapDescriptor = mapQueue.shift()
             typepath = typemapDescriptor.path? and typemapDescriptor.path or '~'
-            typemap = typemapDescriptor.typemap
+            filterSpec = typemapDescriptor.filterSpec
 
-            for mapPropertyName of typemap
+            for mapPropertyName of filterSpec
 
-                mapPropertyValue = typemap[mapPropertyName]
+                mapPropertyValue = filterSpec[mapPropertyName]
 
                 switch mapPropertyName
 
@@ -199,25 +198,25 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
 
                     else
                         if mapPropertyName.indexOf('____') == 0
-                            errors.unshift "Unrecognized typemap directive '#{mapPropertyName}' not allowed in declaration."
+                            errors.unshift "Unrecognized filter specification directive '#{mapPropertyName}' not allowed in declaration."
                             break
                         innerResponse = TYPES.check.inTypeSet value: mapPropertyValue, types: [ 'jsObject' ]
                         if innerResponse.error
                             errors.unshift innerResponse.error
-                            errors.unshift "Internal error queuing typemap object '#{mapPropertyName}':"
+                            errors.unshift "Internal error queuing filter specification object '#{mapPropertyName}':"
                             break
                         if not innerResponse.result
                             errors.unshift innerResponse.guidance
-                            errors.unshift "Error queuing typemap object '#{mapPropertyName}':"
+                            errors.unshift "Error queuing filter specification object '#{mapPropertyName}':"
                             break
                         newPath = "#{typepath}.#{mapPropertyName}"
-                        mapQueue.push {path: newPath, typemap: mapPropertyValue}
+                        mapQueue.push {path: newPath, filterSpec: mapPropertyValue}
                         subnamespacesDeclared++
                         break
 
                     # end of switch propertyName
 
-                # inside for mapPropertyName of typemap
+                # inside for mapPropertyName of filterSpec
 
             # inside while mapQueue.length
 
@@ -248,7 +247,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
 
                     if validTypeConstraint and defaulted
                         constraintProp = acceptNamespace and '____accept' or '____types'
-                        if -1 != typemap[constraintProp].indexOf('jsUndefined')
+                        if -1 != filterSpec[constraintProp].indexOf('jsUndefined')
                             errors.unshift "You cannot specifiy a default value on an optional namespace."
                             break
 
@@ -263,7 +262,7 @@ verifyCompositionTypeMapDeclaration = module.exports = (request_) ->
     if errors.length
         response.error = errors.join ' '
     else
-        response.result = request_.typemap
+        response.result = request_.filterSpec
 
     response
 

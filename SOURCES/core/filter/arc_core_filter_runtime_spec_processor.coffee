@@ -1,5 +1,4 @@
 
-IDENTIFIER = require './arc_core_identifier'
 TYPES = require './arc_core_types'
 
 podTypes = [ "jsUndefined", "jsNull", "jsBoolean", "jsNumber", "jsString", "jsFunction" ]
@@ -78,7 +77,7 @@ filterRuntimeData = module.exports = (request_) ->
             acceptInputNamespace = false
 
             if not opaque
-                # Verify the type of the inputData reference against the typemap's type constraint set.
+                # Verify the type of the inputData reference against the filterSpec's type constraint set.
 
                 constraintDirective = null
 
@@ -179,7 +178,7 @@ filterRuntimeData = module.exports = (request_) ->
                         # Ignore ____appdsl metadata that is optionally provided by developers for their own purposes and is not of relevance here
                         break
                     else
-                        # By typemap convention, a namespace property that is not one of typemap's
+                        # By filterSpec convention, a namespace property that is not one of filterSpec's
                         # reserved properties is taken as the declaration of subnamespace entity.
                         if valueJsMoniker == 'jsArray'
                             index = 0

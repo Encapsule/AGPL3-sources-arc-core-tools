@@ -22,7 +22,7 @@ Filter = require './arc_core_filter_runtime'
         inputDescription: required string
 
         # Describe your function's inputs for machine readers.
-        inputTypeMap: object
+        inputFilterSpec: object
 
         # Describe your function's outputs for human readers.
         outputName: required string
@@ -30,7 +30,7 @@ Filter = require './arc_core_filter_runtime'
 
         # Describe your function's outputs for machine readers.
 
-        outputTypeMap: object
+        outputFilterSpec: object
 
         bodyFunction: function you wish to wrap in a NormalizedFunction
 
@@ -62,14 +62,14 @@ module.exports = (request_) ->
 
         # If specified, verify the input type map.
         if functionDescriptor.inputFilterSpec? and functionDescriptor.inputFilterSpec
-            innerResponse = verifyFilterSpecDeclaration path: '~.inputFilterSpec', typemap: functionDescriptor.inputFilterSpec
+            innerResponse = verifyFilterSpecDeclaration path: '~.inputFilterSpec', filterSpec: functionDescriptor.inputFilterSpec
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break
 
         # If specified, verify the output type map.
         if functionDescriptor.outputFilterSpec? and functionDescriptor.outputFilterSpec
-            innerResponse = verifyFilterSpecDeclaration path: '~.outputFilterSpec', typemap: functionDescriptor.outputFilterSpec
+            innerResponse = verifyFilterSpecDeclaration path: '~.outputFilterSpec', filterSpec: functionDescriptor.outputFilterSpec
             if innerResponse.error
                 errors.unshift innerResponse.error
                 break

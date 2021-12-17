@@ -1,4 +1,4 @@
-// runner-nff-runtime-typemap.js
+// runner-filter-runtime-spec.js
 //
 
 var assert = require('chai').assert;
@@ -22,7 +22,7 @@ var filterRuntimeData = testModule('arc_core_filter_runtime_spec_processor');
 module.exports = function (testVector_) {
 
     filterResponse = null;
-    describe("Filter.runtime.filterRuntimeData typemap test: '" + testVector_.testName + "':", function() {
+    describe("Filter.runtime.filterRuntimeData filter specification test: '" + testVector_.testName + "':", function() {
         before(function() {
             var verifierRequestWrapper = function() {
                 filterResponse = filterRuntimeData(testVector_.request);

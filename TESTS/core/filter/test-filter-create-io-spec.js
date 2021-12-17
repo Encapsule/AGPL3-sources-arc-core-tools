@@ -163,7 +163,7 @@ testCreateFilter({
 });
 
 testCreateFilter({
-    testName: "Type map: Invalid typemap directive.",
+    testName: "Type map: Invalid filter spec directive.",
     validConfig: false,
     request: {
         operationID: 'VWc08q1GQYyl4yJqC2Jg_Q',
@@ -180,12 +180,12 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Unrecognized typemap directive \'____callback\' not allowed in declaration.'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Unrecognized filter specification directive \'____callback\' not allowed in declaration.'
     }
 });
 
 testCreateFilter({
-    testName: "Type map: 1st rank valid, except subproperty is not an object.",
+    testName: "Filter Specification: 1st rank valid, except subproperty is not an object.",
     validConfig: false,
     request: {
         operationID: 'VWc08q1GQYyl4yJqC2Jg_Q',
@@ -202,7 +202,7 @@ testCreateFilter({
         bodyFunction: function() {}
     },
     expectedResults: {
-        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error queuing typemap object \'whatever\': Value of type \'jsString\' not in allowed type set [jsObject].'
+        error: 'Filter factory failure: While examining data namespace \'~.inputFilterSpec\': Error queuing filter specification object \'whatever\': Value of type \'jsString\' not in allowed type set [jsObject].'
     }
 });
 
