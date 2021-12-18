@@ -12,7 +12,8 @@ describe("arc_core_.filter Test Suite:", function() {
     require('./filter/test-filter-runtime-spec-namespace-defaults');
     require('./filter/test-filter-runtime-spec-namespace-as-map');
     require('./filter/test-filter-runtime-missing-input');
-    require('./filter/test-filter-runtime')
+    require('./filter/test-filter-runtime'),
+    require('./filter/test-filter-runtime-this-in-bodyFunction');
 
 });
 

@@ -8,7 +8,7 @@ var testNFFRuntime = require('./runner-filter-runtime');
 testNFFRuntime({
     testName: 'Test missing request to base NF.request requiring object input.',
     validConfig: false,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObjectResponse = composeFunction({
             operationID: '1234567890123456789012',
             inputFilterSpec: {
@@ -30,7 +30,7 @@ testNFFRuntime({
 testNFFRuntime({
     testName: 'Test missing request to base NF.request w/opaque input.',
     validConfig: true,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObjectResponse = composeFunction({
             operationID: '1234567890123456789012',
             inputFilterSpec: {

@@ -26,7 +26,7 @@ var generateTestFilter_Opaque1 = function() {
 testFilterRuntime({
     testName: "Filter runtime top-level default value test #1 (no request)",
     validConfig: true,
-    nffGenerator: generateTestFilter_Opaque1,
+    filterGenerator: generateTestFilter_Opaque1,
     expectedResults: {
         error: null,
         result: '"The bodyFunction was passed request=\'undefined\'."'
@@ -36,7 +36,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter runtime top-level default value test #2 (empty request object)",
     validConfig: true,
-    nffGenerator: generateTestFilter_Opaque1,
+    filterGenerator: generateTestFilter_Opaque1,
     request: "HEY",
     expectedResults: {
         error: null,
@@ -64,7 +64,7 @@ var generateTestFilter_Namespace1 = function() {
 testFilterRuntime({
     testName: 'Namespace 1 test 1',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace1,
+    filterGenerator: generateTestFilter_Namespace1,
     expectedResults: {
         error: null,
         // Note that we expect the y property to get dropped:
@@ -76,7 +76,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Namespace 1 test 2',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace1,
+    filterGenerator: generateTestFilter_Namespace1,
     request: { x: 'will get ignored' },
     expectedResults: {
         error: null,
@@ -110,7 +110,7 @@ var generateTestFilter_Namespace2 = function() {
 testFilterRuntime({
     testName: 'Filter Namespace 2 missing request',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace2,
+    filterGenerator: generateTestFilter_Namespace2,
     expectedResults: {
         error: null,
         result: '"The bodyFunction was passed request=\'{\\"y\\":\\"you didn\'t specify a value for \'y\' so we filled one in for you.\\"}\'."'
@@ -120,7 +120,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Filter Namespace 2 invalid request type',
     validConfig: false,
-    nffGenerator: generateTestFilter_Namespace2,
+    filterGenerator: generateTestFilter_Namespace2,
     request: [ "apple", "orange" ],
     expectedResults: {
         error: 'Filter [ehfojdskgkafhodjfqjhdQ::Default value #1] failed while normalizing request input. Error at path \'~\': Value of type \'jsArray\' not in allowed type set [jsObject].',
@@ -131,7 +131,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Filter Namespace 2 empty request object',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace2,
+    filterGenerator: generateTestFilter_Namespace2,
     request: {},
     expectedResults: {
         error: null,
@@ -142,7 +142,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Filter Namespace 2 request.y property wrong type',
     validConfig: false,
-    nffGenerator: generateTestFilter_Namespace2,
+    filterGenerator: generateTestFilter_Namespace2,
     request: { y: [] },
     expectedResults: {
         error: 'Filter [ehfojdskgkafhodjfqjhdQ::Default value #1] failed while normalizing request input. Error at path \'~.y\': Value of type \'jsArray\' not in allowed type set [jsString].',
@@ -153,7 +153,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Filter Namespace 2 request.y property valid value',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace2,
+    filterGenerator: generateTestFilter_Namespace2,
     request: { y: 'input data explicitly sets y' },
     expectedResults: {
         error: null,
@@ -188,7 +188,7 @@ var generateTestFilter_Namespace3 = function() {
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #1',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace3,
+    filterGenerator: generateTestFilter_Namespace3,
     expectedResults: {
         error: null,
         result: '"The bodyFunction was passed request=\'{\\"y\\":\\"default value stream merged at outer request object.\\"}\'."'
@@ -198,7 +198,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #2',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace3,
+    filterGenerator: generateTestFilter_Namespace3,
     request: {},
     expectedResults: {
         error: null,
@@ -209,7 +209,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #3',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace3,
+    filterGenerator: generateTestFilter_Namespace3,
     request: { y: "value set explicitly in input data." },
     expectedResults: {
         error: null,
@@ -237,7 +237,7 @@ var generateTestFilter_Namespace4 = function() {
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #4a',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace4,
+    filterGenerator: generateTestFilter_Namespace4,
     request: undefined,
     expectedResults: {
         error: null,
@@ -249,7 +249,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #4b',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace4,
+    filterGenerator: generateTestFilter_Namespace4,
     request: {},
     expectedResults: {
         error: null,
@@ -261,7 +261,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #4c',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace4,
+    filterGenerator: generateTestFilter_Namespace4,
     request: { whatever: "Seriously" },
     expectedResults: {
         error: null,
@@ -273,7 +273,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #4d (invalid input type)',
     validConfig: false,
-    nffGenerator: generateTestFilter_Namespace4,
+    filterGenerator: generateTestFilter_Namespace4,
     request: null,
     expectedResults: {
         error: 'Filter [4PlhPwvcQ5axocAL5M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsNull\' not in allowed type set [jsObject].',
@@ -305,7 +305,7 @@ var generateTestFilter_Namespace5 = function() {
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #5a (request undefined -> should use default value)',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace5,
+    filterGenerator: generateTestFilter_Namespace5,
     request: undefined,
     expectedResults: {
         error: null,
@@ -316,7 +316,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #5b (request specifies outer object but not inner -> should use inner default)',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace5,
+    filterGenerator: generateTestFilter_Namespace5,
     request: {},
     expectedResults: {
         error: null,
@@ -327,7 +327,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #5c (request specifies outer object w/superflous subnamespaces but not inner namespace -> should use inner default)',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace5,
+    filterGenerator: generateTestFilter_Namespace5,
     request: { whatever: "Seriously, because this isn't in the filter spec it's superfluous" },
     expectedResults: {
         error: null,
@@ -338,7 +338,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #5d (request specifies outer object w/superflous subnamespaces but not inner namespace -> should use inner default)',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace5,
+    filterGenerator: generateTestFilter_Namespace5,
     request: { y: "This is an actual value specified in the request." },
     expectedResults: {
         error: null,
@@ -349,7 +349,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #5e (invalid input type)',
     validConfig: false,
-    nffGenerator: generateTestFilter_Namespace5,
+    filterGenerator: generateTestFilter_Namespace5,
     request: null,
     expectedResults: {
         error: 'Filter [4PlhPwvcQ5axocAL5M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsNull\' not in allowed type set [jsObject].',
@@ -384,7 +384,7 @@ var generateTestFilter_Namespace6 = function() {
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #6a (invalid undefined input)',
     validConfig: false,
-    nffGenerator: generateTestFilter_Namespace6,
+    filterGenerator: generateTestFilter_Namespace6,
     request: undefined,
     expectedResults: {
         error: 'Filter [4PlhPwvcQ6axocAL6M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsObject].',
@@ -396,7 +396,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #6b (outer object specified, inner object not specified -> should specify default value)',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace6,
+    filterGenerator: generateTestFilter_Namespace6,
     request: {},
     expectedResults: {
         error: null,
@@ -407,7 +407,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #6c (outer object specified, inner object specified -> should override default value)',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace6,
+    filterGenerator: generateTestFilter_Namespace6,
     request: { ep: { WhateverIWant: "Because this is an accept namespace." } },
     expectedResults: {
         error: null,
@@ -418,7 +418,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #6d (invalid input type)',
     validConfig: false,
-    nffGenerator: generateTestFilter_Namespace6,
+    filterGenerator: generateTestFilter_Namespace6,
     request: null,
     expectedResults: {
         error: 'Filter [4PlhPwvcQ6axocAL6M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsNull\' not in allowed type set [jsObject].',
@@ -480,7 +480,7 @@ var generateTestFilter_Namespace7 = function() {
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #7a (invalid undefined input)',
     validConfig: false,
-    nffGenerator: generateTestFilter_Namespace7,
+    filterGenerator: generateTestFilter_Namespace7,
     request: undefined,
     expectedResults: {
         error: 'Filter [4PlhPwvcQ7axocAL7M_-AQ::unnamed] failed while normalizing request input. Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsObject].',
@@ -492,7 +492,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #7b (outer object specified -> should specify default value)',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace7,
+    filterGenerator: generateTestFilter_Namespace7,
     request: { RUXBase_Page: {} },
     expectedResults: {
         error: null,
@@ -503,7 +503,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: 'Advanced defaults triggers case #7c (outer object specified, inner object specified -> should override default value)',
     validConfig: true,
-    nffGenerator: generateTestFilter_Namespace7,
+    filterGenerator: generateTestFilter_Namespace7,
     request: { RUXBase_Page: { pageContentEP: { Test: { x: "some data" } } } },
     expectedResults: {
         error: null,

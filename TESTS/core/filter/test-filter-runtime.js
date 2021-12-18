@@ -1,11 +1,10 @@
 // test-use-case-dtf-base.js
 //
 
-var assert = require('chai').assert;
 var testFilterRuntime = require('./runner-filter-runtime');
 
-var testModule = require('./module-under-test');
-var composeFunction = testModule('arc_core_filter_create');
+// var testModule = require('./module-under-test');
+// var createFilter = testModule('arc_core_filter_create');
 
 // ==========================================================================
 var generateTestFilter1 = require('./fixture-gen-filter-1');
@@ -17,7 +16,7 @@ var generateTestFilter4 = require('./fixture-gen-filter-4');
 testFilterRuntime({
     testName: "Unity transformation (passthrough input to output)",
     validConfig: true,
-    nffGenerator: generateTestFilter1,
+    filterGenerator: generateTestFilter1,
     request: "Hey, man. What's up?",
     expectedResults: {
         error: null,
@@ -28,7 +27,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Unity transformation (missing request)",
     validConfig: false,
-    nffGenerator: generateTestFilter1,
+    filterGenerator: generateTestFilter1,
     expectedResults: {
         error: 'Filter [aWxTZN_FTR-e1eZ6bO3OYw::DTF Base Test Op 1] failed while normalizing request input. Error at path \'~\': Value of type \'jsUndefined\' not in allowed type set [jsString].',
         result: null,
@@ -41,7 +40,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: Bogus request",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: "The input type map specifies jsObject constraint so this should fail.",
     expectedResults: {
         error: 'Filter [hGlMYzgjTHS9bYoPcbggFA::TESTOPERATION] failed while normalizing request input. Error at path \'~\': Value of type \'jsString\' not in allowed type set [jsObject].',
@@ -52,7 +51,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: Missing required inStringValueSetTest property",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
     },
     expectedResults: {
@@ -64,7 +63,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: required inStringValueSetTest property is an invalid string value 'error'",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         inStringValueSetTest: "error"
     },
@@ -78,7 +77,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test 1: Missing required inNumericalValueSetTest property",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         inStringValueSetTest: "blue"
     },
@@ -91,7 +90,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: required inNumericalValueSetTest property is not a number",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         inStringValueSetTest: "blue",
         inNumericalValueSetTest: "yellow"
@@ -105,7 +104,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: Missing required inStringRangeTest property",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         inStringValueSetTest: "blue",
         inNumericalValueSetTest: 11
@@ -119,7 +118,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: required inStringRangeTest property is not a string",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         inStringValueSetTest: "blue",
         inNumericalValueSetTest: 11,
@@ -134,7 +133,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: required inStringRangeTest property is not a string",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         inStringValueSetTest: "blue",
         inNumericalValueSetTest: 11,
@@ -149,7 +148,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: required inNumericalRangeTest property is not a string",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         inStringValueSetTest: "blue",
         inNumericalValueSetTest: 11,
@@ -167,7 +166,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: Invalid array contents (wrong type of element value 1)",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         testProperty: "This value should pass through to through response.result.outerRequestNormalized.",
         inStringValueSetTest: "blue",
@@ -185,7 +184,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: Invalid array contents (wrong type of element value 2)",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         testProperty: "This value should pass through to through response.result.outerRequestNormalized.",
         inStringValueSetTest: "blue",
@@ -203,7 +202,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: inStringRangeTest property below range",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         inStringValueSetTest: "blue",
         inNumericalValueSetTest: 11,
@@ -220,7 +219,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: inStringRangeTest above range",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         inStringValueSetTest: "blue",
         inNumericalValueSetTest: 11,
@@ -237,7 +236,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: inStringRangeTest in range",
     validConfig: true,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         inStringValueSetTest: "blue",
         inNumericalValueSetTest: 11,
@@ -256,7 +255,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter I/O Test: Invalid array contents (wrong type of element value)",
     validConfig: false,
-    nffGenerator: generateTestFilter2,
+    filterGenerator: generateTestFilter2,
     request: {
         testProperty: "This value should pass through to through response.result.outerRequestNormalized.",
         inStringValueSetTest: "blue",
@@ -275,7 +274,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "No input or output typemap test.",
     validConfig: true,
-    nffGenerator: generateTestFilter3,
+    filterGenerator: generateTestFilter3,
     request: "It's all fun and games until someone loses an eye.",
     expectedResults: {
         error: '',
@@ -286,7 +285,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Call a filter that violates its output filter spec.",
     validConfig: false,
-    nffGenerator: generateTestFilter4,
+    filterGenerator: generateTestFilter4,
     request: {}, // ignored
     expectedResults: {
         error: 'Filter [VR6DAqmQSM6ygo8s-nrB9w::Test Output Spec] failed while normalizing response result. Error at path \'~.rightProperty\': Value of type \'jsUndefined\' not in allowed type set [jsString].',

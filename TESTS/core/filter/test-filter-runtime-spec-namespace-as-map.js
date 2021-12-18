@@ -24,7 +24,7 @@ var filterGen1 = function() {
 testFilterRuntime({
     testName: "Test runtime filter validation of an input map #1",
     validConfig: true,
-    nffGenerator: filterGen1,
+    filterGenerator: filterGen1,
     request: {
         x: 1,
         y: 2,
@@ -39,7 +39,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Test runtime filter validation of an input map #1 (w/bad element type)",
     validConfig: false,
-    nffGenerator: filterGen1,
+    filterGenerator: filterGen1,
     request: {
         x: 1,
         y: 2,
@@ -73,7 +73,7 @@ var filterGen2 = function() {
 testFilterRuntime({
     testName: "Test runtime filter validation of an input map #2",
     validConfig: true,
-    nffGenerator: filterGen2,
+    filterGenerator: filterGen2,
     request: {
         x: {
             a: 5,

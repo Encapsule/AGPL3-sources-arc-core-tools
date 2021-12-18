@@ -8,7 +8,7 @@ var testFilterRuntime = require('./runner-filter-runtime');
 testFilterRuntime({
     testName: "Filter runtime with bodyFunction that does not return a response object.",
     validConfig: false,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObject = composeFunction({
             operationID: 'FW6hbJQ2R_uN4CCP3qIrYQ',
             operationName: 'bodyFunction Bad Return Test',
@@ -30,7 +30,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter runtime bodyFunction explicitly returns an error.",
     validConfig: false,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObject = composeFunction({
             operationID: '3Ssz5oWpSnmLcFmnY56TOQ',
             operationName: "bodyFunction Returns Error Test",
@@ -55,7 +55,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter runtime opaque input namespace test #1",
     validConfig: true,
-    nffGenerator: function() {
+    filterGenerator: function() {
         return composeFunction({
             operationID: 'pI02RPmzReSHMclQZXH7mg',
             operationName: 'Opaque Namespace Test #1',
@@ -78,7 +78,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter runtime with mix of opaque, declared, and undeclared inputs.",
     validConfig: true,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObject = composeFunction({
             operationID: 'rch9OovwQta2ShC111e7Rg',
             operationName: 'Mix of Opaque, Declared, Undeclared',
@@ -145,7 +145,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter runtime opaque namespace and default value (no request input case).", 
     validConfig: true,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObject = composeFunction({
             operationID: '435vskgQ2RuN4CCP3qIrYQ',
             inputFilterSpec: { ____opaque: true, ____defaultValue: "An undefined request was received so you're seeing this message." },
@@ -161,7 +161,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter runtime opaque namespace and default value (with request input case).", 
     validConfig: true,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObject = composeFunction({
             operationID: '435vskgQ2RuN4CCP3qIrYQ',
             inputFilterSpec: { ____opaque: true, ____defaultValue: "An undefined request was received so you're seeing this message." },
@@ -178,7 +178,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter runtime opaque namespace and default value advanced test 1.", 
     validConfig: true,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObject = composeFunction({
             operationID: '435vskgQ2RuN4CCP3qIrYQ',
             inputFilterSpec: { ____opaque: true, ____defaultValue: "An undefined request was received so you're seeing this message." },
@@ -195,7 +195,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter runtime opaque namespace and default value (advanced case with no request input).", 
     validConfig: true,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObject = composeFunction({
             operationID: '435vskgQ2RuN4CCP3qIrYQ',
             inputFilterSpec: {
@@ -228,7 +228,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter runtime opaque namespace and default value (advanced case with input case 1).", 
     validConfig: true,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObject = composeFunction({
             operationID: '435vskgQ2RuN4CCP3qIrYQ',
             inputFilterSpec: {
@@ -262,7 +262,7 @@ testFilterRuntime({
 testFilterRuntime({
     testName: "Filter runtime opaque namespace and default value (advanced case with input case 2).", 
     validConfig: true,
-    nffGenerator: function() {
+    filterGenerator: function() {
         var functionObject = composeFunction({
             operationID: '435vskgQ2RuN4CCP3qIrYQ',
             inputFilterSpec: {

@@ -1,11 +1,11 @@
 
-// runner-nff-runtime.js
+// runner-filter-runtime.js
 
 /*
   testVector = {
       testName: string
       validConfig: boolean
-      dtfGenerator: function
+      filterGenerator: function (returns a new filter to test)
       request: variant
       expectedResults: {
           error: json string
@@ -22,7 +22,7 @@ module.exports = function(testVector_) {
     describe("Filter runtime use case: '" + testVector_.testName + "':", function() {
         before(function() {
             var requestWrapper = function() {
-                innerResponse = testVector_.nffGenerator();
+                innerResponse = testVector_.filterGenerator();
                 if (innerResponse.error) {
                     throw new Error(innerResponse.error);
                 }
