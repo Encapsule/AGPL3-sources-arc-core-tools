@@ -50,6 +50,6 @@ testFilterRuntime({
         });
     },
     expectedResults: {
-        error: 'Filter [-zCoGozxTq2DL458ymdcMQ::Test This In Filter #1] failed while performing main operation. Cannot read property \'operationID\' of undefined'
+        error: 'Filter [-zCoGozxTq2DL458ymdcMQ::Test This In Filter #1] failed while performing main operation. Cannot read properties of undefined (reading \'operationID\')'
     }
 });
