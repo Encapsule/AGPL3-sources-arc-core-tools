@@ -2,7 +2,7 @@
     "private": true,
     "name": "dpmr-arc-core-at",
     "version": "0.3.3",
-    "codename": "chairpeak",
+    "codename": "frostlake",
     "description": "Encapsule Project private AGPLv3-licensed build sources for @encapsule/arccore and @encapsule/arctools distribution packages.",
     "main": "index.js",
     "scripts": {

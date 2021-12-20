@@ -67,14 +67,29 @@ describe("arc_core top-level package tests:", function() {
                 assert.isObject(CORE.identifier.hash);
             });
 
-            it("@encapsule/arccore.identifier.murmur3.fromUTF8 should be a function.", function() {
-                assert.property(CORE.identifier.hash, 'fromUTF8');
-                assert.isFunction(CORE.identifier.hash.fromUTF8);
+            it("@encapsule/arccore.identifier.hash.fromUTF8 should be a function.", function() {
+                assert.property(CORE.identifier.hash, 'murmur32FromUTF8');
+                assert.isFunction(CORE.identifier.hash.murmur32FromUTF8);
             });
 
-            it("@encapsule/arccore.identifier.murmur3.fromReference should be a function.", function() {
-                assert.property(CORE.identifier.hash, 'fromReference');
-                assert.isFunction(CORE.identifier.hash.fromReference);
+            it("@encapsule/arccore.identifier.hash.fromReference should be a function.", function() {
+                assert.property(CORE.identifier.hash, 'murmur32FromReference');
+                assert.isFunction(CORE.identifier.hash.murmur32FromReference);
+            });
+
+            it("@encapsule/arccore.identifier.hash.shortIRUTFromMurmur32 shoud be a function.", function() {
+                assert.property(CORE.identifier.hash, 'shortIRUTFromMurmur32');
+                assert.isFunction(CORE.identifier.hash.shortIRUTFromMurmur32);
+            });
+
+            it("@encapsule/arccore.identifier.hash.shortIRUTFromUTF8 should be a function.", function() {
+                assert.property(CORE.identifier.hash, 'shortIRUTFromUTF8');
+                assert.isFunction(CORE.identifier.hash.shortIRUTFromUTF8);
+            });
+
+            it("@encapsule/arccore.identifier.hash.shortIRUTFromReference should be a function.", function() {
+                assert.property(CORE.identifier.hash, 'shortIRUTFromReference');
+                assert.isFunction(CORE.identifier.hash.shortIRUTFromReference);
             });
 
         });
@@ -86,19 +101,37 @@ describe("arc_core top-level package tests:", function() {
                 assert.isObject(CORE.identifier.irut);
             });
 
+            // deprecated in v0.3.3-frostlake
             it("@encapsule/arccore.identifier.irut.fromEther should be a function.", function() {
                 assert.property(CORE.identifier.irut, 'fromEther');
                 assert.isFunction(CORE.identifier.irut.fromEther);
             });
 
+            it("@encapsule/arccore.identifier.irut.longIRUTFromV4UUID should be a function.", function() {
+                assert.property(CORE.identifier.irut, 'longIRUTFromV4UUID');
+                assert.isFunction(CORE.identifier.irut.longIRUTFromV4UUID);
+            });
+
+            // deprecated in v0.3.3-frostlake
             it("@encapsule/arccore.identifier.irut.fromReference should be a function.", function() {
                 assert.property(CORE.identifier.irut, 'fromReference');
                 assert.isFunction(CORE.identifier.irut.fromReference);
             });
 
+            it("@encapsule/arccore.identifier.irut.longIRUTFromReference should be a function.", function() {
+                assert.property(CORE.identifier.irut, 'longIRUTFromReference');
+                assert.isFunction(CORE.identifier.irut.longIRUTFromReference);
+            });
+
+            // deprecated in v0.3.3-frostlake
             it("@encapsule/arccore.identifier.irut.isIRUT should be a function.", function() {
                 assert.property(CORE.identifier.irut, 'isIRUT');
                 assert.isFunction(CORE.identifier.irut.isIRUT);
+            });
+
+            it("@encapsule/arccore.identifier.irut.longIRUTIsValid should be a function.", function() {
+                assert.property(CORE.identifier.irut, 'longIRUTIsValid');
+                assert.isFunction(CORE.identifier.irut.longIRUTIsValid);
             });
 
         });

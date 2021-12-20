@@ -1,20 +1,3 @@
-###
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
-###
-#
-#
-#
 
 UUIDV4 = (require 'uuid').v4
 MURMUR = require 'murmurhash-js'
@@ -49,9 +32,8 @@ MODULE = module.exports = {}
     is 4x32-bit Murmur3 hashes of the four substrings. This feature is used to fingerprint ARC's
     primarily.
 ###
-MODULE.fromEther = ->
+MODULE.longIRUTFromV4UUID = ->
     r1 = UUIDV4 null, new Uint8Array 16, 0
-    #    r2 = (new Buffer r1).toString 'base64'
     r2 = (Buffer.from r1).toString 'base64'
     tail = r2.length
     pads = 0
@@ -61,6 +43,9 @@ MODULE.fromEther = ->
     r4 = r3.replace(/\+/g, "-")
     r5 = r4.replace(/\//g, "_")
     r5
+
+# Alias
+MODULE.fromEther = MODULE.longIRUTFromV4UUID
 
 
 ###
@@ -90,7 +75,7 @@ MODULE.fromEther = ->
     Later when I profile we'll see. We might be able to get away with 64-bits here?
 
 ###
-MODULE.fromReference = (ref_) ->
+MODULE.longIRUTFromReference = (ref_) ->
     errors = []
     response = error: null, result: null
     inBreakScope = false
@@ -138,7 +123,10 @@ MODULE.fromReference = (ref_) ->
         response.error = errors.join ' '
     response
 
-MODULE.isIRUT = (irut_) ->
+# Alias --- deprecate this...
+MODULE.fromReference = MODULE.longIRUTFromReference
+
+MODULE.longIRUTIsValid = (irut_) ->
     response = error: null, guidance: null, result: null
     errors = []
     inBreakScope = false
@@ -172,3 +160,6 @@ MODULE.isIRUT = (irut_) ->
         response.error = errors.join ' '
 
     response
+
+# Alias -- deprecate this...
+MODULE.isIRUT = MODULE.longIRUTIsValid

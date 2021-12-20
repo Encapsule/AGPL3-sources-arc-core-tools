@@ -1,34 +1,17 @@
-###
-----------------------------------------------------------------------
- 
-           +---+---+---+---+
- chaos --> | J | B | U | S | --> order
-           +---+---+---+---+
-
-Copyright (C) 2015 Encapsule.io Bellevue, WA USA
-
-JBUS is licensed under the GNU Affero General Public License v3.0.
-Please consult the included LICENSE file for agreement terms.
-
-----------------------------------------------------------------------
-###
-#
-#
-#
 
 MURMUR = require 'murmurhash-js'
 
 MODULE = module.exports = {}
 
-MODULE.fromUTF8 = (utf8_) ->
+MODULE.murmur32FromUTF8 = (utf8_) ->
     utf8 = Buffer.from utf8_, 'utf-8'
     ascii = utf8.toString 'ascii'
     MURMUR ascii
 
-MODULE.fromReference = (ref_) ->
-    MODULE.fromUTF8 JSON.stringify ref_
+MODULE.murmur32FromReference = (ref_) ->
+    MODULE.murmur32FromUTF8 JSON.stringify ref_
 
-MODULE.toIRUT = (hash_) ->
+MODULE.shortIRUTFromMurmur32 = (hash_) ->
     buffer = Buffer.alloc 4
     buffer.writeUInt32LE hash_, 0
     r1 = buffer.toString 'base64'
@@ -39,3 +22,9 @@ MODULE.toIRUT = (hash_) ->
     r3 = r2.replace(/\+/g, "-")
     r4 = r3.replace(/\//g, "_")
     r4
+
+MODULE.shortIRUTFromUTF8 = (utf8_) ->
+    MODULE.ShortIRUTFromMurmur32 MODULE.murmur32FromUTF8 utf8_
+
+MODULE.shortIRUTFromReference = (ref_) ->
+    MODULE.ShortIRUTFromMurmur32 MODULE.murmur32FromReference ref_
