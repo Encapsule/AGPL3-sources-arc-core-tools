@@ -11,21 +11,22 @@ var packageDatabase = module.exports = {
         },
         readmeDocumentContent: {
             summaryDescriptor: {
-                heading: "# Overview",
+                heading: "## Overview",
                 markdown: [
                     "> **[ARCcore Runtime Documentation](https://encapsule.io/docs/ARCcore)**",
-                    "The `@encapsule/arccore` package contains runtime algorithms for schematizing, filtering, routing, and modeling strongly-typed in-memory data within Node.js and HTML5 services runtimes implemented in JavaScript."
+                    "The `@encapsule/arccore` package contains runtime algorithms for schematizing, filtering, routing, and modeling strongly-typed in-memory data with mathematical graphs and JSON-serializable data types for use in Node.js and HTML5 application services implemented in JavaScript."
                 ]
 
             },
             markdownBody: [
+
                 {
-                    heading: "# Runtime Libraries",
+                    heading: "## Runtime Libraries",
                     markdown: []
                 },
 
                 {
-                    heading: "## ARCcore.filter",
+                    heading: "### ARCcore.filter",
                     markdown: [
                         "> **[ARCcore.filter Documentation](https://encapsule.io/docs/ARCcore/filter)**",
                         "Build self-documenting functions with strong data type and value constraint enforcement provided automatically at runtime."
@@ -33,7 +34,7 @@ var packageDatabase = module.exports = {
                 },
 
                 {
-                    heading: "## ARCcore.discriminator",
+                    heading: "### ARCcore.discriminator",
                     markdown: [
                         "> **[ARCcore.discriminator Documentation](https://encapsule.io/docs/ARCcore/discriminator)**",
                         "Register a set of ARCcore.filter intances to create a \"discriminator\" filter that \"routes\" calls to a specific filter in the set based on the shape of the request."
@@ -41,7 +42,7 @@ var packageDatabase = module.exports = {
                 },
 
                 {
-                    heading: "## ARCcore.graph",
+                    heading: "### ARCcore.graph",
                     markdown: [
                         "> **[ARCcore.graph Documentation](https://encapsule.io/docs/ARCcore/graph)**",
                         "Directed graph container class and algorithms for modeling and analyzing [directed graph](https://en.wikipedia.org/wiki/Directed_graph) datasets in memory."
@@ -49,7 +50,7 @@ var packageDatabase = module.exports = {
                 },
 
                 {
-                    heading: "## ARCcore.identifier",
+                    heading: "### ARCcore.identifier",
                     markdown: [
                         "> **[ARCcore.identifier Documentation](https://encapsule.io/docs/ARCcore/identifier)**",
                         "Generate non-cryptographic object signatures and random keys in 6-character (32-bit) and 22-character (128-bit) Internet Routable Unique Token (IRUT) string format.",
@@ -57,7 +58,7 @@ var packageDatabase = module.exports = {
                 },
 
                 {
-                    heading: "## ARCcore.types",
+                    heading: "### ARCcore.types",
                     markdown: [
                         "> **[ARCcore.types Documentation](https://encapsule.io/docs/ARCcore/types)**",
                         "A collection of functions for testing and comparing the type of in-memory entities.",
@@ -65,10 +66,19 @@ var packageDatabase = module.exports = {
                 },
 
                 {
-                    heading: "## ARCcore.util",
+                    heading: "### ARCcore.util",
                     markdown: [
                         "> **[ARCcore.util Documentation](https://encapsule.io/docs/ARCcore/identifier)**",
                         "A collection of utility functions used primarily by other libraries contained in the arccore package."
+                    ]
+                },
+
+                {
+                    heading: "## Dependencies",
+                    markdown: [
+                        "The `@encapsule/arccore` distribution package bundles and contains the **[uuid](https://www.npmjs.com/package/uuid)** and **[murmurhash-js](https://www.npmjs.com/package/murmurhash-js)** " +
+                            "npm packages in order to ensure that the package is self-contained, and functions exactly as verified by our suite of 1700+ regression tests.",
+                        "If your application service needs to leverages either of these bundled packages directly they are exported from `@encapsule/arccore` as `__bundle.uuid` and `__bundle.murmurhash_js`."
                     ]
                 }
 
@@ -98,7 +108,7 @@ var packageDatabase = module.exports = {
         },
         readmeDocumentContent: {
             summaryDescriptor: {
-                heading: "# Overview",
+                heading: "## Overview",
                 markdown: [
                     "This package contains command line utilities + resuable filter function libraries that are used in the build/production/test of other Encapsule Project software works.",
                     "I don't have time to document it right now and you don't need it probably. So, just ignore."
@@ -106,11 +116,11 @@ var packageDatabase = module.exports = {
             },
             markdownBody: [
                 {
-                    heading: "# Tools",
+                    heading: "## Tools",
                     markdown: []
                 },
                 {
-                    heading: "## arc_generateIRUT",
+                    heading: "### arc_generateIRUT",
                     markdown: [
                         "Command line utilty that generates and array of v4 UUID encoded as 22-character Internet Routable Unique Token (IRUT) strings.",
                         [

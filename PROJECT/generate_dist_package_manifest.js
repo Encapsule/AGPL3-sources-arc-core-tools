@@ -52,15 +52,15 @@ var packageManifest = {
     buildSource: arcBuild.buildSource,
     repository: {
         type: "git",
-        url: "git+https://gitlab.com/encapsule/" + tersePackageName + ".git",
+        url: "git+https://github.com/encapsule/" + tersePackageName + ".git",
     },
     author: arcBuild.author,
     contributors: arcBuild.contributors,
     license: "MIT",
     bugs: {
-        url: "https://gitlab.com/encapsule/" + tersePackageName + "/-/issues"
+        url: "https://github.com/encapsule/" + tersePackageName + "/issues"
     },
-    homepage: "https://gitlab.com/encapsule/" + tersePackageName
+    homepage: "https://encapsule.io"
 };
 
 for (var key in packageBuildData.packageManifestFields) {
@@ -104,14 +104,14 @@ const usageContextString = (packageBuildData.browserSafe?"Node.js + HTML5":"Node
 const encapsuleProjectBannerMarkdown = "# [![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png \"Encapsule Project\")](https://encapsule.io) Encapsule Project";
 
 const npmjsPackageLink = `https://npmjs.com/package/${fullPackageName}/v/${packageManifest.version}`;
-const gitlabPackageLink = `https://gitlab.com/encapsule/${tersePackageName}`;
-const gitlabPackageIssues = `${gitlabPackageLink}/-/issues`;
+const githubPackageLink = `https://github.com/encapsule/${tersePackageName}`;
+const githubPackageIssues = `${githubPackageLink}/issues`;
 
 markdown.push(encapsuleProjectBannerMarkdown);
 
 markdown.push("## " + options.packageName + " v" + arcBuild.version + "-" + arcBuild.codename);
 
-markdown.push("_" + packageManifest.description + "_");
+markdown.push("**" + packageManifest.description + "**");
 
 markdown.push("```\n" +
               "Package: " + options.packageName + " v" + arcBuild.version + "-" + arcBuild.codename + " build " + arcBuild.buildID + "\n" +
@@ -121,6 +121,11 @@ markdown.push("```\n" +
               "License: " + packageManifest.license + "\n" +
               "```");
 
+markdown.push([
+    `> [${options.packageName} Package Distribution](${npmjsPackageLink}) (npmjs)<br/>`,
+    `> [${options.packageName} Package Repo](${githubPackageLink}) (GitHub)<br/>`,
+    `> [${options.packageName} Package Issues](${githubPackageIssues}) (GitHub)`,
+].join("\n"));
 
 // Insert optional package-specific content to the Summary section body.
 if (packageBuildData.readmeDocumentContent.summaryDescriptor) {
@@ -130,7 +135,7 @@ if (packageBuildData.readmeDocumentContent.summaryDescriptor) {
 switch (packageBuildData.packageType) {
 case 'library':
     injectReadmeSection({
-        heading: "# Use",
+        heading: "## Use",
         markdown: [
             "Add the `" + fullPackageName + "` package to your Node.js project's `package.json` manifest:",
 
@@ -143,7 +148,7 @@ case 'library':
     break;
 case 'tools':
     injectReadmeSection({
-        heading: "# Use",
+        heading: "## Use",
         markdown: [
             "Typically, the `" + fullPackageName + "` "  + packageBuildData.packageType + " package is registered via `npm` so that its exported script(s) are available at the command line of your OS:",
             "```\n$ npm install --global " + fullPackageName + "\n```"
@@ -159,20 +164,11 @@ while (packageBuildData.readmeDocumentContent.markdownBody && packageBuildData.r
     injectReadmeSection(packageBuildData.readmeDocumentContent.markdownBody.shift());
 }
 
-
-markdown.push("# Package Links");
-
-markdown.push([
-    `- [${options.packageName} Package Distribution](${npmjsPackageLink}) (npmjs)`,
-    `- [${options.packageName} Package Repo](${gitlabPackageLink}) (GitLab)`,
-    `- [${options.packageName} Package Issues](${gitlabPackageIssues}) (GitLab)`,
-].join("\n"));
-
 markdown.push(encapsuleProjectBannerMarkdown);
 
 markdown.push("Published under [" + packageManifest.license + "](./LICENSE) license by [Encapsule Project](https://encapsule.io)");
-markdown.push("Copyright &copy; " + buildYear + " " + copyrightHolder.name);
-markdown.push("GitLab: [https://gitlab/encapsule](https://gitlab.encapsule)");
+markdown.push("Copyright &copy; 2012-" + buildYear + " " + copyrightHolder.name);
+markdown.push("GitHub: [https://github/encapsule](https://github.encapsule)");
 markdown.push("Twitter: [https://twitter.com/encapsule](https://twitter.com/encapsule)");
 
 const mddoc = markdown.join('\n\n');
