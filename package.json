@@ -5,6 +5,10 @@
     "codename": "frostlake",
     "description": "Encapsule Project private AGPLv3-licensed build sources for @encapsule/arccore and @encapsule/arctools distribution packages.",
     "main": "index.js",
+    "engines": {
+        "node": ">=16.13.1",
+        "npm": ">=8.1.2"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
