@@ -1,8 +1,8 @@
 {
     "private": true,
     "name": "dpmr-arc-core-at",
-    "version": "0.3.4",
-    "codename": "lakeserene",
+    "version": "0.3.5",
+    "codename": "lochkatrine",
     "description": "Encapsule Project private AGPLv3-licensed build sources for @encapsule/arccore and @encapsule/arctools distribution packages.",
     "main": "index.js",
     "engines": {

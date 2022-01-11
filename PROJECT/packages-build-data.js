@@ -1,5 +1,7 @@
 // packages-build-data.js
 
+
+
 var packageDatabase = module.exports = {
     "@encapsule/arccore": {
         packageType: "library",
@@ -22,7 +24,9 @@ var packageDatabase = module.exports = {
 
                 {
                     heading: "## Runtime Libraries",
-                    markdown: []
+                    markdown: [
+                        "The `@encapsule/arrccore` package is a pre-tested, minified, self-contained, distribution package containing runtime algorithms used to build Node.js and HTML5 infrastructure and advanced data-driven application services."
+                    ]
                 },
 
                 {
@@ -54,6 +58,7 @@ var packageDatabase = module.exports = {
                     markdown: [
                         "> **[ARCcore.identifier Documentation](https://encapsule.io/docs/ARCcore/identifier)**",
                         "Generate non-cryptographic object signatures and random keys in 6-character (32-bit) and 22-character (128-bit) Internet Routable Unique Token (IRUT) string format.",
+                        "**Note:** The `@encapsule/arccore.identifier` runtime library leverages the `uuid` and `murmurhash-js` npm packages that are included this this package as [bundled dependencies](#bundled-dependencies)."
                     ]
                 },
 
@@ -74,11 +79,17 @@ var packageDatabase = module.exports = {
                 },
 
                 {
-                    heading: "## Dependencies",
+                    heading: "## Bundled Dependencies",
                     markdown: [
-                        "The `@encapsule/arccore` distribution package bundles and contains the **[uuid](https://www.npmjs.com/package/uuid)** and **[murmurhash-js](https://www.npmjs.com/package/murmurhash-js)** " +
-                            "npm packages in order to ensure that the package is self-contained, and functions exactly as verified by our suite of 1700+ regression tests.",
-                        "If your application service needs to leverages either of these bundled packages directly they are exported from `@encapsule/arccore` as `__bundle.uuid` and `__bundle.murmurhash_js`."
+                        "The `@encapsule/arccore` package includes the minified source code for MIT-licensed packages [murmurhash-js](https://www.npmjs.com/package/murmurhash-js) and [uuid](https://www.npmjs.com/package/uuid).",
+                        "If your derived application/service requires either of these packages, use the same version bundled in the `@encapsule/arccore` package via `__bundle` export object:",
+                        [
+                            "```",
+                            `const arccore = require("@encapsule/arccore");`,
+                            `const murmurhash_js = arccore.__bundle.murmurhash_js;`,
+                            `const uuid = arccore.__bundle.uuid;`,
+                            "```"
+                        ].join("\n")
                     ]
                 }
 
