@@ -8,12 +8,12 @@ MODULE = {}
 ###
     request = {
         value: JavaScript reference
-        types: jsCode (number [0,7] or array of jsCode's
+        types: jsMoniker or array of jsMoniker strings
     }
     response = {
         error: null or string explaining why result and guidance are null
         guidance: a string explaining the false result (often used in parameter validation error messages upstream)
-        result: jsMoniker string indicating the type of request.ref iff ref is in request.types. Otherwise, null.
+        result: jsMoniker string indicating the type of request.ref iff ref is in request.types. Otherwise, false.
     }
 
     Note: The protocol for using refInJsTypeSet is slightly different than base request/response.
