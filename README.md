@@ -1,12 +1,12 @@
-# Encapsule/dpmr-arc-core-at
+# @Encapsule/AGPL3-sources-arc-core-tools
 
-**Copyright &copy; 2011-2021 Christopher D. Russell <cdr@encapsule.io>**
+**Copyright &copy; 2011-2022 Chris Russell <cdr@encapsule.io> for Encapsule Project**
 
-> Distribution Package Mono Repo (DPMR) Addressable Resource Cell (ARC) core Algoritms/Tools (AT)
+**[Encapsule Project](https://encapsule.io)**
 
 ## OVERVIEW
 
-This git repository contains the sources for Encapsule Project `@encapsule/arccore` and `@encapsule/arctools` npm packages as well several as-yet-unpublished MIT-licensed open source libraries (e.g. `filterDAG`).
+This git repository contains the source code, build, test, and packaging routines for the [@encapsule/arccore](https://www.npmjs.com/package/@encapsule/arccore) and [@encapsule/arctools](https://www.npmjs.com/package/@encapsule/arctools) npm distribution packages.
 
 ## LICENSE TERMS
 
@@ -18,13 +18,11 @@ And, so too are the specific builds of `@encapsule/arccore` and `@encapsule/arct
 
 ## USE
 
-By publishing specific signed builds of `@encapsule/arccore` and `@encapsule/arctools` to public domain escrow under the terms of the [**MIT License**](https://opensource.org/licenses/MIT) the copyright holder, Christopher D. Russell, releases all users (human, programmatic, or otherwise) from the terms of the attached AGPLv3 license.
+By publishing specific signed builds of `@encapsule/arccore` and `@encapsule/arctools` to public domain escrow under the terms of the [**MIT License**](https://opensource.org/licenses/MIT) the sole author and copyright holder, Christopher D. Russell, releases all users (human, programmatic, or otherwise) from the terms of the attached AGPLv3 license.
 
 In other words, if you take a dependency on the public domain MIT-licensed `@encapsule/arccore` and `@encapsule/arctools` distribution packages then your use is constrained only by the terms of the [**MIT License**](https://opensource.org/licenses/MIT) and attached copyright notice. And, is explicitly not constrained by the terms of the [AGPLv3 LICENSE](./LICENSE) included with this source code.
 
-> In most use cases, individuals, organizations, and companies who wish to use `@encapsule/arccore` (and occasionally `@encapsule/arctools`) will clone this repository to try the build, check the tests, etc. (e.g. as part of their internal library selection process). And, then subsequently take a dependency on the public domain MIT-licensed packages as below.
-
-Humans involved in the software package dependency selection process are encouraged to use the public domain `@encapsule/arccore` and `@encapsule/arctools` distributions from a known and trusted source to ensure you only ever use reviewed, tested, self-consistent builds of these packages aligned w/docs published at [encapsule.io](https://encapsule.io).
+In most use cases, individuals, organizations, and companies who wish to use `@encapsule/arccore` (and occasionally `@encapsule/arctools`) will clone this repository to try the build, check the tests, etc. (e.g. as part of their internal library selection process).
 
 - [**npmjs.com/org/encapsule**](https://www.npmjs.com/org/encapsule)
     - [npmjs.com/package/@encapsule/arccore](https://www.npmjs.com/package/@encapsule/arccore)
