@@ -1,8 +1,6 @@
 # @Encapsule/AGPL3-sources-arc-core-tools
 
-**Copyright &copy; 2011-2022 Chris Russell <cdr@encapsule.io> for Encapsule Project**
-
-**[Encapsule Project](https://encapsule.io)**
+Copyright &copy; 2011-2022 Chris Russell <cdr@encapsule.io> for **[Encapsule Project](https://encapsule.io)**
 
 ## OVERVIEW
 
