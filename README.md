@@ -1,6 +1,6 @@
 [![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png "Encapsule Project")](https://encapsule.io)
 
-# @Encapsule/AGPL3-sources-arc-core-tools
+# Encapsule/AGPL3-sources-arc-core-tools
 
 Copyright &copy; 2011-2022 Chris Russell <cdr@encapsule.io> for **[Encapsule Project](https://encapsule.io)**
 
