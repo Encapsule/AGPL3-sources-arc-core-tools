@@ -1,3 +1,5 @@
+[![Encapsule Project](https://encapsule.io/images/blue-burst-encapsule.io-icon-72x72.png "Encapsule Project")](https://encapsule.io)
+
 # @Encapsule/AGPL3-sources-arc-core-tools
 
 Copyright &copy; 2011-2022 Chris Russell <cdr@encapsule.io> for **[Encapsule Project](https://encapsule.io)**
@@ -18,5 +20,5 @@ This git repository is public in order to make it possible to see how the [**MIT
 
 If you clone this repo and use its contents to build your own copies of `@encapsule/arccore` and `@encapsule/arctools` packages that is fine so long as you adhere to AGPLv3.0 License terms.
 
-Most organizations should prefer to instead use the [**MIT-License**](https://opensource.org/licenses/MIT) [@encapsule/arccore](https://www.npmjs.com/package/@encapsule/arccore) and [@encapsule/arctools](https://www.npmjs.com/package/@encapsule/arctools) publilished at: [**npmjs.com/org/encapsule**](https://www.npmjs.com/org/encapsule)
+Most organizations should prefer to use the pre-built/tested/packaged [**MIT-License**](https://opensource.org/licenses/MIT) [@encapsule/arccore](https://www.npmjs.com/package/@encapsule/arccore) and [@encapsule/arctools](https://www.npmjs.com/package/@encapsule/arctools) publilished at: [**npmjs.com/org/encapsule**](https://www.npmjs.com/org/encapsule)
 
